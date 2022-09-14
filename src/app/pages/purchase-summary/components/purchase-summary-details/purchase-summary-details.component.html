@@ -15,17 +15,24 @@
         <strong>Resumen de la compra</strong>
     </div>
 
-    <div class="col-12 mb-4" *ngFor="let item of rooms; index as idx">
-        <app-purchase-summary-details-card-item [index]="idx + 1" [item]="item">
-        </app-purchase-summary-details-card-item>
-    </div>
+    <ng-container *ngIf="(purchaseDocument$ | async) as purchaseDocument; else loading ">
 
-    <div class="col-12 mb-4">
-        <app-purchase-summary-details-category-card-item [order]="purchaseDocument">
-        </app-purchase-summary-details-category-card-item>
-    </div>
+        <div class="col-12 mb-4" *ngFor="let item of purchaseDocument.rooms; index as idx">
+            <app-purchase-summary-details-card-item [index]="idx + 1" [item]="item">
+            </app-purchase-summary-details-card-item>
+        </div>
 
-    <app-pre-sale-totales></app-pre-sale-totales>
+        <div class="col-12 mb-4">
+            <app-purchase-summary-details-category-card-item [order]="purchaseDocument">
+            </app-purchase-summary-details-category-card-item>
+        </div>
+
+        <app-purchase-summary-totales [order]="purchaseDocument"></app-purchase-summary-totales>
+
+    </ng-container>
+
+
+    <!-- <app-pre-sale-totales></app-pre-sale-totales> -->
 
     <div class="col-12">
         <div class="d-flex justify-content-between">
@@ -40,3 +47,93 @@
     </div>
 
 </div>
+
+
+<ng-template #loading>
+    <div class="col-12 mb-4">
+        <div class="card card-box p-3 mb-3">
+            <div class="row g-2 d-flex align-items-center">
+                <div class="col-12 placeholder-glow">
+                    <span class="placeholder col-12 bg-danger" style="height: 16px;"></span>
+                </div>
+                <div class="seprd2"></div>
+                <div class="col-12">
+                    <p class="m-0 placeholder-glow">
+                        <span class="placeholder col-7"></span>
+                    </p>
+                    <p class="m-0 placeholder-glow" *ngFor="let item of [1,1,1]">
+                        <span class="placeholder col-7"></span>
+                    </p>
+                    <hr>
+                    <p class="m-0 placeholder-glow">
+                        <span class="placeholder col-7"></span>
+                    </p>
+                    <p class="m-0 placeholder-glow">
+                        <span class="placeholder col-8"></span>
+                    </p>
+                    <div class="placeholder-glow">
+                        <span class="placeholder col-9" style="height: 24px;"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 mb-4">
+        <div class="card card-box p-3 mb-3">
+            <div class="row g-2 d-flex align-items-center">
+                <div class="col-12 placeholder-glow">
+                    <span class="placeholder col-12 bg-danger" style="height: 16px;"></span>
+                </div>
+                <div class="seprd2"></div>
+                <div class="col-12">
+                    <p class="fw-bold m-0 placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    <div class="seprd m-0 mb-2"></div>
+                    <p class="m-0 placeholder-glow">
+                        <span class="placeholder col-7"></span>
+                    </p>
+                    <p class="m-0 placeholder-glow">
+                        <span class="placeholder col-7"></span>
+                    </p>
+                    <div class="seprd2"></div>
+
+                    <p class="border-bottom fw-bold m-0 placeholder-glow">
+                        <span class="placeholder col-5"></span>
+                    </p>
+                    <!-- <hr> -->
+                    <p class="m-0 placeholder-glow" *ngFor="let item of [1,1]">
+                        <span class="placeholder col-5"></span>
+                    </p>
+        
+                    <p class="m-0 placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    <p class="m-0 placeholder-glow">
+                        <span class="placeholder col-8"></span>
+                    </p>
+                    <div class="placeholder-glow">
+                        <span class="placeholder col-9" style="height: 24px;"></span>
+                    </div>
+        
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 mb-5">
+        <h6 class="text-end placeholder-glow">
+            <span class="placeholder col-5"></span>
+        </h6>
+        <h6 class="text-end placeholder-glow">
+            <span class="placeholder col-6"></span>
+        </h6>
+        <h5 class="fw-bold fs-3 text-end placeholder-glow">
+            <span class="placeholder col-7"></span>
+        </h5>
+        <h6 class="text-end placeholder-glow">
+            <span class="placeholder col-7"></span>
+        </h6>
+    </div>
+</ng-template>
