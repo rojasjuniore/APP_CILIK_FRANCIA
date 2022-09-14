@@ -36,7 +36,7 @@ const routes: Routes = [
     component: SignInComponent
   },
   {
-    path: 'secure-password',
+    path: 'recovery',
     component: SecurePasswordComponent
   },
   {

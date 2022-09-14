@@ -11,6 +11,8 @@ import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/fo
 import { handlerArrayResult, handlerObjectResult } from '../helpers/model.helper';
 
 import moment from 'moment';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +43,7 @@ export class AuthenticationService {
     public afs: AngularFirestore,
     public afAuth: AngularFireAuth,
     public router: Router,
+    private _http: HttpClient,
   ) {
 
     // @dev use Device Language
@@ -225,6 +228,26 @@ export class AuthenticationService {
    */
   async updateUser(uid: string, data: any){
     return await this.afs.collection('users').doc(uid).update(data);
+  }
+
+  /**
+   * Actualizar contraseña de usuario
+   * @param uid 
+   * @param password 
+   * @returns 
+   */
+  async updateUserPassword(uid: string, password: any) {
+    try {
+      const url = `${environment.API_URL}admin/reset-user-password`;
+
+      const result = await lastValueFrom(this._http.post(url, { uid, password }));
+      console.log('result', result);
+      return true;
+
+    } catch (err) {
+      console.log('Error on AuthenticationService.updateUserEmail', err);
+      throw err;
+    }
   }
 
 
