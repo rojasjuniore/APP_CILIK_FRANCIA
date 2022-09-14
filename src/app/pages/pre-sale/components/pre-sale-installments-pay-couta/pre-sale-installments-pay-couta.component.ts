@@ -17,11 +17,19 @@ export class PreSaleInstallmentsPayCoutaComponent implements OnInit {
       label: 'Tarjeta de crédito',
       value: 'creditCard',
       icon: 'bi bi-credit-card',
+      status: false,
     },
     {
       label: 'Criptomonedas',
       value: 'crypto',
       icon: 'bi bi-coin',
+      status: false,
+    },
+    {
+      label: 'Paypal',
+      value: 'paypal',
+      icon: 'bi bi-paypal',
+      status: true,
     }
   ];
 
