@@ -27,11 +27,12 @@
               "src/assets"
             ],
             "allowedCommonJsDependencies": [
-							"sweetalert2",
+              "sweetalert2",
               "moment",
               "sweetalert2/dist/sweetalert2.js"
-						],
+            ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": [
