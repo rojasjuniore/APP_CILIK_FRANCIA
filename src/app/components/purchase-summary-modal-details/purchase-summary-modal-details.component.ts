@@ -23,6 +23,11 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit {
     this.mi = this.bsModalSrv.buildModal('modalMyPurhcaseDetail');
   }
 
+  get rooms(){
+    const rooms = this.order?.rooms || [];
+    return rooms.map((room: any, index: number) => Object.assign({}, room, { index: index + 1 }));
+  }
+
   async showModal(order: any) {
     this.order = order;
     this.mi.show();

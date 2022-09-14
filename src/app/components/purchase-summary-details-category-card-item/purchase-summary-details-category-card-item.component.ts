@@ -16,11 +16,12 @@ export class PurchaseSummaryDetailsCategoryCardItemComponent implements OnInit {
   }
 
   get nroPasses(){
-    return this.order.rooms.map((row) => row.capacity).reduce((a, b) => a + b, 0);
+    const rooms = this.order?.rooms || [];
+    return rooms.map((row) => row.capacity).reduce((a, b) => a + b, 0);
   }
 
   get additionalCategoryPasses(): any[]{
-    return this.order.additionalCategoryPasses || [];
+    return this.order?.additionalCategoryPasses || [];
   }
 
   get additionalCategoryPassesAmountFullPrice(){
