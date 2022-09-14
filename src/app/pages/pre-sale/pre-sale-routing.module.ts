@@ -9,6 +9,7 @@ import { PreSaleInstallmentsDetailsComponent } from './components/pre-sale-insta
 import { PreSaleCreditCardComponent } from './components/pre-sale-credit-card/pre-sale-credit-card.component';
 import { PreSaleCryptoComponent } from './components/pre-sale-crypto/pre-sale-crypto.component';
 import { PreSaleInstallmentsPayCoutaComponent } from './components/pre-sale-installments-pay-couta/pre-sale-installments-pay-couta.component';
+import { PreSalePaypalComponent } from './components/pre-sale-paypal/pre-sale-paypal.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,10 @@ const routes: Routes = [
       {
         path: 'crypto',
         component: PreSaleCryptoComponent,
+      },
+      {
+        path: 'paypal',
+        component: PreSalePaypalComponent,
       },
       {
         path: '',
