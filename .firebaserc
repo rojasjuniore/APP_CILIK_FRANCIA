@@ -1,14 +1,5 @@
 {
-  "targets": {
-    "cilik-presale": {
-      "hosting": {
-        "CILIK_VERSION_14": [
-          "cilik-presale"
-        ]
-      }
-    }
-  },
   "projects": {
-    "default": "cilik-presale"
+    "default": "cilik-3c845"
   }
 }
