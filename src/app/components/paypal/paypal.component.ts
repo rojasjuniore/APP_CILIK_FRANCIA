@@ -69,13 +69,13 @@ export class PaypalComponent implements OnInit {
         this.showCancel = true;
 
       },
-      // onError: err => {
-      //   console.log('OnError', err);
-      //   this.showError = true;
-      // },
+      onError: err => {
+        console.log('OnError', err);
+        this.showError = true;
+      },
       onClick: (data, actions) => {
         console.log('onClick', data, actions);
-        this.resetStatus();
+        // this.resetStatus();
       }
     };
   }
