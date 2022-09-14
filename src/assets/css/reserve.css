@@ -1,0 +1,224 @@
+.fond_sect {
+  background-image: url("../img/fondo_seccion_nft.jpg");
+  background-size: cover;
+}
+
+hr {
+  height: 2px;
+  opacity: 1;
+  background-color: #777777;
+}
+
+.form_cont {
+  background-image: url("../img/lawrson-pinson-v78Q07VnJBA-unsplash.png");
+  background-size: cover;
+  position: relative;
+  background-position: 0% 25%;
+}
+
+.form_cont_overlay {
+  background-color: transparent;
+  /* background-image: linear-gradient(360deg, #EDAAEA 7%, #B7B2F7 100%); */
+  background-image: linear-gradient(360deg, #341d33 7%, #2f2c4c 100%);
+  opacity: 0.7;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.form_cont .fm-pos {
+  position: relative;
+  z-index: 2;
+}
+
+.imgcoll {
+  width: 85%;
+  margin: 0 auto;
+}
+
+.reds .itnred {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.formcct .campo {
+  background-image: linear-gradient(150deg, #FFAAFF 7%, #B7B2F7 100%);
+  color: #ffffff;
+  border-radius: 20px;
+  padding: 0.2rem 0.5rem;
+  font-size: 1.2rem;
+}
+
+.formcct .campo input {
+  background-color: transparent;
+  border: 0;
+  color: #ffffff;
+}
+
+.formcct .campo input:focus {
+  box-shadow: none;
+}
+
+.formcct .campo input::placeholder {
+  color: #ffffff;
+  font-size: 1.2rem;
+}
+
+.formcct .campo .btn {
+  color: #ffffff;
+  font-size: 1.2rem;
+}
+
+.header-members {
+  background-image: linear-gradient(150deg, #C2FFF8, #FFAAFF, #F0F5F8) !important;
+}
+
+.titl-deg {
+  background-image: linear-gradient(150deg, #C2FFF8, #FFAAFF, #F0F5F8) !important;
+  border-radius: 5px;
+}
+
+.itm_tkc {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 20px;
+  border: 1px solid #777777;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.cnt-imgtck {
+  border: 0;
+}
+
+.cnt-imgtck img {
+  width: auto;
+  height: 120px;
+}
+
+@media (max-width: 991px) {
+  .cnt-imgtck img {
+    height: 75px;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .cnt-imgtck img {
+    height: 100px;
+  }
+}
+.cnt_qty {
+  border-radius: 20px;
+  background-color: #323232;
+  width: 100%;
+}
+
+.cnt_qty .input-group {
+  background-color: transparent;
+  border: 0;
+  color: #ffffff;
+}
+
+.cnt_qty .input-group input {
+  background-color: transparent;
+  border: 0;
+  color: #ffffff;
+}
+
+.cnt_qty .input-group .btn {
+  background-color: transparent;
+  border: 0;
+  color: #ffffff;
+}
+
+.btn_reserv_tck {
+  background-color: #000000;
+  border: 1px solid #777777;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  color: #777777;
+  border-radius: 20px;
+  width: max-content;
+}
+
+.nam_rare {
+  font-size: 3.5rem;
+  font-weight: 900;
+}
+
+.had_label {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.c-subt {
+  color: #ffffff;
+}
+
+@media (max-width: 767px) {
+  .c-subt {
+    padding: 0 1rem;
+  }
+}
+.c-subt-b {
+  border-bottom: 1px solid #777777;
+}
+
+.header-members {
+  background-image: linear-gradient(150deg, #C2FFF8, #FFAAFF, #F0F5F8) !important;
+}
+
+.btn-xpoth {
+  background-image: linear-gradient(90deg, #EDAAEA 0%, #B7B2F7 100%);
+  box-shadow: 0px 0px 30px 0px #ffaaff;
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: #000;
+  border-radius: 30px;
+}
+
+.camp_frm input,
+.camp_frm select,
+.camp_frm input:focus,
+.camp_frm select:focus,
+.camp_frm textarea,
+.camp_frm textarea:focus {
+  background-color: #646464;
+  color: #ffffff;
+  border-radius: 20px;
+  border: 2px solid #a7a7a7;
+  flex: 1;
+  box-shadow: none;
+}
+
+.camp_frm input::placeholder {
+  color: #cecece !important;
+}
+
+.camp_frm textarea::placeholder {
+  color: #cecece !important;
+}
+
+.form-select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+}
+
+.camp_frm label {
+  display: inline-block;
+  white-space: nowrap;
+  color: #fff;
+  padding-right: 1rem;
+  width: 40%;
+  text-align: right;
+}
+
+@media (max-width: 575px) {
+  label {
+    text-align: left;
+  }
+}
+.border-cnt {
+  border-top: 2px solid #777777;
+  border-bottom: 2px solid #777777;
+}/*# sourceMappingURL=reserve.css.map */
