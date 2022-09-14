@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 
 import {
   IPayPalConfig,
   ICreateOrderRequest
 } from 'ngx-paypal';
+import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -12,6 +13,11 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./paypal.component.css']
 })
 export class PaypalComponent implements OnInit {
+
+  @Input() amount: number = 1;
+  @Output() onError = new Subject();
+  @Output() onCancel = new Subject();
+  @Output() onComplete = new Subject();
 
   public payPalConfig?: IPayPalConfig;
   showSuccess: any;
@@ -42,7 +48,7 @@ export class PaypalComponent implements OnInit {
         purchase_units: [{
           amount: {
             currency_code: "USD",
-            value: '1' // Can also reference a variable or function
+            value: `${this.amount}` // Can also reference a variable or function
           }
         }]
       },
@@ -63,15 +69,18 @@ export class PaypalComponent implements OnInit {
       onClientAuthorization: (data) => {
         console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
         this.showSuccess = true;
+        this.onComplete.next(data);
       },
       onCancel: (data, actions) => {
         console.log('OnCancel', data, actions);
         this.showCancel = true;
+        this.onCancel.next(data);
 
       },
       onError: err => {
         console.log('OnError', err);
         this.showError = true;
+        this.onError.next(err);
       },
       onClick: (data, actions) => {
         console.log('onClick', data, actions);
