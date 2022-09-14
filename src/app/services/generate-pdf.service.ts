@@ -11,7 +11,10 @@ export class GeneratePdfService {
   constructor() { }
 
 
-
+  /**
+   * 
+   * @param DATA 
+   */
   public generatePdf(DATA: any): void {
     // let DATA: any = document.getElementById('htmlData');
     html2canvas(DATA, { scrollY: -window.scrollY, scale: 1 }).then((canvas) => {
@@ -31,6 +34,11 @@ export class GeneratePdfService {
   }
 
 
+  /**
+   * full screen pages to pdf
+   * @param data 
+   * @param alldata 
+   */
   async downloadPdf(data: any, alldata: any) {
     // var data = document.getElementById("pdfDownload");
     // $("pdfOpenHide").attr("hidden", true);
@@ -62,7 +70,7 @@ export class GeneratePdfService {
           pdf.addImage(contentDataURL, "PNG", 0, position, imgWidth, imgHeight);
           heightLeft -= pageHeight;
         }
-       
+
         // window.open(
         //   pdf.output("bloburl", { filename: "new-file.pdf" }),
         //   "_blank"
