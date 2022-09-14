@@ -24,7 +24,7 @@ export class PreSaleExtrasComponent implements OnInit {
       quantity: 0,
       cu: true,
       min: 1,
-      max: 1,
+      max: 99,
       opts: [0, 1],
     },
     {
@@ -34,7 +34,7 @@ export class PreSaleExtrasComponent implements OnInit {
       quantity: 0,
       cu: false,
       min: 2,
-      max: 2,
+      max: 99,
       opts: [0, 2],
     },
     {
@@ -44,7 +44,7 @@ export class PreSaleExtrasComponent implements OnInit {
       quantity: 0,
       cu: true,
       min: 3,
-      max: 5,
+      max: 99,
       opts: [0, 3, 4, 5],
     },
   ];
