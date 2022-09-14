@@ -10,7 +10,7 @@ import { PreSaleService } from 'src/app/services/pre-sale.service';
 export class PreSaleInstallmentsPayCoutaComponent implements OnInit {
 
   public preSaleDocument: any;
-  public coutaToPay: any;
+  public coutaToPay: number = 0;
   public paymentMethodType: any;
   public paymentMethods = [
     {
@@ -32,6 +32,7 @@ export class PreSaleInstallmentsPayCoutaComponent implements OnInit {
       status: true,
     }
   ];
+  public formStatus = 1;
 
   constructor(
     private router: Router,
@@ -41,6 +42,10 @@ export class PreSaleInstallmentsPayCoutaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  get currentCoutaToPay(){
+    return this.preSaleDocument.installments[0];
   }
 
   selectPaymentMethod(item: any){
