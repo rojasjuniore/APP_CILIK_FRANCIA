@@ -36,44 +36,44 @@ export class SignUpComponent implements OnInit {
   public form!: FormGroup;
   public vm = {
     firstName: [
-      { type: 'required', message: 'First name is required' },
-      { type: 'pattern', message: 'First name must contain only letters' }
+      { type: 'required', message: 'Se requiere el primer nombre' },
+      { type: 'pattern', message: 'El nombre debe contener solo letras' }
     ],
     lastName: [
-      { type: 'required', message: 'Last name is required' },
-      { type: 'pattern', message: 'Last name must contain only letters' }
+      { type: 'required', message: 'Se requiere apellido' },
+      { type: 'pattern', message: 'El apellido debe contener solo letras' }
     ],
     documentType: [
-      { type: 'required', message: 'Document type is required' }
+      { type: 'required', message: 'El tipo de documento es obligatorio' }
     ],
     dni: [
-      { type: 'required', message: 'DNI is required' },
-      { type: 'pattern', message: 'DNI must contain only numbers' }
+      { type: 'required', message: 'Se requiere documento' },
+      { type: 'pattern', message: 'Documento debe contener solo números' }
     ],
     prefix: [
-      { type: 'required', message: 'Prefix is required' },
-      { type: 'pattern', message: 'Prefix must contain only numbers' }
+      { type: 'required', message: 'Se requiere prefijo' },
+      { type: 'pattern', message: 'El prefijo debe contener solo números' }
     ],
     phoneNumber: [
-      { type: 'required', message: 'Phone number is required' },
-      { type: 'pattern', message: 'Phone number must contain only numbers' }
+      { type: 'required', message: 'Se requiere el número de teléfono' },
+      { type: 'pattern', message: 'El número de teléfono debe contener solo números' }
     ],
     email: [
-      { type: 'required', message: 'Email is required' },
-      { type: 'pattern', message: 'Email is not valid' },
-      { type: 'emailStored', message: 'Email is already registered' },
+      { type: 'required', message: 'Correo electronico es requerido' },
+      { type: 'pattern', message: 'El correo no es válido' },
+      { type: 'emailStored', message: 'El correo electrónico ya está registrado' },
     ],
     password: [
-      { type: 'required', message: 'Password is required' },
-      { type: 'minlength', message: 'Password must be at least 6 characters long' },
-      { type: 'maxlength', message: 'Password cannot be more than 12 characters long' }
+      { type: 'required', message: 'Se requiere contraseña' },
+      { type: 'minlength', message: 'La contraseña debe contener 6 caracteres como mínimo' },
+      { type: 'maxlength', message: 'La contraseña no puede tener más de 12 caracteres' }
     ],
     confirmPassword: [
-      { type: 'required', message: 'Confirm password is required' },
-      { type: 'mustMatch', message: 'Password and confirm password must match' }
+      { type: 'required', message: 'Se requiere confirmar contraseña' },
+      { type: 'mustMatch', message: 'La contraseña y la contraseña de confirmación deben coincidir' }
     ],
     termsAndCondition: [
-      { type: 'required', message: 'Terms and condition is required' }
+      { type: 'required', message: 'Se requieren términos y condiciones' }
     ]
   };
   public submit = false;
@@ -114,21 +114,21 @@ export class SignUpComponent implements OnInit {
   buildForm() {
     this.form = this.fb.group({
       firstName: [
-        'Pedro',
+        '',
         [
           Validators.required,
           Validators.pattern(/^[a-zA-Z]+$/)
         ]
       ],
       lastName: [
-        'Lars',
+        '',
         [
           Validators.required,
           Validators.pattern(/^[a-zA-Z]+$/)
         ]
       ],
       documentType: ['dni', Validators.required],
-      dni: ['123456789', [
+      dni: ['', [
         Validators.required,
         Validators.pattern(/^[0-9]+$/)
       ]],
@@ -136,11 +136,11 @@ export class SignUpComponent implements OnInit {
         Validators.required,
         Validators.pattern(/^[0-9]+$/)
       ]],
-      phoneNumber: ['1111111111', [
+      phoneNumber: ['', [
         Validators.required,
         Validators.pattern(/^[0-9]+$/)
       ]],
-      email: ['developer2@bnf.com.co',
+      email: ['',
         [
           Validators.required,
           Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
@@ -149,12 +149,12 @@ export class SignUpComponent implements OnInit {
           checkIfEmailDoesExist(this.authenticationSrv)
         ]
       ],
-      password: ['123456', [
+      password: ['', [
         Validators.required,
         Validators.minLength(6),
         Validators.maxLength(12)
       ]],
-      confirmPassword: ['123456', Validators.required],
+      confirmPassword: ['', Validators.required],
       termsAndCondition: [false, [Validators.requiredTrue]]
     }, { validator: MustMatch('password', 'confirmPassword') })
   }

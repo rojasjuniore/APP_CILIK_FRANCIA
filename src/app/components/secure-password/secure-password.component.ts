@@ -31,18 +31,18 @@ export class SecurePasswordComponent implements OnInit {
   public form!: FormGroup;
   public vm = {
     email: [
-      { type: 'required', message: 'Email is required' },
-      { type: 'pattern', message: 'Please enter a valid email address' },
-      { type: 'invalidEmail', message: 'Please enter a valid email address' }
+      { type: 'required', message: 'Correo electronico es requerido' },
+      { type: 'pattern', message: 'Por favor, introduce una dirección de correo electrónico válida' },
+      { type: 'invalidEmail', message: 'Por favor, introduce una dirección de correo electrónico válida' }
     ],
     password: [
-      {type: 'required', message: 'Password is required'},
-      {type: 'minlength', message: 'Password must be at least 6 characters long'},
-      {type: 'maxlength', message: 'Password cannot be more than 12 characters long'}
+      {type: 'required', message: 'Se requiere contraseña'},
+      {type: 'minlength', message: 'La contraseña debe contener 6 caracteres como mínimo'},
+      {type: 'maxlength', message: 'La contraseña no puede tener más de 12 caracteres'}
     ],
     confirmPassword: [
-      {type: 'required', message: 'Confirm password is required'},
-      {type: 'mustMatch', message: 'Password and confirm password must match'}
+      {type: 'required', message: 'Se requiere confirmar contraseña'},
+      {type: 'mustMatch', message: 'La contraseña y la contraseña de confirmación deben coincidir'}
     ],
   };
   public submit = false;
