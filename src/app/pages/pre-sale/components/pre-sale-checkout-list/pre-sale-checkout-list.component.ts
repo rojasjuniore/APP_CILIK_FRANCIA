@@ -67,7 +67,7 @@ export class PreSaleCheckoutListComponent implements OnInit {
   async onRemoveAdditionalCategoryPasses(params: any){
     if(this.preSaleDocument.additionalCategoryPasses.length == 0){ return; }
 
-    const ask = await this.sweetAlert2Srv.askConfirm(`¿Desea remover todos los pases adicionales?`);
+    const ask = await this.sweetAlert2Srv.askConfirm(`¿Desea eliminar todas las categorías adicionales?`);
     if(!ask){ return; }
     
     this.preSaleSrv.updateDocumentLocalStorage({additionalCategoryPasses: []});
