@@ -3,6 +3,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { DataService } from './services/data.service';
 import { HotelService } from './services/hotel.service';
 
+import { pick } from 'underscore';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

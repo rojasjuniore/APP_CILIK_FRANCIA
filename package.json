@@ -5,11 +5,10 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "deploy": "ng build --configuration production && firebase deploy --only hosting",
+    "deploy": "ng build --configuration development && firebase deploy --only hosting",
     "deploy-dev": "ng build --configuration development && firebase deploy --only hosting",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "deploy": "ng build --configuration development && firebase deploy --only hosting"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
@@ -52,9 +51,10 @@
     "@angular/compiler-cli": "^14.2.1",
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",
+    "@types/prop-types": "^15.7.4",
+    "@types/underscore": "^1.11.4",
     "jasmine-core": "~4.0.0",
     "karma": "~6.3.0",
-    "@types/prop-types": "^15.7.4",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.1.0",
     "karma-jasmine": "~4.0.0",
