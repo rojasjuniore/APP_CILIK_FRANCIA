@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import moment from 'moment';
 import { distinctUntilChanged, from, interval, map, switchMap } from 'rxjs';
 import { DataService } from './data.service';
+import { PurchaseService } from './purchase.service';
 import { Sweetalert2Service } from './sweetalert2.service';
 
 @Injectable({
@@ -45,6 +46,7 @@ export class PreSaleService {
     private router: Router,
     private dataSrv: DataService,
     private sweetAlert2Srv: Sweetalert2Service,
+    private purchaseSrv: PurchaseService,
   ) { }
 
   generateDocId(){ return this.afs.createId(); }
@@ -151,6 +153,30 @@ export class PreSaleService {
       return (isBetween) ? row : null;
     })
     .filter((row) => row);
+  }
+
+  async completePreSaleOrder(metadata: any){
+    const preSaleDocument = this.getDocumentLocalStorage();
+
+    const url = `/purchase/summary/${preSaleDocument.orderId}/details`;
+
+    const document = Object.assign({}, preSaleDocument, {
+      metadata,
+      step: url,
+      payed: true,
+      completed: true,
+    });
+
+    /** Store Document */
+    await this.purchaseSrv.storePurchase(document.orderId,document);
+
+    /** Send Mail Summary */
+    await this.purchaseSrv.sendPurchaseSummaryNotification(document.uid, document.orderId);
+
+    this.removeDocumentLocalStorage();
+
+    return url;
+
   }
 
   removeDocumentLocalStorage(){

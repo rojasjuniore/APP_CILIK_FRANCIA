@@ -67,24 +67,9 @@ export class PreSalePaypalComponent implements OnInit {
     try {
       await this.spinner.show();
 
-      const url = `/purchase/summary/${this.preSaleDocument.orderId}/details`;
-
-      const document = Object.assign({}, this.preSaleDocument, {
-        metadata,
-        step: url,
-        payed: true,
-        completed: true,
-      });
-
-      /** Store Document */
-      await this.purchaseSrv.storePurchase(document.orderId,document);
-
-      /** Send Mail Summary */
-      await this.purchaseSrv.sendPurchaseSummaryNotification(document.uid, document.orderId);
-
-      this.preSaleSrv.removeDocumentLocalStorage();
-
+      const url = await this.preSaleSrv.completePreSaleOrder(metadata);
       this.router.navigate([url]);
+      
       return;
       
     } catch (err) {
