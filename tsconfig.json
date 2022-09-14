@@ -22,6 +22,7 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "noImplicitAny": false,
+    "skipLibCheck": true,
     "lib": [
       "es2020",
       "dom"

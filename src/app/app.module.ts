@@ -17,10 +17,16 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireAnalyticsModule } from '@angular/fire/compat/analytics';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { USE_DEVICE_LANGUAGE } from '@angular/fire/compat/auth';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 import { environment } from 'src/environments/environment';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
 import { ComponentsModule } from './components/components.module';
+import { provideFirestore } from '@angular/fire/firestore';
+import { getFirestore } from 'firebase/firestore';
+import { provideFirebaseApp } from '@angular/fire/app';
+import { initializeApp } from 'firebase/app';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -58,13 +64,16 @@ const maskConfig: Partial<IConfig> = {
       },
       defaultLanguage: 'es',
     }),
+    NgxPayPalModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAnalyticsModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireAuthModule,
   ],
-  providers: [],
+  providers: [
+    { provide: USE_DEVICE_LANGUAGE, useValue: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
