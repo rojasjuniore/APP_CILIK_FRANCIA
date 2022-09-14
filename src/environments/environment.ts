@@ -13,7 +13,7 @@ export const environment = {
     payPalEnvironmentProduction:
       "AY3m2F6IWR-K9LDNuEYM8hBqt15yARFfiRVItDuvZyEcmLpHGBdKS9otkHiH_pb_qJB7TN8rh9mV6wtW",
     payPalEnvironmentSandbox:
-      "AdSgSOB2XjX4CwI4gs4mZju43hdaNfypLwyeQvwo5OKqtYh3lM2Abn4mAKZ1v4GK9aHsf1vV6hEpEFPM",
+      "ASay2oTezuJ4AhyNrm4UGcJbRE6O82APiOcx5J-l9aBT_r4TzeN0bi4acCuwmfXHWlMIfT79xu2HvdzC",
   },
   firebase: {
     apiKey: "AIzaSyD2rH0VMiThVa1amThTDS8EgHLGHy5jHFc",

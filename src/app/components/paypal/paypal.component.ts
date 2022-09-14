@@ -24,20 +24,24 @@ export class PaypalComponent implements OnInit {
 
   private initConfig(): void {
 
-    const _clientId = environment.production ? environment.paypal.payPalEnvironmentProduction : environment.paypal.payPalEnvironmentSandbox
+    const _clientId = environment.production ?
+      environment.paypal.payPalEnvironmentProduction :
+      environment.paypal.payPalEnvironmentSandbox
     const _currency = environment.paypal.currency;
+
+    console.log('production', environment.production);
     console.log('clientId', _clientId);
     console.log('currency', _currency);
 
 
     this.payPalConfig = {
-      currency: environment.paypal.currency,
       clientId: _clientId,
-
+      currency: environment.paypal.currency,
       createOrderOnClient: (data) => <ICreateOrderRequest>{
         intent: 'CAPTURE',
         purchase_units: [{
           amount: {
+            currency_code: "USD",
             value: '1' // Can also reference a variable or function
           }
         }]
@@ -65,10 +69,10 @@ export class PaypalComponent implements OnInit {
         this.showCancel = true;
 
       },
-      onError: err => {
-        console.log('OnError', err);
-        this.showError = true;
-      },
+      // onError: err => {
+      //   console.log('OnError', err);
+      //   this.showError = true;
+      // },
       onClick: (data, actions) => {
         console.log('onClick', data, actions);
         this.resetStatus();
