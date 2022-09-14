@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalService } from 'src/app/services/bs-modal.service';
+import { GeneratePdfService } from 'src/app/services/generate-pdf.service';
 
 @Component({
   selector: 'app-purchase-summary-modal-details',
@@ -12,6 +13,7 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit {
   public order: any;
 
   constructor(
+    private generatePdf: GeneratePdfService,
     private bsModalSrv: BsModalService,
   ) { }
 
@@ -23,7 +25,7 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit {
     this.mi = this.bsModalSrv.buildModal('modalMyPurhcaseDetail');
   }
 
-  get rooms(){
+  get rooms() {
     const rooms = this.order?.rooms || [];
     return rooms.map((room: any, index: number) => Object.assign({}, room, { index: index + 1 }));
   }
@@ -33,15 +35,25 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit {
     this.mi.show();
   }
 
-  async share(){
+  async share() {
     console.log('share');
   }
 
-  async download(){
+  async download() {
+    let DATA: any = document.getElementById('modalMyPurhcaseDetail');
+    let alldata: any = document.getElementById('alldata');
+    DATA.style.overflow = 'inherit';
+    DATA.style.maxHeight = 'inherit';
+
+
+    console.log(DATA);
     console.log('download');
+
+
+    this.generatePdf.downloadPdf(DATA, alldata);
   }
 
-  closeModal(){
+  closeModal() {
     this.mi.hide();
   }
 
