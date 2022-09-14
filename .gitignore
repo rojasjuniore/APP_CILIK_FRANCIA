@@ -42,4 +42,5 @@ testem.log
 Thumbs.db
 
 # Firebase cache
-/.firebase
+.firebase/
+**/.firebaserc
