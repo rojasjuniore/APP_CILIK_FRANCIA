@@ -15,7 +15,7 @@
                 <div class="form-floating form-camp mb-3">
                   <input type="text" [ngClass]="{'is-invalid': submit && f.firstName.errors}"
                     formControlName="firstName" class="form-control" id="floatingInputFirstName" placeholder="Nombres">
-                  <label for="floatingInputFirstName">Nombres</label>
+                  <label for="floatingInputFirstName">Nombre</label>
 
                   <ng-container *ngIf="submit">
                     <ng-container *ngFor="let item of vm.firstName">
@@ -33,7 +33,7 @@
                 <div class="form-floating form-camp mb-3">
                   <input type="text" [ngClass]="{'is-invalid': submit && f.lastName.errors}" formControlName="lastName"
                     class="form-control" id="floatingInputLastName" placeholder="Apellidos">
-                  <label for="floatingInputLastName">Apellidos</label>
+                  <label for="floatingInputLastName">Apellido</label>
 
                   <ng-container *ngIf="submit">
                     <ng-container *ngFor="let item of vm.lastName">
