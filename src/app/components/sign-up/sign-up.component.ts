@@ -18,16 +18,16 @@ export class SignUpComponent implements OnInit {
 
   public paises;
   public valid = false;
-  public email='';
-  public password='';
+  public email = '';
+  public password = '';
   public validPassword = false;
   public datad = {
-    email:"",
-    password:"",
-    dni:"",
-    phone:"",
-    name:"",
-    last_name:""
+    email: "",
+    password: "",
+    dni: "",
+    phone: "",
+    name: "",
+    last_name: ""
   };
   public submitStatus = 0;
 
@@ -36,49 +36,50 @@ export class SignUpComponent implements OnInit {
   public form!: FormGroup;
   public vm = {
     firstName: [
-      {type: 'required', message: 'First name is required'},
-      {type: 'pattern', message: 'First name must contain only letters'}
+      { type: 'required', message: 'First name is required' },
+      { type: 'pattern', message: 'First name must contain only letters' }
     ],
     lastName: [
-      {type: 'required', message: 'Last name is required'},
-      {type: 'pattern', message: 'Last name must contain only letters'}
+      { type: 'required', message: 'Last name is required' },
+      { type: 'pattern', message: 'Last name must contain only letters' }
     ],
     documentType: [
-      {type: 'required', message: 'Document type is required'}
+      { type: 'required', message: 'Document type is required' }
     ],
     dni: [
-      {type: 'required', message: 'DNI is required'},
-      {type: 'pattern', message: 'DNI must contain only numbers'}
+      { type: 'required', message: 'DNI is required' },
+      { type: 'pattern', message: 'DNI must contain only numbers' }
     ],
     prefix: [
-      {type: 'required', message: 'Prefix is required'},
-      {type: 'pattern', message: 'Prefix must contain only numbers'}
+      { type: 'required', message: 'Prefix is required' },
+      { type: 'pattern', message: 'Prefix must contain only numbers' }
     ],
     phoneNumber: [
-      {type: 'required', message: 'Phone number is required'},
-      {type: 'pattern', message: 'Phone number must contain only numbers'}
+      { type: 'required', message: 'Phone number is required' },
+      { type: 'pattern', message: 'Phone number must contain only numbers' }
     ],
     email: [
-      {type: 'required', message: 'Email is required'},
-      {type: 'pattern', message: 'Email is not valid'},
-      {type: 'emailStored', message: 'Email is already registered'},
+      { type: 'required', message: 'Email is required' },
+      { type: 'pattern', message: 'Email is not valid' },
+      { type: 'emailStored', message: 'Email is already registered' },
     ],
     password: [
-      {type: 'required', message: 'Password is required'},
-      {type: 'minlength', message: 'Password must be at least 6 characters long'},
-      {type: 'maxlength', message: 'Password cannot be more than 12 characters long'}
+      { type: 'required', message: 'Password is required' },
+      { type: 'minlength', message: 'Password must be at least 6 characters long' },
+      { type: 'maxlength', message: 'Password cannot be more than 12 characters long' }
     ],
     confirmPassword: [
-      {type: 'required', message: 'Confirm password is required'},
-      {type: 'mustMatch', message: 'Password and confirm password must match'}
+      { type: 'required', message: 'Confirm password is required' },
+      { type: 'mustMatch', message: 'Password and confirm password must match' }
     ],
     termsAndCondition: [
-      {type: 'required', message: 'Terms and condition is required'}
+      { type: 'required', message: 'Terms and condition is required' }
     ]
   };
   public submit = false;
   public loader = false;
   public phoneData: any[];
+  public typeInput = 'password';
 
   constructor(
     private fb: FormBuilder,
@@ -92,18 +93,25 @@ export class SignUpComponent implements OnInit {
 
     /** Phone number prefix list */
     this.phoneData = this.dataSrv.getCountryPhone()
-    .sort((a, b) => a.name.localeCompare(b.name));
-    
+      .sort((a, b) => a.name.localeCompare(b.name));
+
     /** Build Form */
     this.buildForm();
 
   }
 
   ngOnInit(): void {
-    this.paises=data;
+    this.paises = data;
   }
 
-  buildForm(){
+  /**
+   * Show or hide password
+   */
+  changeTypeInput() {
+    this.typeInput = this.typeInput === 'password' ? 'text' : 'password';
+  }
+
+  buildForm() {
     this.form = this.fb.group({
       firstName: [
         'Pedro',
@@ -132,7 +140,7 @@ export class SignUpComponent implements OnInit {
         Validators.required,
         Validators.pattern(/^[0-9]+$/)
       ]],
-      email: ['developer2@bnf.com.co', 
+      email: ['developer2@bnf.com.co',
         [
           Validators.required,
           Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
@@ -148,18 +156,18 @@ export class SignUpComponent implements OnInit {
       ]],
       confirmPassword: ['123456', Validators.required],
       termsAndCondition: [false, [Validators.requiredTrue]]
-    }, {validator: MustMatch('password', 'confirmPassword')})
+    }, { validator: MustMatch('password', 'confirmPassword') })
   }
 
   get f() { return this.form.controls; }
 
-  async onSubmit(){
+  async onSubmit() {
     try {
 
       this.submit = true;
       this.loader = true;
 
-      if(this.form.invalid){
+      if (this.form.invalid) {
         this.form.markAllAsTouched();
         return;
       }
@@ -178,7 +186,7 @@ export class SignUpComponent implements OnInit {
 
       /** Ejecutar 2FA en proceso de registro */
       const run2FA = await this.temporalTokenSrv.runByEmail(formData.email);
-      if(!run2FA){
+      if (!run2FA) {
         return;
       }
 
@@ -198,48 +206,48 @@ export class SignUpComponent implements OnInit {
 
       /** Guardar identificador en el localStorage */
       this.authenticationSrv.setLocalUID(uid);
- 
-       return this.router.navigate(['register-completed']);
+
+      return this.router.navigate(['register-completed']);
 
     } catch (err) {
       console.log('Error on SignUpComponent.onSubmit', err);
       return;
-    }finally{
+    } finally {
       this.loader = false;
     }
   }
 
 
   async openPopup() {
-    if(this.datad.password==""){
-      this.validPassword=true;
-    }else if(this.datad.email==""){
-      this.valid=true;
-    }else{
-      this.submitStatus=1;
+    if (this.datad.password == "") {
+      this.validPassword = true;
+    } else if (this.datad.email == "") {
+      this.valid = true;
+    } else {
+      this.submitStatus = 1;
       const id = await this.authenticationSrv.storeUser(this.datad)
-      this.submitStatus=0;
+      this.submitStatus = 0;
       this.router.navigate(['registro-exitoso']);
     }
   }
 
   modelChangeFn(newValue: string) {
     console.log(this.password)
-    var validEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+    var validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 
     // Using test we can check if the text match the pattern
-    if( validEmail.test(newValue) ){
-      this.valid=false;
+    if (validEmail.test(newValue)) {
+      this.valid = false;
 
-    }else{
-      this.valid=true;
+    } else {
+      this.valid = true;
 
     }
   }
 
   modelChangePassword(newValue: string) {
     console.log(this.datad)
-    this.validPassword=false;
+    this.validPassword = false;
 
   }
 

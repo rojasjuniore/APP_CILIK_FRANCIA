@@ -9,7 +9,8 @@
             <div class="form-floating form-camp mb-3">
               <!-- <input type="email" [ngClass]="{'valid': valid }" [ngModelOptions]="{standalone: true}" [(ngModel)]="email" (ngModelChange)="modelChangeFn($event)" class="form-control" id="floatingInput" placeholder="name@example.com"> -->
 
-              <input type="email" [ngClass]="{'valid': submit && f.email.errors}" formControlName="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+              <input type="email" [ngClass]="{'valid': submit && f.email.errors}" formControlName="email"
+                class="form-control" id="floatingInput" placeholder="name@example.com">
               <label for="floatingInput">E-mail</label>
 
               <ng-container *ngIf="submit">
@@ -17,7 +18,7 @@
                   <span class="badge bg-danger" *ngIf="f.email.hasError(item.type)">
                     {{item.message}}
                   </span>
-                  
+
                 </ng-container>
               </ng-container>
             </div>
@@ -25,16 +26,20 @@
             <div class="form-floating form-camp mb-3">
               <!-- <input type="password" class="form-control" [ngClass]="{'valid': validPassword }" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" (ngModelChange)="modelChangePassword($event)" id="floatingPassword" placeholder="Password"> -->
 
-              <input type="password" class="form-control" [ngClass]="{'valid': submit && f.email.errors}" formControlName="password" id="floatingPassword" placeholder="Contraseña">
-              
+              <input [type]="typeInput" class="form-control" [ngClass]="{'valid': submit && f.email.errors}"
+                formControlName="password" id="floatingPassword" placeholder="Contraseña">
+
               <label for="floatingPassword">Contraseña</label>
-              <div class="pass-ico"><i class="bi bi-eye-slash"></i></div>
+              <div (click)="changeTypeInput()" class="pass-ico">
+                <i *ngIf="typeInput =='password'" class="bi bi-eye-slash"></i>
+                <i *ngIf="typeInput =='text'" class="bi bi-eye-fill"></i>
+              </div>
               <ng-container *ngIf="submit">
                 <ng-container *ngFor="let item of vm.password">
                   <span class="badge bg-danger" *ngIf="f.password.hasError(item.type)">
                     {{item.message}}
                   </span>
-                  
+
                 </ng-container>
               </ng-container>
             </div>
@@ -46,7 +51,7 @@
               </label>
             </div> -->
             <div class="d-flex justify-content-center">
-              
+
               <ng-container *ngIf="submit && loading; else canSubmit">
                 <button class="btn btn-one btn-large text-uppercase fw-bold" type="button" disabled>
                   <div class="text-center">
@@ -71,8 +76,8 @@
             </div>
             <div class="seprd"></div>
             <div class="d-flex justify-content-center flex-column align-items-center mb-2">
-                <div class="pb-2">¿Aún no estás registrado?</div>
-                <a class="btn btn-two btn-large" routerLink="/sign-up">REGISTRARSE AQUÍ</a>
+              <div class="pb-2">¿Aún no estás registrado?</div>
+              <a class="btn btn-two btn-large" routerLink="/sign-up">REGISTRARSE AQUÍ</a>
               <!-- <button class="btn btn-google btn-login text-uppercase fw-bold" type="submit">
                 <i class="fab fa-google me-2"></i> Sign in with Google
               </button> -->
@@ -89,4 +94,3 @@
     </div>
   </div>
 </div>
-

@@ -1,316 +1,351 @@
 <div class="container">
-    <div class="row">
-      <div class="col-12 col-sm-12 col-md-10 col-lg-8 mx-auto">
-        <div class="card border-0 p-5 my-5">
-          <app-header-cilik></app-header-cilik>
-          <div class="px-4 px-sm-5">
-            <!-- <h2 class="card-title text-center mb-5  fs-5"><b>Registro</b></h2> -->
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-10 col-lg-8 mx-auto">
+      <div class="card border-0 p-5 my-5">
+        <app-header-cilik></app-header-cilik>
+        <div class="px-4 px-sm-5">
+          <!-- <h2 class="card-title text-center mb-5  fs-5"><b>Registro</b></h2> -->
 
-            <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+          <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
 
-              <div class="row">
+            <div class="row">
 
-                <!-- Input First Name -->
-                <div class="col-12 col-md-6">
-                  <div class="form-floating form-camp mb-3">
-                    <input type="text" [ngClass]="{'is-invalid': submit && f.firstName.errors}" formControlName="firstName" class="form-control" id="floatingInputFirstName" placeholder="Nombres">
-                    <label for="floatingInputFirstName">Nombres</label>
-    
-                    <ng-container *ngIf="submit">
-                      <ng-container *ngFor="let item of vm.firstName">
-                        <span class="badge bg-danger" *ngIf="f.firstName.hasError(item.type)">
-                          {{item.message}}
-                        </span>
-                        
-                      </ng-container>
-                    </ng-container>
-                  </div>
-                </div>
+              <!-- Input First Name -->
+              <div class="col-12 col-md-6">
+                <div class="form-floating form-camp mb-3">
+                  <input type="text" [ngClass]="{'is-invalid': submit && f.firstName.errors}"
+                    formControlName="firstName" class="form-control" id="floatingInputFirstName" placeholder="Nombres">
+                  <label for="floatingInputFirstName">Nombres</label>
 
-                <!-- Input Last Name -->
-                <div class="col-12 col-md-6">
-                  <div class="form-floating form-camp mb-3">
-                    <input type="text" [ngClass]="{'is-invalid': submit && f.lastName.errors}" formControlName="lastName" class="form-control" id="floatingInputLastName" placeholder="Apellidos">
-                    <label for="floatingInputLastName">Apellidos</label>
-    
-                    <ng-container *ngIf="submit">
-                      <ng-container *ngFor="let item of vm.lastName">
-                        <span class="badge bg-danger" *ngIf="f.lastName.hasError(item.type)">
-                          {{item.message}}
-                        </span>
-                        
-                      </ng-container>
-                    </ng-container>
-                  </div>
-                </div>
-
-                <!-- Input Document Type -->
-                <div class="col-12 col-md-4">
-                  <div class="form-floating form-camp mb-3">
-                    <select class="form-select" [ngClass]="{'is-invalid': submit && f.lastName.errors}" formControlName="documentType" id="floatingSelectDocumentType" aria-label="Document Type">
-                      <option value="dni">DNI</option>
-                      <option value="passport">Passport</option>
-                    </select>
-                    <label for="floatingSelectDocumentType">Tipo de documento</label>
-    
-                    <ng-container *ngIf="submit">
-                      <ng-container *ngFor="let item of vm.lastName">
-                        <span class="badge bg-danger" *ngIf="f.lastName.hasError(item.type)">
-                          {{item.message}}
-                        </span>
-                        
-                      </ng-container>
-                    </ng-container>
-                  </div>
-                </div>
-
-                <!-- Input DNI -->
-                <div class="col-12 col-md-8">
-                  <div class="form-floating form-camp mb-3">
-                    <input type="number" [ngClass]="{'is-invalid': submit && f.dni.errors}" formControlName="dni" class="form-control" id="floatingInputDNI" placeholder="DNI">
-                    <label for="floatingInputDNI">No. documento</label>
-    
-                    <ng-container *ngIf="submit">
-                      <ng-container *ngFor="let item of vm.dni">
-                        <span class="badge bg-danger" *ngIf="f.dni.hasError(item.type)">
-                          {{item.message}}
-                        </span>
-                        
-                      </ng-container>
-                    </ng-container>
-                  </div>
-                </div>
-
-                <!-- Input Prefix -->
-                <div class="col-12 col-md-4">
-                  <div class="form-floating form-camp mb-3">
-                    <select class="form-select" [ngClass]="{'is-invalid': submit && f.prefix.errors}" formControlName="prefix" id="floatingSelectPrefix" aria-label="Prefix">
-                      <ng-container *ngFor="let item of phoneData">
-                        <option [value]="item.phonecode">
-                          {{item.name}}
-                        </option>
-                      </ng-container>
-                    </select>
-                    <label for="floatingSelectPrefix">País</label>
-    
-                    <ng-container *ngIf="submit">
-                      <ng-container *ngFor="let item of vm.prefix">
-                        <span class="badge bg-danger" *ngIf="f.prefix.hasError(item.type)">
-                          {{item.message}}
-                        </span>
-                        
-                      </ng-container>
-                    </ng-container>
-                  </div>
-                </div>
-
-                   <!-- Input Phone Number -->
-                   <div class="col-12 col-md-8">
-                    <div class="form-floating form-camp mb-3">
-                      <input type="number" [ngClass]="{'is-invalid': submit && f.phoneNumber.errors}" formControlName="phoneNumber" class="form-control" id="floatingInputPhoneNumber" placeholder="Phone Number">
-                      <label for="floatingInputPhoneNumber">No. de teléfono</label>
-      
-                      <ng-container *ngIf="submit">
-                        <ng-container *ngFor="let item of vm.phoneNumber">
-                          <span class="badge bg-danger" *ngIf="f.phoneNumber.hasError(item.type)">
-                            {{item.message}}
-                          </span>
-                          
-                        </ng-container>
-                      </ng-container>
-                    </div>
-                  </div>
-
-                <!-- Input Email -->
-                <div class="col-12">
-                  <div class="form-floating form-camp mb-3">
-                    <input type="email" [ngClass]="{'is-invalid': submit && f.email.errors}" formControlName="email" class="form-control" id="floatingInputEmail" placeholder="E-mail">
-                    <label for="floatingInputEmail">E-mail</label>
-    
-                    <ng-container *ngIf="submit">
-                      <ng-container *ngFor="let item of vm.email">
-                        <span class="badge bg-danger" *ngIf="f.email.hasError(item.type)">
-                          {{item.message}}
-                        </span>
-                        
-                      </ng-container>
-                    </ng-container>
-                  </div>
-                </div>
-                
-                <!-- Input Password -->
-                <div class="col-12">
-                  <div class="form-floating form-camp mb-3">
-                    <input type="password" [ngClass]="{'is-invalid': submit && f.password.errors}" formControlName="password" class="form-control" id="floatingInputPassword" placeholder="Contraseña">
-                    <label for="floatingInputPassword">Contraseña</label>
-                    <div class="pass-ico"><i class="bi bi-eye-slash"></i></div>
-                    
-                    <ng-container *ngIf="submit">
-                      <ng-container *ngFor="let item of vm.password">
-                        <span class="badge bg-danger" *ngIf="f.password.hasError(item.type)">
-                          {{item.message}}
-                        </span>
-                        
-                      </ng-container>
-                    </ng-container>
-                  </div>
-                </div>
-
-                <!-- Input Confirm Password -->
-                <div class="col-12">
-                  <div class="form-floating form-camp mb-3">
-                    <input type="password" [ngClass]="{'is-invalid': submit && f.confirmPassword.errors}" formControlName="confirmPassword" class="form-control" id="floatingInputConfirmPassword" placeholder="Confirmar contraseña">
-                    <label for="floatingInputConfirmPassword">Confirmar contraseña</label>
-                    <div class="pass-ico"><i class="bi bi-eye-slash"></i></div>
-
-                    <ng-container *ngIf="submit">
-                      <ng-container *ngFor="let item of vm.confirmPassword">
-                        <span class="badge bg-danger" *ngIf="f.confirmPassword.hasError(item.type)">
-                          {{item.message}}
-                        </span>
-                        
-                      </ng-container>
-                    </ng-container>
-                  </div>
-                </div>
-
-                <div class="col-12 mb-3">
-                  <div class="form-check text-center">
-                    <input class="form-check-input" [ngClass]="{'is-invalid': submit && f.termsAndCondition.errors}" type="checkbox" value="" id="termsAndConditionsCheck" formControlName="termsAndCondition">
-                    <label class="form-check-label" for="termsAndConditionsCheck">
-                      Al registrarte estás aceptando las políticas de tratamiento de datos personales.<br> <a class="fw-bold" href="">Ver políticas aquí.</a> 
-                    </label>
-
-                  </div>
                   <ng-container *ngIf="submit">
-                    <ng-container *ngFor="let item of vm.termsAndCondition">
-                      <span class="badge bg-danger" *ngIf="f.termsAndCondition.hasError(item.type)">
+                    <ng-container *ngFor="let item of vm.firstName">
+                      <span class="badge bg-danger" *ngIf="f.firstName.hasError(item.type)">
                         {{item.message}}
                       </span>
-                      
+
                     </ng-container>
                   </ng-container>
                 </div>
+              </div>
 
-                <div class="col-12">
-                  <div class="d-grid">
+              <!-- Input Last Name -->
+              <div class="col-12 col-md-6">
+                <div class="form-floating form-camp mb-3">
+                  <input type="text" [ngClass]="{'is-invalid': submit && f.lastName.errors}" formControlName="lastName"
+                    class="form-control" id="floatingInputLastName" placeholder="Apellidos">
+                  <label for="floatingInputLastName">Apellidos</label>
 
-                    <ng-container *ngIf="submit && loader; else canSubmit">
-                      <button class="btn btn-one btn-large text-uppercase fw-bold" type="button" disabled>
-                        <div class="text-center">
-                          <div class="spinner-border spinner-border-sm" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                          </div>
-                        </div>
-                      </button>
-                      
+                  <ng-container *ngIf="submit">
+                    <ng-container *ngFor="let item of vm.lastName">
+                      <span class="badge bg-danger" *ngIf="f.lastName.hasError(item.type)">
+                        {{item.message}}
+                      </span>
+
                     </ng-container>
+                  </ng-container>
+                </div>
+              </div>
 
-                    <ng-template #canSubmit>
-                      <div class="d-md-flex justify-content-between">
-                          <button class="btn btn-three btn-small text-uppercase fw-bold" type="button" routerLink="/sign-in">
-                          <i class="bi bi-chevron-left"></i> REGRESAR
-                        </button>
-                        <button class="btn btn-one btn-small text-uppercase fw-bold" type="submit">
-                          REGISTRARSE
-                        </button> 
-                      </div>
-                    </ng-template>
-                    
+              <!-- Input Document Type -->
+              <div class="col-12 col-md-4">
+                <div class="form-floating form-camp mb-3">
+                  <select class="form-select" [ngClass]="{'is-invalid': submit && f.lastName.errors}"
+                    formControlName="documentType" id="floatingSelectDocumentType" aria-label="Document Type">
+                    <option value="dni">DNI</option>
+                    <option value="passport">Passport</option>
+                  </select>
+                  <label for="floatingSelectDocumentType">Tipo de documento</label>
+
+                  <ng-container *ngIf="submit">
+                    <ng-container *ngFor="let item of vm.lastName">
+                      <span class="badge bg-danger" *ngIf="f.lastName.hasError(item.type)">
+                        {{item.message}}
+                      </span>
+
+                    </ng-container>
+                  </ng-container>
+                </div>
+              </div>
+
+              <!-- Input DNI -->
+              <div class="col-12 col-md-8">
+                <div class="form-floating form-camp mb-3">
+                  <input type="number" [ngClass]="{'is-invalid': submit && f.dni.errors}" formControlName="dni"
+                    class="form-control" id="floatingInputDNI" placeholder="DNI">
+                  <label for="floatingInputDNI">No. documento</label>
+
+                  <ng-container *ngIf="submit">
+                    <ng-container *ngFor="let item of vm.dni">
+                      <span class="badge bg-danger" *ngIf="f.dni.hasError(item.type)">
+                        {{item.message}}
+                      </span>
+
+                    </ng-container>
+                  </ng-container>
+                </div>
+              </div>
+
+              <!-- Input Prefix -->
+              <div class="col-12 col-md-4">
+                <div class="form-floating form-camp mb-3">
+                  <select class="form-select" [ngClass]="{'is-invalid': submit && f.prefix.errors}"
+                    formControlName="prefix" id="floatingSelectPrefix" aria-label="Prefix">
+                    <ng-container *ngFor="let item of phoneData">
+                      <option [value]="item.phonecode">
+                        {{item.name}}
+                      </option>
+                    </ng-container>
+                  </select>
+                  <label for="floatingSelectPrefix">País</label>
+
+                  <ng-container *ngIf="submit">
+                    <ng-container *ngFor="let item of vm.prefix">
+                      <span class="badge bg-danger" *ngIf="f.prefix.hasError(item.type)">
+                        {{item.message}}
+                      </span>
+
+                    </ng-container>
+                  </ng-container>
+                </div>
+              </div>
+
+              <!-- Input Phone Number -->
+              <div class="col-12 col-md-8">
+                <div class="form-floating form-camp mb-3">
+                  <input type="number" [ngClass]="{'is-invalid': submit && f.phoneNumber.errors}"
+                    formControlName="phoneNumber" class="form-control" id="floatingInputPhoneNumber"
+                    placeholder="Phone Number">
+                  <label for="floatingInputPhoneNumber">No. de teléfono</label>
+
+                  <ng-container *ngIf="submit">
+                    <ng-container *ngFor="let item of vm.phoneNumber">
+                      <span class="badge bg-danger" *ngIf="f.phoneNumber.hasError(item.type)">
+                        {{item.message}}
+                      </span>
+
+                    </ng-container>
+                  </ng-container>
+                </div>
+              </div>
+
+              <!-- Input Email -->
+              <div class="col-12">
+                <div class="form-floating form-camp mb-3">
+                  <input type="email" [ngClass]="{'is-invalid': submit && f.email.errors}" formControlName="email"
+                    class="form-control" id="floatingInputEmail" placeholder="E-mail">
+                  <label for="floatingInputEmail">E-mail</label>
+
+                  <ng-container *ngIf="submit">
+                    <ng-container *ngFor="let item of vm.email">
+                      <span class="badge bg-danger" *ngIf="f.email.hasError(item.type)">
+                        {{item.message}}
+                      </span>
+
+                    </ng-container>
+                  </ng-container>
+                </div>
+              </div>
+
+              <!-- Input Password -->
+              <div class="col-12">
+                <div class="form-floating form-camp mb-3">
+                  <input [type]="typeInput" [ngClass]="{'is-invalid': submit && f.password.errors}"
+                    formControlName="password" class="form-control" id="floatingInputPassword" placeholder="Contraseña">
+                  <label for="floatingInputPassword">Contraseña</label>
+                  <div (click)="changeTypeInput()" class="pass-ico">
+                    <i *ngIf="typeInput =='password'" class="bi bi-eye-slash"></i>
+                    <i *ngIf="typeInput =='text'" class="bi bi-eye-fill"></i>
                   </div>
+
+                  <ng-container *ngIf="submit">
+                    <ng-container *ngFor="let item of vm.password">
+                      <span class="badge bg-danger" *ngIf="f.password.hasError(item.type)">
+                        {{item.message}}
+                      </span>
+
+                    </ng-container>
+                  </ng-container>
                 </div>
-
-              </div>
-              
-            </form>
-
-            <form *ngIf="false">
-                <div class="nombre-apellido">
-                    <div class=" mb-3">
-                        <label for="floatingInput">Nombre</label>
-                        <input [(ngModel)]="datad.name" [ngModelOptions]="{standalone: true}" onkeydown="return /[^,\-,0-9,$,@,!,$,%,^,&.*,(,),-,_,`,~,', ,\[,\],\},\{,\#,\+,\;,\:,\<,\>,\?,\=,\\,\|,\¡,\/]/i.test(event.key)" type="text" class="form-control" id="floatingInput" placeholder="sara">
-
-                    </div>
-                    <div class=" mb-3">
-                        <label for="floatingInput">Apellido</label>
-                        <input [(ngModel)]="datad.last_name" [ngModelOptions]="{standalone: true}" onkeydown="return /[^,\-,0-9,$,@,!,$,%,^,&.*,(,),-,_,`,~,', ,\[,\],\},\{,\#,\+,\;,\:,\<,\>,\?,\=,\\,\|,\¡,\/]/i.test(event.key)" type="text" class="form-control" id="floatingInput" placeholder="perez">
-
-                    </div>
-                </div>
-                <div class="nombre-apellido">
-                    <div class=" mb-3">
-                        <label for="floatingInput">Tipo</label>
-                        <select class="form-select" aria-label="Default select example">
-                          <option value="cedula">cedula</option>
-                          <option value="pasaporte">pasaporte</option>
-                          <option value="cedula juridica">cedula juridica</option>
-                        </select>
-                    </div>
-                    <div class=" mb-3">
-                        <label for="floatingInput">DNI</label>
-                        <input type="number" [(ngModel)]="datad.dni" [ngModelOptions]="{standalone: true}" class="form-control" id="floatingInput" placeholder="12341234">
-                    </div>
-                </div>
-
-                <div class="nombre-apellido">
-                    <div class=" mb-3">
-                        <label for="floatingInput">Tipo</label>
-                        <select class="form-select" aria-label="Default select example">
-                          <option *ngFor="let name of paises; index as dxi" [value]="name.dial_code">{{name.name}} {{name.dial_code}} <div>{{name.name}}</div></option>
-                        </select>
-                    </div>
-                    <div class=" mb-3">
-                        <label for="floatingInput">Phone number</label>
-                        <input type="number" [(ngModel)]="datad.phone" [ngModelOptions]="{standalone: true}"  class="form-control" id="floatingInput" placeholder="+584121852346">
-                    </div>
-                </div>
-
-              <div class=" mb-3">
-                <label for="floatingInput">Email address</label>
-                <input type="email" [ngClass]="{'valid': valid }" [ngModelOptions]="{standalone: true}" [(ngModel)]="datad.email" (ngModelChange)="modelChangeFn($event)" class="form-control" id="" placeholder="name@example.com">
-                <span *ngIf="valid" class="badge bg-danger">Correo electronico ingresado no es valido</span>
-              </div>
-              <div class=" mb-3">
-                <label for="floatingPassword">Password</label>
-                <input type="password" [ngClass]="{'valid': validPassword }" [(ngModel)]="datad.password" [ngModelOptions]="{standalone: true}" (ngModelChange)="modelChangePassword($event)" class="form-control" id="floatingPassword" placeholder="Password">
-                <span *ngIf="validPassword" class="badge bg-danger">password ingresado no es valido</span>
               </div>
 
-              <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
-                <label class="form-check-label" for="rememberPasswordCheck">
-                  Remember password
-                </label>
+              <!-- Input Confirm Password -->
+              <div class="col-12">
+                <div class="form-floating form-camp mb-3">
+                  <input [type]="typeInput" [ngClass]="{'is-invalid': submit && f.confirmPassword.errors}"
+                    formControlName="confirmPassword" class="form-control" id="floatingInputConfirmPassword"
+                    placeholder="Confirmar contraseña">
+                  <label for="floatingInputConfirmPassword">Confirmar contraseña</label>
+
+
+                  <div (click)="changeTypeInput()" class="pass-ico">
+                    <i *ngIf="typeInput =='password'" class="bi bi-eye-slash"></i>
+                    <i *ngIf="typeInput =='text'" class="bi bi-eye-fill"></i>
+                  </div>
+
+                  <ng-container *ngIf="submit">
+                    <ng-container *ngFor="let item of vm.confirmPassword">
+                      <span class="badge bg-danger" *ngIf="f.confirmPassword.hasError(item.type)">
+                        {{item.message}}
+                      </span>
+
+                    </ng-container>
+                  </ng-container>
+                </div>
               </div>
-              <div class="d-grid">
-                <button class="btn btn-primary btn-login text-uppercase fw-bold" (click)="openPopup()" >
-                  <ng-container *ngIf="submitStatus == 0">
-                      Registrar
+
+              <div class="col-12 mb-3">
+                <div class="form-check text-center">
+                  <input class="form-check-input" [ngClass]="{'is-invalid': submit && f.termsAndCondition.errors}"
+                    type="checkbox" value="" id="termsAndConditionsCheck" formControlName="termsAndCondition">
+                  <label class="form-check-label" for="termsAndConditionsCheck">
+                    Al registrarte estás aceptando las políticas de tratamiento de datos personales.<br> <a
+                      class="fw-bold" href="">Ver políticas aquí.</a>
+                  </label>
+
+                </div>
+                <ng-container *ngIf="submit">
+                  <ng-container *ngFor="let item of vm.termsAndCondition">
+                    <span class="badge bg-danger" *ngIf="f.termsAndCondition.hasError(item.type)">
+                      {{item.message}}
+                    </span>
+
+                  </ng-container>
+                </ng-container>
+              </div>
+
+              <div class="col-12">
+                <div class="d-grid">
+
+                  <ng-container *ngIf="submit && loader; else canSubmit">
+                    <button class="btn btn-one btn-large text-uppercase fw-bold" type="button" disabled>
+                      <div class="text-center">
+                        <div class="spinner-border spinner-border-sm" role="status">
+                          <span class="visually-hidden">Loading...</span>
+                        </div>
+                      </div>
+                    </button>
+
                   </ng-container>
 
-                  <ng-container *ngIf="submitStatus == 1">
-                      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                      Procesando...
-                  </ng-container>
-                </button>
+                  <ng-template #canSubmit>
+                    <div class="d-md-flex justify-content-between">
+                      <button class="btn btn-three btn-small text-uppercase fw-bold" type="button"
+                        routerLink="/sign-in">
+                        <i class="bi bi-chevron-left"></i> REGRESAR
+                      </button>
+                      <button class="btn btn-one btn-small text-uppercase fw-bold" type="submit">
+                        REGISTRARSE
+                      </button>
+                    </div>
+                  </ng-template>
+
+                </div>
               </div>
-              <!-- <hr class="my-4"> -->
-              <br>
-              <div class="d-grid mb-2">
-                  <p>Si te encuentras registrado, puedes hacer click en el siguiente enlace para ingresar <a href="/sign-in">ingresar</a></p>
-                <!-- <button class="btn btn-google btn-login text-uppercase fw-bold" type="submit">
+
+            </div>
+
+          </form>
+
+          <form *ngIf="false">
+            <div class="nombre-apellido">
+              <div class=" mb-3">
+                <label for="floatingInput">Nombre</label>
+                <input [(ngModel)]="datad.name" [ngModelOptions]="{standalone: true}"
+                  onkeydown="return /[^,\-,0-9,$,@,!,$,%,^,&.*,(,),-,_,`,~,', ,\[,\],\},\{,\#,\+,\;,\:,\<,\>,\?,\=,\\,\|,\¡,\/]/i.test(event.key)"
+                  type="text" class="form-control" id="floatingInput" placeholder="sara">
+
+              </div>
+              <div class=" mb-3">
+                <label for="floatingInput">Apellido</label>
+                <input [(ngModel)]="datad.last_name" [ngModelOptions]="{standalone: true}"
+                  onkeydown="return /[^,\-,0-9,$,@,!,$,%,^,&.*,(,),-,_,`,~,', ,\[,\],\},\{,\#,\+,\;,\:,\<,\>,\?,\=,\\,\|,\¡,\/]/i.test(event.key)"
+                  type="text" class="form-control" id="floatingInput" placeholder="perez">
+
+              </div>
+            </div>
+            <div class="nombre-apellido">
+              <div class=" mb-3">
+                <label for="floatingInput">Tipo</label>
+                <select class="form-select" aria-label="Default select example">
+                  <option value="cedula">cedula</option>
+                  <option value="pasaporte">pasaporte</option>
+                  <option value="cedula juridica">cedula juridica</option>
+                </select>
+              </div>
+              <div class=" mb-3">
+                <label for="floatingInput">DNI</label>
+                <input type="number" [(ngModel)]="datad.dni" [ngModelOptions]="{standalone: true}" class="form-control"
+                  id="floatingInput" placeholder="12341234">
+              </div>
+            </div>
+
+            <div class="nombre-apellido">
+              <div class=" mb-3">
+                <label for="floatingInput">Tipo</label>
+                <select class="form-select" aria-label="Default select example">
+                  <option *ngFor="let name of paises; index as dxi" [value]="name.dial_code">{{name.name}}
+                    {{name.dial_code}} <div>{{name.name}}</div>
+                  </option>
+                </select>
+              </div>
+              <div class=" mb-3">
+                <label for="floatingInput">Phone number</label>
+                <input type="number" [(ngModel)]="datad.phone" [ngModelOptions]="{standalone: true}"
+                  class="form-control" id="floatingInput" placeholder="+584121852346">
+              </div>
+            </div>
+
+            <div class=" mb-3">
+              <label for="floatingInput">Email address</label>
+              <input type="email" [ngClass]="{'valid': valid }" [ngModelOptions]="{standalone: true}"
+                [(ngModel)]="datad.email" (ngModelChange)="modelChangeFn($event)" class="form-control" id=""
+                placeholder="name@example.com">
+              <span *ngIf="valid" class="badge bg-danger">Correo electronico ingresado no es valido</span>
+            </div>
+            <div class=" mb-3">
+              <label for="floatingPassword">Password</label>
+              <input type="password" [ngClass]="{'valid': validPassword }" [(ngModel)]="datad.password"
+                [ngModelOptions]="{standalone: true}" (ngModelChange)="modelChangePassword($event)" class="form-control"
+                id="floatingPassword" placeholder="Password">
+              <span *ngIf="validPassword" class="badge bg-danger">password ingresado no es valido</span>
+            </div>
+
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
+              <label class="form-check-label" for="rememberPasswordCheck">
+                Remember password
+              </label>
+            </div>
+            <div class="d-grid">
+              <button class="btn btn-primary btn-login text-uppercase fw-bold" (click)="openPopup()">
+                <ng-container *ngIf="submitStatus == 0">
+                  Registrar
+                </ng-container>
+
+                <ng-container *ngIf="submitStatus == 1">
+                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  Procesando...
+                </ng-container>
+              </button>
+            </div>
+            <!-- <hr class="my-4"> -->
+            <br>
+            <div class="d-grid mb-2">
+              <p>Si te encuentras registrado, puedes hacer click en el siguiente enlace para ingresar <a
+                  href="/sign-in">ingresar</a></p>
+              <!-- <button class="btn btn-google btn-login text-uppercase fw-bold" type="submit">
                   <i class="fab fa-google me-2"></i> Sign in with Google
                 </button> -->
-              </div>
-              <!-- <div class="d-grid">
+            </div>
+            <!-- <div class="d-grid">
                 <button class="btn btn-facebook btn-login text-uppercase fw-bold" type="submit">
                   <i class="fab fa-facebook-f me-2"></i> Sign in with Facebook
                 </button>
               </div> -->
-            </form>
-          </div>
-          <app-footer-cilik></app-footer-cilik>
+          </form>
         </div>
+        <app-footer-cilik></app-footer-cilik>
       </div>
     </div>
+  </div>
 </div>
