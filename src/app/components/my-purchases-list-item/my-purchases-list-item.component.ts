@@ -14,4 +14,8 @@ export class MyPurchasesListItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  showDetails(){
+    
+  }
+
 }
