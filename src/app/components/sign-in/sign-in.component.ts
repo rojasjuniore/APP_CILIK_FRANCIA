@@ -76,7 +76,7 @@ export class SignInComponent implements OnInit {
         email: `${formData.email}`.trim().toLowerCase(),
         password: `${formData.password}`.trim()
       }
-      console.log('try to submit', data);
+      // console.log('try to submit', data);
 
       const result: any = await this.authSrv.signInWithEmail(data);
 
