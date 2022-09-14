@@ -6,6 +6,7 @@ import { SecurePasswordComponent } from './components/secure-password/secure-pas
 import { RegistroExitosoComponent } from './components/registro-exitoso/registro-exitoso.component';
 import { CheckTicketOnLocalStorageGuard } from './guards/check-ticket-on-local-storage.guard';
 import { IsAuthGuard } from './guards/is-auth.guard';
+import { AlreadyAuthGuard } from './guards/already-auth.guard';
 
 const routes: Routes = [
   {
@@ -33,6 +34,7 @@ const routes: Routes = [
   },
   {
     path: 'sign-in',
+    canActivate: [AlreadyAuthGuard],
     component: SignInComponent
   },
   {
