@@ -14,6 +14,7 @@
                     <button class="btn btn-payment btn-lg mb-3" 
                         type="button" *ngFor="let item of paymentMethods"   
                         [ngClass]="{'active': item.value === paymentMethodType}"
+                        [disabled]="!item.status"
                         (click)="selectPaymentMethod(item)">
                         <span class="icon-payment"><i [class]="item.icon"></i>&nbsp;</span>
                         <span class="label-payment">{{item.label}}</span>                        
