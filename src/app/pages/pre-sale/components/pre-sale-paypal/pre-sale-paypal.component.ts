@@ -71,7 +71,9 @@ export class PreSalePaypalComponent implements OnInit {
 
       const document = Object.assign({}, this.preSaleDocument, {
         metadata,
-        step: url
+        step: url,
+        payed: true,
+        completed: true,
       });
 
       /** Store Document */
