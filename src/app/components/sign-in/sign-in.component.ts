@@ -117,11 +117,11 @@ export class SignInComponent implements OnInit {
       // console.log('Error on SignInComponent.onSubmit', err.message);
 
       if (err.code === "auth/wrong-password") {
-        await this.sweetAlert2Srv.showError('Invalid user or password');
+        await this.sweetAlert2Srv.showError('Usuario o contraseña inválidos');
       }
 
       if (err.code === "auth/user-not-found") {
-        await this.sweetAlert2Srv.showError('User does not exist, please register first');
+        await this.sweetAlert2Srv.showError('El usuario no existe, por favor regístrese primero');
       }
       return;
 
