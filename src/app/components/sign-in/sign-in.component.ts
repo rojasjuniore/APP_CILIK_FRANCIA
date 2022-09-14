@@ -16,13 +16,13 @@ export class SignInComponent implements OnInit {
   public form!: FormGroup;
   public vm = {
     email: [
-      { type: 'required', message: 'Email es requerido' },
-      { type: 'pattern', message: 'Email No es válido' }
+      { type: 'required', message: 'Email es requerido *' },
+      { type: 'pattern', message: 'Email No es válido *' }
     ],
     password: [
-      { type: 'required', message: 'Se requiere contraseña' },
-      { type: 'minlength', message: 'La contraseña debe contener 6 caracteres como mínimo' },
-      { type: 'maxlength', message: 'La contraseña debe tener un máximo de 12 caracteres' }
+      { type: 'required', message: 'Se requiere contraseña *' },
+      { type: 'minlength', message: 'La contraseña debe contener 6 caracteres como mínimo *' },
+      { type: 'maxlength', message: 'La contraseña debe tener un máximo de 12 caracteres *' }
     ]
   };
   public submit = false;

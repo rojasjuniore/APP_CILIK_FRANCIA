@@ -36,44 +36,44 @@ export class SignUpComponent implements OnInit {
   public form!: FormGroup;
   public vm = {
     firstName: [
-      { type: 'required', message: 'Se requiere el primer nombre' },
-      { type: 'pattern', message: 'El nombre debe contener solo letras' }
+      { type: 'required', message: 'Se requiere el primer nombre *' },
+      { type: 'pattern', message: 'El nombre debe contener solo letras *' }
     ],
     lastName: [
-      { type: 'required', message: 'Se requiere apellido' },
-      { type: 'pattern', message: 'El apellido debe contener solo letras' }
+      { type: 'required', message: 'Se requiere apellido *' },
+      { type: 'pattern', message: 'El apellido debe contener solo letras *' }
     ],
     documentType: [
-      { type: 'required', message: 'El tipo de documento es obligatorio' }
+      { type: 'required', message: 'El tipo de documento es obligatorio *' }
     ],
     dni: [
-      { type: 'required', message: 'Se requiere documento' },
-      { type: 'pattern', message: 'Documento debe contener solo números' }
+      { type: 'required', message: 'Se requiere documento *' },
+      { type: 'pattern', message: 'Documento debe contener solo números *' }
     ],
     prefix: [
-      { type: 'required', message: 'Se requiere prefijo' },
-      { type: 'pattern', message: 'El prefijo debe contener solo números' }
+      { type: 'required', message: 'Se requiere prefijo *' },
+      { type: 'pattern', message: 'El prefijo debe contener solo números *' }
     ],
     phoneNumber: [
-      { type: 'required', message: 'Se requiere el número de teléfono' },
-      { type: 'pattern', message: 'El número de teléfono debe contener solo números' }
+      { type: 'required', message: 'Se requiere el número de teléfono *' },
+      { type: 'pattern', message: 'El número de teléfono debe contener solo números *' }
     ],
     email: [
-      { type: 'required', message: 'Correo electronico es requerido' },
-      { type: 'pattern', message: 'El correo no es válido' },
-      { type: 'emailStored', message: 'El correo electrónico ya está registrado' },
+      { type: 'required', message: 'Correo electronico es requerido *' },
+      { type: 'pattern', message: 'El correo no es válido *' },
+      { type: 'emailStored', message: 'El correo electrónico ya está registrado *' },
     ],
     password: [
-      { type: 'required', message: 'Se requiere contraseña' },
-      { type: 'minlength', message: 'La contraseña debe contener 6 caracteres como mínimo' },
-      { type: 'maxlength', message: 'La contraseña no puede tener más de 12 caracteres' }
+      { type: 'required', message: 'Se requiere contraseña *' },
+      { type: 'minlength', message: 'La contraseña debe contener 6 caracteres como mínimo *' },
+      { type: 'maxlength', message: 'La contraseña no puede tener más de 12 caracteres *' }
     ],
     confirmPassword: [
-      { type: 'required', message: 'Se requiere confirmar contraseña' },
-      { type: 'mustMatch', message: 'La contraseña y la contraseña de confirmación deben coincidir' }
+      { type: 'required', message: 'Se requiere confirmar contraseña *' },
+      { type: 'mustMatch', message: 'La contraseña y la contraseña de confirmación deben coincidir *' }
     ],
     termsAndCondition: [
-      { type: 'required', message: 'Se requieren términos y condiciones' }
+      { type: 'required', message: 'Se requieren términos y condiciones *' }
     ]
   };
   public submit = false;
