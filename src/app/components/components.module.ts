@@ -33,6 +33,8 @@ import { HistoryCardCategoryPurchaseItemComponent } from './history-card-categor
 import { PaypalComponent } from './paypal/paypal.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { PurchaseSummaryTotalesComponent } from './purchase-summary-totales/purchase-summary-totales.component';
+import { MyPurchasesComponent } from './my-purchases/my-purchases.component';
+import { MyPurchasesListItemComponent } from './my-purchases-list-item/my-purchases-list-item.component';
 
 
 
@@ -75,6 +77,8 @@ import { PurchaseSummaryTotalesComponent } from './purchase-summary-totales/purc
     HistoryCardCategoryPurchaseItemComponent,
     PaypalComponent,
     PurchaseSummaryTotalesComponent,
+    MyPurchasesComponent,
+    MyPurchasesListItemComponent,
   ],
   exports: [
     CommonModule,
@@ -105,6 +109,7 @@ import { PurchaseSummaryTotalesComponent } from './purchase-summary-totales/purc
     HistoryCardCategoryPurchaseItemComponent,
     PaypalComponent,
     PurchaseSummaryTotalesComponent,
+    MyPurchasesComponent,
   ],
   providers: [
     TranslatePipe,
