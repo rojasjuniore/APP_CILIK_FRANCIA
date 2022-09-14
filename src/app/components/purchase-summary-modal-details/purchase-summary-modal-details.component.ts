@@ -33,6 +33,14 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit {
     this.mi.show();
   }
 
+  async share(){
+    console.log('share');
+  }
+
+  async download(){
+    console.log('download');
+  }
+
   closeModal(){
     this.mi.hide();
   }
