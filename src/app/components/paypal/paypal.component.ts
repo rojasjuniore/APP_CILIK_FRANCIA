@@ -35,9 +35,9 @@ export class PaypalComponent implements OnInit {
       environment.paypal.payPalEnvironmentSandbox
     const _currency = environment.paypal.currency;
 
-    console.log('production', environment.production);
-    console.log('clientId', _clientId);
-    console.log('currency', _currency);
+    // console.log('production', environment.production);
+    // console.log('clientId', _clientId);
+    // console.log('currency', _currency);
 
 
     this.payPalConfig = {
@@ -60,30 +60,30 @@ export class PaypalComponent implements OnInit {
         layout: 'vertical'
       },
       onApprove: (data, actions) => {
-        console.log('onApprove - transaction was approved, but not authorized', data, actions);
+        // console.log('onApprove - transaction was approved, but not authorized', data, actions);
         actions.order.get().then(details => {
-          console.log('onApprove - you can get full order details inside onApprove: ', details);
+          // console.log('onApprove - you can get full order details inside onApprove: ', details);
         });
 
       },
       onClientAuthorization: (data) => {
-        console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
+        // console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
         this.showSuccess = true;
         this.onComplete.next(data);
       },
       onCancel: (data, actions) => {
-        console.log('OnCancel', data, actions);
+        // console.log('OnCancel', data, actions);
         this.showCancel = true;
         this.onCancel.next(data);
 
       },
       onError: err => {
-        console.log('OnError', err);
+        // console.log('OnError', err);
         this.showError = true;
         this.onError.next(err);
       },
       onClick: (data, actions) => {
-        console.log('onClick', data, actions);
+        // console.log('onClick', data, actions);
         // this.resetStatus();
       }
     };

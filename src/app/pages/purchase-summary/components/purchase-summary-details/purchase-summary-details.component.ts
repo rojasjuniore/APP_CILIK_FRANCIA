@@ -22,7 +22,7 @@ export class PurchaseSummaryDetailsComponent implements OnInit {
   }
 
   loadLocalData(){
-    this.purchaseDocument = this.preSaleSrv.checkAndLoadDocumentLocalStorage();
+    // this.purchaseDocument = this.preSaleSrv.checkAndLoadDocumentLocalStorage();
   }
 
   get rooms(){

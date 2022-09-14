@@ -9,13 +9,13 @@ const routes: Routes = [
     component: PurchaseSummaryComponent,
     children: [
       {
-        path: 'details',
+        path: ':id/details',
         component: PurchaseSummaryDetailsComponent,
       },
       {
         path: '**',
         pathMatch: 'full',
-        redirectTo: '/purchase/summary/details'
+        redirectTo: '/pages/dashboard',
       }
     ]
   }

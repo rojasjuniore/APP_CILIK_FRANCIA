@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { PreSaleService } from 'src/app/services/pre-sale.service';
+import { PurchaseService } from 'src/app/services/purchase.service';
 
 @Component({
   selector: 'app-pre-sale-paypal',
@@ -14,6 +16,8 @@ export class PreSalePaypalComponent implements OnInit {
   constructor(
     private router: Router,
     private preSaleSrv: PreSaleService,
+    private spinner: NgxSpinnerService,
+    private purchaseSrv: PurchaseService,
   ) {
     this.preSaleDocument = this.preSaleSrv.checkAndLoadDocumentLocalStorage();
   }
@@ -35,9 +39,54 @@ export class PreSalePaypalComponent implements OnInit {
     const additionalCategoryPasses = this.preSaleDocument.additionalCategoryPasses
       .map((row) => row.quantity * row.price)
       .reduce((prev, curr) => prev + curr, 0)
-      
+
     return [roomsAmount, additionalDaysAmount, additionalCategoryPasses]
     .reduce((prev, curr) => prev + curr, 0);
+  }
+
+  async onPaypalResponse(params: any){
+    const { type, data } = params;
+    console.log({type, data});
+
+    switch (type) {
+      case 'cancel':
+        console.log('Cancelado', data);
+        break;
+      case 'error':
+        console.log('Error', data);
+        break;
+    
+      default:
+        return this.saveDocument(data);
+    }
+
+    console.log({type, data});
+  }
+
+  async saveDocument(metadata: any){
+    try {
+      await this.spinner.show();
+
+      const url = `/purchase/summary/${this.preSaleDocument.orderId}/details`;
+
+      const document = Object.assign({}, this.preSaleDocument, {
+        metadata,
+        step: url
+      });
+
+      await this.purchaseSrv.storePurchase(document.orderId,document);
+
+      this.preSaleSrv.removeDocumentLocalStorage();
+
+      this.router.navigate([url]);
+      return;
+      
+    } catch (err) {
+      console.log('Error on PreSalePaypalComponent.saveDocument()', err);
+      return;
+    }finally{
+      this.spinner.hide();
+    }
   }
 
 
