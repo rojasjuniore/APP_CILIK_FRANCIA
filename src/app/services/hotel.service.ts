@@ -217,7 +217,7 @@ export class HotelService {
 
   async getCategoriesPasses(){
     const snapshot = await lastValueFrom(
-      this.afs.collection(this.categoryPassesCollection).get()
+      this.afs.collection(this.categoryPassesCollection, (ref) => ref.orderBy('order', 'asc')).get()
     );
     const result = await handlerArrayResult(snapshot);
     return result.map((row) => this.parseRoomPrice(row));
