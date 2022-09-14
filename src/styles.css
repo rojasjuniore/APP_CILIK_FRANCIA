@@ -351,6 +351,10 @@ body{
     width: 30px;
 }
 
+.card-box-number-body .btn.disabled, .card-box-number-body .btn:disabled, .card-box-number-body fieldset:disabled .btn{
+    border: 0 !important;
+}
+
 
 @media (max-width: 575px) {
     .form-camp{
