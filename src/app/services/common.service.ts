@@ -20,6 +20,18 @@ export class CommonService {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
   }
 
+  /**
+   * 
+   * @param str 
+   * @returns 
+   */
+  noSpecialCharacters(str: any) {
+    console.log(str);
+    const noSpecialCharacters = str.replace(/[^a-zA-Z0-9 ]/g, '');
+    console.log(noSpecialCharacters);
+    return noSpecialCharacters.trim().toLowerCase();
+  }
+
 
   // @dev sub addres
   getAddress(address: string) {

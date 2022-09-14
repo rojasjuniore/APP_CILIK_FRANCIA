@@ -32,8 +32,8 @@ export class AuthenticationService {
   public authProfiles = new BehaviorSubject([]);
   public tutorials!: Observable<any[]>;
   public aviso!: any;
-  public uid$: Observable<null| any>;
-  public userDoc$: Observable<null| any>;
+  public uid$: Observable<null | any>;
+  public userDoc$: Observable<null | any>;
 
   public collection = 'users';
 
@@ -49,17 +49,17 @@ export class AuthenticationService {
     // @dev use Device Language
     this.afAuth.useDeviceLanguage();
 
-      /** Observable para obtener identificador del usuario */
+    /** Observable para obtener identificador del usuario */
     this.uid$ = this.afAuth.authState
-      .pipe( map(user => user ? user.uid : null) );
+      .pipe(map(user => user ? user.uid : null));
 
     /** Observable para obtener documento de usuario */
     this.userDoc$ = this.afAuth.authState
-      .pipe( 
+      .pipe(
         map((user) => user ? user.uid : null),
         switchMap((uid: any) => {
 
-          return (uid) 
+          return (uid)
             ? this.getByUID(uid)
             : of(null);
         })
@@ -86,9 +86,9 @@ export class AuthenticationService {
         this.getAvatar(user.uid)
         this.getProfile(user.uid)
         this.token.next(user.uid)
-        
+
         /// this.emailVerified.next({ email: user.email?.toString(), emailVerified: user.emailVerified });
-        
+
         this.authenticationState.next(true);
         resolve();
 
@@ -124,7 +124,7 @@ export class AuthenticationService {
 
   }
 
-  async getUIDPromise(){
+  async getUIDPromise() {
     return new Promise((resolve, reject) => {
       this.uid$.subscribe(uid => {
         resolve(uid);
@@ -214,9 +214,9 @@ export class AuthenticationService {
    * @param userDoc 
    * @returns 
    */
-  async storeUser(userDoc: any){
+  async storeUser(userDoc: any) {
     const snapshot = await this.afs.collection('users').add(userDoc);
-    return snapshot.id; 
+    return snapshot.id;
   }
 
 
@@ -226,7 +226,7 @@ export class AuthenticationService {
    * @param data 
    * @returns 
    */
-  async updateUser(uid: string, data: any){
+  async updateUser(uid: string, data: any) {
     return await this.afs.collection('users').doc(uid).update(data);
   }
 
@@ -296,28 +296,53 @@ export class AuthenticationService {
   }
 
 
-  getByUID(uid: any, opts = {}): Observable<any>{
+  getByUID(uid: any, opts = {}): Observable<any> {
     return this.afs.collection('users').doc(uid).valueChanges();
   }
 
-  async getByUIDPromise(uid: any, opts = {}): Promise<any | null>{
-    const snapshot = await lastValueFrom( this.afs.collection('users').doc(uid).get() );
+  async getByUIDPromise(uid: any, opts = {}): Promise<any | null> {
+    const snapshot = await lastValueFrom(this.afs.collection('users').doc(uid).get());
     return await handlerObjectResult(snapshot, opts);
   }
 
-  async getByEmailAddress(email: any, opts = {}): Promise<any | null>{
-    const snapshot = await lastValueFrom( this.afs.collection('users', 
+  async getByEmailAddress(email: any, opts = {}): Promise<any | null> {
+    const snapshot = await lastValueFrom(this.afs.collection('users',
       (ref) => ref.where('email', '==', email).limit(1)
-    ).get() );
+    ).get());
 
     const result = await handlerArrayResult(snapshot, opts);
     return (result.length > 0) ? result.pop() : null;
   }
 
-  async getByWalletAddress(walletAddress: any, opts = {}): Promise<any | null>{
-    const snapshot = await lastValueFrom( this.afs.collection('users', 
+
+  /**
+   * 
+   * @param documentType 
+   * @param dni 
+   * @param opts 
+   * @returns 
+   */
+  async getByDocument(dni: any, documentType: any, opts = {}): Promise<any | null> {
+
+    console.log('getByDocument', dni, documentType);
+
+
+    const snapshot = await lastValueFrom(this.afs.collection('users',
+      (ref) => ref
+        .where('dni', '==', dni.toString())
+        .where('documentType', '==', documentType.toString())
+        .limit(1)
+    ).get());
+
+    const result = await handlerArrayResult(snapshot, opts);
+    return (result.length > 0) ? result.pop() : null;
+  }
+
+
+  async getByWalletAddress(walletAddress: any, opts = {}): Promise<any | null> {
+    const snapshot = await lastValueFrom(this.afs.collection('users',
       (ref) => ref.where('walletAddress', '==', walletAddress).limit(1)
-    ).get() );
+    ).get());
 
     const result = await handlerArrayResult(snapshot, opts);
     return (result.length > 0) ? result.pop() : null;
@@ -329,7 +354,7 @@ export class AuthenticationService {
    * @returns 
    */
   async store(docId: string, data: any) {
-    const fmt = Object.assign({}, data, {createdAt: moment().valueOf()})
+    const fmt = Object.assign({}, data, { createdAt: moment().valueOf() })
     return await this.afs.collection(this.collection).doc(docId).set(fmt);
   }
 
@@ -347,8 +372,8 @@ export class AuthenticationService {
    * 
    * @returns 
    */
-  getDynamic(collection: string, where: any[] = [], opts: any = {}): Observable<any[]>{
-    const {idField = "_id", orderBy = []} = opts;
+  getDynamic(collection: string, where: any[] = [], opts: any = {}): Observable<any[]> {
+    const { idField = "_id", orderBy = [] } = opts;
 
     return this.afs.collection(collection,
       (ref) => {
@@ -370,9 +395,9 @@ export class AuthenticationService {
  * @param service 
  * @returns 
  */
- export function checkIfEmailDoesExist(service: AuthenticationService): AsyncValidatorFn{
+export function checkIfEmailDoesExist(service: AuthenticationService): AsyncValidatorFn {
   return (control: AbstractControl): Observable<ValidationErrors | null> => {
-    return service.afs.collection('users', (ref) => ref.where('email', '==', `${control.value}`.trim() ).limit(1) ).get()
+    return service.afs.collection('users', (ref) => ref.where('email', '==', `${control.value}`.trim()).limit(1)).get()
       .pipe(
         // tap((result) => console.log(result) ),
         map((data) => {
@@ -390,9 +415,9 @@ export class AuthenticationService {
  * @param service 
  * @returns 
  */
- export function checkIfWalletAddressDoesExist(service: AuthenticationService): AsyncValidatorFn{
+export function checkIfWalletAddressDoesExist(service: AuthenticationService): AsyncValidatorFn {
   return (control: AbstractControl): Observable<ValidationErrors | null> => {
-    return service.afs.collection('users', (ref) => ref.where('walletAddress', '==', `${control.value}`.trim() ).limit(1) ).get()
+    return service.afs.collection('users', (ref) => ref.where('walletAddress', '==', `${control.value}`.trim()).limit(1)).get()
       .pipe(
         // tap((result) => console.log(result) ),
         map((data) => {

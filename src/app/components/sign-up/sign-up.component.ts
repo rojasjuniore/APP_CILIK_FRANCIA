@@ -8,6 +8,7 @@ import { MustMatch } from 'src/app/helpers/must-match.validator';
 import { DataService } from 'src/app/services/data.service';
 import { TemporalTokenService } from 'src/app/services/temporal-token.service';
 import { EmailNotificationService } from 'src/app/services/email-notification.service';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -86,6 +87,7 @@ export class SignUpComponent implements OnInit {
     private dataSrv: DataService,
     private authenticationSrv: AuthenticationService,
     private router: Router,
+    private commonService: CommonService,
     private sweetAlert2Srv: Sweetalert2Service,
     private temporalTokenSrv: TemporalTokenService,
     private emailNotificationSrv: EmailNotificationService,
@@ -174,8 +176,8 @@ export class SignUpComponent implements OnInit {
 
       const formData = this.form.value;
       const data = {
-        firstName: `${formData.firstName}`.trim().toLowerCase(),
-        lastName: `${formData.lastName}`.trim().toLowerCase(),
+        firstName: this.commonService.noSpecialCharacters(formData.firstName),
+        lastName: this.commonService.noSpecialCharacters(formData.lastName),
         documentType: formData.documentType,
         dni: formData.dni,
         prefix: formData.prefix,
@@ -183,6 +185,16 @@ export class SignUpComponent implements OnInit {
         email: `${formData.email}`.trim().toLowerCase(),
       };
       console.log('try to submit', data);
+
+
+      /** valid document */
+      const validDocument = await this.authenticationSrv.getByDocument(data.dni, data.documentType);
+      console.log('validDocument', validDocument);
+      if (validDocument != null) {
+        this.sweetAlert2Srv.showWarning('El documento ya se encuentra registrado');
+        return
+      }
+
 
       /** Ejecutar 2FA en proceso de registro */
       const run2FA = await this.temporalTokenSrv.runByEmail(formData.email);
