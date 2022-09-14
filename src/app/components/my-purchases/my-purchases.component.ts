@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { map, Observable, of } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { PurchaseService } from 'src/app/services/purchase.service';
+import { PurchaseSummaryModalDetailsComponent } from '../purchase-summary-modal-details/purchase-summary-modal-details.component';
 
 @Component({
   selector: 'app-my-purchases',
@@ -9,6 +10,8 @@ import { PurchaseService } from 'src/app/services/purchase.service';
   styleUrls: ['./my-purchases.component.css']
 })
 export class MyPurchasesComponent implements OnInit {
+
+  @ViewChild (PurchaseSummaryModalDetailsComponent) modalDetails!: PurchaseSummaryModalDetailsComponent;
 
   public purchasesList$!: Observable<any[]>;
   public uid: any;
@@ -34,6 +37,11 @@ export class MyPurchasesComponent implements OnInit {
     .pipe(
       map((data) => data.map((row, index) => Object.assign({}, row, { index: index + 1 })))
     )
+  }
+
+  onShowDetails(order: any){
+    console.log('order', order);
+    this.modalDetails.showModal(order);
   }
 
 }

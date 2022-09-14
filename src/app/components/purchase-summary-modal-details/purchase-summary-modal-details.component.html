@@ -1,0 +1,132 @@
+<div class="modal fade modal-RoomAdditionalDays" id="modalMyPurhcaseDetail" data-bs-backdrop="static" tabindex="-1" aria-labelledby="modalMyPurhcaseDetailLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+
+            <div class="modal-header justify-content-center">
+                <h5 class="modal-title fw-bold">
+                    RESUMEN DE COMPRA
+                </h5>
+
+            </div>
+
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row g-3">
+
+                        <!-- <ng-container *ngIf="(list$ | async) as list; else loading">
+
+                            <div class="col-12 mb-4">
+                                <div class="card card-box" >
+                                    <div class="card-body">
+                                        <h5 class="card-title fw-bolder">
+                                            {{item.ubicationTypeDescription}}
+                                        </h5>
+                                        <p class="card-text">
+                                            {{item.description}}
+                                        </p>
+                                        <p class="card-text">
+                                            <small class="text-muted">
+                                                Valor por persona: 
+                                                <i class="bi" [ngClass]="{'bi-person-fill': item?.capacity == 1, 'bi-people-fill': item?.capacity > 1}"></i>
+                                                USD {{ (list.price / item.capacity) | mask:'separator.2':',' }}
+                                            </small>
+                                        </p>
+                                        <p class="card-text fw-bolder">
+                                            Valor sin descuento: <span class="fw-bold text-decoration-line-through">USD {{list.fullPrice | mask:'separator.2':','}}</span>
+                                        </p>
+                                        <p class="card-text fw-bolder">
+                                            Monto USD {{list.price | mask:'separator.2':','}}
+                                        </p>
+                                        <p class="card-text">
+                                            Indique la cantidad de noches adicionales que desea agregar a su reserva.
+                                        </p>
+                                        <div class="row">
+                                            <div class="col-12 col-md-6 mb-3">
+                                                <app-input-number-form
+                                                    [min]="0" [max]="5" [quantity]="daysBefore"
+                                                    label="# Noches Antes"
+                                                    (onUpdateQuantity)="onDaysBefore({data: list, quantity: $event})"></app-input-number-form>
+                                            </div>
+                                            <div class="col-12 col-md-6 mb-3">
+                                                <app-input-number-form
+                                                    [min]="0" [max]="5" [quantity]="daysAfter"
+                                                    label="# Noches Despues"
+                                                    (onUpdateQuantity)="onDaysAfter({data: list, quantity: $event})"></app-input-number-form>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container> -->
+
+                        <!-- <div class="col-12">
+                            <hr>
+                        </div>
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <h5>
+                                <span class="badge bg-danger">
+                                    Capacity: 
+                                    <i class="bi" [ngClass]="{'bi-person-fill': item?.capacity == 1, 'bi-people-fill': item?.capacity > 1}"></i> {{ item?.capacity }}
+                                </span>
+                            </h5>
+                        </div>
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
+                            <h5 class="text-start text-md-end">
+                                Sub-Total: <span class="fw-bold fs-2">USD {{subTotal | mask:'separator.2':','}} </span>
+                            </h5>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer flex-column justify-content-center">
+                <div class="w-50 d-flex flex-row justify-content-center align-items-center">
+                    <button type="button" class="btn btn-one" (click)="closeModal()">Done</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #loading>
+    <div class="col-12 mb-4">
+        <div class="card" >
+            <div class="card-body">
+                <h5 class="card-title fw-bolder placeholder-glow">
+                    <span class="placeholder col-6" style="height: 16px;"></span>
+                </h5>
+                <p class="card-text placeholder-glow">
+                    <span class="placeholder col-10" style="height: 16px;"></span>
+                </p>
+                <p class="card-text placeholder-glow">
+                    <span class="placeholder col-8" style="height: 16px;"></span>
+                </p>
+                <p class="card-text placeholder-glow">
+                    <span class="placeholder col-5" style="height: 16px;"></span>
+                </p>
+                <p class="card-text placeholder-glow">
+                    <span class="placeholder col-12" style="height: 16px;"></span>
+                </p>
+                <div class="row">
+                    <div class="col-12 col-md-6" *ngFor="let item of [1,1]">
+                        <label class="form-label w-100 text-center placeholder-glow">
+                            <span class="placeholder col-6"></span>
+
+                        </label>
+                        <div class="input-group mb-3">
+                            <button class="btn btn-sm btn-outline-secondary" type="button" id="button-addon1" disabled>
+                                <i class="bi bi-dash"></i>
+                            </button>
+                            <input type="text" class="form-control text-center" placeholder="00" disabled aria-label="Example text with button addon" aria-describedby="button-addon1">
+                            <button class="btn btn-sm btn-outline-secondary" type="button" id="button-addon1" disabled>
+                                <i class="bi bi-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

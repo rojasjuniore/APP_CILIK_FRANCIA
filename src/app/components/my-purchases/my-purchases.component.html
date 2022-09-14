@@ -2,10 +2,13 @@
 <ng-container *ngIf="(purchasesList$ | async) as purchasesList; else loading">
     <ng-container *ngIf="purchasesList.length > 0; else noPurchases">
         <div class="col-12" *ngFor="let item of purchasesList">
-            <app-my-purchases-list-item [order]="item"></app-my-purchases-list-item>
+            <app-my-purchases-list-item [order]="item" (onShowDetails)="onShowDetails($event)"></app-my-purchases-list-item>
         </div>
     </ng-container>
+
 </ng-container>
+
+<app-purchase-summary-modal-details></app-purchase-summary-modal-details>
 
 <ng-template #noPurchases>
     <div class="card card-box p-3 mb-3">

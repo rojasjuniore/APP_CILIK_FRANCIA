@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-my-purchases-list-item',
@@ -8,6 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class MyPurchasesListItemComponent implements OnInit {
 
   @Input() order: any;
+  @Output() onShowDetails = new Subject();
 
   constructor() { }
 
@@ -15,7 +17,7 @@ export class MyPurchasesListItemComponent implements OnInit {
   }
 
   showDetails(){
-    
+    this.onShowDetails.next(this.order);
   }
 
 }

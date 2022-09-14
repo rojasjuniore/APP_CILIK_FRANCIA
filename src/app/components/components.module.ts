@@ -35,6 +35,7 @@ import { NgxPayPalModule } from 'ngx-paypal';
 import { PurchaseSummaryTotalesComponent } from './purchase-summary-totales/purchase-summary-totales.component';
 import { MyPurchasesComponent } from './my-purchases/my-purchases.component';
 import { MyPurchasesListItemComponent } from './my-purchases-list-item/my-purchases-list-item.component';
+import { PurchaseSummaryModalDetailsComponent } from './purchase-summary-modal-details/purchase-summary-modal-details.component';
 
 
 
@@ -79,6 +80,7 @@ import { MyPurchasesListItemComponent } from './my-purchases-list-item/my-purcha
     PurchaseSummaryTotalesComponent,
     MyPurchasesComponent,
     MyPurchasesListItemComponent,
+    PurchaseSummaryModalDetailsComponent,
   ],
   exports: [
     CommonModule,
@@ -110,6 +112,7 @@ import { MyPurchasesListItemComponent } from './my-purchases-list-item/my-purcha
     PaypalComponent,
     PurchaseSummaryTotalesComponent,
     MyPurchasesComponent,
+    PurchaseSummaryModalDetailsComponent,
   ],
   providers: [
     TranslatePipe,
