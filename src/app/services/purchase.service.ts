@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { lastValueFrom, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { handlerObjectResult } from '../helpers/model.helper';
 
 const URL_ROOT: any = environment.API_URL;
 @Injectable({
@@ -37,6 +38,11 @@ export class PurchaseService {
       console.log('Error on PurchaseService.sendPurchaseSummaryNotification', err);
       throw err;
     }
+  }
+
+  async getPurchaseDocument(docId: string): Promise<any>{
+    const snapshot = await this.afs.collection(this.purchaseCollection).doc(docId).get().toPromise();
+    return await handlerObjectResult(snapshot);
   }
 
   userPurchaseList(uid: string){

@@ -1,13 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { LandingFormComponent } from '../pages/landing/components/landing-form/landing-form.component';
-// import { LandingCoinbaseButtonComponent } from '../pages/landing/components/button/landing-coinbase-button/landing-coinbase-button.component';
 import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
-// import { LandingWompiButtonComponent } from '../pages/landing/components/button/landing-wompi-button/landing-wompi-button.component';
 import { NgxMaskModule } from 'ngx-mask';
-// import { Navbar1Component } from './navbar1/navbar1.component';
-// import { Navbar2Component } from './navbar2/navbar2.component';
 import { Footer1Component } from './footer1/footer1.component';
 import { Footer2Component } from './footer2/footer2.component';
 import { SignInComponent } from './sign-in/sign-in.component';
@@ -37,6 +32,7 @@ import { HistoryCardPurchaseItemComponent } from './history-card-purchase-item/h
 import { HistoryCardCategoryPurchaseItemComponent } from './history-card-category-purchase-item/history-card-category-purchase-item.component';
 import { PaypalComponent } from './paypal/paypal.component';
 import { NgxPayPalModule } from 'ngx-paypal';
+import { PurchaseSummaryTotalesComponent } from './purchase-summary-totales/purchase-summary-totales.component';
 
 
 
@@ -51,11 +47,6 @@ import { NgxPayPalModule } from 'ngx-paypal';
     NgxMaskModule.forRoot(),
   ],
   declarations: [
-    // LandingFormComponent,
-    // LandingCoinbaseButtonComponent,
-    // LandingWompiButtonComponent,
-    // Navbar1Component,
-    // Navbar2Component,
     Footer1Component,
     Footer2Component,
     SignInComponent,
@@ -83,15 +74,11 @@ import { NgxPayPalModule } from 'ngx-paypal';
     HistoryCardPurchaseItemComponent,
     HistoryCardCategoryPurchaseItemComponent,
     PaypalComponent,
+    PurchaseSummaryTotalesComponent,
   ],
   exports: [
     CommonModule,
     ReactiveFormsModule,
-    // LandingFormComponent,
-    // LandingCoinbaseButtonComponent,
-    // LandingWompiButtonComponent,
-    // Navbar1Component,
-    // Navbar2Component,
     Footer1Component,
     Footer2Component,
     SignInComponent,
@@ -116,7 +103,8 @@ import { NgxPayPalModule } from 'ngx-paypal';
     PurchaseSummaryDetailsCategoryCardItemComponent,
     HistoryCardPurchaseItemComponent,
     HistoryCardCategoryPurchaseItemComponent,
-    PaypalComponent
+    PaypalComponent,
+    PurchaseSummaryTotalesComponent,
   ],
   providers: [
     TranslatePipe,
