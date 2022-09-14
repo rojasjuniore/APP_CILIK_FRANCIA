@@ -67,9 +67,9 @@ export class PreSalePaypalComponent implements OnInit {
     try {
       await this.spinner.show();
 
+      /** Procesar orden y retornar enlace de redirección */
       const url = await this.preSaleSrv.completePreSaleOrder(metadata);
       this.router.navigate([url]);
-      
       return;
       
     } catch (err) {
