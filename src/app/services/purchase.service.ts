@@ -1,7 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
+import { lastValueFrom, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
+const URL_ROOT: any = environment.API_URL;
 @Injectable({
   providedIn: 'root'
 })
@@ -11,6 +14,7 @@ export class PurchaseService {
 
   constructor(
     private afs: AngularFirestore,
+    private http: HttpClient,
   ) { }
 
   async storePurchase(docId: string, data: any) {
@@ -19,6 +23,20 @@ export class PurchaseService {
 
   async updatePurchase(docId: string, data: any) {
     return this.afs.collection(this.purchaseCollection).doc(docId).update(data);
+  }
+
+  async sendPurchaseSummaryNotification(uid: string, orderId: string){
+    try {
+      const result = await lastValueFrom( 
+        this.http.post(`${URL_ROOT}email-notification/purchase-summary`, {uid, orderId})
+      );
+
+      return result;
+      
+    } catch (err) {
+      console.log('Error on PurchaseService.sendPurchaseSummaryNotification', err);
+      throw err;
+    }
   }
 
   userPurchaseList(uid: string){

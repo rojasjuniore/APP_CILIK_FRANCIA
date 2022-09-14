@@ -74,7 +74,11 @@ export class PreSalePaypalComponent implements OnInit {
         step: url
       });
 
+      /** Store Document */
       await this.purchaseSrv.storePurchase(document.orderId,document);
+
+      /** Send Mail Summary */
+      await this.purchaseSrv.sendPurchaseSummaryNotification(document.uid, document.orderId);
 
       this.preSaleSrv.removeDocumentLocalStorage();
 
