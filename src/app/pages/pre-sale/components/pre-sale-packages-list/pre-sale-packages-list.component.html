@@ -64,7 +64,10 @@
     </div>
 
     <div class="col-12 col-sm-6 col-md-6 mb-3">
-        <app-pre-sale-add-room-button (onAddRoom)="onAddRoom($event)"></app-pre-sale-add-room-button>
+        <app-pre-sale-add-room-button 
+            [disabled]="participantsLeft <= 0"
+            (onAddRoom)="onAddRoom($event)"
+        ></app-pre-sale-add-room-button>
     </div>
 
     <app-pre-sale-totales></app-pre-sale-totales>

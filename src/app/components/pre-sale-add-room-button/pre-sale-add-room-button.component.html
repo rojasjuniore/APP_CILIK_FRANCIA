@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-one" (click)="addRoom(capacity)" *ngIf="!loading">
+<button type="button" class="btn btn-one" (click)="addRoom(capacity)" [disabled]="disabled" *ngIf="!loading">
     AGREGAR HABITACIÓN
 </button>
 

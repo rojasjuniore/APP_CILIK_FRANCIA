@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Subject } from 'rxjs';
 import { HotelService } from 'src/app/services/hotel.service';
 
@@ -7,10 +7,10 @@ import { HotelService } from 'src/app/services/hotel.service';
   templateUrl: './pre-sale-add-room-button.component.html',
   styleUrls: ['./pre-sale-add-room-button.component.css']
 })
-export class PreSaleAddRoomButtonComponent implements OnInit {
-
+export class PreSaleAddRoomButtonComponent implements OnInit, OnChanges {
 
   @Input() capacity = 1;
+  @Input() disabled = false;
   @Output() onAddRoom = new Subject();
 
   public loading = false;
@@ -20,6 +20,14 @@ export class PreSaleAddRoomButtonComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const { disabled } = changes;
+
+    if(disabled){
+      this.disabled = disabled.currentValue;
+    }
   }
 
   async addRoom(capacity = 1){
