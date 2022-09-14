@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { HotelService } from 'src/app/services/hotel.service';
 import { PreSaleService } from 'src/app/services/pre-sale.service';
 import { PurchaseService } from 'src/app/services/purchase.service';
 
@@ -41,6 +42,7 @@ export class PreSaleInstallmentsPayCoutaComponent implements OnInit {
     private preSaleSrv: PreSaleService,
     private spinner: NgxSpinnerService,
     private purchaseSrv: PurchaseService,
+    private hotelSrv: HotelService,
   ) {
     this.preSaleDocument = this.preSaleSrv.getDocumentLocalStorage();
   }
@@ -86,6 +88,21 @@ export class PreSaleInstallmentsPayCoutaComponent implements OnInit {
     }
   }
 
+  async processRoomData(params: any){
+    const { room, orderId } = params;
+
+    const findRoom = await this.hotelSrv.getAvailableRoomByCodeType(room._id);
+
+    /** Asignar orden de compra a la habitación */
+    await this.hotelSrv.updateRoom(findRoom._id, { paymentOrderID: orderId, additionals: room.additionals });
+
+    /** Actualizar registro de habitación */
+    const roomData = Object.assign({}, room, {roomId: findRoom._id, roomCodeType: room._id});
+
+    return roomData;
+  }
+
+
   async saveDocument(metadata: any){
     try {
       await this.spinner.show();
@@ -96,11 +113,23 @@ export class PreSaleInstallmentsPayCoutaComponent implements OnInit {
 
       this.preSaleDocument.installments[0] = coutaPayed;
 
+      /**
+       * Administrar habitaciones
+       */
+      const roomsToParse = await Promise.all(
+        this.preSaleDocument.rooms
+        .map((row: any, index: number) => Object.assign({index}, row))
+        .map(async (room: any) => this.processRoomData({room, orderId: this.preSaleDocument.orderId}))
+      );
+      const rooms = roomsToParse.sort((a: any, b: any) => a.index - b.index);
+
       const data = Object.assign({}, this.preSaleDocument, { 
         installmentsPayed: 1,
         step: url,
+        rooms,
       });
 
+      /** Actualizar orden de compra en local */
       this.preSaleSrv.updateDocumentLocalStorage(data);
 
       /** Store Document */
