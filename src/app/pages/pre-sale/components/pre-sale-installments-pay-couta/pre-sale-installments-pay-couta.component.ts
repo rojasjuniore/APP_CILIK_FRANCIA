@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { PreSaleService } from 'src/app/services/pre-sale.service';
+import { PurchaseService } from 'src/app/services/purchase.service';
 
 @Component({
   selector: 'app-pre-sale-installments-pay-couta',
@@ -37,6 +39,8 @@ export class PreSaleInstallmentsPayCoutaComponent implements OnInit {
   constructor(
     private router: Router,
     private preSaleSrv: PreSaleService,
+    private spinner: NgxSpinnerService,
+    private purchaseSrv: PurchaseService,
   ) {
     this.preSaleDocument = this.preSaleSrv.getDocumentLocalStorage();
   }
@@ -65,4 +69,58 @@ export class PreSaleInstallmentsPayCoutaComponent implements OnInit {
     this.router.navigate(['/purchase/summary']);
   }
 
+  async onPaypalResponse(params: any){
+    const { type, data } = params;
+    console.log({type, data});
+
+    switch (type) {
+      case 'cancel':
+        console.log('Cancelado', data);
+        break;
+      case 'error':
+        console.log('Error', data);
+        break;
+    
+      default:
+        return this.saveDocument(data);
+    }
+  }
+
+  async saveDocument(metadata: any){
+    try {
+      await this.spinner.show();
+
+      const url = `/purchase/summary/${this.preSaleDocument.orderId}/details`;
+
+      const coutaPayed = Object.assign({}, this.currentCoutaToPay, { metadata, payed: true});
+
+      this.preSaleDocument.installments[0] = coutaPayed;
+
+      const data = Object.assign({}, this.preSaleDocument, { 
+        installmentsPayed: 1,
+        step: url,
+      });
+
+      this.preSaleSrv.updateDocumentLocalStorage(data);
+
+      /** Store Document */
+      await this.purchaseSrv.storePurchase(data.orderId, data);
+
+      /** Send Mail Summary */
+      await this.purchaseSrv.sendPurchaseSummaryNotification(data.uid, data.orderId);
+
+      this.preSaleSrv.removeDocumentLocalStorage();
+
+      // console.log('save document', metadata);
+
+      this.router.navigate([url]);
+      return;
+
+    } catch (err) {
+      console.log('Error on PreSaleInstallmentsPayCoutaComponent.saveDocument', err);
+      return;
+    }finally{
+      await this.spinner.hide();
+    }
+  }
 }
