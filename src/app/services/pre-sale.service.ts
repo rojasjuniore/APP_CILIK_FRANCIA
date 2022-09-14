@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import moment from 'moment';
 import { distinctUntilChanged, from, interval, map, switchMap } from 'rxjs';
 import { DataService } from './data.service';
+import { HotelService } from './hotel.service';
 import { PurchaseService } from './purchase.service';
 import { Sweetalert2Service } from './sweetalert2.service';
 
@@ -47,6 +48,7 @@ export class PreSaleService {
     private dataSrv: DataService,
     private sweetAlert2Srv: Sweetalert2Service,
     private purchaseSrv: PurchaseService,
+    private hotelSrv: HotelService,
   ) { }
 
   generateDocId(){ return this.afs.createId(); }
@@ -155,17 +157,48 @@ export class PreSaleService {
     .filter((row) => row);
   }
 
+  async processRoomData(room: any, orderId: string){
+    /** Buscar habitación */
+    const findRoom = await this.hotelSrv.getAvailableRoomByCodeType(room._id);
+
+    /** Asignar orden de compra a la habitación */
+    await this.hotelSrv.updateRoom(findRoom._id, { paymentOrderID: orderId, additionals: room.additionals });
+
+    /** TODO: actualizar contador de habitaciónes disponibles por tipo */
+
+    /** Actualizar registro de habitación */
+    const roomData = Object.assign({}, room, {roomId: findRoom._id, roomCodeType: room._id});
+
+    return roomData;
+  }
+
   async completePreSaleOrder(metadata: any){
     const preSaleDocument = this.getDocumentLocalStorage();
 
     const url = `/purchase/summary/${preSaleDocument.orderId}/details`;
+
+    /**
+     * - Buscar habitaciones disponibles
+     * - Asignar habitaciones en la orden
+     */
+    const roomsToParse = await Promise.all(
+      preSaleDocument.rooms.map(
+        async (row: any, index: number) => this.processRoomData(Object.assign({index}, row), preSaleDocument.orderId)
+        )
+    );
+
+    const rooms = roomsToParse.sort((a: any, b: any) => a.index - b.index);
 
     const document = Object.assign({}, preSaleDocument, {
       metadata,
       step: url,
       payed: true,
       completed: true,
+      rooms,
     });
+
+    // console.log(document);
+    // return;
 
     /** Store Document */
     await this.purchaseSrv.storePurchase(document.orderId,document);

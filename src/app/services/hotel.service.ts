@@ -44,6 +44,10 @@ export class HotelService {
     await ref.update({ supply: increment(data) });
   }
 
+  async updateRoom(docId: string, data: any) {
+    return this.afs.collection(this.roomCollection).doc(docId).update(data);
+  }
+
   async storeRoom(docId: string, data: any) {
     return this.afs.collection(this.roomCollection).doc(docId).set(data);
   }
@@ -221,6 +225,20 @@ export class HotelService {
     );
     const result = await handlerArrayResult(snapshot);
     return result.map((row) => this.parseRoomPrice(row));
+  }
+
+  async getAvailableRoomByCodeType(code: string){
+    const snapshot = await lastValueFrom(
+      this.afs.collection(this.roomCollection, 
+        (ref) => ref.where('roomCodeType', '==', code)
+          .where('paymentOrderID', '==', null)
+          .orderBy('roomCode', 'asc')
+          .limit(1)
+        ).get()
+      );
+
+    const result = await handlerArrayResult(snapshot);
+    return (result.length > 0) ? result.shift() : null;
   }
 
 }
