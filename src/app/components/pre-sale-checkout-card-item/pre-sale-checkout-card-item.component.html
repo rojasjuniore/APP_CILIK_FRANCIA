@@ -1,0 +1,45 @@
+<div class="card card-box p-3 mb-3">
+    <div class="row g-2 d-flex align-items-center">
+        <div class="col-12 px-3">
+            <div class="d-flex justify-content-between">
+                <span class="text-rslt fw-bold fs-5">
+                    Habitación # {{index}}
+                </span>
+            </div>
+        </div>
+        <div class="seprd2"></div>
+        <div class="col-12 px-3">
+            <p class="m-0">
+                # de huépedes: {{item.capacity}} persona<ng-container *ngIf="item.capacity > 1">s</ng-container>
+            </p>
+            <p class="m-0" *ngIf="nroAdditionalDays > 0">
+                Noches adicionales: {{nroAdditionalDays}}
+            </p>
+            <hr>
+            <p class="m-0">
+                Valor sin descuento: <span class="text-decoration-line-through">USD {{subTotalFullPrice | mask:'separator.2':','}}</span>
+            </p>
+            <p class="m-0">
+                descuento: USD {{discount | mask:'separator.2':','}}
+            </p>
+            <div class="d-flex justify-content-between">
+                <span class="fs-4 fw-bolder">
+                    TOTAL: USD {{total | mask:'separator.2':','}}
+                </span>
+                <div>
+                    <button type="button" 
+                        class="btn-icon btn-icon-one" 
+                        (click)="onUpdate.next({index: index - 1, data: item})">
+                        <i class="bi bi-pencil"></i>
+                    </button>
+                    &nbsp;
+                    <button type="button" 
+                        class="btn-icon btn-icon-two"
+                        (click)="onRemove.next({index: index - 1, data: item})">
+                        <i class="bi bi-trash3"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

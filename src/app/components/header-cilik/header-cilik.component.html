@@ -1,0 +1,27 @@
+<div class="container">
+
+    <ng-container *ngIf="(profile$ | async) as profile">
+        <div class="row">
+            <div class="col d-flex justify-content-end">
+                <div class="d-flex align-items-center">
+                    <div class="btn-cart d-flex justify-content-center align-items-center">
+                        <img src="assets/img/cilik/icon-21.png" alt="">
+                    </div>
+                    <div class="seprd-h"></div>
+                    <div class="btn-logout d-flex align-items-center" (click)="logout()">
+                        <span class="fw-bold lh-1 pe-2">Cerrar<br> sesión</span>
+                        <img src="assets/img/cilik/icon-28.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+    <div class="row">
+        <div class="col pb-5">
+            <div class="logo d-flex justify-content-center">
+                <img src="assets/img/cilik/logo.png" alt="">
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+.tipo-paquetes{
+    margin-bottom: 20px;
+}
+
+.paquetes-incluyen{
+    margin-bottom: 30px;
+}
+.texto-ahora{
+    margin-top: 30px;
+}
+.footer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.container-footer{
+    margin-top: 50px;
+}
+
+.opcion-habitacion{
+    border: 5px solid #d9d9d9;
+    border-radius: 7px;
+}
+
+.opcion-habitacion-item1{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.numero-habitaciones p{
+    font-size: small;
+}
+
+.extra{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.extra p{
+    margin-top: 10px;
+    font-size: small;
+}

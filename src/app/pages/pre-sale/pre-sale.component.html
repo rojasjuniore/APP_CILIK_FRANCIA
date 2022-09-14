@@ -1,0 +1,22 @@
+<div class="container-lg">
+    <div class="row my-5 d-flex justify-content-center">
+        <div class="col-12 col-lg-10">
+            <div class="card p-2 p-lg-5">
+                <app-header-cilik></app-header-cilik>
+
+                <app-header-welcome></app-header-welcome>             
+                
+                <div class="row">
+                    <div class="col-12">
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+                <app-footer-cilik></app-footer-cilik>
+            </div>            
+        </div>
+        
+        
+    </div>
+
+    <app-modal-plan-details></app-modal-plan-details>
+</div>

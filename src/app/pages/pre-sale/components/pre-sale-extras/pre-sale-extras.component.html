@@ -1,0 +1,66 @@
+<div class="row">
+
+    <app-pre-sale-steps-counter [step]="2"></app-pre-sale-steps-counter>
+
+    <div class="col-12 text-center mb-2 fw-bold fs-5 mt-5">
+        Elige las categorías adicionales que deseas
+    </div>
+
+    <div class="col-12 mb-4" *ngFor="let item of categories">
+        <div class="card card-box p-3 mb-3">
+            <div class="row g-2 d-flex align-items-center">
+                <div class="col-12 px-3">
+                    <div class="d-flex justify-content-between">
+                        <span class="fw-bold fs-5">
+                            Categoría de {{item.label}}
+                        </span>
+        
+                        <span>
+                            Valor por persona: USD {{item.price | mask:'separator.2':','}}
+                        </span>
+                    </div>
+                </div>
+                <div class="col-12 m-0 px-3">
+                    <hr>
+                </div>
+        
+                <div class="col-12">
+                    <div class="row p-2 align-items-stretch">
+                        <div class="col-12 col-sm-6 col-md-6">
+                            <app-input-number-form-two
+                                label="# Cantidad" 
+                                [min]="0" [max]="5" [quantity]="item.quantity"
+                                (onUpdateQuantity)="onUpdateQuantity({type: item.type, quantity: $event})"></app-input-number-form-two>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-6 d-flex justify-content-end align-self-end mt-3 mt-md-0">
+                            <div class="card-box card-box-wfc p-3">
+                                <!-- <label class="form-label w-100 text-center">
+                                    &nbsp;
+                                </label> -->
+                                <h4 class="text-end py-2 m-0">
+                                    Monto USD {{item.price * item.quantity | mask:'separator.2':','}}
+                                </h4>                                
+                                <!-- <input type="text" class="form-control-plaintext text-center" [placeholder]="'Monto USD ' + item.price * item.quantity"> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <app-pre-sale-totales></app-pre-sale-totales>
+
+    <div class="col-12">
+        <div class="d-flex justify-content-between">
+            <button class="btn btn-three" type="button" (click)="onBack()">
+                <i class="bi bi-chevron-left"></i>
+                REGRESAR
+            </button>
+            <button class="btn btn-one" type="button" (click)="onNext()">
+                CONTINUAR
+            </button>
+        </div>
+    </div>
+
+</div>

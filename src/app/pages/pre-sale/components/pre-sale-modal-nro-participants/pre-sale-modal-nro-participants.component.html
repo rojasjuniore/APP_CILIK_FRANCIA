@@ -1,0 +1,148 @@
+<div class="modal fade" id="nro-participants" data-bs-backdrop="static" tabindex="-1" aria-labelledby="nro-participants"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content modal-custom">
+            <div class="modal-header d-flex justify-content-center">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    <i class="bi bi-people"></i>
+                    Número de participantes
+                </h5>
+            </div>
+            <div class="modal-body">
+                <p class="text-justify">
+                    Por favor, indique a continuación la cantidad de participantes a registrar en el paquete:
+                </p>
+                <form [formGroup]="form" novalidate>
+                    <div class="d-flex w-100 justify-content-center">
+                        <div class="input-group mb-3">
+                            <button 
+                                class="btn btn-primary" type="button" 
+                                id="button-handler-quantity" 
+                                [disabled]="f.nroParticipants.value <= package?.minQuota"
+                                (click)="handlerQuantityCounter(0)">
+                                -
+                            </button>
+                            <input type="number" class="form-control" 
+                                placeholder="Quantity 0" 
+                                aria-label="Quantity 0" 
+                                aria-describedby="button-handler-quantity"
+                                value="0"
+                                min="10"
+                                max="24"
+                                *ngIf="package?.maxQuota==24"
+                                formControlName="nroParticipants"
+                            >
+                            <input type="number" class="form-control" 
+                            placeholder="Quantity 0" 
+                            aria-label="Quantity 0" 
+                            aria-describedby="button-handler-quantity"
+                            value="0"
+                            max="3"
+                            min="1"
+                            *ngIf="package?.maxQuota==3"
+                            formControlName="nroParticipants"
+                            >
+                            <input type="number" class="form-control" 
+                            placeholder="Quantity 0" 
+                            aria-label="Quantity 0" 
+                            aria-describedby="button-handler-quantity"
+                            value="0"
+                            min="25"
+                            *ngIf="package?.minQuota==25"
+                            formControlName="nroParticipants"
+                            >
+                            <!-- <button 
+                                class="btn btn-primary" type="button" 
+                                id="button-handler-quantity" 
+                                *ngIf="package?.maxQuota!=3"
+                                [disabled]="package?.maxQuota > 0 && f.nroParticipants.value == package?.maxQuota "
+                                (click)="handlerQuantityCounter(1)">
+                                +
+                            </button> -->
+                            <button 
+                            class="btn btn-primary" type="button" 
+                            id="button-handler-quantity" 
+
+                            (click)="handlerQuantityCounter(1)">
+                            +
+                        </button>
+                        </div>
+                    </div>
+
+                    <div *ngIf="submit" class="text-danger">
+                        <ng-container *ngFor="let item of vm.nroParticipants">
+                            <p *ngIf="f.nroParticipants.hasError(item.type)">
+                                {{ item.message }}
+                            </p>
+                        </ng-container>
+                    </div>
+                <!-- 
+                    <div class="mb-3">
+                        <label class="form-label">{{'_addr' | titlecase}} </label>
+                        <input type="text" formControlName="_addr" class="form-control" placeholder="_addr">
+                    </div>
+                    <div *ngIf="submitted && f._addr.errors" class="invalid-feedback">
+                        <div *ngIf="f._addr.errors.required" class="ion-text-center red">
+                            <p>
+                                {{'is required' | titlecase }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">{{'_quotas' | titlecase}} </label>
+                        <input type="text" formControlName="_quotas" class="form-control" placeholder="_quotas">
+                    </div>
+                    <div *ngIf="submitted && f._quotas.errors" class="invalid-feedback">
+                        <div *ngIf="f._quotas.errors.required" class="ion-text-center red">
+                            <p>
+                                {{'is required' | titlecase }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">{{'_username' | titlecase}} </label>
+                        <input type="text" formControlName="_username" class="form-control" placeholder="_username">
+                    </div>
+                    <div *ngIf="submitted && f._username.errors" class="invalid-feedback">
+                        <div *ngIf="f._username.errors.required" class="ion-text-center red">
+                            <p>
+                                {{'is required' | titlecase }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">{{'_active' | titlecase}} </label>
+                        <input type="text" formControlName="_active" class="form-control" placeholder="_active">
+                    </div>
+                    <div *ngIf="submitted && f._active.errors" class="invalid-feedback">
+                        <div *ngIf="f._active.errors.required" class="ion-text-center red">
+                            <p>
+                                {{'is required' | titlecase }}
+                            </p>
+                        </div>
+                    </div>
+
+
+
+                -->
+                    <div class="row w-100">
+                        <div class="col-12">
+                            <div class="btn-footer text-center">
+                                <button type="button" class="btn btn-sm btn-danger me-3" (click)="close()">
+                                    Cancelar
+                                </button>
+                                <button type="button" class="btn btn-sm btn-primary" (click)="onSubmit()">
+                                    Continuar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

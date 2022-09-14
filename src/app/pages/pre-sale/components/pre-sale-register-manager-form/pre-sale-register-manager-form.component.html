@@ -1,0 +1,170 @@
+<div class="row">
+ 
+    <div class="col-12 mb-2">
+        <div class="d-flex w-100 justify-content-between align-items-center">
+            <h5 class="fst-italic m-0">
+                <i class="bi bi-cart3"></i> {{ package?.label | titlecase }}
+            </h5>
+            <h5 class="fst-italic m-0">
+                <i class="bi bi-cart3"></i> Cantidad de personas: {{this.packag.numero_personas}}
+            </h5>
+            <div class="button-grupo">
+                <button type="button" class="btn btn-sm btn-primary" title="Cancelar Orden" (click)="selectPackage(package)">
+                    <!-- <i class="bi bi-trash3"></i> -->
+                    Editar
+                </button>
+                <button type="button" class="btn btn-sm btn-danger" title="Cancelar Orden" (click)="preSaleSrv.cancelOrder()">
+                    <!-- <i class="bi bi-trash3"></i> -->
+                    Eliminar
+                </button>
+            </div>
+
+        </div>
+        <p class="text-muted">
+            {{ package?.description }}
+        </p>
+    </div>
+
+    <div class="col-12 mb-2">
+        <h5 class="fst-italic m-0 text-center mb-2">
+            <i class="bi bi-person-circle"></i> Datos de Facturación
+        </h5>
+        <p class="text-justify">
+            <span class="text-danger">*</span>
+            Para continuar es necesario completar el siguiente formulario, la información solicitada aquí será utilizada para emitir los pases al evento.
+        </p>
+        
+    </div>
+
+    <div class="col-12 mb-2">
+        <form [formGroup]="form" novalidate>
+            <div class="mb-3">
+                <label for="email" class="form-label">
+                    <span class="text-danger">*</span>
+                    Correo Electrónico
+                </label>
+                <input type="email" [ngClass]="{'valid': valid }" (ngModelChange)="saverange($event)" class="form-control" formControlName="email" id="email" aria-describedby="emailHelp" placeholder="email@example.com">
+                <span *ngIf="valid" class="badge bg-danger">Correo electronico ingresado no es valido</span>
+                <!-- <span class="badge bg-success">Correo electronico permitido</span> -->
+                <!-- <ng-container *ngIf="submit"> 
+                    <ng-container *ngFor="let item of vm.email">
+                        <div id="emailHelp" class="form-text"  *ngIf="f.email.hasError(item.type)">
+                            {{ item.message }}
+                        </div>
+                    </ng-container>
+                </ng-container> -->
+            </div>
+            <div class="mb-3 codigo-verificacion" *ngIf="checkEmailStatus === 4">
+                <label for="email" class="form-label">
+                    <span class="text-danger">*</span>
+                    Enviar codigo de verificacion
+                </label>
+                <button class="btn btn-primary" (click)="prueba()" type="button">send
+                </button>
+            </div>
+
+            <!-- <div class="mb-3" *ngIf="checkEmailStatus != 2">
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button class="btn btn-primary" type="button" (click)="checkEmail()" [disabled]="checkEmailStatus == 1">
+
+                        <ng-container *ngIf="checkEmailStatus == 0">
+                            Verificar Correo Electrónico
+                        </ng-container>
+
+                        <ng-container *ngIf="checkEmailStatus == 1">
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            Verificando...
+                        </ng-container>
+                    </button>
+                </div> 
+            </div> -->
+
+            <ng-container class="menu-desplegable" *ngIf="checkEmailStatus === 2">
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">
+                        <span class="text-danger">*</span>
+                        Nombre
+                    </label>
+                    <input onkeydown="return /[^,\-,0-9,$,@,!,$,%,^,&.*,(,),-,_,`,~,', ,\[,\],\},\{,\#,\+,\;,\:,\<,\>,\?,\=,\\,\|,\¡,\/]/i.test(event.key)" type="text" class="form-control" formControlName="name" id="name" aria-describedby="nameHelp" placeholder="Nombre">
+        
+                    <ng-container *ngIf="submit">
+                        <ng-container *ngFor="let item of vm.name">
+                            <div id="nameHelp" class="form-text"  *ngIf="f.name.hasError(item.type)">
+                                {{ item.message }}
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">
+                        <span class="text-danger">*</span>
+                        Apellido
+                    </label>
+                    <input onkeydown="return /[^,\-,0-9,$,@,!,$,%,^,&.*,(,),-,_,`,~,', ,\[,\],\},\{,\#,\+,\;,\:,\<,\>,\?,\=,\\,\|,\¡,\/]/i.test(event.key)" type="text" class="form-control" formControlName="last_name" id="last_name" aria-describedby="nameHelp" placeholder="Apellido">
+        
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">
+                        <span class="text-danger">*</span>
+                        DNI
+                    </label>
+                    <div class="dni-component">
+                        <select name="" class="form-control" id="">
+                            <option value="1">cedula</option>
+                            <option value="1">pasaporte</option>
+                            <option value="1">cedula juridica</option>
+                        </select>
+                        <input type="number" class="form-control" formControlName="dni" id="dni" aria-describedby="dniHelp" placeholder="Tipo Identificacion">
+                    </div>
+
+        
+                    <ng-container *ngIf="submit">
+                        <ng-container *ngFor="let item of vm.dni">
+                            <div id="dniHelp" class="form-text"  *ngIf="f.dni.hasError(item.type)">
+                                {{ item.message }}
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">
+                        <span class="text-danger">*</span>
+                        Telefono
+                    </label>
+                    <div class="telefono-component">
+                    <select name="" class="form-select" >
+                        <option *ngFor="let name of paises; index as dxi" value="1" [value]="dxi">{{name.name}} {{name.dial_code}} <div>{{name.name}}</div></option>
+                    </select>
+                    <input type="text" class="form-control" [ngClass]="{'validTelefono': validTelefono }" (ngModelChange)="savetelefono($event)"  id="email"  id="telefono" aria-describedby="emailHelp" placeholder="Telefono">
+                </div>
+                    <span *ngIf="validTelefono" class="badge bg-danger">El telefono ingresado no es valido</span>
+                </div>
+
+                <div class="mb-3">
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <button class="btn btn-primary" type="button" [disabled]="submitStatus == 1" (click)="onSubmit()">
+
+                            <ng-container *ngIf="submitStatus == 0">
+                                Continuar
+                            </ng-container>
+    
+                            <ng-container *ngIf="submitStatus == 1">
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Procesando...
+                            </ng-container>
+                             
+                        </button>
+                    </div>
+                </div>
+
+            </ng-container>
+        </form>
+    </div>
+
+</div>  
+
+<app-pre-sale-modal-nro-participants (onSetValue)="onSetNroParticipants($event)"></app-pre-sale-modal-nro-participants>

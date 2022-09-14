@@ -1,0 +1,82 @@
+<div class="row">
+    <app-pre-sale-steps-counter [step]="1"></app-pre-sale-steps-counter>
+
+    <div class="col-12 text-center mt-5 mb-2 fw-bold fs-5">
+        Ingrese la cantidad de personas a registrar
+    </div>
+
+    <div class="col-12 col-md-6 mb-3">
+        <app-input-number-form 
+            label="# de competidores" 
+            [quantity]="nroParticipants"
+            (onUpdateQuantity)="onUpdateNroParticipants($event)"></app-input-number-form>
+    </div>
+    <div class="col-12 col-md-6 mb-3">
+        <div class="card-box-number">
+            <div class="card-box-number-header">
+                <label for="inputParticipantsLeft" class="form-label w-100 text-center">
+                    # personas por asignar
+                </label>
+            </div>
+            <div class="card-box-number-body">
+                <input type="text" class="form-control-plaintext text-center" id="inputParticipantsLeft" placeholder="{{(participantsLeft >= 0) ? participantsLeft : 0}}">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">   
+    <div class="col-12">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="bi bi-info-circle"></i>&nbsp;
+            ¿Necesitas ayuda? Podemos ayudarte a realizar tu reservación, haz clic <a href="javascript:void(0)" class="alert-link text-decoration-underline" (click)="runHelp()">aquí</a>.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+
+    <div class="col-12 text-center mt-5">
+        <div class="fw-bold fs-5">Continua con tu proceso de reserva</div>
+    </div>
+
+    <ng-container *ngIf="rooms.length > 0; else noRooms">
+        <div class="col-12" *ngFor="let room of rooms; index as idx">
+            <app-pre-sale-plan-card-item 
+                [index]="idx"
+                [item]="room"
+                (onUpdateNroParticipants)="onUpdatePlanCardItem($event)"
+                (onUpdateRoom)="onMorePLanCardItem($event)"
+                (onUpdateAdditionalDays)="onAddAdditionalDays($event)"
+                (onRemove)="removeRoom($event)"></app-pre-sale-plan-card-item>
+        </div>
+    </ng-container>
+
+    <ng-template #noRooms>
+        <div class="col-12">
+            <div class="card px-2 py-5 mb-3 text-center">
+                No rooms
+            </div>
+        </div>
+    </ng-template>
+
+    
+
+    <div class="col-12">
+        <hr>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-6 mb-3">
+        <app-pre-sale-add-room-button (onAddRoom)="onAddRoom($event)"></app-pre-sale-add-room-button>
+    </div>
+
+    <app-pre-sale-totales></app-pre-sale-totales>
+
+    <div class="col-12 text-end">
+        <button class="btn btn-one" type="button" 
+            [disabled]="nroParticipants == 0 || participantsLeft < 0 || participantsLeft > 0"
+            (click)="onNext()">
+            CONTINUAR
+        </button>
+    </div>
+
+</div>
+<app-pre-sale-modal-room-type-details (onUpdateRoom)="onUpdatePlanCardItem($event)"></app-pre-sale-modal-room-type-details>
+<app-pre-sale-modal-additional-days (onUpdateRoom)="onUpdatePlanCardItem($event)"></app-pre-sale-modal-additional-days>

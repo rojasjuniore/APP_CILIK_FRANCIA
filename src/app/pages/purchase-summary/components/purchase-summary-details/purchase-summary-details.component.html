@@ -1,0 +1,42 @@
+<div class="row">
+
+    <app-pre-sale-steps-counter [step]="3"></app-pre-sale-steps-counter>
+
+    <div class="col-12 text-center mb-2 mt-5">
+        <h2 class="text-danger fw-bolder text-center">
+            Transacción exitosa
+        </h2>
+        <p>
+            Muy pronto recibirás un e-mail de confirmación con el resumen de la compra.
+        </p>
+    </div>
+
+    <div class="col-12 text-center mb-2">
+        <strong>Resumen de la compra</strong>
+    </div>
+
+    <div class="col-12 mb-4" *ngFor="let item of rooms; index as idx">
+        <app-purchase-summary-details-card-item [index]="idx + 1" [item]="item">
+        </app-purchase-summary-details-card-item>
+    </div>
+
+    <div class="col-12 mb-4">
+        <app-purchase-summary-details-category-card-item [order]="purchaseDocument">
+        </app-purchase-summary-details-category-card-item>
+    </div>
+
+    <app-pre-sale-totales></app-pre-sale-totales>
+
+    <div class="col-12">
+        <div class="d-flex justify-content-between">
+            <button class="btn btn-three" type="button" (click)="onKeepBuying()">
+                <i class="bi bi-chevron-left"></i>
+                VER MI PERFIL
+            </button>
+            <button class="btn btn-danger rounded-pill" type="button" (click)="onKeepBuying()">
+                SEGUIR COMPRANDO
+            </button>
+        </div>
+    </div>
+
+</div>

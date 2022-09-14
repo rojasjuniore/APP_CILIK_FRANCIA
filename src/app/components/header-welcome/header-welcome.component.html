@@ -1,0 +1,24 @@
+<div class="presale-steps">
+    <div class="row align-items-center">
+        <div class="col d-flex align-items-center">
+            <div class="avtr">
+                <img src="assets/img/cilik/icon-39.png" alt="">
+            </div>
+
+            <ng-container *ngIf="(profile$ | async); else loading">
+                <div class="fs-2 fw-bold ps-3">
+                    Hola {{ (profile$ | async)?.fullName | titlecase }}
+                </div>
+            </ng-container>
+
+            <ng-template #loading>
+                
+                <div class="fs-2 fw-bold ps-3 placeholder-glow">
+                    <span class="placeholder col-7"></span>
+                </div>
+            </ng-template>
+            
+        </div>
+        <div class="seprd"></div>
+    </div>
+</div>  

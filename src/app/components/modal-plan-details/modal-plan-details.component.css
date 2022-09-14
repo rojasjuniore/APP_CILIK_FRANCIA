@@ -1,0 +1,14 @@
+.modal-PlanDetails .modal-dialog {
+    max-width: 1100px;
+}
+.modal-PlanDetails .modal-header{
+    border: 0;
+}
+.modal-PlanDetails .modal-content{
+    border-radius: 30px;
+}
+.modal-PlanDetails .btn-close{
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+}

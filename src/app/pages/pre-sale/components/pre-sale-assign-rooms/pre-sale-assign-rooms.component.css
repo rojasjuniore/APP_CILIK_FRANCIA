@@ -1,0 +1,35 @@
+.list-group-habitaciones input{
+    margin: 10px 0px;
+    width: 60%;
+}
+.list-group-habitaciones label{
+    margin: 10px 0px;
+    width: 20%;
+}
+
+.button-grupo button{
+    margin: 0px 5px;
+}
+
+.list-group-camas{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0px;
+}
+
+.item-li-camas{
+    display: flex;
+    flex-direction: row;
+    font-size: medium;
+}
+
+.item-li-camas input{
+    margin: 5px 0px 0px 10px;
+    width: 15px;
+    height: 15px;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+    opacity: 1
+}
