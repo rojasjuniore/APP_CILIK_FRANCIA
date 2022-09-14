@@ -125,7 +125,7 @@ export class TemporalTokenService {
 
     const { value = false } = await Swal.fire({
       icon: 'question',
-      title: "Verification code",
+      title: "Código de verificación",
       html:
         '<p>'
         + `Antes de continuar es necesario el código de <strong>(${this.tokenLong})</strong> dígitos enviado a la dirección <strong>${email}</strong>, por favor ingréselo a continuación:`
