@@ -6,8 +6,15 @@ export const environment = {
   production: false,
   // DEV
   seedKey: 'nftixProject-dev-inTECH',
-  API_URL: 'http://localhost:3000',
+  API_URL: 'https://cilik-presale.uc.r.appspot.com/',
   urlWeb: 'http://localhost:4200/',
+  paypal: {
+    currency: 'USD',
+    payPalEnvironmentProduction:
+      "AY3m2F6IWR-K9LDNuEYM8hBqt15yARFfiRVItDuvZyEcmLpHGBdKS9otkHiH_pb_qJB7TN8rh9mV6wtW",
+    payPalEnvironmentSandbox:
+      "AdSgSOB2XjX4CwI4gs4mZju43hdaNfypLwyeQvwo5OKqtYh3lM2Abn4mAKZ1v4GK9aHsf1vV6hEpEFPM",
+  },
   firebase: {
     apiKey: "AIzaSyD2rH0VMiThVa1amThTDS8EgHLGHy5jHFc",
     authDomain: "cilik-presale.firebaseapp.com",

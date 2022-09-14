@@ -35,6 +35,8 @@ import { HeaderWelcomeComponent } from './header-welcome/header-welcome.componen
 import { InputNumberFormTwoComponent } from './input-number-form-two/input-number-form-two.component';
 import { HistoryCardPurchaseItemComponent } from './history-card-purchase-item/history-card-purchase-item.component';
 import { HistoryCardCategoryPurchaseItemComponent } from './history-card-category-purchase-item/history-card-category-purchase-item.component';
+import { PaypalComponent } from './paypal/paypal.component';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 
 
@@ -45,6 +47,7 @@ import { HistoryCardCategoryPurchaseItemComponent } from './history-card-categor
     ReactiveFormsModule,
     TranslateModule,
     RouterModule,
+    NgxPayPalModule,
     NgxMaskModule.forRoot(),
   ],
   declarations: [
@@ -79,6 +82,7 @@ import { HistoryCardCategoryPurchaseItemComponent } from './history-card-categor
     PurchaseSummaryDetailsCategoryCardItemComponent,
     HistoryCardPurchaseItemComponent,
     HistoryCardCategoryPurchaseItemComponent,
+    PaypalComponent,
   ],
   exports: [
     CommonModule,
@@ -112,6 +116,7 @@ import { HistoryCardCategoryPurchaseItemComponent } from './history-card-categor
     PurchaseSummaryDetailsCategoryCardItemComponent,
     HistoryCardPurchaseItemComponent,
     HistoryCardCategoryPurchaseItemComponent,
+    PaypalComponent
   ],
   providers: [
     TranslatePipe,
