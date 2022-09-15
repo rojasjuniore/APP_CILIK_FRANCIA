@@ -6,7 +6,7 @@
         </h5>
     </div>
 
-    <div class="col-12 mb-4">
+    <div class="col-12 mb-4 text-center">
         <app-paypal [amount]="total"
             (onCancel)="onPaypalResponse({type: 'cancel', data: $event})"
             (onError)="onPaypalResponse({type: 'error', data: $event})"

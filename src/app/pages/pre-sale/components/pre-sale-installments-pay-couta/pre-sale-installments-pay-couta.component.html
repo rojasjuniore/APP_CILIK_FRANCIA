@@ -51,7 +51,7 @@
     <ng-container *ngIf="formStatus == 2">
 
         <ng-container *ngIf="paymentMethodType == 'paypal'">
-            <div class="col-12 mb-4">
+            <div class="col-12 mb-4 text-center">
                 <app-paypal 
                     [amount]="currentCoutaToPay.amount"
                     (onCancel)="onPaypalResponse({type: 'cancel', data: $event})"
