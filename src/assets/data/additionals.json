@@ -74,7 +74,7 @@
             "roomCode": "HAB22000",
             "fullPrice": 262,
             "priceList": [
-                {"from": "2022/09/10", "to": "2022/09/30", "percentage": 0.30, "pricePerPeople": 92, "price": 276, "discountPerPeople": 39.15, "discount": 78.3},
+                {"from": "2022/09/10", "to": "2022/09/30", "percentage": 0.30, "pricePerPeople": 92, "price": 184, "discountPerPeople": 39.15, "discount": 78.3},
                 {"from": "2022/10/01", "to": "2022/10/31", "percentage": 0.22, "pricePerPeople": 103, "price": 206, "discountPerPeople": 0.78, "discount": 1.56},
                 {"from": "2022/11/01", "to": "2022/12/15", "percentage": 0.11, "pricePerPeople": 116, "price": 232, "discountPerPeople": 0.89, "discount": 1.78},
                 {"from": "2022/12/16", "to": "2023/01/10", "percentage": 0.00, "pricePerPeople": 131, "price": 262, "discountPerPeople": 0, "discount": 0}
