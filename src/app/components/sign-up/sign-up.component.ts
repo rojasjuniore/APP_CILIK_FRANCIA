@@ -49,11 +49,11 @@ export class SignUpComponent implements OnInit {
     ],
     dni: [
       { type: 'required', message: 'Se requiere documento *' },
-      { type: 'pattern', message: 'Documento debe contener solo números *' }
+      { type: 'pattern', message: 'Documento debe contener solo números *' },
+      { type: 'dniStored', message: 'Documento de identidad no válido, ya se encuentra en uso' },
     ],
     prefix: [
       { type: 'required', message: 'Se requiere prefijo *' },
-      { type: 'pattern', message: 'El prefijo debe contener solo números *' }
     ],
     phoneNumber: [
       { type: 'required', message: 'Se requiere el número de teléfono *' },
@@ -134,8 +134,7 @@ export class SignUpComponent implements OnInit {
         Validators.pattern(/^[0-9]+$/)
       ]],
       prefix: ["+57", [
-        Validators.required,
-        Validators.pattern(/^[0-9]+$/)
+        Validators.required
       ]],
       phoneNumber: ['', [
         Validators.required,
@@ -173,7 +172,16 @@ export class SignUpComponent implements OnInit {
         return;
       }
 
+      
       const formData = this.form.value;
+
+      const checkDNI = await this.authenticationSrv.checkDNI(formData.dni, formData.documentType);
+      if(checkDNI){
+        this.f.dni.setErrors({ dniStored: true });
+        return;
+      }
+
+
       const data = {
         firstName: this.commonService.noSpecialCharacters(formData.firstName),
         lastName: this.commonService.noSpecialCharacters(formData.lastName),

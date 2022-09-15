@@ -385,6 +385,14 @@ export class AuthenticationService {
       }
     ).valueChanges({ idField });
   }
+
+  async checkDNI(dni: string, documentType: string) {
+    const snapshot = await lastValueFrom(
+      this.afs.collection('users', (ref) => ref.where('dni', '==', dni).where('documentType', '==', documentType)).get()
+    );
+    const result = await handlerArrayResult(snapshot);
+    return (result.length > 0) ? result.pop() : null;
+  }
 }
 
 
