@@ -60,7 +60,7 @@
             "priceList": [
                 {"from": "2022/09/10", "to": "2022/09/30", "percentage": 0.30, "price": 2547, "pricePerPeople": 849, "discount": 363.94, "discountPerPeople": 363.94},
                 {"from": "2022/10/01", "to": "2022/10/31", "percentage": 0.22, "price": 2856, "pricePerPeople": 952, "discount": 1.56, "discountPerPeople": 0.78},
-                {"from": "2022/11/01", "to": "2022/12/15", "percentage": 0.11, "price": 3642, "pricePerPeople": 1075, "discount": 1.78, "discountPerPeople": 0.89},
+                {"from": "2022/11/01", "to": "2022/12/15", "percentage": 0.11, "price": 3225, "pricePerPeople": 1075, "discount": 1.78, "discountPerPeople": 0.89},
                 {"from": "2022/12/16", "to": "2023/01/10", "percentage": 0.00, "price": 3642, "pricePerPeople": 1214, "discount": 0, "discountPerPeople": 0}
             ],
             "supply": 42,
@@ -150,7 +150,7 @@
                 {"from": "2022/09/10", "to": "2022/09/30", "percentage": 0.30, "price": 1363, "pricePerPeople": 1363, "discount": 583.89, "discountPerPeople": 583.89},
                 {"from": "2022/10/01", "to": "2022/10/31", "percentage": 0.22, "price": 1526, "pricePerPeople": 1526, "discount": 1.56, "discountPerPeople": 0.78},
                 {"from": "2022/11/01", "to": "2022/12/15", "percentage": 0.11, "price": 1725, "pricePerPeople": 1725, "discount": 1.78, "discountPerPeople": 0.89},
-                {"from": "2022/12/16", "to": "2023/01/10", "percentage": 0.00, "price": 4278, "pricePerPeople": 1947, "discount": 0, "discountPerPeople": 0}
+                {"from": "2022/12/16", "to": "2023/01/10", "percentage": 0.00, "price": 1947, "pricePerPeople": 1947, "discount": 0, "discountPerPeople": 0}
             ],
             "supply": 42,
             "available": 42
