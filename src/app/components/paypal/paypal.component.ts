@@ -35,9 +35,9 @@ export class PaypalComponent implements OnInit {
       environment.paypal.payPalEnvironmentSandbox
     const _currency = environment.paypal.currency;
 
-    // console.log('production', environment.production);
-    // console.log('clientId', _clientId);
-    // console.log('currency', _currency);
+    console.log('production', environment.production);
+    console.log('clientId', _clientId);
+    console.log('currency', _currency);
 
 
     this.payPalConfig = {
