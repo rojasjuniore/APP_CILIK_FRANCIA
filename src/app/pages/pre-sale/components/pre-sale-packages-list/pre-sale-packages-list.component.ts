@@ -131,12 +131,12 @@ export class PreSalePackagesListComponent implements OnInit {
   async runHelp(){
     try {
 
-      if(this.rooms.length > 0){
-        const ask = await this.sweetAlertSrv.askConfirm('Hemos detectado que ya has agregado habitaciones, ¿Deseas eliminarlas?');
-        if(!ask){
-          return;
-        }
-      }
+      // if(this.rooms.length > 0){
+      //   const ask = await this.sweetAlertSrv.askConfirm('Hemos detectado que ya has agregado habitaciones, ¿Deseas eliminarlas?');
+      //   if(!ask){
+      //     return;
+      //   }
+      // }
 
       this.rooms = [];
 
