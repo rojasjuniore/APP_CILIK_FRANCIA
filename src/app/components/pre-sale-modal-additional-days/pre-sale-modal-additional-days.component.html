@@ -35,7 +35,7 @@
                                             Valor sin descuento: <span class="fw-bold text-decoration-line-through">USD {{list.fullPrice | mask:'separator.2':','}}</span>
                                         </p>
                                         <p class="card-text fw-bolder">
-                                            Monto USD {{list.price | mask:'separator.2':','}}
+                                            Monto por noche adicional:  USD {{list.price | mask:'separator.2':','}}
                                         </p>
                                         <p class="card-text">
                                             Indique la cantidad de noches adicionales que desea agregar a su reserva.
@@ -52,6 +52,11 @@
                                                     [min]="0" [max]="5" [quantity]="daysAfter"
                                                     label="# Noches Despues"
                                                     (onUpdateQuantity)="onDaysAfter({data: list, quantity: $event})"></app-input-number-form>
+                                            </div>
+                                            <div class="col-12">
+                                                <h5 class="text-start text-md-end">
+                                                    Total por noches: <span class="fw-bold fs-4">USD {{additionalDaysAmount | mask:'separator.2':','}} </span>
+                                                </h5>
                                             </div>
                                         </div>
 
@@ -81,7 +86,9 @@
             </div>
             <div class="modal-footer flex-column justify-content-center">
                 <div class="w-50 d-flex flex-row justify-content-center align-items-center">
-                    <button type="button" class="btn btn-one" (click)="closeModal()">Done</button>
+                    <button type="button" class="btn btn-one" (click)="closeModal()">
+                        VOLVER
+                    </button>
                 </div>
 
             </div>

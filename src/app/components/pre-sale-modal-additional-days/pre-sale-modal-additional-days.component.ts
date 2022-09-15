@@ -52,14 +52,17 @@ export class PreSaleModalAdditionalDaysComponent implements OnInit {
     let findIndex = this.item.additionals.findIndex((x: any) => x.type === 'after');
     return findIndex == -1 ? 0 : this.item.additionals[findIndex].quantity;
   }
+  
+
+  get additionalDaysAmount(){
+    return this.item?.additionals
+    .map((row) => row.quantity * row.price)
+    .reduce((a, b) => a + b, 0);
+  }
 
   get subTotal(){
     const price = this.item ?.price || 0;
-    const additionals = this.item?.additionals
-      .map((row) => row.quantity * row.price)
-      .reduce((a, b) => a + b, 0);
-
-    return price + additionals;
+    return price + this.additionalDaysAmount;
   }
 
   onDaysBefore(params: any){
@@ -76,6 +79,7 @@ export class PreSaleModalAdditionalDaysComponent implements OnInit {
       additionals[findIndex].price = data.price;
       additionals[findIndex].fullPrice = data.fullPrice;
     }
+    this.item.additionals = additionals;
     this.onUpdateRoom.next({index: this.index, data: {additionals}});
   }
 
@@ -94,6 +98,7 @@ export class PreSaleModalAdditionalDaysComponent implements OnInit {
       additionals[findIndex].fullPrice = data.fullPrice;
     }
 
+    this.item.additionals = additionals;
     this.onUpdateRoom.next({index: this.index, data: {additionals}});
   }
 
