@@ -335,6 +335,8 @@ body{
     padding: 0;
     background-color: transparent;
     outline: none;
+    border: 0 !important;
+    border-color: transparent !important;
 }
 .card-box-number-body .input-group .btn:focus{
     padding: 0;
@@ -353,6 +355,10 @@ body{
 
 .card-box-number-body .btn.disabled, .card-box-number-body .btn:disabled, .card-box-number-body fieldset:disabled .btn{
     border: 0 !important;
+}
+.btn-check:checked + .btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check) + .btn:active{
+    border: 0 !important;
+    border-color: transparent !important;
 }
 
 
