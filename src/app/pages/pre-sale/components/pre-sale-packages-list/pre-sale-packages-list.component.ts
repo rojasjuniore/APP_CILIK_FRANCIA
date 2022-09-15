@@ -163,6 +163,17 @@ export class PreSalePackagesListComponent implements OnInit {
   }
 
   onNext(){
+
+    if(this.nroParticipants == 0 || this.participantsLeft > 0){
+      this.sweetAlertSrv.showWarning('Aún tienes personas sin asignación de habitación.');
+      return;
+    }
+
+    if(this.participantsLeft < 0){
+      this.sweetAlertSrv.showWarning('Has asignado más personas de las que ingresaste.');
+      return;
+    }
+
     this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale/step2'});
     this.router.navigate(['/pre-sale', 'step2']);
   }
