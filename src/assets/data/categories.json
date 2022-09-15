@@ -31,12 +31,12 @@
             "label": "Grupo",
             "quantity": 0,
             "order": 2,
-            "fullPrice": 165,
+            "fullPrice": 55,
             "priceList": [
-                {"from": "2022/09/10", "to": "2022/09/30", "percentage": 0.5455, "pricePerPeople": 25, "price": 75, "discountPerPeople": 30, "discount": 90},
-                {"from": "2022/10/01", "to": "2022/10/31", "percentage": 0.3636, "pricePerPeople": 35, "price": 105, "discountPerPeople": 20, "discount": 60},
-                {"from": "2022/11/01", "to": "2022/12/15", "percentage": 0.1818, "pricePerPeople": 45, "price": 135, "discountPerPeople": 10, "discount": 30},
-                {"from": "2022/12/16", "to": "2023/01/10", "percentage": 0.00, "pricePerPeople": 55, "price": 165, "discountPerPeople": 0, "discount": 0}
+                {"from": "2022/09/10", "to": "2022/09/30", "percentage": 0.5455, "pricePerPeople": 25, "price": 25, "discountPerPeople": 30, "discount": 30},
+                {"from": "2022/10/01", "to": "2022/10/31", "percentage": 0.3636, "pricePerPeople": 35, "price": 35, "discountPerPeople": 20, "discount": 20},
+                {"from": "2022/11/01", "to": "2022/12/15", "percentage": 0.1818, "pricePerPeople": 45, "price": 45, "discountPerPeople": 10, "discount": 10},
+                {"from": "2022/12/16", "to": "2023/01/10", "percentage": 0.00, "pricePerPeople": 55, "price": 55, "discountPerPeople": 0, "discount": 0}
             ]
           }
     ]
