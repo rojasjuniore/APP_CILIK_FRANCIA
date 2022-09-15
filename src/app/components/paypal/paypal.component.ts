@@ -34,10 +34,13 @@ export class PaypalComponent implements OnInit {
       environment.paypal.payPalEnvironmentProduction :
       environment.paypal.payPalEnvironmentSandbox
     const _currency = environment.paypal.currency;
+    const _amount = this.amount.toFixed(2)
 
     console.log('production', environment.production);
     console.log('clientId', _clientId);
     console.log('currency', _currency);
+    console.log('this.amount', this.amount);
+    console.log('_amount', _amount);
 
 
     this.payPalConfig = {
@@ -48,7 +51,7 @@ export class PaypalComponent implements OnInit {
         purchase_units: [{
           amount: {
             currency_code: "USD",
-            value: `${this.amount}` // Can also reference a variable or function
+            value: `${_amount}` // Can also reference a variable or function
           }
         }]
       },
