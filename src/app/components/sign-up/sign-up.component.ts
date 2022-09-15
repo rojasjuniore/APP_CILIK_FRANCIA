@@ -94,8 +94,7 @@ export class SignUpComponent implements OnInit {
   ) {
 
     /** Phone number prefix list */
-    this.phoneData = this.dataSrv.getCountryPhone()
-      .sort((a, b) => a.name.localeCompare(b.name));
+    this.phoneData = this.dataSrv.customCountryList;
 
     /** Build Form */
     this.buildForm();
@@ -134,7 +133,7 @@ export class SignUpComponent implements OnInit {
         Validators.required,
         Validators.pattern(/^[0-9]+$/)
       ]],
-      prefix: [57, [
+      prefix: ["+57", [
         Validators.required,
         Validators.pattern(/^[0-9]+$/)
       ]],

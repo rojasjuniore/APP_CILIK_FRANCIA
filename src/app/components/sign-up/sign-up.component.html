@@ -91,8 +91,8 @@
                   <select class="form-select" [ngClass]="{'is-invalid': submit && f.prefix.errors}"
                     formControlName="prefix" id="floatingSelectPrefix" aria-label="Prefix">
                     <ng-container *ngFor="let item of phoneData">
-                      <option [value]="item.phonecode">
-                        {{item.name}}
+                      <option [value]="item.dial_code">
+                        {{item.dial_code}} {{item.name}} {{item.flag}}
                       </option>
                     </ng-container>
                   </select>
