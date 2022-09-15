@@ -16,13 +16,13 @@ export const environment = {
       "ASay2oTezuJ4AhyNrm4UGcJbRE6O82APiOcx5J-l9aBT_r4TzeN0bi4acCuwmfXHWlMIfT79xu2HvdzC",
   },
   firebase: {
-    apiKey: "AIzaSyAfc_FvpJkMfXak0q5sMLDQ6Iuv70Uscp4",
-    authDomain: "cilik-3c845.firebaseapp.com",
-    projectId: "cilik-3c845",
-    storageBucket: "cilik-3c845.appspot.com",
-    messagingSenderId: "15341073414",
-    appId: "1:15341073414:web:38695cba327809e582bf87",
-    measurementId: "G-TGB49S3LRF"
+    apiKey: "AIzaSyD2rH0VMiThVa1amThTDS8EgHLGHy5jHFc",
+    authDomain: "cilik-presale.firebaseapp.com",
+    projectId: "cilik-presale",
+    storageBucket: "cilik-presale.appspot.com",
+    messagingSenderId: "609693079729",
+    appId: "1:609693079729:web:2a97e3f9242fa5486b6a90",
+    measurementId: "G-626T0C3HZN"
   }
 };
 
