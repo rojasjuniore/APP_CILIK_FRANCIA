@@ -203,10 +203,10 @@ body{
     cursor: pointer;
 }
 .seprd{
-    width: 100%;
+    width: 95%;
     height: 1px;
     background-color: #868786;
-    margin: 1rem 0;
+    margin: 1rem auto;
 }
 .seprd2{
     width: 100%;
@@ -361,8 +361,16 @@ body{
     border-color: transparent !important;
 }
 
+/* Dashboard */
+.item-dash-icon img{
+    width: 150px;
+}
+
 
 @media (max-width: 575px) {
+    .item-dash-icon img{
+        width: 150px;
+    }
     .form-camp{
         width: 100%;
     }
@@ -371,5 +379,16 @@ body{
     }   
     .cont-item-step .item-step:nth-child(2)::before{
         display: none;
+    }
+    .seprd {
+        width: 90%;
+        margin: 1rem auto;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .seprd {
+        width: 90%;
+        margin: 1rem auto;
     }
 }
