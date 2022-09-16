@@ -1,11 +1,35 @@
 <!-- <app-navbar></app-navbar> -->
 <!-- <router-outlet></router-outlet> -->
 
-<div class="router-wrapper" >
-  <router-outlet > </router-outlet>
+<div class="router-wrapper">
+  <div
+    id="what-is-it"
+    class="col-sm-12 col-lg-6 d-flex justify-content-center justify-content-lg-end change-language"
+  >
+    <div
+      class="d-flex align-items-center justify-content-center rounded-pill px-15 languaje-home"
+    >
+      <span
+        id="en-home"
+        [ngClass]="{ active: currentLanguage == 'en' }"
+        (click)="changeLanguage('en')"
+        >
+        <img src="assets/images/index/reino-unido.png" alt="">
+        </span
+      >
+      <span
+        id="SP-home"
+        class="ml-3"
+        [ngClass]="{ active: currentLanguage == 'es' }"
+        (click)="changeLanguage('es')"
+        ><img src="assets/images/index/espana.png" alt=""></span
+      >
+    </div>
+  </div>
+  <router-outlet> </router-outlet>
 </div>
 
 <!--spinner-->
 <ngx-spinner size="medium" type="triangle-skew-spin" [fullScreen]="true">
-  <p style="color: white"> Loading... </p>
+  <p style="color: white">Loading...</p>
 </ngx-spinner>

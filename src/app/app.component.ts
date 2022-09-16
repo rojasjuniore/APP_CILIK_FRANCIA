@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { CustomTranslateService } from 'src/app/services/custom-translate.service';
 import { DataService } from './services/data.service';
 import { HotelService } from './services/hotel.service';
 
@@ -8,18 +8,17 @@ import { pick } from 'underscore';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   title = 'xpocripto';
-
+  public currentLanguage: string;
   constructor(
-    public translate: TranslateService,
+    public translateSrv: CustomTranslateService,
     private dataSrv: DataService,
-    private hotelSrv: HotelService,
+    private hotelSrv: HotelService
   ) {
-    this.translate.setDefaultLang('en');
-    this.translate.use('en');
+    this.currentLanguage = this.translateSrv.currentLanguage;
   }
 
   ngOnInit(): void {
@@ -28,6 +27,10 @@ export class AppComponent {
     // this.test();
   }
 
+  changeLanguage(language: string) {
+    this.translateSrv.changeLanguage(language);
+    this.currentLanguage = language;
+  }
 
   /**
    * @description Prueba de contadores
@@ -35,7 +38,6 @@ export class AppComponent {
   // async test(){
   //   await this.hotelSrv.updateRoomTypeSupply('HAB10000', -1)
   // }
-
 
   /**
    * @description Registrar habitaciones
@@ -48,7 +50,7 @@ export class AppComponent {
   //   for (const room of roomTypes) {
   //     for (let index = 1; index <= room.quantity; index++) {
   //       const snapshot = pick(room, [
-  //         'ubicationType', 
+  //         'ubicationType',
   //         'ubicationTypeDescription',
   //         'description',
   //         'capacity',
@@ -70,7 +72,7 @@ export class AppComponent {
   //       console.log('room', data);
 
   //       toAwait.push(this.hotelSrv.storeRoom(roomCode, data));
-  //     }      
+  //     }
   //   }
 
   //   await Promise.all(toAwait);
@@ -120,5 +122,5 @@ export class AppComponent {
 
   public getState(outlet) {
     return outlet.activatedRouteData.state;
-  };
+  }
 }

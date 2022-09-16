@@ -2,7 +2,8 @@
     <app-pre-sale-steps-counter [step]="1"></app-pre-sale-steps-counter>
 
     <div class="col-12 text-center mt-5 mb-2 fw-bold fs-5">
-        Ingrese la cantidad de personas a registrar
+
+        {{ "general.Enter-the-number-of-people-to-register" | translate }}
     </div>
 
     <div class="col-12 col-md-6 mb-3">
@@ -15,7 +16,7 @@
         <div class="card-box-number">
             <div class="card-box-number-header">
                 <label for="inputParticipantsLeft" class="form-label w-100 text-center">
-                    # personas por asignar
+                    {{ "general.#-people-to-assign" | translate }}
                 </label>
             </div>
             <div class="card-box-number-body">
@@ -28,7 +29,8 @@
     <div class="col-12">
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <i class="bi bi-info-circle"></i>&nbsp;
-            ¿Necesitas ayuda? Podemos ayudarte a realizar tu reservación, haz clic <a href="javascript:void(0)" class="alert-link text-decoration-underline" (click)="runHelp()">aquí</a>.
+            {{ "general.package-list-text" | translate }}
+             <a href="javascript:void(0)" class="alert-link text-decoration-underline" (click)="runHelp()">{{ "general.here" | translate }}</a>.
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     </div>
@@ -52,7 +54,7 @@
     <ng-template #noRooms>
         <div class="col-12">
             <div class="card px-2 py-5 mb-3 text-center">
-                No rooms
+                {{ "general.no-rooms" | translate }}
             </div>
         </div>
     </ng-template>
@@ -74,7 +76,7 @@
 
     <div class="col-12 text-end">
         <button class="btn btn-one" type="button" (click)="onNext()">
-            CONTINUAR
+            {{ "general.proceed" | translate }}
         </button>
     </div>
 

@@ -5,12 +5,12 @@
             <div class="modal-header d-flex justify-content-center">
                 <h5 class="modal-title" id="exampleModalLabel">
                     <i class="bi bi-people"></i>
-                    Número de participantes
+                    {{ "general.number-of-participants" | translate }}
                 </h5>
             </div>
             <div class="modal-body">
                 <p class="text-justify">
-                    Por favor, indique a continuación la cantidad de participantes a registrar en el paquete:
+                    {{ "general.number-of-participants-text" | translate }}:
                 </p>
                 <form [formGroup]="form" novalidate>
                     <div class="d-flex w-100 justify-content-center">
@@ -133,9 +133,10 @@
                             <div class="btn-footer text-center">
                                 <button type="button" class="btn btn-sm btn-danger me-3" (click)="close()">
                                     Cancelar
+                                    {{ "general.cancel" | translate }}
                                 </button>
                                 <button type="button" class="btn btn-sm btn-primary" (click)="onSubmit()">
-                                    Continuar
+                                    {{ "general.proceed" | translate }}
                                 </button>
                             </div>
                         </div>

@@ -21,7 +21,7 @@ import { USE_DEVICE_LANGUAGE } from '@angular/fire/compat/auth';
 import { NgxPayPalModule } from 'ngx-paypal';
 
 import { environment } from 'src/environments/environment';
-import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { ComponentsModule } from './components/components.module';
 import { provideFirestore } from '@angular/fire/firestore';
 import { getFirestore } from 'firebase/firestore';
@@ -30,7 +30,10 @@ import { initializeApp } from 'firebase/app';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
-  // return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http);
+}
+
+export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
@@ -38,11 +41,8 @@ const maskConfig: Partial<IConfig> = {
   validation: false,
 };
 
-
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -60,7 +60,7 @@ const maskConfig: Partial<IConfig> = {
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
+        deps: [HttpClient],
       },
       defaultLanguage: 'es',
     }),
@@ -71,9 +71,7 @@ const maskConfig: Partial<IConfig> = {
     AngularFireStorageModule,
     AngularFireAuthModule,
   ],
-  providers: [
-    { provide: USE_DEVICE_LANGUAGE, useValue: true },
-  ],
-  bootstrap: [AppComponent]
+  providers: [{ provide: USE_DEVICE_LANGUAGE, useValue: true }],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

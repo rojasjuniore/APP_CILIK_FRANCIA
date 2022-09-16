@@ -9,16 +9,26 @@
             <div class="form-floating form-camp mb-3">
               <!-- <input type="email" [ngClass]="{'valid': valid }" [ngModelOptions]="{standalone: true}" [(ngModel)]="email" (ngModelChange)="modelChangeFn($event)" class="form-control" id="floatingInput" placeholder="name@example.com"> -->
 
-              <input type="email" [ngClass]="{'valid': submit && f.email.errors}" formControlName="email"
-                class="form-control" id="floatingInput" placeholder="name@example.com">
-              <label for="floatingInput">E-mail</label>
+              <input
+                type="email"
+                [ngClass]="{ valid: submit && f.email.errors }"
+                formControlName="email"
+                class="form-control"
+                id="floatingInput"
+                placeholder="name@example.com"
+              />
+              <label for="floatingInput">
+                {{ "general.email" | translate }}</label
+              >
 
               <ng-container *ngIf="submit">
                 <ng-container *ngFor="let item of vm.email">
-                  <span class="badge bg-danger" *ngIf="f.email.hasError(item.type)">
-                    {{item.message}}
+                  <span
+                    class="badge bg-danger"
+                    *ngIf="f.email.hasError(item.type)"
+                  >
+                    {{ item.message }}
                   </span>
-
                 </ng-container>
               </ng-container>
             </div>
@@ -26,20 +36,30 @@
             <div class="form-floating form-camp mb-3">
               <!-- <input type="password" class="form-control" [ngClass]="{'valid': validPassword }" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" (ngModelChange)="modelChangePassword($event)" id="floatingPassword" placeholder="Password"> -->
 
-              <input [type]="typeInput" class="form-control" [ngClass]="{'valid': submit && f.email.errors}"
-                formControlName="password" id="floatingPassword" placeholder="Contraseña">
+              <input
+                [type]="typeInput"
+                class="form-control"
+                [ngClass]="{ valid: submit && f.email.errors }"
+                formControlName="password"
+                id="floatingPassword"
+                [placeholder]="'general.password' | translate"
+              />
 
-              <label for="floatingPassword">Contraseña</label>
+              <label for="floatingPassword">
+                {{ "general.password" | translate }}
+              </label>
               <div (click)="changeTypeInput()" class="pass-ico">
-                <i *ngIf="typeInput =='password'" class="bi bi-eye-slash"></i>
-                <i *ngIf="typeInput =='text'" class="bi bi-eye-fill"></i>
+                <i *ngIf="typeInput == 'password'" class="bi bi-eye-slash"></i>
+                <i *ngIf="typeInput == 'text'" class="bi bi-eye-fill"></i>
               </div>
               <ng-container *ngIf="submit">
                 <ng-container *ngFor="let item of vm.password">
-                  <span class="badge bg-danger" *ngIf="f.password.hasError(item.type)">
-                    {{item.message}}
+                  <span
+                    class="badge bg-danger"
+                    *ngIf="f.password.hasError(item.type)"
+                  >
+                    {{ item.message }}
                   </span>
-
                 </ng-container>
               </ng-container>
             </div>
@@ -51,33 +71,48 @@
               </label>
             </div> -->
             <div class="d-flex justify-content-center">
-
               <ng-container *ngIf="submit && loading; else canSubmit">
-                <button class="btn btn-one btn-large text-uppercase fw-bold" type="button" disabled>
+                <button
+                  class="btn btn-one btn-large text-uppercase fw-bold"
+                  type="button"
+                  disabled
+                >
                   <div class="text-center">
                     <div class="spinner-border spinner-border-sm" role="status">
-                      <span class="visually-hidden">Loading...</span>
+                      <span class="visually-hidden"
+                        >{{ "general.loading" | translate }}...</span
+                      >
                     </div>
                   </div>
                 </button>
               </ng-container>
 
               <ng-template #canSubmit>
-                <button class="btn btn-one btn-large text-uppercase fw-bold" type="submit">Ingresar</button>
+                <button
+                  class="btn btn-one btn-large text-uppercase fw-bold"
+                  type="submit"
+                >
+                  {{ "general.enter" | translate }}
+                </button>
               </ng-template>
-
             </div>
             <div class="d-flex justify-content-center">
               <div class="mt-3">
                 <a routerLink="/recovery">
-                  ¿Olvidaste tu contraseña?
+                  {{ "general.forgot-your-password?" | translate }}
                 </a>
               </div>
             </div>
             <div class="seprd"></div>
-            <div class="d-flex justify-content-center flex-column align-items-center mb-2">
-              <div class="pb-2">¿Aún no estás registrado?</div>
-              <a class="btn btn-two btn-large" routerLink="/sign-up">REGISTRARSE AQUÍ</a>
+            <div
+              class="d-flex justify-content-center flex-column align-items-center mb-2"
+            >
+              <div class="pb-2">
+                {{ "general.youre-not-registered-yet?" | translate }}
+              </div>
+              <a class="btn btn-two btn-large" routerLink="/sign-up">
+                {{ "general.register-here" | translate }}
+              </a>
               <!-- <button class="btn btn-google btn-login text-uppercase fw-bold" type="submit">
                 <i class="fab fa-google me-2"></i> Sign in with Google
               </button> -->

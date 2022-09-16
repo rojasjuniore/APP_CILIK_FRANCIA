@@ -6,16 +6,16 @@
                 <i class="bi bi-cart3"></i> {{ package?.label | titlecase }}
             </h5>
             <h5 class="fst-italic m-0">
-                <i class="bi bi-cart3"></i> Cantidad de personas: {{this.packag.numero_personas}}
+                <i class="bi bi-cart3"></i> {{ "general.amount-of-people" | translate }}: {{this.packag.numero_personas}}
             </h5>
             <div class="button-grupo">
                 <button type="button" class="btn btn-sm btn-primary" title="Cancelar Orden" (click)="selectPackage(package)">
                     <!-- <i class="bi bi-trash3"></i> -->
-                    Editar
+                    {{ "general.edit" | translate }}
                 </button>
                 <button type="button" class="btn btn-sm btn-danger" title="Cancelar Orden" (click)="preSaleSrv.cancelOrder()">
                     <!-- <i class="bi bi-trash3"></i> -->
-                    Eliminar
+                    {{ "general.delete" | translate }}
                 </button>
             </div>
 
@@ -27,11 +27,12 @@
 
     <div class="col-12 mb-2">
         <h5 class="fst-italic m-0 text-center mb-2">
-            <i class="bi bi-person-circle"></i> Datos de Facturación
+            <i class="bi bi-person-circle"></i> 
+            {{ "general.billing-information" | translate }}
         </h5>
         <p class="text-justify">
             <span class="text-danger">*</span>
-            Para continuar es necesario completar el siguiente formulario, la información solicitada aquí será utilizada para emitir los pases al evento.
+            {{ "general.billing-information-text" | translate }}
         </p>
         
     </div>
@@ -41,7 +42,7 @@
             <div class="mb-3">
                 <label for="email" class="form-label">
                     <span class="text-danger">*</span>
-                    Correo Electrónico
+                    {{ "general.email" | translate }}
                 </label>
                 <input type="email" [ngClass]="{'valid': valid }" (ngModelChange)="saverange($event)" class="form-control" formControlName="email" id="email" aria-describedby="emailHelp" placeholder="email@example.com">
                 <span *ngIf="valid" class="badge bg-danger">Correo electronico ingresado no es valido</span>
@@ -57,9 +58,10 @@
             <div class="mb-3 codigo-verificacion" *ngIf="checkEmailStatus === 4">
                 <label for="email" class="form-label">
                     <span class="text-danger">*</span>
-                    Enviar codigo de verificacion
+                    {{ "general.Send-verification-code" | translate }}
                 </label>
-                <button class="btn btn-primary" (click)="prueba()" type="button">send
+                <button class="btn btn-primary" (click)="prueba()" type="button">
+                    {{ "general.send" | translate }}
                 </button>
             </div>
 
@@ -84,9 +86,9 @@
                 <div class="mb-3">
                     <label for="email" class="form-label">
                         <span class="text-danger">*</span>
-                        Nombre
+                        {{ "general.nemr" | translate }}
                     </label>
-                    <input onkeydown="return /[^,\-,0-9,$,@,!,$,%,^,&.*,(,),-,_,`,~,', ,\[,\],\},\{,\#,\+,\;,\:,\<,\>,\?,\=,\\,\|,\¡,\/]/i.test(event.key)" type="text" class="form-control" formControlName="name" id="name" aria-describedby="nameHelp" placeholder="Nombre">
+                    <input onkeydown="return /[^,\-,0-9,$,@,!,$,%,^,&.*,(,),-,_,`,~,', ,\[,\],\},\{,\#,\+,\;,\:,\<,\>,\?,\=,\\,\|,\¡,\/]/i.test(event.key)" type="text" class="form-control" formControlName="name" id="name" aria-describedby="nameHelp" placeholder="{{ 'general.name' | translate }}">
         
                     <ng-container *ngIf="submit">
                         <ng-container *ngFor="let item of vm.name">
@@ -100,9 +102,9 @@
                 <div class="mb-3">
                     <label for="email" class="form-label">
                         <span class="text-danger">*</span>
-                        Apellido
+                        {{ "general.last-name" | translate }}
                     </label>
-                    <input onkeydown="return /[^,\-,0-9,$,@,!,$,%,^,&.*,(,),-,_,`,~,', ,\[,\],\},\{,\#,\+,\;,\:,\<,\>,\?,\=,\\,\|,\¡,\/]/i.test(event.key)" type="text" class="form-control" formControlName="last_name" id="last_name" aria-describedby="nameHelp" placeholder="Apellido">
+                    <input onkeydown="return /[^,\-,0-9,$,@,!,$,%,^,&.*,(,),-,_,`,~,', ,\[,\],\},\{,\#,\+,\;,\:,\<,\>,\?,\=,\\,\|,\¡,\/]/i.test(event.key)" type="text" class="form-control" formControlName="last_name" id="last_name" aria-describedby="nameHelp" placeholder="{{ 'general.last-name' | translate }}">
         
                 </div>
 
@@ -117,7 +119,7 @@
                             <option value="1">pasaporte</option>
                             <option value="1">cedula juridica</option>
                         </select>
-                        <input type="number" class="form-control" formControlName="dni" id="dni" aria-describedby="dniHelp" placeholder="Tipo Identificacion">
+                        <input type="number" class="form-control" formControlName="dni" id="dni" aria-describedby="dniHelp" >
                     </div>
 
         
@@ -133,7 +135,7 @@
                 <div class="mb-3">
                     <label for="email" class="form-label">
                         <span class="text-danger">*</span>
-                        Telefono
+                        {{ "general.phone-number" | translate }}
                     </label>
                     <div class="telefono-component">
                     <select name="" class="form-select" >
@@ -149,12 +151,12 @@
                         <button class="btn btn-primary" type="button" [disabled]="submitStatus == 1" (click)="onSubmit()">
 
                             <ng-container *ngIf="submitStatus == 0">
-                                Continuar
+                                {{ "general.proceed" | translate }}
                             </ng-container>
     
                             <ng-container *ngIf="submitStatus == 1">
                                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                Procesando...
+                                {{ "general.processing" | translate }}...
                             </ng-container>
                              
                         </button>
