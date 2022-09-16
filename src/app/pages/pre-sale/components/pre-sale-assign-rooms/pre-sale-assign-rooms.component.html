@@ -6,16 +6,17 @@
                 <i class="bi bi-cart3"></i> {{ package?.label | titlecase }}
             </h5>
             <h5 class="fst-italic m-0">
-                <i class="bi bi-cart3"></i> Cantidad de personas: {{this.packag.numero_personas}}
+                <i class="bi bi-cart3"></i> 
+                {{ "general.amount-of-people" | translate }}: {{this.packag.numero_personas}}
             </h5>
             <div class="button-grupo">
                 <button type="button" class="btn btn-sm btn-primary" title="Cancelar Orden" (click)="selectPackage(package)">
                     <!-- <i class="bi bi-trash3"></i> -->
-                    Editar
+                    {{ "general.edit" | translate }}
                 </button>
                 <button type="button" class="btn btn-sm btn-danger" title="Cancelar Orden" (click)="preSaleSrv.cancelOrder()">
                     <!-- <i class="bi bi-trash3"></i> -->
-                    Eliminar
+                    {{ "general.delete" | translate }}
                 </button>
             </div>
         </div>
@@ -26,11 +27,11 @@
 
     <div class="col-12 mb-2">
         <h5 class="fst-italic m-0 text-center mb-2">
-            <i class="bi bi-house-fill"></i> Habitaciones
+            <i class="bi bi-house-fill"></i>  {{ "general.room" | translate }}
         </h5>
         <p class="text-justify">
             <span class="text-danger">*</span>
-             Que tipo de habitación quieres? 
+            {{ "general.What-kind-of-room-do-you-want" | translate }} 
         </p>
         <!-- <div class="col-12 mb-4">
             <h1 class="d-flex w-100 justify-content-evenly">
@@ -150,7 +151,7 @@
 
         <div class="d-grid gap-2 col-6 mx-auto">
             <button class="btn btn-primary" type="button" (click)="nextStep()">
-                Continuar
+                {{ "general.continue" | translate }} 
             </button>
         </div>
     </div>
@@ -174,12 +175,31 @@
             <div class="input-group mb-3" *ngFor="let item of miarray">
                 <div class="d-flex w-100 justify-content-between" >
                     <h5 class="mb-1" *ngIf="bandHabitacion2">
-                        Habitaciones para 2 Personas
+                        {{ "general.Rooms-for-2-Persons" | translate }} 
+                        
                     </h5>
                 </div>
                 <ul>
-                    <li class="item-li-camas">Habitacion con 2 camas dobles<input type="checkbox" (change)="onCheckboxChange($event)" id="vehicle1" name="dos_camas_dobles" value="dos camas dobles"></li>
-                    <li class="item-li-camas">Habitacion con 2 camas sencillas <input type="checkbox" (change)="onCheckboxChange($event)" id="vehicle1" name="dos_camas_sencillas" value="dos camas sencillas"></li>
+                    <li class="item-li-camas">  
+                        {{ "general.Room-with-2-double-beds" | translate }}
+                        <input 
+                            type="checkbox" 
+                            (change)="onCheckboxChange($event)" 
+                            id="vehicle1" 
+                            name="dos_camas_dobles" 
+                            value="dos camas dobles"
+                        >
+                    </li>
+                    <li class="item-li-camas">
+                        {{ "general.Room-with-2-single-beds" | translate }} 
+                        <input 
+                            type="checkbox" 
+                            (change)="onCheckboxChange($event)" 
+                            id="vehicle1" 
+                            name="dos_camas_sencillas" 
+                            value="dos camas sencillas"
+                        ><
+                    </li>
                 </ul>
                 <!-- <button class="btn btn-primary" type="button" id="button-handler-quantity" (click)="camaIndividual(0)">
                     -
@@ -196,12 +216,30 @@
             <div class="input-group mb-3" *ngFor="let item of miarray">
                 <div class="d-flex w-100 justify-content-between" >
                     <h5 class="mb-1" *ngIf="bandHabitacion3">
-                        Habitacion para 3 personas
+                        {{ "general.Room-for-3-people" | translate }}
                     </h5>
                 </div>
                 <ul>
-                    <li class="item-li-camas">Habitacion con cama king y cama sencilla<input type="checkbox" (change)="onCheckboxChange($event)" id="vehicle1" name="cama_king_cama_sencilla" value="cama king y cama sencilla"></li>
-                    <li class="item-li-camas">Habitacion con 2 camas dobles <input type="checkbox" (change)="onCheckboxChange($event)" id="vehicle1" name="cama_dobles" value="cama dobles"></li>
+                    <li class="item-li-camas">
+                        {{ "general.Room-with-king-bed-and-single-bed" | translate }}
+                        <input 
+                            type="checkbox" 
+                            (change)="onCheckboxChange($event)" 
+                            id="vehicle1" 
+                            name="cama_king_cama_sencilla" 
+                            value="cama king y cama sencilla"
+                        >
+                    </li>
+                    <li class="item-li-camas">
+                        {{ "general.Room-with-2-double-beds" | translate }}
+                        <input 
+                            type="checkbox" 
+                            (change)="onCheckboxChange($event)" 
+                            id="vehicle1" 
+                            name="cama_dobles" 
+                            value="cama dobles"
+                        >
+                    </li>
                 </ul>
                 <!-- <button class="btn btn-primary" type="button" id="button-handler-quantity" (click)="camaMatrimonial(0)">
                     -
@@ -218,12 +256,30 @@
             <div class="input-group mb-3" *ngFor="let item of miarray">
                 <div class="d-flex w-100 justify-content-between" >
                     <h5 class="mb-1" *ngIf="bandHabitacion1">
-                        Habitacion para 1 persona
+                        {{ "general.Room-for-1-person" | translate }}
                     </h5>
                 </div>
                 <ul>
-                    <li class="item-li-camas">Habitacion cama sencilla<input type="checkbox" (change)="onCheckboxChange($event)" id="vehicle1" name="cama_sencilla" value="cama sencilla"></li>
-                    <li class="item-li-camas">Habitacion con cama matrimonial <input type="checkbox" (change)="onCheckboxChange($event)" id="vehicle1" name="cama_matrimonial" value="cama matrimonial"></li>
+                    <li class="item-li-camas">
+                        {{ "general.Single-bed-room" | translate }}
+                        <input 
+                            type="checkbox" 
+                            (change)="onCheckboxChange($event)" 
+                            id="vehicle1" 
+                            name="cama_sencilla" 
+                            value="cama sencilla"
+                        >
+                    </li>
+                    <li class="item-li-camas">
+                        {{ "general.Room-with-double-bed" | translate }}
+                        <input 
+                            type="checkbox" 
+                            (change)="onCheckboxChange($event)" 
+                            id="vehicle1" 
+                            name="cama_matrimonial" 
+                            value="cama matrimonial"
+                        >
+                    </li>
                 </ul>
                 <!-- <button class="btn btn-primary" type="button" id="button-handler-quantity" (click)="camaMatrimonial(0)">
                     -
@@ -235,11 +291,13 @@
                 </button> -->
             </div>
         </div>
-        <p *ngIf="bandDefault">Debe seleccionar un numero de habitaciones.</p>
+        <p *ngIf="bandDefault">{{ "general.You-must-select-a-number-of-rooms" | translate }}</p>
     </div>
     <div class="modal-footer">
-       <button type="button" class="btn btn-primary" (click)="submitForm()" *ngIf="!bandDefault">Registrar</button>
-       <button type="button" class="btn btn-default" (click)="cerrarModal()">Close</button>
+       <button type="button" class="btn btn-primary" (click)="submitForm()" *ngIf="!bandDefault">{{ "general.register" | translate }}
+
+       </button>
+       <button type="button" class="btn btn-default" (click)="cerrarModal()">{{ "general.close" | translate }}</button>
     </div>
  </ng-template>
 

@@ -2,7 +2,7 @@
 
     <div class="col-12 text-center mb-2 mt-5">
         <h5>
-            Valor a cancelar de <span class="fw-bolder">USD {{total | mask:'separator.2':','}}</span>
+            {{ "general.Value-to-be-cancelled-from" | translate }} <span class="fw-bolder">USD {{total | mask:'separator.2':','}}</span>
         </h5>
     </div>
 
@@ -16,9 +16,9 @@
 
     <div class="col-12">
         <div class="d-flex justify-content-between">
-            <button class="btn btn-three" type="button" (click)="onBack()">
+            <button class="btn btn-three text-uppercase" type="button" (click)="onBack()">
                 <i class="bi bi-chevron-left"></i>
-                REGRESAR
+                {{ "general.return" | translate }}
             </button>
             <!-- <button class="btn btn-one" type="button" (click)="onNext()">
                 CONTINUAR

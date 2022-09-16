@@ -3,7 +3,7 @@
     <app-pre-sale-steps-counter [step]="3"></app-pre-sale-steps-counter>
 
     <div class="col-12 text-center mb-2 mt-5">
-        Elige el método de pago
+        {{ "general.choose-your-payment-method" | translate }}
     </div>
 
     <div class="col-12 mb-4">
@@ -27,12 +27,12 @@
     
     <div class="col-12">
         <div class="d-flex justify-content-between">
-            <button class="btn btn-three" type="button" (click)="onBack()">
+            <button class="btn btn-three text-uppercase" type="button" (click)="onBack()">
                 <i class="bi bi-chevron-left"></i>
-                REGRESAR
+                {{ "general.return" | translate }}
             </button>
-            <button class="btn btn-one" type="button"  [disabled]="!paymentMethodType" (click)="onNext()">
-                CONTINUAR AL PAGO
+            <button class="btn btn-one text-uppercase" type="button"  [disabled]="!paymentMethodType" (click)="onNext()">
+                {{ "general.continue-to-pay" | translate }}
             </button>
         </div>
     </div>

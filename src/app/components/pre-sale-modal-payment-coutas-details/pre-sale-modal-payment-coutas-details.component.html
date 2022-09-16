@@ -11,43 +11,31 @@
                                 <img src="assets/img/cilik/logo.png" alt="">
                             </div>
                             <h5 class="text-center fw-bolder mb-4">
-                                Para continuar con el proceso de pago por cuotas, debes leer y aceptar los términos y
-                                condiciones
+                                {{ "general.pre-sale-payment-cuotas-text" | translate }}
                             </h5>
                             <p>
-                                <strong>Términos y condiciones:</strong>
+                                <strong> 
+                                    {{ "general.terms-and-conditions" | translate }}: 
+                                </strong>
                             </p>
                             <ul>
                                 <li>
-                                    Las personas podrán pagar en un plan de cuotas que estarán disponible a la hora de
-                                    pagar, este plan de cuotas irá solo en las fechas de pago que hagan falta. Ejemplo,
-                                    en la primera fecha de pago se podrá pagar en 4 cuotas, en la segunda fecha de pago
-                                    se podrá en tres cuotas y en la tercera fecha de pago se podrá pagar solo en dos
-                                    cuotas.
+                                    {{ "general.pre-sale-payment-cuotas-text-two" | translate }}
                                 </li>
                                 <li>
-                                    Cuando se paga por cuotas el precio queda congelado automáticamente siempre y cuando
-                                    cumpla con las fechas límites de pago.
+                                    {{ "general.pre-sale-payment-cuotas-text-three" | translate }}
                                 </li>
                                 <li>
-                                    Los pagos se deben realizar antes de la fecha de vencimiento. De lo contrario
-                                    perderá el beneficio de congelar el precio y deberá pagar al precio que esté
-                                    actualmente vigente
-                                    según la fecha de precios y el sistema le cobrará automáticamente el valor restante.
+                                    {{ "general.pre-sale-payment-cuotas-text-four" | translate }}
                                 </li>
                                 <li>
-                                    Después de transcurridos cinco (5) días, no se devolverá dinero de pagos por cuotas
-                                    que se hayan realizado y que no vayan a cumplir (Artículo 47 de la Ley 1480 de
-                                    2011).
+                                    {{ "general.pre-sale-payment-cuotas-text-five" | translate }}
                                 </li>
                                 <li>
-                                    No se acepta usar pagos realizados en cuotas en parte de pagos de otras cuotas o
-                                    nuevas compras.
+                                    {{ "general.pre-sale-payment-cuotas-text-six" | translate }}
                                 </li>
                                 <li>
-                                    NOTA IMPORTANTE: los inscritos (participantes y acompañantes) al momento de
-                                    inscribirse y pagar la inscripción, declaran que conocen el REGLAMENTO DEL CERTAMEN
-                                    y se comprometen a acatarlo.
+                                    {{ "general.pre-sale-payment-cuotas-text-seven" | translate }}
                                 </li>
                             </ul>
                         </div>
@@ -58,10 +46,10 @@
             <div class="modal-footer justify-content-center">
                 <button type="button" class="btn btn-three" (click)="closeModal(false)">
                     <i class="bi bi-chevron-left"></i>
-                    REGRESAR
+                    {{ "general.return" | translate }}                    
                 </button>
                 <button type="button" class="btn btn-one" (click)="closeModal(true)">
-                    ACEPTAR
+                    {{ "general.accept" | translate }}
                 </button>
             </div>
         </div>

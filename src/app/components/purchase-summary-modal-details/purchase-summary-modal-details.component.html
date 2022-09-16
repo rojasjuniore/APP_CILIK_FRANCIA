@@ -4,8 +4,8 @@
         <div class="modal-content">
 
             <div class="modal-header justify-content-center">
-                <h5 class="modal-title fw-bold">
-                    RESUMEN DE COMPRA
+                <h5 class="modal-title fw-bold text-uppercase">
+                    {{ "general.purchase-summary" | translate }}
                 </h5>
 
             </div>
@@ -37,9 +37,9 @@
                                     COMPARTIR
                                 </button> -->
                                 &nbsp;
-                                <button class="btn btn-three" type="button" (click)="download()">
+                                <button class="btn btn-three text-uppercase" type="button" (click)="download()">
                                     <i class="bi bi-cloud-download"></i>
-                                    DESCARGAR
+                                    {{ "general.download" | translate }}
                                 </button>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
             <div class="modal-footer flex-column justify-content-center">
                 <div class="w-50 d-flex flex-row justify-content-center align-items-center">
                     <button type="button" class="btn btn-one" (click)="closeModal()">
-                        VOLVER
+                        {{ "general.back" | translate }}
                     </button>
                 </div>
 

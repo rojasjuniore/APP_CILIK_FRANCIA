@@ -3,7 +3,7 @@
     <app-pre-sale-steps-counter [step]="2"></app-pre-sale-steps-counter>
 
     <div class="col-12 text-center mb-2 fw-bold fs-5 mt-5">
-        Elige las categorías adicionales que deseas
+        {{ "general.Choose-the-additional-categories-you-want" | translate }}
     </div>
 
     <div class="col-12 mb-4" *ngFor="let item of categories">
@@ -12,11 +12,11 @@
                 <div class="col-12 px-3">
                     <div class="d-flex justify-content-between">
                         <span class="fw-bold fs-5">
-                            Categoría de {{item.label}}
+                            {{ "general.category-of" | translate }} {{item.label}}
                         </span>
         
                         <span>
-                            Valor por persona: USD {{item.price | mask:'separator.2':','}}
+                            {{ "general.price-per-person" | translate }}: USD {{item.price | mask:'separator.2':','}}
                         </span>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                                     &nbsp;
                                 </label> -->
                                 <h4 class="text-end py-2 m-0">
-                                    Monto USD {{item.price * item.quantity | mask:'separator.2':','}}
+                                    {{ "amount" | translate }} USD {{item.price * item.quantity | mask:'separator.2':','}}
                                 </h4>                                
                                 <!-- <input type="text" class="form-control-plaintext text-center" [placeholder]="'Monto USD ' + item.price * item.quantity"> -->
                             </div>
@@ -53,12 +53,12 @@
 
     <div class="col-12">
         <div class="d-flex justify-content-between">
-            <button class="btn btn-three" type="button" (click)="onBack()">
+            <button class="btn btn-three text-uppercase" type="button" (click)="onBack()">
                 <i class="bi bi-chevron-left"></i>
-                REGRESAR
+                {{ "general.return" | translate }}
             </button>
-            <button class="btn btn-one" type="button" (click)="onNext()">
-                CONTINUAR
+            <button class="btn btn-one text-uppercase" type="button" (click)="onNext()">
+                {{ "general.proceed" | translate }}
             </button>
         </div>
     </div>

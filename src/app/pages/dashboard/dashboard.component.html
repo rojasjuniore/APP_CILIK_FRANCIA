@@ -1,10 +1,10 @@
 <div class="container-lg">
-    <div class="row my-5 d-flex justify-content-center">
-        <div class="col-12 col-lg-10">
-            <div class="card p-2 p-lg-5">
-                <app-header-cilik></app-header-cilik>
+  <div class="row my-5 d-flex justify-content-center">
+    <div class="col-12 col-lg-10">
+      <div class="card p-2 p-lg-5">
+        <app-header-cilik></app-header-cilik>
 
-                <app-header-welcome></app-header-welcome>
+        <app-header-welcome></app-header-welcome>
 
                 <div class="row">
                     <div class="col mx-0 px-0">
@@ -43,16 +43,15 @@
                 <div class="row">
                     <!-- <div class="col-12 text-center mb-3">
                         <button class="btn btn-one" type="button" (click)="newOrder()">
-                            REALIZAR RESERVACIÓN
+                            {{ "general.book" | translate }}
                         </button>
                     </div> -->
 
-                    <app-my-purchases></app-my-purchases>
-
+                  <app-my-purchases></app-my-purchases>
                 </div>
 
-                <app-footer-cilik></app-footer-cilik>
-            </div>
-        </div>
+        <app-footer-cilik></app-footer-cilik>
+      </div>
     </div>
+  </div>
 </div>

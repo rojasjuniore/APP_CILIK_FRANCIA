@@ -4,7 +4,7 @@
 
             <div class="modal-header justify-content-center">
                 <h5 class="modal-title fw-bold">
-                    NOCHES ADICIONALES
+                    {{ "general.Additional-nights" | translate }} 
                 </h5>
 
             </div>
@@ -26,36 +26,36 @@
                                         </p>
                                         <p class="card-text">
                                             <small class="text-muted">
-                                                Valor por persona: 
+                                                {{ "general.price-per-person" | translate }}: 
                                                 <i class="bi" [ngClass]="{'bi-person-fill': item?.capacity == 1, 'bi-people-fill': item?.capacity > 1}"></i>
                                                 USD {{ (list.price / item.capacity) | mask:'separator.2':',' }}
                                             </small>
                                         </p>
                                         <p class="card-text fw-bolder">
-                                            Valor sin descuento: <span class="fw-bold text-decoration-line-through">USD {{list.fullPrice | mask:'separator.2':','}}</span>
+                                            {{ "general.Value-without-discount" | translate }} <span class="fw-bold text-decoration-line-through">USD {{list.fullPrice | mask:'separator.2':','}}</span>
                                         </p>
                                         <p class="card-text fw-bolder">
-                                            Monto por noche adicional:  USD {{list.price | mask:'separator.2':','}}
+                                            {{ "general.Amount-per-additional-night-text" | translate }}: USD {{list.price | mask:'separator.2':','}}
                                         </p>
                                         <p class="card-text">
-                                            Indique la cantidad de noches adicionales que desea agregar a su reserva.
+                                            {{ "general.additional-night-add" | translate }}
                                         </p>
                                         <div class="row">
                                             <div class="col-12 col-md-6 mb-3">
                                                 <app-input-number-form
                                                     [min]="0" [max]="5" [quantity]="daysBefore"
-                                                    label="# Noches Antes"
+                                                    label="{{ 'general.#-Nights-Before' | translate }}"
                                                     (onUpdateQuantity)="onDaysBefore({data: list, quantity: $event})"></app-input-number-form>
                                             </div>
                                             <div class="col-12 col-md-6 mb-3">
                                                 <app-input-number-form
                                                     [min]="0" [max]="5" [quantity]="daysAfter"
-                                                    label="# Noches Despues"
+                                                    label="{{ 'general.#-Nights-After' | translate }}"
                                                     (onUpdateQuantity)="onDaysAfter({data: list, quantity: $event})"></app-input-number-form>
                                             </div>
                                             <div class="col-12">
                                                 <h5 class="text-start text-md-end">
-                                                    Total por noches: <span class="fw-bold fs-4">USD {{additionalDaysAmount | mask:'separator.2':','}} </span>
+                                                    Total {{ "general.for-nights" | translate }}: <span class="fw-bold fs-4">USD {{additionalDaysAmount | mask:'separator.2':','}} </span>
                                                 </h5>
                                             </div>
                                         </div>
@@ -71,7 +71,7 @@
                         <div class="col-12 col-md-6 mb-2 mb-md-0">
                             <h5>
                                 <span class="badge bg-danger">
-                                    Capacidad: 
+                                    {{ "general.capacity" | translate }}: 
                                     <i class="bi" [ngClass]="{'bi-person-fill': item?.capacity == 1, 'bi-people-fill': item?.capacity > 1}"></i> {{ item?.capacity }}
                                 </span>
                             </h5>
@@ -87,7 +87,7 @@
             <div class="modal-footer flex-column justify-content-center">
                 <div class="w-50 d-flex flex-row justify-content-center align-items-center">
                     <button type="button" class="btn btn-one" (click)="closeModal()">
-                        VOLVER
+                        {{ "general.back" | translate }}
                     </button>
                 </div>
 

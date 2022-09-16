@@ -3,24 +3,27 @@
         <div class="col-12">
             <div class="d-flex justify-content-between">
                 <span class="text-rslt fw-bold fs-5">
-                    Habitación # {{index}}
+                    {{ "general.room#" | translate }} {{index}}
                 </span>
             </div>
         </div>
         <div class="seprd2"></div>
         <div class="col-12">
             <p class="m-0">
-                # de huépedes: {{item.capacity}} persona<ng-container *ngIf="item.capacity > 1">s</ng-container>
+                {{ "general.#oforphans" | translate }} {{item.capacity}} persona<ng-container *ngIf="item.capacity > 1">s</ng-container>
             </p>
             <p class="m-0" *ngIf="nroAdditionalDays > 0">
-                Noches adicionales: {{nroAdditionalDays}}
+                {{ "general.Additional-nights" | translate }} {{nroAdditionalDays}}
             </p>
             <hr>
             <p class="m-0">
-                Valor sin descuento: <span class="text-decoration-line-through">USD {{subTotalFullPrice | mask:'separator.2':','}}</span>
+                {{ "general.Value-without-discount" | translate }} 
+                <span class="text-decoration-line-through">
+                    USD {{subTotalFullPrice | mask:'separator.2':','}}
+                </span>
             </p>
             <p class="m-0">
-                descuento: USD {{discount | mask:'separator.2':','}}
+                {{ "general.discount" | translate }}: USD {{discount | mask:'separator.2':','}}
             </p>
             <div class="">
                 <span class="fs-4 fw-bolder">
