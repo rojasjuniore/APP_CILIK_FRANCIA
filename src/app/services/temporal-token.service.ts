@@ -95,18 +95,18 @@ export class TemporalTokenService {
    * @returns 
    */
   async runValidation(params: any) {
-    const res: any = { status: false, message: 'Token no válido' };
+    const res: any = { status: false, message: 'Código no válido' };
     const { inputToken, token, expiredAt } = params;
 
     /** Token expirado */
     if (moment(expiredAt).isBefore(moment())) {
-      res.message = "Token Expirado";
+      res.message = "Código Expirado";
       return res;
 
       /** Valores esperados */
     } else if (inputToken === token) {
       res.status = true;
-      res.message = "Token Válido"
+      res.message = "Código Válido"
     }
 
     return res;
