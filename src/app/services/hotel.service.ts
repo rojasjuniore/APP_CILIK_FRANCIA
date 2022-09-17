@@ -96,20 +96,6 @@ export class HotelService {
     ).valueChanges({ idField });
   }
 
-  async getAvailableRoomByCodeType(code: string){
-    const snapshot = await lastValueFrom(
-      this.afs.collection(this.roomStock, 
-        (ref) => ref.where('roomCodeType', '==', code)
-          .where('paymentOrderID', '==', null)
-          .orderBy('roomCode', 'asc')
-          .limit(1)
-        ).get()
-      );
-
-    const result = await handlerArrayResult(snapshot);
-    return (result.length > 0) ? result.shift() : null;
-  }
-
   /** ===============================================
    *                   ROOM TYPES
   ================================================== */
@@ -182,6 +168,20 @@ export class HotelService {
 
   async storeRoom(docId: string, data: any) {
     return this.afs.collection(this.roomsCollection).doc(docId).set(data);
+  }
+
+  async getAvailableRoomByCodeType(code: string){
+    const snapshot = await lastValueFrom(
+      this.afs.collection(this.roomsCollection, 
+        (ref) => ref.where('code', '==', code)
+          .where('paymentOrderID', '==', null)
+          .orderBy('roomCode', 'asc')
+          .limit(1)
+        ).get()
+      );
+
+    const result = await handlerArrayResult(snapshot);
+    return (result.length > 0) ? result.shift() : null;
   }
 
   /** ===============================================

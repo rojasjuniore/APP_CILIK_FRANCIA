@@ -161,15 +161,18 @@ export class PreSaleService {
 
   async processRoomData(room: any, orderId: string){
     /** Buscar habitación */
-    const findRoom = await this.hotelSrv.getAvailableRoomByCodeType(room._id);
+    const findRoom = await this.hotelSrv.getAvailableRoomByCodeType(room.roomCodePrefix);
+    // console.log('room', room);
+    // console.log('findRoom', findRoom);
+    // return;
 
     /** Asignar orden de compra a la habitación */
-    await this.hotelSrv.updateRoom(findRoom._id, { paymentOrderID: orderId, additionals: room.additionals });
+    await this.hotelSrv.updateRoom(findRoom._id, { paymentOrderID: orderId, additionals: room.additionals, roomType: room.roomCode });
 
     /** TODO: actualizar contador de habitaciónes disponibles por tipo */
 
     /** Actualizar registro de habitación */
-    const roomData = Object.assign({}, room, {roomId: findRoom._id, roomCodeType: room._id});
+    const roomData = Object.assign({}, room, {roomId: findRoom._id});
 
     return roomData;
   }
