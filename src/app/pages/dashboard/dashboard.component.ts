@@ -45,7 +45,11 @@ export class DashboardComponent implements OnInit {
 
     const uid = await this.authSrv.getUIDPromise();
     this.authSrv.saveTokenPush(uid);
-    this.preSaleSrv.buildAndStore({orderType: 'categoryPass', setup: 'automatic'}, true);
+    this.preSaleSrv.buildAndStore({
+      orderType: 'categoryPass', 
+      setup: 'automatic',
+      step: 'pre-sale-categories/step1'
+    }, true);
     this.router.navigate(['/pre-sale-categories']);
   }
 
