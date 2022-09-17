@@ -36,6 +36,9 @@ import { PurchaseSummaryTotalesComponent } from './purchase-summary-totales/purc
 import { MyPurchasesComponent } from './my-purchases/my-purchases.component';
 import { MyPurchasesListItemComponent } from './my-purchases-list-item/my-purchases-list-item.component';
 import { PurchaseSummaryModalDetailsComponent } from './purchase-summary-modal-details/purchase-summary-modal-details.component';
+import { PreSaleExtraSoloCardItemComponent } from './pre-sale-extra-solo-card-item/pre-sale-extra-solo-card-item.component';
+import { PreSaleExtraSoloCoupleItemComponent } from './pre-sale-extra-solo-couple-item/pre-sale-extra-solo-couple-item.component';
+import { PreSaleExtraSoloGroupItemComponent } from './pre-sale-extra-solo-group-item/pre-sale-extra-solo-group-item.component';
 
 
 
@@ -81,6 +84,9 @@ import { PurchaseSummaryModalDetailsComponent } from './purchase-summary-modal-d
     MyPurchasesComponent,
     MyPurchasesListItemComponent,
     PurchaseSummaryModalDetailsComponent,
+    PreSaleExtraSoloCardItemComponent,
+    PreSaleExtraSoloCoupleItemComponent,
+    PreSaleExtraSoloGroupItemComponent,
   ],
   exports: [
     CommonModule,
@@ -113,6 +119,9 @@ import { PurchaseSummaryModalDetailsComponent } from './purchase-summary-modal-d
     PurchaseSummaryTotalesComponent,
     MyPurchasesComponent,
     PurchaseSummaryModalDetailsComponent,
+    PreSaleExtraSoloCardItemComponent,
+    PreSaleExtraSoloCoupleItemComponent,
+    PreSaleExtraSoloGroupItemComponent,
   ],
   providers: [
     TranslatePipe,

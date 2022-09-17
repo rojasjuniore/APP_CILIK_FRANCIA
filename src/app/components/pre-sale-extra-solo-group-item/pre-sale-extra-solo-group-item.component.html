@@ -1,0 +1,38 @@
+<div class="col-12 mb-4">
+    <div class="card card-box p-3 mb-3">
+        <div class="row g-2 d-flex align-items-center">
+            <div class="col-12 px-3">
+                <div class="d-flex justify-content-between">
+                    <span class="fw-bold fs-5">
+                        Categoría de Grupos
+                    </span>
+    
+                    <span>
+                        Valor por persona: USD {{price | mask:'separator.2':','}}
+                    </span>
+                </div>
+            </div>
+            <div class="col-12 m-0 px-3">
+                <hr>
+            </div>
+    
+            <div class="col-12">
+                <div class="row p-2 align-items-stretch">
+                    <div class="col-12 col-sm-6 col-md-6">
+                        <app-input-number-form-two
+                            label="# Cantidad" 
+                            [min]="0" [max]="99" [quantity]="quantity"
+                            (onUpdateQuantity)="updateQuantity($event)"></app-input-number-form-two>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-6 d-flex justify-content-end align-self-end mt-3 mt-md-0">
+                        <div class="card-box card-box-wfc p-3">
+                            <h4 class="text-end py-2 m-0">
+                                Monto USD {{price * quantity | mask:'separator.2':','}}
+                            </h4>                                
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

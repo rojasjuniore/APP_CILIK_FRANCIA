@@ -6,7 +6,13 @@
         {{ "general.Choose-the-additional-categories-you-want" | translate }}
     </div>
 
-    <div class="col-12 mb-4" *ngFor="let item of categories">
+    <app-pre-sale-extra-solo-card-item (onUpdateQuantity)="onUpdateQuantity($event)"></app-pre-sale-extra-solo-card-item>
+
+    <app-pre-sale-extra-solo-couple-item (onUpdateQuantity)="onUpdateQuantity($event)"></app-pre-sale-extra-solo-couple-item>
+    
+    <app-pre-sale-extra-solo-group-item (onUpdateQuantity)="onUpdateQuantity($event)"></app-pre-sale-extra-solo-group-item>
+
+    <!-- <div class="col-12 mb-4" *ngFor="let item of categories">
         <div class="card card-box p-3 mb-3">
             <div class="row g-2 d-flex align-items-center">
                 <div class="col-12 px-3">
@@ -34,20 +40,16 @@
                         </div>
                         <div class="col-12 col-sm-6 col-md-6 d-flex justify-content-end align-self-end mt-3 mt-md-0">
                             <div class="card-box card-box-wfc p-3">
-                                <!-- <label class="form-label w-100 text-center">
-                                    &nbsp;
-                                </label> -->
                                 <h4 class="text-end py-2 m-0">
                                     {{ "amount" | translate }} USD {{item.price * item.quantity | mask:'separator.2':','}}
                                 </h4>                                
-                                <!-- <input type="text" class="form-control-plaintext text-center" [placeholder]="'Monto USD ' + item.price * item.quantity"> -->
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <app-pre-sale-totales></app-pre-sale-totales>
 

@@ -13,6 +13,7 @@ export class InputNumberFormTwoComponent implements OnInit {
   @Input() quantity!: number;
   @Input() min = 1;
   @Input() max = 0;
+  @Input() step = 1;
 
   @Output() onUpdateQuantity = new Subject<number>();
 
@@ -27,12 +28,13 @@ export class InputNumberFormTwoComponent implements OnInit {
   handlerQuantity(type: string){
     switch (type) {
       case 'add':
-        this.quantity = this.quantity + 1;  
+        this.quantity = this.quantity + this.step;  
         this.onUpdateQuantity.next(this.quantity);
         break;
     
       default:
-        this.quantity = this.quantity - 1;
+        const result = this.quantity - this.step;
+        this.quantity = (result < this.min) ? this.min : result;
         this.onUpdateQuantity.next(this.quantity);
         break;
     }
