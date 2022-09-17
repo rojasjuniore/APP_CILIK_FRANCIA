@@ -37,7 +37,15 @@ export class PreSalePaypalComponent implements OnInit {
       .reduce((prev, curr) => prev + curr, 0);
 
     const additionalCategoryPasses = this.preSaleDocument.additionalCategoryPasses
-      .map((row) => row.quantity * row.price)
+      .map((row) => {
+        if(row.type == 'group'){
+          return row.data.map((group) => group.quantity * group.price)
+            .reduce((prev, curr) => prev + curr, 0)
+  
+        }else{
+          return row.quantity * row.price;
+        }
+      })
       .reduce((prev, curr) => prev + curr, 0)
 
     return [roomsAmount, additionalDaysAmount, additionalCategoryPasses]
