@@ -61,4 +61,14 @@ export class PreSaleCheckoutCategoryCardItemComponent implements OnInit {
     return this.additionalCategoryPassesAmount;
   }
 
+  getTotalAdditional(item: any){
+    if(item.type == 'group'){
+      return item.data.map((group) => group.quantity)
+        .reduce((prev, curr) => prev + curr, 0)
+
+    }else{
+      return item.quantity;
+    }
+  }
+
 }
