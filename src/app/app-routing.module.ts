@@ -15,6 +15,11 @@ const routes: Routes = [
     loadChildren: () => import("./pages/pre-sale/pre-sale.module").then((m) => m.PreSaleModule),
   },
   {
+    path: 'pre-sale-categories',
+    canActivate: [IsAuthGuard],
+    loadChildren: () => import("./pages/pre-sale-only-categories/pre-sale-only-categories.module").then((m) => m.PreSaleOnlyCategoriesModule),
+  },
+  {
     path: 'purchase',
     canActivate: [IsAuthGuard],
     loadChildren: () => import("./pages/purchase-summary/purchase-summary.module").then((m) => m.PurchaseSummaryModule),
