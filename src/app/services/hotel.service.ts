@@ -44,6 +44,8 @@ export class HotelService {
       'pricePerPeople',
       'discount',
       'discountPerPeople',
+      'roomCode',
+      'roomCodePrefix',
       '_id'
     ]);
   }
