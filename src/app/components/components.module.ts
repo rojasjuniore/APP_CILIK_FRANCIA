@@ -40,6 +40,7 @@ import { PreSaleExtraSoloCardItemComponent } from './pre-sale-extra-solo-card-it
 import { PreSaleExtraSoloCoupleItemComponent } from './pre-sale-extra-solo-couple-item/pre-sale-extra-solo-couple-item.component';
 import { PreSaleExtraSoloGroupItemComponent } from './pre-sale-extra-solo-group-item/pre-sale-extra-solo-group-item.component';
 import { PreSaleModalOnlyCategoriesTermsComponent } from './pre-sale-modal-only-categories-terms/pre-sale-modal-only-categories-terms.component';
+import { PreSaleCategoriesStepCounterComponent } from './pre-sale-categories-step-counter/pre-sale-categories-step-counter.component';
 
 
 
@@ -89,6 +90,7 @@ import { PreSaleModalOnlyCategoriesTermsComponent } from './pre-sale-modal-only-
     PreSaleExtraSoloCoupleItemComponent,
     PreSaleExtraSoloGroupItemComponent,
     PreSaleModalOnlyCategoriesTermsComponent,
+    PreSaleCategoriesStepCounterComponent,
   ],
   exports: [
     CommonModule,
@@ -125,6 +127,7 @@ import { PreSaleModalOnlyCategoriesTermsComponent } from './pre-sale-modal-only-
     PreSaleExtraSoloCoupleItemComponent,
     PreSaleExtraSoloGroupItemComponent,
     PreSaleModalOnlyCategoriesTermsComponent,
+    PreSaleCategoriesStepCounterComponent,
   ],
   providers: [
     TranslatePipe,
