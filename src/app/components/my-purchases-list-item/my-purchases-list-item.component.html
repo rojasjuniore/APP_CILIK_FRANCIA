@@ -1,12 +1,21 @@
+
+<!-- ORDEN PLAN OFICIAL WLDC -->
 <div class="card card-box p-3 mb-3">
     <div class="row g-2 d-flex align-items-center">
         <div class="col-12 px-3">
             <div class="d-flex justify-content-between align-items-center">
-                <span class="text-rslt fw-bold fs-5">
-                    {{ "general.order#" | translate }} {{ order?.index }}
-                </span>
+                <div class="d-flex align-items-center">
+                    <div class="icon-order">
+                        <img src="assets/img/cilik/dash-08.png" alt="">
+                    </div>
+                    <div class="fs-4 fw-bold">Plan Oficial WLDC</div>
+                </div>
 
-                <span class="text-end">
+                <!-- <span class="text-rslt fw-bold fs-5">
+                    {{ "general.order#" | translate }} {{ order?.index }}
+                </span> -->
+
+                <span class="text-end fs-5 fw-bold">
                     {{ "general.purchase-order" | translate }}
                     <br>
                     {{order?._id || '084H36BT'}}
@@ -15,12 +24,45 @@
         </div>
         <div class="seprd2"></div>
         <div class="col-12 px-3">
-            <p class="m-0">
+            <!-- <p class="m-0">
                 {{ "general.see-detail-of-the-purchase" | translate }}
-            </p>
-            <div class="d-flex justify-content-end">
+            </p> -->
+            <div class="d-flex justify-content-end mt-5">
                 <button class="btn btn-one" type="button" (click)="showDetails()">
-                    {{ "general.see" | translate }}
+                    <!-- {{ "general.see" | translate }} -->
+                    Ver detalle
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ORDEN CATEGORIAS ADICIONALES -->
+
+<div class="card card-box p-3 mb-3">
+    <div class="row g-2 d-flex align-items-center">
+        <div class="col-12 px-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <div class="icon-order">
+                        <img src="assets/img/cilik/dash-09.png" alt="">
+                    </div>
+                    <div class="fs-4 fw-bold">Categorías adicionales</div>
+                </div>
+                <span class="text-end fs-5 fw-bold">
+                    {{ "general.purchase-order" | translate }}
+                    <br>
+                    {{order?._id || '084H36BT'}}
+                </span>
+            </div>
+        </div>
+        <div class="seprd2"></div>
+        <div class="col-12 px-3">
+            <div class="d-flex justify-content-end mt-5">
+                <button class="btn btn-one" type="button" (click)="showDetails()">
+                    <!-- {{ "general.see" | translate }} -->
+                    Ver detalle
                 </button>
             </div>
         </div>

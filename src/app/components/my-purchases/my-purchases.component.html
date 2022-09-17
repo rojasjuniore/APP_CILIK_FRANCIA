@@ -1,6 +1,7 @@
 
 <ng-container *ngIf="(purchasesList$ | async) as purchasesList; else loading">
     <ng-container *ngIf="purchasesList.length > 0; else noPurchases">
+        <div class="fs-2 fw-bold text-center mb-3">Resumen de compras</div>
         <div class="col-12" *ngFor="let item of purchasesList">
             <app-my-purchases-list-item [order]="item" (onShowDetails)="onShowDetails($event)"></app-my-purchases-list-item>
         </div>

@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row align-items-stetch">
     <app-pre-sale-steps-counter [step]="1"></app-pre-sale-steps-counter>
 
     <div class="col-12 text-center mt-5 mb-2 fw-bold fs-5">
@@ -6,13 +6,13 @@
         {{ "general.Enter-the-number-of-people-to-register" | translate }}
     </div>
 
-    <div class="col-12 col-md-6 mb-3">
+    <!-- <div class="col-12 col-md-6 mb-3">
         <app-input-number-form 
             label="# de competidores" 
             [quantity]="nroParticipants"
             (onUpdateQuantity)="onUpdateNroParticipants($event)"></app-input-number-form>
-    </div>
-    <div class="col-12 col-md-6 mb-3">
+    </div> -->
+    <div class="col-12 col-md-8 mb-3">
         <div class="card-box-number">
             <div class="card-box-number-header">
                 <label for="inputParticipantsLeft" class="form-label w-100 text-center">
@@ -24,19 +24,43 @@
             </div>
         </div>
     </div>
+    <div class="col-12 col-md-4 mb-3">
+        <div class="d-flex align-items-center h-100 card-box card-box-2 p-3">
+            <div class="icon-help pe-3">
+                <img src="assets/img/cilik/help-icon-10.png" alt="">
+            </div>
+            <div class="fs-5">
+                Quedan <span class="text-rslt">4</span> personas pendientes por asignar habitación
+            </div>
+        </div>
+    </div>
 </div>
 <div class="row">   
-    <div class="col-12">
+    <!-- <div class="col-12">
+             
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <i class="bi bi-info-circle"></i>&nbsp;
             {{ "general.package-list-text" | translate }}
              <a href="javascript:void(0)" class="alert-link text-decoration-underline" (click)="runHelp()">{{ "general.here" | translate }}</a>.
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
+    </div> -->
+    <div class="col-12">
+        <div class="card-box card-box-b3 p-3 mb-3">
+            <div class="d-flex align-items-center">
+                <button class="btn btn-one" (click)="runHelp()">ACOMODACIÓN AUTOMÁTICA</button>
+                <div class="fs-6 px-3 text-center">
+                    Con esta opción el sistema acomoda de manera automática a todas las personas con las tarifas más convenientes.
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="col-12 text-center mt-5">
-        <div class="fw-bold fs-5">Continua con tu proceso de reserva</div>
+        <div class="fw-bold fs-5">
+            <!-- Continua con tu proceso de reserva -->
+            Continúa con tu compra
+        </div>
     </div>
 
     <ng-container *ngIf="rooms.length > 0; else noRooms">

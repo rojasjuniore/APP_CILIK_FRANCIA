@@ -46,13 +46,30 @@
                 </div>
             </div>
         </div>
+        <div class="seprd"></div>
+        <div class="col-12">
+           <div class="mb-3">Selecciona una de las opciones de cama:</div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    2 camas semidobles
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    1 cama king
+                </label>
+            </div>                    
+        </div>
     </div>
     <div class="seprd"></div>
     <div class="row">
         <div class="col-12 col-md-6">
             <div class="col-12 col-sm-12 col-md-8">
                 <button class="btn btn-three mt-2" type="button" (click)="onUpdateRoom.next(index)">
-                    {{ "general.up-category-of-room" | translate }}
+                    <!-- {{ "general.up-category-of-room" | translate }} -->
+                    CAMBIAR TIPO DE HABITACIÓN
                 </button>
                 <button class="btn btn-three mt-2" type="button" (click)="onUpdateAdditionalDays.next(index)">
                     {{ "general.additional-night" | translate }} <ng-container *ngIf="additionalAmount > 0">({{additionalsDays}})</ng-container>

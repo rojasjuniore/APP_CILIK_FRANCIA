@@ -175,6 +175,16 @@ body{
     border: 1px solid #868786;
     border-radius: 20px;
 }
+.card-box-2{
+    background-color: #E5E5E4;
+    border: 0;
+}
+.card-box-b3{
+    border-radius: 40px;
+}
+.icon-help img{
+    width: 50px;
+}
 .card-box-wfc{
     width: fit-content;
 }
@@ -203,7 +213,7 @@ body{
     cursor: pointer;
 }
 .seprd{
-    width: 95%;
+    width: 100%;
     height: 1px;
     background-color: #868786;
     margin: 1rem auto;
@@ -359,6 +369,18 @@ body{
 .btn-check:checked + .btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check) + .btn:active{
     border: 0 !important;
     border-color: transparent !important;
+}
+
+.icon-order{
+    border-radius: 50%;
+    border: 1px solid #cecece;
+    width: 50px;
+    height: 50px;
+    padding: 10px; 
+    margin-right: 1rem;
+}
+.icon-order img{
+    width: 100%;
 }
 
 /* Dashboard */
