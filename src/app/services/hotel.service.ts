@@ -229,4 +229,12 @@ export class HotelService {
     return result.map((row) => this.parseRoomPrice(row));
   }
 
+  async getCategoryPassesByCode(code: string){
+    const snapshot = await lastValueFrom(
+      this.afs.collection(this.categoryPassesCollection).doc(code).get()
+    );
+    const result = await handlerObjectResult(snapshot);
+    return this.parseRoomPrice(result);
+  }
+
 }
