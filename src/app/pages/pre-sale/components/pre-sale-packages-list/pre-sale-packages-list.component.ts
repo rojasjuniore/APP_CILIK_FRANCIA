@@ -39,11 +39,18 @@ export class PreSalePackagesListComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  /**
+   * Cambiar configuración de setup de orde
+   */
   onUpdateSetup(setup: any){
     this.setup = setup;
     this.preSaleSrv.updateDocumentLocalStorage({setup: setup});
   }
 
+  /**
+   * Al actualizar contador de número de participantes
+   * @param nroParticipants 
+   */
   onUpdateNroParticipants(nroParticipants: any) {
     this.nroParticipants = nroParticipants;
     this.preSaleSrv.updateDocumentLocalStorage({nroParticipants: nroParticipants});
