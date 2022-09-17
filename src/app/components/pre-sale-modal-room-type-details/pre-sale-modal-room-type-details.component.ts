@@ -36,8 +36,9 @@ export class PreSaleModalRoomTypeDetailsComponent implements OnInit {
 
   async showModal(params: any) {
     const { data, index } = params;
-    console.log({data});
-
+    // console.log('params', params);
+    // console.log('data', data);
+    
     this.index = index;
     this.item = data;
 

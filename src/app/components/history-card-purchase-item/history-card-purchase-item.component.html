@@ -3,11 +3,11 @@
         <div class="col-12 px-3">
             <div class="d-flex justify-content-between align-items-center">
                 <span class="text-rslt fw-bold fs-5">
-                    Plan Oficial WLDC
+                    {{ "general.Official-WLDC-Plan" | translate }}
                 </span>
 
                 <span class="text-end">
-                    Orden de compra #:
+                    {{ "general.purchase-order" | translate }}
                     <br>
                     {{order?.id || '084H36BT'}}
                 </span>
@@ -16,11 +16,11 @@
         <div class="seprd2"></div>
         <div class="col-12 px-3">
             <p class="m-0">
-                Ver detalle de la compra.
+                {{ "general.see-detail-of-the-purchase" | translate }}
             </p>
             <div class="d-flex justify-content-end">
                 <button class="btn btn-one" type="button">
-                    ADICIONAR HABITACIÓN
+                    {{ "general.add-room" | translate }}
                 </button>
             </div>
         </div>

@@ -24,15 +24,34 @@ export class PreSaleCheckoutCategoryCardItemComponent implements OnInit {
   }
 
   get additionalCategoryPasses(): any[]{
-    return this.order.additionalCategoryPasses || [];
+    const snapshot = this.order.additionalCategoryPasses || [];
+    return snapshot.sort((a, b) => a.order - b.order);
   }
 
   get additionalCategoryPassesAmountFullPrice(){
-    return this.additionalCategoryPasses.map((row) => row.quantity * row.fullPrice).reduce((a, b) => a + b, 0);
+    return this.additionalCategoryPasses.map((row) => {
+      if(row.type == 'group'){
+        return row.data.map((group) => group.quantity * group.fullPrice)
+          .reduce((prev, curr) => prev + curr, 0)
+
+      }else{
+        return row.quantity * row.fullPrice;
+      }
+    })
+      .reduce((prev, curr) => prev + curr, 0);
   }
 
   get additionalCategoryPassesAmount(){
-    return this.additionalCategoryPasses.map((row) => row.quantity * row.price).reduce((a, b) => a + b, 0);
+    return this.additionalCategoryPasses.map((row) => {
+      if(row.type == 'group'){
+        return row.data.map((group) => group.quantity * group.price)
+          .reduce((prev, curr) => prev + curr, 0)
+
+      }else{
+        return row.quantity * row.price;
+      }
+    })
+      .reduce((prev, curr) => prev + curr, 0);
   }
 
   get discount(){
@@ -41,6 +60,16 @@ export class PreSaleCheckoutCategoryCardItemComponent implements OnInit {
 
   get subTotal(){
     return this.additionalCategoryPassesAmount;
+  }
+
+  getTotalAdditional(item: any){
+    if(item.type == 'group'){
+      return item.data.map((group) => group.quantity)
+        .reduce((prev, curr) => prev + curr, 0)
+
+    }else{
+      return item.quantity;
+    }
   }
 
 }

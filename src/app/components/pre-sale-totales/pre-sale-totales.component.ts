@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { PreReserveService } from 'src/app/services/dedicates/pre-reserve.service';
 import { PreSaleService } from 'src/app/services/pre-sale.service';
 
 @Component({
@@ -16,7 +15,6 @@ export class PreSaleTotalesComponent implements OnInit, OnDestroy {
   public sub$!: Subscription;
 
   constructor(
-    private preReserveSrv: PreReserveService,
     private preSaleSrv: PreSaleService,
   ) {
   }
@@ -72,7 +70,15 @@ export class PreSaleTotalesComponent implements OnInit, OnDestroy {
 
     const { additionalCategoryPasses } = this.preSaleDocument;
 
-    return additionalCategoryPasses.map((row) => row.quantity * row.fullPrice)
+    return additionalCategoryPasses.map((row) => {
+      if(row.type == 'group'){
+        return row.data.map((group) => group.quantity * group.fullPrice)
+          .reduce((prev, curr) => prev + curr, 0)
+
+      }else{
+        return row.quantity * row.fullPrice;
+      }
+    })
       .reduce((prev, curr) => prev + curr, 0);
   }
 
@@ -82,7 +88,15 @@ export class PreSaleTotalesComponent implements OnInit, OnDestroy {
 
     const { additionalCategoryPasses } = this.preSaleDocument;
 
-    return additionalCategoryPasses.map((row) => row.quantity * row.price)
+    return additionalCategoryPasses.map((row) => {
+      if(row.type == 'group'){
+        return row.data.map((group) => group.quantity * group.price)
+          .reduce((prev, curr) => prev + curr, 0)
+
+      }else{
+        return row.quantity * row.price;
+      }
+    })
       .reduce((prev, curr) => prev + curr, 0);
   }
 

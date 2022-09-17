@@ -52,6 +52,9 @@ body{
 .text-rslt{
     color: #e7344c;
 }
+.text-whi{
+    color: #ffffff;
+}
 .btn{
     border-radius: 30px;
     padding: 1rem;
@@ -115,15 +118,22 @@ body{
 .btn.btn-payment .label-payment{
     font-size: 1rem;
 }
-.btn-cart{
+.btn-navbar-c{
     width: 50px;
     height: 50px;
     border-radius: 50%;
     background-color: #d3d3ce;
     cursor: pointer;
 }
-.btn-cart img{
+.btn-navbar-c img{
     width: 25px;
+}
+.btn-navbar-languaje{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid #d3d3ce;
+    cursor: pointer;
 }
 .btn-logout{
     cursor: pointer;
@@ -175,6 +185,16 @@ body{
     border: 1px solid #868786;
     border-radius: 20px;
 }
+.card-box-2{
+    background-color: #E5E5E4;
+    border: 0;
+}
+.card-box-b3{
+    border-radius: 40px;
+}
+.icon-help img{
+    width: 50px;
+}
 .card-box-wfc{
     width: fit-content;
 }
@@ -206,7 +226,7 @@ body{
     width: 100%;
     height: 1px;
     background-color: #868786;
-    margin: 1rem 0;
+    margin: 1rem auto;
 }
 .seprd2{
     width: 100%;
@@ -361,8 +381,36 @@ body{
     border-color: transparent !important;
 }
 
+.icon-order{
+    border-radius: 50%;
+    border: 1px solid #cecece;
+    width: 50px;
+    height: 50px;
+    padding: 10px; 
+    margin-right: 1rem;
+}
+.icon-order img{
+    width: 100%;
+}
+
+/* Dashboard */
+.item-dash-icon img{
+    width: 150px;
+}
+.modalTCcategoriasAdd .btn-close{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+    z-index: 2;
+}
+
+
 
 @media (max-width: 575px) {
+    .item-dash-icon img{
+        width: 150px;
+    }
     .form-camp{
         width: 100%;
     }
@@ -371,5 +419,16 @@ body{
     }   
     .cont-item-step .item-step:nth-child(2)::before{
         display: none;
+    }
+    .seprd {
+        width: 90%;
+        margin: 1rem auto;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .seprd {
+        width: 90%;
+        margin: 1rem auto;
     }
 }

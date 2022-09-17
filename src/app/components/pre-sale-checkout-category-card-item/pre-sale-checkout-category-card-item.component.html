@@ -3,39 +3,46 @@
         <div class="col-12 px-3">
             <div class="d-flex justify-content-between">
                 <span class="text-rslt fw-bold fs-5">
-                    Categorías
+                    {{ "general.categories" | translate }}
                 </span>
             </div>
         </div>
         <div class="seprd2"></div>
         <div class="col-12 px-3">
             <p class="fw-bold m-0">
-                Categorías incluidas en el Plan Oficial WLDC:
+                {{ "general.Categories-included-in-the-WLDC-Official-Plan" | translate }}:
             </p>
             <div class="seprd m-0 mb-2"></div>
             <p class="m-0">
-                Cantidad: {{nroPasses}}
+                {{ "general.amount" | translate }}: {{nroPasses}}
             </p>
             <h5 class="pb-3 fw-bold">
-                TOTAL: USD 0
+                {{ "general.total" | translate }}: USD 0
             </h5>
             <div class="seprd2"></div>
 
             <ng-container *ngIf="additionalCategoryPasses.length > 0">
                 <p class="border-bottom fw-bold m-0">
-                    Categorías adicionales:
+                    {{ "general.additional-categories" | translate }}:
                 </p>
                 <div class="seprd m-0 mb-2"></div>
-                <p class="m-0 fw-bold" [ngClass]="{'border-bottom': !isLast}" *ngFor="let item of additionalCategoryPasses; last as isLast">
-                    Cantidad de {{item.label}}: {{item.quantity}}
+                <p 
+                    class="m-0 fw-bold" 
+                    [ngClass]="{'border-bottom': !isLast}" 
+                    *ngFor="let item of additionalCategoryPasses; last as isLast"
+                >
+                {{ "general.amount-of" | translate }} {{item.label}}: {{getTotalAdditional(item)}}
                 </p>
             </ng-container>
 
             <p class="m-0 mt-4">
-                Valor sin descuento: <span class="text-decoration-line-through">USD {{additionalCategoryPassesAmountFullPrice | mask:'separator.2':','}}</span>
+                {{ "general.Discounted-value" | translate }}: 
+                <span class="text-decoration-line-through">
+                    USD {{additionalCategoryPassesAmountFullPrice | mask:'separator.2':','}}
+                </span>
             </p>
             <p class="m-0">
-                Descuento: USD {{discount | mask:'separator.2':','}}
+                {{ "general.discount" | translate }}: USD {{discount | mask:'separator.2':','}}
             </p>
             <div class="d-flex justify-content-between">
                 <span class="fs-4 fw-bolder">

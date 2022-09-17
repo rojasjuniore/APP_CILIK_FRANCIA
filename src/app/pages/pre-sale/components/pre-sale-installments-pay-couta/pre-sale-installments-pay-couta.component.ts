@@ -17,6 +17,12 @@ export class PreSaleInstallmentsPayCoutaComponent implements OnInit {
   public paymentMethodType: any;
   public paymentMethods = [
     {
+      label: 'Paypal',
+      value: 'paypal',
+      icon: 'bi bi-paypal',
+      status: true,
+    },
+    {
       label: 'Tarjeta de crédito',
       value: 'creditCard',
       icon: 'bi bi-credit-card',
@@ -28,12 +34,6 @@ export class PreSaleInstallmentsPayCoutaComponent implements OnInit {
       icon: 'bi bi-coin',
       status: false,
     },
-    {
-      label: 'Paypal',
-      value: 'paypal',
-      icon: 'bi bi-paypal',
-      status: true,
-    }
   ];
   public formStatus = 1;
 
@@ -91,13 +91,19 @@ export class PreSaleInstallmentsPayCoutaComponent implements OnInit {
   async processRoomData(params: any){
     const { room, orderId } = params;
 
-    const findRoom = await this.hotelSrv.getAvailableRoomByCodeType(room._id);
+    /** Buscar habitación */
+    const findRoom = await this.hotelSrv.getAvailableRoomByCodeType(room.roomCodePrefix);
+    // console.log('room', room);
+    // console.log('findRoom', findRoom);
+    // return;
 
     /** Asignar orden de compra a la habitación */
-    await this.hotelSrv.updateRoom(findRoom._id, { paymentOrderID: orderId, additionals: room.additionals });
+    await this.hotelSrv.updateRoom(findRoom._id, { paymentOrderID: orderId, additionals: room.additionals, roomType: room.roomCode });
+
+    /** TODO: actualizar contador de habitaciónes disponibles por tipo */
 
     /** Actualizar registro de habitación */
-    const roomData = Object.assign({}, room, {roomId: findRoom._id, roomCodeType: room._id});
+    const roomData = Object.assign({}, room, {roomId: findRoom._id});
 
     return roomData;
   }

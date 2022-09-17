@@ -1,15 +1,15 @@
 <div class="col-12 mb-5">
     <h6 class="text-end">
-        Valor sin descuento: 
+        {{ "general.Value-without-discount" | translate }} 
         <span class="text-decoration-line-through">USD {{subTotalFullPrice | mask:'separator.2':','}}</span>
     </h6>
     <h6 class="text-end">
-        Descuento: <span>USD {{discount | mask:'separator.2':','}}</span>
+        {{ "general.discount" | translate }}: <span>USD {{discount | mask:'separator.2':','}}</span>
     </h6>
     <h5 class="fw-bold fs-3 text-end">
         Total: USD {{total | mask:'separator.2':','}}
     </h5>
     <h6 class="text-end">
-        Pago en {{nroCoutas}} cuotas de: <span>USD {{coutasAmount | mask:'separator.2':','}}</span>
+        {{ "general.payment-in" | translate }} {{nroCoutas}} {{ "general.installments-of" | translate }}: <span>USD {{coutasAmount | mask:'separator.2':','}}</span>
     </h6>
 </div>

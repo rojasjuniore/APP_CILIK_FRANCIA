@@ -59,7 +59,15 @@ export class PurchaseSummaryTotalesComponent implements OnInit {
 
     const { additionalCategoryPasses } = this.order;
 
-    return additionalCategoryPasses.map((row) => row.quantity * row.fullPrice)
+    return additionalCategoryPasses.map((row) => {
+      if(row.type == 'group'){
+        return row.data.map((group) => group.quantity * group.fullPrice)
+          .reduce((prev, curr) => prev + curr, 0)
+
+      }else{
+        return row.quantity * row.fullPrice;
+      }
+    })
       .reduce((prev, curr) => prev + curr, 0);
   }
 
@@ -69,7 +77,15 @@ export class PurchaseSummaryTotalesComponent implements OnInit {
 
     const { additionalCategoryPasses } = this.order;
 
-    return additionalCategoryPasses.map((row) => row.quantity * row.price)
+    return additionalCategoryPasses.map((row) => {
+      if(row.type == 'group'){
+        return row.data.map((group) => group.quantity * group.price)
+          .reduce((prev, curr) => prev + curr, 0)
+
+      }else{
+        return row.quantity * row.price;
+      }
+    })
       .reduce((prev, curr) => prev + curr, 0);
   }
 

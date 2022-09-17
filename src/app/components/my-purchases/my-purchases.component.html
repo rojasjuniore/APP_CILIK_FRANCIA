@@ -1,7 +1,8 @@
+<div class="fs-2 fw-bold text-center mb-3">Resumen de compras</div>
 
 <ng-container *ngIf="(purchasesList$ | async) as purchasesList; else loading">
     <ng-container *ngIf="purchasesList.length > 0; else noPurchases">
-        <div class="col-12" *ngFor="let item of purchasesList">
+        <div class="col-12 mb-4" *ngFor="let item of purchasesList">
             <app-my-purchases-list-item [order]="item" (onShowDetails)="onShowDetails($event)"></app-my-purchases-list-item>
         </div>
     </ng-container>
@@ -11,35 +12,39 @@
 <app-purchase-summary-modal-details></app-purchase-summary-modal-details>
 
 <ng-template #noPurchases>
-    <div class="card card-box p-3 mb-3">
-        <div class="row g-2 d-flex align-items-center">
-            <div class="col-12 px-3 d-flex justify-content-between">
-                <h5 class="fw-bolder text-danger">Sin registros</h5>
-            </div>
-            <div class="seprd2"></div>
-            <div class="col-12 px-3">
-                <p class="m-0">
-                    No se encontraron registros.
-                </p>
+    <div class="col-12 mb-4">
+        <div class="card card-box p-3 mb-3">
+            <div class="row g-2 d-flex align-items-center">
+                <!-- <div class="col-12 px-3 d-flex justify-content-between">
+                    <h5 class="fw-bolder text-danger">Sin registros</h5>
+                </div> -->
+                <!-- <div class="seprd2"></div> -->
+                <div class="col-12 px-3">
+                    <p class="m-0 text-center">
+                        Aún no has realizado ninguna compra.
+                    </p>
+                </div>
             </div>
         </div>
     </div>
 </ng-template>
 
 <ng-template #loading>
-    <div class="card card-box p-3 mb-3" *ngFor="let item of [1,1,1]">
-        <div class="row g-2 d-flex align-items-center">
-            <div class="col-12 px-3 d-flex justify-content-between placeholder-glow">
-                <span class="placeholder bg-danger col-5" style="height: 36px;"></span>
-                <span class="placeholder col-5" style="height: 36px;"></span>
-            </div>
-            <div class="seprd2"></div>
-            <div class="col-12 px-3">
-                <p class="m-0 placeholder-glow">
-                    <span class="placeholder col-6"></span>
-                </p>
-                <div class="d-flex justify-content-end">
-                    <a href="#" tabindex="-1" class="btn btn-one disabled placeholder col-6"></a>
+    <div class="col-12 mb-4" *ngFor="let item of [1,1,1]">
+        <div class="card card-box p-3 mb-3">
+            <div class="row g-2 d-flex align-items-center">
+                <div class="col-12 px-3 d-flex justify-content-between placeholder-glow">
+                    <span class="placeholder bg-danger col-5" style="height: 36px;"></span>
+                    <span class="placeholder col-5" style="height: 36px;"></span>
+                </div>
+                <div class="seprd2"></div>
+                <div class="col-12 px-3">
+                    <p class="m-0 placeholder-glow">
+                        <span class="placeholder col-6"></span>
+                    </p>
+                    <div class="d-flex justify-content-end">
+                        <a href="#" tabindex="-1" class="btn btn-one disabled placeholder col-6"></a>
+                    </div>
                 </div>
             </div>
         </div>

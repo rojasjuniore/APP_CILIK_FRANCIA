@@ -16,6 +16,18 @@ export class PreSalePaymentMethodsComponent implements OnInit {
   public paymentMethodType: any;
   public paymentMethods = [
     {
+      label: 'Paypal',
+      value: 'paypal',
+      icon: 'bi bi-paypal',
+      status: true,
+    },
+    {
+      label: 'Pago por cuotas',
+      value: 'installments',
+      icon: 'bi bi-calendar-check',
+      status: true,
+    },
+    {
       label: 'Tarjeta de crédito',
       value: 'creditCard',
       icon: 'bi bi-credit-card',
@@ -27,18 +39,6 @@ export class PreSalePaymentMethodsComponent implements OnInit {
       icon: 'bi bi-coin',
       status: false,
     },
-    {
-      label: 'Paypal',
-      value: 'paypal',
-      icon: 'bi bi-paypal',
-      status: true,
-    },
-    {
-      label: 'Pago por cuotas',
-      value: 'installments',
-      icon: 'bi bi-calendar-check',
-      status: true,
-    }
   ];
 
   constructor(
@@ -108,7 +108,15 @@ export class PreSalePaymentMethodsComponent implements OnInit {
     console.log('additionalDaysAmount', additionalDaysAmount);
 
     const additionalCategoryPasses = preSaleDocument?.additionalCategoryPasses
-      .map((row) => row.quantity * row.price)
+      .map((row) => {
+        if(row.type == 'group'){
+          return row.data.map((group) => group.quantity * group.price)
+            .reduce((prev, curr) => prev + curr, 0)
+  
+        }else{
+          return row.quantity * row.price;
+        }
+      })
       .reduce((prev, curr) => prev + curr, 0)
 
     const price = [roomsAmount, additionalDaysAmount, additionalCategoryPasses]
@@ -122,7 +130,7 @@ export class PreSalePaymentMethodsComponent implements OnInit {
         nro: index + 1,
         date: (index == 0) 
           ? currentDate.valueOf()
-          : currentDate.add(1, 'month').endOf('day').valueOf(),
+          : currentDate.add(30, 'days').endOf('day').valueOf(),
         paymentMethod: null,
         amount: coutaAmount,
         payed: false,

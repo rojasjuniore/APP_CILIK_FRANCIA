@@ -1,33 +1,35 @@
 import { Component } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { CustomTranslateService } from 'src/app/services/custom-translate.service';
 import { DataService } from './services/data.service';
 import { HotelService } from './services/hotel.service';
 
-import { pick } from 'underscore';
+import { pick, omit } from 'underscore';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   title = 'xpocripto';
-
+  public currentLanguage: string;
   constructor(
-    public translate: TranslateService,
+    public translateSrv: CustomTranslateService,
     private dataSrv: DataService,
-    private hotelSrv: HotelService,
+    private hotelSrv: HotelService
   ) {
-    this.translate.setDefaultLang('en');
-    this.translate.use('en');
+    this.currentLanguage = this.translateSrv.currentLanguage;
   }
 
   ngOnInit(): void {
     // this.contractService.connectAccount()
     // this.contractService.reInitializating()
-    // this.test();
   }
 
+  changeLanguage(language: string) {
+    this.translateSrv.changeLanguage(language);
+    this.currentLanguage = language;
+  }
 
   /**
    * @description Prueba de contadores
@@ -36,89 +38,109 @@ export class AppComponent {
   //   await this.hotelSrv.updateRoomTypeSupply('HAB10000', -1)
   // }
 
-
   /**
-   * @description Registrar habitaciones
+   * @description Registrar stock de habitaciones
    */
-  // async test(){
-  //   const roomTypes = await this.dataSrv.getDataFile('roomTypes');
+  async storeRoomStock(){
+    const roomTypes = await this.dataSrv.getDataFile('roomStock');
+    console.log('roomTypes', roomTypes);
 
-  //   const toAwait: any[] = [];
+    const toAwait = roomTypes.map(async (roomType) => this.hotelSrv.storeRoomStock(roomType.code, roomType));
+    await Promise.all(toAwait);
 
-  //   for (const room of roomTypes) {
-  //     for (let index = 1; index <= room.quantity; index++) {
-  //       const snapshot = pick(room, [
-  //         'ubicationType', 
-  //         'ubicationTypeDescription',
-  //         'description',
-  //         'capacity',
-  //       ]);
+    console.log({roomTypes});
+    console.log('stored room stock');
+  }
 
-  //       const roomCodeCounter = room.roomCounter + index;
-  //       const roomCode = `${room.roomCodePrefix}${roomCodeCounter}`;
-
-  //       const data = Object.assign({
-  //           roomCodeType: room.roomCode,
-  //           roomCode,
-  //           paymentType: null,
-  //           paymentTypeDescription: null,
-  //           paymentOrderID: null,
-  //           additionals: null,
-  //           roomQRCode: null,
-  //       }, snapshot);
-
-  //       console.log('room', data);
-
-  //       toAwait.push(this.hotelSrv.storeRoom(roomCode, data));
-  //     }      
-  //   }
-
-  //   await Promise.all(toAwait);
-
-  //   console.log('stored rooms');
-  // }
 
   /**
    * @description Registrar tipos de habitaciones
    */
-  // async test(){
-  //   const roomTypes = await this.dataSrv.getDataFile('roomTypes');
-  //   console.log('roomTypes', roomTypes);
+  async storeRoomTypes(){
+    const roomTypes = await this.dataSrv.getDataFile('roomTypes');
+    console.log('roomTypes', roomTypes);
 
-  //   const toAwait = roomTypes.map(async (roomType) => this.hotelSrv.storeRoomType(roomType.roomCode, roomType));
-  //   await Promise.all(toAwait);
+    const toAwait = roomTypes.map(async (roomType) => this.hotelSrv.storeRoomType(roomType.roomCode, roomType));
+    await Promise.all(toAwait);
 
-  //   console.log({roomTypes});
-  //   console.log('stored roomTypes');
-  // }
+    console.log({roomTypes});
+    console.log('stored roomTypes');
+  }
 
   /**
    * @description Registrar adicionales
    */
-  // async test(){
-  //   const roomTypes = await this.dataSrv.getDataFile('additionals');
+  async storeRoomAdditionals(){
+    const roomTypes = await this.dataSrv.getDataFile('roomAdditionals');
 
-  //   const toAwait = roomTypes.map(async (row) => this.hotelSrv.storeAdditionals(row.roomCode, row));
-  //   await Promise.all(toAwait);
+    const toAwait = roomTypes.map(async (row) => this.hotelSrv.storeAdditionals(row.roomCode, row));
+    await Promise.all(toAwait);
 
-  //   console.log({roomTypes});
-  //   console.log('stored additionals');
-  // }
+    console.log({roomTypes});
+    console.log('stored additionals');
+  }
 
   /**
    * @description Registrar pases de categoria adicionales
    */
-  // async test(){
-  //   const roomTypes = await this.dataSrv.getDataFile('categories');
+  async storeCategoriesPasses(){
+    const roomTypes = await this.dataSrv.getDataFile('categories');
 
-  //   const toAwait = roomTypes.map(async (row) => this.hotelSrv.storeCategoriesPasses(row.type, row));
-  //   await Promise.all(toAwait);
+    const toAwait = roomTypes.map(async (row) => this.hotelSrv.storeCategoriesPasses(row.type, row));
+    await Promise.all(toAwait);
 
-  //   console.log({roomTypes});
-  //   console.log('stored categories passes');
-  // }
+    console.log({roomTypes});
+    console.log('stored categories passes');
+  }
+
+  /**
+   * @description Registrar habitaciones
+   */
+  async storeRooms(){
+    const roomTypes = await this.dataSrv.getDataFile('roomStock');
+
+    const toAwait: any[] = [];
+
+    for (const room of roomTypes) {
+      if(room.status){
+        for (let index = 1; index <= room.totalStock; index++) {
+          const snapshot = omit(room, [
+            'totalStock',
+            'saved',
+            'stock',
+            'supply',
+            'roomCounter'
+          ]);
+  
+          const roomCodeCounter = room.roomCounter + index;
+          const roomCode = `${room.prefix}${roomCodeCounter}`;
+          const status = (index <= room.supply) ? true : false;
+          console.log('roomCode', roomCode);
+  
+          const data = Object.assign({}, snapshot, {
+              roomCode,
+              roomType: null,
+              paymentType: null,
+              paymentTypeDescription: null,
+              paymentOrderID: null,
+              additionals: null,
+              roomQRCode: null,
+              status
+          });
+  
+          // console.log('room', data);
+  
+          toAwait.push(this.hotelSrv.storeRoom(roomCode, data));
+        }
+      }
+    }
+
+    await Promise.all(toAwait);
+
+    console.log('stored rooms');
+  }
 
   public getState(outlet) {
     return outlet.activatedRouteData.state;
-  };
+  }
 }

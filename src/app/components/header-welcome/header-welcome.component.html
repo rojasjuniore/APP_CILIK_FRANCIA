@@ -7,7 +7,7 @@
 
             <ng-container *ngIf="(profile$ | async); else loading">
                 <div class="fs-2 fw-bold ps-3">
-                    Hola {{ (profile$ | async)?.fullName | titlecase }}
+                    {{ "general.hello" | translate }} {{ (profile$ | async)?.fullName | titlecase }}
                 </div>
             </ng-container>
 

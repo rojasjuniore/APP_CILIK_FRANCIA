@@ -20,6 +20,7 @@ export class PreSalePackagesListComponent implements OnInit {
 
   public roomData: any = {nroParticipants: 1, type: 1};
   public rooms: any[] = [];
+  public setup: any;
 
   constructor(
     private preSaleSrv: PreSaleService,
@@ -30,13 +31,26 @@ export class PreSalePackagesListComponent implements OnInit {
 
     /** TODO: pendiente por eliminar */
     // this.preSaleSrv.buildAndStore({nroParticipants: 1}, false);
-    const { nroParticipants, rooms } = this.preSaleSrv.checkAndLoadDocumentLocalStorage();
+    const { nroParticipants, rooms, setup } = this.preSaleSrv.checkAndLoadDocumentLocalStorage();
     this.nroParticipants = nroParticipants;
     this.rooms = rooms;
+    this.setup = setup;
   }
 
   ngOnInit(): void {}
 
+  /**
+   * Cambiar configuración de setup de orde
+   */
+  onUpdateSetup(setup: any){
+    this.setup = setup;
+    this.preSaleSrv.updateDocumentLocalStorage({setup: setup});
+  }
+
+  /**
+   * Al actualizar contador de número de participantes
+   * @param nroParticipants 
+   */
   onUpdateNroParticipants(nroParticipants: any) {
     this.nroParticipants = nroParticipants;
     this.preSaleSrv.updateDocumentLocalStorage({nroParticipants: nroParticipants});

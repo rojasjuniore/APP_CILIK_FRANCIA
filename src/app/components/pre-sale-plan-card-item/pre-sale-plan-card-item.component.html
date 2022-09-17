@@ -9,11 +9,11 @@
         <div class="col-12 px-3">
             <div class="d-flex justify-content-between flex-wrap">
                 <span class="fw-bold fs-5">
-                    Habitación # {{index + 1}}
+                    {{ "general.room#" | translate }} {{index + 1}}
                 </span>
 
                 <span>
-                    Valor por persona: USD {{pricePerPeople | mask:'separator.2':','}}
+                    {{ "general.price-per-person" | translate }}: USD {{pricePerPeople | mask:'separator.2':','}}
                     &nbsp;
                     <span class="btn-close-card-item"><i class="bi bi-x-lg" (click)="removeItem()"></i></span>
                 </span>
@@ -22,15 +22,20 @@
     </div>
     <div class="seprd"></div>
     <div class="row">
+        <div class="col-12 mb-2">
+            {{item?.ubicationTypeDescription | uppercase }} {{item?.description | uppercase}}
+        </div>
+
         <div class="col-12 col-sm-6 col-md-6">
             <div class="row p-2">
                 <div class="col-12">
                     <app-input-number-form-two 
-                        label="Agregar personas a la habitación." 
+                        label="{{ 'general.Add-people-to-the-room' | translate }}" 
                         [min]="1" [max]="3"
                         [quantity]="item.capacity"
-                        (onUpdateQuantity)="onUpdateQuantity($event)"></app-input-number-form-two>
-                        <span class="">Capacidad máx. 3 personas.</span>
+                        (onUpdateQuantity)="onUpdateQuantity($event)"
+                    ></app-input-number-form-two>
+                    <span class="">{{ "general.Max-capacity-3-people" | translate }}</span>
                 </div>
             </div>
         </div>
@@ -39,30 +44,54 @@
                 <div class="col-12  d-flex justify-content-end">
                     <div class="card-box card-box-wfc p-3">
                         <h4 class="text-end py-2 m-0">
-                            Monto USD {{subTotal | mask:'separator.2':','}}
+                            {{ "amount" | translate }} USD {{subTotal | mask:'separator.2':','}}
                         </h4>
                     </div>                   
                 </div>
             </div>
         </div>
+        
+
+        <!-- TODO: Habilitar cambio de tipo de habitación -->
+        <!-- <div class="seprd"></div>
+        <div class="col-12">
+           <div class="mb-3">Selecciona una de las opciones de cama:</div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    2 camas semidobles
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    1 cama king
+                </label>
+            </div>                    
+        </div> -->
+
     </div>
     <div class="seprd"></div>
     <div class="row">
         <div class="col-12 col-md-6">
             <div class="col-12 col-sm-12 col-md-8">
                 <button class="btn btn-three mt-2" type="button" (click)="onUpdateRoom.next(index)">
-                    SUBIR CATEGORÍA DE HABITACIÓN
+                    <!-- {{ "general.up-category-of-room" | translate }} -->
+                    CAMBIAR TIPO DE HABITACIÓN
                 </button>
                 <button class="btn btn-three mt-2" type="button" (click)="onUpdateAdditionalDays.next(index)">
-                    NOCHE ADICIONAL <ng-container *ngIf="additionalAmount > 0">({{additionalsDays}})</ng-container>
+                    {{ "general.additional-night" | translate }} <ng-container *ngIf="additionalAmount > 0">({{additionalsDays}})</ng-container>
                 </button>
             </div>
         </div>
         <div class="col-12 col-sm-6 col-md-6">
             <div class="row p-2">
                 <div class="col-12 text-end fs-5">
-                    Este plan incluye: <br>
-                    <a data-bs-toggle="modal" href="#modalPlanDetails" role="button" class="fw-bold text-decoration-none text-danger">Ver aquí</a>
+                    {{ "general.this-plan-includes" | translate }}: 
+                    <br>
+                    <a data-bs-toggle="modal" href="#modalPlanDetails" role="button" class="fw-bold text-decoration-none text-danger">
+                        {{ "general.see-here" | translate }}
+                    </a>
                 </div>
             </div>
         </div>
