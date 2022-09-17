@@ -49,12 +49,15 @@ export class PreSaleExtrasComponent implements OnInit {
   //   // },
   // ];
 
+  public additionalCategoryPasses: any[] = [];
+
   constructor(
     public preSaleSrv: PreSaleService,
     private router: Router,
     private hotelSrv: HotelService,
   ) {
-    
+    const { additionalCategoryPasses } = this.preSaleSrv.checkAndLoadDocumentLocalStorage();
+    this.additionalCategoryPasses = additionalCategoryPasses;
   }
 
   ngOnInit(): void {
@@ -82,17 +85,22 @@ export class PreSaleExtrasComponent implements OnInit {
     )
   }
 
+  /**
+   * Actualizar la cantidad de boletos de cada categoria
+   * @param params 
+   */
   onUpdateQuantity(params: any) {
-    // const { type, quantity } = params;
-
-    // const find = this.categories.findIndex((row: any) => row.type === type);
-    // this.categories[find].quantity = quantity;
-    // // console.log('params', params);
-
-    // const data = this.categories.filter((row: any) => row.quantity > 0)
-    //   .map((row) => this.parseDocumentToSave(row))
-
-    // this.preSaleSrv.updateDocumentLocalStorage({additionalCategoryPasses: data});
+    const { type, quantity } = params;
+    // console.log('params', params);
+    const find = this.additionalCategoryPasses.findIndex((row: any) => row.type === type);
+    if(find > -1){
+      this.additionalCategoryPasses[find].quantity = quantity;
+    }else{
+      this.additionalCategoryPasses.push(params);
+    }
+    const data = this.additionalCategoryPasses.filter((row: any) => row.quantity > 0)
+    this.preSaleSrv.updateDocumentLocalStorage({additionalCategoryPasses: data});
+    return;
   }
 
   onBack(){
