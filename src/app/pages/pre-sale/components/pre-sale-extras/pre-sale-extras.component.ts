@@ -16,39 +16,6 @@ export class PreSaleExtrasComponent implements OnInit {
   public extras: any;
   public preSaleDocument: any;
 
-  // public categories = [
-  //   // {
-  //   //   type: 'solo',
-  //   //   label: 'Solista',
-  //   //   price: 65.00,
-  //   //   quantity: 0,
-  //   //   cu: true,
-  //   //   min: 1,
-  //   //   max: 99,
-  //   //   opts: [0, 1],
-  //   // },
-  //   // {
-  //   //   type: 'couple',
-  //   //   label: 'Pareja',
-  //   //   price: 55.00,
-  //   //   quantity: 0,
-  //   //   cu: false,
-  //   //   min: 2,
-  //   //   max: 99,
-  //   //   opts: [0, 2],
-  //   // },
-  //   // {
-  //   //   type: 'group',
-  //   //   label: 'Grupo',
-  //   //   price: 25.00,
-  //   //   quantity: 0,
-  //   //   cu: true,
-  //   //   min: 3,
-  //   //   max: 99,
-  //   //   opts: [0, 3, 4, 5],
-  //   // },
-  // ];
-
   public additionalCategoryPasses: any[] = [];
 
   constructor(
