@@ -22,7 +22,7 @@ export class PreSaleModalOnlyCategoriesTermsComponent implements OnInit {
   }
 
   buildModal(){
-    this.mi = this.bsModalSrv.buildModal("staticBackdrop");
+    this.mi = this.bsModalSrv.buildModal("modalTCcategoriasA");
   }
 
   async showModal(){

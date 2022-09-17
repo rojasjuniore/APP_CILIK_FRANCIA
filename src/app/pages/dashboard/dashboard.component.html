@@ -35,18 +35,12 @@
                             <div class="item-dash-icon">
                                 <img src="assets/img/cilik/dash-09.png" alt="">
                             </div>
-                            <!-- <button class="btn btn-one" data-bs-toggle="modal" data-bs-target="#modalTCcategoriasA">COMPRA DE CATEGORIAS</button> -->
                             <button class="btn btn-one" (click)="showCategoriesTerms()">COMPRA DE CATEGORIAS</button>
                         </div>
                     </div>
                 </div>
 
                 <div class="row mt-5">
-                    <!-- <div class="col-12 text-center mb-5">
-                        <div class="fs-4 fw-bold">
-                            Resumen de compras
-                        </div>
-                    </div> -->
 
                   <app-my-purchases></app-my-purchases>
                 </div>
@@ -58,59 +52,3 @@
 </div>
 
 <app-pre-sale-modal-only-categories-terms (onCloseModal)="onModalCategoriesTermsClose($event)"></app-pre-sale-modal-only-categories-terms>
-
-
-
-<div class="modal fade modalTCcategoriasAdd" id="modalTCcategoriasA" data-bs-backdrop="static" tabindex="-1"
-    aria-labelledby="modalTCcategoriasA" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            <div class="modal-body">
-                <div class="container">
-                    <div class="row g-3">
-                        <div class="col-12">
-                            <div class="logo mb-3">
-                                <img src="assets/img/cilik/logo.png" alt="">
-                            </div>
-                            <h5 class="text-center fw-bolder mb-4">
-                                Términos y condiciones - Categorías adicionales
-                            </h5>
-                            <ul>
-                                <li>
-                                    <span class="fw-bold">
-                                        Por la compra del plan todo incluido los competidores reciben una (1) categoría sin costo.
-                                    </span>
-                                    <br>En caso de querer competir en más de una categoría deberá comprar categorías adicionales.
-                                </li>
-                                <li>
-                                    Todos los asistentes y todos los competidores del WLDC 2023 deberán comprar un plan todo incluido 
-                                    y estar hospedados en el hotel oficial de la competencia, Hotel Las Américas Cartagena, Colombia.
-                                </li>
-                                <li>
-                                    Todos los competidores y acompañantes deberán alojarse en el hotel oficial del evento sin excepción.
-                                </li>
-                                <li>
-                                    Todos los competidores y acompañantes deben adquirir el plan todo incluido y las categorías adicionales 
-                                    únicamente a través de la aplicación oficial del evento.
-                                </li>
-                                <li>
-                                    No se hará devolución de dinero correspondiente a la compra de categorías adicionales WLDC 2023.
-                                </li>
-                            </ul>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-three p-2" data-bs-dismiss="modal">
-                    NO, aún no cuento con<br> un plan todo incluido
-                </button>
-                <button type="button" class="btn btn-one p-2" data-bs-dismiss="modal">
-                    SÍ, ya cuento con un<br> plan todo incluido
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
