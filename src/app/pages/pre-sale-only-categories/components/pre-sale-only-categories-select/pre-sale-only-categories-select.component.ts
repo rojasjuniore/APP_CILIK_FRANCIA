@@ -1,27 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { from, Observable } from 'rxjs';
-import { HotelService } from 'src/app/services/hotel.service';
 import { PreSaleService } from 'src/app/services/pre-sale.service';
-import { pick } from 'underscore';
 
 @Component({
-  selector: 'app-pre-sale-extras',
-  templateUrl: './pre-sale-extras.component.html',
-  styleUrls: ['./pre-sale-extras.component.css']
+  selector: 'app-pre-sale-only-categories-select',
+  templateUrl: './pre-sale-only-categories-select.component.html',
+  styleUrls: ['./pre-sale-only-categories-select.component.css']
 })
-export class PreSaleExtrasComponent implements OnInit {
-
-  public package: any;
-  public extras: any;
-  public preSaleDocument: any;
+export class PreSaleOnlyCategoriesSelectComponent implements OnInit {
 
   public additionalCategoryPasses: any[] = [];
 
   constructor(
     public preSaleSrv: PreSaleService,
     private router: Router,
-    private hotelSrv: HotelService,
   ) {
     const { additionalCategoryPasses } = this.preSaleSrv.checkAndLoadDocumentLocalStorage();
     // console.log('additionalCategoryPasses', additionalCategoryPasses);
@@ -29,28 +21,6 @@ export class PreSaleExtrasComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.test();
-    // from(this.hotelSrv.getCategoriesPasses()).subscribe(async(data) => {
-    //   this.categories = data;
-    //   await this.loadData();
-    // })
-  }
-
-  async loadData(){
-    /** Load pre-sale document from LocalStorage */
-    // const {additionalCategoryPasses = []} = this.preSaleSrv.checkAndLoadDocumentLocalStorage();
-    // additionalCategoryPasses.forEach((row: any) => {
-    //   const find = this.categories.findIndex((cat: any) => cat.type === row.type);
-    //   if (find > -1) {
-    //     this.categories[find].quantity = row.quantity;
-    //   }
-    // });
-  }
-
-  parseDocumentToSave(item: any){
-    return Object.assign({discount: 0},
-      pick(item, 'type', 'quantity', 'price', 'cu', 'label', 'fullPrice', 'order')
-    )
   }
 
   get soloValue(){
@@ -69,10 +39,6 @@ export class PreSaleExtrasComponent implements OnInit {
     // return [];
   }
 
-  /**
-   * Actualizar la cantidad de boletos de cada categoria
-   * @param params 
-   */
   onUpdateQuantity(params: any) {
     const { type, quantity } = params;
     const find = this.additionalCategoryPasses.findIndex((row: any) => row.type === type);
@@ -103,14 +69,9 @@ export class PreSaleExtrasComponent implements OnInit {
     return;
   }
 
-  onBack(){
-    this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale/step1'});
-    this.router.navigate(['/pre-sale', 'step1']);
-  }
-
-  onNext(){
-    this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale/step3'});
-    this.router.navigate(['/pre-sale', 'step3']);
+  async onNext(){
+    this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale-categories/step2'});
+    this.router.navigate(['/pre-sale-categories', 'step2']);
   }
 
 }

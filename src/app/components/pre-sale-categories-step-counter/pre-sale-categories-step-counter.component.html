@@ -1,0 +1,23 @@
+<div class="col-12 my-5">
+    <div class="position-relative cont-item-step mb-5">
+        <div class="progress" style="height: 1px;">
+            <div class="progress-bar" role="progressbar" [style.width]="progressBarWidth + '%'"
+                [attr.aria-valuenow]="progressBarWidth" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <button type="button" class="position-absolute top-0 start-0 translate-middle"
+            [ngClass]="{'btn-num-steps-act': step >= 1}">
+            1 
+            <span class="label-steps">{{"general.additional-categories" | translate }}</span>
+        </button>
+        <!-- <button type="button" class="position-absolute top-0 start-50 translate-middle"
+            [ngClass]="{'btn-num-steps-act': step >= 2, 'btn-num-steps': step < 2}">
+            2 
+            <span class="label-steps">{{"general.additional-categories" | translate }}</span>
+        </button> -->
+        <button type="button" class="position-absolute top-0 start-100 translate-middle"
+            [ngClass]="{'btn-num-steps-act': step == 3, 'btn-num-steps': step < 2}">
+            3 
+            <span class="label-steps">{{"general.payment" | translate }}</span>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="row">
+
+    <app-pre-sale-categories-step-counter [step]="2"></app-pre-sale-categories-step-counter>
+
+    <div class="col-12 text-center mb-2 fw-bold fs-5 mt-5 text-uppercase">
+        {{ "general.summary-of-the-purchase" | translate }}
+    </div>
+
+    <div class="col-12 mb-4">
+        <app-pre-sale-checkout-category-card-item 
+            [order]="preSaleDocument"
+            (onUpdate)="onUpdateAdditionalCategoryPasses($event)"
+            (onRemove)="onRemoveAdditionalCategoryPasses($event)"></app-pre-sale-checkout-category-card-item>
+    </div>
+
+    <app-pre-sale-totales></app-pre-sale-totales>
+
+    <div class="col-12">
+        <div class="d-flex justify-content-between">
+            <button class="btn btn-three text-uppercase" type="button" (click)="onBack()">
+                <i class="bi bi-chevron-left"></i>
+                {{ "general.return" | translate }}
+            </button>
+            <button class="btn btn-one text-uppercase" type="button" (click)="onNext()">
+                {{ "general.continue-to-pay" | translate }}
+            </button>
+        </div>
+    </div>
+
+</div>
