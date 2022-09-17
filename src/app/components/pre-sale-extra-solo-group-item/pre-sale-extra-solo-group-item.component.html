@@ -34,7 +34,7 @@
                             <app-input-number-form-two
                                 label="# Cantidad" 
                                 [min]="0" [max]="99" [quantity]="item.quantity"
-                                (onUpdateQuantity)="updateQuantity({index: idx, quantity: $event})"></app-input-number-form-two>
+                                (onUpdateQuantity)="updateQuantity({index: idx, quantity: $event, data: document})"></app-input-number-form-two>
                         </div>
                         <div class="col-12 col-sm-6 col-md-6 d-flex justify-content-end align-self-end mt-3 mt-md-0">
                             <div class="card-box card-box-wfc p-3">

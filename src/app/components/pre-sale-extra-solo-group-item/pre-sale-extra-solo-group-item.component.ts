@@ -44,7 +44,7 @@ export class PreSaleExtraSoloGroupItemComponent implements OnInit {
     });
 
     // console.log('groups', this.groups);
-    this.onUpdateQuantity.next({type: 'group', data: this.groups, order: 2});
+    this.onUpdateQuantity.next({type: 'group', label: data.label, data: this.groups, order: 2});
   }
 
   /**
@@ -63,10 +63,10 @@ export class PreSaleExtraSoloGroupItemComponent implements OnInit {
    * @param params 
    */
   updateQuantity(params: any) {
-    const { index, quantity } = params;
+    const { index, quantity, data } = params;
     // console.log('params', params);
     this.groups[index].quantity = quantity;
-    this.onUpdateQuantity.next({type: 'group', data: this.groups});
+    this.onUpdateQuantity.next({type: 'group', label: data.label, data: this.groups, order: 2});
   }
 
 }
