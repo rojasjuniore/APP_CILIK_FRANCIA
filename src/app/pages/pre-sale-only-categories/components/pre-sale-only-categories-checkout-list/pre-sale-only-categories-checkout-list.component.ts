@@ -21,7 +21,10 @@ export class PreSaleOnlyCategoriesCheckoutListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  async onUpdateAdditionalCategoryPasses(params: any){}
+  async onUpdateAdditionalCategoryPasses(params: any){
+    this.router.navigate(['/pre-sale-categories', 'step1']);
+    return;
+  }
 
   async onRemoveAdditionalCategoryPasses(params: any){}
 
