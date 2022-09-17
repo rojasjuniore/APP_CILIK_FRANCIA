@@ -70,6 +70,7 @@ export class PreSaleService {
       payed: false,
       createdAt: currentDate.valueOf(),
       expiredAt: currentDate.add(30, 'minutes').valueOf(),
+      orderType: 'full'// 'full' | 'category-pass'
     };
   }
 
