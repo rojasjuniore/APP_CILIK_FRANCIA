@@ -37,8 +37,16 @@ export class DashboardComponent implements OnInit {
     return;
   }
 
-  onModalCategoriesTermsClose(status: any){
+  async onModalCategoriesTermsClose(status: any){
     console.log('onModalCategoriesTermsClose', status);
+    if(!status){
+      return;
+    }
+
+    const uid = await this.authSrv.getUIDPromise();
+    this.authSrv.saveTokenPush(uid);
+    this.preSaleSrv.buildAndStore({orderType: 'categoryPass', setup: 'automatic'}, true);
+    this.router.navigate(['/pre-sale-categories']);
   }
 
 }
