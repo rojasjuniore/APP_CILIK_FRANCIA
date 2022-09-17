@@ -98,7 +98,8 @@ export class PreSaleExtrasComponent implements OnInit {
 
   get groupValue(){
     const find = this.additionalCategoryPasses.findIndex((row: any) => row.type === 'group');
-    return find > -1 ? this.additionalCategoryPasses[find].quantity : 0;
+    return find > -1 ? this.additionalCategoryPasses[find].data : [];
+    // return [];
   }
 
   /**
@@ -109,12 +110,29 @@ export class PreSaleExtrasComponent implements OnInit {
     const { type, quantity } = params;
     // console.log('params', params);
     const find = this.additionalCategoryPasses.findIndex((row: any) => row.type === type);
+
+
     if(find > -1){
-      this.additionalCategoryPasses[find].quantity = quantity;
+
+      const row =this.additionalCategoryPasses[find];
+
+      if(row.type === 'group'){
+        this.additionalCategoryPasses[find] = params;
+      }else{
+        this.additionalCategoryPasses[find].quantity = quantity;
+      }
+
     }else{
       this.additionalCategoryPasses.push(params);
     }
-    const data = this.additionalCategoryPasses.filter((row: any) => row.quantity > 0)
+    const data = this.additionalCategoryPasses.filter((row: any) => {
+      if(row.type === 'group'){
+        return row.data.length > 0;
+      }else{
+        row.quantity > 0
+      }
+      return false;
+    })
     this.preSaleSrv.updateDocumentLocalStorage({additionalCategoryPasses: data});
     return;
   }
