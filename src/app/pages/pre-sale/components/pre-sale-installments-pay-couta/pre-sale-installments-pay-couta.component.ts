@@ -17,6 +17,12 @@ export class PreSaleInstallmentsPayCoutaComponent implements OnInit {
   public paymentMethodType: any;
   public paymentMethods = [
     {
+      label: 'Paypal',
+      value: 'paypal',
+      icon: 'bi bi-paypal',
+      status: true,
+    },
+    {
       label: 'Tarjeta de crédito',
       value: 'creditCard',
       icon: 'bi bi-credit-card',
@@ -28,12 +34,6 @@ export class PreSaleInstallmentsPayCoutaComponent implements OnInit {
       icon: 'bi bi-coin',
       status: false,
     },
-    {
-      label: 'Paypal',
-      value: 'paypal',
-      icon: 'bi bi-paypal',
-      status: true,
-    }
   ];
   public formStatus = 1;
 
