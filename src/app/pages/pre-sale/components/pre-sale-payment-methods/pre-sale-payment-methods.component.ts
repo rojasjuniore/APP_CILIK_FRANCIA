@@ -130,7 +130,7 @@ export class PreSalePaymentMethodsComponent implements OnInit {
         nro: index + 1,
         date: (index == 0) 
           ? currentDate.valueOf()
-          : currentDate.add(1, 'month').endOf('day').valueOf(),
+          : currentDate.add(30, 'days').endOf('day').valueOf(),
         paymentMethod: null,
         amount: coutaAmount,
         payed: false,
