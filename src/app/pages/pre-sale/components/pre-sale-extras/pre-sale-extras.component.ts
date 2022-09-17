@@ -108,9 +108,7 @@ export class PreSaleExtrasComponent implements OnInit {
    */
   onUpdateQuantity(params: any) {
     const { type, quantity } = params;
-    // console.log('params', params);
     const find = this.additionalCategoryPasses.findIndex((row: any) => row.type === type);
-
 
     if(find > -1){
 
@@ -125,14 +123,15 @@ export class PreSaleExtrasComponent implements OnInit {
     }else{
       this.additionalCategoryPasses.push(params);
     }
+
     const data = this.additionalCategoryPasses.filter((row: any) => {
       if(row.type === 'group'){
         return row.data.length > 0;
       }else{
-        row.quantity > 0
+        return row.quantity > 0
       }
-      return false;
-    })
+    });
+
     this.preSaleSrv.updateDocumentLocalStorage({additionalCategoryPasses: data});
     return;
   }
