@@ -1,0 +1,64 @@
+{
+    "data": [
+        {
+            "roomCode": "HAB1.1",
+            "fullPrice": 193,
+            "priceList": [
+                {"from": "2022/09/10", "to": "2022/09/30", "percentage": 0.30, "pricePerPeople": 135, "price": 135, "discountPerPeople": 57.86, "discount": 57.86},
+                {"from": "2022/10/01", "to": "2022/10/31", "percentage": 0.22, "pricePerPeople": 152, "price": 152, "discountPerPeople": 0.78, "discount": 0.78},
+                {"from": "2022/11/01", "to": "2022/12/15", "percentage": 0.11, "pricePerPeople": 171, "price": 171, "discountPerPeople": 0.89, "discount": 0.89},
+                {"from": "2022/12/16", "to": "2023/01/10", "percentage": 0.00, "pricePerPeople": 193, "price": 193, "discountPerPeople": 0, "discount": 0}
+            ]
+        },
+        {
+            "roomCode": "HAB1.2",
+            "fullPrice": 386,
+            "priceList": [
+                {"from": "2022/09/10", "to": "2022/09/30", "percentage": 0.30, "pricePerPeople": 135, "price": 270, "discountPerPeople": 57.86, "discount": 57.86},
+                {"from": "2022/10/01", "to": "2022/10/31", "percentage": 0.22, "pricePerPeople": 152, "price": 304, "discountPerPeople": 0.78, "discount": 0.78},
+                {"from": "2022/11/01", "to": "2022/12/15", "percentage": 0.11, "pricePerPeople": 171, "price": 342, "discountPerPeople": 0.89, "discount": 0.89},
+                {"from": "2022/12/16", "to": "2023/01/10", "percentage": 0.00, "pricePerPeople": 193, "price": 386, "discountPerPeople": 0, "discount": 0}
+            ]
+        },
+        {
+            "roomCode": "HAB2.2",
+            "fullPrice": 232,
+            "priceList": [
+                {"from": "2022/09/10", "to": "2022/09/30", "percentage": 0.30, "pricePerPeople": 82, "price": 164, "discountPerPeople": 57.86, "discount": 57.86},
+                {"from": "2022/10/01", "to": "2022/10/31", "percentage": 0.22, "pricePerPeople": 91, "price": 182, "discountPerPeople": 0.78, "discount": 0.78},
+                {"from": "2022/11/01", "to": "2022/12/15", "percentage": 0.11, "pricePerPeople": 103, "price": 206, "discountPerPeople": 0.89, "discount": 0.89},
+                {"from": "2022/12/16", "to": "2023/01/10", "percentage": 0.00, "pricePerPeople": 116, "price": 232, "discountPerPeople": 0, "discount": 0}
+            ]
+        },
+        {
+            "roomCode": "HAB2.3",
+            "fullPrice": 291,
+            "priceList": [
+                {"from": "2022/09/10", "to": "2022/09/30", "percentage": 0.30, "pricePerPeople": 68, "price": 204, "discountPerPeople": 57.86, "discount": 57.86},
+                {"from": "2022/10/01", "to": "2022/10/31", "percentage": 0.22, "pricePerPeople": 76, "price":  228, "discountPerPeople": 0.78, "discount": 0.78},
+                {"from": "2022/11/01", "to": "2022/12/15", "percentage": 0.11, "pricePerPeople": 86, "price": 258, "discountPerPeople": 0.89, "discount": 0.89},
+                {"from": "2022/12/16", "to": "2023/01/10", "percentage": 0.00, "pricePerPeople": 97, "price": 291, "discountPerPeople": 0, "discount": 0}
+            ]
+        },
+        {
+            "roomCode": "HAB3.2",
+            "fullPrice": 262,
+            "priceList": [
+                {"from": "2022/09/10", "to": "2022/09/30", "percentage": 0.30, "pricePerPeople": 92, "price": 184, "discountPerPeople": 57.86, "discount": 57.86},
+                {"from": "2022/10/01", "to": "2022/10/31", "percentage": 0.22, "pricePerPeople": 103, "price": 206, "discountPerPeople": 0.78, "discount": 0.78},
+                {"from": "2022/11/01", "to": "2022/12/15", "percentage": 0.11, "pricePerPeople": 116, "price": 232, "discountPerPeople": 0.89, "discount": 0.89},
+                {"from": "2022/12/16", "to": "2023/01/10", "percentage": 0.00, "pricePerPeople": 131, "price": 262, "discountPerPeople": 0, "discount": 0}
+            ]
+        },
+        {
+            "roomCode": "HAB3.3",
+            "fullPrice": 318,
+            "priceList": [
+                {"from": "2022/09/10", "to": "2022/09/30", "percentage": 0.30, "pricePerPeople": 74, "price": 222, "discountPerPeople": 57.86, "discount": 57.86},
+                {"from": "2022/10/01", "to": "2022/10/31", "percentage": 0.22, "pricePerPeople": 83, "price": 249, "discountPerPeople": 0.78, "discount": 0.78},
+                {"from": "2022/11/01", "to": "2022/12/15", "percentage": 0.11, "pricePerPeople": 94, "price": 282, "discountPerPeople": 0.89, "discount": 0.89},
+                {"from": "2022/12/16", "to": "2023/01/10", "percentage": 0.00, "pricePerPeople": 106, "price": 318, "discountPerPeople": 0, "discount": 0}
+            ]
+        }
+    ]
+}

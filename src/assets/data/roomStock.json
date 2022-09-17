@@ -1,0 +1,69 @@
+{
+    "data": [
+        {
+            "code": "HAB1",
+            "prefix": "HAB",
+            "label": "Habitación 1",
+            "totalStock": 42,
+            "saved": 8,
+            "stock": 34,
+            "supply": 34,
+            "roomCounter": 1000,
+            "ubicationType": 1,
+            "ubicationTypeDescription": "Casa de Playa",
+            "status": true
+        },
+        {
+            "code": "HAB2",
+            "prefix": "HAB",
+            "label": "Habitación 2",
+            "totalStock": 179,
+            "saved": 36,
+            "stock": 143,
+            "supply": 143,
+            "roomCounter": 2000,
+            "ubicationType": 1,
+            "ubicationTypeDescription": "Casa de Playa",
+            "status": true
+        },
+        {
+            "code": "HAB3",
+            "prefix": "HAB",
+            "label": "Habitación 3",
+            "totalStock": 140,
+            "saved": 30,
+            "stock": 119,
+            "supply": 119,
+            "roomCounter": 3000,
+            "ubicationType": 2,
+            "ubicationTypeDescription": "Torre del Mar",
+            "status": true
+        },
+        {
+            "code": "HAB4",
+            "prefix": "HAB",
+            "label": "Habitación 4",
+            "totalStock": 9,
+            "saved": 2,
+            "stock": 7,
+            "supply": 7,
+            "roomCounter": 4000,
+            "ubicationType": 1,
+            "ubicationTypeDescription": "Casa de Playa",
+            "status": false
+        },
+        {
+            "code": "HAB5",
+            "prefix": "HAB",
+            "label": "Habitación 5",
+            "totalStock": 19,
+            "saved": 4,
+            "stock": 15,
+            "supply": 15,
+            "roomCounter": 5000,
+            "ubicationType": 1,
+            "ubicationTypeDescription": "Casa de Playa",
+            "status": false
+        }
+    ]
+}
