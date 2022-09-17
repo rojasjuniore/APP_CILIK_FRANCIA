@@ -52,6 +52,9 @@ body{
 .text-rslt{
     color: #e7344c;
 }
+.text-whi{
+    color: #ffffff;
+}
 .btn{
     border-radius: 30px;
     padding: 1rem;
@@ -115,15 +118,22 @@ body{
 .btn.btn-payment .label-payment{
     font-size: 1rem;
 }
-.btn-cart{
+.btn-navbar-c{
     width: 50px;
     height: 50px;
     border-radius: 50%;
     background-color: #d3d3ce;
     cursor: pointer;
 }
-.btn-cart img{
+.btn-navbar-c img{
     width: 25px;
+}
+.btn-navbar-languaje{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid #d3d3ce;
+    cursor: pointer;
 }
 .btn-logout{
     cursor: pointer;
@@ -387,6 +397,14 @@ body{
 .item-dash-icon img{
     width: 150px;
 }
+.modalTCcategoriasAdd .btn-close{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+    z-index: 2;
+}
+
 
 
 @media (max-width: 575px) {
