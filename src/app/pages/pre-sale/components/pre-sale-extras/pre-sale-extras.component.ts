@@ -82,7 +82,7 @@ export class PreSaleExtrasComponent implements OnInit {
 
   parseDocumentToSave(item: any){
     return Object.assign({discount: 0},
-      pick(item, 'type', 'quantity', 'price', 'cu', 'label', 'fullPrice')
+      pick(item, 'type', 'quantity', 'price', 'cu', 'label', 'fullPrice', 'order')
     )
   }
 

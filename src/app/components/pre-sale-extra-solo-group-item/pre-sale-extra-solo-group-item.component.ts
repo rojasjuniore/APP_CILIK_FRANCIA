@@ -44,7 +44,7 @@ export class PreSaleExtraSoloGroupItemComponent implements OnInit {
     });
 
     // console.log('groups', this.groups);
-    this.onUpdateQuantity.next({type: 'group', data: this.groups});
+    this.onUpdateQuantity.next({type: 'group', data: this.groups, order: 2});
   }
 
   /**

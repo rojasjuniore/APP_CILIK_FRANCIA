@@ -41,6 +41,7 @@ export class PreSaleExtraSoloCardItemComponent implements OnInit, OnChanges {
       price: data.price,
       fullPrice: data.fullPrice,
       label: data.label,
+      order: 0
     });
   }
 

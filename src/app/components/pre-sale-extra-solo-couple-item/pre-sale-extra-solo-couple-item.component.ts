@@ -41,6 +41,7 @@ export class PreSaleExtraSoloCoupleItemComponent implements OnInit, OnChanges {
       price: data.price,
       fullPrice: data.fullPrice,
       label: data.label,
+      order: 1,
     });
   }
 
