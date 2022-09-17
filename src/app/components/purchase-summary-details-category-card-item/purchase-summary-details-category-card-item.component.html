@@ -26,7 +26,7 @@
                 </p>
                 <!-- <hr> -->
                 <p class="m-0 fw-bold" [ngClass]="{'border-bottom': !isLast}" *ngFor="let item of additionalCategoryPasses; last as isLast">
-                    {{ "general.amount-of" | translate }} {{item.label}}: {{item.quantity}}
+                    {{ "general.amount-of" | translate }} {{item.label}}: {{getTotalAdditional(item)}}
                 </p>
             </ng-container>
 
