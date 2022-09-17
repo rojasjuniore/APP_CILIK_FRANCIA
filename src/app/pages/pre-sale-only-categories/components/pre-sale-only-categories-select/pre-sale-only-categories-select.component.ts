@@ -69,4 +69,9 @@ export class PreSaleOnlyCategoriesSelectComponent implements OnInit {
     return;
   }
 
+  async onNext(){
+    this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale-categories/step2'});
+    this.router.navigate(['/pre-sale-categories', 'step2']);
+  }
+
 }
