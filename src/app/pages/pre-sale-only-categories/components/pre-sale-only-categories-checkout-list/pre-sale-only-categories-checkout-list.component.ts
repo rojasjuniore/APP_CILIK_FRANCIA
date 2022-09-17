@@ -42,7 +42,17 @@ export class PreSaleOnlyCategoriesCheckoutListComponent implements OnInit {
     this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale-categories/step1'});
     this.router.navigate(['/pre-sale-categories', 'step1']);
   }
+  
+  async onNext(){
 
-  async onNext(){}
+    if(this.preSaleDocument.additionalCategoryPasses.length == 0){ 
+      this.sweetAlert2Srv.showWarning('Debe seleccionar al menos una categoría adicional');
+      this.onBack();
+      return;
+    }
+
+    this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale-categories/payment-method'});
+    this.router.navigate(['/pre-sale-categories', 'payment-method']);
+  }
 
 }

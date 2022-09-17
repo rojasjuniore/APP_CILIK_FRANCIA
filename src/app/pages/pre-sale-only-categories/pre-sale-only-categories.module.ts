@@ -7,13 +7,15 @@ import { ComponentsModule } from 'src/app/components/components.module';
 import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
 import { PreSaleOnlyCategoriesSelectComponent } from './components/pre-sale-only-categories-select/pre-sale-only-categories-select.component';
 import { PreSaleOnlyCategoriesCheckoutListComponent } from './components/pre-sale-only-categories-checkout-list/pre-sale-only-categories-checkout-list.component';
+import { PreSaleOnlyCategoriesPaymentMethodsComponent } from './components/pre-sale-only-categories-payment-methods/pre-sale-only-categories-payment-methods.component';
 
 
 @NgModule({
   declarations: [
     PreSaleOnlyCategoriesComponent,
     PreSaleOnlyCategoriesSelectComponent,
-    PreSaleOnlyCategoriesCheckoutListComponent
+    PreSaleOnlyCategoriesCheckoutListComponent,
+    PreSaleOnlyCategoriesPaymentMethodsComponent
   ],
   imports: [
     CommonModule,
