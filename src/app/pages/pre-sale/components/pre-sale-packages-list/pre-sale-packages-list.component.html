@@ -1,4 +1,4 @@
-<div class="row align-items-stetch">
+<div class="row align-items-stetch mb-4">
     <app-pre-sale-steps-counter [step]="1"></app-pre-sale-steps-counter>
 
     <div class="col-12 text-center mt-5 mb-2 fw-bold fs-5">
@@ -6,7 +6,7 @@
         {{ "general.Enter-the-number-of-people-to-register" | translate }}
     </div>
 
-    <div class="col-12 col-md-8 mb-3">
+    <div class="col-12 col-md-6 mb-3">
         <app-input-number-form 
             label="# de competidores" 
             [quantity]="nroParticipants"
@@ -24,7 +24,7 @@
             </div>
         </div>
     </div> -->
-    <div class="col-12 col-md-4 mb-3">
+    <div class="col-12 col-md-6 mb-3">
         <div class="d-flex align-items-center h-100 card-box card-box-2 p-3">
             <div class="icon-help pe-3">
                 <img src="assets/img/cilik/help-icon-10.png" alt="">
@@ -36,106 +36,117 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="row align-items-stetch">
-        <div class="col-12 col-md-5 mb-3">
-            <div class="h-100 p-3">
-                <div class="d-flex flex-column align-items-center">
-                    <button class="btn btn-two mb-3">ACOMODACIÓN MANUAL</button>
-                    <div class="fs-6 px-3 text-center">
-                        Elige tipo de habitación, número de personas y noches adicionales según tus necesidades.
+
+<ng-container *ngIf="!setup">
+    <div class="row mt-5">
+        <div class="row align-items-stetch">
+            <div class="col-12 col-md-5 mb-3">
+                <div class="h-100 p-3">
+                    <div class="d-flex flex-column align-items-center">
+                        <button class="btn btn-two mb-3" (click)="onUpdateSetup('manual')">ACOMODACIÓN MANUAL</button>
+                        <div class="fs-6 px-3 text-center">
+                            Elige tipo de habitación, número de personas y noches adicionales según tus necesidades.
+                        </div>
                     </div>
-                </div>
+                </div> 
             </div> 
-        </div> 
-        <div class="col-2 d-none d-md-flex justify-content-center align-items-center">
-            <div class="seprd-h"></div>
+            <div class="col-2 d-none d-md-flex justify-content-center align-items-center">
+                <div class="seprd-h"></div>
+            </div>
+            <div class="col-12 col-md-5 mb-3">
+                <div class="h-100 p-3">
+                    <div class="d-flex flex-column align-items-center">
+                        <button class="btn btn-one mb-3" (click)="onUpdateSetup('automatic')">ACOMODACIÓN AUTOMÁTICA</button>
+                        <div class="fs-6 px-3 text-center">
+                            El sistema acomoda de manera automática a todas las personas con las tarifas más convenientes.
+                            Puedes personalizar el resultado.
+                        </div>
+                    </div>
+                </div>
+            </div>             
         </div>
-        <div class="col-12 col-md-5 mb-3">
-            <div class="h-100 p-3">
-                <div class="d-flex flex-column align-items-center">
-                    <button class="btn btn-one mb-3">ACOMODACIÓN AUTOMÁTICA</button>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="setup">
+
+    <div class="row">
+        <!-- <div class="col-12">
+                 
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="bi bi-info-circle"></i>&nbsp;
+                {{ "general.package-list-text" | translate }}
+                 <a href="javascript:void(0)" class="alert-link text-decoration-underline" (click)="runHelp()">{{ "general.here" | translate }}</a>.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div> -->
+
+        <div class="col-12 mb-4" *ngIf="setup == 'automatic'">
+            <div class="card-box card-box-b3 p-3 mb-3">
+                <div class="d-flex align-items-center">
+                    <button class="btn btn-one" (click)="runHelp()">ACOMODACIÓN AUTOMÁTICA</button>
                     <div class="fs-6 px-3 text-center">
-                        El sistema acomoda de manera automática a todas las personas con las tarifas más convenientes.
-                        Puedes personalizar el resultado.
+                        Con esta opción el sistema acomoda de manera automática a todas las personas con las tarifas más convenientes.
                     </div>
                 </div>
             </div>
-        </div>             
-    </div>
-</div>
-
-<div class="row">   
-
-    
-    <!-- <div class="col-12">
-             
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <i class="bi bi-info-circle"></i>&nbsp;
-            {{ "general.package-list-text" | translate }}
-             <a href="javascript:void(0)" class="alert-link text-decoration-underline" (click)="runHelp()">{{ "general.here" | translate }}</a>.
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-    </div> -->
-    <div class="col-12">
-        <div class="card-box card-box-b3 p-3 mb-3">
-            <div class="d-flex align-items-center">
-                <button class="btn btn-one" (click)="runHelp()">ACOMODACIÓN AUTOMÁTICA</button>
-                <div class="fs-6 px-3 text-center">
-                    Con esta opción el sistema acomoda de manera automática a todas las personas con las tarifas más convenientes.
+    </div>
+
+
+    <div class="row">   
+
+        <div class="col-12 text-center">
+            <div class="fw-bold fs-5">
+                <!-- Continua con tu proceso de reserva -->
+                Continúa con tu compra
+            </div>
+        </div>
+    
+        <ng-container *ngIf="rooms.length > 0; else noRooms">
+            <div class="col-12" *ngFor="let room of rooms; index as idx">
+                <app-pre-sale-plan-card-item 
+                    [index]="idx"
+                    [item]="room"
+                    (onUpdateNroParticipants)="onUpdatePlanCardItem($event)"
+                    (onUpdateRoom)="onMorePLanCardItem($event)"
+                    (onUpdateAdditionalDays)="onAddAdditionalDays($event)"
+                    (onRemove)="removeRoom($event)"></app-pre-sale-plan-card-item>
+            </div>
+        </ng-container>
+    
+        <ng-template #noRooms>
+            <div class="col-12">
+                <div class="card px-2 py-5 mb-3 text-center">
+                    {{ "general.no-rooms" | translate }}
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="col-12 text-center mt-5">
-        <div class="fw-bold fs-5">
-            <!-- Continua con tu proceso de reserva -->
-            Continúa con tu compra
-        </div>
-    </div>
-
-    <ng-container *ngIf="rooms.length > 0; else noRooms">
-        <div class="col-12" *ngFor="let room of rooms; index as idx">
-            <app-pre-sale-plan-card-item 
-                [index]="idx"
-                [item]="room"
-                (onUpdateNroParticipants)="onUpdatePlanCardItem($event)"
-                (onUpdateRoom)="onMorePLanCardItem($event)"
-                (onUpdateAdditionalDays)="onAddAdditionalDays($event)"
-                (onRemove)="removeRoom($event)"></app-pre-sale-plan-card-item>
-        </div>
-    </ng-container>
-
-    <ng-template #noRooms>
-        <div class="col-12">
-            <div class="card px-2 py-5 mb-3 text-center">
-                {{ "general.no-rooms" | translate }}
-            </div>
-        </div>
-    </ng-template>
-
+        </ng-template>
     
-
-    <div class="col-12">
-        <hr>
+        
+    
+        <div class="col-12">
+            <hr>
+        </div>
+    
+        <div class="col-12 col-sm-6 col-md-6 mb-3">
+            <app-pre-sale-add-room-button 
+                [disabled]="participantsLeft <= 0"
+                (onAddRoom)="onAddRoom($event)"
+            ></app-pre-sale-add-room-button>
+        </div>
+    
+        <app-pre-sale-totales></app-pre-sale-totales>
+    
+        <div class="col-12 text-end">
+            <button class="btn btn-one" type="button" (click)="onNext()">
+                {{ "general.proceed" | translate }}
+            </button>
+        </div>
+    
     </div>
+</ng-container>
 
-    <div class="col-12 col-sm-6 col-md-6 mb-3">
-        <app-pre-sale-add-room-button 
-            [disabled]="participantsLeft <= 0"
-            (onAddRoom)="onAddRoom($event)"
-        ></app-pre-sale-add-room-button>
-    </div>
 
-    <app-pre-sale-totales></app-pre-sale-totales>
-
-    <div class="col-12 text-end">
-        <button class="btn btn-one" type="button" (click)="onNext()">
-            {{ "general.proceed" | translate }}
-        </button>
-    </div>
-
-</div>
 <app-pre-sale-modal-room-type-details (onUpdateRoom)="onUpdatePlanCardItem($event)"></app-pre-sale-modal-room-type-details>
 <app-pre-sale-modal-additional-days (onUpdateRoom)="onUpdatePlanCardItem($event)"></app-pre-sale-modal-additional-days>
