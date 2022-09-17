@@ -35,7 +35,8 @@
                             <div class="item-dash-icon">
                                 <img src="assets/img/cilik/dash-09.png" alt="">
                             </div>
-                            <button class="btn btn-one" data-bs-toggle="modal" data-bs-target="#modalTCcategoriasA">COMPRA DE CATEGORIAS</button>
+                            <!-- <button class="btn btn-one" data-bs-toggle="modal" data-bs-target="#modalTCcategoriasA">COMPRA DE CATEGORIAS</button> -->
+                            <button class="btn btn-one" (click)="showCategoriesTerms()">COMPRA DE CATEGORIAS</button>
                         </div>
                     </div>
                 </div>
@@ -56,6 +57,7 @@
   </div>
 </div>
 
+<app-pre-sale-modal-only-categories-terms (onCloseModal)="onModalCategoriesTermsClose($event)"></app-pre-sale-modal-only-categories-terms>
 
 
 
