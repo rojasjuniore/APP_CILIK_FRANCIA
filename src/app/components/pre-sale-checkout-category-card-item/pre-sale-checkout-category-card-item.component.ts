@@ -28,11 +28,29 @@ export class PreSaleCheckoutCategoryCardItemComponent implements OnInit {
   }
 
   get additionalCategoryPassesAmountFullPrice(){
-    return this.additionalCategoryPasses.map((row) => row.quantity * row.fullPrice).reduce((a, b) => a + b, 0);
+    return this.additionalCategoryPasses.map((row) => {
+      if(row.type == 'group'){
+        return row.data.map((group) => group.quantity * group.fullPrice)
+          .reduce((prev, curr) => prev + curr, 0)
+
+      }else{
+        return row.quantity * row.fullPrice;
+      }
+    })
+      .reduce((prev, curr) => prev + curr, 0);
   }
 
   get additionalCategoryPassesAmount(){
-    return this.additionalCategoryPasses.map((row) => row.quantity * row.price).reduce((a, b) => a + b, 0);
+    return this.additionalCategoryPasses.map((row) => {
+      if(row.type == 'group'){
+        return row.data.map((group) => group.quantity * group.price)
+          .reduce((prev, curr) => prev + curr, 0)
+
+      }else{
+        return row.quantity * row.price;
+      }
+    })
+      .reduce((prev, curr) => prev + curr, 0);
   }
 
   get discount(){
