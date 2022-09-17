@@ -27,7 +27,7 @@
                             <div class="item-dash-icon">
                                 <img src="assets/img/cilik/dash-08.png" alt="">
                             </div>
-                            <button class="btn btn-one" data-bs-toggle="modal" data-bs-target="#modalTCcategoriasA" (click)="newOrder()">COMPRAR PLANES</button>
+                            <button class="btn btn-one" (click)="newOrder()">COMPRAR PLANES</button>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 mb-3">
@@ -35,7 +35,7 @@
                             <div class="item-dash-icon">
                                 <img src="assets/img/cilik/dash-09.png" alt="">
                             </div>
-                            <button class="btn btn-one">COMPRA DE CATEGORIAS</button>
+                            <button class="btn btn-one" data-bs-toggle="modal" data-bs-target="#modalTCcategoriasA">COMPRA DE CATEGORIAS</button>
                         </div>
                     </div>
                 </div>
@@ -102,10 +102,10 @@
                 </div>
             </div>
             <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-three p-2">
+                <button type="button" class="btn btn-three p-2" data-bs-dismiss="modal">
                     NO, aún no cuento con<br> un plan todo incluido
                 </button>
-                <button type="button" class="btn btn-one p-2">
+                <button type="button" class="btn btn-one p-2" data-bs-dismiss="modal">
                     SÍ, ya cuento con un<br> plan todo incluido
                 </button>
             </div>
