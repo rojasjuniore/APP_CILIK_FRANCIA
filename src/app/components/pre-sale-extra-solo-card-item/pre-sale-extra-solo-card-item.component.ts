@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { from, Observable, Subject } from 'rxjs';
 import { HotelService } from 'src/app/services/hotel.service';
 
@@ -7,7 +7,7 @@ import { HotelService } from 'src/app/services/hotel.service';
   templateUrl: './pre-sale-extra-solo-card-item.component.html',
   styleUrls: ['./pre-sale-extra-solo-card-item.component.css']
 })
-export class PreSaleExtraSoloCardItemComponent implements OnInit {
+export class PreSaleExtraSoloCardItemComponent implements OnInit, OnChanges {
 
   @Input() min = 0;
   @Input() max = 99;
@@ -15,14 +15,21 @@ export class PreSaleExtraSoloCardItemComponent implements OnInit {
 
   @Output() onUpdateQuantity = new Subject();
 
-  public soloDocument$!: Observable<any>;
+  public document$!: Observable<any>;
 
   constructor(
     private hotelSrv: HotelService,
   ) { }
 
   ngOnInit(): void {
-    this.soloDocument$ = from(this.hotelSrv.getCategoryPassesByCode('solo'));
+    this.document$ = from(this.hotelSrv.getCategoryPassesByCode('solo'));
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const { quantity } = changes;
+    if (quantity) {
+      this.quantity = quantity.currentValue;
+    }
   }
 
   updateQuantity(params: any) {
