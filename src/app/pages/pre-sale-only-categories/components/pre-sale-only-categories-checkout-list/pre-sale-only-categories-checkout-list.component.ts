@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PreSaleService } from 'src/app/services/pre-sale.service';
+import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 
 @Component({
   selector: 'app-pre-sale-only-categories-checkout-list',
@@ -14,6 +15,7 @@ export class PreSaleOnlyCategoriesCheckoutListComponent implements OnInit {
   constructor(
     public preSaleSrv: PreSaleService,
     private router: Router,
+    private sweetAlert2Srv: Sweetalert2Service,
   ) {
     this.preSaleDocument = this.preSaleSrv.checkAndLoadDocumentLocalStorage();
   }
@@ -26,7 +28,15 @@ export class PreSaleOnlyCategoriesCheckoutListComponent implements OnInit {
     return;
   }
 
-  async onRemoveAdditionalCategoryPasses(params: any){}
+  async onRemoveAdditionalCategoryPasses(params: any){
+    if(this.preSaleDocument.additionalCategoryPasses.length == 0){ return; }
+
+    const ask = await this.sweetAlert2Srv.askConfirm(`¿Desea eliminar todas las categorías adicionales?`);
+    if(!ask){ return; }
+    
+    this.preSaleSrv.updateDocumentLocalStorage({additionalCategoryPasses: []});
+    this.onBack();
+  }
 
   async onBack(){
     this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale-categories/step1'});
