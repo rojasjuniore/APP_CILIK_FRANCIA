@@ -57,6 +57,7 @@ export class PreSaleExtrasComponent implements OnInit {
     private hotelSrv: HotelService,
   ) {
     const { additionalCategoryPasses } = this.preSaleSrv.checkAndLoadDocumentLocalStorage();
+    // console.log('additionalCategoryPasses', additionalCategoryPasses);
     this.additionalCategoryPasses = additionalCategoryPasses;
   }
 
@@ -83,6 +84,21 @@ export class PreSaleExtrasComponent implements OnInit {
     return Object.assign({discount: 0},
       pick(item, 'type', 'quantity', 'price', 'cu', 'label', 'fullPrice')
     )
+  }
+
+  get soloValue(){
+    const find = this.additionalCategoryPasses.findIndex((row: any) => row.type === 'solo');
+    return find > -1 ? this.additionalCategoryPasses[find].quantity : 0;
+  }
+
+  get coupleValue(){
+    const find = this.additionalCategoryPasses.findIndex((row: any) => row.type === 'couple');
+    return find > -1 ? this.additionalCategoryPasses[find].quantity : 0;
+  }
+
+  get groupValue(){
+    const find = this.additionalCategoryPasses.findIndex((row: any) => row.type === 'group');
+    return find > -1 ? this.additionalCategoryPasses[find].quantity : 0;
   }
 
   /**

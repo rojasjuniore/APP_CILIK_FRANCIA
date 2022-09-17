@@ -6,11 +6,17 @@
         {{ "general.Choose-the-additional-categories-you-want" | translate }}
     </div>
 
-    <app-pre-sale-extra-solo-card-item (onUpdateQuantity)="onUpdateQuantity($event)"></app-pre-sale-extra-solo-card-item>
+    <app-pre-sale-extra-solo-card-item 
+        [quantity]="soloValue"
+        (onUpdateQuantity)="onUpdateQuantity($event)"></app-pre-sale-extra-solo-card-item>
 
-    <app-pre-sale-extra-solo-couple-item (onUpdateQuantity)="onUpdateQuantity($event)"></app-pre-sale-extra-solo-couple-item>
-    
-    <app-pre-sale-extra-solo-group-item (onUpdateQuantity)="onUpdateQuantity($event)"></app-pre-sale-extra-solo-group-item>
+    <app-pre-sale-extra-solo-couple-item 
+        [quantity]="coupleValue"
+        (onUpdateQuantity)="onUpdateQuantity($event)"></app-pre-sale-extra-solo-couple-item>
+
+    <app-pre-sale-extra-solo-group-item 
+        [quantity]="groupValue"
+        (onUpdateQuantity)="onUpdateQuantity($event)"></app-pre-sale-extra-solo-group-item>
 
     <!-- <div class="col-12 mb-4" *ngFor="let item of categories">
         <div class="card card-box p-3 mb-3">
