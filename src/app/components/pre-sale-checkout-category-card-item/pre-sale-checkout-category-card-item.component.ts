@@ -20,7 +20,7 @@ export class PreSaleCheckoutCategoryCardItemComponent implements OnInit {
   }
 
   get nroPasses(){
-    return this.order.rooms.map((row) => row.capacity).reduce((a, b) => a + b, 0);
+    return this.order?.rooms.map((row) => row.capacity).reduce((a, b) => a + b, 0);
   }
 
   get additionalCategoryPasses(): any[]{
