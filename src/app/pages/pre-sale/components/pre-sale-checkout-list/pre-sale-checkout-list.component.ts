@@ -49,6 +49,11 @@ export class PreSaleCheckoutListComponent implements OnInit {
     const ask = await this.sweetAlert2Srv.askConfirm(`¿Desea remover de la orden la habitación #${params.index + 1}?`);
     if(!ask){ return; }
 
+    if(this.rooms.length == 1){
+      this.sweetAlert2Srv.showInfo('No puede eliminar la habitación');
+      return;
+    }
+
     const rooms = this.rooms.filter((value, index) => index != params.index);
     const nroParticipants = rooms.map((row) => row.capacity).reduce((acc, next) => acc + next, 0);
 
