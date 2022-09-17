@@ -6,13 +6,13 @@
         {{ "general.Enter-the-number-of-people-to-register" | translate }}
     </div>
 
-    <!-- <div class="col-12 col-md-6 mb-3">
+    <div class="col-12 col-md-8 mb-3">
         <app-input-number-form 
             label="# de competidores" 
             [quantity]="nroParticipants"
             (onUpdateQuantity)="onUpdateNroParticipants($event)"></app-input-number-form>
-    </div> -->
-    <div class="col-12 col-md-8 mb-3">
+    </div>
+    <!-- <div class="col-12 col-md-8 mb-3">
         <div class="card-box-number">
             <div class="card-box-number-header">
                 <label for="inputParticipantsLeft" class="form-label w-100 text-center">
@@ -23,14 +23,14 @@
                 <input disabled="true" type="text" class="form-control-plaintext text-center" id="inputParticipantsLeft" placeholder="{{(participantsLeft >= 0) ? participantsLeft : 0}}">
             </div>
         </div>
-    </div>
+    </div> -->
     <div class="col-12 col-md-4 mb-3">
         <div class="d-flex align-items-center h-100 card-box card-box-2 p-3">
             <div class="icon-help pe-3">
                 <img src="assets/img/cilik/help-icon-10.png" alt="">
             </div>
             <div class="fs-5">
-                Quedan <span class="text-rslt">4</span> personas pendientes por asignar habitación
+                Quedan <span class="text-rslt">{{(participantsLeft >= 0) ? participantsLeft : 0}}</span> personas pendientes por asignar habitación
             </div>
         </div>
     </div>
