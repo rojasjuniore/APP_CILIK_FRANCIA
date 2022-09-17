@@ -24,7 +24,8 @@ export class PreSaleCheckoutCategoryCardItemComponent implements OnInit {
   }
 
   get additionalCategoryPasses(): any[]{
-    return this.order.additionalCategoryPasses || [];
+    const snapshot = this.order.additionalCategoryPasses || [];
+    return snapshot.sort((a, b) => a.order - b.order);
   }
 
   get additionalCategoryPassesAmountFullPrice(){
