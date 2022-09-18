@@ -9,15 +9,19 @@
                 <div class="row">
                     <div class="col mx-0 px-0">
                         <div class="fs-2 px-3 text-rslt fw-bold text-center mb-3">
-                            Bienvenido a tu perfil del WLDC 2023
+                            {{'dashboard.welcomeMessage' | translate}}
                         </div>
                         <div class="seprd"></div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col text-center mb-5">
-                        <div class="fs-4 fw-bold">¿Qué deseas hacer hoy?</div>
-                        <div>Aquí podrás iniciar tu compra para vivir la experiencia.</div>
+                        <div class="fs-4 fw-bold">
+                            {{('dashboard.welcomeMessageSub' | translate)[0]}}
+                        </div>
+                        <div>
+                            {{('dashboard.welcomeMessageSub' | translate)[1]}}
+                        </div>
                     </div>
                 </div>
 
@@ -27,7 +31,9 @@
                             <div class="item-dash-icon">
                                 <img src="assets/img/cilik/dash-08.png" alt="">
                             </div>
-                            <button class="btn btn-one" (click)="newOrder()">COMPRAR PLANES</button>
+                            <button class="btn btn-one" (click)="newOrder()">
+                                {{'general.buyPlans' | translate | uppercase}}
+                            </button>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 mb-3">
@@ -35,7 +41,9 @@
                             <div class="item-dash-icon">
                                 <img src="assets/img/cilik/dash-09.png" alt="">
                             </div>
-                            <button class="btn btn-one" (click)="showCategoriesTerms()">COMPRA DE CATEGORIAS</button>
+                            <button class="btn btn-one" (click)="showCategoriesTerms()">
+                                {{'general.buyCategories' | translate | uppercase}}
+                            </button>
                         </div>
                     </div>
                 </div>

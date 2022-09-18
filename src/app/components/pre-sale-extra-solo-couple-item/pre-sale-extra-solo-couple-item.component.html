@@ -5,14 +5,14 @@
                 <div class="col-12 px-3">
                     <div class="d-flex justify-content-between align-items-center">
                         <span class="fw-bold fs-5">
-                            Categoría de Pareja
+                            {{'general.coupleCategory' | translate}}
                         </span>
         
                         <span>
-                            Valor por pareja: USD {{document?.price * 2 | mask:'separator.2':','}}
+                            {{'general.pricePerCouple' | translate}}: USD {{document?.price * 2 | mask:'separator.2':','}}
                             <br>
                             <small class="text-muted">
-                                Valor por persona: USD {{document?.price | mask:'separator.2':','}}
+                                {{'general.pricePerPerson' | translate}}: USD {{document?.price | mask:'separator.2':','}}
                             </small>
                         </span>
                     </div>
@@ -25,14 +25,14 @@
                     <div class="row p-2 align-items-stretch">
                         <div class="col-12 col-sm-6 col-md-6">
                             <app-input-number-form-two
-                                label="# Cantidad" 
-                                [min]="0" [max]="99" [quantity]="quantity" [step]="2"
+                                [label]="'# ' + ('general.quantity' | translate)" 
+                                [min]="0" [max]="99" [quantity]="coupleCounter" [step]="1"
                                 (onUpdateQuantity)="updateQuantity({data: document, quantity: $event})"></app-input-number-form-two>
                         </div>
                         <div class="col-12 col-sm-6 col-md-6 d-flex justify-content-end align-self-end mt-3 mt-md-0">
                             <div class="card-box card-box-wfc p-3">
                                 <h4 class="text-end py-2 m-0">
-                                    Monto USD {{document?.price * quantity | mask:'separator.2':','}}
+                                    {{'general.amount' | translate | titlecase}} USD {{document?.price * quantity | mask:'separator.2':','}}
                                 </h4>                                
                             </div>
                         </div>

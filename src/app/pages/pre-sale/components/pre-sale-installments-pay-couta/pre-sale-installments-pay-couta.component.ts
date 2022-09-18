@@ -17,19 +17,19 @@ export class PreSaleInstallmentsPayCoutaComponent implements OnInit {
   public paymentMethodType: any;
   public paymentMethods = [
     {
-      label: 'Paypal',
+      label: 'paymentMethods.paypal',
       value: 'paypal',
       icon: 'bi bi-paypal',
       status: true,
     },
     {
-      label: 'Tarjeta de crédito',
+      label: 'paymentMethods.creditCard',
       value: 'creditCard',
       icon: 'bi bi-credit-card',
       status: false,
     },
     {
-      label: 'Criptomonedas',
+      label: 'paymentMethods.crypto',
       value: 'crypto',
       icon: 'bi bi-coin',
       status: false,
@@ -101,6 +101,7 @@ export class PreSaleInstallmentsPayCoutaComponent implements OnInit {
     await this.hotelSrv.updateRoom(findRoom._id, { paymentOrderID: orderId, additionals: room.additionals, roomType: room.roomCode });
 
     /** TODO: actualizar contador de habitaciónes disponibles por tipo */
+    await this.hotelSrv.updateRoomStockSupplyCounter(room.roomCodePrefix, -1);
 
     /** Actualizar registro de habitación */
     const roomData = Object.assign({}, room, {roomId: findRoom._id});

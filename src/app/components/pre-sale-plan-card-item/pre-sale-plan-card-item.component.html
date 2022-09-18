@@ -9,11 +9,11 @@
         <div class="col-12 px-3">
             <div class="d-flex justify-content-between flex-wrap">
                 <span class="fw-bold fs-5">
-                    {{ "general.room#" | translate }} {{index + 1}}
+                    {{ "general.room" | translate }} #{{index + 1}}
                 </span>
 
                 <span>
-                    {{ "general.price-per-person" | translate }}: USD {{pricePerPeople | mask:'separator.2':','}}
+                    {{ "general.pricePerPerson" | translate }}: USD {{pricePerPeople | mask:'separator.2':','}}
                     &nbsp;
                     <span class="btn-close-card-item"><i class="bi bi-x-lg" (click)="removeItem()"></i></span>
                 </span>
@@ -30,12 +30,12 @@
             <div class="row p-2">
                 <div class="col-12">
                     <app-input-number-form-two 
-                        label="{{ 'general.Add-people-to-the-room' | translate }}" 
+                        [label]="('general.roomCardAddPeopleIntoTheroom' | translate)" 
                         [min]="1" [max]="3"
                         [quantity]="item.capacity"
                         (onUpdateQuantity)="onUpdateQuantity($event)"
                     ></app-input-number-form-two>
-                    <span class="">{{ "general.Max-capacity-3-people" | translate }}</span>
+                    <span class="">{{ "general.roomCardMaxCapacity" | translate }}</span>
                 </div>
             </div>
         </div>
@@ -44,7 +44,7 @@
                 <div class="col-12  d-flex justify-content-end">
                     <div class="card-box card-box-wfc p-3">
                         <h4 class="text-end py-2 m-0">
-                            {{ "amount" | translate }} USD {{subTotal | mask:'separator.2':','}}
+                            {{ "general.amount" | translate | titlecase }} USD {{subTotal | mask:'separator.2':','}}
                         </h4>
                     </div>                   
                 </div>
@@ -76,21 +76,20 @@
         <div class="col-12 col-md-6">
             <div class="col-12 col-sm-12 col-md-8">
                 <button class="btn btn-three mt-2" type="button" (click)="onUpdateRoom.next(index)">
-                    <!-- {{ "general.up-category-of-room" | translate }} -->
-                    CAMBIAR TIPO DE HABITACIÓN
+                    {{ "general.changeRoomType" | translate | uppercase }}
                 </button>
                 <button class="btn btn-three mt-2" type="button" (click)="onUpdateAdditionalDays.next(index)">
-                    {{ "general.additional-night" | translate }} <ng-container *ngIf="additionalAmount > 0">({{additionalsDays}})</ng-container>
+                    {{ "general.extraNight" | translate | uppercase }} <ng-container *ngIf="additionalAmount > 0">({{additionalsDays}})</ng-container>
                 </button>
             </div>
         </div>
         <div class="col-12 col-sm-6 col-md-6">
             <div class="row p-2">
                 <div class="col-12 text-end fs-5">
-                    {{ "general.this-plan-includes" | translate }}: 
+                    {{ "general.thisPlanIncludes" | translate }}: 
                     <br>
                     <a data-bs-toggle="modal" href="#modalPlanDetails" role="button" class="fw-bold text-decoration-none text-danger">
-                        {{ "general.see-here" | translate }}
+                        {{ "general.seeHere" | translate }}
                     </a>
                 </div>
             </div>

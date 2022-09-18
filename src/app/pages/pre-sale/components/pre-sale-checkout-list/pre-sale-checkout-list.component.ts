@@ -4,6 +4,7 @@ import { Sweetalert2stepsService } from 'src/app/services/sweetalert2steps.servi
 import { Router } from '@angular/router';
 import { Sweetalert2Service } from '../../../../services/sweetalert2.service';
 import { Location } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-pre-sale-checkout-list',
@@ -19,6 +20,7 @@ export class PreSaleCheckoutListComponent implements OnInit {
     private router: Router,
     private sweetAlert2Srv: Sweetalert2Service,
     public location: Location,
+    private translatePipe: TranslatePipe,
   ) {
     this.loadLocalData();
   }
@@ -46,18 +48,31 @@ export class PreSaleCheckoutListComponent implements OnInit {
   }
 
   async onRemoveItem(params: any){
-    const ask = await this.sweetAlert2Srv.askConfirm(`¿Desea remover de la orden la habitación #${params.index + 1}?`);
+
+    let message = this.translatePipe.transform('formValidations.checkoutStepAskRemoveRoomAction', {value: (params.index + 1)});
+    const ask = await this.sweetAlert2Srv.askConfirm(message);
     if(!ask){ return; }
 
     if(this.rooms.length == 1){
-      this.sweetAlert2Srv.showInfo('No puede eliminar la habitación');
+      message = this.translatePipe.transform('formValidations.checkoutStepCannotRemoveRoom');
+      this.sweetAlert2Srv.showInfo(message);
       return;
     }
 
     const rooms = this.rooms.filter((value, index) => index != params.index);
     const nroParticipants = rooms.map((row) => row.capacity).reduce((acc, next) => acc + next, 0);
 
-    this.preSaleSrv.updateDocumentLocalStorage({rooms, nroParticipants});
+    /**
+     * Actualizar porcentaje de descuento por grupo
+     */
+    let groupDiscount = 0;
+    if(nroParticipants >= 20){
+      groupDiscount = 0.10;
+    }else if(nroParticipants >= 10){
+      groupDiscount = 0.05;
+    }
+
+    this.preSaleSrv.updateDocumentLocalStorage({rooms, nroParticipants, groupDiscount});
     this.loadLocalData();
   }
 
@@ -72,7 +87,8 @@ export class PreSaleCheckoutListComponent implements OnInit {
   async onRemoveAdditionalCategoryPasses(params: any){
     if(this.preSaleDocument.additionalCategoryPasses.length == 0){ return; }
 
-    const ask = await this.sweetAlert2Srv.askConfirm(`¿Desea eliminar todas las categorías adicionales?`);
+    const message = this.translatePipe.transform('formValidations.checkoutStepAskRemoveAdditionalCategoriesAction');
+    const ask = await this.sweetAlert2Srv.askConfirm(message);
     if(!ask){ return; }
     
     this.preSaleSrv.updateDocumentLocalStorage({additionalCategoryPasses: []});

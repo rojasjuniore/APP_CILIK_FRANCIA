@@ -43,7 +43,7 @@ export class MyPurchasesComponent implements OnInit {
   }
 
   onShowDetails(order: any){
-    console.log('order', order);
+    // console.log('order', order);
     this.modalDetails.showModal(order);
   }
 

@@ -5,11 +5,11 @@
                 <div class="col-12 px-3">
                     <div class="d-flex justify-content-between">
                         <span class="fw-bold fs-5">
-                            Categoría de Grupos
+                            {{'general.groupCategory' | translate}}
                         </span>
         
                         <span>
-                            Valor por persona: USD {{price | mask:'separator.2':','}}
+                            {{'general.pricePerPerson' | translate}}: USD {{price | mask:'separator.2':','}}
                         </span>
                     </div>
                 </div>
@@ -20,11 +20,11 @@
                 <div class="col-12" *ngFor="let item of groups; index as idx">
                     <div class="col-12 d-flex justify-content-between">
                         <span class="fw-bold fs-5">
-                            Grupo #{{idx + 1}}
+                            {{'general.group' | translate | titlecase}} #{{idx + 1}}
                         </span>
 
                         <span>
-                            Valor por persona: USD {{item.pricePerPeople | mask:'separator.2':','}}
+                            {{'general.pricePerPerson' | translate}}: USD {{item.pricePerPeople | mask:'separator.2':','}}
                             &nbsp;
                             <span class="btn-close-card-item"><i class="bi bi-x-lg" (click)="removeItem(idx)"></i></span>
                         </span>
@@ -32,14 +32,14 @@
                     <div class="row p-2 align-items-stretch">
                         <div class="col-12 col-sm-6 col-md-6">
                             <app-input-number-form-two
-                                label="# Cantidad" 
+                                [label]="'# ' + ('general.quantity' | translate)" 
                                 [min]="0" [max]="99" [quantity]="item.quantity"
                                 (onUpdateQuantity)="updateQuantity({index: idx, quantity: $event, data: document})"></app-input-number-form-two>
                         </div>
                         <div class="col-12 col-sm-6 col-md-6 d-flex justify-content-end align-self-end mt-3 mt-md-0">
                             <div class="card-box card-box-wfc p-3">
                                 <h4 class="text-end py-2 m-0">
-                                    Monto USD {{item.price * item.quantity | mask:'separator.2':','}}
+                                    {{'general.amount' | translate | titlecase}} USD {{item.price * item.quantity | mask:'separator.2':','}}
                                 </h4>                                
                             </div>
                         </div>
@@ -49,7 +49,7 @@
     
                 <div class="col-12">
                     <button type="button" class="btn btn-one" (click)="addGroup(document)">
-                        AGREGAR GRUPO
+                        {{'general.addGroup' | translate | uppercase}}
                     </button>
                 </div>
             </div>

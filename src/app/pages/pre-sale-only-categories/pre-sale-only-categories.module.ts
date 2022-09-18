@@ -7,18 +7,28 @@ import { ComponentsModule } from 'src/app/components/components.module';
 import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
 import { PreSaleOnlyCategoriesSelectComponent } from './components/pre-sale-only-categories-select/pre-sale-only-categories-select.component';
 import { PreSaleOnlyCategoriesCheckoutListComponent } from './components/pre-sale-only-categories-checkout-list/pre-sale-only-categories-checkout-list.component';
+import { PreSaleOnlyCategoriesPaymentMethodsComponent } from './components/pre-sale-only-categories-payment-methods/pre-sale-only-categories-payment-methods.component';
+import { PreSaleOnlyCategoriesPaypalComponent } from './components/pre-sale-only-categories-paypal/pre-sale-only-categories-paypal.component';
+import { NgxMaskModule } from 'ngx-mask';
+import { PreSaleOnlyCategoriesInstallmentsDetailsComponent } from './components/pre-sale-only-categories-installments-details/pre-sale-only-categories-installments-details.component';
+import { PreSaleOnlyCategoriesInstallmentsPayCoutaComponent } from './components/pre-sale-only-categories-installments-pay-couta/pre-sale-only-categories-installments-pay-couta.component';
 
 
 @NgModule({
   declarations: [
     PreSaleOnlyCategoriesComponent,
     PreSaleOnlyCategoriesSelectComponent,
-    PreSaleOnlyCategoriesCheckoutListComponent
+    PreSaleOnlyCategoriesCheckoutListComponent,
+    PreSaleOnlyCategoriesPaymentMethodsComponent,
+    PreSaleOnlyCategoriesPaypalComponent,
+    PreSaleOnlyCategoriesInstallmentsDetailsComponent,
+    PreSaleOnlyCategoriesInstallmentsPayCoutaComponent
   ],
   imports: [
     CommonModule,
     ComponentsModule,
     TranslateModule,
+    NgxMaskModule,
     PreSaleOnlyCategoriesRoutingModule
   ],
   providers: [TranslatePipe],

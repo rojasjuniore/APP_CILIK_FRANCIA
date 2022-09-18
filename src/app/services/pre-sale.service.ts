@@ -69,6 +69,7 @@ export class PreSaleService {
       completed: params.completed || false,
       payed: false,
       createdAt: currentDate.valueOf(),
+      groupDiscount: 0,
       expiredAt: currentDate.add(30, 'minutes').valueOf(),
       orderType: params.orderType || 'full', // 'full' | 'categoryPass'
       setup: params.setup || null, // 'manual' | 'automatic'
@@ -170,6 +171,7 @@ export class PreSaleService {
     await this.hotelSrv.updateRoom(findRoom._id, { paymentOrderID: orderId, additionals: room.additionals, roomType: room.roomCode });
 
     /** TODO: actualizar contador de habitaciónes disponibles por tipo */
+    await this.hotelSrv.updateRoomStockSupplyCounter(room.roomCodePrefix, -1);
 
     /** Actualizar registro de habitación */
     const roomData = Object.assign({}, room, {roomId: findRoom._id});
@@ -219,5 +221,146 @@ export class PreSaleService {
 
   removeDocumentLocalStorage(){
     window.localStorage.removeItem(this.DOCUMENT_KEY);
+  }
+
+
+  /**
+   * Obtener precio full de las habitaciones
+   * @returns 
+   */
+  getRoomsAmountFullPrice(){
+    const document = this.getDocumentLocalStorage();
+    const rooms = document.rooms || [];
+    return rooms.reduce((acc, row) => acc + row.fullPrice, 0);
+  }
+
+  /**
+   * Obtener precio de las habitaciones
+   * @returns 
+   */
+  getRoomsAmount(){
+    const document = this.getDocumentLocalStorage();
+    const rooms = document.rooms || [];
+    const total = rooms.reduce((acc, row) => acc + row.price, 0);
+    return total;
+  }
+
+  /**
+   * Obtener nro de participantes a través de las habitaciones
+   * @returns 
+   */
+  getNroParticipantsByRooms(){
+    const document = this.getDocumentLocalStorage();
+    const rooms = document.rooms || [];
+    return rooms
+      .map((row) => row.capacity)
+      .reduce((acc, row) => acc + row.price, 0);
+  }
+
+  /**
+   * Obtener precio full de las noches adicionales
+   * @returns 
+   */
+  getAdditionalDaysAmountFullPrice(){
+    const document = this.getDocumentLocalStorage();
+    const additionalDays = document?.rooms || []
+    return additionalDays.map((row) => row.additionals)
+      .filter((row) => row.length > 0)
+      .map((data) => data.map((row) => row.quantity * row.fullPrice).reduce((prev, curr) => prev + curr, 0))
+      .reduce((prev, curr) => prev + curr, 0);
+  }
+
+  /**
+   * Obtener precio de las noches adicionales
+   * @returns 
+   */
+  getAdditionalDaysAmount(){
+    const document = this.getDocumentLocalStorage();
+    const additionalDays = document?.rooms || []
+    return additionalDays.map((row) => row.additionals)
+      .filter((row) => row.length > 0)
+      .map((data) => data.map((row) => row.quantity * row.price).reduce((prev, curr) => prev + curr, 0))
+      .reduce((prev, curr) => prev + curr, 0);
+  }
+
+  /**
+   * Obtener precio full de las categorias adicionales
+   * @returns 
+   */
+  getAdditionalCategoryPassesAmountFullPrice(){
+    const document = this.getDocumentLocalStorage();
+    const { additionalCategoryPasses = [] } = document;
+
+    return additionalCategoryPasses
+      .map((row) => {
+        if(row.type == 'group'){
+          return row.data.map((group) => group.quantity * group.fullPrice)
+            .reduce((prev, curr) => prev + curr, 0)
+
+        }else{
+          return row.quantity * row.fullPrice;
+        }
+      })
+      .reduce((prev, curr) => prev + curr, 0);
+  }
+
+  /**
+   * Obtener precio de las categorias adicionales
+   * @returns 
+   */
+  getAdditionalCategoryPassesAmount(){
+    const document = this.getDocumentLocalStorage();
+    const { additionalCategoryPasses = [] } = document;
+
+    return additionalCategoryPasses
+      .map((row) => {
+        if(row.type == 'group'){
+          return row.data.map((group) => group.quantity * group.price)
+            .reduce((prev, curr) => prev + curr, 0)
+
+        }else{
+          return row.quantity * row.price;
+        }
+      })
+      .reduce((prev, curr) => prev + curr, 0);
+  }
+
+  getSubTotalFullPrice(){
+    const roomsFull = this.getRoomsAmountFullPrice();
+    const additionalDaysFull = this.getAdditionalDaysAmountFullPrice();
+    const additionalCategoryPassesFull = this.getAdditionalCategoryPassesAmountFullPrice();
+    return [
+      roomsFull,
+      additionalDaysFull,
+      additionalCategoryPassesFull,
+    ].reduce((prev, curr) => prev + curr, 0);
+  }
+
+  getSubTotal(){
+    const rooms = this.getRoomsAmount();
+    const additionalDays = this.getAdditionalDaysAmount();
+    const additionalCategoryPasses = this.getAdditionalCategoryPassesAmount();
+    return [
+      rooms,
+      additionalDays,
+      additionalCategoryPasses,
+    ].reduce((prev, curr) => prev + curr, 0);
+  }
+
+
+
+  getGroupDiscountPercentaje(){
+    const nroParticipants = this.getNroParticipantsByRooms();
+
+    if(nroParticipants >= 20){
+      return 0.10;
+    }else if(nroParticipants >= 10){
+      return 0.05;
+    }else return 0;
+  }
+
+  getGroupDiscountAmount(subTotal: number){
+    const discount = this.getGroupDiscountPercentaje();
+    return subTotal * discount;
   }
 }

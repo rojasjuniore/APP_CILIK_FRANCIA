@@ -1,0 +1,44 @@
+<div class="row">
+
+    <app-pre-sale-categories-step-counter [step]="2"></app-pre-sale-categories-step-counter>
+
+    <div class="col-12 text-center mb-2 mt-5">
+        {{ "paymentMethods.chooseYourPaymentMethod" | translate }}
+    </div>
+
+    <div class="col-12 mb-4">
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 col-sm-8 col-md-6 mb-4">
+                <div class="d-flex flex-column align-items-center justify-content-center">
+
+                    <button class="btn btn-payment btn-lg mb-3" 
+                        type="button" *ngFor="let item of paymentMethods"   
+                        [ngClass]="{'active': item.value === paymentMethodType}"
+                        [disabled]="!item.status"
+                        (click)="selectPaymentMethod(item)">
+                        <span class="icon-payment"><i [class]="item.icon"></i>&nbsp;</span>
+                        <span class="label-payment">
+                            {{item.label | translate | titlecase}}
+                        </span>                         
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-12">
+        <div class="d-flex justify-content-between">
+            <button class="btn btn-three text-uppercase" type="button" (click)="onBack()">
+                <i class="bi bi-chevron-left"></i>
+                {{ "general.back" | translate }}
+            </button>
+            <button class="btn btn-one text-uppercase" type="button"  [disabled]="!paymentMethodType" (click)="onNext()">
+                {{ "general.continueToPay" | translate }}
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<app-pre-sale-modal-payment-coutas-details (onUpdateInstallments)="onInstallmentsModalClose($event)"></app-pre-sale-modal-payment-coutas-details>

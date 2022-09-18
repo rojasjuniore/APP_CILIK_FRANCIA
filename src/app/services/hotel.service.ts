@@ -81,6 +81,11 @@ export class HotelService {
     return this.afs.collection(this.roomStock).doc(docId).update(data);
   }
 
+  async updateRoomStockSupplyCounter(docId: string, data = 1){
+    const ref = this.afs.collection(this.roomStock).doc(docId);
+    await ref.update({ supply: increment(data) });
+  }
+
   getDynamicRoomCollection(where: any[] = [], opts: any = {}): Observable<any>{
     const {idField = "_id", orderBy = []} = opts;
 
@@ -107,10 +112,6 @@ export class HotelService {
     return this.afs.collection(this.roomTypesCollection).doc(docId).update(data);
   }
 
-  async updateRoomTypeSupply(docId: string, data = 1){
-    const ref = this.afs.collection(this.roomTypesCollection).doc(docId);
-    await ref.update({ supply: increment(data) });
-  }
 
   async getRoomDefaultByCapacity(capacity: number){
     const snapshot = await lastValueFrom(

@@ -3,39 +3,28 @@
 
     <div class="col-12 text-center mt-5 mb-2 fw-bold fs-5">
 
-        {{ "general.Enter-the-number-of-people-to-register" | translate }}
+        {{ "roomsStep.title" | translate }}
     </div>
 
     <div class="col-12 col-md-6 mb-3">
         <app-input-number-form 
-            label="# de competidores" 
+            [label]="('general.#nroCompetitors' | translate | lowercase)" 
             [quantity]="nroParticipants"
             (onUpdateQuantity)="onUpdateNroParticipants($event)"></app-input-number-form>
     </div>
-    <!-- <div class="col-12 col-md-8 mb-3">
-        <div class="card-box-number">
-            <div class="card-box-number-header">
-                <label for="inputParticipantsLeft" class="form-label w-100 text-center">
-                    {{ "general.#-people-to-assign" | translate }}
-                </label>
-            </div>
-            <div class="card-box-number-body">
-                <input disabled="true" type="text" class="form-control-plaintext text-center" id="inputParticipantsLeft" placeholder="{{(participantsLeft >= 0) ? participantsLeft : 0}}">
-            </div>
-        </div>
-    </div> -->
+
     <div class="col-12 col-md-6 mb-3">
         <div class="d-flex align-items-center h-100 card-box card-box-2 p-3">
             <div class="icon-help pe-3">
                 <img src="assets/img/cilik/help-icon-10.png" alt="">
             </div>
-            <div class="fs-5">
+            <div class="fs-5" [innerHTML]="('roomsStep.roomCopilotMessage' | translate:{value: ((participantsLeft >= 0) ? participantsLeft : 0)} )"></div>
+            <!-- <div class="fs-5">
                 Quedan <span class="text-rslt">{{(participantsLeft >= 0) ? participantsLeft : 0}}</span> personas pendientes por asignar habitación
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
-
 
 <ng-container *ngIf="!setup">
     <div class="row mt-5">
@@ -43,9 +32,11 @@
             <div class="col-12 col-md-5 mb-3">
                 <div class="h-100 p-3">
                     <div class="d-flex flex-column align-items-center">
-                        <button class="btn btn-two mb-3" (click)="onUpdateSetup('manual')">ACOMODACIÓN MANUAL</button>
+                        <button class="btn btn-two mb-3" (click)="onUpdateSetup('manual')">
+                            {{ "general.manualSetup" | translate | uppercase }}
+                        </button>
                         <div class="fs-6 px-3 text-center">
-                            Elige tipo de habitación, número de personas y noches adicionales según tus necesidades.
+                            {{ "roomsStep.manualSetupMessage" | translate }}
                         </div>
                     </div>
                 </div> 
@@ -56,10 +47,11 @@
             <div class="col-12 col-md-5 mb-3">
                 <div class="h-100 p-3">
                     <div class="d-flex flex-column align-items-center">
-                        <button class="btn btn-one mb-3" (click)="onUpdateSetup('automatic')">ACOMODACIÓN AUTOMÁTICA</button>
+                        <button class="btn btn-one mb-3" (click)="onUpdateSetup('automatic')">
+                            {{ "general.automaticSetup" | translate | uppercase }}
+                        </button>
                         <div class="fs-6 px-3 text-center">
-                            El sistema acomoda de manera automática a todas las personas con las tarifas más convenientes.
-                            Puedes personalizar el resultado.
+                            {{ "roomsStep.automaticSetupMessage" | translate }}
                         </div>
                     </div>
                 </div>
@@ -71,34 +63,25 @@
 <ng-container *ngIf="setup">
 
     <div class="row">
-        <!-- <div class="col-12">
-                 
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <i class="bi bi-info-circle"></i>&nbsp;
-                {{ "general.package-list-text" | translate }}
-                 <a href="javascript:void(0)" class="alert-link text-decoration-underline" (click)="runHelp()">{{ "general.here" | translate }}</a>.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        </div> -->
-
         <div class="col-12 mb-4" *ngIf="setup == 'automatic'">
             <div class="card-box card-box-b3 p-3 mb-3">
                 <div class="d-flex align-items-center">
-                    <button class="btn btn-one" (click)="runHelp()">ACOMODACIÓN AUTOMÁTICA</button>
+                    <button class="btn btn-one" (click)="runHelp()">
+                        {{ "general.automaticSetup" | translate | uppercase }}
+                    </button>
                     <div class="fs-6 px-3 text-center">
-                        Con esta opción el sistema acomoda de manera automática a todas las personas con las tarifas más convenientes.
+                        {{ "roomsStep.automaticSetupMessage2" | translate }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-
     <div class="row">   
 
         <div class="col-12 text-center mb-2">
             <div class="fw-bold fs-5">
-                Continúa con tu compra
+                {{ "roomsStep.subTitle" | translate }}
             </div>
         </div>
     
@@ -117,12 +100,10 @@
         <ng-template #noRooms>
             <div class="col-12">
                 <div class="card px-2 py-5 mb-3 text-center">
-                    {{ "general.no-rooms" | translate }}
+                    {{ "general.noRooms" | translate }}
                 </div>
             </div>
         </ng-template>
-    
-        
     
         <div class="col-12">
             <hr>
@@ -139,7 +120,7 @@
     
         <div class="col-12 text-end">
             <button class="btn btn-one" type="button" (click)="onNext()">
-                {{ "general.proceed" | translate }}
+                {{ "general.continue" | translate }}
             </button>
         </div>
     

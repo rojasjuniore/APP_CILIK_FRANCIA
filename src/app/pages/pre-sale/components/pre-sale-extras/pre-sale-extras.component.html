@@ -3,7 +3,7 @@
     <app-pre-sale-steps-counter [step]="2"></app-pre-sale-steps-counter>
 
     <div class="col-12 text-center mb-2 fw-bold fs-5 mt-5">
-        {{ "general.Choose-the-additional-categories-you-want" | translate }}
+        {{ "additionalsCategoriesStep.title" | translate }}
     </div>
 
     <app-pre-sale-extra-solo-card-item 
@@ -24,10 +24,10 @@
         <div class="d-flex justify-content-between">
             <button class="btn btn-three text-uppercase" type="button" (click)="onBack()">
                 <i class="bi bi-chevron-left"></i>
-                {{ "general.return" | translate }}
+                {{ "general.back" | translate }}
             </button>
             <button class="btn btn-one text-uppercase" type="button" (click)="onNext()">
-                {{ "general.proceed" | translate }}
+                {{ "general.continue" | translate }}
             </button>
         </div>
     </div>

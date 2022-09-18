@@ -1,15 +1,20 @@
 <div class="col-12 mb-5">
     <h6 class="text-end">
-        {{ "general.Value-without-discount" | translate }}
+        {{ "general.valueWithoutDiscount" | translate }}
         <span class="text-decoration-line-through">USD {{subTotalFullPrice | mask:'separator.2':','}}</span>
     </h6>
     <h6 class="text-end">
-        {{ "general.discount" | translate }}: <span>USD {{discount | mask:'separator.2':','}}</span>
+        {{ "general.discount" | translate }}: <span>USD -{{discount | mask:'separator.2':','}}</span>
+    </h6>
+    <h6 class="text-end" *ngIf="groupDiscount > 0">
+        {{'general.groupDiscount' | translate}} ({{groupDiscount * 100}}%): <span>USD -{{groupDiscountAmount | mask:'separator.2':','}}</span>
     </h6>
     <h5 class="fw-bold fs-3 text-end">
-        Total: USD {{total | mask:'separator.2':','}}
+        {{'general.total' | translate | uppercase}}: USD {{total | mask:'separator.2':','}}
     </h5>
-    <h6 class="text-end">
+
+    <h6 class="text-end" [innerHTML]="('general.totalInstallmentsDescription' | translate:{nroCoutas, coutasAmount: (coutasAmount | mask:'separator.2':',') } )"></h6>
+    <!-- <h6 class="text-end">
         {{ "general.payment-in" | translate }} {{nroCoutas}} {{ "general.installments-of" | translate }}: <span>USD {{coutasAmount | mask:'separator.2':','}}</span>
-    </h6>
+    </h6> -->
 </div>

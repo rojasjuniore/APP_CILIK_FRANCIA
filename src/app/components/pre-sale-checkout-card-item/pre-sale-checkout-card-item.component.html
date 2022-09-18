@@ -3,21 +3,24 @@
         <div class="col-12 px-3">
             <div class="d-flex justify-content-between">
                 <span class="text-rslt fw-bold fs-5">
-                    {{ "general.room#" | translate }} {{index}}
+                    {{ "general.room" | translate }} #{{index}}
                 </span>
             </div>
         </div>
         <div class="seprd2"></div>
+        <div class="col-12 px-3 mb-2">
+            {{item?.ubicationTypeDescription | uppercase }} {{item?.description | uppercase}}
+        </div>
         <div class="col-12 px-3">
             <p class="m-0">
-                {{ "general.#oforphans" | translate }} {{item.capacity}} {{ "general.person" | translate }} <ng-container *ngIf="item.capacity > 1">s</ng-container>
+                {{ "general.#ofGuests" | translate }} {{item.capacity}} {{ "general.people" | translate | lowercase}}
             </p>
             <p class="m-0" *ngIf="nroAdditionalDays > 0">
-                {{ "general.Additional-nights" | translate }} {{nroAdditionalDays}}
+                {{ "general.extraNight" | translate }} {{nroAdditionalDays}}
             </p>
             <hr>
             <p class="m-0">
-                {{ "general.Value-without-discount" | translate }} 
+                {{ "general.valueWithoutDiscount" | translate }} 
                 <span class="text-decoration-line-through">
                     USD {{subTotalFullPrice | mask:'separator.2':','}}
                 </span>

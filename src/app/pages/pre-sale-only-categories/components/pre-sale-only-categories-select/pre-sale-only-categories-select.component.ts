@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { PreSaleService } from 'src/app/services/pre-sale.service';
+import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 
 @Component({
   selector: 'app-pre-sale-only-categories-select',
@@ -14,9 +16,10 @@ export class PreSaleOnlyCategoriesSelectComponent implements OnInit {
   constructor(
     public preSaleSrv: PreSaleService,
     private router: Router,
+    private sweetAlert2Srv: Sweetalert2Service,
+    private translatePipe: TranslatePipe,
   ) {
     const { additionalCategoryPasses } = this.preSaleSrv.checkAndLoadDocumentLocalStorage();
-    // console.log('additionalCategoryPasses', additionalCategoryPasses);
     this.additionalCategoryPasses = additionalCategoryPasses;
   }
 
@@ -70,6 +73,13 @@ export class PreSaleOnlyCategoriesSelectComponent implements OnInit {
   }
 
   async onNext(){
+
+    if(this.additionalCategoryPasses.length == 0){
+      const message = await this.translatePipe.transform('formValidations.additionalCategoriesRequired');
+      this.sweetAlert2Srv.showWarning(message);
+      return;
+    }
+
     this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale-categories/step2'});
     this.router.navigate(['/pre-sale-categories', 'step2']);
   }

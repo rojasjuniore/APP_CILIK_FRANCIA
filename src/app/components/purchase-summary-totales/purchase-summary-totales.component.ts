@@ -103,8 +103,16 @@ export class PurchaseSummaryTotalesComponent implements OnInit {
     return this.subTotalFullPrice - this.subTotal;
   }
 
+  get groupDiscount(){
+    return this.order?.groupDiscount || 0;
+  }
+  
+  get groupDiscountAmount(){
+    return (this.subTotal * this.groupDiscount);
+  }
+
   get total(){
-    return this.subTotal;
+    return this.subTotal  - this.groupDiscountAmount;
   }
 
   get nroCoutas(){

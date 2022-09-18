@@ -111,11 +111,18 @@ export class PreSaleTotalesComponent implements OnInit, OnDestroy {
   }
 
   get discount(){
-    return this.subTotalFullPrice - this.subTotal;
+    return (this.subTotalFullPrice - this.subTotal) + this.groupDiscountAmount;
+  }
+
+  get groupDiscount(){
+    return this.preSaleDocument?.groupDiscount || 0;
+  }
+  get groupDiscountAmount(){
+    return (this.subTotal * this.groupDiscount);
   }
 
   get total(){
-    return this.subTotal;
+    return this.subTotal - this.groupDiscountAmount;
   }
 
   get nroCoutas(){

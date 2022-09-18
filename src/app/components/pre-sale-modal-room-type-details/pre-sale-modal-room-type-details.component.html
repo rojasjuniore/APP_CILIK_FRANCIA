@@ -6,7 +6,7 @@
 
             <div class="modal-header justify-content-center">
                 <h5 class="modal-title fw-bold text-uppercase">
-                    {{ "general.upload-categories" | translate }}
+                    {{ "general.changeRoomType" | translate | uppercase }}
                 </h5>
 
             </div>
@@ -26,16 +26,16 @@
                                         </p>
                                         <p class="card-text">
                                             <small class="text-muted">
-                                                {{ "general.price-per-person" | translate }}: 
+                                                {{ "general.pricePerPerson" | translate }}: 
                                                 <i class="bi" [ngClass]="{'bi-person-fill': row?.capacity == 1, 'bi-people-fill': row?.capacity > 1}"></i>
                                                 USD {{ (row.price / row.capacity) | mask:'separator.2':',' }}
                                             </small>
                                         </p>
                                         <p class="card-text">
-                                            {{ "general.Value-without-discount" | translate }} <span class="fw-bold text-decoration-line-through">USD  {{row.fullPrice | mask:'separator.2':','}}</span>
+                                            {{ "general.valueWithoutDiscount" | translate }} <span class="fw-bold text-decoration-line-through">USD  {{row.fullPrice | mask:'separator.2':','}}</span>
                                         </p>
                                         <p class="card-text">
-                                            {{ "amount" | translate }} <span class="fw-bold fs-4">USD  {{row.price | mask:'separator.2':','}}</span>
+                                            {{ "general.amount" | translate }} <span class="fw-bold fs-4">USD  {{row.price | mask:'separator.2':','}}</span>
                                         </p>
                                         <div class="d-flex justify-content-end">
                                             <ng-container *ngIf="row.roomCode == item._id; else canUpdate">
