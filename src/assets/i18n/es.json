@@ -89,6 +89,7 @@
     "thisPlanIncludes": "Este plan incluye",
     "total": "Total",
     "totalInstallmentsDescription": "Pago en {{nroCoutas}} cuotas de <span>USD {{coutasAmount}}</span>",
+    "valueToBeCancelledFrom": "Valor a cancelar de",
     "valueWithoutDiscount": "Valor sin descuento"
   },
   "paymentMethods": {

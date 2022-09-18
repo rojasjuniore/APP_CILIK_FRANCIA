@@ -2,7 +2,7 @@
 
     <div class="col-12 text-center mb-2 mt-5">
         <h5>
-            {{ "general.Value-to-be-cancelled-from" | translate }} <span class="fw-bolder">USD {{total | mask:'separator.2':','}}</span>
+            {{ "general.valueToBeCancelledFrom" | translate }} <span class="fw-bolder">USD {{total | mask:'separator.2':','}}</span>
         </h5>
     </div>
 
@@ -18,7 +18,7 @@
         <div class="d-flex justify-content-between">
             <button class="btn btn-three text-uppercase" type="button" (click)="onBack()">
                 <i class="bi bi-chevron-left"></i>
-                {{ "general.return" | translate }}
+                {{ "general.back" | translate }}
             </button>
             <!-- <button class="btn btn-one" type="button" (click)="onNext()">
                 CONTINUAR
