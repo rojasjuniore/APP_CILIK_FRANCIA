@@ -1,11 +1,24 @@
 {
   "general": {
     "loading": "Loading",
+    "back": "Go Back",
     "email": "Email",
     "password": "Password",
+    "confirmPassword": "Confirm Password",
     "enter": "Enter",
     "forgotPassword": "Forgot password?",
-    "notRegistered": "Not registered?",
-    "signUpHere": "Sign up here"
+    "notRegistered": "Not registered yet?",
+    "signUp": "Sign Up",
+    "signUpHere": "Sign up here",
+    "name": "Name",
+    "lastName": "Last name",
+    "dniType": "Document type",
+    "dni": "Nro. Document",
+    "country": "Country",
+    "phoneNumber": "Phone number",
+    "seePoliciesHere": "See policies here"
+  },
+  "signUp": {
+    "checkTermsAndConditions": "By registering you are accepting the personal data processing policies."
   }
 }

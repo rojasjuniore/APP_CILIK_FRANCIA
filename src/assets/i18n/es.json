@@ -1,11 +1,24 @@
 {
   "general": {
     "loading": "Cargando",
+    "back": "Regresar",
     "email": "Correo",
     "password": "Contraseña",
+    "confirmPassword": "Confirmar contraseña",
     "enter": "Ingresar",
     "forgotPassword": "¿Olvidaste tu contraseña?",
     "notRegistered": "¿Aún no estás registrado?",
-    "signUpHere": "Regístrarse aquí"
+    "signUp": "Registrarse",
+    "signUpHere": "Regístrarse aquí",
+    "name": "Nombre",
+    "lastName": "Apellido",
+    "dniType": "Tipo de documento",
+    "dni": "Nro. Documento",
+    "country": "País",
+    "phoneNumber": "Nro. Teléfono",
+    "seePoliciesHere": "Ver políticas aquí."
+  },
+  "signUp": {
+    "checkTermsAndConditions": "Al registrarte estás aceptando las políticas de tratamiento de datos personales."
   }
 }
