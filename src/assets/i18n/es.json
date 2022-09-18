@@ -20,6 +20,8 @@
     "onlyNumbers": "el campo debe contener solo números",
     "passwordsNotMatch": "Las contraseñas no coinciden",
     "required": "El campo es obligatorio",
+    "roomStepParticipantsExceded": "Has asignado más personas de las que ingresaste.",
+    "roomStepParticipantsLeft": "Aún tienes personas sin asignación de habitación",
     "userDoesNotExist": "El usuario no existe"
   },
   "general": {

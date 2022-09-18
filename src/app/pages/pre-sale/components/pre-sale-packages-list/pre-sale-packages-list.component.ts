@@ -5,6 +5,7 @@ import { PreSaleService } from 'src/app/services/pre-sale.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 import { PreSaleModalRoomTypeDetailsComponent } from '../../../../components/pre-sale-modal-room-type-details/pre-sale-modal-room-type-details.component';
 import { PreSaleModalAdditionalDaysComponent } from 'src/app/components/pre-sale-modal-additional-days/pre-sale-modal-additional-days.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-pre-sale-packages-list',
@@ -27,6 +28,7 @@ export class PreSalePackagesListComponent implements OnInit {
     private hotelSrv: HotelService,
     private sweetAlertSrv: Sweetalert2Service,
     private router: Router,
+    private translatePipe: TranslatePipe,
   ) {
 
     /** TODO: pendiente por eliminar */
@@ -193,12 +195,14 @@ export class PreSalePackagesListComponent implements OnInit {
   onNext(){
 
     if(this.nroParticipants == 0 || this.participantsLeft > 0){
-      this.sweetAlertSrv.showWarning('Aún tienes personas sin asignación de habitación.');
+      const message = this.translatePipe.transform('formValidations.roomStepParticipantsLeft');
+      this.sweetAlertSrv.showWarning(message);
       return;
     }
 
     if(this.participantsLeft < 0){
-      this.sweetAlertSrv.showWarning('Has asignado más personas de las que ingresaste.');
+      const message = this.translatePipe.transform('formValidations.roomStepParticipantsExceded');
+      this.sweetAlertSrv.showWarning(message);
       return;
     }
 
