@@ -118,14 +118,14 @@ export class SignUpComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.pattern(/^[a-zA-Z]+$/)
+          Validators.pattern(/^[a-zA-Z ]+$/)
         ]
       ],
       lastName: [
         '',
         [
           Validators.required,
-          Validators.pattern(/^[a-zA-Z]+$/)
+          Validators.pattern(/^[a-zA-Z ]+$/)
         ]
       ],
       documentType: ['dni', Validators.required],
