@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { PreSaleService } from 'src/app/services/pre-sale.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 
@@ -16,6 +17,7 @@ export class PreSaleOnlyCategoriesSelectComponent implements OnInit {
     public preSaleSrv: PreSaleService,
     private router: Router,
     private sweetAlert2Srv: Sweetalert2Service,
+    private translatePipe: TranslatePipe,
   ) {
     const { additionalCategoryPasses } = this.preSaleSrv.checkAndLoadDocumentLocalStorage();
     this.additionalCategoryPasses = additionalCategoryPasses;
@@ -73,7 +75,8 @@ export class PreSaleOnlyCategoriesSelectComponent implements OnInit {
   async onNext(){
 
     if(this.additionalCategoryPasses.length == 0){
-      this.sweetAlert2Srv.showWarning('Debe seleccionar al menos una categoría adicional');
+      const message = await this.translatePipe.transform('formValidations.additionalCategoriesRequired');
+      this.sweetAlert2Srv.showWarning(message);
       return;
     }
 

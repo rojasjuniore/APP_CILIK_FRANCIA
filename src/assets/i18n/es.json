@@ -10,6 +10,7 @@
     ]
   },
   "formValidations": {
+    "additionalCategoriesRequired": "No has seleccionado ninguna categoría adicional",
     "checkoutStepAskRemoveAdditionalCategoriesAction": "¿Desea eliminar todas las categorías adicionales?",
     "checkoutStepAskRemoveRoomAction": "¿Desea remover de la orden la habitación #{{value}}?",
     "checkoutStepCannotRemoveRoom": "No puede eliminar la habitación",

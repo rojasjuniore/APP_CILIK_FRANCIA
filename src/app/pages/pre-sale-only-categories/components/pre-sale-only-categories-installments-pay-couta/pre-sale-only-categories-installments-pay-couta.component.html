@@ -28,7 +28,7 @@
                             (click)="selectPaymentMethod(item)">
                             <span class="icon-payment"><i [class]="item.icon"></i>&nbsp;</span>
                             <span class="label-payment">
-                                {{item.label}}
+                                {{item.label | translate | titlecase}}
                             </span>
                         </button>
     

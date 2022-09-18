@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { PreSaleService } from 'src/app/services/pre-sale.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 
@@ -16,6 +17,7 @@ export class PreSaleOnlyCategoriesCheckoutListComponent implements OnInit {
     public preSaleSrv: PreSaleService,
     private router: Router,
     private sweetAlert2Srv: Sweetalert2Service,
+    private translatePipe: TranslatePipe,
   ) {
     this.preSaleDocument = this.preSaleSrv.checkAndLoadDocumentLocalStorage();
   }
@@ -31,7 +33,8 @@ export class PreSaleOnlyCategoriesCheckoutListComponent implements OnInit {
   async onRemoveAdditionalCategoryPasses(params: any){
     if(this.preSaleDocument.additionalCategoryPasses.length == 0){ return; }
 
-    const ask = await this.sweetAlert2Srv.askConfirm(`¿Desea eliminar todas las categorías adicionales?`);
+    const message = this.translatePipe.transform('formValidations.checkoutStepAskRemoveAdditionalCategoriesAction');
+    const ask = await this.sweetAlert2Srv.askConfirm(message);
     if(!ask){ return; }
     
     this.preSaleSrv.updateDocumentLocalStorage({additionalCategoryPasses: []});
@@ -46,7 +49,8 @@ export class PreSaleOnlyCategoriesCheckoutListComponent implements OnInit {
   async onNext(){
 
     if(this.preSaleDocument.additionalCategoryPasses.length == 0){ 
-      this.sweetAlert2Srv.showWarning('Debe seleccionar al menos una categoría adicional');
+      const message = await this.translatePipe.transform('formValidations.additionalCategoriesRequired');
+      this.sweetAlert2Srv.showWarning(message);
       this.onBack();
       return;
     }
