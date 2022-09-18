@@ -1,4 +1,7 @@
 {
+  "additionalsCategoriesStep": {
+    "title": "Elige las categorías adicionales que deseas"
+  },
   "dashboard": {
     "welcomeMessage": "Bienvenido a tu perfil del WLDC 2023",
     "welcomeMessageSub": [
@@ -57,6 +60,7 @@
     "pricePerPerson": "Valor por persona",
     "purchaseOrder": "Orden de Compra",
     "purchasingSummary": "Resumen de Compras",
+    "quantity": "Cantidad",
     "removeOrder": "¿Desea eliminar la orden de compra?",
     "room": "Habitación",
     "roomCardAddPeopleIntoTheroom": "Agregar personas a la habitación.",
@@ -67,6 +71,7 @@
     "seePoliciesHere": "Ver políticas aquí.",
     "signUp": "Registrarse",
     "signUpHere": "Regístrarse aquí",
+    "soloCategory": "Categoría de Solista",
     "successfulRegistration": "Registro exitoso",
     "thisPlanIncludes": "Este plan incluye",
     "totalInstallmentsDescription": "Pago en {{nroCoutas}} cuotas de <span>USD {{coutasAmount}}</span>",
