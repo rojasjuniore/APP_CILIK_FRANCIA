@@ -69,6 +69,7 @@ export class PreSaleService {
       completed: params.completed || false,
       payed: false,
       createdAt: currentDate.valueOf(),
+      groupDiscount: 0,
       expiredAt: currentDate.add(30, 'minutes').valueOf(),
       orderType: params.orderType || 'full', // 'full' | 'categoryPass'
       setup: params.setup || null, // 'manual' | 'automatic'
