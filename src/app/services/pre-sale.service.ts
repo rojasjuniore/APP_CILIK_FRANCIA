@@ -171,6 +171,7 @@ export class PreSaleService {
     await this.hotelSrv.updateRoom(findRoom._id, { paymentOrderID: orderId, additionals: room.additionals, roomType: room.roomCode });
 
     /** TODO: actualizar contador de habitaciónes disponibles por tipo */
+    await this.hotelSrv.updateRoomStockSupplyCounter(room.roomCodePrefix, -1);
 
     /** Actualizar registro de habitación */
     const roomData = Object.assign({}, room, {roomId: findRoom._id});

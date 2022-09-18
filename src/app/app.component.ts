@@ -35,7 +35,7 @@ export class AppComponent {
    * @description Prueba de contadores
    */
   // async test(){
-  //   await this.hotelSrv.updateRoomTypeSupply('HAB10000', -1)
+  //   await this.hotelSrv.updateRoomStockSupplyCounter('HAB10000', -1)
   // }
 
   /**
