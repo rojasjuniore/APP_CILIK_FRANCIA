@@ -27,13 +27,13 @@ export class PreSaleOnlyCategoriesInstallmentsDetailsComponent implements OnInit
   ngOnInit(): void {}
 
   onBack(){
-    this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale/payment-method'});
-    this.router.navigate(['/pre-sale/payment-method']);
+    this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale-categories/payment-method'});
+    this.router.navigate(['/pre-sale-categories/payment-method']);
   }
 
   onNext(){
-    this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale/installments-pay'});
-    this.router.navigate(['/pre-sale/installments-pay']);
+    this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale-categories/installments-pay'});
+    this.router.navigate(['/pre-sale-categories/installments-pay']);
   }
 
 }
