@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { CustomTranslateService } from 'src/app/services/custom-translate.service';
 import { PreSaleService } from 'src/app/services/pre-sale.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 
@@ -21,7 +20,6 @@ export class HeaderCilikComponent implements OnInit {
     private authSrv: AuthenticationService,
     private preSaleSrv: PreSaleService,
     private router: Router,
-    public translateSrv: CustomTranslateService,
   ) { }
 
   ngOnInit(): void {

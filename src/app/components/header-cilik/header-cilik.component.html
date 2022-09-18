@@ -3,14 +3,9 @@
     <ng-container *ngIf="(profile$ | async) as profile">
         <div class="row">
             <div class="col d-flex justify-content-between">
-                <div class="d-flex">
-                    <div class="btn-navbar-languaje d-flex justify-content-center align-items-center me-3" (click)="translateSrv.changeLanguage('en')">
-                        <img src="assets/images/index/reino-unido.png" alt="">
-                    </div>
-                    <div class="btn-navbar-languaje d-flex justify-content-center align-items-center" (click)="translateSrv.changeLanguage('es')">
-                        <img src="assets/images/index/espana.png" alt="">
-                    </div>
-                </div>
+                
+                <app-language-bar></app-language-bar>
+                
                 <div class="d-flex align-items-center">
 
                     <!-- <div class="btn-navbar-c d-flex justify-content-center align-items-center">

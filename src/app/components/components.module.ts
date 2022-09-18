@@ -42,6 +42,7 @@ import { PreSaleExtraSoloGroupItemComponent } from './pre-sale-extra-solo-group-
 import { PreSaleModalOnlyCategoriesTermsComponent } from './pre-sale-modal-only-categories-terms/pre-sale-modal-only-categories-terms.component';
 import { PreSaleCategoriesStepCounterComponent } from './pre-sale-categories-step-counter/pre-sale-categories-step-counter.component';
 import { PreSaleCheckoutOnlyCategoryCardItemComponent } from './pre-sale-checkout-only-category-card-item/pre-sale-checkout-only-category-card-item.component';
+import { LanguageBarComponent } from './language-bar/language-bar.component';
 
 
 
@@ -93,6 +94,7 @@ import { PreSaleCheckoutOnlyCategoryCardItemComponent } from './pre-sale-checkou
     PreSaleModalOnlyCategoriesTermsComponent,
     PreSaleCategoriesStepCounterComponent,
     PreSaleCheckoutOnlyCategoryCardItemComponent,
+    LanguageBarComponent,
   ],
   exports: [
     CommonModule,
@@ -131,6 +133,7 @@ import { PreSaleCheckoutOnlyCategoryCardItemComponent } from './pre-sale-checkou
     PreSaleModalOnlyCategoriesTermsComponent,
     PreSaleCategoriesStepCounterComponent,
     PreSaleCheckoutOnlyCategoryCardItemComponent,
+    LanguageBarComponent,
   ],
   providers: [
     TranslatePipe,
