@@ -8,6 +8,9 @@
             </div>
         </div>
         <div class="seprd2"></div>
+        <div class="col-12 mb-2">
+            {{item?.ubicationTypeDescription | uppercase }} {{item?.description | uppercase}}
+        </div>
         <div class="col-12">
             <p class="m-0">
                 {{ "general.#oforphans" | translate }} {{item.capacity}} persona<ng-container *ngIf="item.capacity > 1">s</ng-container>
