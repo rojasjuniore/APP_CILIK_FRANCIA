@@ -3,7 +3,7 @@
     <app-pre-sale-categories-step-counter [step]="2"></app-pre-sale-categories-step-counter>
 
     <div class="col-12 text-center mb-2 mt-5">
-        {{ "general.choose-your-payment-method" | translate }}
+        {{ "paymentMethods.chooseYourPaymentMethod" | translate }}
     </div>
 
     <div class="col-12 mb-4">
@@ -17,7 +17,9 @@
                         [disabled]="!item.status"
                         (click)="selectPaymentMethod(item)">
                         <span class="icon-payment"><i [class]="item.icon"></i>&nbsp;</span>
-                        <span class="label-payment">{{item.label}}</span>                        
+                        <span class="label-payment">
+                            {{item.label | translate | titlecase}}
+                        </span>                         
                     </button>
 
                 </div>
@@ -29,10 +31,10 @@
         <div class="d-flex justify-content-between">
             <button class="btn btn-three text-uppercase" type="button" (click)="onBack()">
                 <i class="bi bi-chevron-left"></i>
-                {{ "general.return" | translate }}
+                {{ "general.back" | translate }}
             </button>
             <button class="btn btn-one text-uppercase" type="button"  [disabled]="!paymentMethodType" (click)="onNext()">
-                {{ "general.continue-to-pay" | translate }}
+                {{ "general.continueToPay" | translate }}
             </button>
         </div>
     </div>
