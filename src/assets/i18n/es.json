@@ -10,6 +10,9 @@
     ]
   },
   "formValidations": {
+    "checkoutStepAskRemoveAdditionalCategoriesAction": "¿Desea eliminar todas las categorías adicionales?",
+    "checkoutStepAskRemoveRoomAction": "¿Desea remover de la orden la habitación #{{value}}?",
+    "checkoutStepCannotRemoveRoom": "No puede eliminar la habitación",
     "dniStored": "Documento de identidad no válido, ya se encuentra en uso",
     "email": "El correo no es válido",
     "emailStored": "El correo electrónico ya encuentra registrado",
