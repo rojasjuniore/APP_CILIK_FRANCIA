@@ -51,6 +51,7 @@
     "userDoesNotExist": "El usuario no existe"
   },
   "general": {
+    "#membersOfGroup": "Cantidad de integrantes de este grupo",
     "#nroCompetitors": "# de Competidores",
     "#ofGuests": "# de huéspedes",
     "WLDCOfficialPlan": "Plan Oficial WLDC",
