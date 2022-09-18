@@ -24,6 +24,11 @@ export class PreSaleExtraSoloCoupleItemComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.document$ = from(this.hotelSrv.getCategoryPassesByCode('couple'));
   }
+
+  get coupleCounter(){
+    const result = (this.quantity / 2);
+    return result > 0 ? result : 0;
+  }
   
   ngOnChanges(changes: SimpleChanges): void {
     const { quantity } = changes;
@@ -34,10 +39,10 @@ export class PreSaleExtraSoloCoupleItemComponent implements OnInit, OnChanges {
 
   updateQuantity(params: any) {
     const { data, quantity } = params;
-    this.quantity = quantity;
+    this.quantity = quantity * 2;
     this.onUpdateQuantity.next({
       type: 'couple', 
-      quantity, 
+      quantity: this.quantity, 
       price: data.price,
       fullPrice: data.fullPrice,
       label: data.label,
