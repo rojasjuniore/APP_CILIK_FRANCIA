@@ -17,10 +17,13 @@
     "dni": "Nro. Documento",
     "country": "País",
     "phoneNumber": "Nro. Teléfono",
-    "seePoliciesHere": "Ver políticas aquí."
+    "seePoliciesHere": "Ver políticas aquí.",
+    "successfulRegistration": "Registro exitoso",
+    "continue": "Continuar"
   },
   "signUp": {
-    "checkTermsAndConditions": "Al registrarte estás aceptando las políticas de tratamiento de datos personales."
+    "checkTermsAndConditions": "Al registrarte estás aceptando las políticas de tratamiento de datos personales.",
+    "successfulRegistrationMessage": "Ya puedes continuar con el proceso de compra."
   },
   "formValidations":{
     "required": "El campo es obligatorio",
