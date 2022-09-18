@@ -3,7 +3,7 @@
     <app-pre-sale-categories-step-counter [step]="2"></app-pre-sale-categories-step-counter>
 
     <div class="col-12 text-center mb-2 mt-5">
-        {{ "general.payment-by-installment" | translate }}
+        {{ "paymentMethods.installmentPayment" | translate }}
     </div>
 
     <ng-container *ngIf="installments; else loading">
@@ -42,10 +42,10 @@
         <div class="d-flex justify-content-between">
             <button class="btn btn-three text-uppercase" type="button" (click)="onBack()">
                 <i class="bi bi-chevron-left"></i>
-                {{ "general.return" | translate }}
+                {{ "general.back" | translate }}
             </button>
             <button class="btn btn-one text-uppercase" type="button" (click)="onNext()">
-                {{ "general.pay-fee-1" | translate }}
+                {{ "paymentMethods.payFee1" | translate }}
             </button>
         </div>
     </div>
