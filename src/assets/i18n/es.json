@@ -53,10 +53,19 @@
     "seePoliciesHere": "Ver políticas aquí.",
     "signUp": "Registrarse",
     "signUpHere": "Regístrarse aquí",
-    "successfulRegistration": "Registro exitoso"
+    "successfulRegistration": "Registro exitoso",
+    "#nroCompetitors": "# de Competidores",
+    "manualSetup": "Acomodación Manual",
+    "automaticSetup": "Acomodación Automática"
   },
   "signUp": {
     "checkTermsAndConditions": "Al registrarte estás aceptando las políticas de tratamiento de datos personales.",
     "successfulRegistrationMessage": "Ya puedes continuar con el proceso de compra."
+  },
+  "roomsStep": {
+    "title": "Ingresa la cantidad de personas a registrar (competidores y asistentes)",
+    "roomCopilotMessage": "Quedan <span class='text-rslt'>{{value}}</span> personas pendientes por asignar habitación",
+    "manualSetupMessage": "Elige tipo de habitación, número de personas y noches adicionales según tus necesidades.",
+    "automaticSetupMessage": "El sistema acomoda de manera automática a todas las personas con las tarifas más convenientes. Puedes personalizar el resultado."
   }
 }
