@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PreSaleOnlyCategoriesCheckoutListComponent } from './components/pre-sale-only-categories-checkout-list/pre-sale-only-categories-checkout-list.component';
+import { PreSaleOnlyCategoriesInstallmentsDetailsComponent } from './components/pre-sale-only-categories-installments-details/pre-sale-only-categories-installments-details.component';
 import { PreSaleOnlyCategoriesPaymentMethodsComponent } from './components/pre-sale-only-categories-payment-methods/pre-sale-only-categories-payment-methods.component';
 import { PreSaleOnlyCategoriesPaypalComponent } from './components/pre-sale-only-categories-paypal/pre-sale-only-categories-paypal.component';
 import { PreSaleOnlyCategoriesSelectComponent } from './components/pre-sale-only-categories-select/pre-sale-only-categories-select.component';
@@ -22,6 +23,10 @@ const routes: Routes = [
       {
         path: 'payment-method',
         component: PreSaleOnlyCategoriesPaymentMethodsComponent,
+      },
+      {
+        path: 'installments-details',
+        component: PreSaleOnlyCategoriesInstallmentsDetailsComponent,
       },
       {
         path: 'paypal',

@@ -10,6 +10,7 @@ import { PreSaleOnlyCategoriesCheckoutListComponent } from './components/pre-sal
 import { PreSaleOnlyCategoriesPaymentMethodsComponent } from './components/pre-sale-only-categories-payment-methods/pre-sale-only-categories-payment-methods.component';
 import { PreSaleOnlyCategoriesPaypalComponent } from './components/pre-sale-only-categories-paypal/pre-sale-only-categories-paypal.component';
 import { NgxMaskModule } from 'ngx-mask';
+import { PreSaleOnlyCategoriesInstallmentsDetailsComponent } from './components/pre-sale-only-categories-installments-details/pre-sale-only-categories-installments-details.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { NgxMaskModule } from 'ngx-mask';
     PreSaleOnlyCategoriesSelectComponent,
     PreSaleOnlyCategoriesCheckoutListComponent,
     PreSaleOnlyCategoriesPaymentMethodsComponent,
-    PreSaleOnlyCategoriesPaypalComponent
+    PreSaleOnlyCategoriesPaypalComponent,
+    PreSaleOnlyCategoriesInstallmentsDetailsComponent
   ],
   imports: [
     CommonModule,
