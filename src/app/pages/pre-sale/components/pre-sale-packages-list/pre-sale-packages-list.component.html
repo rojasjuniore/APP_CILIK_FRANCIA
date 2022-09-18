@@ -63,34 +63,25 @@
 <ng-container *ngIf="setup">
 
     <div class="row">
-        <!-- <div class="col-12">
-                 
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <i class="bi bi-info-circle"></i>&nbsp;
-                {{ "general.package-list-text" | translate }}
-                 <a href="javascript:void(0)" class="alert-link text-decoration-underline" (click)="runHelp()">{{ "general.here" | translate }}</a>.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        </div> -->
-
         <div class="col-12 mb-4" *ngIf="setup == 'automatic'">
             <div class="card-box card-box-b3 p-3 mb-3">
                 <div class="d-flex align-items-center">
-                    <button class="btn btn-one" (click)="runHelp()">ACOMODACIÓN AUTOMÁTICA</button>
+                    <button class="btn btn-one" (click)="runHelp()">
+                        {{ "general.automaticSetup" | translate | uppercase }}
+                    </button>
                     <div class="fs-6 px-3 text-center">
-                        Con esta opción el sistema acomoda de manera automática a todas las personas con las tarifas más convenientes.
+                        {{ "roomsStep.automaticSetupMessage2" | translate }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-
     <div class="row">   
 
         <div class="col-12 text-center mb-2">
             <div class="fw-bold fs-5">
-                Continúa con tu compra
+                {{ "roomsStep.subTitle" | translate }}
             </div>
         </div>
     
@@ -109,12 +100,10 @@
         <ng-template #noRooms>
             <div class="col-12">
                 <div class="card px-2 py-5 mb-3 text-center">
-                    {{ "general.no-rooms" | translate }}
+                    {{ "general.noRooms" | translate }}
                 </div>
             </div>
         </ng-template>
-    
-        
     
         <div class="col-12">
             <hr>
@@ -131,7 +120,7 @@
     
         <div class="col-12 text-end">
             <button class="btn btn-one" type="button" (click)="onNext()">
-                {{ "general.proceed" | translate }}
+                {{ "general.continue" | translate }}
             </button>
         </div>
     

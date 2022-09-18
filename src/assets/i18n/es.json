@@ -20,8 +20,11 @@
     "userDoesNotExist": "El usuario no existe"
   },
   "general": {
+    "#nroCompetitors": "# de Competidores",
     "WLDCOfficialPlan": "Plan Oficial WLDC",
+    "addRoom": "Agregar Habitación",
     "additionalCategories": "Categorías Adicionales",
+    "automaticSetup": "Acomodación Automática",
     "back": "Regresar",
     "buyCategories": "Compra de categorías",
     "buyPlans": "Comprar planes",
@@ -39,6 +42,7 @@
     "logIn": "Iniciar Sesión",
     "logOut": "Cerrar Sesión",
     "logOutMessage": "¿Desea salir del WLDC 2023?",
+    "manualSetup": "Acomodación Manual",
     "name": "Nombre",
     "noPurchases": "Aún no has realizado ninguna compra",
     "notRegistered": "¿Aún no estás registrado?",
@@ -53,19 +57,19 @@
     "seePoliciesHere": "Ver políticas aquí.",
     "signUp": "Registrarse",
     "signUpHere": "Regístrarse aquí",
-    "successfulRegistration": "Registro exitoso",
-    "#nroCompetitors": "# de Competidores",
-    "manualSetup": "Acomodación Manual",
-    "automaticSetup": "Acomodación Automática"
+    "successfulRegistration": "Registro exitoso"
+  },
+  "roomsStep": {
+    "automaticSetupMessage": "El sistema acomoda de manera automática a todas las personas con las tarifas más convenientes. Puedes personalizar el resultado.",
+    "automaticSetupMessage2": "Con esta opción el sistema acomoda de manera automática a todas las personas con las tarifas más convenientes.",
+    "manualSetupMessage": "Elige tipo de habitación, número de personas y noches adicionales según tus necesidades.",
+    "noRooms": "Sin habitaciones",
+    "roomCopilotMessage": "Quedan <span class='text-rslt'>{{value}}</span> personas pendientes por asignar habitación",
+    "subTitle": "Continúa con tu compra",
+    "title": "Ingresa la cantidad de personas a registrar (competidores y asistentes)"
   },
   "signUp": {
     "checkTermsAndConditions": "Al registrarte estás aceptando las políticas de tratamiento de datos personales.",
     "successfulRegistrationMessage": "Ya puedes continuar con el proceso de compra."
-  },
-  "roomsStep": {
-    "title": "Ingresa la cantidad de personas a registrar (competidores y asistentes)",
-    "roomCopilotMessage": "Quedan <span class='text-rslt'>{{value}}</span> personas pendientes por asignar habitación",
-    "manualSetupMessage": "Elige tipo de habitación, número de personas y noches adicionales según tus necesidades.",
-    "automaticSetupMessage": "El sistema acomoda de manera automática a todas las personas con las tarifas más convenientes. Puedes personalizar el resultado."
   }
 }
