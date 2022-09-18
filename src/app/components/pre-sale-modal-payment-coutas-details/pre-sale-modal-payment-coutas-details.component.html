@@ -11,31 +11,16 @@
                                 <img src="assets/img/cilik/logo.png" alt="">
                             </div>
                             <h5 class="text-center fw-bolder mb-4">
-                                {{ "general.pre-sale-payment-cuotas-text" | translate }}
+                                {{ "installmentsTerms.title" | translate }}
                             </h5>
                             <p>
                                 <strong> 
-                                    {{ "general.terms-and-conditions" | translate }}: 
+                                    {{ "general.termsAndConditions" | translate }}: 
                                 </strong>
                             </p>
                             <ul>
-                                <li>
-                                    {{ "general.pre-sale-payment-cuotas-text-two" | translate }}
-                                </li>
-                                <li>
-                                    {{ "general.pre-sale-payment-cuotas-text-three" | translate }}
-                                </li>
-                                <li>
-                                    {{ "general.pre-sale-payment-cuotas-text-four" | translate }}
-                                </li>
-                                <li>
-                                    {{ "general.pre-sale-payment-cuotas-text-five" | translate }}
-                                </li>
-                                <li>
-                                    {{ "general.pre-sale-payment-cuotas-text-six" | translate }}
-                                </li>
-                                <li>
-                                    {{ "general.pre-sale-payment-cuotas-text-seven" | translate }}
+                                <li *ngFor="let item of [1,1,1,1,1,1]; index as idx">
+                                    {{ ("installmentsTerms.terms" | translate)[idx] }}
                                 </li>
                             </ul>
                         </div>
@@ -46,10 +31,10 @@
             <div class="modal-footer justify-content-center">
                 <button type="button" class="btn btn-three" (click)="closeModal(false)">
                     <i class="bi bi-chevron-left"></i>
-                    {{ "general.return" | translate }}                    
+                    {{ "general.back" | translate | uppercase}}                    
                 </button>
                 <button type="button" class="btn btn-one" (click)="closeModal(true)">
-                    {{ "general.accept" | translate }}
+                    {{ "general.accept" | translate | uppercase}}
                 </button>
             </div>
         </div>

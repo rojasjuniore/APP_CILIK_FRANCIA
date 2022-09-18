@@ -26,6 +26,7 @@
     "#nroCompetitors": "# de Competidores",
     "#ofGuests": "# de huéspedes",
     "WLDCOfficialPlan": "Plan Oficial WLDC",
+    "accept": "Aceptar",
     "addGroup": "Agregar grupo",
     "addRoom": "Agregar Habitación",
     "additionalCategories": "Categorías Adicionales",
@@ -93,11 +94,23 @@
     "successfulRegistration": "Registro exitoso",
     "successfulTransaction": "Transacción exitosa",
     "summaryOfThePurchase": "Resumen de la compra",
+    "termsAndConditions": "Términos y condiciones",
     "thisPlanIncludes": "Este plan incluye",
     "total": "Total",
     "totalInstallmentsDescription": "Pago en {{nroCoutas}} cuotas de <span>USD {{coutasAmount}}</span>",
     "valueToBeCancelledFrom": "Valor a cancelar de",
     "valueWithoutDiscount": "Valor sin descuento"
+  },
+  "installmentsTerms": {
+    "terms": [
+      "Las personas podrán pagar en un plan de cuotas que estarán disponible a la hora de pagar, este plan de cuotas irá solo en las fechas de pago que hagan falta. Ejemplo, en la primera fecha de pago se podrá pagar en 4 cuotas, en la segunda fecha de pago se podrá en tres cuotas y en la tercera fecha de pago se podrá pagar solo en dos cuotas.",
+      "Cuando se paga por cuotas el precio queda congelado automáticamente siempre y cuando cumpla con las fechas límites de pago.",
+      " Los pagos se deben realizar antes de la fecha de vencimiento. De lo contrario perderá el beneficio de congelar el precio y deberá pagar al precio que esté actualmente vigente según la fecha de precios y el sistema le cobrará automáticamente el valor restante.",
+      "Después de transcurridos cinco (5) días, no se devolverá dinero de pagos por cuotas que se hayan realizado y que no vayan a cumplir (Artículo 47 de la Ley 1480 de 2011).",
+      "No se acepta usar pagos realizados en cuotas en parte de pagos de otras cuotas o nuevas compras.",
+      "NOTA IMPORTANTE: los inscritos (participantes y acompañantes) al momento de inscribirse y pagar la inscripción, declaran que conocen el REGLAMENTO DEL CERTAMEN y se comprometen a acatarlo."
+    ],
+    "title": "Para continuar con el proceso de pago por cuotas, debes leer y aceptar los términos y condiciones"
   },
   "paymentMethods": {
     "chooseYourPaymentMethod": "Elige tu método de pago",
