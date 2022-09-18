@@ -156,6 +156,7 @@
     "confirmEmailPurchase": "Muy pronto recibirás un e-mail de confirmación con el resumen de la compra."
   },
   "roomsStep": {
+    "addRoomToStart": "Añada una habitación para comenzar a asignar participantes",
     "additionalNightAddText": "Indique la cantidad de noches adicionales que desea agregar a su reserva.",
     "amountPerAdditionalNight": "Monto por noche adicional",
     "automaticSetupMessage": "El sistema acomoda de manera automática a todas las personas con las tarifas más convenientes. Puedes personalizar el resultado.",
