@@ -1,4 +1,25 @@
 {
+  "WLDCPlanIncludes": {
+    "description": [
+      "Transfers Airport Hotel - Airport Hotel: only for people who arrive on February 5 and 6 and return on February 12 and 13, 2023. People who arrive before or return after the indicated dates do not include transfers.",
+      "Lodging at a 5-star hotel, “Hotel las Américas” from February 6 to 12, 2023, 6 nights and 7 days. After exhausting this hotel, the organization will designate the second official hotel of the event, of the same category. Transfers Airport Hotel - Airport Hotel: only for people who arrive on February 5 and 6 and return on February 12 and 13, 2023. People who arrive before or return after the indicated dates are not included transfers.",
+      "Full meals: breakfast, lunch and dinner, buffet style within the facilities at the times established by the hotel.",
+      "Full Pass - Concert, Parties, Workshops, Conferences, Competition, Grand Final, Ultimate Championship, Music Park Fest, Pool Parties, Beaches, Gym.",
+      "WLDC 2023 Event Kit",
+      "For the purchase of the all-inclusive plan, competitors receive one (1) category at no cost.",
+      "If you want to compete in more than one category, you must buy additional categories."
+    ],
+    "firstLapBuyBenefits": {
+      "description": [
+        "VIP entrance to see the competition.",
+        "Priority to use the main stage to rehearse your choreography.",
+        "VIP kit with additional surprises to the one that the other attendees will receive."
+      ],
+      "title": "Benefits only for those who buy from September 10 to 30, 2022."
+    },
+    "subTitle": "The value per person includes:",
+    "title": "all inclusive plans"
+  },
   "additionalsCategoriesStep": {
     "title": "Choose the additional categories you want"
   },
@@ -7,7 +28,7 @@
     "welcomeMessageSub": [
       "What do you want to do today?",
       "Here you can start your purchase to live the experience."
-    ]  
+    ]
   },
   "formValidations": {
     "additionalCategoriesRequired": "You have not selected any additional category",
@@ -20,6 +41,7 @@
     "invalidLogIn": "Invalid email or password",
     "maxlength12": "The field must have a maximum of 12 characters",
     "minlength6": "The field must have at least 6 characters",
+    "nroCompetitorsRequired": "You must enter the number of competitors",
     "onlyCharacters": "The field must contain only letters",
     "onlyNumbers": "The field must contain only numbers",
     "passwordsNotMatch": "Passwords do not match",
@@ -29,6 +51,7 @@
     "userDoesNotExist": "The user does not exist"
   },
   "general": {
+    "#membersOfGroup": "Number of members of this group",
     "#nroCompetitors": "# of Competitors",
     "#ofGuests": "# of guests",
     "WLDCOfficialPlan": "WLDC Official Plan",
@@ -70,12 +93,13 @@
     "lastName": "Last name",
     "loading": "Loading",
     "logIn": "Log In",
-    "logOut": "log Out",
-    "logOutMessage": "Do you want to leave WLDC 2023?",
+    "logOut": "Sign off",
+    "logOutMessage": "¿Do you want to leave WLDC 2023?",
     "manualSetup": "Manual accommodation",
     "name": "Name",
     "noPurchases": "You haven't made any purchases yet",
     "notRegistered": "Not registered yet?",
+    "numberOfMembers": "Number of members",
     "order": "Order",
     "password": "Password",
     "payment": "Payment",
@@ -120,7 +144,7 @@
     ],
     "title": "To continue with the installment payment process, you must read and accept the terms and conditions"
   },
-    "paymentMethods": {
+  "paymentMethods": {
     "chooseYourPaymentMethod": "Choose your payment method",
     "creditCard": "Credit card",
     "crypto": "Criptocurrencies",
@@ -131,9 +155,10 @@
     "paypal": "Paypal"
   },
   "pruchases": {
-    "confirmEmailPurchase": "Muy pronto recibirás un e-mail de confirmación con el resumen de la compra."
+    "confirmEmailPurchase": "Very soon you will receive a confirmation e-mail with the summary of the purchase."
   },
   "roomsStep": {
+    "addRoomToStart": "Add a room to start assigning participants",
     "additionalNightAddText": "Indicate the number of additional nights you wish to add to your reservation. ",
     "amountPerAdditionalNight": "Amount per additional night",
     "automaticSetupMessage": "The system automatically accommodates all people with the most convenient rates. You can customize the result.",
