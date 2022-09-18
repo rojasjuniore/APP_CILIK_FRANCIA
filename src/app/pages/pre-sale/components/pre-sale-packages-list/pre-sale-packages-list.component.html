@@ -58,6 +58,13 @@
                 </div>
             </div>             
         </div>
+
+        <div class="col-12">
+            <div class="d-flex justify-content-between">
+                <app-remove-order-on-back-button></app-remove-order-on-back-button>
+            </div>
+        </div>
+
     </div>
 </ng-container>
 
@@ -119,10 +126,14 @@
     
         <app-pre-sale-totales></app-pre-sale-totales>
     
-        <div class="col-12 text-end">
-            <button class="btn btn-one" type="button" (click)="onNext()">
-                {{ "general.continue" | translate }}
-            </button>
+        <div class="col-12">
+            <div class="d-flex justify-content-between">
+                <app-remove-order-on-back-button></app-remove-order-on-back-button>
+                
+                <button class="btn btn-one" type="button" (click)="onNext()">
+                    {{ "general.continue" | translate }}
+                </button>
+            </div>
         </div>
     
     </div>

@@ -43,6 +43,7 @@ import { PreSaleModalOnlyCategoriesTermsComponent } from './pre-sale-modal-only-
 import { PreSaleCategoriesStepCounterComponent } from './pre-sale-categories-step-counter/pre-sale-categories-step-counter.component';
 import { PreSaleCheckoutOnlyCategoryCardItemComponent } from './pre-sale-checkout-only-category-card-item/pre-sale-checkout-only-category-card-item.component';
 import { LanguageBarComponent } from './language-bar/language-bar.component';
+import { RemoveOrderOnBackButtonComponent } from './remove-order-on-back-button/remove-order-on-back-button.component';
 
 
 
@@ -95,6 +96,7 @@ import { LanguageBarComponent } from './language-bar/language-bar.component';
     PreSaleCategoriesStepCounterComponent,
     PreSaleCheckoutOnlyCategoryCardItemComponent,
     LanguageBarComponent,
+    RemoveOrderOnBackButtonComponent,
   ],
   exports: [
     CommonModule,
@@ -134,6 +136,7 @@ import { LanguageBarComponent } from './language-bar/language-bar.component';
     PreSaleCategoriesStepCounterComponent,
     PreSaleCheckoutOnlyCategoryCardItemComponent,
     LanguageBarComponent,
+    RemoveOrderOnBackButtonComponent,
   ],
   providers: [
     TranslatePipe,
