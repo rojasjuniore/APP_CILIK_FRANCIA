@@ -11,8 +11,10 @@ import { pick, omit } from 'underscore';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'xpocripto';
+
+  public title = 'WLDC';
   public currentLanguage: string;
+
   constructor(
     public translateSrv: CustomTranslateService,
     private dataSrv: DataService,
@@ -22,6 +24,7 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
+    this.translateSrv.changeLanguage('en');
     // this.contractService.connectAccount()
     // this.contractService.reInitializating()
   }
