@@ -16,25 +16,25 @@ export class PreSalePaymentMethodsComponent implements OnInit {
   public paymentMethodType: any;
   public paymentMethods = [
     {
-      label: 'Paypal',
+      label: 'paymentMethods.paypal',
       value: 'paypal',
       icon: 'bi bi-paypal',
       status: true,
     },
     {
-      label: 'Pago por cuotas',
+      label: 'paymentMethods.installmentPayment',
       value: 'installments',
       icon: 'bi bi-calendar-check',
       status: true,
     },
     {
-      label: 'Tarjeta de crédito',
+      label: 'paymentMethods.creditCard',
       value: 'creditCard',
       icon: 'bi bi-credit-card',
       status: false,
     },
     {
-      label: 'Criptomonedas',
+      label: 'paymentMethods.crypto',
       value: 'crypto',
       icon: 'bi bi-coin',
       status: false,

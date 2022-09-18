@@ -91,6 +91,13 @@
     "totalInstallmentsDescription": "Pago en {{nroCoutas}} cuotas de <span>USD {{coutasAmount}}</span>",
     "valueWithoutDiscount": "Valor sin descuento"
   },
+  "paymentMethods": {
+    "chooseYourPaymentMethod": "Elige tu método de pago",
+    "creditCard": "Tarjeta de crédito",
+    "crypto": "Criptomonedas",
+    "installmentPayment": "Pago por cuotas",
+    "paypal": "Paypal"
+  },
   "roomsStep": {
     "automaticSetupMessage": "El sistema acomoda de manera automática a todas las personas con las tarifas más convenientes. Puedes personalizar el resultado.",
     "automaticSetupMessage2": "Con esta opción el sistema acomoda de manera automática a todas las personas con las tarifas más convenientes.",
