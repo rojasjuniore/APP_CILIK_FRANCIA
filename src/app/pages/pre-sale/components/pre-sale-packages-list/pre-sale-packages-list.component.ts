@@ -17,9 +17,9 @@ export class PreSalePackagesListComponent implements OnInit {
   @ViewChild(PreSaleModalRoomTypeDetailsComponent) modalRoomTypeDetails!: PreSaleModalRoomTypeDetailsComponent;
   @ViewChild(PreSaleModalAdditionalDaysComponent) modalRoomAdditionalDays!: PreSaleModalAdditionalDaysComponent;
   
-  public nroParticipants: any = 1;
+  public nroParticipants: any = 0;
 
-  public roomData: any = {nroParticipants: 1, type: 1};
+  public roomData: any = {nroParticipants: 0, type: 1};
   public rooms: any[] = [];
   public setup: any;
 
@@ -45,6 +45,13 @@ export class PreSalePackagesListComponent implements OnInit {
    * Cambiar configuración de setup de orde
    */
   onUpdateSetup(setup: any){
+
+    if(setup === 'automatic' && this.nroParticipants == 0){
+      const message = this.translatePipe.transform('formValidations.nroCompetitorsRequired');
+      this.sweetAlertSrv.showWarning(message);
+      return;
+    }
+
     this.setup = setup;
     this.preSaleSrv.updateDocumentLocalStorage({setup: setup});
   }
