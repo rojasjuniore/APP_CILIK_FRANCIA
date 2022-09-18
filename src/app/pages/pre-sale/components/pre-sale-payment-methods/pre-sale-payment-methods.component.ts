@@ -95,6 +95,10 @@ export class PreSalePaymentMethodsComponent implements OnInit {
     const preSaleDocument = await this.preSaleSrv.getDocumentLocalStorage();
     const coutas = this.preSaleSrv.getCuotas();
 
+    const nroParticipantsByRoom = preSaleDocument.rooms
+      .map((room: any) => room.capacity)
+      .reduce((a: number, b: number) => a + b, 0);
+
     const roomsAmount = preSaleDocument?.rooms
       .map((row) => row.price)
       .reduce((prev, curr) => prev + curr, 0);
@@ -119,10 +123,23 @@ export class PreSalePaymentMethodsComponent implements OnInit {
       })
       .reduce((prev, curr) => prev + curr, 0)
 
-    const price = [roomsAmount, additionalDaysAmount, additionalCategoryPasses]
+    const subTotal = [roomsAmount, additionalDaysAmount, additionalCategoryPasses]
       .reduce((prev, curr) => prev + curr, 0);
 
-    const coutaAmount = price / coutas.length;
+
+    /**
+     * Calcular descuento por grupo
+     */
+    let groupDiscount = 0;
+    if(nroParticipantsByRoom >= 20){
+      groupDiscount = subTotal * 0.10;
+    }else if(nroParticipantsByRoom >= 10){
+      groupDiscount = subTotal * 0.05;
+    }
+
+    const total = subTotal - groupDiscount;
+
+    const coutaAmount = total / coutas.length;
 
     const currentDate = moment();
     const installments = coutas.map((row, index) => {

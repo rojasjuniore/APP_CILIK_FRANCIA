@@ -106,6 +106,7 @@ export class PurchaseSummaryTotalesComponent implements OnInit {
   get groupDiscount(){
     return this.order?.groupDiscount || 0;
   }
+  
   get groupDiscountAmount(){
     return (this.subTotal * this.groupDiscount);
   }
