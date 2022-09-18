@@ -26,6 +26,11 @@ export class PreSalePaypalComponent implements OnInit {
 
 
   get total(){
+
+    const nroParticipantsByRoom = this.preSaleDocument.rooms
+    .map((room: any) => room.capacity)
+    .reduce((a: number, b: number) => a + b, 0);
+
     const roomsAmount = this.preSaleDocument.rooms
       .map((room: any) => room.price)
       .reduce((a: number, b: number) => a + b, 0);
@@ -48,8 +53,21 @@ export class PreSalePaypalComponent implements OnInit {
       })
       .reduce((prev, curr) => prev + curr, 0)
 
-    return [roomsAmount, additionalDaysAmount, additionalCategoryPasses]
+    const subTotal = [roomsAmount, additionalDaysAmount, additionalCategoryPasses]
     .reduce((prev, curr) => prev + curr, 0);
+
+    /**
+     * Calcular descuento por grupo
+     */
+     let groupDiscount = 0;
+     if(nroParticipantsByRoom >= 20){
+       groupDiscount = subTotal * 0.10;
+     }else if(nroParticipantsByRoom >= 10){
+       groupDiscount = subTotal * 0.05;
+     }
+
+    const total = subTotal - groupDiscount;
+    return total;
   }
 
   async onPaypalResponse(params: any){
