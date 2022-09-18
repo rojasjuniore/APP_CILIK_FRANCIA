@@ -1,4 +1,25 @@
 {
+  "WLDCPlanIncludes": {
+    "description": [
+      "Traslados Aeropuerto Hotel - Hotel aeropuerto: únicamente para las personas que llegan el 5 y 6 de febrero y se regresan el 12 y 13 de febrero 2023. A las personas que lleguen antes o se regresen después de las fechas indicadas no se les incluyen los traslados.",
+      "Hospedaje en Hotel 5 estrellas, “Hotel las Américas” del 6 al 12 de febrero 2023, 6 noches y 7 días. Después de agotar este hotel, la organización designará el segundo hotel oficial del evento, de igual categoría.Traslados Aeropuerto Hotel - Hotel aeropuerto: únicamente para las personas que llegan el 5 y 6 de febrero y se regresan el 12 y 13 de febrero 2023. A las personas que lleguen antes o se regresen después de las fechas indicadas no se les incluyen los traslados.",
+      "Alimentación completa: desayuno, almuerzo y cena, tipo buffet dentro de las instalaciones en los horarios establecidos por el hotel.",
+      "Full Pass - Concierto, Fiestas, Talleres, Conferencias, Competencia, Gran Final, Ultimate Championship, Music Park Fest, Pool Partys, Playas, Gym.",
+      "Kit del evento WLDC 2023",
+      "Por la compra del plan todo incluido los competidores reciben una (1) categoría sin costo.",
+      "En caso de querer competir en más de una categoría deberá comprar categorías adicionales."
+    ],
+    "firstLapBuyBenefits": {
+      "description": [
+        "Entrada VIP a ver la competencia.",
+        "Prioridad para usar el escenario principal para ensayar su coreografía.",
+        "Kit VIP con sorpresas adicionales a la que recibirán los demás asistentes."
+      ],
+      "title": "Beneficios sólo para aquellos que compren del 10 al 30 de septiembre 2022."
+    },
+    "subTitle": "El valor por persona incluye:",
+    "title": "Planes todo incluido"
+  },
   "additionalsCategoriesStep": {
     "title": "Elige las categorías adicionales que deseas"
   },
