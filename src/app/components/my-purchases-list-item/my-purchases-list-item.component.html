@@ -8,15 +8,13 @@
                         <div class="icon-order">
                             <img src="assets/img/cilik/dash-08.png" alt="">
                         </div>
-                        <div class="fs-4 fw-bold">Plan Oficial WLDC</div>
+                        <div class="fs-4 fw-bold">
+                            {{'general.WLDCOfficialPlan' | translate}}
+                        </div>
                     </div>
 
-                    <!-- <span class="text-rslt fw-bold fs-5">
-                        {{ "general.order#" | translate }} {{ order?.index }}
-                    </span> -->
-
                     <span class="text-end fs-5 fw-bold">
-                        {{ "general.purchase-order" | translate }}
+                        {{ "general.purchaseOrder" | translate }} #
                         <br>
                         {{order?._id || '084H36BT'}}
                     </span>
@@ -24,13 +22,9 @@
             </div>
             <div class="seprd2"></div>
             <div class="col-12 px-3">
-                <!-- <p class="m-0">
-                    {{ "general.see-detail-of-the-purchase" | translate }}
-                </p> -->
                 <div class="d-flex justify-content-end mt-5">
                     <button class="btn btn-one" type="button" (click)="showDetails()">
-                        <!-- {{ "general.see" | translate }} -->
-                        Ver detalle
+                        {{ 'general.seeDetails' | translate }}
                     </button>
                 </div>
             </div>
@@ -48,10 +42,12 @@
                         <div class="icon-order">
                             <img src="assets/img/cilik/dash-09.png" alt="">
                         </div>
-                        <div class="fs-4 fw-bold">Categorías adicionales</div>
+                        <div class="fs-4 fw-bold">
+                            {{'general.additionalCategories' | translate}}
+                        </div>
                     </div>
                     <span class="text-end fs-5 fw-bold">
-                        {{ "general.purchase-order" | translate }}
+                        {{ "general.purchaseOrder" | translate }} #
                         <br>
                         {{order?._id || '084H36BT'}}
                     </span>
@@ -61,8 +57,7 @@
             <div class="col-12 px-3">
                 <div class="d-flex justify-content-end mt-5">
                     <button class="btn btn-one" type="button" (click)="showDetails()">
-                        <!-- {{ "general.see" | translate }} -->
-                        Ver detalle
+                        {{ 'general.seeDetails' | translate }}
                     </button>
                 </div>
             </div>

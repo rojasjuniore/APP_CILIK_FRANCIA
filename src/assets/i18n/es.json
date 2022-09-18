@@ -1,6 +1,10 @@
 {
   "dashboard": {
-    "welcomeMessage": "Bienvenido a tu perfil"
+    "welcomeMessage": "Bienvenido a tu perfil del WLDC 2023",
+    "welcomeMessageSub": [
+      "¿Qué deseas hacer hoy?",
+      "Aquí podrás iniciar tu compra para vivir la experiencia."
+    ]
   },
   "formValidations": {
     "dniStored": "Documento de identidad no válido, ya se encuentra en uso",
@@ -39,7 +43,15 @@
     "seePoliciesHere": "Ver políticas aquí.",
     "signUp": "Registrarse",
     "signUpHere": "Regístrarse aquí",
-    "successfulRegistration": "Registro exitoso"
+    "successfulRegistration": "Registro exitoso",
+    "buyPlans": "Comprar planes",
+    "buyCategories": "Compra de categorías",
+    "purchasingSummary": "Resumen de Compras",
+    "purchaseOrder": "Orden de Compra",
+    "WLDCOfficialPlan": "Plan Oficial WLDC",
+    "additionalCategories": "Categorías Adicionales",
+    "seeDetails": "Ver detalles",
+    "noPurchases": "Aún no has realizado ninguna compra"
   },
   "signUp": {
     "checkTermsAndConditions": "Al registrarte estás aceptando las políticas de tratamiento de datos personales.",
