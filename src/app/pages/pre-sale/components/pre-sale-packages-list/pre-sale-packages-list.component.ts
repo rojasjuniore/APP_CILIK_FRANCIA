@@ -53,7 +53,18 @@ export class PreSalePackagesListComponent implements OnInit {
    */
   onUpdateNroParticipants(nroParticipants: any) {
     this.nroParticipants = nroParticipants;
-    this.preSaleSrv.updateDocumentLocalStorage({nroParticipants: nroParticipants});
+    let groupDiscount = 0;
+
+    if(this.nroParticipants >= 20){
+      groupDiscount = 0.10;
+    }else if(this.nroParticipants >= 10){
+      groupDiscount = 0.05;
+    }
+
+    this.preSaleSrv.updateDocumentLocalStorage({
+      nroParticipants: nroParticipants,
+      groupDiscount,
+    });
   }
 
   /**

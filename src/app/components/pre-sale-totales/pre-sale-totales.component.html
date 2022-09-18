@@ -4,7 +4,10 @@
         <span class="text-decoration-line-through">USD {{subTotalFullPrice | mask:'separator.2':','}}</span>
     </h6>
     <h6 class="text-end">
-        {{ "general.discount" | translate }}: <span>USD {{discount | mask:'separator.2':','}}</span>
+        {{ "general.discount" | translate }}: <span>USD -{{discount | mask:'separator.2':','}}</span>
+    </h6>
+    <h6 class="text-end" *ngIf="groupDiscount > 0">
+        Descuento por Grupo ({{groupDiscount * 100}}%): <span>USD -{{groupDiscountAmount | mask:'separator.2':','}}</span>
     </h6>
     <h5 class="fw-bold fs-3 text-end">
         Total: USD {{total | mask:'separator.2':','}}
