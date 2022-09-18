@@ -26,6 +26,9 @@
     "required": "El campo es obligatorio",
     "email": "El correo no es válido",
     "minlength6": "El campo debe tener al menos 6 caracteres",
-    "maxlength12": "El campo debe tener máximo 12 caracteres"
+    "maxlength12": "El campo debe tener máximo 12 caracteres",
+    "passwordsNotMatch": "Las contraseñas no coinciden",
+    "invalidLogIn": "Usuario o contraseña inválidos",
+    "userDoesNotExist": "El usuario no existe"
   }
 }

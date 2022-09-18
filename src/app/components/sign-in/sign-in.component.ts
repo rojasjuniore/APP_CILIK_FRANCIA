@@ -4,6 +4,7 @@ import { Sweetalert2Service } from '../../services/sweetalert2.service';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { pick } from 'underscore';
+import { TranslatePipe } from '@ngx-translate/core';
 
 
 @Component({
@@ -33,7 +34,8 @@ export class SignInComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private sweetAlert2Srv: Sweetalert2Service,
-    private authSrv: AuthenticationService
+    private authSrv: AuthenticationService,
+    private translatePipe: TranslatePipe,
   ) {
     this.buildForm();
   }
@@ -72,13 +74,14 @@ export class SignInComponent implements OnInit {
 
       this.submit = true;
       this.loading = true;
-      this.form.disable();
-
-      if (!this.form.valid) {
+      
+      if (this.form.invalid) {
         this.form.markAllAsTouched();
         return;
       }
-
+      
+      this.form.disable();
+      
       const formData = this.form.value;
       const data = {
         email: `${formData.email}`.trim().toLowerCase(),
@@ -117,11 +120,13 @@ export class SignInComponent implements OnInit {
       // console.log('Error on SignInComponent.onSubmit', err.message);
 
       if (err.code === "auth/wrong-password") {
-        await this.sweetAlert2Srv.showError('Usuario o contraseña inválidos');
+        const message = this.translatePipe.transform('formValidations.invalidLogIn');
+        await this.sweetAlert2Srv.showError(message);
       }
 
       if (err.code === "auth/user-not-found") {
-        await this.sweetAlert2Srv.showError('El usuario no existe, por favor regístrese primero');
+        const message = this.translatePipe.transform('formValidations.userDoesNotExist');
+        await this.sweetAlert2Srv.showError(message);
       }
       return;
 

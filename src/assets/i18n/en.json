@@ -26,6 +26,9 @@
     "required": "The field is required",
     "email": "Invalid email",
     "minlength6": "The field must have at least 6 characters",
-    "maxlength12": "The field must have a maximum of 12 characters"
+    "maxlength12": "The field must have a maximum of 12 characters",
+    "passwordsNotMatch": "Passwords do not match",
+    "invalidLogIn": "Invalid email or password",
+    "userDoesNotExist": "The user does not exist"
   }
 }

@@ -8,19 +8,15 @@
         <div class="px-4 px-sm-5">
 
           <form [formGroup]="form" (ngSubmit)="onSubmit()">
-            <div class="form-floating form-camp mb-3">
 
-              <input
-                type="email"
-                [ngClass]="{ valid: submit && f.email.errors }"
-                formControlName="email"
-                class="form-control"
-                id="floatingInput"
-                placeholder="name@example.com"
-              />
-              <label for="floatingInput">
-                {{ "general.email" | translate }}</label
-              >
+            <div class="form-floating form-camp mb-3">
+              <input type="email" 
+                [ngClass]="{ valid: submit && f.email.errors }" 
+                formControlName="email" class="form-control" id="floatingInputEmail" 
+                placeholder="name@example.com" />
+
+              <label for="floatingInputEmail">
+                {{ "general.email" | translate }}</label>
 
               <ng-container *ngIf="submit">
                 <ng-container *ngFor="let item of vm.email">
