@@ -19,7 +19,25 @@
                 [ngClass]="{'border-bottom': !isLast}" 
                 *ngFor="let item of additionalCategoryPasses; last as isLast"
             >
-            {{ "general.amountOf" | translate }} {{item.label}}: {{getTotalAdditional(item)}}
+
+                <ng-container *ngIf="item.type !== 'group'; else showGroupList">
+                    {{ "general.amountOf" | translate }} {{item.label}}: {{getTotalAdditional(item)}}
+                </ng-container>
+
+                <ng-template #showGroupList>
+
+                    {{ "general.amountOf" | translate }} {{item.label}}: {{getTotalAdditional(item)}}
+                    <br>
+
+                    <ng-container *ngFor="let row of item.data; index as rowIdx; last as isLastRow">
+                        <strong>{{'general.group' | translate | titlecase}} #{{rowIdx + 1}}</strong><br>
+                        - {{'general.numberOfMembers' | translate}}: {{row.quantity}}
+
+                        <br *ngIf="!isLastRow">
+                    </ng-container>
+
+                </ng-template>
+
             </p>
 
             <p class="m-0 mt-4">
