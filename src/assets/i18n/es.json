@@ -31,11 +31,13 @@
     "confirmPassword": "Confirmar contraseña",
     "continue": "Continuar",
     "country": "País",
+    "discount": "Descuento",
     "dni": "Nro. Documento",
     "dniType": "Tipo de documento",
     "email": "Correo",
     "enter": "Ingresar",
     "forgotPassword": "¿Olvidaste tu contraseña?",
+    "groupDiscount": "Descuento por grupo",
     "hello": "Hola",
     "lastName": "Apellido",
     "loading": "Cargando",
@@ -57,7 +59,9 @@
     "seePoliciesHere": "Ver políticas aquí.",
     "signUp": "Registrarse",
     "signUpHere": "Regístrarse aquí",
-    "successfulRegistration": "Registro exitoso"
+    "successfulRegistration": "Registro exitoso",
+    "totalInstallmentsDescription": "Pago en {{nroCoutas}} cuotas de <span>USD {{coutasAmount}}</span>",
+    "valueWithoutDiscount": "Valor sin descuento"
   },
   "roomsStep": {
     "automaticSetupMessage": "El sistema acomoda de manera automática a todas las personas con las tarifas más convenientes. Puedes personalizar el resultado.",
