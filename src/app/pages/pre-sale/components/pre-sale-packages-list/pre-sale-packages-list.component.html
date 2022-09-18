@@ -8,7 +8,8 @@
 
     <div class="col-12 col-md-6 mb-3">
         <app-input-number-form 
-            [label]="('general.#nroCompetitors' | translate | lowercase)" 
+            [label]="('general.#nroCompetitors' | translate | lowercase)"
+            [min]="0" [max]="999"
             [quantity]="nroParticipants"
             (onUpdateQuantity)="onUpdateNroParticipants($event)"></app-input-number-form>
     </div>
