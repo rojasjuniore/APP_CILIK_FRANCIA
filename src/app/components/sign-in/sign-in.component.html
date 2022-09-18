@@ -28,7 +28,7 @@
                     class="badge bg-danger"
                     *ngIf="f.email.hasError(item.type)"
                   >
-                    {{ item.message }}
+                    {{ item.message | translate }}
                   </span>
                 </ng-container>
               </ng-container>
@@ -58,7 +58,7 @@
                     class="badge bg-danger"
                     *ngIf="f.password.hasError(item.type)"
                   >
-                    {{ item.message }}
+                    {{ item.message | translate }}
                   </span>
                 </ng-container>
               </ng-container>

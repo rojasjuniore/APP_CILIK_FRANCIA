@@ -21,5 +21,11 @@
   },
   "signUp": {
     "checkTermsAndConditions": "By registering you are accepting the personal data processing policies."
+  },
+  "formValidations":{
+    "required": "The field is required",
+    "email": "Invalid email",
+    "minlength6": "The field must have at least 6 characters",
+    "maxlength12": "The field must have a maximum of 12 characters"
   }
 }

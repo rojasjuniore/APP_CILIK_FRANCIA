@@ -21,5 +21,11 @@
   },
   "signUp": {
     "checkTermsAndConditions": "Al registrarte estás aceptando las políticas de tratamiento de datos personales."
+  },
+  "formValidations":{
+    "required": "El campo es obligatorio",
+    "email": "El correo no es válido",
+    "minlength6": "El campo debe tener al menos 6 caracteres",
+    "maxlength12": "El campo debe tener máximo 12 caracteres"
   }
 }

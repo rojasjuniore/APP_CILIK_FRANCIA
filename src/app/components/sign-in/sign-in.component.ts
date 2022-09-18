@@ -16,13 +16,13 @@ export class SignInComponent implements OnInit {
   public form!: FormGroup;
   public vm = {
     email: [
-      { type: 'required', message: 'Email es requerido *' },
-      { type: 'pattern', message: 'Email No es válido *' }
+      { type: 'required', message: 'formValidations.required' },
+      { type: 'pattern', message: 'formValidations.email' }
     ],
     password: [
-      { type: 'required', message: 'Se requiere contraseña *' },
-      { type: 'minlength', message: 'La contraseña debe contener 6 caracteres como mínimo *' },
-      { type: 'maxlength', message: 'La contraseña debe tener un máximo de 12 caracteres *' }
+      { type: 'required', message: 'formValidations.required' },
+      { type: 'minlength', message: 'formValidations.minlength6' },
+      { type: 'maxlength', message: 'formValidations.maxlength12' }
     ]
   };
   public submit = false;
@@ -74,7 +74,7 @@ export class SignInComponent implements OnInit {
       this.loading = true;
       this.form.disable();
 
-      if (this.form.invalid) {
+      if (!this.form.valid) {
         this.form.markAllAsTouched();
         return;
       }
