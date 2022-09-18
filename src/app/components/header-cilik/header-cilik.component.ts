@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { PreSaleService } from 'src/app/services/pre-sale.service';
@@ -20,6 +21,7 @@ export class HeaderCilikComponent implements OnInit {
     private authSrv: AuthenticationService,
     private preSaleSrv: PreSaleService,
     private router: Router,
+    private translatePipe: TranslatePipe,
   ) { }
 
   ngOnInit(): void {
@@ -28,7 +30,8 @@ export class HeaderCilikComponent implements OnInit {
   }
 
   async removePreSaleOrder(){
-    const ask = await this.sweetAlert2Srv.askConfirm('¿Desea eliminar la orden de compra?');
+    const message = this.translatePipe.transform('general.removeOrder');
+    const ask = await this.sweetAlert2Srv.askConfirm(message);
     if (!ask) { return ;}
 
     this.preSaleSrv.removeDocumentLocalStorage();
@@ -37,7 +40,8 @@ export class HeaderCilikComponent implements OnInit {
 
   
   public async logout() {
-    const ask = await this.sweetAlert2Srv.askConfirm('¿Desea salir del WLDC 2023?');
+    const message = this.translatePipe.transform('general.logOutMessage');
+    const ask = await this.sweetAlert2Srv.askConfirm(message);
     if (!ask) { return ;}
     this.authSrv.logout();
   }

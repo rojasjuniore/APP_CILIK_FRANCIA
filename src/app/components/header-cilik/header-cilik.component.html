@@ -8,10 +8,6 @@
                 
                 <div class="d-flex align-items-center">
 
-                    <!-- <div class="btn-navbar-c d-flex justify-content-center align-items-center">
-                        <img src="assets/img/cilik/icon-21.png" alt="">
-                    </div> -->
-
                     <ng-container *ngIf="(preSaleOrder$ | async)?.orderId">
                         <div class="btn-navbar-c d-flex justify-content-center align-items-center ms-3" (click)="removePreSaleOrder()">
                             <span class="text-whi fs-4"><i class="bi bi-trash"></i></span> 
@@ -21,7 +17,7 @@
                     <div class="seprd-h"></div>
                     <div class="btn-logout d-flex align-items-center" (click)="logout()">
                         <span class="fw-bold lh-1 pe-2">  
-                            {{ "general.log-out" | translate }} 
+                            {{ "general.logOut" | translate }} 
                         </span>
                         <img src="assets/img/cilik/icon-28.png" alt="">
                     </div>

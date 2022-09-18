@@ -1,4 +1,7 @@
 {
+  "dashboard": {
+    "welcomeMessage": "Bienvenido a tu perfil"
+  },
   "formValidations": {
     "dniStored": "Documento de identidad no válido, ya se encuentra en uso",
     "email": "El correo no es válido",
@@ -22,13 +25,17 @@
     "email": "Correo",
     "enter": "Ingresar",
     "forgotPassword": "¿Olvidaste tu contraseña?",
+    "hello": "Hola",
     "lastName": "Apellido",
     "loading": "Cargando",
     "logIn": "Iniciar Sesión",
+    "logOut": "Cerrar Sesión",
+    "logOutMessage": "¿Desea salir del WLDC 2023?",
     "name": "Nombre",
     "notRegistered": "¿Aún no estás registrado?",
     "password": "Contraseña",
     "phoneNumber": "Nro. Teléfono",
+    "removeOrder": "¿Desea eliminar la orden de compra?",
     "seePoliciesHere": "Ver políticas aquí.",
     "signUp": "Registrarse",
     "signUpHere": "Regístrarse aquí",
