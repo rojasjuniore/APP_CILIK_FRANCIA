@@ -57,7 +57,17 @@ export class PreSaleCheckoutListComponent implements OnInit {
     const rooms = this.rooms.filter((value, index) => index != params.index);
     const nroParticipants = rooms.map((row) => row.capacity).reduce((acc, next) => acc + next, 0);
 
-    this.preSaleSrv.updateDocumentLocalStorage({rooms, nroParticipants});
+    /**
+     * Actualizar porcentaje de descuento por grupo
+     */
+    let groupDiscount = 0;
+    if(nroParticipants >= 20){
+      groupDiscount = 0.10;
+    }else if(nroParticipants >= 10){
+      groupDiscount = 0.05;
+    }
+
+    this.preSaleSrv.updateDocumentLocalStorage({rooms, nroParticipants, groupDiscount});
     this.loadLocalData();
   }
 

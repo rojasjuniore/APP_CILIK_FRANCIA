@@ -53,8 +53,11 @@ export class PreSalePackagesListComponent implements OnInit {
    */
   onUpdateNroParticipants(nroParticipants: any) {
     this.nroParticipants = nroParticipants;
-    let groupDiscount = 0;
 
+    /**
+     * Actualizar porcentaje de descuento por grupo
+     */
+    let groupDiscount = 0;
     if(this.nroParticipants >= 20){
       groupDiscount = 0.10;
     }else if(this.nroParticipants >= 10){
