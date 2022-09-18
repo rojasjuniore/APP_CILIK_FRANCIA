@@ -88,6 +88,7 @@
     "seeHere": "Ver aquí",
     "seeMyProfile": "ver mi perfil",
     "seePoliciesHere": "Ver políticas aquí.",
+    "share": "Cuota",
     "signUp": "Registrarse",
     "signUpHere": "Regístrarse aquí",
     "soloCategory": "Categoría de Solista",
@@ -117,6 +118,9 @@
     "creditCard": "Tarjeta de crédito",
     "crypto": "Criptomonedas",
     "installmentPayment": "Pago por cuotas",
+    "payFee1": "Pagar cuota 1",
+    "paymentByInstallment": "Pago por cuotas",
+    "paymentDeadline": "Fecha límite de pago",
     "paypal": "Paypal"
   },
   "pruchases": {
