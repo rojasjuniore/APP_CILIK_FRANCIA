@@ -25,6 +25,7 @@
   "general": {
     "#nroCompetitors": "# de Competidores",
     "WLDCOfficialPlan": "Plan Oficial WLDC",
+    "addGroup": "Agregar grupo",
     "addRoom": "Agregar Habitación",
     "additionalCategories": "Categorías Adicionales",
     "amount": "Monto",
@@ -44,6 +45,8 @@
     "enter": "Ingresar",
     "extraNight": "Noche adicional",
     "forgotPassword": "¿Olvidaste tu contraseña?",
+    "group": "Grupo",
+    "groupCategory": "Categoría de Grupo",
     "groupDiscount": "Descuento por grupo",
     "hello": "Hola",
     "lastName": "Apellido",
