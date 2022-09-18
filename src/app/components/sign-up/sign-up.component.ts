@@ -129,9 +129,8 @@ export class SignUpComponent implements OnInit {
         ]
       ],
       documentType: ['dni', Validators.required],
-      dni: ['', [
+      dni: ['dni', [
         Validators.required,
-        Validators.pattern(/^[0-9]+$/)
       ]],
       prefix: ["+57", [
         Validators.required
@@ -167,12 +166,11 @@ export class SignUpComponent implements OnInit {
       this.submit = true;
       this.loader = true;
 
-      if (this.form.invalid) {
+      if (!this.form.valid) {
         this.form.markAllAsTouched();
         return;
       }
 
-      
       const formData = this.form.value;
 
       const checkDNI = await this.authenticationSrv.checkDNI(formData.dni, formData.documentType);

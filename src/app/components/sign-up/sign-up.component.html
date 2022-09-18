@@ -49,7 +49,7 @@
               <!-- Input Document Type -->
               <div class="col-12 col-md-4">
                 <div class="form-floating form-camp mb-3">
-                  <select class="form-select" [ngClass]="{'is-invalid': submit && f.lastName.errors}"
+                  <select class="form-select" [ngClass]="{'is-invalid': submit && f.dni.errors}"
                     formControlName="documentType" id="floatingSelectDocumentType" aria-label="Document Type">
                     <option value="dni">DNI</option>
                     <option value="passport">Passport</option>
@@ -59,8 +59,8 @@
                   </label>
 
                   <ng-container *ngIf="submit">
-                    <ng-container *ngFor="let item of vm.lastName">
-                      <span class="badge bg-danger" *ngIf="f.lastName.hasError(item.type)">
+                    <ng-container *ngFor="let item of vm.dni">
+                      <span class="badge bg-danger" *ngIf="f.dni.hasError(item.type)">
                         {{item.message}}
                       </span>
 
@@ -273,104 +273,6 @@
 
           </form>
 
-          <form *ngIf="false">
-            <div class="nombre-apellido">
-              <div class=" mb-3">
-                <label for="floatingInput">{{ "general.name" | translate }}</label>
-                <input [(ngModel)]="datad.name" [ngModelOptions]="{standalone: true}"
-                  onkeydown="return /[^,\-,0-9,$,@,!,$,%,^,&.*,(,),-,_,`,~,', ,\[,\],\},\{,\#,\+,\;,\:,\<,\>,\?,\=,\\,\|,\¡,\/]/i.test(event.key)"
-                  type="text" class="form-control" id="floatingInput" placeholder="sara">
-
-              </div>
-              <div class=" mb-3">
-                <label for="floatingInput">{{ "general.last-name" | translate }}</label>
-                <input [(ngModel)]="datad.last_name" [ngModelOptions]="{standalone: true}"
-                  onkeydown="return /[^,\-,0-9,$,@,!,$,%,^,&.*,(,),-,_,`,~,', ,\[,\],\},\{,\#,\+,\;,\:,\<,\>,\?,\=,\\,\|,\¡,\/]/i.test(event.key)"
-                  type="text" class="form-control" id="floatingInput" placeholder="perez">
-
-              </div>
-            </div>
-            <div class="nombre-apellido">
-              <div class=" mb-3">
-                <label for="floatingInput">{{ "general.type" | translate }}</label>
-                <select class="form-select" aria-label="Default select example">
-                  <option value="cedula">cedula</option>
-                  <option value="pasaporte">pasaporte</option>
-                  <option value="cedula juridica">cedula juridica</option>
-                </select>
-              </div>
-              <div class=" mb-3">
-                <label for="floatingInput">DNI</label>
-                <input type="number" [(ngModel)]="datad.dni" [ngModelOptions]="{standalone: true}" class="form-control"
-                  id="floatingInput" placeholder="12341234">
-              </div>
-            </div>
-
-            <div class="nombre-apellido">
-              <div class=" mb-3">
-                <label for="floatingInput">"{{ "general.type" | translate }}</label>
-                <select class="form-select" aria-label="Default select example">
-                  <option *ngFor="let name of paises; index as dxi" [value]="name.dial_code">{{name.name}}
-                    {{name.dial_code}} <div>{{name.name}}</div>
-                  </option>
-                </select>
-              </div>
-              <div class=" mb-3">
-                <label for="floatingInput">{{ "general.phone-number" | translate }}</label>
-                <input type="number" [(ngModel)]="datad.phone" [ngModelOptions]="{standalone: true}"
-                  class="form-control" id="floatingInput" placeholder="+584121852346">
-              </div>
-            </div>
-
-            <div class=" mb-3">
-              <label for="floatingInput">{{ "general.email" | translate }}</label>
-              <input type="email" [ngClass]="{'valid': valid }" [ngModelOptions]="{standalone: true}"
-                [(ngModel)]="datad.email" (ngModelChange)="modelChangeFn($event)" class="form-control" id=""
-                placeholder="name@example.com">
-              <span *ngIf="valid" class="badge bg-danger">Correo electronico ingresado no es valido</span>
-            </div>
-            <div class=" mb-3">
-              <label for="floatingPassword">{{ "general.password" | translate }}</label>
-              <input type="password" [ngClass]="{'valid': validPassword }" [(ngModel)]="datad.password"
-                [ngModelOptions]="{standalone: true}" (ngModelChange)="modelChangePassword($event)" class="form-control"
-                id="floatingPassword" placeholder="Password">
-              <span *ngIf="validPassword" class="badge bg-danger">password ingresado no es valido</span>
-            </div>
-
-            <div class="form-check mb-3">
-              <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
-              <label class="form-check-label" for="rememberPasswordCheck">
-                {{ "general.remember-password" | translate }}
-              </label>
-            </div>
-            <div class="d-grid">
-              <button class="btn btn-primary btn-login text-uppercase fw-bold" (click)="openPopup()">
-                <ng-container *ngIf="submitStatus == 0">
-                  {{ "general.register" | translate }}
-                </ng-container>
-
-                <ng-container *ngIf="submitStatus == 1">
-                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                  {{ "general.processing" | translate }}...
-                </ng-container>
-              </button>
-            </div>
-            <!-- <hr class="my-4"> -->
-            <br>
-            <div class="d-grid mb-2">
-              <p>
-                {{ "general.register-text" | translate }}
-                 <a href="/sign-in">{{ "general.enter" | translate }}</a></p>
-              <!-- <button class="btn btn-google btn-login text-uppercase fw-bold" type="submit">
-                  <i class="fab fa-google me-2"></i> Sign in with Google
-                </button> -->
-            </div>
-            <!-- <div class="d-grid">
-                <button class="btn btn-facebook btn-login text-uppercase fw-bold" type="submit">
-                  <i class="fab fa-facebook-f me-2"></i> Sign in with Facebook
-                </button>
-              </div> -->
-          </form>
         </div>
         <app-footer-cilik></app-footer-cilik>
       </div>
