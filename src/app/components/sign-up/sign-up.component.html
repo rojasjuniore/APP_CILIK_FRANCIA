@@ -22,7 +22,7 @@
                   <ng-container *ngIf="submit">
                     <ng-container *ngFor="let item of vm.firstName">
                       <span class="badge bg-danger" *ngIf="f.firstName.hasError(item.type)">
-                        {{item.message}}
+                        {{item.message | translate}}
                       </span>
 
                     </ng-container>
@@ -40,7 +40,7 @@
                   <ng-container *ngIf="submit">
                     <ng-container *ngFor="let item of vm.lastName">
                       <span class="badge bg-danger" *ngIf="f.lastName.hasError(item.type)">
-                        {{item.message}}
+                        {{item.message | translate}}
                       </span>
 
                     </ng-container>
@@ -51,7 +51,7 @@
               <!-- Input Document Type -->
               <div class="col-12 col-md-4">
                 <div class="form-floating form-camp mb-3">
-                  <select class="form-select" [ngClass]="{'is-invalid': submit && f.dni.errors}"
+                  <select class="form-select" [ngClass]="{'is-invalid': submit && f.documentType.errors}"
                     formControlName="documentType" id="floatingSelectDocumentType" aria-label="Document Type">
                     <option value="dni">DNI</option>
                     <option value="passport">Passport</option>
@@ -61,9 +61,9 @@
                   </label>
 
                   <ng-container *ngIf="submit">
-                    <ng-container *ngFor="let item of vm.dni">
-                      <span class="badge bg-danger" *ngIf="f.dni.hasError(item.type)">
-                        {{item.message}}
+                    <ng-container *ngFor="let item of vm.documentType">
+                      <span class="badge bg-danger" *ngIf="f.documentType.hasError(item.type)">
+                        {{item.message | translate}}
                       </span>
 
                     </ng-container>
@@ -81,7 +81,7 @@
                   <ng-container *ngIf="submit">
                     <ng-container *ngFor="let item of vm.dni">
                       <span class="badge bg-danger" *ngIf="f.dni.hasError(item.type)">
-                        {{item.message}}
+                        {{item.message | translate}}
                       </span>
 
                     </ng-container>
@@ -105,7 +105,7 @@
                   <ng-container *ngIf="submit">
                     <ng-container *ngFor="let item of vm.prefix">
                       <span class="badge bg-danger" *ngIf="f.prefix.hasError(item.type)">
-                        {{item.message}}
+                        {{item.message | translate}}
                       </span>
 
                     </ng-container>
@@ -128,7 +128,7 @@
                   <ng-container *ngIf="submit">
                     <ng-container *ngFor="let item of vm.phoneNumber">
                       <span class="badge bg-danger" *ngIf="f.phoneNumber.hasError(item.type)">
-                        {{item.message}}
+                        {{item.message | translate}}
                       </span>
 
                     </ng-container>
@@ -150,7 +150,7 @@
                   <ng-container *ngIf="submit">
                     <ng-container *ngFor="let item of vm.email">
                       <span class="badge bg-danger" *ngIf="f.email.hasError(item.type)">
-                        {{item.message}}
+                        {{item.message | translate}}
                       </span>
 
                     </ng-container>
@@ -178,7 +178,7 @@
                   <ng-container *ngIf="submit">
                     <ng-container *ngFor="let item of vm.password">
                       <span class="badge bg-danger" *ngIf="f.password.hasError(item.type)">
-                        {{item.message}}
+                        {{item.message | translate}}
                       </span>
 
                     </ng-container>
@@ -208,7 +208,7 @@
                   <ng-container *ngIf="submit">
                     <ng-container *ngFor="let item of vm.confirmPassword">
                       <span class="badge bg-danger" *ngIf="f.confirmPassword.hasError(item.type)">
-                        {{item.message}}
+                        {{item.message | translate}}
                       </span>
 
                     </ng-container>
@@ -227,7 +227,6 @@
                     <a href="https://firebasestorage.googleapis.com/v0/b/cilik-3c845.appspot.com/o/document%2F006%20POLITICA%20DE%20PRIVACIDAD%20WLDC2023%20(3).pdf?alt=media&token=da684326-4ef6-4bb0-931f-41960c50135f"
                       target="_blank" class="fw-bold" rel="noopener noreferrer">
                       {{ "general.seePoliciesHere" | translate }}
-                      
                     </a>
                   </label>
 
@@ -235,7 +234,7 @@
                 <ng-container *ngIf="submit">
                   <ng-container *ngFor="let item of vm.termsAndCondition">
                     <span class="badge bg-danger" *ngIf="f.termsAndCondition.hasError(item.type)">
-                      {{item.message}}
+                      {{item.message | translate}}
                     </span>
 
                   </ng-container>

@@ -29,6 +29,10 @@
     "maxlength12": "El campo debe tener máximo 12 caracteres",
     "passwordsNotMatch": "Las contraseñas no coinciden",
     "invalidLogIn": "Usuario o contraseña inválidos",
-    "userDoesNotExist": "El usuario no existe"
+    "userDoesNotExist": "El usuario no existe",
+    "onlyCharacters": "el campo debe contener solo letras",
+    "onlyNumbers": "el campo debe contener solo números",
+    "dniStored": "Documento de identidad no válido, ya se encuentra en uso",
+    "emailStored": "El correo electrónico ya encuentra registrado"
   }
 }

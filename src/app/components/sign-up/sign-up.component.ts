@@ -9,6 +9,7 @@ import { DataService } from 'src/app/services/data.service';
 import { TemporalTokenService } from 'src/app/services/temporal-token.service';
 import { EmailNotificationService } from 'src/app/services/email-notification.service';
 import { CommonService } from 'src/app/services/common.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sign-up',
@@ -37,44 +38,44 @@ export class SignUpComponent implements OnInit {
   public form!: FormGroup;
   public vm = {
     firstName: [
-      { type: 'required', message: 'Se requiere el primer nombre *' },
-      { type: 'pattern', message: 'El nombre debe contener solo letras *' }
+      { type: 'required', message: 'formValidations.required' },
+      { type: 'pattern', message: 'formValidations.onlyCharacters' }
     ],
     lastName: [
-      { type: 'required', message: 'Se requiere apellido *' },
-      { type: 'pattern', message: 'El apellido debe contener solo letras *' }
+      { type: 'required', message: 'formValidations.required' },
+      { type: 'pattern', message: 'formValidations.onlyCharacters' }
     ],
     documentType: [
-      { type: 'required', message: 'El tipo de documento es obligatorio *' }
+      { type: 'required', message: 'formValidations.required' }
     ],
     dni: [
-      { type: 'required', message: 'Se requiere documento *' },
-      { type: 'pattern', message: 'Documento debe contener solo números *' },
-      { type: 'dniStored', message: 'Documento de identidad no válido, ya se encuentra en uso' },
+      { type: 'required', message: 'formValidations.required' },
+      { type: 'pattern', message: 'formValidations.onlyNumbers' },
+      { type: 'dniStored', message: 'formValidations.dniStored' },
     ],
     prefix: [
-      { type: 'required', message: 'Se requiere prefijo *' },
+      { type: 'required', message: 'formValidations.required' },
     ],
     phoneNumber: [
-      { type: 'required', message: 'Se requiere el número de teléfono *' },
-      { type: 'pattern', message: 'El número de teléfono debe contener solo números *' }
+      { type: 'required', message: 'formValidations.required' },
+      { type: 'pattern', message: 'formValidations.onlyNumbers' }
     ],
     email: [
-      { type: 'required', message: 'Correo electronico es requerido *' },
-      { type: 'pattern', message: 'El correo no es válido *' },
-      { type: 'emailStored', message: 'El correo electrónico ya está registrado *' },
+      { type: 'required', message: 'formValidations.required' },
+      { type: 'pattern', message: 'formValidations.email' },
+      { type: 'emailStored', message: 'formValidations.emailStored' },
     ],
     password: [
-      { type: 'required', message: 'Se requiere contraseña *' },
-      { type: 'minlength', message: 'La contraseña debe contener 6 caracteres como mínimo *' },
-      { type: 'maxlength', message: 'La contraseña no puede tener más de 12 caracteres *' }
+      { type: 'required', message: 'formValidations.required' },
+      { type: 'minlength', message: 'formValidations.minlength6' },
+      { type: 'maxlength', message: 'formValidations.maxlength12' }
     ],
     confirmPassword: [
-      { type: 'required', message: 'Se requiere confirmar contraseña *' },
-      { type: 'mustMatch', message: 'La contraseña y la contraseña de confirmación deben coincidir *' }
+      { type: 'required', message: 'formValidations.required'},
+      { type: 'mustMatch', message: 'formValidations.passwordsNotMatch' }
     ],
     termsAndCondition: [
-      { type: 'required', message: 'Se requieren términos y condiciones *' }
+      { type: 'required', message: 'formValidations.required' }
     ]
   };
   public submit = false;
@@ -91,6 +92,7 @@ export class SignUpComponent implements OnInit {
     private sweetAlert2Srv: Sweetalert2Service,
     private temporalTokenSrv: TemporalTokenService,
     private emailNotificationSrv: EmailNotificationService,
+    private translatePipe: TranslatePipe,
   ) {
 
     /** Phone number prefix list */
@@ -129,8 +131,9 @@ export class SignUpComponent implements OnInit {
         ]
       ],
       documentType: ['dni', Validators.required],
-      dni: ['dni', [
+      dni: ['', [
         Validators.required,
+        Validators.pattern(/^[0-9]+$/)
       ]],
       prefix: ["+57", [
         Validators.required
@@ -196,7 +199,8 @@ export class SignUpComponent implements OnInit {
       const validDocument = await this.authenticationSrv.getByDocument(data.dni, data.documentType);
       console.log('validDocument', validDocument);
       if (validDocument != null) {
-        this.sweetAlert2Srv.showWarning('El documento ya se encuentra registrado');
+        const message = this.translatePipe.transform('formValidations.dniStored');
+        this.sweetAlert2Srv.showWarning(message);
         return
       }
 
