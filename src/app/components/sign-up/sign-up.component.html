@@ -35,7 +35,7 @@
                 <div class="form-floating form-camp mb-3">
                   <input type="text" [ngClass]="{'is-invalid': submit && f.lastName.errors}" formControlName="lastName"
                     class="form-control" id="floatingInputLastName" placeholder="{{ 'general.last-name' | translate }}">
-                  <label for="floatingInputLastName">{{ "general.last-name" | translate }}</label>
+                  <label for="floatingInputLastName">{{ "general.lastName" | translate }}</label>
 
                   <ng-container *ngIf="submit">
                     <ng-container *ngFor="let item of vm.lastName">
@@ -57,7 +57,7 @@
                     <option value="passport">Passport</option>
                   </select>
                   <label for="floatingSelectDocumentType"> 
-                    {{ "general.document-type" | translate }}
+                    {{ "general.dniType" | translate }}
                   </label>
 
                   <ng-container *ngIf="submit">
@@ -76,7 +76,7 @@
                 <div class="form-floating form-camp mb-3">
                   <input type="number" [ngClass]="{'is-invalid': submit && f.dni.errors}" formControlName="dni"
                     class="form-control" id="floatingInputDNI" placeholder="DNI">
-                  <label for="floatingInputDNI"> {{ "general.Document-number" | translate }}</label>
+                  <label for="floatingInputDNI"> {{ "general.dni" | translate }}</label>
 
                   <ng-container *ngIf="submit">
                     <ng-container *ngFor="let item of vm.dni">
@@ -119,10 +119,10 @@
                   <input 
                     type="number" [ngClass]="{'is-invalid': submit && f.phoneNumber.errors}"
                     formControlName="phoneNumber" class="form-control" id="floatingInputPhoneNumber"
-                    placeholder="{{ 'general.phone-number' | translate }}"
+                    placeholder="{{ 'general.phoneNumber' | translate }}"
                   >
                   <label for="floatingInputPhoneNumber"> 
-                    {{ "general.phone-number" | translate }}
+                    {{ "general.phoneNumber" | translate }}
                   </label>
 
                   <ng-container *ngIf="submit">
@@ -196,7 +196,7 @@
                     placeholder="{{ 'general.confirm-password' | translate }}"
                   >
                   <label for="floatingInputConfirmPassword">
-                    {{ "general.confirm-password" | translate }}
+                    {{ "general.confirmPassword" | translate }}
                   </label>
 
 
@@ -221,12 +221,12 @@
                   <input class="form-check-input" [ngClass]="{'is-invalid': submit && f.termsAndCondition.errors}"
                     type="checkbox" value="" id="termsAndConditionsCheck" formControlName="termsAndCondition">
                   <label class="form-check-label" for="termsAndConditionsCheck">
-                    {{ "general.check-term-text" | translate }}
+                    {{ "signUp.checkTermsAndConditions" | translate }}
                     <br>
                     <!-- <a class="fw-bold" >Ver políticas aquí.</a> -->
                     <a href="https://firebasestorage.googleapis.com/v0/b/cilik-3c845.appspot.com/o/document%2F006%20POLITICA%20DE%20PRIVACIDAD%20WLDC2023%20(3).pdf?alt=media&token=da684326-4ef6-4bb0-931f-41960c50135f"
                       target="_blank" class="fw-bold" rel="noopener noreferrer">
-                      {{ "general.See-policies-here" | translate }}
+                      {{ "general.seePoliciesHere" | translate }}
                       
                     </a>
                   </label>
@@ -260,10 +260,10 @@
                     <div class="d-md-flex justify-content-between">
                       <button class="btn btn-three btn-small text-uppercase fw-bold" type="button"
                         routerLink="/sign-in">
-                        <i class="bi bi-chevron-left"></i> {{ "general.return" | translate }}
+                        <i class="bi bi-chevron-left"></i> {{ "general.back" | translate }}
                       </button>
                       <button class="btn btn-one btn-small text-uppercase fw-bold" type="submit">
-                        {{ "general.register" | translate }}
+                        {{ "general.signUp" | translate }}
                       </button>
                     </div>
                   </ng-template>
