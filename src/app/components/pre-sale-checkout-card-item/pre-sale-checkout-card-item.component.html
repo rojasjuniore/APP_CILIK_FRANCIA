@@ -10,7 +10,7 @@
         <div class="seprd2"></div>
         <div class="col-12 px-3">
             <p class="m-0">
-                {{ "general.#oforphans" | translate }} {{item.capacity}} {{ "general.person" | translate }} <ng-container *ngIf="item.capacity > 1">s</ng-container>
+                {{ "general.#oforphans" | translate }} {{item.capacity}} {{ "general.person" | translate }}<ng-container *ngIf="item.capacity > 1">s</ng-container>
             </p>
             <p class="m-0" *ngIf="nroAdditionalDays > 0">
                 {{ "general.Additional-nights" | translate }} {{nroAdditionalDays}}
