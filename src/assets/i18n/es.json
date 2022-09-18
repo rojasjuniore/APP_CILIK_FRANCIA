@@ -41,6 +41,7 @@
     "changeRoomType": "Cambiar tipo de habitación",
     "confirmPassword": "Confirmar contraseña",
     "continue": "Continuar",
+    "continueShopping": "seguir comprando",
     "continueToPay": "Continuar pago",
     "country": "País",
     "coupleCategory": "Categoría de Pareja",
@@ -80,11 +81,13 @@
     "rooms": "Habitaciones",
     "seeDetails": "Ver detalles",
     "seeHere": "Ver aquí",
+    "seeMyProfile": "ver mi perfil",
     "seePoliciesHere": "Ver políticas aquí.",
     "signUp": "Registrarse",
     "signUpHere": "Regístrarse aquí",
     "soloCategory": "Categoría de Solista",
     "successfulRegistration": "Registro exitoso",
+    "successfulTransaction": "Transacción exitosa",
     "summaryOfThePurchase": "Resumen de la compra",
     "thisPlanIncludes": "Este plan incluye",
     "total": "Total",
@@ -98,6 +101,9 @@
     "crypto": "Criptomonedas",
     "installmentPayment": "Pago por cuotas",
     "paypal": "Paypal"
+  },
+  "pruchases": {
+    "confirmEmailPurchase": "Muy pronto recibirás un e-mail de confirmación con el resumen de la compra."
   },
   "roomsStep": {
     "automaticSetupMessage": "El sistema acomoda de manera automática a todas las personas con las tarifas más convenientes. Puedes personalizar el resultado.",

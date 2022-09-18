@@ -4,15 +4,15 @@
 
     <div class="col-12 text-center mb-2 mt-5">
         <h2 class="text-danger fw-bolder text-center">
-            {{ "general.successful-transaction" | translate }}
+            {{ "general.successfulTransaction" | translate }}
         </h2>
         <p>
-            {{ "general.confirm-email-purchase" | translate }}
+            {{ "pruchases.confirmEmailPurchase" | translate }}
         </p>
     </div>
 
     <div class="col-12 text-center mb-2">
-        <strong>{{ "general.summary-of-the-purchase" | translate }} </strong>
+        <strong>{{ "general.summaryOfThePurchase" | translate }} </strong>
     </div>
 
     <ng-container *ngIf="(purchaseDocument$ | async) as purchaseDocument; else loading ">
@@ -38,10 +38,10 @@
         <div class="d-flex justify-content-between">
             <button class="btn btn-three text-uppercase" type="button" (click)="onKeepBuying()">
                 <i class="bi bi-chevron-left"></i>
-                {{ "general.see-my-profile" | translate }}
+                {{ "general.seeMyProfile" | translate | uppercase}}
             </button>
             <button class="btn btn-danger rounded-pill text-uppercase" type="button" (click)="onKeepBuying()">
-                {{ "general.continue-shopping" | translate }}
+                {{ "general.continueShopping" | translate | uppercase}}
             </button>
         </div>
     </div>
