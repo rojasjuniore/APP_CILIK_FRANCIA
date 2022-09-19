@@ -21,6 +21,16 @@
     "title": "Planes todo incluido"
   },
   "additionalsCategoriesStep": {
+    "modalConfirmTerms": "SÍ, ya cuento con un<br> plan todo incluido",
+    "modalDeclineTerms": "NO, aún no cuento con<br> un plan todo incluido",
+    "termsAndConditions": [
+      "Por la compra del plan todo incluido los competidores reciben una (1) categoría sin costo.",
+      "En caso de querer competir en más de una categoría deberá comprar categorías adicionales.",
+      "Todos los asistentes y todos los competidores del WLDC 2023 deberán comprar un plan todo incluido y estar hospedados en el hotel oficial de la competencia, Hotel Las Américas Cartagena, Colombia.",
+      "Todos los competidores y acompañantes deberán alojarse en el hotel oficial del evento sin excepción.",
+      "Todos los competidores y acompañantes deben adquirir el plan todo incluido y las categorías adicionales únicamente a través de la aplicación oficial del evento.",
+      "No se hará devolución de dinero correspondiente a la compra de categorías adicionales WLDC 2023."
+    ],
     "title": "Elige las categorías adicionales que deseas"
   },
   "dashboard": {
