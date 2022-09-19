@@ -4,19 +4,23 @@
             <div class="avtr">
                 <img src="assets/img/cilik/icon-39.png" alt="">
             </div>
-
-            <ng-container *ngIf="(profile$ | async); else loading">
-                <div class="fs-2 fw-bold ps-3">
-                    {{ "general.hello" | translate }} {{ (profile$ | async)?.fullName | titlecase }}
-                </div>
-            </ng-container>
-
-            <ng-template #loading>
-                
-                <div class="fs-2 fw-bold ps-3 placeholder-glow">
-                    <span class="placeholder col-7"></span>
-                </div>
-            </ng-template>
+            <div>
+                <ng-container *ngIf="(profile$ | async); else loading">
+                    <div class="fs-2 fw-bold ps-3 d-flex jsutify-content-center flex-column">
+                        <div>{{ "general.hello" | translate }} {{ (profile$ | async)?.fullName | titlecase }}</div>
+                        <a routerLink="/dashboard" class="text-rslt fs-6">Ir al perfil</a>
+                    </div>
+                    
+                </ng-container>
+    
+                <ng-template #loading>
+                    
+                    <div class="fs-2 fw-bold ps-3 placeholder-glow">
+                        <span class="placeholder col-7"></span>
+                    </div>
+                </ng-template> 
+            </div>
+            
             
         </div>
         <div class="seprd"></div>
