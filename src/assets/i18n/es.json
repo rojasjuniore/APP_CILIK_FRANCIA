@@ -221,7 +221,8 @@
     "imageUseAuthorizationLink": "https://firebasestorage.googleapis.com/v0/b/cilik-presale.appspot.com/o/imageUseAuthorizationES.pdf?alt=media&token=4d4cf3da-b089-4e85-9f11-f8edfb6c0355",
     "informedConsentForMinors": "Consentimiento informado para menores de edad",
     "informedConsentForMinorsLink": "https://firebasestorage.googleapis.com/v0/b/cilik-presale.appspot.com/o/informedConsentForMinorsES.pdf?alt=media&token=0e85455d-ec28-4b6c-b046-3182159bfc65",
-    "successfulRegistrationMessage": "Ya puedes continuar con el proceso de compra."
+    "successfulRegistrationMessage": "Ya puedes continuar con el proceso de compra.",
+    "termsAndConditionsLink": "https://firebasestorage.googleapis.com/v0/b/cilik-presale.appspot.com/o/termsAndConditionsES.pdf?alt=media&token=b105930a-921a-495b-8f63-2de9d4106857"
   },
   "temporalToken": {
     "alertMessage": "Antes de continuar es necesario el código de <strong>({{tokenLong}})</strong> dígitos enviado a la dirección <strong>{{email}}</strong>, por favor ingréselo a continuación:",
