@@ -21,12 +21,12 @@
             >
 
                 <ng-container *ngIf="item.type !== 'group'; else showGroupList">
-                    {{ "general.amountOf" | translate }} {{item.label | translate | titlecase}}: {{getTotalAdditional(item)}}
+                    {{ "general.amountOf" | translate }} {{item.type | translate | titlecase}}: {{getTotalAdditional(item)}}
                 </ng-container>
 
                 <ng-template #showGroupList>
 
-                    {{ "general.amountOf" | translate }} {{item.label | translate | titlecase}}: {{getTotalAdditional(item)}}
+                    {{ "general.amountOf" | translate }} {{item.type | translate | titlecase}}: {{getTotalAdditional(item)}}
                     <br>
 
                     <ng-container *ngFor="let row of item.data; index as rowIdx; last as isLastRow">
