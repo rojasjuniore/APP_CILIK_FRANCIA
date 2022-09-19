@@ -32,7 +32,7 @@
                 >
 
                     <ng-container *ngIf="item.type !== 'group'; else showGroupList">
-                        {{ "general.amountOf" | translate }} {{item.type | translate | titlecase}}: {{getTotalAdditional(item)}}
+                        {{ "general.amountOf" | translate }} {{'general.'+item.type | translate | titlecase}}: {{getTotalAdditional(item)}}
                     </ng-container>
 
                     <ng-template #showGroupList>

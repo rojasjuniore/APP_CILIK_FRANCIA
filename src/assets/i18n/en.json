@@ -147,6 +147,26 @@
     "valueWithoutDiscount": "Value whithout discount",
     "verify": "Verificar"
   },
+  "hotel": {
+    "roomType": {
+      "HAB1": {
+        "1": "Single Superior Room with 1 King Bed",
+        "2": "Single Superior Room with 1 King Bed"
+      },
+      "HAB2": {
+        "2": "Superior Double Room with Two Beds",
+        "3": "Superior double room + additional person"
+      },
+      "HAB3": {
+        "2": "Superior Double Room with Two Beds",
+        "3": "Superior double room + additional person"
+      }
+    },
+    "ubitacion": {
+      "1": "Beach House",
+      "2": "Sea Tower"
+    }
+  },
   "installmentsTerms": {
     "terms": [
       "People will be able to pay in an installment plan that will be available at the time of payment, this installment plan will only go on the payment dates that are needed.Example, on the first payment date it can be paid in 4 installments, on the second payment date it can be paid in three installments and on the third payment date it can be paid only in two installment.",

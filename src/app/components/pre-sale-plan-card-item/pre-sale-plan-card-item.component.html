@@ -23,7 +23,8 @@
     <div class="seprd"></div>
     <div class="row">
         <div class="col-12 mb-2">
-            {{item?.ubicationTypeDescription | uppercase }} {{item?.description | uppercase}}
+            <!-- {{item?.ubicationTypeDescription | uppercase }} {{item?.description | uppercase}} -->
+            {{'hotel.ubitacion.'+item.ubicationType | translate | uppercase}} - {{ 'hotel.roomType.'+item.roomCode | translate | uppercase}}
         </div>
 
         <div class="col-12 col-sm-6 col-md-6">

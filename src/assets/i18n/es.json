@@ -147,6 +147,26 @@
     "valueWithoutDiscount": "Valor sin descuento",
     "verify": "Verificar"
   },
+  "hotel": {
+    "roomType": {
+      "HAB1": {
+        "1": "Habitación superior sencilla con 1 cama King",
+        "2": "Habitación superior sencilla con 1 cama King"
+      },
+      "HAB2": {
+        "2": "Habitación superior doble con dos camas",
+        "3": "Habitación superior doble + persona adicional (3 pnas)"
+      },
+      "HAB3": {
+        "2": "Habitación superior doble dos camas",
+        "3": "Habitación superior doble + pna adicional (3 pnas)"
+      }
+    },
+    "ubitacion": {
+      "1": "Casa de Playa",
+      "2": "Torre del Mar"
+    }
+  },
   "installmentsTerms": {
     "terms": [
       "Las personas podrán pagar en un plan de cuotas que estarán disponible a la hora de pagar, este plan de cuotas irá solo en las fechas de pago que hagan falta. Ejemplo, en la primera fecha de pago se podrá pagar en 4 cuotas, en la segunda fecha de pago se podrá en tres cuotas y en la tercera fecha de pago se podrá pagar solo en dos cuotas.",
