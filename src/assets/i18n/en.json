@@ -1,5 +1,36 @@
 {
+  "WLDCPlanIncludes": {
+    "description": [
+      "Transfers Airport Hotel - Airport Hotel: only for people who arrive on February 5 and 6 and return on February 12 and 13, 2023. People who arrive before or return after the indicated dates do not include transfers.",
+      "Lodging at a 5-star hotel, “Hotel las Américas” from February 6 to 12, 2023, 6 nights and 7 days. After exhausting this hotel, the organization will designate the second official hotel of the event, of the same category. Transfers Airport Hotel - Airport Hotel: only for people who arrive on February 5 and 6 and return on February 12 and 13, 2023. People who arrive before or return after the indicated dates are not included transfers.",
+      "Full meals: breakfast, lunch and dinner, buffet style within the facilities at the times established by the hotel.",
+      "Full Pass - Concert, Parties, Workshops, Conferences, Competition, Grand Final, Ultimate Championship, Music Park Fest, Pool Parties, Beaches, Gym.",
+      "WLDC 2023 Event Kit",
+      "For the purchase of the all-inclusive plan, competitors receive one (1) category at no cost.",
+      "If you want to compete in more than one category, you must buy additional categories."
+    ],
+    "firstLapBuyBenefits": {
+      "description": [
+        "VIP entrance to see the competition.",
+        "Priority to use the main stage to rehearse your choreography.",
+        "VIP kit with additional surprises to the one that the other attendees will receive."
+      ],
+      "title": "Benefits only for those who buy from September 10 to 30, 2022."
+    },
+    "subTitle": "The value per person includes:",
+    "title": "all inclusive plans"
+  },
   "additionalsCategoriesStep": {
+    "modalConfirmTerms": "YES, I already have an<br> all-inclusive plan",
+    "modalDeclineTerms": "NO, I still do not have an<br> all-inclusive plan",
+    "termsAndConditions": [
+      "For the purchase of the all-inclusive plan, competitors receive one (1) category at no cost.",
+      "If you want to compete in more than one category, you must buy additional categories.",
+      "All attendees and all competitors of the WLDC 2023 must purchase an all-inclusive plan and stay at the official hotel of the competition, Hotel Las Américas Cartagena, Colombia.",
+      "All competitors and companions must stay at the official hotel of the event without exception.",
+      "All competitors and companions must purchase the all-inclusive plan and the additional categories only through the official application of the event.",
+      "After five (5) days have elapsed, no refund will be made for the purchase of additional WLDC 2023 categories."
+    ],
     "title": "Choose the additional categories you want"
   },
   "dashboard": {
@@ -7,7 +38,7 @@
     "welcomeMessageSub": [
       "What do you want to do today?",
       "Here you can start your purchase to live the experience."
-    ]  
+    ]
   },
   "formValidations": {
     "additionalCategoriesRequired": "You have not selected any additional category",
@@ -20,6 +51,7 @@
     "invalidLogIn": "Invalid email or password",
     "maxlength12": "The field must have a maximum of 12 characters",
     "minlength6": "The field must have at least 6 characters",
+    "nroCompetitorsRequired": "You must enter the number of competitors",
     "onlyCharacters": "The field must contain only letters",
     "onlyNumbers": "The field must contain only numbers",
     "passwordsNotMatch": "Passwords do not match",
@@ -29,6 +61,7 @@
     "userDoesNotExist": "The user does not exist"
   },
   "general": {
+    "#membersOfGroup": "Number of members of this group",
     "#nroCompetitors": "# of Competitors",
     "#ofGuests": "# of guests",
     "WLDCOfficialPlan": "WLDC Official Plan",
@@ -43,6 +76,7 @@
     "back": "Go Back",
     "buyCategories": "Purchase of categories",
     "buyPlans": "Buy plans",
+    "cancel": "Cancel",
     "capacity": "Capacity",
     "categories": "Categories",
     "categoriesIncludedWLDCOfficialPlan": "Categories included in the WLDC Official Plan",
@@ -53,6 +87,7 @@
     "continueShopping": "Keep buying",
     "continueToPay": "Continue payment",
     "country": "Country",
+    "couple": "Couple",
     "coupleCategory": "Couple Category",
     "current": "Current",
     "discount": "Discount",
@@ -63,6 +98,7 @@
     "enter": "Enter",
     "extraNight": "Extra night",
     "forgotPassword": "Forgot password?",
+    "goToDashboard": "Go to dashboard",
     "group": "Group",
     "groupCategory": "Group Category",
     "groupDiscount": "Group discount",
@@ -70,12 +106,13 @@
     "lastName": "Last name",
     "loading": "Loading",
     "logIn": "Log In",
-    "logOut": "log Out",
+    "logOut": "Log Out",
     "logOutMessage": "Do you want to leave WLDC 2023?",
     "manualSetup": "Manual accommodation",
     "name": "Name",
     "noPurchases": "You haven't made any purchases yet",
     "notRegistered": "Not registered yet?",
+    "numberOfMembers": "Number of members",
     "order": "Order",
     "password": "Password",
     "payment": "Payment",
@@ -86,6 +123,7 @@
     "purchaseOrder": "Purchase order",
     "purchasingSummary": "Purchasing Summary",
     "quantity": "Quantity",
+    "recoveredPassword": "Recovered Password",
     "removeOrder": "You want to delete the purchase order?",
     "room": "Room",
     "roomCardAddPeopleIntoTheroom": "Add people to the room.",
@@ -95,9 +133,11 @@
     "seeHere": "See here",
     "seeMyProfile": "See my profile",
     "seePoliciesHere": "See policies here",
+    "send": "Send",
     "share": "Share",
     "signUp": "Sign Up",
     "signUpHere": "Sign up here",
+    "solo": "soloist",
     "soloCategory": "Soloist Category",
     "successfulRegistration": "Successful registration",
     "successfulTransaction": "Succesful transaction",
@@ -106,8 +146,30 @@
     "thisPlanIncludes": "This plan includes",
     "total": "Total",
     "totalInstallmentsDescription": "Pay in {{nroCoutas}} installments of <span>USD {{coutasAmount}}</span>",
+    "update": "Update",
     "valueToBeCancelledFrom": "Value to cancel",
-    "valueWithoutDiscount": "Value whithout discount"
+    "valueWithoutDiscount": "Value whithout discount",
+    "verify": "Verify"
+  },
+  "hotel": {
+    "roomType": {
+      "HAB1": {
+        "1": "Single Superior Room with 1 King Bed",
+        "2": "Single Superior Room with 1 King Bed"
+      },
+      "HAB2": {
+        "2": "Superior Double Room with Two Beds",
+        "3": "Superior double room + additional person"
+      },
+      "HAB3": {
+        "2": "Superior Double Room with Two Beds",
+        "3": "Superior double room + additional person"
+      }
+    },
+    "ubitacion": {
+      "1": "Beach House",
+      "2": "Sea Tower"
+    }
   },
   "installmentsTerms": {
     "terms": [
@@ -120,7 +182,7 @@
     ],
     "title": "To continue with the installment payment process, you must read and accept the terms and conditions"
   },
-    "paymentMethods": {
+  "paymentMethods": {
     "chooseYourPaymentMethod": "Choose your payment method",
     "creditCard": "Credit card",
     "crypto": "Criptocurrencies",
@@ -131,9 +193,15 @@
     "paypal": "Paypal"
   },
   "pruchases": {
-    "confirmEmailPurchase": "Muy pronto recibirás un e-mail de confirmación con el resumen de la compra."
+    "confirmEmailPurchase": "Very soon you will receive a confirmation e-mail with the summary of the purchase."
+  },
+  "recoveredPasswordStep": {
+    "SendVerificationCodeLabel": "Send verification code",
+    "emailInputLabel": "Enter your registered email",
+    "repeatPassword": "Repeat password"
   },
   "roomsStep": {
+    "addRoomToStart": "Add a room to start assigning participants",
     "additionalNightAddText": "Indicate the number of additional nights you wish to add to your reservation. ",
     "amountPerAdditionalNight": "Amount per additional night",
     "automaticSetupMessage": "The system automatically accommodates all people with the most convenient rates. You can customize the result.",
@@ -149,6 +217,22 @@
   },
   "signUp": {
     "checkTermsAndConditions": "By registering you are accepting the personal data processing policies.",
-    "successfulRegistrationMessage": "You can now continue with the purchase process."
+    "imageUseAuthorization": "Image Use Authorization",
+    "imageUseAuthorizationLink": "https://firebasestorage.googleapis.com/v0/b/cilik-presale.appspot.com/o/imageUseAuthorizationEN.pdf?alt=media&token=85420948-2b5e-43e9-8a68-0a8503c993de",
+    "informedConsentForMinors": "Informed consent for minors",
+    "informedConsentForMinorsLink": "https://firebasestorage.googleapis.com/v0/b/cilik-presale.appspot.com/o/informedConsentForMinorsEN.pdf?alt=media&token=49defaa2-a0a0-4d83-a75c-dd31a8e2bf70",
+    "successfulRegistrationMessage": "You can now continue with the purchase process.",
+    "termsAndConditionsLink": "https://firebasestorage.googleapis.com/v0/b/cilik-presale.appspot.com/o/imageUseAuthorizationEN.pdf?alt=media&token=85420948-2b5e-43e9-8a68-0a8503c993de"
+  },
+  "temporalToken": {
+    "alertMessage": "Before continuing, the code of <strong>({{tokenLong}})</strong> digits sent to the address <strong>{{email}}</strong> is necessary, please enter it below:",
+    "alertTitle": "Verification code",
+    "expiredToken": "Expired code",
+    "invalidToken": "Invalid code",
+    "validToken": "Valid code",
+    "validations": {
+      "emptyToken": "Code cannot be empty",
+      "tokenLength": "The code must have {{tokenLong}} digits"
+    }
   }
 }

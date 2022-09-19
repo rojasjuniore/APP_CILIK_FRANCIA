@@ -93,7 +93,7 @@ export class PreSaleService {
     let document = this.getDocumentLocalStorage();
 
     if(Object.keys(document).length == 0){
-      this.buildAndStore({nroParticipants: 1});
+      this.buildAndStore({nroParticipants: 0});
       document = this.getDocumentLocalStorage();
     }
 

@@ -19,10 +19,12 @@
                                 <div class="card card-box" >
                                     <div class="card-body">
                                         <h5 class="card-title fw-bolder">
-                                            {{row.ubicationTypeDescription}}
+                                            {{'hotel.ubitacion.'+row.ubicationType | translate | uppercase}} - {{ 'hotel.roomType.'+item.roomCode | translate | uppercase}}
+                                            <!-- {{row.ubicationTypeDescription}} -->
                                         </h5>
                                         <p class="card-text">
-                                            {{row.description}}
+                                            {{'hotel.ubitacion.'+row.ubicationType | translate | uppercase}} - {{ 'hotel.roomType.'+item.roomCode | translate | uppercase}}
+                                            <!-- {{row.description}} -->
                                         </p>
                                         <p class="card-text">
                                             <small class="text-muted">

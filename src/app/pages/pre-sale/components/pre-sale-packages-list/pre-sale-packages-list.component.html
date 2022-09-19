@@ -8,7 +8,8 @@
 
     <div class="col-12 col-md-6 mb-3">
         <app-input-number-form 
-            [label]="('general.#nroCompetitors' | translate | lowercase)" 
+            [label]="('general.#nroCompetitors' | translate | lowercase)"
+            [min]="0" [max]="999"
             [quantity]="nroParticipants"
             (onUpdateQuantity)="onUpdateNroParticipants($event)"></app-input-number-form>
     </div>
@@ -57,21 +58,31 @@
                 </div>
             </div>             
         </div>
+
+        <div class="col-12">
+            <div class="d-flex justify-content-between">
+                <app-remove-order-on-back-button></app-remove-order-on-back-button>
+            </div>
+        </div>
+
     </div>
 </ng-container>
 
 <ng-container *ngIf="setup">
 
     <div class="row">
-        <div class="col-12 mb-4" *ngIf="setup == 'automatic'">
+        <div class="col-12 mb-4">
             <div class="card-box card-box-b3 p-3 mb-3">
-                <div class="d-flex align-items-center">
+                <div class="d-flex justify-content-between align-items-center">
+                    <button class="btn btn-two" (click)="triggerAddRoomButton()">
+                        {{ "general.manualSetup" | translate | uppercase }}
+                    </button>
                     <button class="btn btn-one" (click)="runHelp()">
                         {{ "general.automaticSetup" | translate | uppercase }}
                     </button>
-                    <div class="fs-6 px-3 text-center">
+                    <!-- <div class="fs-6 px-3 text-center">
                         {{ "roomsStep.automaticSetupMessage2" | translate }}
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -100,7 +111,7 @@
         <ng-template #noRooms>
             <div class="col-12">
                 <div class="card px-2 py-5 mb-3 text-center">
-                    {{ "general.noRooms" | translate }}
+                    {{ "roomsStep.addRoomToStart" | translate }}
                 </div>
             </div>
         </ng-template>
@@ -118,10 +129,14 @@
     
         <app-pre-sale-totales></app-pre-sale-totales>
     
-        <div class="col-12 text-end">
-            <button class="btn btn-one" type="button" (click)="onNext()">
-                {{ "general.continue" | translate }}
-            </button>
+        <div class="col-12">
+            <div class="d-flex justify-content-between">
+                <app-remove-order-on-back-button></app-remove-order-on-back-button>
+                
+                <button class="btn btn-one" type="button" (click)="onNext()">
+                    {{ "general.continue" | translate }}
+                </button>
+            </div>
         </div>
     
     </div>

@@ -6,6 +6,7 @@ import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 import { PreSaleModalRoomTypeDetailsComponent } from '../../../../components/pre-sale-modal-room-type-details/pre-sale-modal-room-type-details.component';
 import { PreSaleModalAdditionalDaysComponent } from 'src/app/components/pre-sale-modal-additional-days/pre-sale-modal-additional-days.component';
 import { TranslatePipe } from '@ngx-translate/core';
+import { PreSaleAddRoomButtonComponent } from 'src/app/components/pre-sale-add-room-button/pre-sale-add-room-button.component';
 
 @Component({
   selector: 'app-pre-sale-packages-list',
@@ -16,10 +17,11 @@ export class PreSalePackagesListComponent implements OnInit {
 
   @ViewChild(PreSaleModalRoomTypeDetailsComponent) modalRoomTypeDetails!: PreSaleModalRoomTypeDetailsComponent;
   @ViewChild(PreSaleModalAdditionalDaysComponent) modalRoomAdditionalDays!: PreSaleModalAdditionalDaysComponent;
+  @ViewChild(PreSaleAddRoomButtonComponent) btnAddRoom!: PreSaleAddRoomButtonComponent;
   
-  public nroParticipants: any = 1;
+  public nroParticipants: any = 0;
 
-  public roomData: any = {nroParticipants: 1, type: 1};
+  public roomData: any = {nroParticipants: 0, type: 1};
   public rooms: any[] = [];
   public setup: any;
 
@@ -45,8 +47,23 @@ export class PreSalePackagesListComponent implements OnInit {
    * Cambiar configuración de setup de orde
    */
   onUpdateSetup(setup: any){
+
+    if(setup === 'automatic' && this.nroParticipants == 0){
+      const message = this.translatePipe.transform('formValidations.nroCompetitorsRequired');
+      this.sweetAlertSrv.showWarning(message);
+      return;
+    }
+
     this.setup = setup;
     this.preSaleSrv.updateDocumentLocalStorage({setup: setup});
+
+    if(setup === 'automatic'){ this.runHelp();}
+  }
+
+  triggerAddRoomButton(){
+    this.onUpdateSetup('manual');
+    if(this.participantsLeft <= 0) return;
+    this.btnAddRoom.addRoom();
   }
 
   /**
@@ -160,13 +177,6 @@ export class PreSalePackagesListComponent implements OnInit {
    */
   async runHelp(){
     try {
-
-      // if(this.rooms.length > 0){
-      //   const ask = await this.sweetAlertSrv.askConfirm('Hemos detectado que ya has agregado habitaciones, ¿Deseas eliminarlas?');
-      //   if(!ask){
-      //     return;
-      //   }
-      // }
 
       this.rooms = [];
 

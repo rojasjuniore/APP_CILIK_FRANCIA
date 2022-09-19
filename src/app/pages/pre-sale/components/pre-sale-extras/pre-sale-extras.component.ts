@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { from, Observable } from 'rxjs';
+import { PreSaleModalOnlyCategoriesTermsComponent } from 'src/app/components/pre-sale-modal-only-categories-terms/pre-sale-modal-only-categories-terms.component';
 import { HotelService } from 'src/app/services/hotel.service';
 import { PreSaleService } from 'src/app/services/pre-sale.service';
 import { pick } from 'underscore';
@@ -11,6 +12,8 @@ import { pick } from 'underscore';
   styleUrls: ['./pre-sale-extras.component.css']
 })
 export class PreSaleExtrasComponent implements OnInit {
+
+  @ViewChild(PreSaleModalOnlyCategoriesTermsComponent) modalCategoriesTerms!: PreSaleModalOnlyCategoriesTermsComponent;
 
   public package: any;
   public extras: any;
@@ -103,9 +106,19 @@ export class PreSaleExtrasComponent implements OnInit {
     return;
   }
 
+  onModalCategoriesTermsClose(status: any){
+    if(status){
+      this.onNext();
+    }
+  }
+
   onBack(){
     this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale/step1'});
     this.router.navigate(['/pre-sale', 'step1']);
+  }
+
+  async showCategoriesTerms(){
+    this.modalCategoriesTerms.showModal();
   }
 
   onNext(){

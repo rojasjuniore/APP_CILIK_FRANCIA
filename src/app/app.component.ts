@@ -27,6 +27,10 @@ export class AppComponent {
     this.translateSrv.changeLanguage('en');
     // this.contractService.connectAccount()
     // this.contractService.reInitializating()
+    // this.storeRoomStock();
+    // this.storeRoomTypes();
+    // this.storeRoomAdditionals();
+    // this.storeRooms();
   }
 
   changeLanguage(language: string) {
