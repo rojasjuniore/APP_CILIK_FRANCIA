@@ -122,6 +122,7 @@
     "purchaseOrder": "Purchase order",
     "purchasingSummary": "Purchasing Summary",
     "quantity": "Quantity",
+    "recoveredPassword": "Recovered Password",
     "removeOrder": "You want to delete the purchase order?",
     "room": "Room",
     "roomCardAddPeopleIntoTheroom": "Add people to the room.",
@@ -131,6 +132,7 @@
     "seeHere": "See here",
     "seeMyProfile": "See my profile",
     "seePoliciesHere": "See policies here",
+    "send": "Send",
     "share": "Share",
     "signUp": "Sign Up",
     "signUpHere": "Sign up here",
@@ -143,6 +145,7 @@
     "thisPlanIncludes": "This plan includes",
     "total": "Total",
     "totalInstallmentsDescription": "Pay in {{nroCoutas}} installments of <span>USD {{coutasAmount}}</span>",
+    "update": "Update",
     "valueToBeCancelledFrom": "Value to cancel",
     "valueWithoutDiscount": "Value whithout discount",
     "verify": "Verificar"
@@ -190,6 +193,11 @@
   },
   "pruchases": {
     "confirmEmailPurchase": "Very soon you will receive a confirmation e-mail with the summary of the purchase."
+  },
+  "recoveredPasswordStep": {
+    "SendVerificationCodeLabel": "Send verification code",
+    "emailInputLabel": "Enter your registered email",
+    "repeatPassword": "Repeat password"
   },
   "roomsStep": {
     "addRoomToStart": "Add a room to start assigning participants",
