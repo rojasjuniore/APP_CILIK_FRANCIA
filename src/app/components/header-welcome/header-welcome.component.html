@@ -8,7 +8,7 @@
                 <ng-container *ngIf="(profile$ | async); else loading">
                     <div class="fs-2 fw-bold ps-3 d-flex jsutify-content-center flex-column">
                         <div>{{ "general.hello" | translate }} {{ (profile$ | async)?.fullName | titlecase }}</div>
-                        <a routerLink="/dashboard" class="text-rslt fs-6">Ir al perfil</a>
+                        <a href="javascript:void(0)" class="text-rslt fs-6">Ir al perfil</a>
                     </div>
                     
                 </ng-container>
