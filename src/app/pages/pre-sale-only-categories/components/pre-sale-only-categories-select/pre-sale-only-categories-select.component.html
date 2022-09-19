@@ -21,7 +21,9 @@
     <app-pre-sale-totales></app-pre-sale-totales>
     
     <div class="col-12">
-        <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-between">
+            <app-remove-order-on-back-button></app-remove-order-on-back-button>
+
             <button class="btn btn-one text-uppercase" type="button" (click)="onNext()">
                 {{ "general.continue" | translate }}
             </button>
