@@ -222,7 +222,7 @@
     "informedConsentForMinors": "Informed consent for minors",
     "informedConsentForMinorsLink": "https://firebasestorage.googleapis.com/v0/b/cilik-presale.appspot.com/o/informedConsentForMinorsEN.pdf?alt=media&token=49defaa2-a0a0-4d83-a75c-dd31a8e2bf70",
     "successfulRegistrationMessage": "You can now continue with the purchase process.",
-    "termsAndConditionsLink": "https://firebasestorage.googleapis.com/v0/b/cilik-presale.appspot.com/o/termsAndConditionsES.pdf?alt=media&token=b105930a-921a-495b-8f63-2de9d4106857"
+    "termsAndConditionsLink": "https://firebasestorage.googleapis.com/v0/b/cilik-presale.appspot.com/o/termsAndConditionsEN.pdf?alt=media&token=492df31e-adf8-4bc9-bf32-f90aa039a9d7"
   },
   "temporalToken": {
     "alertMessage": "Before continuing, the code of <strong>({{tokenLong}})</strong> digits sent to the address <strong>{{email}}</strong> is necessary, please enter it below:",
