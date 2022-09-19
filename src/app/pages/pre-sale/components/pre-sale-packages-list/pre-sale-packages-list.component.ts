@@ -62,6 +62,7 @@ export class PreSalePackagesListComponent implements OnInit {
 
   triggerAddRoomButton(){
     this.onUpdateSetup('manual');
+    if(this.participantsLeft <= 0) return;
     this.btnAddRoom.addRoom();
   }
 
