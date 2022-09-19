@@ -166,6 +166,8 @@ export class PreSalePaymentMethodsComponent implements OnInit {
       /** Calculate installments */
       await this.calculateInstallments();
       this.preSaleSrv.updateDocumentLocalStorage({ paymentMethodType: this.paymentMethodType });
+
+      this.onNext();
     }
   }
 
