@@ -38,8 +38,8 @@
 
                     <ng-template #showGroupList>
 
-                        {{ "general.amountOf" | translate }} {{item.type | translate | titlecase}}: {{getTotalAdditional(item)}}
-                        <br>
+                        <!-- {{ "general.amountOf" | translate }} {{item.type | translate | titlecase}}: {{getTotalAdditional(item)}}
+                        <br> -->
 
                         <ng-container *ngFor="let row of item.data; index as rowIdx; last as isLastRow">
                             <strong>{{'general.group' | translate | titlecase}} #{{rowIdx + 1}}</strong><br>
