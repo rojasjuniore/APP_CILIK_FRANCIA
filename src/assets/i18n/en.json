@@ -21,6 +21,16 @@
     "title": "all inclusive plans"
   },
   "additionalsCategoriesStep": {
+    "modalConfirmTerms": "YES, I already have an<br> all-inclusive plan",
+    "modalDeclineTerms": "NO, I still do not have an<br> all-inclusive plan",
+    "termsAndConditions": [
+      "For the purchase of the all-inclusive plan, competitors receive one (1) category at no cost.",
+      "If you want to compete in more than one category, you must buy additional categories.",
+      "All attendees and all competitors of the WLDC 2023 must purchase an all-inclusive plan and stay at the official hotel of the competition, Hotel Las Américas Cartagena, Colombia.",
+      "All competitors and companions must stay at the official hotel of the event without exception.",
+      "All competitors and companions must purchase the all-inclusive plan and the additional categories only through the official application of the event.",
+      "There will be no refund of money corresponding to the purchase of additional categories WLDC 2023."
+    ],
     "title": "Choose the additional categories you want"
   },
   "dashboard": {
@@ -66,6 +76,7 @@
     "back": "Go Back",
     "buyCategories": "Purchase of categories",
     "buyPlans": "Buy plans",
+    "cancel": "Cancel",
     "capacity": "Capacity",
     "categories": "Categories",
     "categoriesIncludedWLDCOfficialPlan": "Categories included in the WLDC Official Plan",
@@ -76,6 +87,7 @@
     "continueShopping": "Keep buying",
     "continueToPay": "Continue payment",
     "country": "Country",
+    "couple": "Couple",
     "coupleCategory": "Couple Category",
     "current": "Current",
     "discount": "Discount",
@@ -122,6 +134,7 @@
     "share": "Share",
     "signUp": "Sign Up",
     "signUpHere": "Sign up here",
+    "solo": "Solo",
     "soloCategory": "Soloist Category",
     "successfulRegistration": "Successful registration",
     "successfulTransaction": "Succesful transaction",
@@ -131,7 +144,8 @@
     "total": "Total",
     "totalInstallmentsDescription": "Pay in {{nroCoutas}} installments of <span>USD {{coutasAmount}}</span>",
     "valueToBeCancelledFrom": "Value to cancel",
-    "valueWithoutDiscount": "Value whithout discount"
+    "valueWithoutDiscount": "Value whithout discount",
+    "verify": "Verificar"
   },
   "installmentsTerms": {
     "terms": [
@@ -175,5 +189,16 @@
   "signUp": {
     "checkTermsAndConditions": "By registering you are accepting the personal data processing policies.",
     "successfulRegistrationMessage": "You can now continue with the purchase process."
+  },
+  "temporalToken": {
+    "alertMessage": "Before continuing, the code of <strong>({{tokenLong}})</strong> digits sent to the address <strong>{{email}}</strong> is necessary, please enter it below:",
+    "alertTitle": "Verification code",
+    "expiredToken": "Expired code",
+    "invalidToken": "Invalid code",
+    "validToken": "Valid code",
+    "validations": {
+      "emptyToken": "Code cannot be empty",
+      "tokenLength": "The code must have {{tokenLong}} digits"
+    }
   }
 }
