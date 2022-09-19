@@ -6,6 +6,7 @@ import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 import { PreSaleModalRoomTypeDetailsComponent } from '../../../../components/pre-sale-modal-room-type-details/pre-sale-modal-room-type-details.component';
 import { PreSaleModalAdditionalDaysComponent } from 'src/app/components/pre-sale-modal-additional-days/pre-sale-modal-additional-days.component';
 import { TranslatePipe } from '@ngx-translate/core';
+import { PreSaleAddRoomButtonComponent } from 'src/app/components/pre-sale-add-room-button/pre-sale-add-room-button.component';
 
 @Component({
   selector: 'app-pre-sale-packages-list',
@@ -16,6 +17,7 @@ export class PreSalePackagesListComponent implements OnInit {
 
   @ViewChild(PreSaleModalRoomTypeDetailsComponent) modalRoomTypeDetails!: PreSaleModalRoomTypeDetailsComponent;
   @ViewChild(PreSaleModalAdditionalDaysComponent) modalRoomAdditionalDays!: PreSaleModalAdditionalDaysComponent;
+  @ViewChild(PreSaleAddRoomButtonComponent) btnAddRoom!: PreSaleAddRoomButtonComponent;
   
   public nroParticipants: any = 0;
 
@@ -56,6 +58,11 @@ export class PreSalePackagesListComponent implements OnInit {
     this.preSaleSrv.updateDocumentLocalStorage({setup: setup});
 
     if(setup === 'automatic'){ this.runHelp();}
+  }
+
+  triggerAddRoomButton(){
+    this.onUpdateSetup('manual');
+    this.btnAddRoom.addRoom();
   }
 
   /**
