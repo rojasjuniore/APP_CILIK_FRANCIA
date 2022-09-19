@@ -76,6 +76,7 @@
     "back": "Regresar",
     "buyCategories": "Compra de categorías",
     "buyPlans": "Comprar planes",
+    "cancel": "Cancelar",
     "capacity": "Capacidad",
     "categories": "Categorías",
     "categoriesIncludedWLDCOfficialPlan": "Categorías incluidas en el Plan Oficial WLDC",
@@ -143,7 +144,8 @@
     "total": "Total",
     "totalInstallmentsDescription": "Pago en {{nroCoutas}} cuotas de <span>USD {{coutasAmount}}</span>",
     "valueToBeCancelledFrom": "Valor a cancelar de",
-    "valueWithoutDiscount": "Valor sin descuento"
+    "valueWithoutDiscount": "Valor sin descuento",
+    "verify": "Verificar"
   },
   "installmentsTerms": {
     "terms": [
@@ -187,5 +189,16 @@
   "signUp": {
     "checkTermsAndConditions": "Al registrarte estás aceptando las políticas de tratamiento de datos personales.",
     "successfulRegistrationMessage": "Ya puedes continuar con el proceso de compra."
+  },
+  "temporalToken": {
+    "alertMessage": "Antes de continuar es necesario el código de <strong>({{tokenLong}})</strong> dígitos enviado a la dirección <strong>{{email}}</strong>, por favor ingréselo a continuación:",
+    "alertTitle": "Código de verificación",
+    "expiredToken": "Código expirado",
+    "invalidToken": "Código no válido",
+    "validToken": "Código válido",
+    "validations": {
+      "emptyToken": "El código no puede estar vacío",
+      "tokenLength": "El código debe tener {{tokenLong}} dígitos"
+    }
   }
 }

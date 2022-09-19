@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import moment from 'moment';
+import { CustomTranslateService } from './custom-translate.service';
 
 
 const URL_ROOT: any = environment.API_URL;
@@ -25,6 +26,7 @@ export class TemporalTokenService {
   constructor(
     private http: HttpClient,
     private spinner: NgxSpinnerService,
+    private customTranslateSrv: CustomTranslateService,
   ) { }
 
 
@@ -95,18 +97,22 @@ export class TemporalTokenService {
    * @returns 
    */
   async runValidation(params: any) {
-    const res: any = { status: false, message: 'Código no válido' };
+
+    let message = await this.customTranslateSrv.translate('temporalToken.invalidToken');
+    const res: any = { status: false, message: message };
     const { inputToken, token, expiredAt } = params;
 
     /** Token expirado */
     if (moment(expiredAt).isBefore(moment())) {
-      res.message = "Código Expirado";
+      message = await this.customTranslateSrv.translate('temporalToken.expiredToken');
+      res.message = message;
       return res;
 
       /** Valores esperados */
     } else if (inputToken === token) {
+      message = await this.customTranslateSrv.translate('temporalToken.validToken');
       res.status = true;
-      res.message = "Código Válido"
+      res.message = message;
     }
 
     return res;
@@ -123,12 +129,18 @@ export class TemporalTokenService {
 
     const regexExpression = new RegExp(/^[0-9]{6}$/);
 
+    const alertTitle = await this.customTranslateSrv.translate('temporalToken.alertTitle');
+    const alertText = await this.customTranslateSrv.translate('temporalToken.alertMessage', {tokenLong: this.tokenLong, email });
+    const alertConfirmButtonText = await this.customTranslateSrv.translate('general.verify');
+    const alertCancelButton = await this.customTranslateSrv.translate('general.cancel');
+
     const { value = false } = await Swal.fire({
       icon: 'question',
-      title: "Código de verificación",
+      title: alertTitle,
       html:
         '<p>'
-        + `Antes de continuar es necesario el código de <strong>(${this.tokenLong})</strong> dígitos enviado a la dirección <strong>${email}</strong>, por favor ingréselo a continuación:`
+        // + `Antes de continuar es necesario el código de <strong>(${this.tokenLong})</strong> dígitos enviado a la dirección <strong>${email}</strong>, por favor ingréselo a continuación:`
+        + alertText
         + "</p>"
       ,
       input: 'text',
@@ -136,7 +148,8 @@ export class TemporalTokenService {
         autocapitalize: 'off'
       },
       showCancelButton: true,
-      confirmButtonText: 'Verificar',
+      confirmButtonText: alertConfirmButtonText,
+      cancelButtonText: alertCancelButton,
       showLoaderOnConfirm: true,
       allowOutsideClick: false,
       allowEnterKey: false,
@@ -145,11 +158,15 @@ export class TemporalTokenService {
         try {
 
           if (`${inputToken}`.trim().length == 0) {
-            throw 'El código no puede estar vacío';
+            const message = await this.customTranslateSrv.translate('temporalToken.validations.emptyToken');
+            throw message;
+            // throw 'El código no puede estar vacío';
           }
 
           if (!regexExpression.test(inputToken)) {
-            throw 'El código debe tener 6 dígitos';
+            const message = await this.customTranslateSrv.translate('temporalToken.validations.tokenLength', {tokenLong: this.tokenLong});
+            throw message;
+            // throw 'El código debe tener 6 dígitos';
           }
 
           const runValidation = await this.runValidation({ inputToken, token, expiredAt });
