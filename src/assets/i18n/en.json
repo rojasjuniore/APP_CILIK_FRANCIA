@@ -188,6 +188,10 @@
   },
   "signUp": {
     "checkTermsAndConditions": "By registering you are accepting the personal data processing policies.",
+    "imageUseAuthorization": "Image Use Authorization",
+    "imageUseAuthorizationLink": "https://firebasestorage.googleapis.com/v0/b/cilik-presale.appspot.com/o/imageUseAuthorizationEN.pdf?alt=media&token=85420948-2b5e-43e9-8a68-0a8503c993de",
+    "informedConsentForMinors": "Informed consent for minors",
+    "informedConsentForMinorsLink": "https://firebasestorage.googleapis.com/v0/b/cilik-presale.appspot.com/o/informedConsentForMinorsEN.pdf?alt=media&token=49defaa2-a0a0-4d83-a75c-dd31a8e2bf70",
     "successfulRegistrationMessage": "You can now continue with the purchase process."
   },
   "temporalToken": {

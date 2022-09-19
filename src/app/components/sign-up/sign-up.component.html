@@ -216,6 +216,7 @@
                 </div>
               </div>
 
+              <!-- Terms and conditions -->
               <div class="col-12 mb-3">
                 <div class="form-check text-center">
                   <input class="form-check-input" [ngClass]="{'is-invalid': submit && f.termsAndCondition.errors}"
@@ -234,6 +235,58 @@
                 <ng-container *ngIf="submit">
                   <ng-container *ngFor="let item of vm.termsAndCondition">
                     <span class="badge bg-danger" *ngIf="f.termsAndCondition.hasError(item.type)">
+                      {{item.message | translate}}
+                    </span>
+
+                  </ng-container>
+                </ng-container>
+              </div>
+
+              <!-- imageUseAuthorization -->
+              <div class="col-12 mb-3">
+                <div class="form-check text-center">
+                  <input class="form-check-input" [ngClass]="{'is-invalid': submit && f.imageUseAuthorization.errors}"
+                    type="checkbox" value="" id="imageUseAuthorizationCheck" formControlName="imageUseAuthorization">
+                  <label class="form-check-label" for="imageUseAuthorizationCheck">
+                    {{ "signUp.imageUseAuthorization" | translate }}
+                    <br>
+                    <!-- <a class="fw-bold" >Ver políticas aquí.</a> -->
+                    <a [href]="('signUp.imageUseAuthorizationLink' | translate)"
+                      target="_blank" class="fw-bold" rel="noopener noreferrer">
+                      {{ "general.seePoliciesHere" | translate }}
+                    </a>
+                  </label>
+
+                </div>
+                <ng-container *ngIf="submit">
+                  <ng-container *ngFor="let item of vm.imageUseAuthorization">
+                    <span class="badge bg-danger" *ngIf="f.imageUseAuthorization.hasError(item.type)">
+                      {{item.message | translate}}
+                    </span>
+
+                  </ng-container>
+                </ng-container>
+              </div>
+
+              <!-- informedConsentForMinors -->
+              <div class="col-12 mb-3">
+                <div class="form-check text-center">
+                  <input class="form-check-input" [ngClass]="{'is-invalid': submit && f.informedConsentForMinors.errors}"
+                    type="checkbox" value="" id="informedConsentForMinorsCheck" formControlName="informedConsentForMinors">
+                  <label class="form-check-label" for="informedConsentForMinorsCheck">
+                    {{ "signUp.informedConsentForMinors" | translate }}
+                    <br>
+                    <!-- <a class="fw-bold" >Ver políticas aquí.</a> -->
+                    <a [href]="('signUp.informedConsentForMinorsLink' | translate)"
+                      target="_blank" class="fw-bold" rel="noopener noreferrer">
+                      {{ "general.seePoliciesHere" | translate }}
+                    </a>
+                  </label>
+
+                </div>
+                <ng-container *ngIf="submit">
+                  <ng-container *ngFor="let item of vm.informedConsentForMinors">
+                    <span class="badge bg-danger" *ngIf="f.informedConsentForMinors.hasError(item.type)">
                       {{item.message | translate}}
                     </span>
 

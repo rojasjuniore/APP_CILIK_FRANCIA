@@ -76,7 +76,13 @@ export class SignUpComponent implements OnInit {
     ],
     termsAndCondition: [
       { type: 'required', message: 'formValidations.required' }
-    ]
+    ],
+    imageUseAuthorization: [
+      { type: 'required', message: 'formValidations.required' }
+    ],
+    informedConsentForMinors: [
+      { type: 'required', message: 'formValidations.required' }
+    ],
   };
   public submit = false;
   public loader = false;
@@ -157,7 +163,10 @@ export class SignUpComponent implements OnInit {
         Validators.maxLength(12)
       ]],
       confirmPassword: ['', Validators.required],
-      termsAndCondition: [false, [Validators.requiredTrue]]
+      termsAndCondition: [false, [Validators.requiredTrue]],
+      imageUseAuthorization: [false, [Validators.requiredTrue]],
+      informedConsentForMinors: [false, [Validators.requiredTrue]],
+
     }, { validator: MustMatch('password', 'confirmPassword') })
   }
 
