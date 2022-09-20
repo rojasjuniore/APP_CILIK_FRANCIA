@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { BsModalService } from 'src/app/services/bs-modal.service';
 import { GeneratePdfService } from 'src/app/services/generate-pdf.service';
 
@@ -7,18 +9,31 @@ import { GeneratePdfService } from 'src/app/services/generate-pdf.service';
   templateUrl: './purchase-summary-modal-details.component.html',
   styleUrls: ['./purchase-summary-modal-details.component.css']
 })
-export class PurchaseSummaryModalDetailsComponent implements OnInit {
+export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
 
   public mi: any;
   public order: any;
 
+  private sub$!: Subscription;
+
   constructor(
     private generatePdf: GeneratePdfService,
     private bsModalSrv: BsModalService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
     this.buildModal();
+
+    this.sub$ = this.router.events
+    .subscribe((event) => {
+
+      /** Si la modal esta desplegada al cambiar de ruta */
+      if(this.mi._isShown){
+        this.closeModal();
+      }
+
+    });
   }
 
   async buildModal() {
@@ -55,6 +70,10 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit {
 
   closeModal() {
     this.mi.hide();
+  }
+
+  ngOnDestroy(): void {
+    this.sub$.unsubscribe();
   }
 
 }
