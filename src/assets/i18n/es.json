@@ -111,6 +111,7 @@
     "manualSetup": "Acomodación Manual",
     "name": "Nombre",
     "noPurchases": "Aún no has realizado ninguna compra",
+    "not": "No",
     "notRegistered": "¿Aún no estás registrado?",
     "numberOfMembers": "Cantidad de integrantes",
     "order": "Orden",
@@ -149,7 +150,8 @@
     "update": "Actualizar",
     "valueToBeCancelledFrom": "Valor a cancelar de",
     "valueWithoutDiscount": "Valor sin descuento",
-    "verify": "Verificar"
+    "verify": "Verificar",
+    "yes": "Sí"
   },
   "hotel": {
     "roomType": {
