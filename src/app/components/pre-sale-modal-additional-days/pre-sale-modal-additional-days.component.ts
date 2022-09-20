@@ -1,5 +1,6 @@
-import { Component, OnInit, Output } from '@angular/core';
-import { from, Observable, Subject } from 'rxjs';
+import { Component, OnDestroy, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { from, Observable, Subject, Subscription } from 'rxjs';
 import { BsModalService } from 'src/app/services/bs-modal.service';
 import { HotelService } from 'src/app/services/hotel.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
@@ -9,7 +10,7 @@ import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
   templateUrl: './pre-sale-modal-additional-days.component.html',
   styleUrls: ['./pre-sale-modal-additional-days.component.css']
 })
-export class PreSaleModalAdditionalDaysComponent implements OnInit {
+export class PreSaleModalAdditionalDaysComponent implements OnInit, OnDestroy {
 
   @Output() onUpdateRoom = new Subject();
 
@@ -20,14 +21,27 @@ export class PreSaleModalAdditionalDaysComponent implements OnInit {
 
   public list$!: Observable<any>;
 
+  private sub$!: Subscription;
+
   constructor(
     private bsModalSrv: BsModalService,
     private hotelSrv: HotelService,
     private sweetAler2tSrv: Sweetalert2Service,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
     this.buildModal();
+
+    this.sub$ = this.router.events
+    .subscribe((event) => {
+
+      /** Si la modal esta desplegada al cambiar de ruta */
+      if(this.mi._isShown){
+        this.closeModal();
+      }
+
+    });
   }
 
   async buildModal() {
@@ -115,6 +129,10 @@ export class PreSaleModalAdditionalDaysComponent implements OnInit {
 
   closeModal(){
     this.mi.hide();
+  }
+
+  ngOnDestroy(): void {
+    this.sub$.unsubscribe();
   }
 
 }
