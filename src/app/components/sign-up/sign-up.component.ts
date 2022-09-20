@@ -50,6 +50,7 @@ export class SignUpComponent implements OnInit {
     ],
     dni: [
       { type: 'required', message: 'formValidations.required' },
+      { type: 'minlength', message: 'formValidations.minlength6' },
       { type: 'pattern', message: 'formValidations.onlyNumbers' },
       { type: 'dniStored', message: 'formValidations.dniStored' },
     ],
@@ -141,6 +142,7 @@ export class SignUpComponent implements OnInit {
       documentType: ['dni', Validators.required],
       dni: ['', [
         Validators.required,
+        Validators.minLength(6),
         Validators.pattern(/^[0-9]+$/)
       ]],
       prefix: ["+57", [
