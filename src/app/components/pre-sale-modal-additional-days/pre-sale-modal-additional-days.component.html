@@ -28,14 +28,14 @@
                                             <small class="text-muted">
                                                 {{ "general.pricePerPerson" | translate }}: 
                                                 <i class="bi" [ngClass]="{'bi-person-fill': item?.capacity == 1, 'bi-people-fill': item?.capacity > 1}"></i>
-                                                USD {{ (list.price / item.capacity) | mask:'separator.2':',' }}
+                                                USD {{ (list.price / item.capacity) | mask:'separator.0':',' }}
                                             </small>
                                         </p>
                                         <p class="card-text fw-bolder">
-                                            {{ "general.valueWithoutDiscount" | translate }} <span class="fw-bold text-decoration-line-through">USD {{list.fullPrice | mask:'separator.2':','}}</span>
+                                            {{ "general.valueWithoutDiscount" | translate }} <span class="fw-bold text-decoration-line-through">USD {{list.fullPrice | mask:'separator.0':','}}</span>
                                         </p>
                                         <p class="card-text fw-bolder">
-                                            {{ "roomsStep.amountPerAdditionalNight" | translate }}: USD {{list.price | mask:'separator.2':','}}
+                                            {{ "roomsStep.amountPerAdditionalNight" | translate }}: USD {{list.price | mask:'separator.0':','}}
                                         </p>
                                         <p class="card-text">
                                             {{ "roomsStep.additionalNightAddText" | translate }}
@@ -55,7 +55,7 @@
                                             </div>
                                             <div class="col-12">
                                                 <h5 class="text-start text-md-end">
-                                                    {{ "roomsStep.totalPerNights" | translate }}: <span class="fw-bold fs-4">USD {{additionalDaysAmount | mask:'separator.2':','}} </span>
+                                                    {{ "roomsStep.totalPerNights" | translate }}: <span class="fw-bold fs-4">USD {{additionalDaysAmount | mask:'separator.0':','}} </span>
                                                 </h5>
                                             </div>
                                         </div>
@@ -78,7 +78,7 @@
                         </div>
                         <div class="col-12 col-md-6 mb-2 mb-md-0">
                             <h5 class="text-start text-md-end">
-                                Sub-Total: <span class="fw-bold fs-2">USD {{subTotal | mask:'separator.2':','}} </span>
+                                Sub-Total: <span class="fw-bold fs-2">USD {{subTotal | mask:'separator.0':','}} </span>
                             </h5>
                         </div>
                     </div>

@@ -56,15 +56,15 @@
             <p class="m-0 mt-4">
                 {{ "general.amountWithoutDiscount" | translate }}: 
                 <span class="text-decoration-line-through">
-                    USD {{additionalCategoryPassesAmountFullPrice | mask:'separator.2':','}}
+                    USD {{additionalCategoryPassesAmountFullPrice | mask:'separator.0':','}}
                 </span>
             </p>
             <p class="m-0">
-                {{ "general.discount" | translate }}: USD {{discount | mask:'separator.2':','}}
+                {{ "general.discount" | translate }}: USD {{discount | mask:'separator.0':','}}
             </p>
             <div class="d-flex justify-content-between">
                 <span class="fs-4 fw-bolder">
-                    {{'general.total' | translate | uppercase}}: USD {{subTotal | mask:'separator.2':','}}
+                    {{'general.total' | translate | uppercase}}: USD {{subTotal | mask:'separator.0':','}}
                 </span>
                 <div>
                     <button type="button" 

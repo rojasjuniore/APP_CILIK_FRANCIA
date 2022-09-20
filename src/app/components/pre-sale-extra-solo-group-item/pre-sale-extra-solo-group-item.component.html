@@ -9,7 +9,7 @@
                         </span>
         
                         <span>
-                            {{'general.pricePerPerson' | translate}}: USD {{price | mask:'separator.2':','}}
+                            {{'general.pricePerPerson' | translate}}: USD {{price | mask:'separator.0':','}}
                         </span>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                         </span>
 
                         <span>
-                            {{'general.pricePerPerson' | translate}}: USD {{item.pricePerPeople | mask:'separator.2':','}}
+                            {{'general.pricePerPerson' | translate}}: USD {{item.pricePerPeople | mask:'separator.0':','}}
                             &nbsp;
                             <span class="btn-close-card-item"><i class="bi bi-x-lg" (click)="removeItem(idx)"></i></span>
                         </span>
@@ -39,7 +39,7 @@
                         <div class="col-12 col-sm-6 col-md-6 d-flex justify-content-end align-self-end mt-3 mt-md-0">
                             <div class="card-box card-box-wfc p-3">
                                 <h4 class="text-end py-2 m-0">
-                                    {{'general.amount' | translate | titlecase}} USD {{item.price * item.quantity | mask:'separator.2':','}}
+                                    {{'general.amount' | translate | titlecase}} USD {{item.price * item.quantity | mask:'separator.0':','}}
                                 </h4>                                
                             </div>
                         </div>

@@ -30,14 +30,14 @@
                                             <small class="text-muted">
                                                 {{ "general.pricePerPerson" | translate }}: 
                                                 <i class="bi" [ngClass]="{'bi-person-fill': row?.capacity == 1, 'bi-people-fill': row?.capacity > 1}"></i>
-                                                USD {{ (row.price / row.capacity) | mask:'separator.2':',' }}
+                                                USD {{ (row.price / row.capacity) | mask:'separator.0':',' }}
                                             </small>
                                         </p>
                                         <p class="card-text">
-                                            {{ "general.valueWithoutDiscount" | translate }} <span class="fw-bold text-decoration-line-through">USD  {{row.fullPrice | mask:'separator.2':','}}</span>
+                                            {{ "general.valueWithoutDiscount" | translate }} <span class="fw-bold text-decoration-line-through">USD  {{row.fullPrice | mask:'separator.0':','}}</span>
                                         </p>
                                         <p class="card-text">
-                                            {{ "general.amount" | translate }} <span class="fw-bold fs-4">USD  {{row.price | mask:'separator.2':','}}</span>
+                                            {{ "general.amount" | translate }} <span class="fw-bold fs-4">USD  {{row.price | mask:'separator.0':','}}</span>
                                         </p>
                                         <div class="d-flex justify-content-end">
                                             <ng-container *ngIf="row.roomCode == item._id; else canUpdate">
@@ -75,7 +75,7 @@
                         </div>
                         <div class="col-12 col-md-6 mb-2 mb-md-0">
                             <h5 class="text-start text-md-end">
-                                Sub-Total:  <span class="fw-bold fs-2"> USD {{item?.price | mask:'separator.2':','}}</span> 
+                                Sub-Total:  <span class="fw-bold fs-2"> USD {{item?.price | mask:'separator.0':','}}</span> 
                             </h5>
                         </div>
                     </div>
