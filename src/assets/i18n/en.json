@@ -210,6 +210,7 @@
     "amountPerAdditionalNight": "Amount per additional night",
     "automaticSetupMessage": "The system automatically accommodates all people with the most convenient rates. You can customize the result.",
     "automaticSetupMessage2": "With this option, the system automatically accommodates all people with the most convenient rates.",
+    "changeRoomAlert": "Are you sure to update the room?",
     "manualSetupMessage": "Choose type of room, number of people and additional nights according to your needs.",
     "nightsAfter": "Nights after",
     "nightsBefore": "Nights before",

@@ -210,6 +210,7 @@
     "amountPerAdditionalNight": "Monto por noche adicional",
     "automaticSetupMessage": "El sistema acomoda de manera automática a todas las personas con las tarifas más convenientes. Puedes personalizar el resultado.",
     "automaticSetupMessage2": "Con esta opción el sistema acomoda de manera automática a todas las personas con las tarifas más convenientes.",
+    "changeRoomAlert": "¿Estas seguro de actualizar la habitación?",
     "manualSetupMessage": "Elige tipo de habitación, número de personas y noches adicionales según tus necesidades.",
     "nightsAfter": "Noches Despues",
     "nightsBefore": "Noches Antes",

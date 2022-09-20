@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit, Output } from '@angular/core';
 import { NavigationCancel, Router, RouterEvent } from '@angular/router';
 import { filter, map, Observable, Subject, Subscription } from 'rxjs';
 import { BsModalService } from 'src/app/services/bs-modal.service';
+import { CustomTranslateService } from 'src/app/services/custom-translate.service';
 import { HotelService } from 'src/app/services/hotel.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 
@@ -30,6 +31,7 @@ export class PreSaleModalRoomTypeDetailsComponent implements OnInit, OnDestroy {
     private hotelSrv: HotelService,
     private sweetAler2tSrv: Sweetalert2Service,
     private router: Router,
+    private customTranslateSrv: CustomTranslateService,
   ) { }
 
   ngOnInit(): void {
@@ -72,7 +74,8 @@ export class PreSaleModalRoomTypeDetailsComponent implements OnInit, OnDestroy {
   }
 
   async onUpdateRoomDoc(data: any){
-    const ask = await this.sweetAler2tSrv.askConfirm('¿Estas seguro de actualizar la habitación?');
+    const message = await this.customTranslateSrv.translate('roomsStep.changeRoomAlert');
+    const ask = await this.sweetAler2tSrv.askConfirm(message);
 
     if(!ask){ return; };
 
