@@ -4,6 +4,7 @@ import { DataService } from './services/data.service';
 import { HotelService } from './services/hotel.service';
 
 import { pick, omit } from 'underscore';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -18,13 +19,25 @@ export class AppComponent {
   constructor(
     public translateSrv: CustomTranslateService,
     private dataSrv: DataService,
-    private hotelSrv: HotelService
+    private hotelSrv: HotelService,
+    private router: Router
   ) {
     this.currentLanguage = this.translateSrv.currentLanguage;
   }
 
   ngOnInit(): void {
     this.translateSrv.changeLanguage('en');
+
+    this.router.events.subscribe((event) => {
+      if (!(event instanceof NavigationEnd)) {
+          return;
+      }
+
+      setTimeout(() => {
+        window.scrollTo(0, 0)
+      }, 0);
+    });
+
     // this.contractService.connectAccount()
     // this.contractService.reInitializating()
     // this.storeRoomStock();
