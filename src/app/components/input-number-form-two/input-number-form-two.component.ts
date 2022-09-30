@@ -20,8 +20,12 @@ export class InputNumberFormTwoComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    if(this.quantity === undefined) {
+    if(this.quantity === undefined || this.quantity < this.min){
       this.quantity = this.min;
+
+      setTimeout(() => {
+        this.onUpdateQuantity.next(this.quantity);
+      }, 0);
     }
   }
 

@@ -2,7 +2,7 @@
   "WLDCPlanIncludes": {
     "description": [
       "Transfers Airport Hotel - Airport Hotel: only for people who arrive on February 5 and 6 and return on February 12 and 13, 2023. People who arrive before or return after the indicated dates do not include transfers.",
-      "Lodging at a 5-star hotel, “Hotel las Américas” from February 6 to 12, 2023, 6 nights and 7 days. After exhausting this hotel, the organization will designate the second official hotel of the event, of the same category. Transfers Airport Hotel - Airport Hotel: only for people who arrive on February 5 and 6 and return on February 12 and 13, 2023. People who arrive before or return after the indicated dates are not included transfers.",
+      "Lodging at a 5-star hotel, “Hotel las Américas” from February 6 to 12, 2023, 6 nights and 7 days. After exhausting this hotel, the organization will designate the second official hotel of the event, of the same category.",
       "Full meals: breakfast, lunch and dinner, buffet style within the facilities at the times established by the hotel.",
       "Full Pass - Concert, Parties, Workshops, Conferences, Competition, Grand Final, Ultimate Championship, Music Park Fest, Pool Parties, Beaches, Gym.",
       "WLDC 2023 Event Kit",
@@ -49,7 +49,9 @@
     "email": "Invalid email",
     "emailStored": "The email is already registered",
     "invalidLogIn": "Invalid email or password",
+    "maxlength10": "The field must have a maximum of 10 characters",
     "maxlength12": "The field must have a maximum of 12 characters",
+    "minlength10": "The field must have at least 10 characters",
     "minlength6": "The field must have at least 6 characters",
     "nroCompetitorsRequired": "You must enter the number of competitors",
     "onlyCharacters": "The field must contain only letters",
@@ -62,7 +64,7 @@
   },
   "general": {
     "#membersOfGroup": "Number of members of this group",
-    "#nroCompetitors": "# of Competitors",
+    "#nroPeople": "# of People",
     "#ofGuests": "# of guests",
     "WLDCOfficialPlan": "WLDC Official Plan",
     "accept": "To accept",
@@ -111,6 +113,7 @@
     "manualSetup": "Manual accommodation",
     "name": "Name",
     "noPurchases": "You haven't made any purchases yet",
+    "not": "No",
     "notRegistered": "Not registered yet?",
     "numberOfMembers": "Number of members",
     "order": "Order",
@@ -149,7 +152,8 @@
     "update": "Update",
     "valueToBeCancelledFrom": "Value to cancel",
     "valueWithoutDiscount": "Value whithout discount",
-    "verify": "Verify"
+    "verify": "Verify",
+    "yes": "Yes"
   },
   "hotel": {
     "roomType": {
@@ -206,6 +210,7 @@
     "amountPerAdditionalNight": "Amount per additional night",
     "automaticSetupMessage": "The system automatically accommodates all people with the most convenient rates. You can customize the result.",
     "automaticSetupMessage2": "With this option, the system automatically accommodates all people with the most convenient rates.",
+    "changeRoomAlert": "Are you sure to update the room?",
     "manualSetupMessage": "Choose type of room, number of people and additional nights according to your needs.",
     "nightsAfter": "Nights after",
     "nightsBefore": "Nights before",
@@ -222,7 +227,7 @@
     "informedConsentForMinors": "Informed consent for minors",
     "informedConsentForMinorsLink": "https://firebasestorage.googleapis.com/v0/b/cilik-presale.appspot.com/o/informedConsentForMinorsEN.pdf?alt=media&token=49defaa2-a0a0-4d83-a75c-dd31a8e2bf70",
     "successfulRegistrationMessage": "You can now continue with the purchase process.",
-    "termsAndConditionsLink": "https://firebasestorage.googleapis.com/v0/b/cilik-presale.appspot.com/o/imageUseAuthorizationEN.pdf?alt=media&token=85420948-2b5e-43e9-8a68-0a8503c993de"
+    "termsAndConditionsLink": "https://firebasestorage.googleapis.com/v0/b/cilik-presale.appspot.com/o/termsAndConditionsEN.pdf?alt=media&token=492df31e-adf8-4bc9-bf32-f90aa039a9d7"
   },
   "temporalToken": {
     "alertMessage": "Before continuing, the code of <strong>({{tokenLong}})</strong> digits sent to the address <strong>{{email}}</strong> is necessary, please enter it below:",

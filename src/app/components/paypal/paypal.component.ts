@@ -36,11 +36,11 @@ export class PaypalComponent implements OnInit {
     const _currency = environment.paypal.currency;
     const _amount = this.amount.toFixed(2)
 
-    console.log('production', environment.production);
-    console.log('clientId', _clientId);
-    console.log('currency', _currency);
-    console.log('this.amount', this.amount);
-    console.log('_amount', _amount);
+    // console.log('production', environment.production);
+    // console.log('clientId', _clientId);
+    // console.log('currency', _currency);
+    // console.log('this.amount', this.amount);
+    // console.log('_amount', _amount);
 
 
     this.payPalConfig = {

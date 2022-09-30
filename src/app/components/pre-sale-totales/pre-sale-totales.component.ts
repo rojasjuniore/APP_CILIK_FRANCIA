@@ -111,7 +111,7 @@ export class PreSaleTotalesComponent implements OnInit, OnDestroy {
   }
 
   get discount(){
-    return (this.subTotalFullPrice - this.subTotal) + this.groupDiscountAmount;
+    return (this.subTotalFullPrice - this.subTotal);
   }
 
   get groupDiscount(){

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import Swal from 'sweetalert2';
+import { CustomTranslateService } from './custom-translate.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,9 @@ export class Sweetalert2Service {
 
   public title = 'CILIK';
 
-  constructor() { }
+  constructor(
+    private customTranslateSrv: CustomTranslateService,
+  ) { }
 
   showError(err: any, type = 0) {
     try {
@@ -155,6 +158,10 @@ export class Sweetalert2Service {
   }
 
   async askConfirm(message: string){
+
+    const confirmButtonText = await this.customTranslateSrv.translate('general.yes');
+    const cancelButtonText = await this.customTranslateSrv.translate('general.not');
+
     const { isConfirmed } = await Swal.fire({
       icon: 'info',
       title: this.title,
@@ -162,8 +169,8 @@ export class Sweetalert2Service {
       // text: message,
       showCancelButton: true,
       showConfirmButton: true,
-      confirmButtonText: 'Si',
-      cancelButtonText: 'No',
+      confirmButtonText: confirmButtonText,
+      cancelButtonText: cancelButtonText,
       customClass: {
         htmlContainer: 'applef sw2FixHtmlContainer',
         icon: 'sw2FixIcon',

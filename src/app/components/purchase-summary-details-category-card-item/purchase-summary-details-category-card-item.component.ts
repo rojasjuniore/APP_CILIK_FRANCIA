@@ -66,6 +66,9 @@ export class PurchaseSummaryDetailsCategoryCardItemComponent implements OnInit {
       return item.data.map((group) => group.quantity)
         .reduce((prev, curr) => prev + curr, 0)
 
+    }else if(item.type == 'couple'){
+      return item.quantity / 2;
+
     }else{
       return item.quantity;
     }

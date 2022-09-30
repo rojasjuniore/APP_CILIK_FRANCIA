@@ -1,15 +1,19 @@
-import { Component, OnInit, Output } from '@angular/core';
-import { map, Observable, Subject } from 'rxjs';
+import { Component, OnDestroy, OnInit, Output } from '@angular/core';
+import { NavigationCancel, Router, RouterEvent } from '@angular/router';
+import { filter, map, Observable, Subject, Subscription } from 'rxjs';
 import { BsModalService } from 'src/app/services/bs-modal.service';
+import { CustomTranslateService } from 'src/app/services/custom-translate.service';
 import { HotelService } from 'src/app/services/hotel.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
+
+import { omit } from 'underscore';
 
 @Component({
   selector: 'app-pre-sale-modal-room-type-details',
   templateUrl: './pre-sale-modal-room-type-details.component.html',
   styleUrls: ['./pre-sale-modal-room-type-details.component.css']
 })
-export class PreSaleModalRoomTypeDetailsComponent implements OnInit {
+export class PreSaleModalRoomTypeDetailsComponent implements OnInit, OnDestroy {
 
   @Output() onUpdateRoom = new Subject();
 
@@ -20,14 +24,28 @@ export class PreSaleModalRoomTypeDetailsComponent implements OnInit {
 
   public list$!: Observable<any>;
 
+  private sub$!: Subscription;
+
   constructor(
     private bsModalSrv: BsModalService,
     private hotelSrv: HotelService,
     private sweetAler2tSrv: Sweetalert2Service,
+    private router: Router,
+    private customTranslateSrv: CustomTranslateService,
   ) { }
 
   ngOnInit(): void {
     this.buildModal();
+
+    this.sub$ = this.router.events
+    .subscribe((event) => {
+
+      /** Si la modal esta desplegada al cambiar de ruta */
+      if(this.mi._isShown){
+        this.closeModal();
+      }
+
+    });
   }
 
   async buildModal() {
@@ -48,14 +66,16 @@ export class PreSaleModalRoomTypeDetailsComponent implements OnInit {
       orderBy: [{field: 'priority', order: 'asc'}]
     })
     .pipe(
-      map((data: any[]) => data.map((row) => this.hotelSrv.parseRoomPrice(row)))
+      map((data: any[]) => data.map((row) => this.hotelSrv.parseRoomPrice(row)) ),
+      map((data: any[]) => data.map((row) => omit(row, ['priceList'])) ),
     );
 
-    this.mi.show();
+    await this.mi.show();
   }
 
   async onUpdateRoomDoc(data: any){
-    const ask = await this.sweetAler2tSrv.askConfirm('¿Estas seguro de actualizar la habitación?');
+    const message = await this.customTranslateSrv.translate('roomsStep.changeRoomAlert');
+    const ask = await this.sweetAler2tSrv.askConfirm(message);
 
     if(!ask){ return; };
 
@@ -65,8 +85,12 @@ export class PreSaleModalRoomTypeDetailsComponent implements OnInit {
     this.closeModal();
   }
 
-  closeModal(){
-    this.mi.hide();
+  async closeModal(){
+    await this.mi.hide();
+  }
+
+  ngOnDestroy(): void {
+    this.sub$.unsubscribe();
   }
 
 }
