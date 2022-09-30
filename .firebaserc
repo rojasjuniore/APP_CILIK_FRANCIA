@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "cilik-3c845"
-  }
+    "default": "cilik-3c845",
+    "development": "dev-cilik"
+  },
+  "targets": {}
 }
