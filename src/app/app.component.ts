@@ -40,10 +40,11 @@ export class AppComponent {
 
     // this.contractService.connectAccount()
     // this.contractService.reInitializating()
-    this.storeRoomStock();
-    this.storeRoomTypes();
-    this.storeRoomAdditionals();
-    this.storeRooms();
+    // this.storeRoomStock();
+    // this.storeRoomTypes();
+    // this.storeRoomAdditionals();
+    // this.storeRooms();
+    // this.storeCategoriesPasses();
   }
 
   changeLanguage(language: string) {
