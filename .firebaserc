@@ -1,6 +1,6 @@
 {
   "projects": {
-    "default": "cilik-3c845",
+    "default": "dev-cilik",
     "development": "dev-cilik",
     "production": "cilik-presale"
   },
