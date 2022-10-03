@@ -52,7 +52,7 @@ export class HotelService {
 
   parseRoomPrice(room: any){
     const currentDate = moment();
-    let price = room.fullPrice;
+    let price = room?.fullPrice;
     let indexPrice = room.priceList.length - 1;
 
     for (let index = 0; index < room.priceList.length; index++) {
