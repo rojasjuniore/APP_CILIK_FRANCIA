@@ -53,6 +53,7 @@
     "maxlength12": "El campo debe tener máximo 12 caracteres",
     "minlength10": "El campo debe tener al menos 10 caracteres",
     "minlength6": "El campo debe tener al menos 6 caracteres",
+    "minlength9": "El campo debe tener al menos 9 caracteres",
     "nroCompetitorsRequired": "Debes ingresar el número de competidores",
     "onlyCharacters": "el campo debe contener solo letras",
     "onlyNumbers": "el campo debe contener solo números",
