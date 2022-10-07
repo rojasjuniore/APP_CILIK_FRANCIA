@@ -103,6 +103,7 @@ import { CardBankTransferComponent } from './card-bank-transfer/card-bank-transf
   ],
   exports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     Footer1Component,
     Footer2Component,
