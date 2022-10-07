@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { slugify } from 'src/app/helpers/slugify';
 import { BsModalService } from 'src/app/services/bs-modal.service';
-import { PermissionService } from 'src/app/services/permission.service';
+import { checkRoleSlug, PermissionService } from 'src/app/services/permission.service';
 
 @Component({
   selector: 'app-permission-roles-add',
@@ -29,7 +29,7 @@ export class PermissionRolesAddComponent implements OnInit {
   buildForm(){
     this.form = this.fb.group({
       name: ['', [Validators.required]],
-      slug: ['', [Validators.required]],
+      slug: ['', [Validators.required], [checkRoleSlug(this.permissionSrv)] ],
       description: [''],
     });
 

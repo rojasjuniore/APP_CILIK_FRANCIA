@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, Query } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
+import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
+import { map, Observable } from 'rxjs';
+import { slugify } from '../helpers/slugify';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,7 @@ export class PermissionService {
   public userRolesCollection = "users";
 
   constructor(
-    private afs: AngularFirestore,
+    public afs: AngularFirestore,
   ) { }
 
   async addRole(slug: string, data: any){
@@ -85,4 +87,27 @@ export class PermissionService {
     ).valueChanges({ idField });
   }
 
+}
+
+/**
+ * Validat si existe role con slug
+ *
+ * @param service 
+ * @returns 
+ */
+ export function checkRoleSlug(service: PermissionService): AsyncValidatorFn {
+  return (control: AbstractControl): Observable<ValidationErrors | null> => {
+
+    const controlValue = slugify(`${control.value}`.trim());
+
+    return service.afs.collection(service.roleCollection, (ref) => ref.where('slug', '==', controlValue).limit(1))
+      .get()
+      .pipe(
+        // tap((result) => console.log(result) ),
+        map((data) => {
+          // console.log({data});
+          return (data.empty) ? null : { slugExist: true };
+        })
+      );
+  }
 }
