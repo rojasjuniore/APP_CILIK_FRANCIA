@@ -47,7 +47,8 @@ import { RemoveOrderOnBackButtonComponent } from './remove-order-on-back-button/
 import { PreSaleModalBankTransferDetailComponent } from './pre-sale-modal-bank-transfer-detail/pre-sale-modal-bank-transfer-detail.component';
 import { CardBankTransferComponent } from './card-bank-transfer/card-bank-transfer.component';
 import { PermissionRolesAddComponent } from './permission-roles-add/permission-roles-add.component';
-import { PermissionRolesUpdateComponent } from './permission-roles-update/permission-roles-update.component'; 
+import { PermissionRolesUpdateComponent } from './permission-roles-update/permission-roles-update.component';
+import { PermissionRolesRemoveComponent } from './permission-roles-remove/permission-roles-remove.component'; 
 
 
 @NgModule({
@@ -104,6 +105,7 @@ import { PermissionRolesUpdateComponent } from './permission-roles-update/permis
     CardBankTransferComponent,
     PermissionRolesAddComponent,
     PermissionRolesUpdateComponent,
+    PermissionRolesRemoveComponent,
   ],
   exports: [
     CommonModule,
@@ -148,6 +150,7 @@ import { PermissionRolesUpdateComponent } from './permission-roles-update/permis
     PreSaleModalBankTransferDetailComponent,
     PermissionRolesAddComponent,
     PermissionRolesUpdateComponent,
+    PermissionRolesRemoveComponent,
   ],
   providers: [
     TranslatePipe,
