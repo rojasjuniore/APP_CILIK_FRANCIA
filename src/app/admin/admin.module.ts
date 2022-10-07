@@ -5,11 +5,13 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminLayoutComponent } from './components/admin-layout/admin-layout.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { ComponentsModule } from '../components/components.module';
+import { PermissionComponent } from './components/permission/permission.component';
 
 
 @NgModule({
   declarations: [
-    AdminLayoutComponent
+    AdminLayoutComponent,
+    PermissionComponent
   ],
   imports: [
     CommonModule,
