@@ -2,11 +2,16 @@
     <div class="col-12">
         <form [formGroup]="form" novalidate>
             <div class="mb-3">
-                <label for="role" class="form-label">Role</label>
-                <input type="text" class="form-control" formControlName="role" placeholder="Find Role" aria-describedby="roleHelp">
-                <!-- <div id="roleHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                <label for="role" class="form-label">Type Role to Search:</label>
+                <input type="text" class="form-control" formControlName="role" placeholder="Role Xxxxxx" aria-describedby="roleHelp">
             </div>
         </form>
+    </div>
+    <div class="col-12 text-center">
+        <button class="btn btn-sm btn-danger" type="button">
+            <i class="bi bi-plus-circle"></i>
+            Add Role
+        </button>
     </div>
     <hr>
     <ng-container *ngIf="(roles$ | async) as roles; else loading">
