@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, map, Observable } from 'rxjs';
+import { PermissionRolesAddComponent } from 'src/app/components/permission-roles-add/permission-roles-add.component';
 import { PermissionService } from 'src/app/services/permission.service';
 
 @Component({
@@ -9,6 +10,8 @@ import { PermissionService } from 'src/app/services/permission.service';
   styleUrls: ['./permission-roles.component.css']
 })
 export class PermissionRolesComponent implements OnInit {
+
+  @ViewChild(PermissionRolesAddComponent) modalPermissionRoleAdd!: PermissionRolesAddComponent;
 
   public form!: FormGroup;
   public roles$!: Observable<any[]>;
@@ -35,6 +38,10 @@ export class PermissionRolesComponent implements OnInit {
     });
 
     this.roles$ = this.permissionService.getRolesDynamic([]);
+  }
+
+  async addRole(){
+    this.modalPermissionRoleAdd.show();
   }
 
 }

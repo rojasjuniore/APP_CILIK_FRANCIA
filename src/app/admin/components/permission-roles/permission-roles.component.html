@@ -8,7 +8,7 @@
         </form>
     </div>
     <div class="col-12 text-center">
-        <button class="btn btn-sm btn-danger" type="button">
+        <button class="btn btn-sm btn-danger" type="button" (click)="addRole()">
             <i class="bi bi-plus-circle"></i>
             Add Role
         </button>
@@ -23,6 +23,9 @@
     </ng-container>
 
 </div>
+
+<app-permission-roles-add></app-permission-roles-add>
+<app-permission-roles-update></app-permission-roles-update>
 
 <ng-template #noRoles>
     <div class="col-12">
