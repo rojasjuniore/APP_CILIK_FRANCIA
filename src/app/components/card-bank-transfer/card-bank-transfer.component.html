@@ -1,0 +1,63 @@
+<div class="card card-box p-3 mb-3">
+    <div class="row g-2 d-flex align-items-center">
+        <div class="col-6">
+            <div class="d-flex justify-content-between">
+                <span class="text-rslt fw-bold fs-5">
+                    {{ "paymentMethods.transfer" | translate }} ({{ order.bankTransferSelect.label }})
+                </span>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="d-flex justify-content-end">
+               
+               
+                <span class="text-rslt fw-bold fs-5">
+                    
+                    <label
+                    class="btn btn-one"
+                  >
+                   <span *ngIf="!hotelService.loading"><i class="bi bi-cloud-arrow-up"></i> {{ "general.comprobanteUpload" | translate }} </span>
+
+                   <div *ngIf="hotelService.loading" class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                   </div>
+                    <input
+                      type="file"
+                      multiple
+                      [disabled]="hotelService.loading"
+                      accept="image/png,image/jpeg,image/jpg"
+                      style="display: none"
+                      (change)="subirImg($event)"
+                    />
+                  </label>
+                </span>
+            </div>
+        </div>
+        <div class="seprd2"></div>
+        <div class="col-12" style="position: relativa;">
+            <p class="fw-bold m-0">
+                {{'Status' | translate}}: 
+                            <span *ngIf="order.status === 'pending'">{{ 'general.pending' | translate }}</span>
+                            <span *ngIf="order.status === 'completed'">{{ 'general.completed' | translate }}</span>
+                            <span *ngIf="order.status === 'rejected'">{{ 'general.rejected' | translate }}</span>
+            </p>
+            <div class="seprd m-0 mb-2"></div>
+
+            <p class="m-0">
+                <strong> {{ "general.comprobanteDataName" | translate }}: </strong> {{ order.bankTransferSelect.accountTitle }}
+            </p>
+
+            <p class="m-0"  >
+                <strong> {{ "general.comprobanteDataTitle" | translate }}: </strong> {{ order.bankTransferSelect.nrAccount }}
+            </p>
+            
+            <img src="./assets/img/ws.png" class="csaondpoas">
+           
+
+            <span class="text-success fw-bold fs-5" *ngIf="order.captureBank.length > 0">
+                <i class="bi bi-check"></i>  {{ "general.comprobanteUploadSuccess" | translate }}
+            </span>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+<div class="modal fade" id="modalBackTransfer" data-bs-backdrop="static" tabindex="-1"
+    aria-labelledby="modalCuotasPaymentDetailsLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <div class="logo mb-3">
+                                <img src="assets/img/cilik/logo.png" alt="">
+                            </div>
+                            <h5 class="text-center fw-bolder mb-4">
+                                {{ "backTransferTerms.title" | translate }}
+                            </h5>
+                            <p>
+                                <strong> 
+                                    {{ "general.termsAndConditions" | translate }}: 
+                                </strong>
+                            </p>
+                            <ul>
+                                <li *ngFor="let item of [1,1,1,1,1,1,1,1]; index as idx">
+                                    {{ ("backTransferTerms.terms" | translate)[idx] }}
+                                </li>
+                            </ul>
+
+
+                            <p>
+                                <strong> 
+                                    {{ "backTransferTerms.bankdescription" | translate }}: 
+                                </strong>
+                            </p>
+
+                           <div class="row">
+                            <div class="col-12 mb-4">
+                                <div class="row d-flex justify-content-center">
+                                        <div class="d-flex flex-column align-items-center justify-content-center col-6 col-sm-8 col-md-6 mb-4" *ngFor="let item of bankMethods" >
+                        
+                                            <button class="btn btn-payment btn-lg mb-3" 
+                                                type="button"   
+                                                [ngClass]="{'active': item.value === bankMethodsType}"
+                                                [disabled]="!item.status"
+                                                [class.dosadka]="item.select"
+                                                (click)="selectBank(item)" >
+                                                <span class="icon-payment">&nbsp;</span>
+                                                <span class="label-payment">
+                                                    {{item.label }}
+                                                </span>                          
+                                            </button>
+                        
+                                        </div>
+                                </div>
+                            </div>
+                           </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-three" (click)="closeModal(false)">
+                    <i class="bi bi-chevron-left"></i>
+                    {{ "general.back" | translate | uppercase}}                    
+                </button>
+                <button type="button" class="btn btn-one" (click)="closeModal(true)">
+                    <div *ngIf="loading" class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <span *ngIf="!loading">
+                        {{ "general.accept" | translate | uppercase}}
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

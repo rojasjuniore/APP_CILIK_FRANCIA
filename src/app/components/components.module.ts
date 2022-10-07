@@ -44,7 +44,8 @@ import { PreSaleCategoriesStepCounterComponent } from './pre-sale-categories-ste
 import { PreSaleCheckoutOnlyCategoryCardItemComponent } from './pre-sale-checkout-only-category-card-item/pre-sale-checkout-only-category-card-item.component';
 import { LanguageBarComponent } from './language-bar/language-bar.component';
 import { RemoveOrderOnBackButtonComponent } from './remove-order-on-back-button/remove-order-on-back-button.component';
-
+import { PreSaleModalBankTransferDetailComponent } from './pre-sale-modal-bank-transfer-detail/pre-sale-modal-bank-transfer-detail.component';
+import { CardBankTransferComponent } from './card-bank-transfer/card-bank-transfer.component'; 
 
 
 @NgModule({
@@ -97,6 +98,8 @@ import { RemoveOrderOnBackButtonComponent } from './remove-order-on-back-button/
     PreSaleCheckoutOnlyCategoryCardItemComponent,
     LanguageBarComponent,
     RemoveOrderOnBackButtonComponent,
+    PreSaleModalBankTransferDetailComponent,
+    CardBankTransferComponent,
   ],
   exports: [
     CommonModule,
@@ -137,6 +140,7 @@ import { RemoveOrderOnBackButtonComponent } from './remove-order-on-back-button/
     PreSaleCheckoutOnlyCategoryCardItemComponent,
     LanguageBarComponent,
     RemoveOrderOnBackButtonComponent,
+    PreSaleModalBankTransferDetailComponent,
   ],
   providers: [
     TranslatePipe,

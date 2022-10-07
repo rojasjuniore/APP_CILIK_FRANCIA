@@ -1,25 +1,31 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, Query } from '@angular/fire/compat/firestore';
 import { increment } from '@angular/fire/firestore';
-import { lastValueFrom, Observable } from 'rxjs';
+import { finalize, lastValueFrom, Observable } from 'rxjs';
 import { handlerArrayResult, handlerObjectResult } from '../helpers/model.helper';
+import { getStorage, ref, deleteObject } from "firebase/storage";
 
 import { pick } from 'underscore';
 import moment from 'moment';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HotelService {
 
+  public purchases = 'purchases';
   public roomTypesCollection = 'room__types';
   public additionalsCollection = 'room__additionals';
   public categoryPassesCollection = 'categoryPasses';
   public roomStock = 'room__stock';
   public roomsCollection = 'rooms';
 
+  loading = false;
+
   constructor(
     private afs: AngularFirestore,
+    private storage: AngularFireStorage
   ) { }
 
   buildRoomDoc(params: any = {}){
@@ -237,5 +243,54 @@ export class HotelService {
     const result = await handlerObjectResult(snapshot);
     return this.parseRoomPrice(result);
   }
+
+  // Subida de img comprobantes
+
+  async uploadComprobantes(img, idOrden, order){
+    // if(imgTempCapture !== ''){
+    //   console.log(imgTempCapture)
+    //   this.deleteImgComprobante(idOrden);
+    // }
+    let filePath = `upload_comprobantes/img_comprobante_idOrden_${idOrden}`;
+    let fileRef = this.storage.ref(filePath);
+    let observe = this.storage.upload(filePath, img);
+    return observe.snapshotChanges().pipe(
+      finalize( () => {
+        fileRef.getDownloadURL().subscribe({
+          next: (url) => {
+            console.log(url)
+            order.captureBank.push({
+              nota: '',
+              url
+            });
+            this.loading = false;
+            return this.updateCaptureImgComprobante(idOrden, order)
+          }
+        })
+      })
+    ).subscribe()
+
+  }
+
+  async updateCaptureImgComprobante(idOrden, order){
+    const ref =  this.afs.collection(this.purchases).doc(idOrden)
+    await ref.update({ captureBank: order.captureBank });
+  }
+
+  async deleteImgComprobante(imgTemp){
+    const storage = getStorage();
+
+      // Create a reference to the file to delete
+      const desertRef = ref(storage, `upload_comprobantes/img_comprobante_idOrden_${imgTemp}`);
+
+      // Delete the file
+      deleteObject(desertRef).then(() => {
+        console.log('ELiminado la imagen');
+      }).catch((error) => {
+        console.log('Ocurrio un error', error);
+      });
+
+  }
+
 
 }

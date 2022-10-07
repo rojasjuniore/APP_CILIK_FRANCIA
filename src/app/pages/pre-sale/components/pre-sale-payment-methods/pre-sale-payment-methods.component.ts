@@ -1,8 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import moment from 'moment';
+import { PreSaleModalBankTransferDetailComponent } from 'src/app/components/pre-sale-modal-bank-transfer-detail/pre-sale-modal-bank-transfer-detail.component';
 import { PreSaleModalPaymentCoutasDetailsComponent } from 'src/app/components/pre-sale-modal-payment-coutas-details/pre-sale-modal-payment-coutas-details.component';
 import { PreSaleService } from 'src/app/services/pre-sale.service';
+import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 
 @Component({
   selector: 'app-pre-sale-payment-methods',
@@ -12,6 +15,7 @@ import { PreSaleService } from 'src/app/services/pre-sale.service';
 export class PreSalePaymentMethodsComponent implements OnInit {
 
   @ViewChild(PreSaleModalPaymentCoutasDetailsComponent) modalInstallments!: PreSaleModalPaymentCoutasDetailsComponent;
+  @ViewChild(PreSaleModalBankTransferDetailComponent) modalBackTransfer!: PreSaleModalBankTransferDetailComponent;
 
   public paymentMethodType: any;
   public paymentMethods = [
@@ -25,6 +29,12 @@ export class PreSalePaymentMethodsComponent implements OnInit {
       label: 'paymentMethods.installmentPayment',
       value: 'installments',
       icon: 'bi bi-calendar-check',
+      status: true,
+    },
+    {
+      label: 'paymentMethods.transfer',
+      value: 'transfer',
+      icon: 'bi bi-bank',
       status: true,
     },
     {
@@ -44,6 +54,8 @@ export class PreSalePaymentMethodsComponent implements OnInit {
   constructor(
     public preSaleSrv: PreSaleService,
     private router: Router,
+    private sweetAlert2Srv: Sweetalert2Service,
+    private translatePipe: TranslatePipe,
   ) {
     this.loadLocalData();
   }
@@ -59,7 +71,8 @@ export class PreSalePaymentMethodsComponent implements OnInit {
 
   selectPaymentMethod(item: any){
     const { value } = item;
-
+    console.log(value)
+    console.log(this.paymentMethodType)
     if(this.paymentMethodType){
 
       if(this.paymentMethodType === value){
@@ -67,16 +80,24 @@ export class PreSalePaymentMethodsComponent implements OnInit {
       }else{
         if(value === 'installments'){
           this.modalInstallments.showModal();
-        }else{
+        }else if(value === 'transfer'){
+          this.modalBackTransfer.showModal();
+          
+        }
+        else{
           this.paymentMethodType = value;
         }
       }
+
+      
 
 
     }else{
 
       if(value === 'installments'){
         this.modalInstallments.showModal();
+      }else if(value === 'transfer'){
+        this.modalBackTransfer.showModal();
       }else{
         this.paymentMethodType = value;
       }
@@ -168,6 +189,17 @@ export class PreSalePaymentMethodsComponent implements OnInit {
       this.preSaleSrv.updateDocumentLocalStorage({ paymentMethodType: this.paymentMethodType });
 
       this.onNext();
+    }
+  }
+
+  async crearteOrderBankTransfer(status: any){
+    console.log(this.preSaleSrv.getDocumentLocalStorage())
+    let document = this.preSaleSrv.getDocumentLocalStorage();
+    if(status){
+      await this.preSaleSrv.completePreSaleOrder('pago por transferencia');
+      let message = this.translatePipe.transform('general.successfulTransaction');
+      this.sweetAlert2Srv.showInfo(message);
+      this.router.navigateByUrl('pages/dashboard');
     }
   }
 

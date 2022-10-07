@@ -12,7 +12,7 @@ import { GeneratePdfService } from 'src/app/services/generate-pdf.service';
 export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
 
   public mi: any;
-  public order: any;
+  public order: any = '';
 
   private sub$!: Subscription;
 

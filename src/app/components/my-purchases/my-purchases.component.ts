@@ -36,6 +36,7 @@ export class MyPurchasesComponent implements OnInit {
     this.purchasesList$ = this.purchaseSrv.userPurchaseList(uid.toString())
     .pipe(
       map((data) => {
+        console.log(data)
         const counter = data.length + 1;
         return data.map((row, index) => Object.assign({}, row, { index: counter - (index + 1) }))
       })
@@ -43,7 +44,7 @@ export class MyPurchasesComponent implements OnInit {
   }
 
   onShowDetails(order: any){
-    // console.log('order', order);
+    console.log('order', order);
     this.modalDetails.showModal(order);
   }
 

@@ -30,6 +30,18 @@
                             </app-purchase-summary-details-category-card-item>
                         </div>
 
+                        <div  *ngIf="order !== '' && order.installments.length > 0">
+                            <div class="col-12 mb-4" *ngFor="let item of order.installments">
+                                <app-pre-sale-installment-couta-card-item  [index]="item.nro" [item]="item"></app-pre-sale-installment-couta-card-item>
+                            </div>
+                           
+                        </div>
+
+                        <div class="col-12 mb-4" *ngIf="order.metadata === 'pago por transferencia'">
+                            <app-card-bank-transfer [order]="order"></app-card-bank-transfer>
+                        </div>
+                        
+
                         <div class="col-12">
                             <div class="d-flex justify-content-end">
                                 <!-- <button class="btn btn-three" type="button" (click)="share()">

@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { PreSaleModalBankTransferDetailComponent } from 'src/app/components/pre-sale-modal-bank-transfer-detail/pre-sale-modal-bank-transfer-detail.component';
 import { HotelService } from 'src/app/services/hotel.service';
 import { PreSaleService } from 'src/app/services/pre-sale.service';
 import { PurchaseService } from 'src/app/services/purchase.service';
+import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 
 @Component({
   selector: 'app-pre-sale-only-categories-installments-pay-couta',
@@ -11,6 +14,8 @@ import { PurchaseService } from 'src/app/services/purchase.service';
   styleUrls: ['./pre-sale-only-categories-installments-pay-couta.component.css']
 })
 export class PreSaleOnlyCategoriesInstallmentsPayCoutaComponent implements OnInit {
+  
+  @ViewChild(PreSaleModalBankTransferDetailComponent) modalBackTransfer!: PreSaleModalBankTransferDetailComponent;
 
   public preSaleDocument: any;
   public coutaToPay: number = 0;
@@ -20,6 +25,12 @@ export class PreSaleOnlyCategoriesInstallmentsPayCoutaComponent implements OnIni
       label: 'paymentMethods.paypal',
       value: 'paypal',
       icon: 'bi bi-paypal',
+      status: true,
+    },
+    {
+      label: 'paymentMethods.transfer',
+      value: 'transfer',
+      icon: 'bi bi-bank',
       status: true,
     },
     {
@@ -43,6 +54,8 @@ export class PreSaleOnlyCategoriesInstallmentsPayCoutaComponent implements OnIni
     private spinner: NgxSpinnerService,
     private purchaseSrv: PurchaseService,
     private hotelSrv: HotelService,
+    private sweetAlert2Srv: Sweetalert2Service,
+    private translatePipe: TranslatePipe,
   ) {
     this.preSaleDocument = this.preSaleSrv.getDocumentLocalStorage();
   }
@@ -56,8 +69,10 @@ export class PreSaleOnlyCategoriesInstallmentsPayCoutaComponent implements OnIni
 
   selectPaymentMethod(item: any){
     this.paymentMethodType = item.value;
-    // console.log('item', item);
-    this.preSaleDocument.installments[0].paymentMethod = item.value;
+    if(this.paymentMethodType === 'transfer'){
+      this.modalBackTransfer.showModal();
+    }
+    this.preSaleDocument.installments[0].paymentMethod = 'bankTransfer';
     this.preSaleSrv.updateDocumentLocalStorage({installments: this.preSaleDocument.installments});
   }
 
@@ -106,6 +121,16 @@ export class PreSaleOnlyCategoriesInstallmentsPayCoutaComponent implements OnIni
     const roomData = Object.assign({}, room, {roomId: findRoom._id});
 
     return roomData;
+  }
+
+  async crearteOrderBankTransfer(status: any){
+    console.log(this.preSaleSrv.getDocumentLocalStorage())
+    if(status){
+      await this.preSaleSrv.completePreSaleOrder('pago por transferencia');
+      let message = this.translatePipe.transform('general.successfulTransaction');
+      this.sweetAlert2Srv.showInfo(message);
+      this.router.navigateByUrl('pages/dashboard');
+    }
   }
 
 
