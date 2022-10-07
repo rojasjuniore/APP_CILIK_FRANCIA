@@ -37,6 +37,16 @@ export class PermissionService {
     }
   }
 
+  async removeRole(slug: string){
+    try {
+      await this.afs.collection(this.roleCollection).doc(slug).delete();
+      return true;
+    } catch (err) {
+      console.warn('Error on try to delete a document', err);
+      return false;
+    }
+  }
+
   async updateUserRoles(uid: string, roles: any){
     try {
       await this.afs.collection(this.userRolesCollection).doc(uid).update({roles});
