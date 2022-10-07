@@ -6,12 +6,14 @@ import { AdminLayoutComponent } from './components/admin-layout/admin-layout.com
 import { TranslateModule } from '@ngx-translate/core';
 import { ComponentsModule } from '../components/components.module';
 import { PermissionComponent } from './components/permission/permission.component';
+import { PermissionRolesComponent } from './components/permission-roles/permission-roles.component';
 
 
 @NgModule({
   declarations: [
     AdminLayoutComponent,
-    PermissionComponent
+    PermissionComponent,
+    PermissionRolesComponent
   ],
   imports: [
     CommonModule,
