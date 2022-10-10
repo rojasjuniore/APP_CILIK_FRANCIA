@@ -45,7 +45,10 @@ import { PreSaleCheckoutOnlyCategoryCardItemComponent } from './pre-sale-checkou
 import { LanguageBarComponent } from './language-bar/language-bar.component';
 import { RemoveOrderOnBackButtonComponent } from './remove-order-on-back-button/remove-order-on-back-button.component';
 import { PreSaleModalBankTransferDetailComponent } from './pre-sale-modal-bank-transfer-detail/pre-sale-modal-bank-transfer-detail.component';
-import { CardBankTransferComponent } from './card-bank-transfer/card-bank-transfer.component'; 
+import { CardBankTransferComponent } from './card-bank-transfer/card-bank-transfer.component';
+import { PermissionRolesAddComponent } from './permission-roles-add/permission-roles-add.component';
+import { PermissionRolesUpdateComponent } from './permission-roles-update/permission-roles-update.component';
+import { PermissionRolesRemoveComponent } from './permission-roles-remove/permission-roles-remove.component'; 
 
 
 @NgModule({
@@ -100,9 +103,13 @@ import { CardBankTransferComponent } from './card-bank-transfer/card-bank-transf
     RemoveOrderOnBackButtonComponent,
     PreSaleModalBankTransferDetailComponent,
     CardBankTransferComponent,
+    PermissionRolesAddComponent,
+    PermissionRolesUpdateComponent,
+    PermissionRolesRemoveComponent,
   ],
   exports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     Footer1Component,
     Footer2Component,
@@ -141,6 +148,9 @@ import { CardBankTransferComponent } from './card-bank-transfer/card-bank-transf
     LanguageBarComponent,
     RemoveOrderOnBackButtonComponent,
     PreSaleModalBankTransferDetailComponent,
+    PermissionRolesAddComponent,
+    PermissionRolesUpdateComponent,
+    PermissionRolesRemoveComponent,
   ],
   providers: [
     TranslatePipe,

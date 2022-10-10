@@ -1,0 +1,46 @@
+<div class="row mt-5 g-2">
+    <div class="col-12">
+        <form [formGroup]="form" novalidate>
+            <div class="mb-3">
+                <label for="role" class="form-label">Type Role to Search:</label>
+                <input type="text" class="form-control" formControlName="role" placeholder="Role Xxxxxx" aria-describedby="roleHelp">
+            </div>
+        </form>
+    </div>
+    <div class="col-12 text-center">
+        <button class="btn btn-sm btn-danger" type="button" (click)="addRole()">
+            <i class="bi bi-plus-circle"></i>
+            Add Role
+        </button>
+    </div>
+    <hr>
+    <ng-container *ngIf="(roles$ | async) as roles; else loading">
+        <ng-container *ngIf="roles.length > 0; else noRoles">
+            <div class="col-12" *ngFor="let role of roles">
+                <i class="bi bi-key fs-4"></i>
+                <span>
+                    {{ role.name | titlecase }}
+                </span>
+                <app-permission-roles-remove [role]="role"></app-permission-roles-remove>
+            </div>
+        </ng-container>
+    </ng-container>
+
+</div>
+
+<app-permission-roles-add></app-permission-roles-add>
+<!-- <app-permission-roles-update></app-permission-roles-update> -->
+
+<ng-template #noRoles>
+    <div class="col-12">
+        <div class="alert alert-warning text-center" role="alert">
+            No roles found.
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #loading>
+    <div class="col-12 text-center placeholder-glow" *ngFor="let item of [1,1,1,1]">
+        <span class="placeholder col-12" style="height: 36px;"></span>
+    </div>
+</ng-template>

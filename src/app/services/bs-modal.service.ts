@@ -35,7 +35,7 @@ export class BsModalService {
  * Interface para definir opciones de modal
  */
 export interface BootstrapModalOptions {
-  backdrop?: boolean;
+  backdrop?: boolean | string;
   keyboard?: boolean;
   focus?: boolean;
 }

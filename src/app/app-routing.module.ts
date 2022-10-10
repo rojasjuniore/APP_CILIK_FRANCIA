@@ -30,6 +30,10 @@ const routes: Routes = [
     loadChildren: () => import("./pages/pages.module").then((m) => m.PagesModule),
   },
   {
+    path: 'admin',
+    loadChildren: () => import("./admin/admin.module").then((m) => m.AdminModule),
+  },
+  {
     path: 'sign-up',
     component: SignUpComponent
   },
