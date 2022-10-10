@@ -54,4 +54,8 @@ export class PermissionProfilesComponent implements OnInit {
 
   }
 
+  async updateProfile(profile: any){
+    console.log(profile);
+  }
+
 }

@@ -16,9 +16,9 @@
     <hr>
     <ng-container *ngIf="(roles$ | async) as roles; else loading">
         <ng-container *ngIf="roles.length > 0; else noRoles">
-            <div class="col-12" *ngFor="let role of roles">
-                <i class="bi bi-key fs-4"></i>
-                <span>
+            <div class="col-12 d-flex align-items-center" *ngFor="let role of roles">
+                <i class="bi bi-key fs-2"></i>
+                <span class="flex-grow-1">
                     {{ role.name | titlecase }}
                 </span>
                 <app-permission-roles-remove [role]="role"></app-permission-roles-remove>
