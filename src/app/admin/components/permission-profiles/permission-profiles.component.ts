@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, map, Observable, of, takeWhile } from 'rxjs';
+import { PermissionProfileUpdateComponent } from 'src/app/components/permission-profile-update/permission-profile-update.component';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
@@ -9,6 +10,8 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   styleUrls: ['./permission-profiles.component.css']
 })
 export class PermissionProfilesComponent implements OnInit {
+
+  @ViewChild(PermissionProfileUpdateComponent) modalUpdate!: PermissionProfileUpdateComponent;
 
   public form!: FormGroup;
   public profiles$!: Observable<any[]>;
@@ -55,7 +58,7 @@ export class PermissionProfilesComponent implements OnInit {
   }
 
   async updateProfile(profile: any){
-    console.log(profile);
+    return this.modalUpdate.show(profile);
   }
 
 }
