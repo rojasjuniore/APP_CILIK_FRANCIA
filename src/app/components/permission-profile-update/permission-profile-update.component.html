@@ -9,26 +9,64 @@
                 <button type="button" class="btn-close" aria-label="Close" (click)="hide()"></button>
             </div>
             <div class="modal-body">
-                <!-- <form [formGroup]="form" novalidate>
+
+                <ng-container *ngIf="(roles$ | async) as roles; else loadingRoles">
                     <div class="mb-3">
-                        <label for="inputRoleName" class="form-label">Name</label>
-                        <input type="email" class="form-control" id="inputRoleName" formControlName="name" aria-describedby="inputRoleNameHelp">
+                        <div class="input-group">
+                            <select class="form-select" id="inputGroupSelect04" [(ngModel)]="roleToAdd" aria-label="Example select with button addon">
+                                <option [value]="null" selected>Select a Role</option>
+
+                                <ng-container *ngFor="let role of roles">
+                                    <ng-container *ngIf="!checkUserHasRole(role.slug)">
+                                        <option  [value]="role.slug">
+                                            {{ role.name  | uppercase }}
+                                        </option>
+                                    </ng-container>
+                                </ng-container>
+
+                            </select>
+                            <button class="btn btn-danger" type="button" (click)="addRole()">
+                                <i class="bi bi-plus"></i>
+                            </button>
+                        </div>
                     </div>
+                </ng-container>
+
+                <ng-container *ngIf="(profile && profile.roles.length > 0); else noRoles">
                     <div class="mb-3">
-                        <label for="inputRoleSlug" class="form-label">Slug</label>
-                        <input type="email" class="form-control" id="inputRoleSlug" formControlName="slug" aria-describedby="inputRoleSlugHelp">
+                        <ng-container *ngFor="let userRole of profile.roles">
+                            <span class="badge rounded-pill bg-danger" (click)="removeRole(userRole)">
+                                {{ userRole }}
+                                &nbsp;
+                                <i class="bi bi-trash3"></i>
+                            </span>
+                        </ng-container>
                     </div>
-                    <div class="mb-3">
-                        <label for="inputRoleDescription" class="form-label">Description</label>
-                        <input type="email" class="form-control" id="inputRoleDescription" formControlName="description" aria-describedby="inputRoleDescriptionHelp">
-                    </div>
-                </form> -->
+                </ng-container>
+
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger">
-                    Store
+                <button type="button" class="btn btn-danger" (click)="hide()">
+                    Done
                 </button>
             </div>
         </div>
     </div>
 </div>
+
+
+<ng-template #noRoles>
+    <div class="mb-3">
+        <div class="alert alert-warning text-center" role="alert">
+            User has no roles.
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #loadingRoles>
+    <div class="mb-3">
+        <div class="placeholder-glow">
+            <span class="placeholder col-12" style="height: 36px;"></span>
+        </div>
+    </div>
+</ng-template>
