@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, map, Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, Observable, of } from 'rxjs';
 import { PermissionRolesAddComponent } from 'src/app/components/permission-roles-add/permission-roles-add.component';
 import { PermissionService } from 'src/app/services/permission.service';
 
@@ -35,6 +35,18 @@ export class PermissionRolesComponent implements OnInit {
     )
     .subscribe((value) => {
       console.log('role');
+
+      if(value.length == 0){ 
+        this.roles$ = this.permissionService.getRolesDynamic([]);
+        return;
+      }
+
+      this.roles$ = this.permissionService.getRolesDynamic([],{
+        idField: '_id', 
+        startAt: value,
+        endAt: value + '\uf8ff',
+        orderBy: [{ field: 'slug', order: 'asc' }] 
+      });
     });
 
     this.roles$ = this.permissionService.getRolesDynamic([]);
