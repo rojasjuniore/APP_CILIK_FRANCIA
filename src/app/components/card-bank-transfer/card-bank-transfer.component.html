@@ -54,9 +54,23 @@
             <img src="./assets/img/ws.png" class="csaondpoas">
            
 
-            <span class="text-success fw-bold fs-5" *ngIf="order.captureBank.length > 0">
-                <i class="bi bi-check"></i>  {{ "general.comprobanteUploadSuccess" | translate }}
+            <div class="seprd m-0 mb-2 mt-2" *ngIf="order.captureBank.length > 0"></div>
+            <span class="text-rslt fw-bold fs-5" *ngIf="order.captureBank.length > 0">
+                 {{ "general.comprobanteUploadSuccess" | translate }}
             </span>
+
+            <div *ngIf="order.captureBank.length > 0" class="mt-2">
+                <div *ngFor="let item of order.captureBank">
+                    <div class="row mt-2">
+                        <div class="col-2 text-center">
+                            <img [src]="item.url" class="csomdoa">
+                        </div>
+                        <div class="col-10">
+                            <span *ngIf="item.nota === ''">Sin observaciones</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>

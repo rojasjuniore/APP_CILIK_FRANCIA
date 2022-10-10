@@ -1,7 +1,16 @@
 .csaondpoas{
     width: 3rem;
     position: absolute;
-    bottom: 15px;
+    top: 130px;
     right: 15px;
     cursor: pointer;
+}
+
+
+.csomdoa{
+   border-radius: 5px; 
+   max-width: 100%;
+   height: 110px;
+   background: #ACACAC;
+   padding: 0.5rem;
 }
