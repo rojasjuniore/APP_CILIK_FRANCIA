@@ -53,6 +53,7 @@ export class PermissionProfileUpdateComponent implements OnInit {
     roles.push(this.roleToAdd);
     await this.permissionSrv.updateUserRoles(this.profile.uid, roles);
     this.profile = Object.assign({}, this.profile, { roles });
+    this.roleToAdd = null;
 
     this.spinner.hide();
   }
