@@ -57,6 +57,16 @@ export class PermissionService {
     }
   }
 
+  checkUserHasRoles(uid: string){
+    return this.afs.collection(this.userRolesCollection).doc(uid).valueChanges()
+    .pipe(
+      map((user: any) => {
+        const { roles } = user;
+        return (roles && roles.length > 0);
+      })
+    )
+  }
+
   /**
    * Obtener listado dinamico
    * @param where 
