@@ -251,7 +251,7 @@ export class HotelService {
     //   console.log(imgTempCapture)
     //   this.deleteImgComprobante(idOrden);
     // }
-    let filePath = `upload_comprobantes/img_comprobante_idOrden_${idOrden}`;
+    let filePath = `upload_comprobantes/img_comprobante_idOrden_${idOrden}_${Math.random()}`;
     let fileRef = this.storage.ref(filePath);
     let observe = this.storage.upload(filePath, img);
     return observe.snapshotChanges().pipe(
