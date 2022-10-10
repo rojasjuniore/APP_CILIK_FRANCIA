@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, Query } from '@angular/fire/compat/firestore';
 import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
-import { map, Observable } from 'rxjs';
+import { map, Observable, switchMap, tap } from 'rxjs';
+import { handlerObjectResult } from '../helpers/model.helper';
 import { slugify } from '../helpers/slugify';
 
 @Injectable({
@@ -58,13 +59,17 @@ export class PermissionService {
   }
 
   checkUserHasRoles(uid: string){
-    return this.afs.collection(this.userRolesCollection).doc(uid).valueChanges()
+    return this.afs.collection(this.userRolesCollection).doc(uid).get()
     .pipe(
+      switchMap((doc) =>  handlerObjectResult(doc)),
       map((user: any) => {
-        const { roles } = user;
-        return (roles && roles.length > 0);
-      })
-    )
+        if(user && user.roles && user.roles.length > 0){
+          return true;
+        }
+        return false;
+      }),
+      // tap((hasRoles) =>  console.log('hasRoles', hasRoles))
+    );
   }
 
   /**
