@@ -45,12 +45,14 @@ export class PreSaleModalBankTransferDetailComponent implements OnInit {
 
   bankSelect = '';
 
-  constructor(private bsModalSrv: BsModalService,
-              public preSaleSrv: PreSaleService,
-              private sweetAlert2Srv: Sweetalert2Service,
-              private translatePipe: TranslatePipe,
-              private purchaseSrv: PurchaseService,
-              private authSrv: AuthenticationService,) { }
+  constructor(
+    private bsModalSrv: BsModalService,
+    public preSaleSrv: PreSaleService,
+    private sweetAlert2Srv: Sweetalert2Service,
+    private translatePipe: TranslatePipe,
+    private purchaseSrv: PurchaseService,
+    private authSrv: AuthenticationService,
+  ) { }
 
   ngOnInit(): void {
     this.buildModal();
