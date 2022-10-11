@@ -56,26 +56,28 @@
                             </div>
                         </div>
 
-                        <div class="col-6" *ngIf="auth === 'adm'">
-                            <div class="d-flex justify-content-end">
-                                <div class="w-50 d-flex flex-row justify-content-center align-items-center">
-                                    <button type="button" class="btn btn-one" (click)="completedOrder(order)">
-                                        {{ "general.confirmOrder" | translate }}
-                                    </button>
+                        <ng-container *ngIf="(adminPayments$ | async) as adminPayments">
+                            <div class="col-6">
+                                <div class="d-flex justify-content-end">
+                                    <div class="w-50 d-flex flex-row justify-content-center align-items-center">
+                                        <button type="button" class="btn btn-one" (click)="completedOrder(order)">
+                                            {{ "general.confirmOrder" | translate }}
+                                        </button>
+                                    </div>
                                 </div>
-                
                             </div>
-                        </div>
+    
+                            <div class="col-6">
+                                <div class="d-flex justify-content-start">
+                                    <div class="w-50 d-flex flex-row justify-content-center align-items-center">
+                                        <button type="button" class="btn btn-one" (click)="cancelOrder(order)">
+                                            {{ "general.rejectedOrder" | translate }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
 
-                        <div class="col-6" *ngIf="auth === 'adm'">
-                            <div class="d-flex justify-content-start">
-                                <div class="w-50 d-flex flex-row justify-content-center align-items-center">
-                                    <button type="button" class="btn btn-one" (click)="cancelOrder(order)">
-                                        {{ "general.rejectedOrder" | translate }}
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
 
                     </div>
                 </div>
