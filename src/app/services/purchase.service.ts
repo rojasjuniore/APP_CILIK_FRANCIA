@@ -51,6 +51,22 @@ export class PurchaseService {
     ], { orderBy: [{ field: "createdAt", order: "desc" }] });
   }
 
+
+  userPurchaseListPending(uid: string){
+    return this.getDynamic([
+      { field: "uid", condition: "==", value: uid },
+      { field: "completed", condition: "==", value: false },
+      { field: "status", condition: "==", value: 'pending' },
+    ], { orderBy: [{ field: "createdAt", order: "desc" }] });
+  }
+
+  userPurchaseListCompleted(uid: string){
+    return this.getDynamic([
+      { field: "uid", condition: "==", value: uid },
+      { field: "completed", condition: "==", value: true },
+    ], { orderBy: [{ field: "createdAt", order: "desc" }] });
+  }
+
   getDynamic(where: any[] = [], opts: any = {}): Observable<any[]>{
     const {idField = "_id", orderBy = []} = opts;
 
