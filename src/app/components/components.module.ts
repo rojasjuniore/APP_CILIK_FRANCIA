@@ -49,6 +49,10 @@ import { CardBankTransferComponent } from './card-bank-transfer/card-bank-transf
 import { PermissionRolesAddComponent } from './permission-roles-add/permission-roles-add.component';
 import { PermissionRolesUpdateComponent } from './permission-roles-update/permission-roles-update.component';
 import { PermissionRolesRemoveComponent } from './permission-roles-remove/permission-roles-remove.component';
+<<<<<<< HEAD
+=======
+import { PermissionProfileUpdateComponent } from './permission-profile-update/permission-profile-update.component'; 
+>>>>>>> a93a60754409f44dab0ba7c7850322930a197e26
 
 
 @NgModule({
@@ -105,7 +109,12 @@ import { PermissionRolesRemoveComponent } from './permission-roles-remove/permis
     CardBankTransferComponent,
     PermissionRolesAddComponent,
     PermissionRolesUpdateComponent,
+<<<<<<< HEAD
     PermissionRolesRemoveComponent
+=======
+    PermissionRolesRemoveComponent,
+    PermissionProfileUpdateComponent,
+>>>>>>> a93a60754409f44dab0ba7c7850322930a197e26
   ],
   exports: [
     CommonModule,
@@ -152,6 +161,7 @@ import { PermissionRolesRemoveComponent } from './permission-roles-remove/permis
     PermissionRolesAddComponent,
     PermissionRolesUpdateComponent,
     PermissionRolesRemoveComponent,
+    PermissionProfileUpdateComponent,
   ],
   providers: [
     TranslatePipe,

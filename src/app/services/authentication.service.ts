@@ -369,11 +369,18 @@ export class AuthenticationService {
    * @param opts.orderBy
    * @param opts.orderBy.field
    * @param opts.orderBy.order
+   * @param opts.startAt
+   * @param opts.endAt
    * 
    * @returns 
    */
   getDynamic(collection: string, where: any[] = [], opts: any = {}): Observable<any[]> {
-    const { idField = "_id", orderBy = [] } = opts;
+    const { 
+      idField = "_id",
+      startAt = null,
+      endAt = null,
+      orderBy = [],
+    } = opts;
 
     return this.afs.collection(collection,
       (ref) => {
@@ -381,6 +388,11 @@ export class AuthenticationService {
         for (const row of where) { query = ref.where(row.field, row.condition, row.value); }
 
         for (const order of orderBy) { query = ref.orderBy(order.field, order.order); }
+
+        if(startAt){ query = query.startAt(startAt); }
+
+        if(endAt){ query = query.endAt(endAt); }
+
         return query;
       }
     ).valueChanges({ idField });

@@ -8,6 +8,7 @@ import { ComponentsModule } from '../components/components.module';
 import { PermissionComponent } from './components/permission/permission.component';
 import { PermissionRolesComponent } from './components/permission-roles/permission-roles.component';
 import { ListOrderComponent } from './components/list-order/list-order.component';
+import { PermissionProfilesComponent } from './components/permission-profiles/permission-profiles.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { ListOrderComponent } from './components/list-order/list-order.component
     PermissionComponent,
     PermissionRolesComponent,
     ListOrderComponent,
+    PermissionProfilesComponent
   ],
   imports: [
     CommonModule,

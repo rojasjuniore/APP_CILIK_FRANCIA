@@ -1,0 +1,42 @@
+<div class="row mt-5 g-2">
+    <div class="col-12">
+        <form [formGroup]="form" novalidate>
+            <div class="mb-3">
+                <label for="role" class="form-label">Type Email to Search:</label>
+                <input type="text" class="form-control" formControlName="profile" placeholder="email@example.com" aria-describedby="emailHelp">
+            </div>
+        </form>
+    </div>
+    <hr>
+    <ng-container *ngIf="(profiles$ | async) as profiles; else loading">
+        <ng-container *ngIf="profiles.length > 0; else noProfiles">
+            <div class="col-12 d-flex align-items-center" *ngFor="let profile of profiles">
+                <i class="bi bi-key fs-2"></i>
+                <span class="flex-grow-1">
+                    {{ profile.email | lowercase }} - {{ profile.firstName | uppercase }} {{ profile.lastName | uppercase }}
+                </span>
+
+                <button type="button" class="btn btn-danger btn-sm" (click)="updateProfile(profile)">
+                    <i class="bi bi-person-lines-fill"></i>
+                </button>
+            </div>
+        </ng-container>
+    </ng-container>
+
+</div>
+
+<app-permission-profile-update></app-permission-profile-update>
+
+<ng-template #noProfiles>
+    <div class="col-12">
+        <div class="alert alert-warning text-center" role="alert">
+            No profile found.
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #loading>
+    <div class="col-12 text-center placeholder-glow" *ngFor="let item of [1,1,1,1]">
+        <span class="placeholder col-12" style="height: 36px;"></span>
+    </div>
+</ng-template>
