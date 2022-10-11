@@ -299,6 +299,16 @@ export class HotelService {
   }
 
   async updateOrder(docId: string, data: any) {
+    if(data.status === 'rejected'){
+      this.afs.collection(this.roomsCollection, ref =>   ref.where('paymentOrderID', '==', docId)).valueChanges().subscribe({
+        next: (resp: any) => {
+          console.log(resp)
+          if(resp && resp.length > 0){
+            this.afs.collection(this.roomsCollection).doc(resp[0].roomCode).update({paymentOrderID: '', additionals: []});
+          }
+        }
+      })
+    }
     return this.afs.collection(this.purchases).doc(docId).update(data);
   }
 

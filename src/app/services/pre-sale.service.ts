@@ -214,6 +214,12 @@ export class PreSaleService {
     /** Send Mail Summary */
     await this.purchaseSrv.sendPurchaseSummaryNotification(document.uid, document.orderId);
 
+    if(preSaleDocument.paymentMethodType === 'bankTransfer'){
+      await this.purchaseSrv.sendPurchaseTransferNotification(document.orderId);
+    }
+
+    
+
     this.removeDocumentLocalStorage();
 
     return url;

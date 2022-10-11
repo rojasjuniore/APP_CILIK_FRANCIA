@@ -11,7 +11,16 @@
             [item]="currentCoutaToPay"></app-pre-sale-installment-couta-card-item>
     </div>
 
-    <ng-container *ngIf="formStatus == 1">
+    
+<div class="col-12 text-center mt-2" *ngIf="loading">
+    <div  class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <br>
+    {{ "general.loadingTransaction" | translate }}...
+</div>
+
+    <ng-container *ngIf="formStatus == 1 && !loading">
         <div class="col-12 text-center mb-2">
             {{ "paymentMethods.chooseYourPaymentMethod" | translate }}
         </div>

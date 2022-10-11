@@ -21,12 +21,6 @@ export class PreSaleOnlyCategoriesPaymentMethodsComponent implements OnInit {
   public paymentMethodType: any;
   public paymentMethods = [
     {
-      label: 'paymentMethods.installmentPayment',
-      value: 'installments',
-      icon: 'bi bi-calendar-check',
-      status: true,
-    },
-    {
       label: 'paymentMethods.transfer',
       value: 'transfer',
       icon: 'bi bi-bank',
@@ -36,6 +30,12 @@ export class PreSaleOnlyCategoriesPaymentMethodsComponent implements OnInit {
       label: 'paymentMethods.paypal',
       value: 'paypal',
       icon: 'bi bi-paypal',
+      status: true,
+    },
+    {
+      label: 'paymentMethods.installmentPayment',
+      value: 'installments',
+      icon: 'bi bi-calendar-check',
       status: true,
     },
     // {
@@ -51,6 +51,8 @@ export class PreSaleOnlyCategoriesPaymentMethodsComponent implements OnInit {
     //   status: false,
     // },
   ];
+
+  loading = false;
 
   constructor(
     public preSaleSrv: PreSaleService,
@@ -179,10 +181,12 @@ export class PreSaleOnlyCategoriesPaymentMethodsComponent implements OnInit {
     console.log(this.preSaleSrv.getDocumentLocalStorage())
     let document = this.preSaleSrv.getDocumentLocalStorage();
     if(status){
+      this.loading = true;
       await this.preSaleSrv.completePreSaleOrder('pago por transferencia');
       let message = this.translatePipe.transform('general.successfulTransaction');
       this.sweetAlert2Srv.showInfo(message);
       this.router.navigateByUrl('pages/dashboard');
+      this.loading = false;
     }
   }
 

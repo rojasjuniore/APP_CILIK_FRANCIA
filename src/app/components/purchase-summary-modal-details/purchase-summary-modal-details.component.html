@@ -56,7 +56,7 @@
                             </div>
                         </div>
 
-                        <div class="col-6" *ngIf="auth === 'adm'">
+                        <div class="col-6" *ngIf="auth === 'adm' && order.status === 'pending'">
                             <div class="d-flex justify-content-end">
                                 <div class="w-50 d-flex flex-row justify-content-center align-items-center">
                                     <button type="button" class="btn btn-one" (click)="completedOrder(order)">
@@ -67,7 +67,7 @@
                             </div>
                         </div>
 
-                        <div class="col-6" *ngIf="auth === 'adm'">
+                        <div class="col-6" *ngIf="auth === 'adm' && order.status === 'pending'">
                             <div class="d-flex justify-content-start">
                                 <div class="w-50 d-flex flex-row justify-content-center align-items-center">
                                     <button type="button" class="btn btn-one" (click)="cancelOrder(order)">

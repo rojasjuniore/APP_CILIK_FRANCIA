@@ -47,6 +47,7 @@ export class PreSaleInstallmentsPayCoutaComponent implements OnInit {
     // },
   ];
   public formStatus = 1;
+  loading = false;
 
   constructor(
     private router: Router,
@@ -127,10 +128,12 @@ export class PreSaleInstallmentsPayCoutaComponent implements OnInit {
   async crearteOrderBankTransfer(status: any){
     console.log(this.preSaleSrv.getDocumentLocalStorage())
     if(status){
+      this.loading = true;
       await this.preSaleSrv.completePreSaleOrder('pago por transferencia');
       let message = this.translatePipe.transform('general.successfulTransaction');
       this.sweetAlert2Srv.showInfo(message);
       this.router.navigateByUrl('pages/dashboard');
+      this.loading = false;
     }
   }
 

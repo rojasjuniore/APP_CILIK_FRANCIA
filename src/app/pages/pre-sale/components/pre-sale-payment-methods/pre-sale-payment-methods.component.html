@@ -1,4 +1,13 @@
-<div class="row">
+
+<div class="col-12 text-center mt-2" *ngIf="loading">
+    <div  class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <br>
+    {{ "general.loadingTransaction" | translate }}...
+</div>
+
+<div class="row" *ngIf="!loading">
 
     <app-pre-sale-steps-counter [step]="3"></app-pre-sale-steps-counter>
 

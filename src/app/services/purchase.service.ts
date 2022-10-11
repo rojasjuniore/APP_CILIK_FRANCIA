@@ -40,6 +40,20 @@ export class PurchaseService {
     }
   }
 
+  async sendPurchaseTransferNotification(orderId: string){
+    try {
+      const result = await lastValueFrom( 
+        this.http.post(`${URL_ROOT}email-notification/purchase-transfer-information`, {orderId})
+      );
+
+      return result;
+      
+    } catch (err) {
+      console.log('Error on PurchaseService.sendPurchaseTransferNotification', err);
+      throw err;
+    }
+  }
+
   async getPurchaseDocument(docId: string): Promise<any>{
     const snapshot = await this.afs.collection(this.purchaseCollection).doc(docId).get().toPromise();
     return await handlerObjectResult(snapshot);
