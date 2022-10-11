@@ -205,6 +205,7 @@ export class PreSaleService {
       step: url,
       payed: true,
       completed: true,
+      status: 'completed',
       rooms,
     });
 
