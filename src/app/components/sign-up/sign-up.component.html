@@ -53,8 +53,10 @@
                 <div class="form-floating form-camp mb-3">
                   <select class="form-select" [ngClass]="{'is-invalid': submit && f.documentType.errors}"
                     formControlName="documentType" id="floatingSelectDocumentType" aria-label="Document Type">
-                    <option value="dni">DNI</option>
-                    <option value="passport">Passport</option>
+                    <option value="dni">{{ "general.DNI1" | translate }}</option>
+                    <option value="foreigner">{{ "general.DNI2" | translate }}</option>
+                    <option value="taxnumber">{{ "general.DNI3" | translate }}</option>
+                    <option value="passport">{{ "general.DNI4" | translate }}</option>
                   </select>
                   <label for="floatingSelectDocumentType"> 
                     {{ "general.dniType" | translate }}

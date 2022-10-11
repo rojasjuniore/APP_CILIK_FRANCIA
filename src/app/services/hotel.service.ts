@@ -277,20 +277,32 @@ export class HotelService {
     await ref.update({ captureBank: order.captureBank });
   }
 
-  async deleteImgComprobante(imgTemp){
-    const storage = getStorage();
+  // async deleteImgComprobante(imgTemp){
+  //   const storage = getStorage();
 
-      // Create a reference to the file to delete
-      const desertRef = ref(storage, `upload_comprobantes/img_comprobante_idOrden_${imgTemp}`);
+  //     // Create a reference to the file to delete
+  //     const desertRef = ref(storage, `upload_comprobantes/img_comprobante_idOrden_${imgTemp}`);
 
-      // Delete the file
-      deleteObject(desertRef).then(() => {
-        console.log('ELiminado la imagen');
-      }).catch((error) => {
-        console.log('Ocurrio un error', error);
-      });
+  //     // Delete the file
+  //     deleteObject(desertRef).then(() => {
+  //       console.log('ELiminado la imagen');
+  //     }).catch((error) => {
+  //       console.log('Ocurrio un error', error);
+  //     });
 
+  // }
+
+
+  getOrderPending(){
+    // , ref =>   ref.where('status', '==', 'pending')
+    return this.afs.collection(this.purchases).valueChanges()
   }
+
+  async updateOrder(docId: string, data: any) {
+    return this.afs.collection(this.purchases).doc(docId).update(data);
+  }
+
+
 
 
 }

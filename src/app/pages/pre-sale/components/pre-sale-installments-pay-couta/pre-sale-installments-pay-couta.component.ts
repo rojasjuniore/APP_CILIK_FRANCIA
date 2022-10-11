@@ -22,29 +22,29 @@ export class PreSaleInstallmentsPayCoutaComponent implements OnInit {
   public paymentMethodType: any;
   public paymentMethods = [
     {
-      label: 'paymentMethods.paypal',
-      value: 'paypal',
-      icon: 'bi bi-paypal',
-      status: true,
-    },
-    {
       label: 'paymentMethods.transfer',
       value: 'transfer',
       icon: 'bi bi-bank',
       status: true,
     },
     {
-      label: 'paymentMethods.creditCard',
-      value: 'creditCard',
-      icon: 'bi bi-credit-card',
-      status: false,
+      label: 'paymentMethods.paypal',
+      value: 'paypal',
+      icon: 'bi bi-paypal',
+      status: true,
     },
-    {
-      label: 'paymentMethods.crypto',
-      value: 'crypto',
-      icon: 'bi bi-coin',
-      status: false,
-    },
+    // {
+    //   label: 'paymentMethods.creditCard',
+    //   value: 'creditCard',
+    //   icon: 'bi bi-credit-card',
+    //   status: false,
+    // },
+    // {
+    //   label: 'paymentMethods.crypto',
+    //   value: 'crypto',
+    //   icon: 'bi bi-coin',
+    //   status: false,
+    // },
   ];
   public formStatus = 1;
 
@@ -72,7 +72,7 @@ export class PreSaleInstallmentsPayCoutaComponent implements OnInit {
     if(this.paymentMethodType === 'transfer'){
       this.modalBackTransfer.showModal();
     }
-    this.preSaleDocument.installments[0].paymentMethod = 'bankTransfer';
+    this.preSaleDocument.installments[0].paymentMethod = item.value === 'transfer' ? 'bankTransfer' : item.value;
     this.preSaleSrv.updateDocumentLocalStorage({installments: this.preSaleDocument.installments});
   }
 

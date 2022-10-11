@@ -11,7 +11,7 @@
             <div class="d-flex justify-content-end">
                
                
-                <span class="text-rslt fw-bold fs-5">
+                <span class="text-rslt fw-bold fs-5" >
                     
                     <label
                     class="btn btn-one"
@@ -24,7 +24,7 @@
                     <input
                       type="file"
                       multiple
-                      [disabled]="hotelService.loading"
+                      [disabled]="hotelService.loading || auth === 'adm'"
                       accept="image/png,image/jpeg,image/jpg"
                       style="display: none"
                       (change)="subirImg($event)"
@@ -62,16 +62,36 @@
             <div *ngIf="order.captureBank.length > 0" class="mt-2">
                 <div *ngFor="let item of order.captureBank">
                     <div class="row mt-2">
-                        <div class="col-2 text-center">
-                            <img [src]="item.url" class="csomdoa">
+                        <div class="col-2 text-center" >
+                            <img [src]="item.url" class="csomdoa" (click)="verIMG(item.url)" style="cursor: pointer;">
                         </div>
-                        <div class="col-10">
+                        <div class="col-8" *ngIf="auth === 'adm'">
+                            <!-- <span *ngIf="item.nota === ''">Sin observaciones</span> -->
+                          <div class="form-group">
+                            <label for="role" class="form-label"> {{ "formValidations.noteObserver" | translate }}:</label>
+                            <input type="text" class="form-control" #nota [value]="item.nota" (change)="item.nota = nota.value">
+                          </div>
+                        </div>
+                        <div class="col-10" *ngIf="auth === 'user'">
                             <span *ngIf="item.nota === ''">Sin observaciones</span>
+                            <span *ngIf="item.nota !== ''">{{ item.nota }}</span>
+                        </div>
+                        <div class="col-2 text-center" *ngIf="auth === 'adm'">
+                            <button class="btn btn-one" style="    max-width: 100%;     margin-top: 10px;" (click)="saveNote(order)">{{ "formValidations.save" | translate }}</button>
                         </div>
                     </div>
                 </div>
             </div>
 
+           
+
         </div>
     </div>
 </div>
+
+<div class="csandoa" *ngIf="verImgActivo !== ''" (click)="verImgActivo = '';">
+    <i class="bi bi-x sacosand"></i>
+    <div class="csaodoa">
+      <img loading="lazy" [src]="verImgActivo" alt="" class="saodmsao">
+    </div>
+  </div>

@@ -1,0 +1,50 @@
+<div class="container-lg">
+    <div class="fs-2 fw-bold text-center mb-3">
+        {{'general.listOrders' | translate}}
+    </div>
+    
+        <ng-container *ngIf="listOrders.length > 0; else noPurchases">
+            <div class="col-12 mb-4" *ngFor="let item of listOrders">
+                <app-my-purchases-list-item [order]="item" (onShowDetails)="onShowDetails($event)"></app-my-purchases-list-item>
+            </div>
+        </ng-container>
+    
+    
+    <app-purchase-summary-modal-details></app-purchase-summary-modal-details>
+    
+    <ng-template #noPurchases>
+        <div class="col-12 mb-4">
+            <div class="card card-box p-3 mb-3">
+                <div class="row g-2 d-flex align-items-center">
+                    <div class="col-12 px-3">
+                        <p class="m-0 text-center">
+                           {{'general.noPurchases' | translate}} 
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    
+    <div *ngIf="loading">
+        <div class="col-12 mb-4" *ngFor="let item of [1,1,1]">
+            <div class="card card-box p-3 mb-3">
+                <div class="row g-2 d-flex align-items-center">
+                    <div class="col-12 px-3 d-flex justify-content-between placeholder-glow">
+                        <span class="placeholder bg-danger col-5" style="height: 36px;"></span>
+                        <span class="placeholder col-5" style="height: 36px;"></span>
+                    </div>
+                    <div class="seprd2"></div>
+                    <div class="col-12 px-3">
+                        <p class="m-0 placeholder-glow">
+                            <span class="placeholder col-6"></span>
+                        </p>
+                        <div class="d-flex justify-content-end">
+                            <a href="#" tabindex="-1" class="btn btn-one disabled placeholder col-6"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

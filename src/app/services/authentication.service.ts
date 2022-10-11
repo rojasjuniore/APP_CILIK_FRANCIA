@@ -393,6 +393,12 @@ export class AuthenticationService {
     const result = await handlerArrayResult(snapshot);
     return (result.length > 0) ? result.pop() : null;
   }
+
+
+  
+  getUserAuth(email){
+    return this.afs.collection('users', ref =>   ref.where('email', '==', email)).valueChanges();
+  }
 }
 
 

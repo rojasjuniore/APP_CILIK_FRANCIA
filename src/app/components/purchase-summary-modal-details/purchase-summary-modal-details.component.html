@@ -49,10 +49,31 @@
                                     COMPARTIR
                                 </button> -->
                                 &nbsp;
-                                <button class="btn btn-three text-uppercase" type="button" (click)="download()">
+                                <!-- <button class="btn btn-three text-uppercase" type="button" (click)="download()">
                                     <i class="bi bi-cloud-download"></i>
                                     {{ "general.download" | translate }}
-                                </button>
+                                </button> -->
+                            </div>
+                        </div>
+
+                        <div class="col-6" *ngIf="auth === 'adm'">
+                            <div class="d-flex justify-content-end">
+                                <div class="w-50 d-flex flex-row justify-content-center align-items-center">
+                                    <button type="button" class="btn btn-one" (click)="completedOrder(order)">
+                                        {{ "general.confirmOrder" | translate }}
+                                    </button>
+                                </div>
+                
+                            </div>
+                        </div>
+
+                        <div class="col-6" *ngIf="auth === 'adm'">
+                            <div class="d-flex justify-content-start">
+                                <div class="w-50 d-flex flex-row justify-content-center align-items-center">
+                                    <button type="button" class="btn btn-one" (click)="cancelOrder(order)">
+                                        {{ "general.rejectedOrder" | translate }}
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
@@ -65,6 +86,9 @@
                         {{ "general.back" | translate }}
                     </button>
                 </div>
+
+               
+               
 
             </div>
         </div>

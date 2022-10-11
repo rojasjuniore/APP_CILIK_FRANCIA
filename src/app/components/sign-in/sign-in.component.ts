@@ -112,6 +112,8 @@ export class SignInComponent implements OnInit {
       );
 
       localStorage.setItem("profile", JSON.stringify(toParse));
+      localStorage.setItem('email', data.email)
+      localStorage.setItem('auth', 'user')
 
       /** Redirect To */
       return this.router.navigate(['/pages/dashboard']);

@@ -48,7 +48,7 @@ import { PreSaleModalBankTransferDetailComponent } from './pre-sale-modal-bank-t
 import { CardBankTransferComponent } from './card-bank-transfer/card-bank-transfer.component';
 import { PermissionRolesAddComponent } from './permission-roles-add/permission-roles-add.component';
 import { PermissionRolesUpdateComponent } from './permission-roles-update/permission-roles-update.component';
-import { PermissionRolesRemoveComponent } from './permission-roles-remove/permission-roles-remove.component'; 
+import { PermissionRolesRemoveComponent } from './permission-roles-remove/permission-roles-remove.component';
 
 
 @NgModule({
@@ -105,7 +105,7 @@ import { PermissionRolesRemoveComponent } from './permission-roles-remove/permis
     CardBankTransferComponent,
     PermissionRolesAddComponent,
     PermissionRolesUpdateComponent,
-    PermissionRolesRemoveComponent,
+    PermissionRolesRemoveComponent
   ],
   exports: [
     CommonModule,
@@ -128,6 +128,7 @@ import { PermissionRolesRemoveComponent } from './permission-roles-remove/permis
     PreSaleCheckoutCategoryCardItemComponent,
     HeaderCilikComponent,
     FooterCilikComponent,
+    MyPurchasesListItemComponent,
     HeaderWelcomeComponent,
     PreSaleModalPaymentCoutasDetailsComponent,
     PreSaleInstallmentCoutaCardItemComponent,

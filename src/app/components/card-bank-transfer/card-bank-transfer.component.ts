@@ -12,6 +12,10 @@ export class CardBankTransferComponent implements OnInit {
 
   @Input() order: any;
 
+  auth = localStorage.getItem('auth');
+
+  verImgActivo = '';
+
   constructor(
     private sweetAlert2Srv: Sweetalert2Service,
     private translatePipe: TranslatePipe,
@@ -34,6 +38,17 @@ export class CardBankTransferComponent implements OnInit {
         console.log(resp)
       })
     }
+  }
+
+  saveNote(order){
+
+    this.hotelService.updateOrder(order.orderId, order);
+    let message = this.translatePipe.transform('formValidations.dataSave');
+    this.sweetAlert2Srv.showInfo(message);
+  }
+
+  verIMG(img){
+    this.verImgActivo = img;
   }
 
 }

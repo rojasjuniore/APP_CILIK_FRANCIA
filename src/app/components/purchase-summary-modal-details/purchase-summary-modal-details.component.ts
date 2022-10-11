@@ -1,8 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { BsModalService } from 'src/app/services/bs-modal.service';
 import { GeneratePdfService } from 'src/app/services/generate-pdf.service';
+import { HotelService } from 'src/app/services/hotel.service';
+import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 
 @Component({
   selector: 'app-purchase-summary-modal-details',
@@ -13,6 +16,7 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
 
   public mi: any;
   public order: any = '';
+  auth = localStorage.getItem('auth');
 
   private sub$!: Subscription;
 
@@ -20,6 +24,9 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
     private generatePdf: GeneratePdfService,
     private bsModalSrv: BsModalService,
     private router: Router,
+    private hotelService: HotelService,
+    private sweetAlert2Srv: Sweetalert2Service,
+    private translatePipe: TranslatePipe,
   ) { }
 
   ngOnInit(): void {
@@ -69,6 +76,23 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
   }
 
   closeModal() {
+    this.mi.hide();
+  }
+
+  completedOrder(order){
+    order.status = 'completed';
+
+    this.hotelService.updateOrder(order.orderId, order);
+    let message = this.translatePipe.transform('formValidations.dataSave');
+    this.sweetAlert2Srv.showInfo(message);
+    this.mi.hide();
+  }
+
+  cancelOrder(order){
+    order.status = 'rejected';
+    this.hotelService.updateOrder(order.orderId, order);
+    let message = this.translatePipe.transform('formValidations.dataSave');
+    this.sweetAlert2Srv.showInfo(message);
     this.mi.hide();
   }
 

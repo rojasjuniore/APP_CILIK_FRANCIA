@@ -20,12 +20,6 @@ export class PreSalePaymentMethodsComponent implements OnInit {
   public paymentMethodType: any;
   public paymentMethods = [
     {
-      label: 'paymentMethods.paypal',
-      value: 'paypal',
-      icon: 'bi bi-paypal',
-      status: true,
-    },
-    {
       label: 'paymentMethods.installmentPayment',
       value: 'installments',
       icon: 'bi bi-calendar-check',
@@ -38,17 +32,23 @@ export class PreSalePaymentMethodsComponent implements OnInit {
       status: true,
     },
     {
-      label: 'paymentMethods.creditCard',
-      value: 'creditCard',
-      icon: 'bi bi-credit-card',
-      status: false,
+      label: 'paymentMethods.paypal',
+      value: 'paypal',
+      icon: 'bi bi-paypal',
+      status: true,
     },
-    {
-      label: 'paymentMethods.crypto',
-      value: 'crypto',
-      icon: 'bi bi-coin',
-      status: false,
-    },
+    // {
+    //   label: 'paymentMethods.creditCard',
+    //   value: 'creditCard',
+    //   icon: 'bi bi-credit-card',
+    //   status: false,
+    // },
+    // {
+    //   label: 'paymentMethods.crypto',
+    //   value: 'crypto',
+    //   icon: 'bi bi-coin',
+    //   status: false,
+    // },
   ];
 
   constructor(
