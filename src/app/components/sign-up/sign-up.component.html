@@ -172,6 +172,10 @@
                     placeholder="{{ 'general.password' | translate }}"
                   >
                   <label for="floatingInputPassword">{{ "general.password" | translate }}</label>
+                  <div id="emailHelp" class="form-text text-start">
+                    {{ 'formValidations.signUpPasswordLength' | translate }}
+                  </div>
+
                   <div (click)="changeTypeInput()" class="pass-ico">
                     <i *ngIf="typeInput =='password'" class="bi bi-eye-slash"></i>
                     <i *ngIf="typeInput =='text'" class="bi bi-eye-fill"></i>
