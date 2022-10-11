@@ -13,6 +13,10 @@
                 type="button" role="tab" aria-controls="nav-completed" aria-selected="false">
                 {{ 'general.completed' | translate | titlecase }}
             </button>
+            <button class="nav-link" id="nav-rejected-tab" data-bs-toggle="tab" data-bs-target="#nav-rejected"
+                type="button" role="tab" aria-controls="nav-rejected" aria-selected="false">
+                {{ 'general.rejected' | translate | titlecase }}
+            </button>
         </div>
     </nav>
 </div>
@@ -32,6 +36,15 @@
             <ng-container *ngIf="(purchasesListC$ | async) as purchasesListC; else loading">
                 <ng-container *ngIf="purchasesListC.length > 0; else noPurchases">
                     <div class="col-12 mb-4" *ngFor="let item of purchasesListC">
+                        <app-my-purchases-list-item [order]="item" (onShowDetails)="onShowDetails($event)"></app-my-purchases-list-item>
+                    </div>
+                </ng-container>
+            </ng-container>
+        </div>
+        <div class="tab-pane fade" id="nav-rejected" role="tabpanel" aria-labelledby="nav-rejected-tab">
+            <ng-container *ngIf="(purchasesListR$ | async) as purchasesListR; else loading">
+                <ng-container *ngIf="purchasesListR.length > 0; else noPurchases">
+                    <div class="col-12 mb-4" *ngFor="let item of purchasesListR">
                         <app-my-purchases-list-item [order]="item" (onShowDetails)="onShowDetails($event)"></app-my-purchases-list-item>
                     </div>
                 </ng-container>

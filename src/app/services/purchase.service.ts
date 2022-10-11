@@ -81,6 +81,14 @@ export class PurchaseService {
     ], { orderBy: [{ field: "createdAt", order: "desc" }] });
   }
 
+  userPurchaseListRejected(uid: string){
+    return this.getDynamic([
+      { field: "uid", condition: "==", value: uid },
+      { field: "completed", condition: "==", value: false },
+      { field: "status", condition: "==", value: 'rejected' }
+    ], { orderBy: [{ field: "createdAt", order: "desc" }] });
+  }
+
   getDynamic(where: any[] = [], opts: any = {}): Observable<any[]>{
     const {idField = "_id", orderBy = []} = opts;
 

@@ -15,6 +15,7 @@ export class MyPurchasesComponent implements OnInit {
 
   public purchasesListP$!: Observable<any[]>;
   public purchasesListC$!: Observable<any[]>;
+  public purchasesListR$!: Observable<any[]>;
   public uid: any;
 
   constructor(
@@ -44,6 +45,15 @@ export class MyPurchasesComponent implements OnInit {
     );
 
     this.purchasesListC$ = this.purchaseSrv.userPurchaseListCompleted(uid.toString())
+    .pipe(
+      map((data) => {
+        console.log(data)
+        const counter = data.length + 1;
+        return data.map((row, index) => Object.assign({}, row, { index: counter - (index + 1) }))
+      })
+    );
+
+    this.purchasesListR$ = this.purchaseSrv.userPurchaseListRejected(uid.toString())
     .pipe(
       map((data) => {
         console.log(data)
