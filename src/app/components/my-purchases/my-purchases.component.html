@@ -2,14 +2,45 @@
     {{'general.purchasingSummary' | translate}}
 </div>
 
-<ng-container *ngIf="(purchasesList$ | async) as purchasesList; else loading">
-    <ng-container *ngIf="purchasesList.length > 0; else noPurchases">
-        <div class="col-12 mb-4" *ngFor="let item of purchasesList">
-            <app-my-purchases-list-item [order]="item" (onShowDetails)="onShowDetails($event)"></app-my-purchases-list-item>
+<div class="col-12 mb-4">
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="nav-pendings-tab" data-bs-toggle="tab" data-bs-target="#nav-pendings"
+                type="button" role="tab" aria-controls="nav-pendings" aria-selected="true">
+                {{ 'general.pending' | translate | titlecase }}
+            </button>
+            <button class="nav-link" id="nav-completed-tab" data-bs-toggle="tab" data-bs-target="#nav-completed"
+                type="button" role="tab" aria-controls="nav-completed" aria-selected="false">
+                {{ 'general.completed' | translate | titlecase }}
+            </button>
         </div>
-    </ng-container>
+    </nav>
+</div>
 
-</ng-container>
+<div class="col-12">
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-pendings" role="tabpanel" aria-labelledby="nav-pendings-tab">
+            <ng-container *ngIf="(purchasesListP$ | async) as purchasesListP; else loading">
+                <ng-container *ngIf="purchasesListP.length > 0; else noPurchases">
+                    <div class="col-12 mb-4" *ngFor="let item of purchasesListP">
+                        <app-my-purchases-list-item [order]="item" (onShowDetails)="onShowDetails($event)"></app-my-purchases-list-item>
+                    </div>
+                </ng-container>
+            </ng-container>
+        </div>
+        <div class="tab-pane fade" id="nav-completed" role="tabpanel" aria-labelledby="nav-completed-tab">
+            <ng-container *ngIf="(purchasesListC$ | async) as purchasesListC; else loading">
+                <ng-container *ngIf="purchasesListC.length > 0; else noPurchases">
+                    <div class="col-12 mb-4" *ngFor="let item of purchasesListC">
+                        <app-my-purchases-list-item [order]="item" (onShowDetails)="onShowDetails($event)"></app-my-purchases-list-item>
+                    </div>
+                </ng-container>
+            </ng-container>
+        </div>
+    </div>
+</div>
+
+
 
 <app-purchase-summary-modal-details></app-purchase-summary-modal-details>
 
