@@ -73,6 +73,9 @@ export class PreSaleService {
       expiredAt: currentDate.add(30, 'minutes').valueOf(),
       orderType: params.orderType || 'full', // 'full' | 'categoryPass'
       setup: params.setup || null, // 'manual' | 'automatic'
+      bankTransferSelect: params.bankTransferSelect || null,
+      captureBank: params.captureBank || [],
+      status: params.status || 'pending',
     };
   }
 
@@ -202,6 +205,7 @@ export class PreSaleService {
       step: url,
       payed: true,
       completed: true,
+      status: 'completed',
       rooms,
     });
 

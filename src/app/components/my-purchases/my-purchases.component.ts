@@ -13,7 +13,8 @@ export class MyPurchasesComponent implements OnInit {
 
   @ViewChild (PurchaseSummaryModalDetailsComponent) modalDetails!: PurchaseSummaryModalDetailsComponent;
 
-  public purchasesList$!: Observable<any[]>;
+  public purchasesListP$!: Observable<any[]>;
+  public purchasesListC$!: Observable<any[]>;
   public uid: any;
 
   constructor(
@@ -29,18 +30,28 @@ export class MyPurchasesComponent implements OnInit {
     const uid = await this.authSrv.getUIDPromise();
 
     if(!uid) {
-      this.purchasesList$ = of([]);
+      this.purchasesListP$ = of([]);
       return;
     };
 
-    this.purchasesList$ = this.purchaseSrv.userPurchaseList(uid.toString())
+    this.purchasesListP$ = this.purchaseSrv.userPurchaseListPending(uid.toString())
     .pipe(
       map((data) => {
         console.log(data)
         const counter = data.length + 1;
         return data.map((row, index) => Object.assign({}, row, { index: counter - (index + 1) }))
       })
-    )
+    );
+
+    this.purchasesListC$ = this.purchaseSrv.userPurchaseListCompleted(uid.toString())
+    .pipe(
+      map((data) => {
+        console.log(data)
+        const counter = data.length + 1;
+        return data.map((row, index) => Object.assign({}, row, { index: counter - (index + 1) }))
+      })
+    );
+
   }
 
   onShowDetails(order: any){

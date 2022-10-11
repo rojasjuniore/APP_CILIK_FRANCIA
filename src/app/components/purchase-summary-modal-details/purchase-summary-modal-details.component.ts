@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
+import { map, Observable, Subscription, tap } from 'rxjs';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { BsModalService } from 'src/app/services/bs-modal.service';
 import { GeneratePdfService } from 'src/app/services/generate-pdf.service';
 import { HotelService } from 'src/app/services/hotel.service';
@@ -17,6 +18,7 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
   public mi: any;
   public order: any = '';
   auth = localStorage.getItem('auth');
+  public adminPayments$!: Observable<boolean>;
 
   private sub$!: Subscription;
 
@@ -27,6 +29,7 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
     private hotelService: HotelService,
     private sweetAlert2Srv: Sweetalert2Service,
     private translatePipe: TranslatePipe,
+    private authSrv: AuthenticationService,
   ) { }
 
   ngOnInit(): void {
@@ -41,6 +44,14 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
       }
 
     });
+
+    this.adminPayments$ = this.authSrv.userDoc$
+    .pipe(
+      map((user: any) => user?.roles || []),
+      map((roles: any) => roles.includes('admin-payments'))
+    );
+
+
   }
 
   async buildModal() {
