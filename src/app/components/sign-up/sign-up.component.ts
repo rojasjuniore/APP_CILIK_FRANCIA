@@ -206,7 +206,7 @@ export class SignUpComponent implements OnInit {
         prefix: formData.prefix,
         phoneNumber: formData.phoneNumber,
         email: `${formData.email}`.trim().toLowerCase(),
-        role: 'user',
+        roles: ['user'],
       };
       console.log('try to submit', data);
 

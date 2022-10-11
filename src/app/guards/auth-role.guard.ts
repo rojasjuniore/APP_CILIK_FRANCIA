@@ -22,7 +22,7 @@ export class AuthRoleGuard implements CanActivate {
           console.log(resp);
           if(resp && resp.length > 0){
 
-            if(resp[0].role === 'admin'){
+            if(resp[0].roles.includes('admin-payments')){
               localStorage.setItem('auth', 'adm')
               return true;
             }else{
