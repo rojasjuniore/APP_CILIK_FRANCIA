@@ -197,9 +197,20 @@ export class PreSalePaymentMethodsComponent implements OnInit {
   async crearteOrderBankTransfer(status: any){
     console.log(this.preSaleSrv.getDocumentLocalStorage())
     let document = this.preSaleSrv.getDocumentLocalStorage();
+
     if(status){
       this.loading = true;
-      await this.preSaleSrv.completePreSaleOrder('pago por transferencia');
+
+      /** Finalizar documento de orden de compra */
+      await this.preSaleSrv.completePreSaleOrder(
+        'pago por transferencia',
+        {
+          completed: false,
+          payed: false,
+          status: 'pending',
+        }
+      );
+
       let message = this.translatePipe.transform('general.successfulTransaction');
       this.sweetAlert2Srv.showInfo(message);
       this.router.navigateByUrl('pages/dashboard');
