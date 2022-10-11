@@ -37,7 +37,7 @@
                            
                         </div>
 
-                        <div class="col-12 mb-4" *ngIf="order.metadata === 'pago por transferencia'">
+                        <div class="col-12 mb-4" *ngIf="order.paymentMethodType === 'bankTransfer'">
                             <app-card-bank-transfer [order]="order"></app-card-bank-transfer>
                         </div>
                         
@@ -56,25 +56,29 @@
                             </div>
                         </div>
 
-                        <div class="col-6" *ngIf="auth === 'adm' && order.status === 'pending'">
-                            <div class="d-flex justify-content-end">
-                                <div class="w-50 d-flex flex-row justify-content-center align-items-center">
-                                    <button type="button" class="btn btn-one" (click)="completedOrder(order)">
-                                        {{ "general.confirmOrder" | translate }}
-                                    </button>
+                        <ng-container *ngIf="(adminPayments$ | async) as adminPayments">
+                            <ng-container *ngIf="order.status === 'pending'">
+                                <div class="col-6">
+                                    <div class="d-flex justify-content-end">
+                                        <div class="w-50 d-flex flex-row justify-content-center align-items-center">
+                                            <button type="button" class="btn btn-one" (click)="completedOrder(order)">
+                                                {{ "general.confirmOrder" | translate }}
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div class="col-6" *ngIf="auth === 'adm' && order.status === 'pending'">
-                            <div class="d-flex justify-content-start">
-                                <div class="w-50 d-flex flex-row justify-content-center align-items-center">
-                                    <button type="button" class="btn btn-one" (click)="cancelOrder(order)">
-                                        {{ "general.rejectedOrder" | translate }}
-                                    </button>
+        
+                                <div class="col-6">
+                                    <div class="d-flex justify-content-start">
+                                        <div class="w-50 d-flex flex-row justify-content-center align-items-center">
+                                            <button type="button" class="btn btn-one" (click)="cancelOrder(order)">
+                                                {{ "general.rejectedOrder" | translate }}
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-
+                            </ng-container>
+                        </ng-container>
 
                     </div>
                 </div>
