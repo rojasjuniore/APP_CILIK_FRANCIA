@@ -19,7 +19,7 @@ export class CardBankTransferComponent implements OnInit {
   constructor(
     private sweetAlert2Srv: Sweetalert2Service,
     private translatePipe: TranslatePipe,
-    public hotelService: HotelService) { console.log(Math.random()) }
+    public hotelService: HotelService) { }
 
   ngOnInit(): void {
   }

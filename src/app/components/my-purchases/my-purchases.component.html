@@ -55,7 +55,7 @@
 
 
 
-<app-purchase-summary-modal-details></app-purchase-summary-modal-details>
+<app-purchase-summary-modal-details *ngIf="show"></app-purchase-summary-modal-details>
 
 <ng-template #noPurchases>
     <div class="col-12 mb-4">

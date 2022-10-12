@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit {
     private authSrv: AuthenticationService,
     private preSaleSrv: PreSaleService,
     private router: Router,
-  ) { }
+  ) { localStorage.setItem('auth', 'user') }
 
   ngOnInit(): void {
   }
