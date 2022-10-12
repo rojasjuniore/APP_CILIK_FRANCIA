@@ -134,7 +134,7 @@ export class PreSaleInstallmentsPayCoutaComponent implements OnInit {
 
       await this.spinner.show();
       this.loading = true;
-      
+
       const order = this.preSaleSrv.getDocumentLocalStorage();
       // console.log('order', order);
     
