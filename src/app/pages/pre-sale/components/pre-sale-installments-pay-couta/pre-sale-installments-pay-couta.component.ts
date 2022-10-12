@@ -21,12 +21,12 @@ export class PreSaleInstallmentsPayCoutaComponent implements OnInit {
   public coutaToPay: number = 0;
   public paymentMethodType: any;
   public paymentMethods = [
-    {
-      label: 'paymentMethods.transfer',
-      value: 'transfer',
-      icon: 'bi bi-bank',
-      status: true,
-    },
+    // {
+    //   label: 'paymentMethods.transfer',
+    //   value: 'transfer',
+    //   icon: 'bi bi-bank',
+    //   status: true,
+    // },
     {
       label: 'paymentMethods.paypal',
       value: 'paypal',
