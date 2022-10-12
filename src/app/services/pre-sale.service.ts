@@ -71,7 +71,7 @@ export class PreSaleService {
       createdAt: currentDate.valueOf(),
       groupDiscount: 0,
       expiredAt: currentDate.add(30, 'minutes').valueOf(),
-      orderType: params.orderType || 'full', // 'full' | 'categoryPass'
+      orderType: params.orderType || 'fullPass', // 'fullPass' | 'categoryPass'
       setup: params.setup || null, // 'manual' | 'automatic'
       bankTransferSelect: params.bankTransferSelect || null,
       captureBank: params.captureBank || [],
