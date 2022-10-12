@@ -177,6 +177,25 @@ export class HotelService {
     return this.afs.collection(this.roomsCollection).doc(docId).set(data);
   }
 
+  /**
+   * Restaurar habitaciones a su estado original a través del identificador de la orden de compra
+   * @param orderId 
+   * @returns 
+   */
+  async restoreRoomsOnReject(orderId: string){
+    const snapshot = await lastValueFrom(
+      this.afs.collection(this.roomsCollection, (ref) => ref.where('paymentOrderID', '==', orderId)).get()
+    );
+
+    const result = await handlerArrayResult(snapshot);
+    const promises = result.map(async (row: any) => {
+      return this.afs.collection(this.roomsCollection).doc(row._id).update({ paymentOrderID: null, additionals: [] });
+    });
+
+    await Promise.all(promises);
+    return true;
+  }
+
   async getAvailableRoomByCodeType(code: string){
     const snapshot = await lastValueFrom(
       this.afs.collection(this.roomsCollection, 
@@ -297,6 +316,8 @@ export class HotelService {
     // , ref =>   ref.where('status', '==', 'pending')
     return this.afs.collection(this.purchases).valueChanges()
   }
+
+
 
   async updateOrder(docId: string, data: any) {
     if(data.status === 'rejected'){

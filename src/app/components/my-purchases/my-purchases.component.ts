@@ -40,7 +40,7 @@ export class MyPurchasesComponent implements OnInit {
     this.purchasesListP$ = this.purchaseSrv.userPurchaseListPending(uid.toString())
     .pipe(
       map((data) => {
-        console.log(data)
+        // console.log(data)
         const counter = data.length + 1;
         return data.map((row, index) => Object.assign({}, row, { index: counter - (index + 1) }))
       })
@@ -49,7 +49,7 @@ export class MyPurchasesComponent implements OnInit {
     this.purchasesListC$ = this.purchaseSrv.userPurchaseListCompleted(uid.toString())
     .pipe(
       map((data) => {
-        console.log(data)
+        // console.log(data)
         const counter = data.length + 1;
         return data.map((row, index) => Object.assign({}, row, { index: counter - (index + 1) }))
       })
@@ -58,7 +58,7 @@ export class MyPurchasesComponent implements OnInit {
     this.purchasesListR$ = this.purchaseSrv.userPurchaseListRejected(uid.toString())
     .pipe(
       map((data) => {
-        console.log(data)
+        // console.log(data)
         const counter = data.length + 1;
         return data.map((row, index) => Object.assign({}, row, { index: counter - (index + 1) }))
       })

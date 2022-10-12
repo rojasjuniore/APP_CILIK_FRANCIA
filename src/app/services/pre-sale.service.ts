@@ -183,8 +183,14 @@ export class PreSaleService {
     return roomData;
   }
 
-  async completePreSaleOrder(metadata: any){
+  async completePreSaleOrder(metadata: any, params: any = {}){
     const preSaleDocument = this.getDocumentLocalStorage();
+
+    const {
+      payed = true,
+      completed = true,
+      status = 'completed',
+    } = params;
 
     const url = `/purchase/summary/${preSaleDocument.orderId}/details`;
 
@@ -203,9 +209,9 @@ export class PreSaleService {
     const document = Object.assign({}, preSaleDocument, {
       metadata,
       step: url,
-      payed: true,
-      completed: true,
-      status: 'completed',
+      payed,
+      completed,
+      status,
       rooms,
     });
 
