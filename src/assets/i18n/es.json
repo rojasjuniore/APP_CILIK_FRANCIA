@@ -207,6 +207,14 @@
       "HAB3": {
         "2": "Habitación superior doble dos camas",
         "3": "Habitación superior doble + pna adicional (3 pnas)"
+      },
+      "HAB4": {
+        "1": "Habitación duplex Doble",
+        "2": "Habitación duplex Doble"
+      },
+      "HAB5": {
+        "2": "Habitación Junior Doble",
+        "3": "Habitación Junior Doble + pna adicional (3 pnas)"
       }
     },
     "ubitacion": {

@@ -207,6 +207,14 @@
       "HAB3": {
         "2": "Superior Double Room with Two Beds",
         "3": "Superior double room + additional person"
+      },
+      "HAB4": {
+        "1": "Double duplex Room",
+        "2": "Double duplex Room"
+      },
+      "HAB5": {
+        "2": "Junior Double Room",
+        "3": "Junior Double Room + additional person"
       }
     },
     "ubitacion": {
