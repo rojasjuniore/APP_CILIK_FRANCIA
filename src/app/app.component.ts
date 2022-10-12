@@ -44,6 +44,7 @@ export class AppComponent {
     // this.storeRoomTypes();
     // this.storeRoomAdditionals();
     // this.storeRooms();
+    // this.storeCategoriesPasses();
   }
 
   changeLanguage(language: string) {
