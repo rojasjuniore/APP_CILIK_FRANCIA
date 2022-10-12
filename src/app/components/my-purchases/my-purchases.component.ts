@@ -13,6 +13,8 @@ export class MyPurchasesComponent implements OnInit {
 
   @ViewChild (PurchaseSummaryModalDetailsComponent) modalDetails!: PurchaseSummaryModalDetailsComponent;
 
+  show = false;
+
   public purchasesListP$!: Observable<any[]>;
   public purchasesListC$!: Observable<any[]>;
   public purchasesListR$!: Observable<any[]>;
@@ -65,8 +67,10 @@ export class MyPurchasesComponent implements OnInit {
   }
 
   onShowDetails(order: any){
-    console.log('order', order);
-    this.modalDetails.showModal(order);
+    this.show = true;
+    setTimeout(() => {
+      this.modalDetails.showModal(order);
+    }, 100);
   }
 
 }

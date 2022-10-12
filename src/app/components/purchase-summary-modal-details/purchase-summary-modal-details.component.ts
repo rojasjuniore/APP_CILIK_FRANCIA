@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { map, Observable, Subscription, tap } from 'rxjs';
@@ -15,9 +15,11 @@ import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 })
 export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
 
+  auth = localStorage.getItem('auth');
+
   public mi: any;
   public order: any = '';
-  auth = localStorage.getItem('auth');
+  
   public adminPayments$!: Observable<boolean>;
 
   private sub$!: Subscription;
@@ -30,10 +32,12 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
     private sweetAlert2Srv: Sweetalert2Service,
     private translatePipe: TranslatePipe,
     private authSrv: AuthenticationService,
-  ) { }
+  ) {  }
 
   ngOnInit(): void {
     this.buildModal();
+
+
 
     this.sub$ = this.router.events
     .subscribe((event) => {
@@ -45,6 +49,8 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
 
     });
 
+    // Porfa mano esta funcion al colocar hizo que varias cosa que habia colocado no se reflejara como por ejemplo el input donde se edita la observacion de un comprobante
+
     this.adminPayments$ = this.authSrv.userDoc$
     .pipe(
       map((user: any) => user?.roles || []),
@@ -53,6 +59,8 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
 
 
   }
+
+  
 
   async buildModal() {
     this.mi = this.bsModalSrv.buildModal('modalMyPurhcaseDetail');

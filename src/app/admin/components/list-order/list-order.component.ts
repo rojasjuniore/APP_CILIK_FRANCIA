@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PurchaseSummaryModalDetailsComponent } from 'src/app/components/purchase-summary-modal-details/purchase-summary-modal-details.component';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { HotelService } from 'src/app/services/hotel.service';
 
 @Component({
@@ -11,19 +12,22 @@ export class ListOrderComponent implements OnInit {
   
   @ViewChild (PurchaseSummaryModalDetailsComponent) modalDetails!: PurchaseSummaryModalDetailsComponent;
 
-
   public listOrders: any = [];
   public listOrdersPending: any = [];
   public listOrdersCompleted: any = [];
   public listOrdersRejected: any = [];
   loading = false;
+  show = false;
 
-  constructor(private hotelService: HotelService) { }
+  constructor(private hotelService: HotelService,
+              private authSrv: AuthenticationService) { localStorage.setItem('auth', 'adm') }
 
   ngOnInit(): void {
-    this.getOrderList()
-    
+    this.getOrderList();
   }
+
+
+
 
   async getOrderList(){
     this.loading = true;
@@ -31,7 +35,7 @@ export class ListOrderComponent implements OnInit {
     this.listOrdersPending = [];
     this.listOrdersCompleted = [];
     this.listOrdersRejected = [];
-    
+
     await this.hotelService.getOrderPending().subscribe({
       next: (resp) => {
         console.log(resp);
@@ -61,8 +65,10 @@ export class ListOrderComponent implements OnInit {
   }
 
   onShowDetails(order: any){
-    console.log('order', order);
-    this.modalDetails.showModal(order);
+    this.show = true;
+    setTimeout(() => {
+      this.modalDetails.showModal(order);
+    }, 100);
   }
 
 }

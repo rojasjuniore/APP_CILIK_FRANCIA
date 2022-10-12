@@ -8,6 +8,7 @@ import { CheckTicketOnLocalStorageGuard } from './guards/check-ticket-on-local-s
 import { IsAuthGuard } from './guards/is-auth.guard';
 import { AlreadyAuthGuard } from './guards/already-auth.guard';
 import { CheckAdminRoleGuard } from './guards/check-admin-role.guard';
+import { AuthRoleGuard } from './guards/auth-role.guard';
 
 const routes: Routes = [
   {
@@ -32,7 +33,7 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    canActivate: [ CheckAdminRoleGuard ],
+    canActivate: [ CheckAdminRoleGuard, AuthRoleGuard ],
     loadChildren: () => import("./admin/admin.module").then((m) => m.AdminModule),
   },
   {
