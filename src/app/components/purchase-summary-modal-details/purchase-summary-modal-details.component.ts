@@ -7,6 +7,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { BsModalService } from 'src/app/services/bs-modal.service';
 import { GeneratePdfService } from 'src/app/services/generate-pdf.service';
 import { HotelService } from 'src/app/services/hotel.service';
+import { PurchaseService } from 'src/app/services/purchase.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 
 @Component({
@@ -33,36 +34,28 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
     private sweetAlert2Srv: Sweetalert2Service,
     private translatePipe: TranslatePipe,
     private authSrv: AuthenticationService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private purchaseSrv: PurchaseService,
   ) { }
 
   ngOnInit(): void {
     this.buildModal();
 
-
-
     this.sub$ = this.router.events
     .subscribe((event) => {
 
       /** Si la modal esta desplegada al cambiar de ruta */
-      if(this.mi._isShown){
-        this.closeModal();
-      }
+      if(this.mi._isShown){ this.closeModal(); }
 
     });
 
     // Porfa mano esta funcion al colocar hizo que varias cosa que habia colocado no se reflejara como por ejemplo el input donde se edita la observacion de un comprobante
-
     this.adminPayments$ = this.authSrv.userDoc$
     .pipe(
       map((user: any) => user?.roles || []),
       map((roles: any) => roles.includes('admin-payments'))
     );
-
-
   }
-
-  
 
   async buildModal() {
     this.mi = this.bsModalSrv.buildModal('modalMyPurhcaseDetail');
@@ -120,6 +113,7 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
           completed: true,
           payed: true
         }),
+        // this.purchaseSrv.sendPurchaseTransferApprovedNotification(order.orderId)
       ]);
 
       let message = this.translatePipe.transform('formValidations.dataSave');
@@ -152,7 +146,8 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
        */
       await Promise.all([
         this.hotelService.updateOrder(order.orderId, { status: 'rejected' }),
-        this.hotelService.restoreRoomsOnReject(order.orderId)
+        this.hotelService.restoreRoomsOnReject(order.orderId),
+        // this.purchaseSrv.sendPurchaseTransferRejectedNotification(order.orderId)
       ]);
 
       let message = this.translatePipe.transform('formValidations.dataSave');

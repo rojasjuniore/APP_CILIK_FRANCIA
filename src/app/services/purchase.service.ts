@@ -54,6 +54,36 @@ export class PurchaseService {
     }
   }
 
+  async sendPurchaseTransferRejectedNotification(orderId: string){
+    try {
+      const result = await lastValueFrom( 
+        this.http.post(`${URL_ROOT}email-notification/purchase-transfer-rejected`, {orderId})
+      );
+
+      return result;
+      
+    } catch (err) {
+      console.log('Error on PurchaseService.sendPurchaseTransferRejectedNotification', err);
+      throw err;
+    }
+  }
+
+  async sendPurchaseTransferApprovedNotification(orderId: string){
+    try {
+      const result = await lastValueFrom( 
+        this.http.post(`${URL_ROOT}email-notification/purchase-transfer-approved`, {orderId})
+      );
+
+      return result;
+      
+    } catch (err) {
+      console.log('Error on PurchaseService.sendPurchaseTransferRejectedNotification', err);
+      throw err;
+    }
+  }
+
+
+
   async getPurchaseDocument(docId: string): Promise<any>{
     const snapshot = await this.afs.collection(this.purchaseCollection).doc(docId).get().toPromise();
     return await handlerObjectResult(snapshot);
