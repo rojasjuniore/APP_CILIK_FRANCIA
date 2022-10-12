@@ -126,15 +126,45 @@ export class PreSaleInstallmentsPayCoutaComponent implements OnInit {
   }
 
   async crearteOrderBankTransfer(status: any){
-    console.log(this.preSaleSrv.getDocumentLocalStorage())
-    if(status){
+
+    console.log('status', status);
+    if(!status){ return; }
+
+    try {
+
+      await this.spinner.show();
       this.loading = true;
-      await this.preSaleSrv.completePreSaleOrder('pago por transferencia');
-      let message = this.translatePipe.transform('general.successfulTransaction');
+      
+      const order = this.preSaleSrv.getDocumentLocalStorage();
+      console.log('order', order);
+    
+      await this.preSaleSrv.completePreSaleOrder('pago por transferencia', {
+        completed: false,
+        payed: false,
+        status: 'pending',
+      });
+
+      const message = this.translatePipe.transform('general.successfulTransaction');
       this.sweetAlert2Srv.showInfo(message);
       this.router.navigateByUrl('pages/dashboard');
+      return;
+
+    } catch (err) {
+      console.log('Error on PreSaleInstallmentsPayCoutaComponent.crearteOrderBankTransfer()', err);
+      return;
+    }finally{
+      this.spinner.hide();
       this.loading = false;
     }
+
+    // if(status){
+    //   this.loading = true;
+    //   await this.preSaleSrv.completePreSaleOrder('pago por transferencia');
+    //   let message = this.translatePipe.transform('general.successfulTransaction');
+    //   this.sweetAlert2Srv.showInfo(message);
+    //   this.router.navigateByUrl('pages/dashboard');
+    //   this.loading = false;
+    // }
   }
 
 
