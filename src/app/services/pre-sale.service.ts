@@ -88,7 +88,7 @@ export class PreSaleService {
 
     if(Object.keys(find).length == 0 || override){
       const document = this.buildOrderDocument(params);
-      console.log(document)
+      // console.log(document)
       this.storeDocumentonLocalStorage(document);
     }
   }
@@ -246,7 +246,7 @@ export class PreSaleService {
       rooms,
     });
 
-    console.log(document);
+    // console.log(document);
     // return;
 
     /** Store Document */
