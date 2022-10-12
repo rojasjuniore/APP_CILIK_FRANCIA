@@ -15,4 +15,9 @@ export class LanguageBarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  changeLanguage(lang: string){
+    this.translateSrv.changeLanguage(lang);
+    window.localStorage.setItem('lang', lang);
+  }
+
 }

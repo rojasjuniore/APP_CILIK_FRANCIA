@@ -22,11 +22,11 @@ export class AppComponent {
     private hotelSrv: HotelService,
     private router: Router
   ) {
-    this.currentLanguage = this.translateSrv.currentLanguage;
+    this.currentLanguage = window.localStorage.getItem('lang') || this.translateSrv.currentLanguage;
   }
 
   ngOnInit(): void {
-    this.translateSrv.changeLanguage('en');
+    this.translateSrv.changeLanguage(this.currentLanguage);
 
     this.router.events.subscribe((event) => {
       if (!(event instanceof NavigationEnd)) {
