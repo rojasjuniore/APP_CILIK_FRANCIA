@@ -50,7 +50,7 @@
             "roomCounter": 4000,
             "ubicationType": 1,
             "ubicationTypeDescription": "Casa de Playa",
-            "status": false
+            "status": true
         },
         {
             "code": "HAB5",
@@ -63,7 +63,7 @@
             "roomCounter": 5000,
             "ubicationType": 1,
             "ubicationTypeDescription": "Casa de Playa",
-            "status": false
+            "status": true
         }
     ]
 }

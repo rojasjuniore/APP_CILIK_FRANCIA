@@ -191,9 +191,11 @@ export class PreSaleService {
     }
 
     const room = scope[roomIdx];
+    // console.log('room', room);
 
     /** Buscar habitación */
     const findRoom = await this.hotelSrv.getAvailableRoomByCodeType(room.roomCodePrefix);
+    // console.log('findRoom', findRoom);
 
     /** Asignar orden de compra a la habitación */
     await this.hotelSrv.updateRoom(findRoom._id, { paymentOrderID: orderId, additionals: room.additionals, roomType: room.roomCode });
