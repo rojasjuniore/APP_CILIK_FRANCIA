@@ -178,16 +178,39 @@ export class PreSaleOnlyCategoriesPaymentMethodsComponent implements OnInit {
   }
 
   async crearteOrderBankTransfer(status: any){
-    console.log(this.preSaleSrv.getDocumentLocalStorage())
-    let document = this.preSaleSrv.getDocumentLocalStorage();
-    if(status){
-      this.loading = true;
-      await this.preSaleSrv.completePreSaleOrder('pago por transferencia');
-      let message = this.translatePipe.transform('general.successfulTransaction');
-      this.sweetAlert2Srv.showInfo(message);
-      this.router.navigateByUrl('pages/dashboard');
-      this.loading = false;
-    }
+    // console.log(this.preSaleSrv.getDocumentLocalStorage())
+    // let document = this.preSaleSrv.getDocumentLocalStorage();
+    // if(status){
+    //   this.loading = true;
+    //   await this.preSaleSrv.completePreSaleOrder('pago por transferencia');
+    //   let message = this.translatePipe.transform('general.successfulTransaction');
+    //   this.sweetAlert2Srv.showInfo(message);
+    //   this.router.navigateByUrl('pages/dashboard');
+    //   this.loading = false;
+    // }
+
+    if(!status){ return; }
+
+    this.loading = true;
+
+    this.preSaleSrv.updateDocumentLocalStorage({ paymentMethodType: 'bankTransfer' });
+
+    /** Finalizar documento de orden de compra */
+    await this.preSaleSrv.completePreSaleOrder(
+      'pago por transferencia',
+      {
+        completed: false,
+        payed: false,
+        status: 'pending',
+      }
+    );
+
+    let message = this.translatePipe.transform('general.successfulTransaction');
+    this.sweetAlert2Srv.showInfo(message);
+    this.router.navigateByUrl('pages/dashboard');
+    this.loading = false;
+
+
   }
 
   async onNext(){
