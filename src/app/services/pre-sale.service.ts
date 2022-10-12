@@ -183,6 +183,34 @@ export class PreSaleService {
     return roomData;
   }
 
+  /** TODO: pendiente por revisar */
+  async processRoomData2(roomIdx: any, orderId: string, scope: any[] = []){
+
+    if(roomIdx >= scope.length){
+      return scope;
+    }
+
+    const room = scope[roomIdx];
+
+    /** Buscar habitación */
+    const findRoom = await this.hotelSrv.getAvailableRoomByCodeType(room.roomCodePrefix);
+
+    /** Asignar orden de compra a la habitación */
+    await this.hotelSrv.updateRoom(findRoom._id, { paymentOrderID: orderId, additionals: room.additionals, roomType: room.roomCode });
+
+    /** TODO: actualizar contador de habitaciónes disponibles por tipo */
+    await this.hotelSrv.updateRoomStockSupplyCounter(room.roomCodePrefix, -1);
+
+    /** Actualizar registro de habitación */
+    const roomData = Object.assign({}, room, {roomId: findRoom._id});
+
+    scope[roomIdx] = roomData;
+
+    return this.processRoomData2(++roomIdx, orderId, scope);
+  }
+
+
+
   async completePreSaleOrder(metadata: any, params: any = {}){
     const preSaleDocument = this.getDocumentLocalStorage();
 
@@ -198,11 +226,14 @@ export class PreSaleService {
      * - Buscar habitaciones disponibles
      * - Asignar habitaciones en la orden
      */
-    const roomsToParse = await Promise.all(
-      preSaleDocument.rooms.map(
-        async (row: any, index: number) => this.processRoomData(Object.assign({index}, row), preSaleDocument.orderId)
-        )
-    );
+    // const roomsToParse = await Promise.all(
+    //   preSaleDocument.rooms.map(
+    //     async (row: any, index: number) => this.processRoomData(Object.assign({index}, row), preSaleDocument.orderId)
+    //     )
+    // );
+
+    const tempRooms = preSaleDocument.rooms.map((row: any, index: number) => Object.assign({index}, row));
+    const roomsToParse = await this.processRoomData2(0, preSaleDocument.orderId, tempRooms);
 
     const rooms = roomsToParse.sort((a: any, b: any) => a.index - b.index);
 
