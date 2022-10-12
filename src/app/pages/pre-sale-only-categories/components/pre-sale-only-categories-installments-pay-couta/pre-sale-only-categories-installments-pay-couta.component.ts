@@ -125,15 +125,38 @@ export class PreSaleOnlyCategoriesInstallmentsPayCoutaComponent implements OnIni
   }
 
   async crearteOrderBankTransfer(status: any){
-    console.log(this.preSaleSrv.getDocumentLocalStorage())
-    if(status){
+    if(!status){ return; }
+
+    try {
       this.loading = true;
-      await this.preSaleSrv.completePreSaleOrder('pago por transferencia');
-      let message = this.translatePipe.transform('general.successfulTransaction');
+  
+      await this.preSaleSrv.completePreSaleOrder('pago por transferencia', {
+        completed: false,
+        payed: false,
+        status: 'pending',
+      });
+  
+      const message = this.translatePipe.transform('general.successfulTransaction');
       this.sweetAlert2Srv.showInfo(message);
       this.router.navigateByUrl('pages/dashboard');
+      return;
+      
+    } catch (err) {
+      console.log('Error on PreSaleOnlyCategoriesInstallmentsPayCoutaComponent.crearteOrderBankTransfer()', err);
+      return;
+    }finally{
       this.loading = false;
     }
+
+    // console.log(this.preSaleSrv.getDocumentLocalStorage())
+    // if(status){
+    //   this.loading = true;
+    //   await this.preSaleSrv.completePreSaleOrder('pago por transferencia');
+    //   let message = this.translatePipe.transform('general.successfulTransaction');
+    //   this.sweetAlert2Srv.showInfo(message);
+    //   this.router.navigateByUrl('pages/dashboard');
+    //   this.loading = false;
+    // }
   }
 
 
