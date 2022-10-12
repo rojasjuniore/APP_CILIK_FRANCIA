@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { map, Observable, Subscription, tap } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { BsModalService } from 'src/app/services/bs-modal.service';
@@ -30,6 +31,7 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
     private sweetAlert2Srv: Sweetalert2Service,
     private translatePipe: TranslatePipe,
     private authSrv: AuthenticationService,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
@@ -99,12 +101,37 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
     this.mi.hide();
   }
 
-  cancelOrder(order){
-    order.status = 'rejected';
-    this.hotelService.updateOrder(order.orderId, order);
-    let message = this.translatePipe.transform('formValidations.dataSave');
-    this.sweetAlert2Srv.showInfo(message);
-    this.mi.hide();
+  async cancelOrder(order: any){
+    try {
+
+      const ask = await this.sweetAlert2Srv.askConfirm('Reject Payment Order?');
+      if(!ask) { return; }
+
+      console.log('cancelOrder', order);
+
+      await this.spinner.show();
+
+      /**
+       * 1. Cambiar el estado de la orden a 'rejected'
+       * 2. Cambiar el estado de la habitacion a 'available'
+       * 3. TODO: enviar email de notificación de orden de compra rechazada
+       */
+      await Promise.all([
+        this.hotelService.updateOrder(order.orderId, { status: 'rejected' }),
+        this.hotelService.restoreRoomsOnReject(order.orderId)
+      ]);
+      // this.hotelService.updateOrder(order.orderId, order);
+
+      let message = this.translatePipe.transform('formValidations.dataSave');
+      this.sweetAlert2Srv.showInfo(message);
+      this.mi.hide();
+      
+    } catch (err) {
+      console.log('Error on PurchaseSummaryModalDetailsComponent.cancelOrder', err);
+      return;
+    }finally{
+      this.spinner.hide();
+    }
   }
 
   ngOnDestroy(): void {
