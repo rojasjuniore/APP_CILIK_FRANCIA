@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { lastValueFrom, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { handlerObjectResult } from '../helpers/model.helper';
+import { handlerArrayResult, handlerObjectResult } from '../helpers/model.helper';
 
 const URL_ROOT: any = environment.API_URL;
 @Injectable({
@@ -103,4 +103,24 @@ export class PurchaseService {
       }
     ).valueChanges({ idField });
   }
+
+  async getDynamicPromise(where: any[] = [], opts: any = {}): Promise<any[]>{
+    const {idField = "_id", orderBy = []} = opts;
+
+    const snapshot = await lastValueFrom(
+      this.afs.collection(
+        this.purchaseCollection,
+        (ref) => {
+          let query: any = ref;
+          for (const row of where) { query = query.where(row.field, row.condition, row.value); }
+
+          for (const order of orderBy) { query = query.orderBy(order.field, order.order); }
+          return query;
+        }
+      ).get()
+    );
+
+    return await handlerArrayResult(snapshot, {idField});
+  }
+
 }
