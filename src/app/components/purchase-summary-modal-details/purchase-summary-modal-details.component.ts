@@ -96,7 +96,7 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
   async completedOrder(order: any){
     try {
 
-      const ask = await this.sweetAlert2Srv.askConfirm('Confirm Payment Order?');
+      const ask = await this.sweetAlert2Srv.askConfirm('formValidations.ConfirmPaymentInfo');
       if(!ask) { return; }
 
       // console.log('confirm', order);
@@ -132,7 +132,7 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
   async cancelOrder(order: any){
     try {
 
-      const ask = await this.sweetAlert2Srv.askConfirm('Reject Payment Order?');
+      const ask = await this.sweetAlert2Srv.askConfirm('formValidations.RejectPaymentInfo');
       if(!ask) { return; }
 
       // console.log('cancelOrder', order);
