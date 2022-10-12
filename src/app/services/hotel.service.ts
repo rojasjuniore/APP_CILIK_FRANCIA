@@ -63,15 +63,23 @@ export class HotelService {
 
     for (let index = 0; index < room.priceList.length; index++) {
       const row = room.priceList[index];
-      const from = moment(row.from, 'DD/MM/YYYY').startOf('day');
-      const to = moment(row.to, 'DD/MM/YYYY').endOf('day');
+      const from = moment(row.from, 'YYYY/MM/DD').startOf('day');
+      const to = moment(row.to, 'YYYY/MM/DD').endOf('day');
       const isBetween = currentDate.isBetween(from, to);
+
+      // console.log({
+      //   currentDate: currentDate.format('DD/MM/YYYY'),
+      //   from: from.format('DD/MM/YYYY'),
+      //   to: to.format('DD/MM/YYYY'),
+      // });
 
       if(isBetween){
         indexPrice = index;
         break;
       }
     }
+
+    // console.log('room.priceList[indexPrice]', room.priceList[indexPrice]);
 
     return Object.assign({}, room, room.priceList[indexPrice]);
   }
