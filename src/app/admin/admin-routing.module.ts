@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthProfileGuard } from '../guards/auth-profile.guard';
 import { AdminLayoutComponent } from './components/admin-layout/admin-layout.component';
 import { ListOrderComponent } from './components/list-order/list-order.component';
 import { PermissionComponent } from './components/permission/permission.component';
@@ -11,10 +12,14 @@ const routes: Routes = [
     children: [
       {
         path: 'permission',
+        data: { profiles: ['admin-permission'] },
+        canActivate: [ AuthProfileGuard ],
         component: PermissionComponent,
       },
       {
         path: 'orderList',
+        data: { profiles: ['admin-payments'] },
+        canActivate: [ AuthProfileGuard ],
         component: ListOrderComponent,
       }
     ]
