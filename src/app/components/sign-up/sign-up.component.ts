@@ -244,7 +244,10 @@ export class SignUpComponent implements OnInit {
       /** Guardar identificador en el localStorage */
       this.authenticationSrv.setLocalUID(uid);
 
-      return this.router.navigate(['register-completed']);
+      const message = this.translatePipe.transform('general.successfulRegistration');
+      this.sweetAlert2Srv.showSuccess(message, 2);
+
+      return this.router.navigate(['pages','dashboard']);
 
     } catch (err) {
       console.log('Error on SignUpComponent.onSubmit', err);
