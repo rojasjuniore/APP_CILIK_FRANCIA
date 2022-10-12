@@ -136,7 +136,7 @@ export class PreSaleInstallmentsPayCoutaComponent implements OnInit {
       this.loading = true;
       
       const order = this.preSaleSrv.getDocumentLocalStorage();
-      console.log('order', order);
+      // console.log('order', order);
     
       await this.preSaleSrv.completePreSaleOrder('pago por transferencia', {
         completed: false,
