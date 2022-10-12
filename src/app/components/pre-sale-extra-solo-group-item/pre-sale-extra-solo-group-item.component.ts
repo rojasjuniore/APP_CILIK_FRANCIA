@@ -9,7 +9,7 @@ import { HotelService } from 'src/app/services/hotel.service';
 })
 export class PreSaleExtraSoloGroupItemComponent implements OnInit {
 
-  @Input() price = 25;
+  @Input() price = 35;
   @Input() min = 0;
   @Input() max = 99;
   @Input() public groups: any[] = [];
