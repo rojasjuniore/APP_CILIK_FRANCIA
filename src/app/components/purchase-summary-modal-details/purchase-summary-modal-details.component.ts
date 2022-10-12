@@ -92,13 +92,39 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
     this.mi.hide();
   }
 
-  completedOrder(order){
-    order.status = 'completed';
+  async completedOrder(order: any){
+    try {
 
-    this.hotelService.updateOrder(order.orderId, order);
-    let message = this.translatePipe.transform('formValidations.dataSave');
-    this.sweetAlert2Srv.showInfo(message);
-    this.mi.hide();
+      const ask = await this.sweetAlert2Srv.askConfirm('Confirm Payment Order?');
+      if(!ask) { return; }
+
+      // console.log('confirm', order);
+
+      await this.spinner.show();
+
+      /**
+       * 1. Cambiar el estado de la orden a 'completed'
+       * 2. TODO: enviar email de notificación de orden de compra completada
+       */
+      await Promise.all([
+        this.hotelService.updateOrder(order.orderId, { 
+          status: 'completed',
+          completed: true,
+          payed: true
+        }),
+      ]);
+
+      let message = this.translatePipe.transform('formValidations.dataSave');
+      this.sweetAlert2Srv.showInfo(message);
+      this.mi.hide();
+      
+    } catch (err) {
+      console.log('Error on PurchaseSummaryModalDetailsComponent.completedOrder', err);
+      return;
+    }finally{
+      this.spinner.hide();
+    }
+
   }
 
   async cancelOrder(order: any){
@@ -107,7 +133,7 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
       const ask = await this.sweetAlert2Srv.askConfirm('Reject Payment Order?');
       if(!ask) { return; }
 
-      console.log('cancelOrder', order);
+      // console.log('cancelOrder', order);
 
       await this.spinner.show();
 
@@ -120,7 +146,6 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
         this.hotelService.updateOrder(order.orderId, { status: 'rejected' }),
         this.hotelService.restoreRoomsOnReject(order.orderId)
       ]);
-      // this.hotelService.updateOrder(order.orderId, order);
 
       let message = this.translatePipe.transform('formValidations.dataSave');
       this.sweetAlert2Srv.showInfo(message);
