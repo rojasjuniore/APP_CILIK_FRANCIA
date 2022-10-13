@@ -20,7 +20,7 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
   auth = localStorage.getItem('auth');
 
   public mi: any;
-  public order: any = '';
+  public order: any;
   
   public adminPayments$!: Observable<boolean>;
 
