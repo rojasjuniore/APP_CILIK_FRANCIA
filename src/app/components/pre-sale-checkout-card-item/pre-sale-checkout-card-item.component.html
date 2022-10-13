@@ -14,7 +14,15 @@
         </div>
         <div class="col-12 px-3">
             <p class="m-0">
-                {{ "general.#ofGuests" | translate }} {{item.capacity}} {{ "general.people" | translate | lowercase}}
+                {{ "general.#ofGuests" | translate }} {{item.capacity}}
+
+                <ng-container *ngIf="item.capacity == 0; else showPeople">
+                    {{ "general.person" | translate | lowercase}}
+                </ng-container>
+
+                <ng-template #showPeople>
+                    {{ "general.people" | translate | lowercase}}
+                </ng-template>
             </p>
             <p class="m-0" *ngIf="nroAdditionalDays > 0">
                 {{ "general.extraNight" | translate }} {{nroAdditionalDays}}
