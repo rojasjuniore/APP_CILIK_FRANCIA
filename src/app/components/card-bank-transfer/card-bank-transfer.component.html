@@ -7,83 +7,84 @@
                 </span>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-6" *ngIf="order?.status == 'pending'">
             <div class="d-flex justify-content-end">
-               
-               
-                <span class="text-rslt fw-bold fs-5" >
-                    
-                    <label
-                    class="btn btn-one"
-                  >
-                   <span *ngIf="!hotelService.loading"><i class="bi bi-cloud-arrow-up"></i> {{ "general.comprobanteUpload" | translate }} </span>
 
-                   <div *ngIf="hotelService.loading" class="spinner-border" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                   </div>
-                    <input
-                      type="file"
-                      multiple
-                      [disabled]="hotelService.loading || auth === 'adm'"
-                      accept="image/png,image/jpeg,image/jpg"
-                      style="display: none"
-                      (change)="subirImg($event)"
-                    />
-                  </label>
+                <span class="text-rslt fw-bold fs-5">
+
+                    <label class="btn btn-one">
+                        <span *ngIf="!hotelService.loading">
+                            <i class="bi bi-cloud-arrow-up"></i> 
+                            {{ "general.comprobanteUpload" | translate }} 
+                        </span>
+
+                        <div *ngIf="hotelService.loading" class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <input type="file" multiple [disabled]="hotelService.loading || auth === 'adm'"
+                            accept="image/png,image/jpeg,image/jpg" style="display: none" (change)="subirImg($event)" />
+                    </label>
                 </span>
+
             </div>
         </div>
         <div class="seprd2"></div>
         <div class="col-12" style="position: relativa;">
             <p class="fw-bold m-0">
-                {{'Status' | translate}}: 
-                            <span *ngIf="order.status === 'pending'">{{ 'general.pending' | translate }}</span>
-                            <span *ngIf="order.status === 'completed'">{{ 'general.completed' | translate }}</span>
-                            <span *ngIf="order.status === 'rejected'">{{ 'general.rejected' | translate }}</span>
+                {{'Status' | translate}}:
+                <span *ngIf="order.status === 'pending'">{{ 'general.pending' | translate }}</span>
+                <span *ngIf="order.status === 'completed'">{{ 'general.completed' | translate }}</span>
+                <span *ngIf="order.status === 'rejected'">{{ 'general.rejected' | translate }}</span>
             </p>
             <div class="seprd m-0 mb-2"></div>
 
             <p class="m-0">
-                <strong> {{ "general.comprobanteDataName" | translate }}: </strong> {{ order.bankTransferSelect.accountTitle }}
+                <strong> {{ "general.comprobanteDataName" | translate }}: </strong>
+                {{ order.bankTransferSelect.accountTitle }}
             </p>
 
-            <p class="m-0"  >
-                <strong> {{ "general.comprobanteDataTitle" | translate }}: </strong> {{ order.bankTransferSelect.nrAccount }}
+            <p class="m-0">
+                <strong> {{ "general.comprobanteDataTitle" | translate }}: </strong>
+                {{ order.bankTransferSelect.nrAccount }}
             </p>
-            
+
             <img src="./assets/img/ws.png" class="csaondpoas">
-           
+
 
             <div class="seprd m-0 mb-2 mt-2" *ngIf="order.captureBank.length > 0"></div>
             <span class="text-rslt fw-bold fs-5" *ngIf="order.captureBank.length > 0">
-                 {{ "general.comprobanteUploadSuccess" | translate }}
+                {{ "general.comprobanteUploadSuccess" | translate }}
             </span>
 
             <div *ngIf="order.captureBank.length > 0" class="mt-2">
                 <div *ngFor="let item of order.captureBank">
                     <div class="row mt-2">
-                        <div class="col-2 text-center" >
+                        <div class="col-2 text-center">
                             <img [src]="item.url" class="csomdoa" (click)="verIMG(item.url)" style="cursor: pointer;">
                         </div>
                         <div class="col-8" *ngIf="auth === 'adm'">
                             <!-- <span *ngIf="item.nota === ''">Sin observaciones</span> -->
-                          <div class="form-group">
-                            <label for="role" class="form-label"> {{ "formValidations.noteObserver" | translate }}:</label>
-                            <input type="text" class="form-control" #nota [value]="item.nota" (change)="item.nota = nota.value">
-                          </div>
+                            <div class="form-group">
+                                <label for="role" class="form-label">
+                                    {{ "formValidations.noteObserver" | translate }}:
+                                </label>
+                                <input type="text" class="form-control" #nota [value]="item.nota" (change)="item.nota = nota.value">
+                            </div>
                         </div>
                         <div class="col-10" *ngIf="auth === 'user'">
                             <span *ngIf="item.nota === ''">Sin observaciones</span>
                             <span *ngIf="item.nota !== ''">{{ item.nota }}</span>
                         </div>
                         <div class="col-2 text-center" *ngIf="auth === 'adm'">
-                            <button class="btn btn-one" style="    max-width: 100%;     margin-top: 10px;" (click)="saveNote(order)">{{ "formValidations.save" | translate }}</button>
+                            <button class="btn btn-one" style="max-width: 100%; margin-top: 10px;" (click)="saveNote(order)">
+                                {{ "formValidations.save" | translate }}
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
 
-           
+
 
         </div>
     </div>
@@ -92,6 +93,6 @@
 <div class="csandoa" *ngIf="verImgActivo !== ''" (click)="verImgActivo = '';">
     <i class="bi bi-x sacosand"></i>
     <div class="csaodoa">
-      <img loading="lazy" [src]="verImgActivo" alt="" class="saodmsao">
+        <img loading="lazy" [src]="verImgActivo" alt="" class="saodmsao">
     </div>
-  </div>
+</div>
