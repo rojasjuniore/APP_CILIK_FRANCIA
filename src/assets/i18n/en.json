@@ -55,12 +55,12 @@
     ]
   },
   "formValidations": {
-    "ConfirmPaymentInfo": "Confirm payment order?",
-    "RejectPaymentInfo": "Reject payment order?",
     "ConfirmCategorieExtra": "The official plan already includes one category per person, do you want to buy an additional category?",
     "ConfirmCategorieExtra1": "Shop Additional Categories",
     "ConfirmCategorieExtra2": "Continue with the payment",
+    "ConfirmPaymentInfo": "Confirm payment order?",
     "Help": "Help center",
+    "RejectPaymentInfo": "Reject payment order?",
     "accessDenied": "Access denied",
     "additionalCategoriesRequired": "You have not selected any additional category",
     "checkoutStepAskRemoveAdditionalCategoriesAction": "You want to remove all additional categories?",
@@ -244,6 +244,7 @@
     "title": "To continue with the installment payment process, you must read and accept the terms and conditions"
   },
   "paymentMethods": {
+    "bankTransferMessageOrderGenerated": "Successful transaction by The data to make the bank transfer will be sent to your email",
     "chooseYourPaymentMethod": "Choose your payment method",
     "creditCard": "Credit card",
     "crypto": "Criptocurrencies",

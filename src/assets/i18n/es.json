@@ -55,12 +55,12 @@
     ]
   },
   "formValidations": {
-    "ConfirmPaymentInfo": "Confirmar orden de pago?",
-    "RejectPaymentInfo": "Rechazar orden de pago?",
     "ConfirmCategorieExtra": "El plan oficial ya incluye una categoría por persona, desea comprar categoría adicionales?",
     "ConfirmCategorieExtra1": "Comprar categorías adicionales",
     "ConfirmCategorieExtra2": "Continuar con el pago",
+    "ConfirmPaymentInfo": "Confirmar orden de pago?",
     "Help": "Centro de ayuda",
+    "RejectPaymentInfo": "Rechazar orden de pago?",
     "accessDenied": "Acceso denegado",
     "additionalCategoriesRequired": "No has seleccionado ninguna categoría adicional",
     "checkoutStepAskRemoveAdditionalCategoriesAction": "¿Desea eliminar todas las categorías adicionales?",
@@ -244,6 +244,7 @@
     "title": "Para continuar con el proceso de pago por cuotas, debes leer y aceptar los términos y condiciones"
   },
   "paymentMethods": {
+    "bankTransferMessageOrderGenerated": "Transacción exitosa por  Los datos para realizar la transferencia bancaria serán enviados a su correo electrónico",
     "chooseYourPaymentMethod": "Elige tu método de pago",
     "creditCard": "Tarjeta de crédito",
     "crypto": "Criptomonedas",

@@ -205,7 +205,7 @@ export class PreSaleOnlyCategoriesPaymentMethodsComponent implements OnInit {
       }
     );
 
-    let message = this.translatePipe.transform('general.successfulTransaction');
+    const message = this.translatePipe.transform('paymentMethods.bankTransferMessageOrderGenerated');
     this.sweetAlert2Srv.showInfo(message);
     this.router.navigateByUrl('pages/dashboard');
     this.loading = false;
