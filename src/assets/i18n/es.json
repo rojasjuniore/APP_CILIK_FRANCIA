@@ -57,6 +57,10 @@
   "formValidations": {
     "ConfirmPaymentInfo": "Confirmar orden de pago?",
     "RejectPaymentInfo": "Rechazar orden de pago?",
+    "ConfirmCategorieExtra": "El plan oficial ya incluye una categoría por persona, desea comprar categoría adicionales?",
+    "ConfirmCategorieExtra1": "Comprar categorías adicionales",
+    "ConfirmCategorieExtra2": "Continuar con el pago",
+    "Help": "Centro de ayuda",
     "accessDenied": "Acceso denegado",
     "additionalCategoriesRequired": "No has seleccionado ninguna categoría adicional",
     "checkoutStepAskRemoveAdditionalCategoriesAction": "¿Desea eliminar todas las categorías adicionales?",

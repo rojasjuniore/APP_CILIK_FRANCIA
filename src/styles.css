@@ -251,19 +251,19 @@ body{
     border-radius: 30px !important;
     font-weight: bold;
     border: 1px solid transparent !important;
-    height: 50px;
-    width: 70px;
-    padding: 0 !important;
+    padding-inline-end: 1.5rem !important;
+    padding-inline-start: 1.5rem !important;
+    width: auto;
 }
 .swal2-styled.swal2-cancel {
     background-color: transparent !important;
     border-radius: 30px !important;
     font-weight: bold;
     border: 1px solid #60605f !important;
-    height: 50px;
-    width: 70px;
+    padding-inline-end: 1.5rem !important;
+    padding-inline-start: 1.5rem !important;
+    width: auto;
     color: #60605f !important;
-    padding: 0 !important;
 }
 .swal2-styled.swal2-confirm:focus {
     box-shadow: none !important;

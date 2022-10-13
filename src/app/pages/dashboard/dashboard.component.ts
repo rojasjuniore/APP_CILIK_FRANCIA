@@ -13,6 +13,8 @@ export class DashboardComponent implements OnInit {
 
   @ViewChild(PreSaleModalOnlyCategoriesTermsComponent) modalCategoriesTerms!: PreSaleModalOnlyCategoriesTermsComponent;
 
+  ayuda = false;
+
   constructor(
     private authSrv: AuthenticationService,
     private preSaleSrv: PreSaleService,

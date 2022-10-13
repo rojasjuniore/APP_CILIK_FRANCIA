@@ -172,7 +172,7 @@
                     placeholder="{{ 'general.password' | translate }}"
                   >
                   <label for="floatingInputPassword">{{ "general.password" | translate }}</label>
-                  <div id="emailHelp" class="form-text text-start">
+                  <div id="emailHelp" class="form-text text-start" *ngIf="form.controls['password'].value.length < 6">
                     {{ 'formValidations.signUpPasswordLength' | translate }}
                   </div>
 

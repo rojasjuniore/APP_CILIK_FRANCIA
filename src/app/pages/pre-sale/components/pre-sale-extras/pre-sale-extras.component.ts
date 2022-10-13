@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { from, Observable } from 'rxjs';
 import { PreSaleModalOnlyCategoriesTermsComponent } from 'src/app/components/pre-sale-modal-only-categories-terms/pre-sale-modal-only-categories-terms.component';
 import { HotelService } from 'src/app/services/hotel.service';
 import { PreSaleService } from 'src/app/services/pre-sale.service';
+import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 import { pick } from 'underscore';
 
 @Component({
@@ -24,7 +26,8 @@ export class PreSaleExtrasComponent implements OnInit {
   constructor(
     public preSaleSrv: PreSaleService,
     private router: Router,
-    private hotelSrv: HotelService,
+    private sweetAlert2Srv: Sweetalert2Service,
+    private translatePipe: TranslatePipe,
   ) {
     const { additionalCategoryPasses } = this.preSaleSrv.checkAndLoadDocumentLocalStorage();
     // console.log('additionalCategoryPasses', additionalCategoryPasses);
@@ -37,6 +40,7 @@ export class PreSaleExtrasComponent implements OnInit {
     //   this.categories = data;
     //   await this.loadData();
     // })
+    this.confirCategorieExtra()
   }
 
   async loadData(){
@@ -124,6 +128,16 @@ export class PreSaleExtrasComponent implements OnInit {
   onNext(){
     this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale/step3'});
     this.router.navigate(['/pre-sale', 'step3']);
+  }
+
+
+  async confirCategorieExtra(){
+    const ask = await this.sweetAlert2Srv.askConfirmCategorieExtra(this.translatePipe.transform('formValidations.ConfirmCategorieExtra'));
+    if(!ask) { return this.onNext(); }
+
+    
+
+   
   }
 
 }

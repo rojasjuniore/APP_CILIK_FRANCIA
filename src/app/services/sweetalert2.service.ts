@@ -180,6 +180,30 @@ export class Sweetalert2Service {
     return isConfirmed;
   }
 
+
+  async askConfirmCategorieExtra(message: string){
+
+    const confirmButtonText = await this.customTranslateSrv.translate('formValidations.ConfirmCategorieExtra1');
+    const cancelButtonText = await this.customTranslateSrv.translate('formValidations.ConfirmCategorieExtra2');
+
+    const { isConfirmed } = await Swal.fire({
+      icon: 'info',
+      title: this.title,
+      html: message,
+      // text: message,
+      showCancelButton: true,
+      showConfirmButton: true,
+      confirmButtonText: confirmButtonText,
+      cancelButtonText: cancelButtonText,
+      customClass: {
+        htmlContainer: 'applef sw2FixHtmlContainer',
+        icon: 'sw2FixIcon',
+      }
+    });
+
+    return isConfirmed;
+  }
+
   async askEdit(message: string){
     const { isConfirmed } = await Swal.fire({
       icon: 'info',

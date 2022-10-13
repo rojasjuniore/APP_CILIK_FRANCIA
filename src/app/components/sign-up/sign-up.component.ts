@@ -145,7 +145,7 @@ export class SignUpComponent implements OnInit {
         Validators.minLength(6),
         Validators.pattern(/^[0-9]+$/)
       ]],
-      prefix: ["+57", [
+      prefix: ["", [
         Validators.required
       ]],
       phoneNumber: ['', [

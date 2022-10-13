@@ -57,6 +57,10 @@
   "formValidations": {
     "ConfirmPaymentInfo": "Confirm payment order?",
     "RejectPaymentInfo": "Reject payment order?",
+    "ConfirmCategorieExtra": "The official plan already includes one category per person, do you want to buy an additional category?",
+    "ConfirmCategorieExtra1": "Shop Additional Categories",
+    "ConfirmCategorieExtra2": "Continue with the payment",
+    "Help": "Help center",
     "accessDenied": "Access denied",
     "additionalCategoriesRequired": "You have not selected any additional category",
     "checkoutStepAskRemoveAdditionalCategoriesAction": "You want to remove all additional categories?",
