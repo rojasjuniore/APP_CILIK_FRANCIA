@@ -48,7 +48,7 @@
                 {{ order.bankTransferSelect.nrAccount }}
             </p>
 
-            <img src="./assets/img/ws.png" class="csaondpoas">
+            <img src="./assets/img/ws.png" class="csaondpoas" [style.top]="auth === 'adm' ? '100px' : '130px'">
 
 
             <div class="seprd m-0 mb-2 mt-2" *ngIf="order.captureBank.length > 0"></div>

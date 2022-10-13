@@ -20,15 +20,15 @@ export class PreSalePaymentMethodsComponent implements OnInit {
   public paymentMethodType: any;
   public paymentMethods = [
     {
-      label: 'paymentMethods.transfer',
-      value: 'transfer',
-      icon: 'bi bi-bank',
-      status: true,
-    },
-    {
       label: 'paymentMethods.paypal',
       value: 'paypal',
       icon: 'bi bi-paypal',
+      status: true,
+    },
+    {
+      label: 'paymentMethods.transfer',
+      value: 'transfer',
+      icon: 'bi bi-bank',
       status: true,
     },
     {

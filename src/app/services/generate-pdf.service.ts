@@ -46,7 +46,7 @@ export class GeneratePdfService {
     alldata.style.overflow = "inherit";
     alldata.style.maxHeight = "inherit";
 
-    await html2canvas(data, { scrollY: -window.scrollY, scale: 1 }).then(
+    await html2canvas(alldata, { scrollY: -window.scrollY, scale: 1 }).then(
       canvas => {
         const contentDataURL = canvas.toDataURL("image/png", 1.0);
         // enabling the scroll
