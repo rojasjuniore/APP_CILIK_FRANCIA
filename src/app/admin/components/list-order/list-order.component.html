@@ -7,11 +7,17 @@
         <nav class="mb-3">
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <button class="nav-link active" id="nav-permission-roles-tab" data-bs-toggle="tab" data-bs-target="#nav-pending"
-                    type="button" role="tab" aria-controls="nav-permission-roles" aria-selected="true"> Ordenes pendientes</button>
+                    type="button" role="tab" aria-controls="nav-permission-roles" aria-selected="true">
+                    {{ 'general.pendingOrders' | translate }}
+                </button>
                 <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-completed"
-                    type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Ordenes completados</button>
+                    type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
+                    {{ 'general.approvedOrders' | translate }}
+                </button>
                     <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-rejected"
-                    type="button" role="tab" aria-controls="nav-profile" aria-selected="false"> Ordenes rechazado</button>
+                    type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
+                    {{ 'general.rejectedOrders' | translate }}
+                </button>
             </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">
