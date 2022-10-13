@@ -113,7 +113,7 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
           completed: true,
           payed: true
         }),
-        // this.purchaseSrv.sendPurchaseTransferApprovedNotification(order.orderId)
+        this.purchaseSrv.sendPurchaseTransferApprovedNotification(order.orderId)
       ]);
 
       let message = this.translatePipe.transform('formValidations.dataSave');
@@ -147,7 +147,7 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
       await Promise.all([
         this.hotelService.updateOrder(order.orderId, { status: 'rejected' }),
         this.hotelService.restoreRoomsOnReject(order.orderId),
-        // this.purchaseSrv.sendPurchaseTransferRejectedNotification(order.orderId)
+        this.purchaseSrv.sendPurchaseTransferRejectedNotification(order.orderId)
       ]);
 
       let message = this.translatePipe.transform('formValidations.dataSave');
