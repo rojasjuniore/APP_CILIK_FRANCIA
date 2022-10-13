@@ -16,27 +16,54 @@
         </nav>
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-pending" role="tabpanel" >
-                <ng-container *ngIf="listOrdersPending.length > 0; else noPurchases">
+                <!-- <ng-container *ngIf="listOrdersPending.length > 0; else noPurchases">
                     <div class="col-12 mb-4" *ngFor="let item of listOrdersPending">
                         <app-my-purchases-list-item [order]="item" (onShowDetails)="onShowDetails($event)"></app-my-purchases-list-item>
                     </div>
+                </ng-container> -->
+
+                <ng-container *ngIf="(orderListP$ | async) as orderListP; else loading">
+                    <ng-container *ngIf="orderListP.length > 0; else noPurchases">
+                        <div class="col-12 mb-4" *ngFor="let item of orderListP">
+                            <app-my-purchases-list-item [order]="item" (onShowDetails)="onShowDetails($event)"></app-my-purchases-list-item>
+                        </div>
+                    </ng-container>
                 </ng-container>
+
             </div>
 
             <div class="tab-pane fade" id="nav-completed" role="tabpanel" >
-                <ng-container *ngIf="listOrdersCompleted.length > 0; else noPurchases">
+                <!-- <ng-container *ngIf="listOrdersCompleted.length > 0; else noPurchases">
                     <div class="col-12 mb-4" *ngFor="let item of listOrdersCompleted">
                         <app-my-purchases-list-item [order]="item" (onShowDetails)="onShowDetails($event)"></app-my-purchases-list-item>
                     </div>
+                </ng-container> -->
+
+                <ng-container *ngIf="(orderListC$ | async) as orderListC; else loading">
+                    <ng-container *ngIf="orderListC.length > 0; else noPurchases">
+                        <div class="col-12 mb-4" *ngFor="let item of orderListC">
+                            <app-my-purchases-list-item [order]="item" (onShowDetails)="onShowDetails($event)"></app-my-purchases-list-item>
+                        </div>
+                    </ng-container>
                 </ng-container>
+
             </div>
 
             <div class="tab-pane fade" id="nav-rejected" role="tabpanel" >
-               <ng-container *ngIf="listOrdersRejected.length > 0; else noPurchases">
+               <!-- <ng-container *ngIf="listOrdersRejected.length > 0; else noPurchases">
                     <div class="col-12 mb-4" *ngFor="let item of listOrdersRejected">
                         <app-my-purchases-list-item [order]="item" (onShowDetails)="onShowDetails($event)"></app-my-purchases-list-item>
                     </div>
+                </ng-container> -->
+
+                <ng-container *ngIf="(orderListR$ | async) as orderListR; else loading">
+                    <ng-container *ngIf="orderListR.length > 0; else noPurchases">
+                        <div class="col-12 mb-4" *ngFor="let item of orderListR">
+                            <app-my-purchases-list-item [order]="item" (onShowDetails)="onShowDetails($event)"></app-my-purchases-list-item>
+                        </div>
+                    </ng-container>
                 </ng-container>
+
             </div>
             <!-- <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div> -->
         </div>
@@ -63,7 +90,7 @@
         </div>
     </ng-template>
     
-    <div *ngIf="loading">
+    <!-- <div *ngIf="loading">
         <div class="col-12 mb-4" *ngFor="let item of [1,1,1]">
             <div class="card card-box p-3 mb-3">
                 <div class="row g-2 d-flex align-items-center">
@@ -83,5 +110,27 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
+
+<ng-template #loading>
+    <div class="col-12 mb-4" *ngFor="let item of [1,1,1,1]">
+        <div class="card card-box p-3 mb-3">
+            <div class="row g-2 d-flex align-items-center">
+                <div class="col-12 px-3 d-flex justify-content-between placeholder-glow">
+                    <span class="placeholder bg-danger col-5" style="height: 36px;"></span>
+                    <span class="placeholder col-5" style="height: 36px;"></span>
+                </div>
+                <div class="seprd2"></div>
+                <div class="col-12 px-3">
+                    <p class="m-0 placeholder-glow">
+                        <span class="placeholder col-6"></span>
+                    </p>
+                    <div class="d-flex justify-content-end">
+                        <a href="#" tabindex="-1" class="btn btn-one disabled placeholder col-6"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
