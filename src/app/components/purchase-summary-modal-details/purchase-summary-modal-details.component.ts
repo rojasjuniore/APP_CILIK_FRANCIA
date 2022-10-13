@@ -58,7 +58,7 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
   }
 
   async buildModal() {
-    this.mi = this.bsModalSrv.buildModal('modalMyPurhcaseDetail');
+    this.mi = this.bsModalSrv.buildModal('modalMyPurhcaseDetail', {backdrop: 'static'});
   }
 
   get rooms() {
