@@ -247,7 +247,7 @@
     "title": "Para continuar con el proceso de pago por cuotas, debes leer y aceptar los términos y condiciones"
   },
   "paymentMethods": {
-    "bankTransferMessageOrderGenerated": "Transacción exitosa por  Los datos para realizar la transferencia bancaria serán enviados a su correo electrónico",
+    "bankTransferMessageOrderGenerated": "Los datos para realizar la transferencia bancaria serán enviados a su correo electrónico",
     "chooseYourPaymentMethod": "Elige tu método de pago",
     "creditCard": "Tarjeta de crédito",
     "crypto": "Criptomonedas",
