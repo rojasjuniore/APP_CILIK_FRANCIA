@@ -19,16 +19,19 @@
                                 </strong>
                             </p>
                             <ul>
-                                <li *ngFor="let item of [1,1,1,1,1,1,1,1]; index as idx">
-                                    {{ ("backTransferTerms.terms" | translate)[idx] }}
+                                <li *ngFor="let item of ('backTransferTerms.terms' | translate | keyvalue)">
+                                    {{item.value}}
                                 </li>
                             </ul>
-
 
                             <p>
                                 <strong> 
                                     {{ "backTransferTerms.bankdescription" | translate }}: 
                                 </strong>
+                            </p>
+
+                            <p class="text-center">
+                                {{ "backTransferTerms.bankdescription2" | translate }}:
                             </p>
 
                            <div class="row">

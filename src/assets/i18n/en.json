@@ -35,6 +35,7 @@
   },
   "backTransferTerms": {
     "bankdescription": "The Official accounts to transfer the money are",
+    "bankdescription2": "Choose one of the following banks",
     "terms": [
       "If you decide to choose the INTERNATIONAL TRANSFER payment option, you have 24 hours to make the deposit and upload the proof of payment in our system.",
       "All international transactions normally take 3-5 business days to reach the destination account. A maximum of 7 business days will be given to receive the money in one of the official accounts of the organization. If there are delays or errors in sending the money and therefore the payment deadline has already passed, the organization will make its respective adjustment and must send the additional money in order to approve the transaction.",
