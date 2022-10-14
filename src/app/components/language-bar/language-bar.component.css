@@ -1,8 +1,12 @@
 .dsaincsao{
     position: absolute;
-    top: 50px;
+    top: -20px;
+    font-size: 0.8rem;
 }
 
 .cmiasda{
     position: relative;
+}
+.btn-navbar-languaje img{
+    width: 100%;
 }

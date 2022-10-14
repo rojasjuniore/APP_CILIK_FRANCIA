@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12 col-sm-12 col-md-10 col-lg-8 mx-auto">
-      <div class="card border-0 p-5 my-5">
+      <div class="card border-0 p-3 p-lg-4 my-3 my-lg-5">
         <app-language-bar></app-language-bar>
 
         <app-header-cilik></app-header-cilik>
@@ -49,7 +49,7 @@
               </div>
 
               <!-- Input Document Type -->
-              <div class="col-12 col-md-4">
+              <div class="col-12 col-md-6 col-xl-4">
                 <div class="form-floating form-camp mb-3">
                   <select class="form-select" [ngClass]="{'is-invalid': submit && f.documentType.errors}"
                     formControlName="documentType" id="floatingSelectDocumentType" aria-label="Document Type">
@@ -74,7 +74,7 @@
               </div>
 
               <!-- Input DNI -->
-              <div class="col-12 col-md-8">
+              <div class="col-12 col-md-6 col-xl-8">
                 <div class="form-floating form-camp mb-3">
                   <input type="text" [ngClass]="{'is-invalid': submit && f.dni.errors}" formControlName="dni"
                     class="form-control" id="floatingInputDNI" placeholder="DNI">
@@ -315,8 +315,8 @@
                   </ng-container>
 
                   <ng-template #canSubmit>
-                    <div class="d-md-flex justify-content-between">
-                      <button class="btn btn-three btn-small text-uppercase fw-bold" type="button"
+                    <div class="d-sm-flex justify-content-between">
+                      <button class="btn btn-three btn-small text-uppercase fw-bold mb-3 mb-sm-0" type="button"
                         routerLink="/sign-in">
                         <i class="bi bi-chevron-left"></i> {{ "general.back" | translate }}
                       </button>
