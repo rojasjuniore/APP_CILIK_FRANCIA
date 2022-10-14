@@ -158,6 +158,7 @@
     "not": "No",
     "notRegistered": "Not registered yet?",
     "numberOfMembers": "Number of members",
+    "onlyImageFileTypeAllowed": "Only files in JPG, JPEG and PNG format are accepted",
     "order": "Order",
     "password": "Password",
     "payment": "Payment",

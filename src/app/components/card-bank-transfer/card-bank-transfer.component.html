@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="col-6" *ngIf="order?.status == 'pending'">
-            <div class="d-flex justify-content-end">
+            <div class="d-flex flex-column justify-content-end align-items-center">
 
                 <span class="text-rslt fw-bold fs-5">
 
@@ -25,6 +25,10 @@
                             accept="image/png,image/jpeg,image/jpg" style="display: none" (change)="subirImg($event)" />
                     </label>
                 </span>
+
+                <small>
+                    {{ 'general.onlyImageFileTypeAllowed' | translate }}
+                </small>
 
             </div>
         </div>
