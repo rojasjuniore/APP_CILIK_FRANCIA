@@ -83,6 +83,14 @@ export class GeneratePdfService {
   }
 
 
+  downloadPdfOrder(img){
+    let imgWidth = 190;
+    let doc = new jsPDF('p', 'mm');
+    doc.addImage(img, 'PNG', 10, 10, imgWidth, imgWidth);
+    doc.save(`summary-${Date.now()}.pdf`);
+  }
+
+
   // async downloadPdf(data: any) {
   //   // var data = document.getElementById('pdfDownload');
   //   // disable the scroll

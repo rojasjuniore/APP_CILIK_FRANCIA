@@ -14,6 +14,9 @@
                 <div class="container">
                     <div class="row g-3">
 
+                        <div #screen>
+
+                        
                         <div class="col-12 text-center mb-2">
                             <h5>{{'general.order' | translate | titlecase}} <strong>#{{order?.orderId}}</strong></h5>
                             <h5>{{(order?.createdAt | date:'medium') || 'MMM d, y, h:mm:ss a' }}</h5>
@@ -37,7 +40,7 @@
                         </div>
 
                         <app-purchase-summary-totales *ngIf="order" [order]="order"></app-purchase-summary-totales>
-
+                    </div>
                         <div class="col-12 mb-4" *ngIf="order?.paymentMethodType === 'bankTransfer'">
                             <app-card-bank-transfer [order]="order"></app-card-bank-transfer>
                         </div>
@@ -50,7 +53,7 @@
                                     COMPARTIR
                                 </button> -->
                                 &nbsp;
-                                <button class="btn btn-three text-uppercase" type="button" (click)="download()">
+                                <button class="btn btn-three text-uppercase" type="button" (click)="downloadImage()">
                                     <i class="bi bi-cloud-download"></i>
                                     {{ "general.download" | translate }}
                                 </button>

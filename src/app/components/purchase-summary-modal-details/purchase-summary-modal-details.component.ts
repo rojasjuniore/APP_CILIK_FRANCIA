@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -9,6 +9,7 @@ import { GeneratePdfService } from 'src/app/services/generate-pdf.service';
 import { HotelService } from 'src/app/services/hotel.service';
 import { PurchaseService } from 'src/app/services/purchase.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
+import html2canvas from "html2canvas";
 
 @Component({
   selector: 'app-purchase-summary-modal-details',
@@ -17,7 +18,10 @@ import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 })
 export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
 
+  @ViewChild('screen') screen!: ElementRef;
+
   auth = localStorage.getItem('auth');
+  
 
   public mi: any;
   public order: any;
@@ -75,18 +79,26 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
     console.log('share');
   }
 
-  async download() {
-    let DATA: any = document.getElementById('modalMyPurhcaseDetail');
-    let alldata: any = document.getElementById('alldata');
-    DATA.style.overflow = 'inherit';
-    DATA.style.maxHeight = 'inherit';
+  // async download() {
+  //   let DATA: any = document.getElementById('modalMyPurhcaseDetail');
+  //   let alldata: any = document.getElementById('alldata');
+  //   DATA.style.overflow = 'inherit';
+  //   DATA.style.maxHeight = 'inherit';
 
 
-    console.log(DATA);
-    console.log('download');
+  //   console.log(DATA);
+  //   console.log('download');
+    
 
+ 
+    
+  // }
 
-    this.generatePdf.downloadPdf(DATA, alldata);
+  downloadImage(){
+    html2canvas(this.screen.nativeElement).then(canvas => {
+      let img = canvas.toDataURL('image/png');
+      this.generatePdf.downloadPdfOrder(img);
+    });
   }
 
   closeModal() {
