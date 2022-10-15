@@ -69,6 +69,10 @@ body{
 .btn-small{
     width: 190px;
 }
+.btn-xs-c{
+    width: fit-content !important;
+    padding: 0.5rem 1rem;
+}
 .btn.btn-one{
     background-color: #e7344c;
     color: #ffffff;
@@ -119,8 +123,8 @@ body{
     font-size: 1rem;
 }
 .btn-navbar-c{
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     background-color: #d3d3ce;
     cursor: pointer;
@@ -417,6 +421,9 @@ body{
     .btn{
         width: 100%;
     }   
+    .btn-medium-c{
+        width: 150px;
+    }
     .cont-item-step .item-step:nth-child(2)::before{
         display: none;
     }
@@ -432,9 +439,17 @@ body{
         margin: 1rem auto;
     }
 }
+@media (min-width: 768px) and (max-width: 991px) {
+    .seprd {
+        width: 94%;
+    }
+}
 
 
 .dosadka{
     background-color: #e7344c;
     color: #ffffff !important;
+}
+.nav-link{
+    color: #808080;
 }

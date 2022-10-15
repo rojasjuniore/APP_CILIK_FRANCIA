@@ -45,7 +45,9 @@
                                                 [disabled]="!item.status"
                                                 [class.dosadka]="item.select"
                                                 (click)="selectBank(item)" >
-                                                <span class="icon-payment">&nbsp;</span>
+                                                <span class="fs-5 pe-2">
+                                                    <i class="bi bi-bank"></i>
+                                                </span>
                                                 <span class="label-payment">
                                                     {{item.label | uppercase}}
                                                 </span>                          

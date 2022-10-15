@@ -4,6 +4,7 @@
     right: 15px;
     width: 80px;
     cursor: pointer;
+    filter: drop-shadow(rgba(0, 0, 0, 0.2) 5px 5px 5px);
 }
 
 .dscqv {

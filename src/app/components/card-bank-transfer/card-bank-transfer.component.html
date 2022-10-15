@@ -8,11 +8,11 @@
             </div>
         </div>
         <div class="col-6" *ngIf="order?.status == 'pending'">
-            <div class="d-flex flex-column justify-content-end align-items-center">
+            <div class="d-flex flex-column justify-content-end align-items-end">
 
                 <span class="text-rslt fw-bold fs-5">
 
-                    <label class="btn btn-one">
+                    <label class="btn btn-one btn-xs-c">
                         <span *ngIf="!hotelService.loading">
                             <i class="bi bi-cloud-arrow-up"></i> 
                             {{ "general.comprobanteUpload" | translate }} 
