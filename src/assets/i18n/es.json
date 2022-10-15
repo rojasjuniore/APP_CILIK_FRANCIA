@@ -205,7 +205,8 @@
     "valueToBeCancelledFrom": "Valor a cancelar de",
     "valueWithoutDiscount": "Valor sin descuento",
     "verify": "Verificar",
-    "yes": "Sí"
+    "yes": "Sí",
+    "specificDetailsBank": "Al darle click al botón, le mostrará los detalles específico de su compra y datos del banco seleccionado."
   },
   "hotel": {
     "roomType": {

@@ -4,5 +4,12 @@
     /* bottom: 10px; */
     /* width: 300px; */
     right: 25px;
-    text-align: center;
+    text-align: end;
+    width: 200px;
+}
+@media (max-width: 767px){
+    .coasmdoas{
+        text-align: center;
+        width: auto;
+    }
 }
