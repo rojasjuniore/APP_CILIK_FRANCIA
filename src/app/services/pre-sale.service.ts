@@ -248,7 +248,7 @@ export class PreSaleService {
       rooms,
     });
 
-    // console.log(document);
+    // console.log('order', document);
     // return;
 
     /** Store Document */
@@ -261,12 +261,9 @@ export class PreSaleService {
       await this.purchaseSrv.sendPurchaseTransferNotification(document.orderId);
     }
 
-    
-
     this.removeDocumentLocalStorage();
 
     return url;
-
   }
 
   removeDocumentLocalStorage(){
