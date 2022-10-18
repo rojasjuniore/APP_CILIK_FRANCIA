@@ -194,6 +194,7 @@
     "signUpHere": "Regístrarse aquí",
     "solo": "Solista",
     "soloCategory": "Categoría de Solista",
+    "specificDetailsBank": "Al darle click al botón, le mostrará los detalles específico de su compra y datos del banco seleccionado.",
     "status": "Estado",
     "successfulRegistration": "Registro exitoso",
     "successfulTransaction": "Transacción exitosa",
@@ -206,8 +207,7 @@
     "valueToBeCancelledFrom": "Valor a cancelar de",
     "valueWithoutDiscount": "Valor sin descuento",
     "verify": "Verificar",
-    "yes": "Sí",
-    "specificDetailsBank": "Al darle click al botón, le mostrará los detalles específico de su compra y datos del banco seleccionado."
+    "yes": "Sí"
   },
   "hotel": {
     "roomType": {
