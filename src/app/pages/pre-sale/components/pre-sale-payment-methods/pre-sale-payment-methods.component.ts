@@ -174,7 +174,7 @@ export class PreSalePaymentMethodsComponent implements OnInit {
         paymentMethod: null,
         amount: coutaAmount,
         payed: false,
-        metatada: null,
+        metadata: null,
         url: null,
       }
     });

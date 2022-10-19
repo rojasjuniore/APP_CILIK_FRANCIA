@@ -178,37 +178,56 @@ export class PreSaleInstallmentsPayCoutaComponent implements OnInit {
 
       this.preSaleDocument.installments[0] = coutaPayed;
 
-      /**
-       * Administrar habitaciones
-       */
-      const roomsToParse = await Promise.all(
-        this.preSaleDocument.rooms
-        .map((row: any, index: number) => Object.assign({index}, row))
-        .map(async (room: any) => this.processRoomData({room, orderId: this.preSaleDocument.orderId}))
+      this.preSaleSrv.updateDocumentLocalStorage(
+        Object.assign({}, this.preSaleDocument, {step: url, installmentsPayed: 1})
       );
-      const rooms = roomsToParse.sort((a: any, b: any) => a.index - b.index);
 
-      const data = Object.assign({}, this.preSaleDocument, { 
-        installmentsPayed: 1,
-        step: url,
-        rooms,
+      // const order = this.preSaleSrv.getDocumentLocalStorage();
+      // console.log('order', order);
+
+      await this.preSaleSrv.completePreSaleOrder(null, {
+        completed: false,
+        payed: false,
+        status: 'pending',
       });
 
-      /** Actualizar orden de compra en local */
-      this.preSaleSrv.updateDocumentLocalStorage(data);
-
-      /** Store Document */
-      await this.purchaseSrv.storePurchase(data.orderId, data);
-
-      /** Send Mail Summary */
-      await this.purchaseSrv.sendPurchaseSummaryNotification(data.uid, data.orderId);
-
-      this.preSaleSrv.removeDocumentLocalStorage();
-
-      // console.log('save document', metadata);
-
+      const message = this.translatePipe.transform('general.successfulTransaction');
+      this.sweetAlert2Srv.showInfo(message);
+      // this.router.navigateByUrl('pages/dashboard');
       this.router.navigate([url]);
       return;
+
+      // /**
+      //  * Administrar habitaciones
+      //  */
+      // const roomsToParse = await Promise.all(
+      //   this.preSaleDocument.rooms
+      //   .map((row: any, index: number) => Object.assign({index}, row))
+      //   .map(async (room: any) => this.processRoomData({room, orderId: this.preSaleDocument.orderId}))
+      // );
+      // const rooms = roomsToParse.sort((a: any, b: any) => a.index - b.index);
+
+      // const data = Object.assign({}, this.preSaleDocument, { 
+      //   installmentsPayed: 1,
+      //   step: url,
+      //   rooms,
+      // });
+
+      // /** Actualizar orden de compra en local */
+      // this.preSaleSrv.updateDocumentLocalStorage(data);
+
+      // /** Store Document */
+      // await this.purchaseSrv.storePurchase(data.orderId, data);
+
+      // /** Send Mail Summary */
+      // await this.purchaseSrv.sendPurchaseSummaryNotification(data.uid, data.orderId);
+
+      // this.preSaleSrv.removeDocumentLocalStorage();
+
+      // // console.log('save document', metadata);
+
+      // this.router.navigate([url]);
+      // return;
 
     } catch (err) {
       console.log('Error on PreSaleInstallmentsPayCoutaComponent.saveDocument', err);
