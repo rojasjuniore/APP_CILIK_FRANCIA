@@ -22,7 +22,7 @@ export class AuthRoleGuard implements CanActivate {
 
           const data = resp[0];
           const { roles = [] } = data;
-          console.log(resp);
+          // console.log('resp', resp);
           if(resp && resp.length > 0){
 
             if(roles.includes('admin-payments')){
