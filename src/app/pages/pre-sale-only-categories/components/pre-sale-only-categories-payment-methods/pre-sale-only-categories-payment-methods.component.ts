@@ -195,9 +195,11 @@ export class PreSaleOnlyCategoriesPaymentMethodsComponent implements OnInit {
 
     this.preSaleSrv.updateDocumentLocalStorage({ paymentMethodType: 'bankTransfer' });
 
+    const order = this.preSaleSrv.getDocumentLocalStorage()
+
     /** Finalizar documento de orden de compra */
     await this.preSaleSrv.completePreSaleOrder(
-      'pago por transferencia',
+      order.metadata,
       {
         completed: false,
         payed: false,
