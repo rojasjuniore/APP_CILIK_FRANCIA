@@ -3,7 +3,7 @@
         <div class="col-6">
             <div class="d-flex justify-content-between">
                 <span class="text-rslt fw-bold fs-5">
-                    {{ "paymentMethods.transfer" | translate }} ({{ order.metadata.bankTransferSelect.label }})
+                    {{ "paymentMethods.transfer" | translate }} ({{ order.metadata?.bankTransferSelect.label }})
                 </span>
             </div>
         </div>
@@ -44,12 +44,12 @@
 
             <p class="m-0">
                 <strong> {{ "general.comprobanteDataName" | translate }}: </strong>
-                {{ order.metadata.bankTransferSelect.accountTitle }}
+                {{ order.metadata?.bankTransferSelect.accountTitle }}
             </p>
 
             <p class="m-0">
                 <strong> {{ "general.comprobanteDataTitle" | translate }}: </strong>
-                {{ order.metadata.bankTransferSelect.nrAccount }}
+                {{ order.metadata?.bankTransferSelect.nrAccount }}
             </p>
             <!-- <a href="https://api.whatsapp.com/send?phone=573137177996" target="_blank">
                 <img src="./assets/img/ws.png" class="csaondpoas" [style.top]="auth === 'adm' ? '100px' : '130px'">
@@ -57,13 +57,13 @@
             
 
 
-            <div class="seprd m-0 mb-2 mt-2" *ngIf="order.metadata.captureBank.length > 0"></div>
-            <span class="text-rslt fw-bold fs-5" *ngIf="order.metadata.captureBank.length > 0">
+            <div class="seprd m-0 mb-2 mt-2" *ngIf="order.metadata?.captureBank.length > 0"></div>
+            <span class="text-rslt fw-bold fs-5" *ngIf="order.metadata?.captureBank.length > 0">
                 {{ "general.comprobanteUploadSuccess" | translate }}
             </span>
 
-            <div *ngIf="order.metadata.captureBank.length > 0" class="mt-2">
-                <div *ngFor="let item of order.metadata.captureBank">
+            <div *ngIf="order.metadata?.captureBank.length > 0" class="mt-2">
+                <div *ngFor="let item of order.metadata?.captureBank">
                     <div class="row mt-2">
                         <div class="col-2 text-center">
                             <img [src]="item.url" class="csomdoa" (click)="verIMG(item.url)" style="cursor: pointer;">
