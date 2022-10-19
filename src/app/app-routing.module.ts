@@ -4,11 +4,9 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { SecurePasswordComponent } from './components/secure-password/secure-password.component';
 import { RegistroExitosoComponent } from './components/registro-exitoso/registro-exitoso.component';
-import { CheckTicketOnLocalStorageGuard } from './guards/check-ticket-on-local-storage.guard';
 import { IsAuthGuard } from './guards/is-auth.guard';
 import { AlreadyAuthGuard } from './guards/already-auth.guard';
 import { CheckAdminRoleGuard } from './guards/check-admin-role.guard';
-import { AuthRoleGuard } from './guards/auth-role.guard';
 
 const routes: Routes = [
   {
@@ -33,7 +31,7 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    canActivate: [ CheckAdminRoleGuard, AuthRoleGuard ],
+    canActivate: [ CheckAdminRoleGuard ],
     loadChildren: () => import("./admin/admin.module").then((m) => m.AdminModule),
   },
   {
