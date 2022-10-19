@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:prod": "ng serve --configuration production",
     "build": "npm install -g @angular/cli@latest && npm install && ng build --configuration development",
     "deploy": "ng build --configuration production && firebase deploy --only hosting",
     "deploy-dev": "ng build --configuration development && firebase deploy --only hosting",
