@@ -19,10 +19,13 @@ export class AuthRoleGuard implements CanActivate {
 
       this.authService.getUserAuth(localStorage.getItem('email')).subscribe({
         next: (resp: any) => {
+
+          const data = resp[0];
+          const { roles = [] } = data;
           console.log(resp);
           if(resp && resp.length > 0){
 
-            if(resp[0].roles.includes('admin-payments')){
+            if(roles.includes('admin-payments')){
               localStorage.setItem('auth', 'adm')
               return true;
             }else{
