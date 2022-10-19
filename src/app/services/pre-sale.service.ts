@@ -73,6 +73,7 @@ export class PreSaleService {
       expiredAt: currentDate.add(30, 'minutes').valueOf(),
       orderType: params.orderType || 'fullPass', // 'fullPass' | 'categoryPass'
       setup: params.setup || null, // 'manual' | 'automatic'
+      status: params.status || 'pending',
     };
   }
 
@@ -237,6 +238,7 @@ export class PreSaleService {
     const rooms = roomsToParse.sort((a: any, b: any) => a.index - b.index);
 
     const document = Object.assign({}, preSaleDocument, {
+      metadata,
       step: url,
       payed,
       completed,

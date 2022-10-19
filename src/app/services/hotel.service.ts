@@ -286,7 +286,7 @@ export class HotelService {
         fileRef.getDownloadURL().subscribe({
           next: (url) => {
             console.log(url)
-            order.metada.captureBank.push({
+            order.metadata.captureBank.push({
               nota: '',
               url
             });
@@ -301,7 +301,7 @@ export class HotelService {
 
   async updateCaptureImgComprobante(idOrden, order){
     const ref =  this.afs.collection(this.purchases).doc(idOrden)
-    await ref.update({ metada: order.metada });
+    await ref.update({ metadata: order.metadata });
   }
 
   // async deleteImgComprobante(imgTemp){

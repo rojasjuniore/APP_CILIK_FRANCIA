@@ -145,7 +145,7 @@ export class PreSaleModalBankTransferDetailComponent implements OnInit {
 
       /** Actualizar localStorage */
       this.preSaleSrv.updateDocumentLocalStorage({ 
-        metada: {
+        metadata: {
           bankTransferSelect: this.bankSelect,
           captureBank: [],
           method: 'pago por transferencia'
