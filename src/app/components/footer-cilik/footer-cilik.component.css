@@ -1,0 +1,8 @@
+.icon-payments img{
+    width: 80px;
+}
+@media (max-width: 575px) {
+    .icon-payments img{
+        width: 50px;
+    }
+}
