@@ -7,6 +7,7 @@ import { RegistroExitosoComponent } from './components/registro-exitoso/registro
 import { IsAuthGuard } from './guards/is-auth.guard';
 import { AlreadyAuthGuard } from './guards/already-auth.guard';
 import { CheckAdminRoleGuard } from './guards/check-admin-role.guard';
+import { LogoutComponent } from './components/logout/logout.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,10 @@ const routes: Routes = [
   {
     path: 'sign-up',
     component: SignUpComponent
+  },
+  {
+    path: 'logout',
+    component: LogoutComponent
   },
   {
     path: 'register-completed',
