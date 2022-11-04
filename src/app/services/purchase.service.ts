@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import moment from 'moment';
 import { lastValueFrom, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { handlerArrayResult, handlerObjectResult } from '../helpers/model.helper';
+import { ExcelService } from './excel.service';
 
 const URL_ROOT: any = environment.API_URL;
 @Injectable({
@@ -16,6 +18,7 @@ export class PurchaseService {
   constructor(
     private afs: AngularFirestore,
     private http: HttpClient,
+    private excelSrv: ExcelService,
   ) { }
 
   async storePurchase(docId: string, data: any) {
@@ -151,6 +154,22 @@ export class PurchaseService {
     );
 
     return await handlerArrayResult(snapshot, {idField});
+  }
+
+  async getAllPurchaseExcel(){
+    try {
+      const url = `${environment.API_URL}admin/all-purchase-report`;
+      const snapshot: any = await lastValueFrom(this.http.get(url));
+      const { results } = snapshot;
+      console.log('results', results);
+      const currentTime = moment().valueOf();
+      this.excelSrv.exportAsExcelFile(results, 'purchases-list' + currentTime + '.xlsx');
+      return;
+
+    } catch (err) {
+      console.log('Error on BalanceService@getVipBalance', err);
+      throw err;
+    }
   }
 
 }
