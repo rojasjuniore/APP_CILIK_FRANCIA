@@ -14,7 +14,7 @@ const routes: Routes = [
         component: PurchaseSummaryDetailsComponent,
       },
       {
-        path: ':id/pay-couta/:couta',
+        path: ':id/pay-couta/:cuota',
         component: PurchasePayCuotaComponent
       },
       {

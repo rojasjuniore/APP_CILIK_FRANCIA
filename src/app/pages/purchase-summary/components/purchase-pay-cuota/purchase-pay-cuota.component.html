@@ -28,6 +28,8 @@
                 <div class="row d-flex justify-content-center">
                     <div class="col-12 col-sm-8 col-md-6 mb-4">
                         <div class="d-flex flex-column align-items-center justify-content-center">
+
+                            <h5>Elige tu forma de pago</h5>
         
                             <button class="btn btn-payment btn-lg mb-3" 
                                 type="button" *ngFor="let item of paymentMethods"   
@@ -45,8 +47,14 @@
                 </div>
             </div>
 
-            <ng-container *ngIf="!cuota.payed; else coutaPayed">
+            <ng-container *ngIf="!cuota?.payed; else coutaPayed">
                 <div class="col-12 mb-4" *ngIf="paymentMethodType == 'paypal'">
+                    <!-- (onCancel)="onPaypalResponse({type: 'cancel', data: $event})"
+                    (onError)="onPaypalResponse({type: 'error', data: $event})"
+                    (onComplete)="onPaypalResponse({type: 'success', data: $event})" -->
+                    <app-paypal [amount]="0"
+                    >
+                    </app-paypal>
                     paypal {{cuota | json}}
                 </div>
                 <div class="col-12 mb-4" *ngIf="paymentMethodType == 'bankTransfer'">
