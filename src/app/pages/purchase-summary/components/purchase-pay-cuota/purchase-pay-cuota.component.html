@@ -15,6 +15,14 @@
             </app-purchase-summary-details-category-card-item>
         </div>
 
+        <div class="col-12 mb-4">
+            <app-pruchase-installment-pay-couta-card-item 
+                [index]="cuota + 1"
+                [item]="purchaseDocument.installments[cuota]"
+                (onSelectShowPaymentMethods)="onSelectPayemtMethod($event)"
+            ></app-pruchase-installment-pay-couta-card-item>
+        </div>
+
         <!-- <app-purchase-summary-totales [order]="purchaseDocument"></app-purchase-summary-totales> -->
 
     </ng-container>

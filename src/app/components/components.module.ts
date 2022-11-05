@@ -51,6 +51,7 @@ import { PermissionRolesUpdateComponent } from './permission-roles-update/permis
 import { PermissionRolesRemoveComponent } from './permission-roles-remove/permission-roles-remove.component';
 import { PermissionProfileUpdateComponent } from './permission-profile-update/permission-profile-update.component';
 import { LogoutComponent } from './logout/logout.component'; 
+import { PruchaseInstallmentPayCoutaCardItemComponent } from './pruchase-installment-pay-couta-card-item/pruchase-installment-pay-couta-card-item.component';
 
 
 @NgModule({
@@ -110,6 +111,7 @@ import { LogoutComponent } from './logout/logout.component';
     PermissionRolesRemoveComponent,
     PermissionProfileUpdateComponent,
     LogoutComponent,
+    PruchaseInstallmentPayCoutaCardItemComponent,
   ],
   exports: [
     CommonModule,
@@ -158,6 +160,7 @@ import { LogoutComponent } from './logout/logout.component';
     PermissionRolesRemoveComponent,
     PermissionProfileUpdateComponent,
     LogoutComponent,
+    PruchaseInstallmentPayCoutaCardItemComponent,
   ],
   providers: [
     TranslatePipe,
