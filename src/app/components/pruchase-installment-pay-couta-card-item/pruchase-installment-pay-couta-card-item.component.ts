@@ -19,14 +19,7 @@ export class PruchaseInstallmentPayCoutaCardItemComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // console.log('item', this.item);
-
-    /**
-     * Si tiene método de pago definido
-     */
-    if(this.item.paymentMethod){
-      this.showPaymentMethods();
-    }
+    this.showPaymentMethods();
   }
 
   async alreadyPaid() {
