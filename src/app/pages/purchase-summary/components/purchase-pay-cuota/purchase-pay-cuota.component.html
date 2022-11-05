@@ -24,8 +24,6 @@
                 ></app-pruchase-installment-pay-couta-card-item>
             </div>
     
-            <!-- <app-purchase-summary-totales [order]="purchaseDocument"></app-purchase-summary-totales> -->
-
             <div class="col-12 mb-4" *ngIf="step == 'showOpts'">
                 <div class="row d-flex justify-content-center">
                     <div class="col-12 col-sm-8 col-md-6 mb-4">
@@ -47,12 +45,15 @@
                 </div>
             </div>
 
-            <div class="col-12 mb-4" *ngIf="paymentMethodType == 'paypal'">
-                paypal
-            </div>
-            <div class="col-12 mb-4" *ngIf="paymentMethodType == 'bankTransfer'">
-                bankTransfer
-            </div>
+            <ng-container *ngIf="!cuota.payed; else coutaPayed">
+                <div class="col-12 mb-4" *ngIf="paymentMethodType == 'paypal'">
+                    paypal {{cuota | json}}
+                </div>
+                <div class="col-12 mb-4" *ngIf="paymentMethodType == 'bankTransfer'">
+                    bankTransfer {{cuota | json}}
+                </div>
+            </ng-container>
+
 
         </ng-container>
 
@@ -60,9 +61,17 @@
 
 </div>
 
+<ng-template #coutaPayed>
+    <div class="col-12 mb-4">
+        <h5 class="text-center">
+            Esta couta ya fue cancelada
+        </h5>
+    </div>
+</ng-template>
+
 
 <ng-template #notFoundOrder>
-    <div class="col-12">
+    <div class="col-12 mb-4">
         <h5>
             No se encontró la orden
         </h5>

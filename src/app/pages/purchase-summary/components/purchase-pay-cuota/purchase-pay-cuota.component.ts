@@ -61,6 +61,8 @@ export class PurchasePayCuotaComponent implements OnInit {
     console.log('opts', opts);
     if(opts.type){
       this.paymentMethodType = opts.type;
+      this.cuota = opts.item;
+
     }else{
       this.step = 'showOpts'
     }

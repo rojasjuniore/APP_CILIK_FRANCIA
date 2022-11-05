@@ -30,7 +30,8 @@ export class PruchaseInstallmentPayCoutaCardItemComponent implements OnInit {
     return this.onSelectShowPaymentMethods.next({
       item: this.item,
       index: this.index,
-      type: this.item.paymentMethod
+      type: this.item.paymentMethod,
+      payed: this.item.payed,
     });
   }
 
