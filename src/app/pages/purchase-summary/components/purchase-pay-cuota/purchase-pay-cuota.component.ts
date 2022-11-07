@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { from, Observable } from 'rxjs';
 import { PurchaseService } from 'src/app/services/purchase.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
@@ -48,6 +49,7 @@ export class PurchasePayCuotaComponent implements OnInit {
     private activeRoute: ActivatedRoute,
     private purchaseSrv: PurchaseService,
     private sweetAlert2Srv: Sweetalert2Service,
+    private spinner: NgxSpinnerService,
   ) {
     this.orderId = this.activeRoute.snapshot.paramMap.get('id');
     this.nroCuota = Number(this.activeRoute.snapshot.paramMap.get('cuota'));
@@ -58,7 +60,7 @@ export class PurchasePayCuotaComponent implements OnInit {
   }
 
   async onSelectShowPayemtMethod(opts: any){
-    console.log('opts', opts);
+    // console.log('opts', opts);
     if(opts.type){
       this.paymentMethodType = opts.type;
       this.cuota = opts.item;
@@ -72,9 +74,71 @@ export class PurchasePayCuotaComponent implements OnInit {
     const ask = await this.sweetAlert2Srv.askConfirm('Una vez seleccionado el metodo de pago no podra cambiarlo, desea continuar?');
     if(!ask){ return; }
 
-    this.paymentMethodType = type;
-    this.step = null;
+    try {
+      await this.spinner.show();
+      await this.purchaseSrv.updatePurchaseInstallmentCouta(this.orderId, this.nroCuota, {paymentMethod: type.value});
+      this.paymentMethodType = type.value;
+      this.step = null;
+      return;
+
+    } catch (err) {
+      console.log('Error on PurchasePayCuotaComponent.selectPaymentMethod', err);
+      return;
+
+    }finally{
+      this.spinner.hide();
+    }
   }
 
+  async onPaypalResponse(params: any){
+    const { type, data } = params;
+    // console.log({type, data});
+
+    switch (type) {
+      case 'cancel':
+        console.log('Cancelado', data);
+        break;
+      case 'error':
+        console.log('Error', data);
+        break;
+    
+      default:
+        // console.log('success', data);
+        await this.spinner.show();
+
+        await Promise.all([
+          this.purchaseSrv.updatePurchaseInstallmentCouta(this.orderId, this.nroCuota, {
+            metadata: data,
+            payed: true
+          }),
+          this.purchaseSrv.updatePurchaseCounter(this.orderId, 'installmentsPayed', 1)
+        ]);
+
+        /**
+         * Validar si ya se cancelaron todas las cuotas pendientes
+         */
+        await this.checkInstallments();
+
+        this.spinner.hide();
+        break;
+    }
+  }
+
+  async checkInstallments(){
+    try {
+      const { installments, installmentsPayed } = await this.purchaseSrv.getPurchaseDocument(this.orderId);
+      if(installments.length === installmentsPayed){
+        await this.purchaseSrv.updatePurchase(this.orderId, {
+          status: 'completed',
+          payed: true,
+          completed: true,
+        });
+      }
+      
+    } catch (err) {
+      console.log('Error on PurchasePayCuotaComponent.checkInstallments', err);
+      return;
+    }
+  }
 
 }
