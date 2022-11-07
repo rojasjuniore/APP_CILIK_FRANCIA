@@ -119,6 +119,9 @@ export class PurchasePayCuotaComponent implements OnInit {
          */
         await this.checkInstallments();
 
+        this.step = null;
+        this.paymentMethodType = null;
+
         this.spinner.hide();
         break;
     }
