@@ -3,14 +3,14 @@
         <div class="col-12">
             <div class="d-flex justify-content-between">
                 <span class="text-rslt fw-bold fs-5">
-                    {{ "general.share" | translate }} #{{item.nro}}
+                    {{ "general.share" | translate }} #{{index}}
                 </span>
 
-                <ng-container *ngIf="!item.payed; else showPayedButton">
+                <!-- <ng-container *ngIf="!item.payed; else showPayedButton">
                     <button type="button" class="btn btn-danger btn-sm" (click)="showPaymentMethods()">
-                        Pagar
+                        Pay
                     </button>
-                </ng-container>
+                </ng-container> -->
 
             </div>
         </div>
@@ -33,6 +33,6 @@
 
 <ng-template #showPayedButton>
     <button type="button" class="btn btn-danger btn-sm" disabled>
-        Pagado
+        {{ "general.payed" | translate }}
     </button>
 </ng-template>
