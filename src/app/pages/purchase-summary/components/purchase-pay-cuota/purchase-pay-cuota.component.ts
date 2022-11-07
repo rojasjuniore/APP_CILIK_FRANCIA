@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { from, Observable } from 'rxjs';
 import { PurchaseService } from 'src/app/services/purchase.service';
@@ -50,6 +50,7 @@ export class PurchasePayCuotaComponent implements OnInit {
     private purchaseSrv: PurchaseService,
     private sweetAlert2Srv: Sweetalert2Service,
     private spinner: NgxSpinnerService,
+    private router: Router,
   ) {
     this.orderId = this.activeRoute.snapshot.paramMap.get('id');
     this.nroCuota = Number(this.activeRoute.snapshot.paramMap.get('cuota'));
@@ -142,6 +143,11 @@ export class PurchasePayCuotaComponent implements OnInit {
       console.log('Error on PurchasePayCuotaComponent.checkInstallments', err);
       return;
     }
+  }
+
+
+  onBack(){
+    this.router.navigate(['/pages/dashboard']);
   }
 
 }
