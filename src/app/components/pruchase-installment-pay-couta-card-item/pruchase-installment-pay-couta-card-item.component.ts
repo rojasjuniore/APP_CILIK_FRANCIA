@@ -2,6 +2,7 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-pruchase-installment-pay-couta-card-item',
@@ -28,14 +29,13 @@ export class PruchaseInstallmentPayCoutaCardItemComponent implements OnInit {
 
   async showPaymentMethods() {
     const { url } = this.item;
-    console.log('url', url);
-    return this.router.navigate([url]);
-    // return this.onSelectShowPaymentMethods.next({
-    //   item: this.item,
-    //   index: this.index,
-    //   type: this.item.paymentMethod,
-    //   payed: this.item.payed,
-    // });
+    // console.log('url', url);
+
+    /** Eliminar de la cadena baseURL */
+    const newUrl = url.replace(environment.urlWeb,'');
+    console.log(newUrl);
+
+    return this.router.navigate([ '/' + newUrl]);
   }
 
 }
