@@ -32,11 +32,11 @@ export class PurchaseService {
 
   async updatePurchaseInstallmentCouta(docId: string, index: number, data: any){
     try {
-      console.log({
-        docId,
-        index,
-        data
-      });
+      // console.log({
+      //   docId,
+      //   index,
+      //   data
+      // });
       const snapshot = await lastValueFrom(
         this.afs.collection(this.purchaseCollection).doc(docId).get()
       );
