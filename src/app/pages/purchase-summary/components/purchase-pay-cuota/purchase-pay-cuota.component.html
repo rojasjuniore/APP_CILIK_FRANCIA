@@ -48,17 +48,20 @@
             </div>
 
             <ng-container *ngIf="!cuota?.payed; else coutaPayed">
+                <ng-container *ngIf="cuota?.amount > 0">
+                    
+                    <div class="col-12 mb-4 text-center" *ngIf="paymentMethodType == 'paypal'">
+                        <app-paypal [amount]="cuota?.amount"
+                            (onCancel)="onPaypalResponse({type: 'cancel', data: $event})"
+                            (onError)="onPaypalResponse({type: 'error', data: $event})"
+                            (onComplete)="onPaypalResponse({type: 'success', data: $event})">
+                        </app-paypal>
+                    </div>
+                    <div class="col-12 mb-4" *ngIf="paymentMethodType == 'bankTransfer'">
+                        bankTransfer {{cuota | json}}
+                    </div>
 
-                <div class="col-12 mb-4 text-center" *ngIf="paymentMethodType == 'paypal'">
-                    <app-paypal [amount]="cuota?.amount"
-                        (onCancel)="onPaypalResponse({type: 'cancel', data: $event})"
-                        (onError)="onPaypalResponse({type: 'error', data: $event})"
-                        (onComplete)="onPaypalResponse({type: 'success', data: $event})">
-                    </app-paypal>
-                </div>
-                <div class="col-12 mb-4" *ngIf="paymentMethodType == 'bankTransfer'">
-                    bankTransfer {{cuota | json}}
-                </div>
+                </ng-container>
             </ng-container>
 
 

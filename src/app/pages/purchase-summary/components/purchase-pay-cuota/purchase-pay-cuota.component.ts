@@ -67,7 +67,8 @@ export class PurchasePayCuotaComponent implements OnInit {
       this.cuota = opts.item;
 
     }else{
-      this.step = 'showOpts'
+      this.step = 'showOpts';
+      this.cuota = opts.item;
     }
   }
 
@@ -122,6 +123,7 @@ export class PurchasePayCuotaComponent implements OnInit {
 
         this.step = null;
         this.paymentMethodType = null;
+        this.cuota.payed = true;
 
         this.spinner.hide();
         break;
