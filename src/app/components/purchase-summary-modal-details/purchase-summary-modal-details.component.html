@@ -35,8 +35,9 @@
 
                         <div  *ngIf="order?.installments.length > 0">
                             <div class="col-12 mb-4" *ngFor="let item of order.installments">
-                                <!-- <app-pre-sale-installment-couta-card-item  [index]="item.nro" [item]="item"></app-pre-sale-installment-couta-card-item> -->
-                                <app-pruchase-installment-pay-couta-card-item [item]="item"></app-pruchase-installment-pay-couta-card-item>
+                                <app-pre-sale-installment-couta-card-item 
+                                    [index]="item.nro" [item]="item" [showButton]="true">
+                                </app-pre-sale-installment-couta-card-item>
                             </div>
                         </div>
 
