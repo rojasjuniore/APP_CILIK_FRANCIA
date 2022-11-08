@@ -31,17 +31,57 @@
                             <div class="item-dash-icon">
                                 <img src="assets/img/cilik/dash-08.png" alt="">
                             </div>
-                            <button class="btn btn-one" (click)="newOrder()">
-                                {{'general.buyPlans' | translate | uppercase}}
+                            <button class="btn btn-one" (click)="newOrder('fullPass')">
+                                PLAN TODO INCLUIDO
                             </button>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 mb-3">
                         <div class="card-box text-center p-3">
                             <div class="item-dash-icon">
+                                <img src="assets/img/cilik/dash-08.png" alt="">
+                            </div>
+                            <button class="btn btn-one" style="background-color: #b661f8;" (click)="newOrder('hotelAndEventPass')">
+                                PLAN HOTEL Y FULL PASS
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 mb-3">
+                        <div class="card-box text-center p-3">
+                            <div class="item-dash-icon">
+                                <img src="assets/img/cilik/dash-08.png" alt="">
+                            </div>
+                            <button class="btn btn-one" style="background-color: #73cf89;" (click)="newOrder('hotelPass')">
+                                PLAN SOLO HOTEL
+                            </button>
+                        </div>
+                    </div>
+                    <!-- <div class="col-12 col-md-6 mb-3">
+                        <div class="card-box text-center p-3">
+                            <div class="item-dash-icon">
+                                <img src="assets/img/cilik/dash-08.png" alt="">
+                            </div>
+                            <button class="btn btn-one" style="background-color: #d79142;" (click)="newOrder('eventPass')">
+                                FULL PASS
+                            </button>
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-12 col-md-6 mb-3">
+                        <div class="card-box text-center p-3">
+                            <div class="item-dash-icon">
+                                <img src="assets/img/cilik/dash-08.png" alt="">
+                            </div>
+                            <button class="btn btn-one" (click)="newOrder()">
+                                {{'general.buyPlans' | translate | uppercase}}
+                            </button>
+                        </div>
+                    </div> -->
+                    <div class="col-12 col-md-6 mb-3">
+                        <div class="card-box text-center p-3">
+                            <div class="item-dash-icon">
                                 <img src="assets/img/cilik/dash-09.png" alt="">
                             </div>
-                            <button class="btn btn-one" (click)="showCategoriesTerms()">
+                            <button class="btn btn-one" style="background-color: #848382;" (click)="showCategoriesTerms()">
                                 {{'general.buyCategories' | translate | uppercase}}
                             </button>
                         </div>
