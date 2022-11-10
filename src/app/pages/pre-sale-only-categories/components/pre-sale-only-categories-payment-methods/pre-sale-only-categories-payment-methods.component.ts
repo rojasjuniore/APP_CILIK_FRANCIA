@@ -7,6 +7,7 @@ import moment from 'moment';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 import { TranslatePipe } from '@ngx-translate/core';
 import { PreSaleModalBankTransferDetailComponent } from 'src/app/components/pre-sale-modal-bank-transfer-detail/pre-sale-modal-bank-transfer-detail.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-pre-sale-only-categories-payment-methods',
@@ -155,7 +156,7 @@ export class PreSaleOnlyCategoriesPaymentMethodsComponent implements OnInit {
         amount: coutaAmount,
         payed: false,
         metatada: null,
-        url: null,
+        url: environment.urlWeb + 'purchase/summary/' + preSaleDocument.orderId + '/pay-couta/' + index,
       }
     });
 
