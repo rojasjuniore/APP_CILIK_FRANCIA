@@ -53,6 +53,7 @@ import { PermissionProfileUpdateComponent } from './permission-profile-update/pe
 import { LogoutComponent } from './logout/logout.component'; 
 import { PruchaseInstallmentPayCoutaCardItemComponent } from './pruchase-installment-pay-couta-card-item/pruchase-installment-pay-couta-card-item.component';
 import { PreSaleEventPassStepCounterComponent } from './pre-sale-event-pass-step-counter/pre-sale-event-pass-step-counter.component';
+import { PreSaleOnlyEventPassCardItemComponent } from './pre-sale-only-event-pass-card-item/pre-sale-only-event-pass-card-item.component';
 
 
 @NgModule({
@@ -114,6 +115,7 @@ import { PreSaleEventPassStepCounterComponent } from './pre-sale-event-pass-step
     LogoutComponent,
     PruchaseInstallmentPayCoutaCardItemComponent,
     PreSaleEventPassStepCounterComponent,
+    PreSaleOnlyEventPassCardItemComponent,
   ],
   exports: [
     CommonModule,
@@ -164,6 +166,7 @@ import { PreSaleEventPassStepCounterComponent } from './pre-sale-event-pass-step
     LogoutComponent,
     PruchaseInstallmentPayCoutaCardItemComponent,
     PreSaleEventPassStepCounterComponent,
+    PreSaleOnlyEventPassCardItemComponent,
   ],
   providers: [
     TranslatePipe,

@@ -12,4 +12,8 @@ export class PreSaleOnlyEventPassSelectComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onUpdateQuantity(params: any) {
+    console.log(params);
+  }
+
 }

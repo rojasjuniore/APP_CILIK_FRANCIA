@@ -6,6 +6,10 @@
         Elige las pases al evento que deseas
     </div>
 
+    <app-pre-sale-only-event-pass-card-item 
+        [quantity]="0"
+        (onUpdateQuantity)="onUpdateQuantity($event)"></app-pre-sale-only-event-pass-card-item>
+
     <!-- <app-pre-sale-categories-step-counter [step]="1"></app-pre-sale-categories-step-counter>
 
     <div class="col-12 text-center mb-2 fw-bold fs-5 mt-5">
