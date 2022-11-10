@@ -40,8 +40,9 @@ export class PreSaleOnlyEventPassSelectComponent implements OnInit {
       return;
     }
 
-    this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale-categories/step2'});
-    this.router.navigate(['/pre-sale-event-pass', 'step2']);
+    console.log('can continue');
+    // this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale-categories/step2'});
+    // this.router.navigate(['/pre-sale-event-pass', 'step2']);
   }
 
 }
