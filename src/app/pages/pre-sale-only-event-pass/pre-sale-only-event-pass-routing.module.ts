@@ -11,7 +11,7 @@ const routes: Routes = [
       {
         path: 'step1',
         component: PreSaleOnlyEventPassSelectComponent,
-      }
+      },
       {
         path: 'step2',
         component: PreSaleOnlyEventPassSelectComponent,
