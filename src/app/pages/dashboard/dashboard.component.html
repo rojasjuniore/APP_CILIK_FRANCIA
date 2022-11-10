@@ -25,46 +25,181 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row mt-4">
                     <div class="col-12 col-md-6 mb-3">
-                        <div class="card-box text-center p-3">
+                        <div class="card plan-selection-item">
+                            <div class="recomendation">OPCIÓN RECOMENDADA</div>
+                            <div class="card-header red">
+
+                                <div class="row g-0">
+                                    <div class="col-5">
+                                        <img
+                                            src="assets/images/icons/plan-icon-1.png"
+                                            class="img-fluid"
+                                            alt=""
+                                        />
+                                        <h4>
+                                            PLAN TODO <br />
+                                            INCLUIDO
+                                        </h4>
+                                       
+                                    </div>
+                    
+                                    <div class="col-7">
+                                        <div class="plan-selection-include">
+                                            <span class="bold">INCLUYE:</span>
+                                            <span>
+                                                Hotel, alimentación completa, full pass del evento, traslados hotel aeropuerto hotel, categoría de regalo.
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-one red" (click)="newOrder('fullPass')">
+                                    LO QUIERO
+                                </button>
+                            </div>
+                        </div>
+                   
+                        <!-- <div class="card-box text-center p-3">
                             <div class="item-dash-icon">
                                 <img src="assets/img/cilik/dash-08.png" alt="">
                             </div>
                             <button class="btn btn-one" (click)="newOrder('fullPass')">
                                 PLAN TODO INCLUIDO
                             </button>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="col-12 col-md-6 mb-3">
-                        <div class="card-box text-center p-3">
+                        <div class="card plan-selection-item">
+                            <div class="card-header purple">
+                                <div class="row g-0">
+                                    <div class="col-5">
+                                        <img
+                                            src="assets/images/icons/plan-icon-2.png"
+                                            class="img-fluid"
+                                            alt=""
+                                        />
+                                        <h4>
+                                            PLAN HOTEL <br />
+                                            Y FULL PASS
+                                        </h4>
+                                       
+                                    </div>
+                      
+                                    <div class="col-7">
+                                        <div class="plan-selection-include">
+                                            <span class="bold">INCLUYE:</span>
+                                            <span> Hotel con desayuno y full pass del evento. </span>
+                                            <span class="bold">NO INCLUYE:</span>
+                                            <span>
+                                                Alimentación, traslados hotel aeropuerto hotel, categoría de regalo.
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            <div class="card-footer">
+                                <button class="btn btn-one purple" (click)="newOrder('hotelAndEventPass')">
+                                    LO QUIERO
+                                </button>
+                            </div>
+                        </div>
+                        <!-- <div class="card-box text-center p-3">
                             <div class="item-dash-icon">
                                 <img src="assets/img/cilik/dash-08.png" alt="">
                             </div>
                             <button class="btn btn-one" style="background-color: #b661f8;" (click)="newOrder('hotelAndEventPass')">
                                 PLAN HOTEL Y FULL PASS
                             </button>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="col-12 col-md-6 mb-3">
-                        <div class="card-box text-center p-3">
+                        <div class="card plan-selection-item flex-2">
+                            <div class="card-header green">
+                                <div class="row g-0">
+                                    <div class="col-5 d-flex flex-column">
+                                        <img
+                                            src="assets/images/icons/plan-icon-3.png"
+                                            class="img-fluid plan-icon-3"
+                                            alt=""
+                                        />
+                                        <h4>
+                                            PLAN SOLO <br />
+                                            HOTEL
+                                        </h4>       
+                                    </div>
+                      
+                                    <div class="col-7">
+                                        <div class="plan-selection-include">
+                                            <span class="bold">INCLUYE:</span>
+                                            <span> Desayuno. </span>
+                                            <span class="bold">NO INCLUYE:</span>
+                                            <span>
+                                                Alimentación, traslados aeropuerto hotel aeropuerto, Full pass del evento, categoría de regalo.
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            <div class="card-footer">
+                                <button class="btn btn-one green" (click)="newOrder('hotelPass')">
+                                    LO QUIERO
+                                </button>
+                            </div>
+                        </div>
+                        <!-- <div class="card-box text-center p-3">
                             <div class="item-dash-icon">
                                 <img src="assets/img/cilik/dash-08.png" alt="">
                             </div>
                             <button class="btn btn-one" style="background-color: #73cf89;" (click)="newOrder('hotelPass')">
                                 PLAN SOLO HOTEL
                             </button>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="col-12 col-md-6 mb-3">
-                        <div class="card-box text-center p-3">
+                        <div class="card plan-selection-item">
+                            <div class="card-header yellow">
+                                <div class="row g-0">
+                                    <div class="col-5 d-flex flex-column">
+                                        <img
+                                            src="assets/images/icons/plan-icon-4.png"
+                                            class="img-fluid plan-icon-4"
+                                            alt=""
+                                        />
+                                        <h4 class="m-0">FULL PASS</h4>
+                                     
+                                    </div>
+                          
+                                    <div class="col-7">
+                                        <div class="plan-selection-include">
+                                            <span class="bold ">NO INCLUYE:</span>
+                                            <span >
+                                              Hotel, alimentación, traslados categoría de regalo.
+                                            </span>
+                                          </div>
+                                    </div>
+                                </div>
+                          
+                            </div>
+                          
+                            <div class="card-footer">
+                                 <button class="btn btn-one yellow" (click)="newOrder('eventPass')">
+                                    LO QUIERO
+                                </button>
+                            </div>
+                        </div>
+                        <!-- <div class="card-box text-center p-3">
                             <div class="item-dash-icon">
                                 <img src="assets/img/cilik/dash-08.png" alt="">
                             </div>
                             <button class="btn btn-one" style="background-color: #d79142;" (click)="newOrder('eventPass')">
                                 FULL PASS
                             </button>
-                        </div>
+                        </div> -->
                     </div>
                     <!-- <div class="col-12 col-md-6 mb-3">
                         <div class="card-box text-center p-3">
@@ -77,14 +212,39 @@
                         </div>
                     </div> -->
                     <div class="col-12 col-md-6 mb-3">
-                        <div class="card-box text-center p-3">
+
+                        <div class="card plan-selection-item">
+                            <div class="card-header blue">
+                                <div class="row g-0">
+                                    <div class="col-12 d-flex flex-column align-items-center">
+                                        <img
+                                            src="assets/images/icons/plan-icon-5.png"
+                                            class="img-fluid plan-icon-3"
+                                            alt=""
+                                        />
+                                        <h4 class="text-uppercase">
+                                            categorías <br />
+                                            adicionales
+                                        </h4>
+                                  
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="card-footer">
+                                <button class="btn btn-one blue" (click)="showCategoriesTerms()">
+                                    LO QUIERO
+                                </button>
+                            </div>
+                        </div>
+                        <!-- <div class="card-box text-center p-3">
                             <div class="item-dash-icon">
                                 <img src="assets/img/cilik/dash-09.png" alt="">
                             </div>
                             <button class="btn btn-one" style="background-color: #848382;" (click)="showCategoriesTerms()">
                                 {{'general.buyCategories' | translate | uppercase}}
                             </button>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
