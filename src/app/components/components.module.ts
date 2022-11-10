@@ -52,6 +52,7 @@ import { PermissionRolesRemoveComponent } from './permission-roles-remove/permis
 import { PermissionProfileUpdateComponent } from './permission-profile-update/permission-profile-update.component';
 import { LogoutComponent } from './logout/logout.component'; 
 import { PruchaseInstallmentPayCoutaCardItemComponent } from './pruchase-installment-pay-couta-card-item/pruchase-installment-pay-couta-card-item.component';
+import { PreSaleEventPassStepCounterComponent } from './pre-sale-event-pass-step-counter/pre-sale-event-pass-step-counter.component';
 
 
 @NgModule({
@@ -112,6 +113,7 @@ import { PruchaseInstallmentPayCoutaCardItemComponent } from './pruchase-install
     PermissionProfileUpdateComponent,
     LogoutComponent,
     PruchaseInstallmentPayCoutaCardItemComponent,
+    PreSaleEventPassStepCounterComponent,
   ],
   exports: [
     CommonModule,
@@ -161,6 +163,7 @@ import { PruchaseInstallmentPayCoutaCardItemComponent } from './pruchase-install
     PermissionProfileUpdateComponent,
     LogoutComponent,
     PruchaseInstallmentPayCoutaCardItemComponent,
+    PreSaleEventPassStepCounterComponent,
   ],
   providers: [
     TranslatePipe,

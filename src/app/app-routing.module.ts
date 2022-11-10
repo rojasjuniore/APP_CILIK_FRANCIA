@@ -21,6 +21,11 @@ const routes: Routes = [
     loadChildren: () => import("./pages/pre-sale-only-categories/pre-sale-only-categories.module").then((m) => m.PreSaleOnlyCategoriesModule),
   },
   {
+    path: 'pre-sale-event-pass',
+    canActivate: [IsAuthGuard],
+    loadChildren: () => import("./pages/pre-sale-only-event-pass/pre-sale-only-event-pass.module").then((m) => m.PreSaleOnlyEventPassModule),
+  },
+  {
     path: 'purchase',
     canActivate: [IsAuthGuard],
     loadChildren: () => import("./pages/purchase-summary/purchase-summary.module").then((m) => m.PurchaseSummaryModule),

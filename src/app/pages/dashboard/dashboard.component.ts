@@ -31,15 +31,14 @@ export class DashboardComponent implements OnInit {
     const uid = await this.authSrv.getUIDPromise();
     this.authSrv.saveTokenPush(uid);
 
+
     if(type !== 'eventPass'){
-      /**
-       * - Sobreescribir el tipo de orden de venta
-       * - Almacenar en el localstorage
-       */
       this.preSaleSrv.buildAndStore({orderType: type}, true);
       this.router.navigate(['/pre-sale/step1']);
+      
     }else{
-      console.log('eventPass');
+      this.preSaleSrv.buildAndStore({orderType: type}, true);
+      this.router.navigate(['/pre-sale-event-pass/step1']);
     }
   }
 
