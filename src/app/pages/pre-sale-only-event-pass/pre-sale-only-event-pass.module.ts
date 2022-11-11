@@ -7,13 +7,15 @@ import { ComponentsModule } from 'src/app/components/components.module';
 import { PreSaleOnlyEventPassSelectComponent } from './components/pre-sale-only-event-pass-select/pre-sale-only-event-pass-select.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { PreSaleOnlyEventPassCheckoutListComponent } from './components/pre-sale-only-event-pass-checkout-list/pre-sale-only-event-pass-checkout-list.component';
+import { PreSaleOnlyEventPassPaymentMethodsComponent } from './components/pre-sale-only-event-pass-payment-methods/pre-sale-only-event-pass-payment-methods.component';
 
 
 @NgModule({
   declarations: [
     PreSaleOnlyEventPassComponent,
     PreSaleOnlyEventPassSelectComponent,
-    PreSaleOnlyEventPassCheckoutListComponent
+    PreSaleOnlyEventPassCheckoutListComponent,
+    PreSaleOnlyEventPassPaymentMethodsComponent
   ],
   imports: [
     CommonModule,

@@ -68,8 +68,8 @@ export class PreSaleOnlyEventPassCheckoutListComponent implements OnInit {
       return;
     }
 
-    // this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale-event-pass/payment-method'});
-    // this.router.navigate(['/pre-sale-event-pass', 'payment-method']);
+    this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale-event-pass/payment-method'});
+    this.router.navigate(['/pre-sale-event-pass', 'payment-method']);
   }
 
 }
