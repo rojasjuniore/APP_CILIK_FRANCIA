@@ -24,8 +24,12 @@ export class PreSaleOnlyEventPassSelectComponent implements OnInit {
   }
 
   onUpdateQuantity(params: any) {
-    this.preSaleSrv.updateDocumentLocalStorage({nroParticipants: params.quantity});
-    console.log(params);
+    if(params.quantity > 0){
+      const eventPasses = Object.assign({}, this.preSaleSrv.EVENTPASS_DEFAULT, {quantity: params.quantity});
+      this.preSaleSrv.updateDocumentLocalStorage({nroParticipants: params.quantity, eventPasses: [eventPasses]});
+    }else{
+      this.preSaleSrv.updateDocumentLocalStorage({nroParticipants: params.quantity, eventPasses: []});
+    }
   }
 
   async onNext(){
