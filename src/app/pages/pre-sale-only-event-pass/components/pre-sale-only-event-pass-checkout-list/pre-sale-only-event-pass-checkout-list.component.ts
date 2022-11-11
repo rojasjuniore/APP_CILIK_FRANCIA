@@ -19,10 +19,14 @@ export class PreSaleOnlyEventPassCheckoutListComponent implements OnInit {
     private sweetAlert2Srv: Sweetalert2Service,
     private translatePipe: TranslatePipe,
   ) {
-    this.preSaleDocument = this.preSaleSrv.checkAndLoadDocumentLocalStorage();
+    this.loadData();
   }
 
   ngOnInit(): void {
+  }
+
+  loadData(){
+    this.preSaleDocument = this.preSaleSrv.checkAndLoadDocumentLocalStorage();
   }
 
   async onUpdateAdditionalCategoryPasses(params: any){
@@ -31,6 +35,7 @@ export class PreSaleOnlyEventPassCheckoutListComponent implements OnInit {
   }
 
   async onRemoveAdditionalCategoryPasses(params: any){
+    this.loadData();
 
     if(this.preSaleDocument.eventPasses.length == 0){ return; }
 
@@ -49,16 +54,19 @@ export class PreSaleOnlyEventPassCheckoutListComponent implements OnInit {
   }
   
   async onNext(){
+    this.loadData();
 
-    console.log('next');
+    const { eventPasses = [] } = this.preSaleDocument;
+    const rule = eventPasses[0];
+    const quantity = rule?.quantity || 0;
 
-    // if(this.preSaleDocument.eventPasses.length == 0){ 
-    //   // const message = await this.translatePipe.transform('formValidations.additionalCategoriesRequired');
-    //   const message = 'Debe seleccionar al menos un participante para poder continuar';
-    //   this.sweetAlert2Srv.showWarning(message);
-    //   this.onBack();
-    //   return;
-    // }
+    if(quantity == 0){ 
+      // const message = await this.translatePipe.transform('formValidations.additionalCategoriesRequired');
+      const message = 'Debe seleccionar al menos un participante para poder continuar';
+      this.sweetAlert2Srv.showWarning(message);
+      this.onBack();
+      return;
+    }
 
     // this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale-event-pass/payment-method'});
     // this.router.navigate(['/pre-sale-event-pass', 'payment-method']);
