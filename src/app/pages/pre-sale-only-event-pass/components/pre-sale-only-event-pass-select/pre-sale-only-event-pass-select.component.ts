@@ -11,14 +11,17 @@ import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 })
 export class PreSaleOnlyEventPassSelectComponent implements OnInit {
 
-  private nroParticipants = 0;
+  public nroParticipants = 0;
 
   constructor(
     public preSaleSrv: PreSaleService,
     private router: Router,
     private sweetAlert2Srv: Sweetalert2Service,
     private translatePipe: TranslatePipe,
-  ) { }
+  ) {
+    const { eventPasses } = this.preSaleSrv.checkAndLoadDocumentLocalStorage();
+    this.nroParticipants = (eventPasses) ? eventPasses[0].quantity : 0;
+  }
 
   ngOnInit(): void {
   }
