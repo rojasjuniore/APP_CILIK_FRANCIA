@@ -53,7 +53,7 @@ export class PreSaleOnlyCategoriesPaymentMethodsComponent implements OnInit {
     // },
   ];
 
-  loading = false;
+  public loading = false;
 
   constructor(
     public preSaleSrv: PreSaleService,
