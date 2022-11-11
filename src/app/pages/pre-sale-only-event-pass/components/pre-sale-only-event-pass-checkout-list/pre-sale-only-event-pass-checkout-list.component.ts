@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
+import { PreSaleService } from 'src/app/services/pre-sale.service';
+import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 
 @Component({
   selector: 'app-pre-sale-only-event-pass-checkout-list',
@@ -7,9 +11,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PreSaleOnlyEventPassCheckoutListComponent implements OnInit {
 
-  constructor() { }
+  public preSaleDocument: any;
+
+  constructor(
+    public preSaleSrv: PreSaleService,
+    private router: Router,
+    private sweetAlert2Srv: Sweetalert2Service,
+    private translatePipe: TranslatePipe,
+  ) {
+    this.preSaleDocument = this.preSaleSrv.checkAndLoadDocumentLocalStorage();
+  }
 
   ngOnInit(): void {
+  }
+
+  async onBack(){
+    this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale-event-pass/step1'});
+    this.router.navigate(['/pre-sale-event-pass', 'step1']);
+  }
+  
+  async onNext(){
+
+    if(this.preSaleDocument.eventPasses.length == 0){ 
+      // const message = await this.translatePipe.transform('formValidations.additionalCategoriesRequired');
+      const message = 'Debe seleccionar al menos un participante para poder continuar';
+      this.sweetAlert2Srv.showWarning(message);
+      this.onBack();
+      return;
+    }
+
+    // this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale-event-pass/payment-method'});
+    // this.router.navigate(['/pre-sale-event-pass', 'payment-method']);
   }
 
 }
