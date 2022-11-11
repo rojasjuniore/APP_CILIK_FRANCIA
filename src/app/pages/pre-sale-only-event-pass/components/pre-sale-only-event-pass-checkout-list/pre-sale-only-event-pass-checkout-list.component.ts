@@ -25,6 +25,16 @@ export class PreSaleOnlyEventPassCheckoutListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  async onUpdateAdditionalCategoryPasses(params: any){
+    this.router.navigate(['/pre-sale-event-pass', 'step1']);
+    return;
+  }
+
+  async onRemoveAdditionalCategoryPasses(params: any){
+    // this.router.navigate(['/pre-sale-categories', 'step1']);
+    // return;
+  }
+
   async onBack(){
     this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale-event-pass/step1'});
     this.router.navigate(['/pre-sale-event-pass', 'step1']);
@@ -32,13 +42,15 @@ export class PreSaleOnlyEventPassCheckoutListComponent implements OnInit {
   
   async onNext(){
 
-    if(this.preSaleDocument.eventPasses.length == 0){ 
-      // const message = await this.translatePipe.transform('formValidations.additionalCategoriesRequired');
-      const message = 'Debe seleccionar al menos un participante para poder continuar';
-      this.sweetAlert2Srv.showWarning(message);
-      this.onBack();
-      return;
-    }
+    console.log('next');
+
+    // if(this.preSaleDocument.eventPasses.length == 0){ 
+    //   // const message = await this.translatePipe.transform('formValidations.additionalCategoriesRequired');
+    //   const message = 'Debe seleccionar al menos un participante para poder continuar';
+    //   this.sweetAlert2Srv.showWarning(message);
+    //   this.onBack();
+    //   return;
+    // }
 
     // this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale-event-pass/payment-method'});
     // this.router.navigate(['/pre-sale-event-pass', 'payment-method']);
