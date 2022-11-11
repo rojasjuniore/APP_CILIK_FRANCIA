@@ -207,13 +207,11 @@ export class PreSaleOnlyEventPassPaymentMethodsComponent implements OnInit {
     this.sweetAlert2Srv.showInfo(message);
     this.router.navigateByUrl('pages/dashboard');
     this.loading = false;
-
-
   }
   
   onBack(){
-    this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale-event-pass/step3'});
-    this.router.navigate(['/pre-sale-event-pass/step3']);
+    this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale-event-pass/step2'});
+    this.router.navigate(['/pre-sale-event-pass/step2']);
   }
 
   async onNext(){
