@@ -118,12 +118,12 @@ export class PreSaleTotalesComponent implements OnInit, OnDestroy {
 
   get subTotalFullPrice(){
     return [
-        this.roomsAmountFullPrice, 
-        this.additionalDaysAmountFullPrice, 
-        this.additionalCategoryPassesAmountFullPrice,
-        this.evenPassesFullAmount
-      ]
-      .reduce((prev, curr) => prev + curr, 0);
+      this.roomsAmountFullPrice, 
+      this.additionalDaysAmountFullPrice, 
+      this.additionalCategoryPassesAmountFullPrice,
+      this.evenPassesFullAmount
+    ]
+    .reduce((prev, curr) => prev + curr, 0);
   }
 
   get subTotal(){
@@ -133,7 +133,7 @@ export class PreSaleTotalesComponent implements OnInit, OnDestroy {
       this.additionalCategoryPassesAmount,
       this.evenPassesAmount
     ]
-      .reduce((prev, curr) => prev + curr, 0);
+    .reduce((prev, curr) => prev + curr, 0);
   }
 
   get discount(){
