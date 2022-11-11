@@ -20,7 +20,7 @@ export class PreSaleOnlyEventPassSelectComponent implements OnInit {
     private translatePipe: TranslatePipe,
   ) {
     const { eventPasses } = this.preSaleSrv.checkAndLoadDocumentLocalStorage();
-    this.nroParticipants = (eventPasses) ? eventPasses[0].quantity : 0;
+    this.nroParticipants = (eventPasses.length > 0) ? eventPasses[0].quantity : 0;
   }
 
   ngOnInit(): void {
