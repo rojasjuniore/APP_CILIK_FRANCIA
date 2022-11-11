@@ -5,7 +5,7 @@
  * @param orderDoc 
  * @returns 
  */
-export function totales(orderDoc: any = {}){
+export function purchaseTotales(orderDoc: any = {}){
     const { 
         rooms = [], 
         additionalCategoryPasses: categoryPasses = [], 
@@ -89,12 +89,12 @@ export function totales(orderDoc: any = {}){
         evenPassesFullAmount,
         evenPassesAmount
     } = eventPasses.reduce((acc, next) => {
-        acc.fullPrice += next.quantity * next.fullPrice;
-        acc.price += next.quantity * next.price;
+        acc.evenPassesFullAmount += next.quantity * next.fullPrice;
+        acc.evenPassesAmount += next.quantity * next.price;
         return acc;
     }, {
-        fullPrice: 0,
-        price : 0
+        evenPassesFullAmount: 0,
+        evenPassesAmount : 0
     });
 
     const subTotalFullPrice = [
