@@ -31,8 +31,16 @@ export class PreSaleOnlyEventPassCheckoutListComponent implements OnInit {
   }
 
   async onRemoveAdditionalCategoryPasses(params: any){
-    // this.router.navigate(['/pre-sale-categories', 'step1']);
-    // return;
+
+    if(this.preSaleDocument.eventPasses.length == 0){ return; }
+
+    // const message = this.translatePipe.transform('formValidations.checkoutStepAskRemoveAdditionalCategoriesAction');
+    const message = "¿Desea remover los pases añadidos en esta orden?"
+    const ask = await this.sweetAlert2Srv.askConfirm(message);
+    if(!ask){ return; }
+    
+    this.preSaleSrv.updateDocumentLocalStorage({eventPasses: []});
+    this.onBack();
   }
 
   async onBack(){
