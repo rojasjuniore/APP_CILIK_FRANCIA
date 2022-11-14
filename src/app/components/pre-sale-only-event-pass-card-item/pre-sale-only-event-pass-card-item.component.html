@@ -1,0 +1,75 @@
+<!-- <ng-container *ngIf="(document$ | async) as document; else loading"> -->
+    <div class="col-12 mb-4">
+        <div class="card card-box p-3 mb-3">
+            <div class="row g-2 d-flex align-items-center">
+                <div class="col-12 px-3">
+                    <div class="d-flex justify-content-between">
+                        <span class="fw-bold fs-5">
+                            Elige la cantidad de FULL PASS
+                        </span>
+        
+                        <span>
+                            {{'general.pricePerPerson' | translate}}: USD {{234 | mask:'separator.0':','}}
+                            <!-- {{'general.pricePerPerson' | translate}}: USD {{document?.price | mask:'separator.0':','}} -->
+                        </span>
+                    </div>
+                </div>
+                <div class="col-12 m-0 px-3">
+                    <hr>
+                </div>
+        
+                <div class="col-12">
+                    <div class="row p-2 align-items-stretch">
+                        <div class="col-12 col-sm-6 col-md-6">
+                            <app-input-number-form-two
+                                [label]="'# ' + ('general.quantity' | translate)" 
+                                [min]="0" [max]="99" [quantity]="quantity"
+                                (onUpdateQuantity)="updateQuantity($event)"></app-input-number-form-two>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-6 d-flex justify-content-end align-self-end mt-3 mt-md-0">
+                            <div class="card-box card-box-wfc p-3">
+                                <h4 class="text-end py-2 m-0">
+                                    {{'general.amount' | translate | titlecase}} USD {{234 * quantity | mask:'separator.0':','}}
+                                </h4>                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- </ng-container> -->
+
+<ng-template #loading>
+    <div class="col-12 mb-4">
+        <div class="card card-box p-3 mb-3">
+            <div class="row g-2">
+                <div class="col-12">
+                    <div class="placeholder-glow">
+                        <span class="placeholder col-12" style="height: 36px;"></span>
+                    </div>
+                </div>
+                <div class="col-12 m-0 px-3">
+                    <hr>
+                </div>
+    
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="placeholder-glow">
+                                <span class="placeholder col-3" style="height: 16px;"></span>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="placeholder-glow">
+                                <span class="placeholder col-12" style="height: 72px;"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+

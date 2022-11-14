@@ -116,6 +116,25 @@ export class SignUpComponent implements OnInit {
     this.paises = data;
   }
 
+    /**
+   * filter
+   */
+
+  filter () {
+    let text: any = document.getElementById("filter")
+    console.log(text.value);
+    
+    var result =  this.phoneData.filter(function(item) {
+      return item.name.indexOf(text?.value.toLowerCase()) > -1;
+    });
+    
+    console.log(result);
+
+    this.phoneData = result
+  }
+
+
+
   /**
    * Show or hide password
    */

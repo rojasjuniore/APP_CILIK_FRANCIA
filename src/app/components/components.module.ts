@@ -49,7 +49,12 @@ import { CardBankTransferComponent } from './card-bank-transfer/card-bank-transf
 import { PermissionRolesAddComponent } from './permission-roles-add/permission-roles-add.component';
 import { PermissionRolesUpdateComponent } from './permission-roles-update/permission-roles-update.component';
 import { PermissionRolesRemoveComponent } from './permission-roles-remove/permission-roles-remove.component';
-import { PermissionProfileUpdateComponent } from './permission-profile-update/permission-profile-update.component'; 
+import { PermissionProfileUpdateComponent } from './permission-profile-update/permission-profile-update.component';
+import { LogoutComponent } from './logout/logout.component'; 
+import { PruchaseInstallmentPayCoutaCardItemComponent } from './pruchase-installment-pay-couta-card-item/pruchase-installment-pay-couta-card-item.component';
+import { PreSaleEventPassStepCounterComponent } from './pre-sale-event-pass-step-counter/pre-sale-event-pass-step-counter.component';
+import { PreSaleOnlyEventPassCardItemComponent } from './pre-sale-only-event-pass-card-item/pre-sale-only-event-pass-card-item.component';
+import { PreSaleCheckoutOnlyEventPassCardItemComponent } from './pre-sale-checkout-only-event-pass-card-item/pre-sale-checkout-only-event-pass-card-item.component';
 
 
 @NgModule({
@@ -108,6 +113,11 @@ import { PermissionProfileUpdateComponent } from './permission-profile-update/pe
     PermissionRolesUpdateComponent,
     PermissionRolesRemoveComponent,
     PermissionProfileUpdateComponent,
+    LogoutComponent,
+    PruchaseInstallmentPayCoutaCardItemComponent,
+    PreSaleEventPassStepCounterComponent,
+    PreSaleOnlyEventPassCardItemComponent,
+    PreSaleCheckoutOnlyEventPassCardItemComponent,
   ],
   exports: [
     CommonModule,
@@ -155,6 +165,11 @@ import { PermissionProfileUpdateComponent } from './permission-profile-update/pe
     PermissionRolesUpdateComponent,
     PermissionRolesRemoveComponent,
     PermissionProfileUpdateComponent,
+    LogoutComponent,
+    PruchaseInstallmentPayCoutaCardItemComponent,
+    PreSaleEventPassStepCounterComponent,
+    PreSaleOnlyEventPassCardItemComponent,
+    PreSaleCheckoutOnlyEventPassCardItemComponent,
   ],
   providers: [
     TranslatePipe,

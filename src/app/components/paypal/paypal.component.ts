@@ -6,6 +6,7 @@ import {
 } from 'ngx-paypal';
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import BN from 'bignumber.js'
 
 @Component({
   selector: 'app-paypal',
@@ -14,7 +15,7 @@ import { environment } from 'src/environments/environment';
 })
 export class PaypalComponent implements OnInit {
 
-  @Input() amount: number = 1;
+  @Input() amount: any = 1;
   @Output() onError = new Subject();
   @Output() onCancel = new Subject();
   @Output() onComplete = new Subject();
@@ -34,7 +35,7 @@ export class PaypalComponent implements OnInit {
       environment.paypal.payPalEnvironmentProduction :
       environment.paypal.payPalEnvironmentSandbox
     const _currency = environment.paypal.currency;
-    const _amount = this.amount.toFixed(2)
+    const _amount = new BN(this.amount).toFixed(2)
 
     // console.log('production', environment.production);
     // console.log('clientId', _clientId);

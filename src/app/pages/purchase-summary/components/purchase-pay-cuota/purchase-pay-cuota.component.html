@@ -1,0 +1,173 @@
+<div class="row">
+    <div class="col-12 text-center mb-2">
+        <strong>{{ "general.summaryOfThePurchase" | translate }} </strong>
+    </div>
+
+    <ng-container *ngIf="(purchaseDocument$ | async) as purchaseDocument; else loading">
+
+        <ng-container *ngIf="purchaseDocument; else notFoundOrder">
+            <div class="col-12 mb-4" *ngFor="let item of purchaseDocument.rooms; index as idx">
+                <app-purchase-summary-details-card-item [index]="idx + 1" [item]="item">
+                </app-purchase-summary-details-card-item>
+            </div>
+    
+            <div class="col-12 mb-4">
+                <app-purchase-summary-details-category-card-item [order]="purchaseDocument">
+                </app-purchase-summary-details-category-card-item>
+            </div>
+    
+            <div class="col-12 mb-4">
+                <app-pruchase-installment-pay-couta-card-item 
+                    [index]="nroCuota + 1"
+                    [item]="purchaseDocument.installments[nroCuota]"
+                    (onSelectShowPaymentMethods)="onSelectShowPayemtMethod($event)"
+                ></app-pruchase-installment-pay-couta-card-item>
+            </div>
+    
+            <div class="col-12 mb-4" *ngIf="step == 'showOpts'">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-12 col-sm-8 col-md-6 mb-4">
+                        <div class="d-flex flex-column align-items-center justify-content-center">
+
+                            <h5>Elige tu forma de pago</h5>
+        
+                            <button class="btn btn-payment btn-lg mb-3" 
+                                type="button" *ngFor="let item of paymentMethods"   
+                                [ngClass]="{'active': item.value === paymentMethodType}"
+                                [disabled]="!item.status"
+                                (click)="selectPaymentMethod(item)">
+                                <span class="icon-payment"><i [class]="item.icon"></i>&nbsp;</span>
+                                <span class="label-payment">
+                                    {{item.label | translate | titlecase}}
+                                </span>                        
+                            </button>
+        
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <ng-container *ngIf="!cuota?.payed; else coutaPayed">
+                <ng-container *ngIf="cuota?.amount > 0">
+                    
+                    <div class="col-12 mb-4 text-center" *ngIf="paymentMethodType == 'paypal'">
+                        <app-paypal [amount]="cuota?.amount"
+                            (onCancel)="onPaypalResponse({type: 'cancel', data: $event})"
+                            (onError)="onPaypalResponse({type: 'error', data: $event})"
+                            (onComplete)="onPaypalResponse({type: 'success', data: $event})">
+                        </app-paypal>
+                    </div>
+                    <div class="col-12 mb-4" *ngIf="paymentMethodType == 'bankTransfer'">
+                        bankTransfer {{cuota | json}}
+                    </div>
+
+                </ng-container>
+            </ng-container>
+
+
+            <div class="col-12 mb-4">
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-three btn-medium-c text-uppercase" type="button" (click)="onBack()">
+                        <i class="bi bi-chevron-left"></i>
+                        {{ "general.back" | translate | uppercase }}
+                    </button>
+                </div>
+            </div>
+
+
+        </ng-container>
+
+    </ng-container>
+
+</div>
+
+<ng-template #coutaPayed>
+    <div class="col-12 mb-4">
+        <h5 class="text-center">
+            Esta cuota ya fue cancelada
+        </h5>
+    </div>
+</ng-template>
+
+
+<ng-template #notFoundOrder>
+    <div class="col-12 mb-4">
+        <h5>
+            No se encontró la orden
+        </h5>
+    </div>
+</ng-template>
+
+<ng-template #loading>
+    <div class="col-12 mb-4">
+        <div class="card card-box p-3 mb-3">
+            <div class="row g-2 d-flex align-items-center">
+                <div class="col-12 placeholder-glow">
+                    <span class="placeholder col-12 bg-danger" style="height: 16px;"></span>
+                </div>
+                <div class="seprd2"></div>
+                <div class="col-12">
+                    <p class="m-0 placeholder-glow">
+                        <span class="placeholder col-7"></span>
+                    </p>
+                    <p class="m-0 placeholder-glow" *ngFor="let item of [1,1,1]">
+                        <span class="placeholder col-7"></span>
+                    </p>
+                    <hr>
+                    <p class="m-0 placeholder-glow">
+                        <span class="placeholder col-7"></span>
+                    </p>
+                    <p class="m-0 placeholder-glow">
+                        <span class="placeholder col-8"></span>
+                    </p>
+                    <div class="placeholder-glow">
+                        <span class="placeholder col-9" style="height: 24px;"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 mb-4">
+        <div class="card card-box p-3 mb-3">
+            <div class="row g-2 d-flex align-items-center">
+                <div class="col-12 placeholder-glow">
+                    <span class="placeholder col-12 bg-danger" style="height: 16px;"></span>
+                </div>
+                <div class="seprd2"></div>
+                <div class="col-12">
+                    <p class="fw-bold m-0 placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    <div class="seprd m-0 mb-2"></div>
+                    <p class="m-0 placeholder-glow">
+                        <span class="placeholder col-7"></span>
+                    </p>
+                    <p class="m-0 placeholder-glow">
+                        <span class="placeholder col-7"></span>
+                    </p>
+                    <div class="seprd2"></div>
+
+                    <p class="border-bottom fw-bold m-0 placeholder-glow">
+                        <span class="placeholder col-5"></span>
+                    </p>
+                    <!-- <hr> -->
+                    <p class="m-0 placeholder-glow" *ngFor="let item of [1,1]">
+                        <span class="placeholder col-5"></span>
+                    </p>
+        
+                    <p class="m-0 placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    <p class="m-0 placeholder-glow">
+                        <span class="placeholder col-8"></span>
+                    </p>
+                    <div class="placeholder-glow">
+                        <span class="placeholder col-9" style="height: 24px;"></span>
+                    </div>
+        
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

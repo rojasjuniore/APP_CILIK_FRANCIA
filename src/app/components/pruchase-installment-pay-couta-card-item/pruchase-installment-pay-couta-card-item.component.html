@@ -1,0 +1,38 @@
+<div class="card card-box p-3 mb-3">
+    <div class="row g-2 d-flex align-items-center">
+        <div class="col-12">
+            <div class="d-flex justify-content-between">
+                <span class="text-rslt fw-bold fs-5">
+                    {{ "general.share" | translate }} #{{index}}
+                </span>
+
+                <!-- <ng-container *ngIf="!item.payed; else showPayedButton">
+                    <button type="button" class="btn btn-danger btn-sm" (click)="showPaymentMethods()">
+                        Pay
+                    </button>
+                </ng-container> -->
+
+            </div>
+        </div>
+        <div class="col-12 m-0">
+            <hr>
+        </div>
+        <div class="col-12 col-md-6">
+            <span class="fw-bold d-flex align-items-center">
+                <i class="bi bi-calendar fs-3 pe-2"></i>
+                {{ "paymentMethods.paymentDeadline" | translate }} {{item.date | date:'dd/MM/yyyy'}}
+            </span>
+        </div>
+        <div class="col-12 col-md-6">
+            <h5 class="text-end fw-bolder">
+                {{'general.total' | translate | uppercase}}: USD {{item.amount | mask:'separator.0':','}}
+            </h5>
+        </div>
+    </div>
+</div>
+
+<ng-template #showPayedButton>
+    <button type="button" class="btn btn-danger btn-sm" disabled>
+        {{ "general.payed" | translate }}
+    </button>
+</ng-template>

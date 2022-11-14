@@ -89,14 +89,40 @@ export class PurchaseSummaryTotalesComponent implements OnInit {
       .reduce((prev, curr) => prev + curr, 0);
   }
 
+  get evenPassesFullAmount(){
+    if(!this.order) return 0;
+
+    const { eventPasses } = this.order;
+
+    return eventPasses.map((row) => row.quantity * row.fullPrice);
+  }
+
+  get evenPassesAmount(){
+    if(!this.order) return 0;
+
+    const { eventPasses } = this.order;
+
+    return eventPasses.map((row) => row.quantity * row.price);
+  }
+
   get subTotalFullPrice(){
-    return [this.roomsAmountFullPrice, this.additionalDaysAmountFullPrice, this.additionalCategoryPassesAmountFullPrice]
-      .reduce((prev, curr) => prev + curr, 0);
+    return [
+      this.roomsAmountFullPrice, 
+      this.additionalDaysAmountFullPrice, 
+      this.additionalCategoryPassesAmountFullPrice,
+      this.evenPassesFullAmount
+    ]
+    .reduce((prev, curr) => prev + curr, 0);
   }
 
   get subTotal(){
-    return [this.roomsAmount, this.additionalDaysAmount, this.additionalCategoryPassesAmount]
-      .reduce((prev, curr) => prev + curr, 0);
+    return [
+      this.roomsAmount, 
+      this.additionalDaysAmount, 
+      this.additionalCategoryPassesAmount,
+      this.evenPassesAmount
+    ]
+    .reduce((prev, curr) => prev + curr, 0);
   }
 
   get discount(){

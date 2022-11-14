@@ -5,6 +5,17 @@
                 <span class="text-rslt fw-bold fs-5">
                     {{ "general.share" | translate }} #{{index}}
                 </span>
+
+
+                <ng-container *ngIf="showButton">
+
+                    <ng-container *ngIf="!item.payed; else alreadyPayed">
+                        <button type="button" class="btn btn-danger btn-sm" (click)="goToPayCuota()">
+                            Pay
+                        </button>
+                    </ng-container>
+
+                </ng-container>
             </div>
         </div>
         <div class="col-12 m-0">
@@ -23,3 +34,9 @@
         </div>
     </div>
 </div>
+
+<ng-template #alreadyPayed>
+    <button type="button" class="btn btn-danger btn-sm" disabled>
+        Payed
+    </button>
+</ng-template>

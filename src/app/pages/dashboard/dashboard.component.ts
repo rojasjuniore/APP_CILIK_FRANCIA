@@ -27,11 +27,19 @@ export class DashboardComponent implements OnInit {
   /**
    * Crear nueva orden de venta
    */
-  async newOrder(){
+  async newOrder(type = 'fullPass'){
     const uid = await this.authSrv.getUIDPromise();
     this.authSrv.saveTokenPush(uid);
-    this.preSaleSrv.checkAndLoadDocumentLocalStorage();
-    this.router.navigate(['/pre-sale/step1']);
+
+
+    if(type !== 'eventPass'){
+      this.preSaleSrv.buildAndStore({orderType: type}, true);
+      this.router.navigate(['/pre-sale/step1']);
+      
+    }else{
+      this.preSaleSrv.buildAndStore({orderType: type}, true);
+      this.router.navigate(['/pre-sale-event-pass/step1']);
+    }
   }
 
   async showCategoriesTerms(){

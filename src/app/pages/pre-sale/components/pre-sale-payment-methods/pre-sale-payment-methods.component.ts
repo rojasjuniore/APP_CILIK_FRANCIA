@@ -6,6 +6,7 @@ import { PreSaleModalBankTransferDetailComponent } from 'src/app/components/pre-
 import { PreSaleModalPaymentCoutasDetailsComponent } from 'src/app/components/pre-sale-modal-payment-coutas-details/pre-sale-modal-payment-coutas-details.component';
 import { PreSaleService } from 'src/app/services/pre-sale.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-pre-sale-payment-methods',
@@ -175,7 +176,7 @@ export class PreSalePaymentMethodsComponent implements OnInit {
         amount: coutaAmount,
         payed: false,
         metadata: null,
-        url: null,
+        url: environment.urlWeb + 'purchase/summary/' + preSaleDocument.orderId + '/pay-couta/' + index,
       }
     });
 

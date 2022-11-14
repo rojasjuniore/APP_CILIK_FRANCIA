@@ -27,6 +27,15 @@
             </app-purchase-summary-details-category-card-item>
         </div>
 
+        <ng-container *ngIf="purchaseDocument.paymentMethodType == 'installments'">
+            <div *ngIf="purchaseDocument?.installments.length > 0">
+                <div class="col-12 mb-4" *ngFor="let item of purchaseDocument.installments">
+                    <app-pre-sale-installment-couta-card-item  [index]="item.nro" [item]="item"></app-pre-sale-installment-couta-card-item>
+                </div>
+            </div>
+        </ng-container>
+
+
         <app-purchase-summary-totales [order]="purchaseDocument"></app-purchase-summary-totales>
 
     </ng-container>

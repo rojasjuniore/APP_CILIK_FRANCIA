@@ -1,9 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { increment } from 'firebase/firestore';
+import moment from 'moment';
 import { lastValueFrom, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { handlerArrayResult, handlerObjectResult } from '../helpers/model.helper';
+import { ExcelService } from './excel.service';
 
 const URL_ROOT: any = environment.API_URL;
 @Injectable({
@@ -16,6 +19,7 @@ export class PurchaseService {
   constructor(
     private afs: AngularFirestore,
     private http: HttpClient,
+    private excelSrv: ExcelService,
   ) { }
 
   async storePurchase(docId: string, data: any) {
@@ -24,6 +28,45 @@ export class PurchaseService {
 
   async updatePurchase(docId: string, data: any) {
     return this.afs.collection(this.purchaseCollection).doc(docId).update(data);
+  }
+
+  async updatePurchaseInstallmentCouta(docId: string, index: number, data: any){
+    try {
+      // console.log({
+      //   docId,
+      //   index,
+      //   data
+      // });
+      const snapshot = await lastValueFrom(
+        this.afs.collection(this.purchaseCollection).doc(docId).get()
+      );
+
+      const result = await handlerObjectResult(snapshot);
+
+      const { installments } = result;
+      const newInstallments = installments.map((item: any, i: number) => {
+        if(i === index){
+          return {
+            ...item,
+            ...data
+          }
+        }
+        return item;
+      });
+
+      await this.updatePurchase(docId, { installments: newInstallments });
+
+      return true;
+      
+    } catch (err) {
+      console.log('Error on PurchaseService.updatePurchaseInstallmentCouta', err);
+      return false;
+    }
+  }
+
+  async updatePurchaseCounter(docId: string, field: any, data = 1){
+    const ref = this.afs.collection(this.purchaseCollection).doc(docId);
+    await ref.update({ [field]: increment(data) });
   }
 
   async sendPurchaseSummaryNotification(uid: string, orderId: string){
@@ -151,6 +194,22 @@ export class PurchaseService {
     );
 
     return await handlerArrayResult(snapshot, {idField});
+  }
+
+  async getAllPurchaseExcel(){
+    try {
+      const url = `${environment.API_URL}admin/all-purchase-report`;
+      const snapshot: any = await lastValueFrom(this.http.get(url));
+      const { results } = snapshot;
+      console.log('results', results);
+      const currentTime = moment().valueOf();
+      this.excelSrv.exportAsExcelFile(results, 'purchases-list' + currentTime + '.xlsx');
+      return;
+
+    } catch (err) {
+      console.log('Error on BalanceService@getVipBalance', err);
+      throw err;
+    }
   }
 
 }

@@ -41,6 +41,15 @@ export class PreSaleService {
     {"from": "2022/11/01", "to": "2022/12/15"},
     {"from": "2022/12/16", "to": "2023/01/10"}
   ];
+  
+  public EVENTPASS_DEFAULT = {
+    type: 'eventPass',
+    fullPrice: 234,
+    label: 'FULL PASS',
+    order: 0,
+    price: 234,
+    quantity: 0
+  };
 
   constructor(
     private afs: AngularFirestore,
@@ -62,6 +71,7 @@ export class PreSaleService {
       nroEscorts: params.nroEscorts || 0,
       rooms: params.rooms || [],
       additionalCategoryPasses: [],
+      eventPasses: [],
       paymentMethodType: params.paymentMethodType || null,
       installments: params.installments || [],
       installmentsPayed: 0,
