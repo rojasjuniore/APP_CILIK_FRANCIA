@@ -55,6 +55,7 @@ import { PruchaseInstallmentPayCoutaCardItemComponent } from './pruchase-install
 import { PreSaleEventPassStepCounterComponent } from './pre-sale-event-pass-step-counter/pre-sale-event-pass-step-counter.component';
 import { PreSaleOnlyEventPassCardItemComponent } from './pre-sale-only-event-pass-card-item/pre-sale-only-event-pass-card-item.component';
 import { PreSaleCheckoutOnlyEventPassCardItemComponent } from './pre-sale-checkout-only-event-pass-card-item/pre-sale-checkout-only-event-pass-card-item.component';
+import { PurchaseSummaryDetailsEventPassCardItemComponent } from './purchase-summary-details-event-pass-card-item/purchase-summary-details-event-pass-card-item.component';
 
 
 @NgModule({
@@ -118,6 +119,7 @@ import { PreSaleCheckoutOnlyEventPassCardItemComponent } from './pre-sale-checko
     PreSaleEventPassStepCounterComponent,
     PreSaleOnlyEventPassCardItemComponent,
     PreSaleCheckoutOnlyEventPassCardItemComponent,
+    PurchaseSummaryDetailsEventPassCardItemComponent,
   ],
   exports: [
     CommonModule,
@@ -170,6 +172,7 @@ import { PreSaleCheckoutOnlyEventPassCardItemComponent } from './pre-sale-checko
     PreSaleEventPassStepCounterComponent,
     PreSaleOnlyEventPassCardItemComponent,
     PreSaleCheckoutOnlyEventPassCardItemComponent,
+    PurchaseSummaryDetailsEventPassCardItemComponent,
   ],
   providers: [
     TranslatePipe,
