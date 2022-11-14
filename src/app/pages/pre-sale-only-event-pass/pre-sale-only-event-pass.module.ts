@@ -10,6 +10,7 @@ import { PreSaleOnlyEventPassCheckoutListComponent } from './components/pre-sale
 import { PreSaleOnlyEventPassPaymentMethodsComponent } from './components/pre-sale-only-event-pass-payment-methods/pre-sale-only-event-pass-payment-methods.component';
 import { PreSaleOnlyEventPassPaypalComponent } from './components/pre-sale-only-event-pass-paypal/pre-sale-only-event-pass-paypal.component';
 import { MaskPipe, NgxMaskModule } from 'ngx-mask';
+import { PreSaleOnlyEventPassInstallmentsDetailsComponent } from './components/pre-sale-only-event-pass-installments-details/pre-sale-only-event-pass-installments-details.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { MaskPipe, NgxMaskModule } from 'ngx-mask';
     PreSaleOnlyEventPassSelectComponent,
     PreSaleOnlyEventPassCheckoutListComponent,
     PreSaleOnlyEventPassPaymentMethodsComponent,
-    PreSaleOnlyEventPassPaypalComponent
+    PreSaleOnlyEventPassPaypalComponent,
+    PreSaleOnlyEventPassInstallmentsDetailsComponent
   ],
   imports: [
     CommonModule,
