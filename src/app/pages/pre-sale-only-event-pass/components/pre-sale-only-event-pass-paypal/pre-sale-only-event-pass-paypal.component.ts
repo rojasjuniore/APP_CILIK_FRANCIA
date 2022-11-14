@@ -25,7 +25,7 @@ export class PreSaleOnlyEventPassPaypalComponent implements OnInit {
 
   ngOnInit(): void {
     const totales = purchaseTotales(this.preSaleDocument);
-    console.log({totales});
+    // console.log({totales});
   }
 
 
@@ -35,7 +35,7 @@ export class PreSaleOnlyEventPassPaypalComponent implements OnInit {
 
   async onPaypalResponse(params: any){
     const { type, data } = params;
-    console.log({type, data});
+    // console.log({type, data});
 
     switch (type) {
       case 'cancel':
@@ -49,7 +49,7 @@ export class PreSaleOnlyEventPassPaypalComponent implements OnInit {
         return this.saveDocument(data);
     }
 
-    console.log({type, data});
+    // console.log({type, data});
   }
 
   async saveDocument(metadata: any){

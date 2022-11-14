@@ -119,14 +119,14 @@ export class PreSaleOnlyEventPassPaymentMethodsComponent implements OnInit {
     const roomsAmount = preSaleDocument?.rooms
       .map((row) => row.price)
       .reduce((prev, curr) => prev + curr, 0);
-    console.log('roomsAmount', roomsAmount);
+    // console.log('roomsAmount', roomsAmount);
 
     const additionalDaysAmount = preSaleDocument?.rooms
       .map((room) => room.additionals)
       .filter((row) => row.length > 0)
       .map((data) => data.map((row) => row.quantity * row.price).reduce((prev, curr) => prev + curr, 0))
       .reduce((prev, curr) => prev + curr, 0);
-    console.log('additionalDaysAmount', additionalDaysAmount);
+    // console.log('additionalDaysAmount', additionalDaysAmount);
 
     const additionalCategoryPasses = preSaleDocument?.additionalCategoryPasses
       .map((row) => {
