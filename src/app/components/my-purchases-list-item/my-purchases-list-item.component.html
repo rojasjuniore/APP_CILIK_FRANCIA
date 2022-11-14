@@ -1,49 +1,4 @@
-<ng-container *ngIf="order.orderType !== 'categoryPass'">
-    <!-- ORDEN PLAN OFICIAL WLDC -->
-    <div class="card card-box p-3 mb-3">
-        <div class="row g-2 d-flex align-items-center">
-            <div class="col-12">
-                <div class="d-sm-flex justify-content-between align-items-center">
-                    <div class="d-flex align-items-center">
-                        <div class="icon-order">
-                            <img src="assets/img/cilik/dash-08.png" alt="">
-                        </div>
-                        <div class="fs-4 fw-bold">
-                            {{'general.WLDCOfficialPlan' | translate}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="text-end fs-6 fw-bold">
-                    {{ "general.purchaseOrder" | translate }} #
-                    <br>
-                    {{order.orderId}}
-                </div>
-            </div>
-            <div class="seprd2"></div>
-
-            <div class="col-6">
-                <div class="d-flex justify-content-start mt-2">
-                    <div class="fs-5">
-                        <span class="fw-bold">{{'general.status' | translate}}:</span>  {{ 'general.' + order.status | translate }}
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-6 d-flex justify-content-end" >
-                <button class="btn btn-one btn-xs-c" type="button" (click)="showDetails()">
-                    {{ 'general.seeDetails' | translate }}
-                </button>
-            </div>
-            <div class="col-12 d-flex justify-content-center justify-content-md-end">
-                <div class="coasmdoas">{{ 'general.specificDetailsBank' | translate }}</div>
-            </div>
-        </div>
-    </div>
-</ng-container>
-
-<ng-container *ngIf="order.orderType == 'categoryPass'">
+<ng-container *ngIf="order.orderType == 'categoryPass'; else secondValidation">
     <!-- ORDEN CATEGORIAS ADICIONALES -->
     <div class="card card-box p-3 mb-3">
         <div class="row g-2 d-flex align-items-center">
@@ -87,4 +42,98 @@
         </div>
     </div>
 </ng-container>
+
+<ng-template #secondValidation>
+    <ng-container *ngIf="order.orderType == 'eventPass'; else thirdValidation">
+        <div class="card card-box p-3 mb-3">
+            <div class="row g-2 d-flex align-items-center">
+                <div class="col-12">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                            <div class="icon-order">
+                                <img src="assets/img/cilik/dash-09.png" alt="">
+                            </div>
+                            <div class="fs-4 fw-bold">
+                                <!-- {{'general.additionalCategories' | translate}} -->
+                                FULL PASS
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="text-end fs-6 fw-bold">
+                        {{ "general.purchaseOrder" | translate }} #
+                        <br>
+                        {{order.orderId}}
+                    </div>
+                </div>
+                <div class="seprd2"></div>
+                <div class="col-6">
+                    <div class="d-flex justify-content-start mt-2">
+                        <div class="fs-4">
+                            <span class="fw-bold">{{'general.status' | translate}}:</span>  {{ 'general.' + order.status | translate }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6" >
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-one btn-xs-c" type="button" (click)="showDetails()">
+                            {{ 'general.seeDetails' | translate }}
+                        </button>
+                    </div>
+                </div>
+                <div class="col-12 d-flex justify-content-center justify-content-md-end">
+                    <div class="coasmdoas">{{ 'general.specificDetailsBank' | translate }} </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</ng-template>
+
+<ng-template #thirdValidation>
+    <!-- ORDEN PLAN OFICIAL WLDC -->
+    <div class="card card-box p-3 mb-3">
+        <div class="row g-2 d-flex align-items-center">
+            <div class="col-12">
+                <div class="d-sm-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-order">
+                            <img src="assets/img/cilik/dash-08.png" alt="">
+                        </div>
+                        <div class="fs-4 fw-bold">
+                            {{'general.WLDCOfficialPlan' | translate}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="text-end fs-6 fw-bold">
+                    {{ "general.purchaseOrder" | translate }} #
+                    <br>
+                    {{order.orderId}}
+                </div>
+            </div>
+            <div class="seprd2"></div>
+
+            <div class="col-6">
+                <div class="d-flex justify-content-start mt-2">
+                    <div class="fs-5">
+                        <span class="fw-bold">{{'general.status' | translate}}:</span>  {{ 'general.' + order.status | translate }}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-6 d-flex justify-content-end" >
+                <button class="btn btn-one btn-xs-c" type="button" (click)="showDetails()">
+                    {{ 'general.seeDetails' | translate }}
+                </button>
+            </div>
+            <div class="col-12 d-flex justify-content-center justify-content-md-end">
+                <div class="coasmdoas">{{ 'general.specificDetailsBank' | translate }}</div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+
 
