@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Subject } from 'rxjs';
 import { HotelService } from 'src/app/services/hotel.service';
+import { PreSaleService } from 'src/app/services/pre-sale.service';
 
 @Component({
   selector: 'app-pre-sale-add-room-button',
@@ -17,6 +18,7 @@ export class PreSaleAddRoomButtonComponent implements OnInit, OnChanges {
 
   constructor(
     private hotelSrv: HotelService,
+    private preSaleSrv: PreSaleService,
   ) { }
 
   ngOnInit(): void {
@@ -33,7 +35,9 @@ export class PreSaleAddRoomButtonComponent implements OnInit, OnChanges {
   async addRoom(capacity = 1){
     try {
       this.loading = true;
-      const result = await this.hotelSrv.getRoomDefaultByCapacity(capacity);
+      const { orderType } = this.preSaleSrv.getDocumentLocalStorage();
+
+      const result = await this.hotelSrv.getRoomDefaultByCapacity(capacity, orderType);
       this.onAddRoom.next(
         this.hotelSrv.parseRoomDefaultByCapacityDocument(result)
       );

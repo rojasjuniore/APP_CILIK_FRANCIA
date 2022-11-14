@@ -24,6 +24,7 @@ export class PreSalePackagesListComponent implements OnInit {
   public roomData: any = {nroParticipants: 0, type: 1};
   public rooms: any[] = [];
   public setup: any;
+  public orderType = "fullPass";
 
   constructor(
     private preSaleSrv: PreSaleService,
@@ -35,10 +36,11 @@ export class PreSalePackagesListComponent implements OnInit {
 
     /** TODO: pendiente por eliminar */
     // this.preSaleSrv.buildAndStore({nroParticipants: 1}, false);
-    const { nroParticipants, rooms, setup } = this.preSaleSrv.checkAndLoadDocumentLocalStorage();
+    const { nroParticipants, rooms, setup, orderType } = this.preSaleSrv.checkAndLoadDocumentLocalStorage();
     this.nroParticipants = nroParticipants;
     this.rooms = rooms;
     this.setup = setup;
+    this.orderType = orderType;
   }
 
   ngOnInit(): void {}
@@ -121,7 +123,7 @@ export class PreSalePackagesListComponent implements OnInit {
   }
 
   onMorePLanCardItem(index: any) {
-    this.modalRoomTypeDetails.showModal({index, data: this.rooms[index]});
+    this.modalRoomTypeDetails.showModal({index, data: this.rooms[index], orderType: this.orderType});
   }
 
   onAddAdditionalDays(index: any){
@@ -182,8 +184,9 @@ export class PreSalePackagesListComponent implements OnInit {
 
       const groups = this.calculateGroups(this.nroParticipants);
       // console.log({groups});
+      const { orderType } = this.preSaleSrv.getDocumentLocalStorage();
 
-      const toAwait = groups.map(async(group) => this.hotelSrv.getRoomDefaultByCapacity(group));
+      const toAwait = groups.map(async(group) => this.hotelSrv.getRoomDefaultByCapacity(group, orderType));
       const snapshot = await Promise.all(toAwait);
       // console.log({snapshot});
 
