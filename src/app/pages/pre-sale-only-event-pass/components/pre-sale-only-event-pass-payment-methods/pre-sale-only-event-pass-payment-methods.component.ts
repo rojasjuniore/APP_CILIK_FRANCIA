@@ -140,7 +140,10 @@ export class PreSaleOnlyEventPassPaymentMethodsComponent implements OnInit {
       })
       .reduce((prev, curr) => prev + curr, 0)
 
-    const price = [roomsAmount, additionalDaysAmount, additionalCategoryPasses]
+    const eventPass = preSaleDocument?.eventPasses.map((row) => row.price + row.quantity)
+      .reduce((prev, curr) => prev + curr, 0)
+
+    const price = [roomsAmount, additionalDaysAmount, additionalCategoryPasses, eventPass]
       .reduce((prev, curr) => prev + curr, 0);
 
     const coutaAmount = price / coutas.length;
