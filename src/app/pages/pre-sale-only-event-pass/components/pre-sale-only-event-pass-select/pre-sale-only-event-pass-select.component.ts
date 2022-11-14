@@ -57,7 +57,7 @@ export class PreSaleOnlyEventPassSelectComponent implements OnInit {
       }
     }
 
-    console.log('this.eventPassPriceList[indexPrice]', this.eventPassPriceList[indexPrice]);
+    // console.log('this.eventPassPriceList[indexPrice]', this.eventPassPriceList[indexPrice]);
     this.eventPassPrice = this.eventPassPriceList[indexPrice].price;
     return;
   }
