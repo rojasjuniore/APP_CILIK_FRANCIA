@@ -52,7 +52,7 @@ export class PreSaleOnlyCategoriesPaymentMethodsComponent implements OnInit {
     //   status: false,
     // },
   ];
-
+  public orderType = "fullPass";
   public loading = false;
 
   constructor(
@@ -67,7 +67,8 @@ export class PreSaleOnlyCategoriesPaymentMethodsComponent implements OnInit {
   ngOnInit(): void { }
 
   loadLocalData(){
-    const { paymentMethodType } = this.preSaleSrv.checkAndLoadDocumentLocalStorage();
+    const { paymentMethodType, orderType } = this.preSaleSrv.checkAndLoadDocumentLocalStorage();
+    this.orderType = orderType;
     if(paymentMethodType){
       this.paymentMethodType = paymentMethodType;
     }

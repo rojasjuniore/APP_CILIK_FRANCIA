@@ -15,13 +15,15 @@ export class PreSaleOnlyCategoriesInstallmentsDetailsComponent implements OnInit
 
   /** Documento de orden de compra desde el localStorage */
   public preSaleDocument: any;
+  public orderType = "fullPass";
 
   constructor(
     private preSaleSrv: PreSaleService,
     private router: Router,
   ) {
-    const {installments} = this.preSaleSrv.checkAndLoadDocumentLocalStorage();
+    const {installments, orderType} = this.preSaleSrv.checkAndLoadDocumentLocalStorage();
     this.installments = installments;
+    this.orderType = orderType;
   }
 
   ngOnInit(): void {}
