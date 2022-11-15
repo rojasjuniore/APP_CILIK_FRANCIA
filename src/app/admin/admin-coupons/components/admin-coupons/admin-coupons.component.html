@@ -36,13 +36,13 @@
                                 </td>
                                 <td>
                                     <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                        <button type="button" class="btn" [ngClass]="{'btn-success': item.status, 'btn-danger': !item.status}">
+                                        <button type="button" class="btn" [ngClass]="{'btn-success': item.status, 'btn-danger': !item.status}" (click)="changeStatus(item)">
                                             <i class="bi" [ngClass]="{'bi-eye': item.status, 'bi-eye-slash': !item.status}"></i>
                                         </button>
-                                        <button type="button" class="btn btn-danger">
+                                        <button type="button" class="btn btn-danger" (click)="update(item)">
                                             <i class="bi bi-pencil-square"></i>
                                         </button>
-                                        <button type="button" class="btn btn-warning">
+                                        <button type="button" class="btn btn-warning" (click)="remove(item)">
                                             <i class="bi bi-trash3"></i>
                                         </button>
                                     </div>
