@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import moment from 'moment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { slugify } from 'src/app/helpers/slugify';
 import { BsModalService } from 'src/app/services/bs-modal.service';
@@ -87,7 +88,7 @@ export class AddCouponModalComponent implements OnInit {
       await this.spinner.show();
 
       await this.couponSrv.store(code, {
-        ...formData, code
+        ...formData, code, createdAt: moment().valueOf()
       });
 
       this.sweetAlert2Srv.showSuccess("Cupón agregado correctamente");
