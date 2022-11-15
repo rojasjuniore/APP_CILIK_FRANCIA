@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestore, Query } from '@angular/fire/compat/firestore';
 import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
 import { map, Observable } from 'rxjs';
+import { handlerArrayResult } from '../helpers/model.helper';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,21 @@ export class CouponsService {
 
   async getById(docId: string){
     return this.afs.collection(this.collection).doc(docId).get().toPromise();
+  }
+
+  getDynamic(where: any[] = [], opts: any = {}): Observable<any[]>{
+    const {idField = "_id", orderBy = []} = opts;
+
+    return this.afs.collection(
+      this.collection,
+      (ref) => {
+        let query: any = ref;
+        for (const row of where) { query = query.where(row.field, row.condition, row.value); }
+
+        for (const order of orderBy) { query = query.orderBy(order.field, order.order); }
+        return query;
+      }
+    ).valueChanges({ idField });
   }
 }
 
