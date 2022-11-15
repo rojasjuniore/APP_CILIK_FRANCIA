@@ -1,0 +1,19 @@
+<ng-container *ngIf="orderType == 'fullPass'">
+    {{'general.WLDCOfficialPlan' | translate}}
+</ng-container>
+
+<ng-container *ngIf="orderType == 'hotelAndEventPass'">
+    PLAN HOTEL Y FULL PASS
+</ng-container>
+
+<ng-container *ngIf="orderType == 'hotelPass'">
+    PLAN SOLO HOTEL
+</ng-container>
+
+<ng-container *ngIf="orderType == 'eventPass'">
+    FULL PASS
+</ng-container>
+
+<ng-container *ngIf="orderType == 'categoryPass'">
+    {{'general.additionalCategories' | translate}}
+</ng-container>
