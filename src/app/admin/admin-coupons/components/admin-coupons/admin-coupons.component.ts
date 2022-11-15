@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs';
+import { CouponsService } from 'src/app/services/coupons.service';
 import { AddCouponModalComponent } from '../add-coupon-modal/add-coupon-modal.component';
 import { UpdateCouponModalComponent } from '../update-coupon-modal/update-coupon-modal.component';
 
@@ -12,9 +14,14 @@ export class AdminCouponsComponent implements OnInit {
   @ViewChild(AddCouponModalComponent) modalAdd!: AddCouponModalComponent;
   @ViewChild(UpdateCouponModalComponent) modalUpdate!: UpdateCouponModalComponent;
 
-  constructor() { }
+  public couponList$!: Observable<any[]>;
+
+  constructor(
+    private couponSrv: CouponsService
+  ) { }
 
   ngOnInit(): void {
+    this.couponList$ = this.couponSrv.getDynamic([]);
   }
 
   async add(){

@@ -56,6 +56,7 @@ export class AddCouponModalComponent implements OnInit {
       createdAt: [""],
       expiredAt: [""],
       nroUsed: [0],
+      status: true,
 
     });
   }
