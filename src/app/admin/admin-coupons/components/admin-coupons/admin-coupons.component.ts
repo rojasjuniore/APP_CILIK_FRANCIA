@@ -55,6 +55,27 @@ export class AdminCouponsComponent implements OnInit {
 
   async update(coupon: any){}
 
-  async remove(coupon: any){}
+  async remove(coupon: any){
+    const ask = await this.sweetAlert2Srv.askConfirm("¿Estás seguro de eliminar el cupón?");
+    if(!ask){ return; }
+
+    if(coupon.nroUsed > 0){
+      return this.sweetAlert2Srv.showError("No se puede eliminar un cupón que ya ha sido usado");
+    }
+
+    try {
+
+      await this.spinner.show();
+      await this.couponSrv.delete(coupon._id);
+      this.sweetAlert2Srv.showSuccess("Cupón eliminado");
+      return;
+      
+    } catch (err) {
+      console.log("Error on AdminCouponsComponent.remove", err);
+      return;
+    }finally{
+      this.spinner.hide();
+    }
+  }
 
 }
