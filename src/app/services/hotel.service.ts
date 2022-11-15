@@ -66,6 +66,7 @@ export class HotelService {
       const from = moment(row.from, 'YYYY/MM/DD').startOf('day');
       const to = moment(row.to, 'YYYY/MM/DD').endOf('day');
       const isBetween = currentDate.isBetween(from, to);
+      const rowType = row.type || type;
 
       // console.log({
       //   currentDate: currentDate.format('DD/MM/YYYY'),
@@ -73,7 +74,7 @@ export class HotelService {
       //   to: to.format('DD/MM/YYYY'),
       // });
 
-      if(isBetween && row.type === type){
+      if(isBetween && rowType === type){
         indexPrice = index;
         break;
       }
