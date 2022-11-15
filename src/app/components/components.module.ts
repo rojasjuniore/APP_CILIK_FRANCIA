@@ -57,6 +57,7 @@ import { PreSaleOnlyEventPassCardItemComponent } from './pre-sale-only-event-pas
 import { PreSaleCheckoutOnlyEventPassCardItemComponent } from './pre-sale-checkout-only-event-pass-card-item/pre-sale-checkout-only-event-pass-card-item.component';
 import { PurchaseSummaryDetailsEventPassCardItemComponent } from './purchase-summary-details-event-pass-card-item/purchase-summary-details-event-pass-card-item.component';
 import { PurchaseTitleCardItemComponent } from './purchase-title-card-item/purchase-title-card-item.component';
+import { PreSaleBannerCardItemComponent } from './pre-sale-banner-card-item/pre-sale-banner-card-item.component';
 
 
 @NgModule({
@@ -122,6 +123,7 @@ import { PurchaseTitleCardItemComponent } from './purchase-title-card-item/purch
     PreSaleCheckoutOnlyEventPassCardItemComponent,
     PurchaseSummaryDetailsEventPassCardItemComponent,
     PurchaseTitleCardItemComponent,
+    PreSaleBannerCardItemComponent,
   ],
   exports: [
     CommonModule,
@@ -176,6 +178,7 @@ import { PurchaseTitleCardItemComponent } from './purchase-title-card-item/purch
     PreSaleCheckoutOnlyEventPassCardItemComponent,
     PurchaseSummaryDetailsEventPassCardItemComponent,
     PurchaseTitleCardItemComponent,
+    PreSaleBannerCardItemComponent,
   ],
   providers: [
     TranslatePipe,

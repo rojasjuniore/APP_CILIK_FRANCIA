@@ -1,0 +1,102 @@
+<ng-container *ngIf="orderType == 'fullPass'">
+    <div class="card card-box p-3 mt-3">
+        <div class="row g-2 d-flex align-items-center">
+            <div class="col-12 px-3">
+                <div class="d-flex justify-content-between">
+                    <span class="text-rslt fw-bold fs-5">
+                        <app-purchase-title-card-item [orderType]="orderType"></app-purchase-title-card-item>
+                    </span>
+                </div>
+            </div>
+            <div class="seprd2"></div>
+            <div class="col-12 px-3">
+                <p class="m-0">
+                    INCLUYE: Hotel, alimentación completa, full pass al evento, traslado hotel aeropuerto hotel, categoría de regalo.
+                </p>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="orderType == 'hotelAndEventPass'">
+    <div class="card card-box p-3 mt-3">
+        <div class="row g-2 d-flex align-items-center">
+            <div class="col-12 px-3">
+                <div class="d-flex justify-content-between">
+                    <span class="text-rslt fw-bold fs-5">
+                        <app-purchase-title-card-item [orderType]="orderType"></app-purchase-title-card-item>
+                    </span>
+                </div>
+            </div>
+            <div class="seprd2"></div>
+            <div class="col-12 px-3">
+                <p class="m-0">
+                    INCLUYE: Hotel con desayuno y full pass al evento.
+                    NO INCLUYE: Alimentación, traslado hotel aeropuerto hotel, categoría de regalo.
+                </p>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="orderType == 'hotelPass'">
+    <div class="card card-box p-3 mt-3">
+        <div class="row g-2 d-flex align-items-center">
+            <div class="col-12 px-3">
+                <div class="d-flex justify-content-between">
+                    <span class="text-rslt fw-bold fs-5">
+                        <app-purchase-title-card-item [orderType]="orderType"></app-purchase-title-card-item>
+                    </span>
+                </div>
+            </div>
+            <div class="seprd2"></div>
+            <div class="col-12 px-3">
+                <p class="m-0">
+                    INCLUYE: Desayuno.
+                    NO INCLUYE: Alimentación, traslado hotel aeropuerto hotel, Full pass del evento, categoría de regalo.
+                </p>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="orderType == 'eventPass'">
+    <div class="card card-box p-3 mt-3">
+        <div class="row g-2 d-flex align-items-center">
+            <div class="col-12 px-3">
+                <div class="d-flex justify-content-between">
+                    <span class="text-rslt fw-bold fs-5">
+                        <app-purchase-title-card-item [orderType]="orderType"></app-purchase-title-card-item>
+                    </span>
+                </div>
+            </div>
+            <div class="seprd2"></div>
+            <div class="col-12 px-3">
+                <p class="m-0">
+                    NO INCLUYE: hotel, alimentación, traslado hotel aeropuerto hotel, categoría de regalo.
+                </p>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="orderType == 'categoryPass'">
+    <div class="card card-box p-3 mt-3">
+        <div class="row g-2 d-flex align-items-center">
+            <div class="col-12 px-3">
+                <div class="d-flex justify-content-between">
+                    <span class="text-rslt fw-bold fs-5">
+                        <app-purchase-title-card-item [orderType]="orderType"></app-purchase-title-card-item>
+                    </span>
+                </div>
+            </div>
+            <div class="seprd2"></div>
+            <div class="col-12 px-3">
+                <p class="m-0">
+                    NO INCLUYE: hotel, alimentación, traslado hotel aeropuerto hotel, categoría de regalo.
+                </p>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
