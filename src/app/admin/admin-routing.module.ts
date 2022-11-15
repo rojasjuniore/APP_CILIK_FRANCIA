@@ -29,10 +29,16 @@ const routes: Routes = [
         component: ListOrderComponent,
       },
       {
+        path: 'coupons',
+        // data: { profiles: ['admin-permission'] },
+        canActivate: [ AuthProfileGuard ],
+        loadChildren: () => import("./admin-coupons/admin-coupons.module").then((m) => m.AdminCouponsModule),
+      },
+      {
         path: '**',
         pathMatch: 'full',
         redirectTo: '/admin/dashboard'
-      }
+      },
     ]
   },
   {
