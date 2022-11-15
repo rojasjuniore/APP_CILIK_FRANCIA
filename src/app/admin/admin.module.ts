@@ -9,6 +9,7 @@ import { PermissionComponent } from './components/permission/permission.componen
 import { PermissionRolesComponent } from './components/permission-roles/permission-roles.component';
 import { ListOrderComponent } from './components/list-order/list-order.component';
 import { PermissionProfilesComponent } from './components/permission-profiles/permission-profiles.component';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { PermissionProfilesComponent } from './components/permission-profiles/pe
     PermissionComponent,
     PermissionRolesComponent,
     ListOrderComponent,
-    PermissionProfilesComponent
+    PermissionProfilesComponent,
+    AdminDashboardComponent
   ],
   imports: [
     CommonModule,
