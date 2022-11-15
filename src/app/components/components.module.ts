@@ -129,6 +129,7 @@ import { PreSaleBannerCardItemComponent } from './pre-sale-banner-card-item/pre-
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    TranslateModule,
     Footer1Component,
     Footer2Component,
     SignInComponent,

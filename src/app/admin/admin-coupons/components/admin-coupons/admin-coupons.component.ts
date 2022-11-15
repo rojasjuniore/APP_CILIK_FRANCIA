@@ -18,7 +18,7 @@ export class AdminCouponsComponent implements OnInit {
   }
 
   async add(){
-    console.log('add');
+    return this.modalAdd.show();
   }
 
 }
