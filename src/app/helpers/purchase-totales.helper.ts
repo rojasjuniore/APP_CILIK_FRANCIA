@@ -10,7 +10,8 @@ export function purchaseTotales(orderDoc: any = {}){
         rooms = [], 
         additionalCategoryPasses: categoryPasses = [], 
         groupDiscount = 0,
-        eventPasses = []
+        eventPasses = [],
+        coupons = [],
     } = Object.assign({}, orderDoc);
 
     const {
@@ -111,9 +112,12 @@ export function purchaseTotales(orderDoc: any = {}){
         evenPassesAmount
     ].reduce((prev, curr) => prev + curr, 0);
 
-    const discount = subTotalFullPrice - subTotal;
-    const groupDiscountAmount = groupDiscount * subTotal;
-    const total = subTotal - groupDiscountAmount;
+    const coupon = (coupons.length > 0) ? coupons[0] : 0;
+    const couponAmount = (coupon.type == 'percentage') ? (subTotal * coupon.discount) / 100 : coupon.discount;
+
+    const discount = subTotalFullPrice - (subTotal - couponAmount);
+    const groupDiscountAmount = groupDiscount * (subTotal - couponAmount);
+    const total = subTotal - groupDiscountAmount - couponAmount;
 
     return {
         roomsFullPrice,
