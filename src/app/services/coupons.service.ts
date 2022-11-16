@@ -3,7 +3,7 @@ import { AngularFirestore, Query } from '@angular/fire/compat/firestore';
 import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
 import { increment } from 'firebase/firestore';
 import { map, Observable } from 'rxjs';
-import { handlerArrayResult } from '../helpers/model.helper';
+import { handlerArrayResult, handlerObjectResult } from '../helpers/model.helper';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +29,8 @@ export class CouponsService {
   }
 
   async getById(docId: string){
-    return this.afs.collection(this.collection).doc(docId).get().toPromise();
+    const snapshot = await this.afs.collection(this.collection).doc(docId).get().toPromise();
+    return handlerObjectResult(snapshot);
   }
 
   async updateCounter(docId: string, field: string, value = 1){
