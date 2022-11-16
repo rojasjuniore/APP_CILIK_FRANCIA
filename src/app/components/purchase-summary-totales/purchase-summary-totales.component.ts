@@ -126,7 +126,7 @@ export class PurchaseSummaryTotalesComponent implements OnInit {
   }
 
   get discount(){
-    return this.subTotalFullPrice - this.subTotal;
+    return this.subTotalFullPrice - this.subTotal + this.couponAmount;
   }
 
   get groupDiscount(){
@@ -143,7 +143,7 @@ export class PurchaseSummaryTotalesComponent implements OnInit {
     if(coupons.length == 0) return 0;
 
     const row = coupons[0];
-    return (row.type == 'percentage') ? (this.subTotal * row.discount) / 100 : row.discount;
+    return (row.type == 'percentage') ? Number((this.subTotal * row.discount) / 100) : Number(row.discount);
   }
 
   get total(){
