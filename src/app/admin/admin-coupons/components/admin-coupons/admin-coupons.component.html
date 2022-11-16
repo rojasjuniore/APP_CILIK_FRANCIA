@@ -16,6 +16,8 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Code</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Value</th>
                         <th scope="col">Used</th>
                         <th scope="col">Handle</th>
                     </tr>
@@ -30,6 +32,12 @@
                                 </th>
                                 <td>
                                     {{ item.code | uppercase}}
+                                </td>
+                                <td>
+                                    {{ item.type | uppercase}}
+                                </td>
+                                <td>
+                                    {{ item.discount }}
                                 </td>
                                 <td>
                                     {{ item.nroUsed }}
@@ -72,7 +80,7 @@
 
 <ng-template #noRecords>
     <tr>
-        <th scope="row" colspan="4">
+        <th scope="row" colspan="6">
             <h5 class="text-center">
                 No hay registros
             </h5>
@@ -82,7 +90,7 @@
 
 <ng-template #loading>
     <tr *ngFor="let item of [1,1,1,1]">
-        <th scope="row" colspan="4" class="placeholder-glow">
+        <th scope="row" colspan="6" class="placeholder-glow">
             <span class="placeholder col-12" style="height: 16px;"></span>
         </th>
     </tr>
