@@ -126,7 +126,7 @@ export class PurchaseSummaryTotalesComponent implements OnInit {
   }
 
   get discount(){
-    return this.subTotalFullPrice - this.subTotal + this.couponAmount;
+    return this.subTotalFullPrice - (this.subTotal - this.couponAmount);
   }
 
   get groupDiscount(){
