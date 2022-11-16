@@ -84,6 +84,7 @@ export class PreSaleService {
       orderType: params.orderType || 'fullPass', // 'fullPass' | 'categoryPass'
       setup: params.setup || null, // 'manual' | 'automatic'
       status: params.status || 'pending',
+      coupons: params.coupons || [],
     };
   }
 
