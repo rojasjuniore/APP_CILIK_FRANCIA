@@ -39,7 +39,8 @@ export function purchaseTotales(orderDoc: any = {}){
         .reduce((prev, curr) => {
             prev.fullPrice += curr.fullPrice;
             prev.price += curr.price;
-        }, {
+            return prev;
+        },{
             fullPrice: 0,
             price: 0
         })
@@ -65,6 +66,7 @@ export function purchaseTotales(orderDoc: any = {}){
             })).reduce((prev, curr) =>{
                 prev.fullPrice += curr.fullPrice;
                 prev.price += curr.price;
+                return prev;
             },{
                 fullPrice: 0,
                 price: 0
