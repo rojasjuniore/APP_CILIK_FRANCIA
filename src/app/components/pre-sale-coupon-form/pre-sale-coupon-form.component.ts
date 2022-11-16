@@ -34,9 +34,27 @@ export class PreSaleCouponFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.validateStoredCoupon();
   }
 
   get f() { return this.form.controls; }
+
+  validateStoredCoupon(){
+    const { coupons = [] } = this.preSaleSrv.getDocumentLocalStorage();
+    if(!coupons.length){ return; }
+
+    this.form.patchValue({ coupon: coupons[0].code });
+    this.form.disable();
+  }
+
+  async removeCoupon(){
+    const ask = await this.sweetAlert2Srv.askConfirm('¿Estás seguro de eliminar este cupón?');
+    if(!ask){ return; }
+
+    this.preSaleSrv.updateDocumentLocalStorage({ coupons: [] });
+    this.form.reset();
+    this.form.enable();
+  }
 
   async checkCoupon(){
     const response = { status: false, message: 'Cupón no válido', data: null};
@@ -89,6 +107,8 @@ export class PreSaleCouponFormComponent implements OnInit {
 
     coupons.push(checkCoupon.data);
     this.preSaleSrv.updateDocumentLocalStorage({ coupons });
+    this.form.disable();
+    this.submit = false;
   }
 
 }
