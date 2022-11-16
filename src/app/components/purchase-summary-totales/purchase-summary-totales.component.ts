@@ -137,8 +137,17 @@ export class PurchaseSummaryTotalesComponent implements OnInit {
     return (this.subTotal * this.groupDiscount);
   }
 
+  get couponAmount(){
+    const coupons = this.order?.coupons || [];
+
+    if(coupons.length == 0) return 0;
+
+    const row = coupons[0];
+    return (row.type == 'percentage') ? (this.subTotal * row.discount) / 100 : row.discount;
+  }
+
   get total(){
-    return this.subTotal  - this.groupDiscountAmount;
+    return this.subTotal  - this.groupDiscountAmount - this.couponAmount;
   }
 
   get nroCoutas(){
