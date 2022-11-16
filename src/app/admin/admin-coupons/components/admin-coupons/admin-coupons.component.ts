@@ -25,7 +25,7 @@ export class AdminCouponsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.couponList$ = this.couponSrv.getDynamic([]);
+    this.couponList$ = this.couponSrv.getDynamic([], {orderBy: [{field: "code", order: "asc"}]});
   }
 
   async add(){ return this.modalAdd.show(); }
