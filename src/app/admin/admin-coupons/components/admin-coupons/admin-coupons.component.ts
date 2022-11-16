@@ -28,9 +28,7 @@ export class AdminCouponsComponent implements OnInit {
     this.couponList$ = this.couponSrv.getDynamic([]);
   }
 
-  async add(){
-    return this.modalAdd.show();
-  }
+  async add(){ return this.modalAdd.show(); }
 
   async changeStatus(coupon: any){
     const ask = await this.sweetAlert2Srv.askConfirm("¿Estás seguro de cambiar el estado del cupón?");
@@ -49,11 +47,9 @@ export class AdminCouponsComponent implements OnInit {
     }finally{
       this.spinner.hide();
     }
-
-
   }
 
-  async update(coupon: any){}
+  async update(coupon: any){ return this.modalUpdate.show(coupon); }
 
   async remove(coupon: any){
     const ask = await this.sweetAlert2Srv.askConfirm("¿Estás seguro de eliminar el cupón?");
