@@ -109,7 +109,7 @@ export class Sweetalert2Service {
     }
   }
 
-  showSuccess(message, type = 0, transactionHash?) {
+  showSuccess(message, type = 2, transactionHash?) {
     try {
       let mess;
 
