@@ -17,7 +17,7 @@
             <div class="seprd2"></div>
             <div class="col-12 px-3">
                 <p class="m-0">
-                    INCLUYE: Hotel, alimentación completa, full pass al evento, traslado hotel aeropuerto hotel, categoría de regalo.
+                    {{'plansCard.include' | translate}}: {{'plansCard.allInclusivePlan.include' | translate}}
                 </p>
             </div>
         </div>
@@ -29,7 +29,7 @@
         <div class="row g-2 d-flex align-items-center">
             <div class="col-12 px-3">
                 <div class="d-flex justify-content-between align-items-center">
-                    <span class=" fw-bold fs-5">
+                    <span class=" fw-bold fs-5 text-uppercase">
                         <app-purchase-title-card-item [orderType]="orderType"></app-purchase-title-card-item>
                     </span>
 
@@ -44,8 +44,14 @@
             <div class="seprd2"></div>
             <div class="col-12 px-3">
                 <p class="m-0">
-                    INCLUYE: Hotel con desayuno y full pass al evento.
-                    NO INCLUYE: Alimentación, traslado hotel aeropuerto hotel, categoría de regalo.
+                    <span class="bold text-uppercase">
+                        {{'plansCard.include' | translate}}:
+                    </span>  
+                    {{'plansCard.hotelPlanAndFullPass.include' | translate}}
+                    <span class="bold text-uppercase">    
+                        {{'plansCard.notInclude' | translate}}:
+                    </span> 
+                    {{'plansCard.hotelPlanAndFullPass.noInclude' | translate}}
                 </p>
             </div>
         </div>
@@ -71,8 +77,14 @@
             <div class="seprd2"></div>
             <div class="col-12 px-3">
                 <p class="m-0">
-                    INCLUYE: Desayuno.
-                    NO INCLUYE: Alimentación, traslado hotel aeropuerto hotel, Full pass del evento, categoría de regalo.
+                    <span class="bold text-uppercase">
+                        {{'plansCard.include' | translate}}:
+                    </span> 
+                    {{'plansCard.hotelOnlyPlan.include' | translate}}
+                    <span class="bold text-uppercase">                    
+                        {{'plansCard.notInclude' | translate}}:
+                    </span>
+                    {{'plansCard.hotelOnlyPlan.noInclude' | translate}}
                 </p>
             </div>
         </div>
@@ -97,7 +109,10 @@
             <div class="seprd2"></div>
             <div class="col-12 px-3">
                 <p class="m-0">
-                    NO INCLUYE: hotel, alimentación, traslado hotel aeropuerto hotel, categoría de regalo.
+                    <span class="bold text-uppercase">                    
+                        {{'plansCard.notInclude' | translate}}:
+                    </span>
+                    {{'plansCard.fullPass.noInclude' | translate}}
                 </p>
             </div>
         </div>
@@ -123,7 +138,10 @@
             <div class="seprd2"></div>
             <div class="col-12 px-3">
                 <p class="m-0">
-                    NO INCLUYE: hotel, alimentación, traslado hotel aeropuerto hotel, categoría de regalo.
+                    <span class="bold text-uppercase">                    
+                        {{'plansCard.notInclude' | translate}}:
+                    </span>
+                    {{'plansCard.categoriesAdditional.noInclude' | translate}}
                 </p>
             </div>
         </div>

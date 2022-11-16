@@ -3,17 +3,20 @@
 </ng-container>
 
 <ng-container *ngIf="orderType == 'hotelAndEventPass'">
-    PLAN HOTEL Y FULL PASS
+    <span class="text-uppercase" 
+    [innerHTML]="'plansCard.hotelPlanAndFullPass.title' | translate">  ></span>
 </ng-container>
 
 <ng-container *ngIf="orderType == 'hotelPass'">
-    PLAN SOLO HOTEL
+    <span class="text-uppercase" 
+    [innerHTML]="'plansCard.hotelOnlyPlan.title' | translate">  ></span>
 </ng-container>
 
 <ng-container *ngIf="orderType == 'eventPass'">
-    FULL PASS
+    <span class="text-uppercase"> {{'plansCard.fullPass.title' | translate}}</span>
 </ng-container>
 
 <ng-container *ngIf="orderType == 'categoryPass'">
-    {{'general.additionalCategories' | translate}}
+    <span class="text-uppercase" 
+    [innerHTML]="'plansCard.categoriesAdditional.title' | translate">  ></span>
 </ng-container>

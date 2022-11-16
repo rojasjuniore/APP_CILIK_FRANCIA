@@ -28,7 +28,7 @@
                 <div class="row mt-4">
                     <div class="col-12 col-md-6 mb-3">
                         <div class="card plan-selection-item">
-                            <div class="recomendation">OPCIÓN RECOMENDADA</div>
+                            <div class="recomendation">{{'plansCard.recommendedOption' | translate}}</div>
                             <div class="card-header red">
 
                                 <div class="row g-0">
@@ -38,18 +38,20 @@
                                             class="img-fluid"
                                             alt=""
                                         />
-                                        <h4>
-                                            PLAN TODO <br />
-                                            INCLUIDO
+                                        <h4 
+                                            class="text-uppercase" 
+                                            [innerHTML]="'plansCard.allInclusivePlan.title' | translate">  
                                         </h4>
                                        
                                     </div>
                     
                                     <div class="col-7">
                                         <div class="plan-selection-include">
-                                            <span class="bold">INCLUYE:</span>
+                                            <span class="bold text-uppercase"> 
+                                                {{'plansCard.include' | translate}}:
+                                            </span>
                                             <span>
-                                                Hotel, alimentación completa, full pass del evento, traslados hotel aeropuerto hotel, categoría de regalo.
+                                                {{'plansCard.allInclusivePlan.include' | translate}}
                                             </span>
                                         </div>
                                     </div>
@@ -57,7 +59,7 @@
                             </div>
                             <div class="card-footer">
                                 <button class="btn btn-one red" (click)="newOrder('fullPass')">
-                                    LO QUIERO
+                                    {{'general.iWantIt' | translate}}
                                 </button>
                             </div>
                         </div>
@@ -81,20 +83,27 @@
                                             class="img-fluid"
                                             alt=""
                                         />
-                                        <h4>
-                                            PLAN HOTEL <br />
-                                            Y FULL PASS
+
+                                        <h4 
+                                            class="text-uppercase" 
+                                            [innerHTML]="'plansCard.hotelPlanAndFullPass.title' | translate">  
                                         </h4>
                                        
                                     </div>
                       
                                     <div class="col-7">
                                         <div class="plan-selection-include">
-                                            <span class="bold">INCLUYE:</span>
-                                            <span> Hotel con desayuno y full pass del evento. </span>
-                                            <span class="bold">NO INCLUYE:</span>
+                                            <span class="bold text-uppercase">
+                                                {{'plansCard.include' | translate}}:
+                                            </span>
+                                            <span> 
+                                                {{'plansCard.hotelPlanAndFullPass.include' | translate}} 
+                                            </span>
+                                            <span class="bold text-uppercase">    
+                                                {{'plansCard.notInclude' | translate}}:
+                                            </span>
                                             <span>
-                                                Alimentación, traslados hotel aeropuerto hotel, categoría de regalo.
+                                                {{'plansCard.hotelPlanAndFullPass.noInclude' | translate}} 
                                             </span>
                                         </div>
                                     </div>
@@ -103,7 +112,7 @@
                            
                             <div class="card-footer">
                                 <button class="btn btn-one purple" (click)="newOrder('hotelAndEventPass')">
-                                    LO QUIERO
+                                    {{'general.iWantIt' | translate}}
                                 </button>
                             </div>
                         </div>
@@ -126,19 +135,28 @@
                                             class="img-fluid plan-icon-3"
                                             alt=""
                                         />
-                                        <h4>
-                                            PLAN SOLO <br />
-                                            HOTEL
-                                        </h4>       
+
+                                        <h4 
+                                            class="text-uppercase" 
+                                            [innerHTML]="'plansCard.hotelOnlyPlan.title' | translate">  
+                                        </h4>
+                                      
                                     </div>
                       
                                     <div class="col-7">
                                         <div class="plan-selection-include">
-                                            <span class="bold">INCLUYE:</span>
-                                            <span> Desayuno. </span>
-                                            <span class="bold">NO INCLUYE:</span>
+                                            <span class="bold text-uppercase">
+                                                {{'plansCard.include' | translate}}:
+                                            </span>
                                             <span>
-                                                Alimentación, traslados aeropuerto hotel aeropuerto, Full pass del evento, categoría de regalo.
+                                                {{'plansCard.hotelOnlyPlan.include' | translate}}
+                                            </span>
+                                            <span class="bold text-uppercase">
+                                                
+                                                {{'plansCard.notInclude' | translate}}:
+                                            </span>
+                                            <span>
+                                                {{'plansCard.hotelOnlyPlan.noInclude' | translate}}
                                             </span>
                                         </div>
                                     </div>
@@ -147,7 +165,7 @@
                            
                             <div class="card-footer">
                                 <button class="btn btn-one green" (click)="newOrder('hotelPass')">
-                                    LO QUIERO
+                                    {{'general.iWantIt' | translate}}
                                 </button>
                             </div>
                         </div>
@@ -170,15 +188,19 @@
                                             class="img-fluid plan-icon-4"
                                             alt=""
                                         />
-                                        <h4 class="m-0">FULL PASS</h4>
+                                        <h4 class="m-0 text-uppercase">
+                                            {{'plansCard.fullPass.title' | translate}}
+                                        </h4>
                                      
                                     </div>
                           
                                     <div class="col-7">
                                         <div class="plan-selection-include">
-                                            <span class="bold ">NO INCLUYE:</span>
+                                            <span class="bold text-uppercase">
+                                                {{'plansCard.notInclude' | translate}}:
+                                            </span>
                                             <span >
-                                              Hotel, alimentación, traslados categoría de regalo.
+                                                {{'plansCard.fullPass.noInclude' | translate}}
                                             </span>
                                           </div>
                                     </div>
@@ -188,7 +210,7 @@
                           
                             <div class="card-footer">
                                  <button class="btn btn-one yellow" (click)="newOrder('eventPass')">
-                                    LO QUIERO
+                                    {{'general.iWantIt' | translate}}
                                 </button>
                             </div>
                         </div>
@@ -222,9 +244,10 @@
                                             class="img-fluid plan-icon-3"
                                             alt=""
                                         />
-                                        <h4 class="text-uppercase">
-                                            categorías <br />
-                                            adicionales
+                                        <h4 
+                                            class="text-uppercase"
+                                            [innerHTML]="'plansCard.categoriesAdditional.title' | translate">
+
                                         </h4>
                                   
                                     </div>
@@ -233,7 +256,7 @@
                             
                             <div class="card-footer">
                                 <button class="btn btn-one blue" (click)="showCategoriesTerms()">
-                                    LO QUIERO
+                                    {{'general.iWantIt' | translate}}
                                 </button>
                             </div>
                         </div>

@@ -207,7 +207,12 @@
     "valueToBeCancelledFrom": "Value to cancel",
     "valueWithoutDiscount": "Value whithout discount",
     "verify": "Verify",
-    "yes": "Yes"
+    "yes": "Yes",
+    "iWantIt": "I want it",
+    "coupon": "Coupon",
+    "apply": "Apply",
+    "remove": "Remove",
+    "couponCode": "Coupon Code"
   },
   "hotel": {
     "roomType": {
@@ -302,6 +307,33 @@
     "validations": {
       "emptyToken": "Code cannot be empty",
       "tokenLength": "The code must have {{tokenLong}} digits"
+    }
+  },
+  "plansCard": {
+    "recommendedOption": "RECOMMENDED OPTION",
+    "include": "include",
+    "notInclude": "not included",
+    "allInclusivePlan": {
+      "title": "all inclusive plan",
+      "include": "Hotel, full meal, full event pass, hotel airport hotel transfers, gift category."
+    },
+    "hotelPlanAndFullPass": {
+      "title": "Hotel plan and Full Pass",
+      "include":"Hotel with breakfast and full pass of the event.",
+      "noInclude": "Food, hotel airport hotel transfers, gift category."
+    },
+    "hotelOnlyPlan": {
+      "title": "Hotel Only Plan",
+      "include":"Breakfast.",
+      "noInclude": "Food, airport hotel airport transfers, Full event pass, gift category."
+    },
+    "fullPass": {
+      "title": "Full Pass",
+      "noInclude": "Hotel, food, transfers gift category."
+    },
+    "categoriesAdditional": {
+      "title": "Categories Additional",
+      "noInclude": "hotel, food, transfer hotel airport hotel, gift category."
     }
   }
 }

@@ -1,15 +1,23 @@
 <div class="mb-3">
     <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
         <label for="exampleInputEmail1" class="form-label">
-            Coupon
+            
+            {{'general.coupon' | translate}}
         </label>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" formControlName="coupon" placeholder="Coupon Code" aria-label="Coupon Code" aria-describedby="button-apply-coupon">
+            <input 
+                type="text" 
+                class="form-control" 
+                formControlName="coupon" 
+                placeholder="{{ 'general.couponCode' | translate }}" 
+                aria-label="Coupon Code" 
+                aria-describedby="button-apply-coupon"
+            >
             <button class="btn btn-sm btn-danger" id="button-apply-coupon" type="submit" *ngIf="!form.disabled">
-                Apply
+                {{'general.apply' | translate}}
             </button>
             <button class="btn btn-sm btn-danger" id="button-apply-coupon" type="button" *ngIf="form.disabled" (click)="removeCoupon()">
-                Remove
+                {{'general.remove' | translate}}
             </button>
         </div>
 

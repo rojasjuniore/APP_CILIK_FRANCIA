@@ -207,7 +207,12 @@
     "valueToBeCancelledFrom": "Valor a cancelar de",
     "valueWithoutDiscount": "Valor sin descuento",
     "verify": "Verificar",
-    "yes": "Sí"
+    "yes": "Sí",
+    "iWantIt": "lo quiero",
+    "coupon": "Cupón",
+    "apply": "Aplicar",
+    "remove": "Eliminar",
+    "couponCode": "Código del cupón"
   },
   "hotel": {
     "roomType": {
@@ -302,6 +307,33 @@
     "validations": {
       "emptyToken": "El código no puede estar vacío",
       "tokenLength": "El código debe tener {{tokenLong}} dígitos"
+    }
+  },
+  "plansCard": {
+    "recommendedOption": "OPCIÓN RECOMENDADA",
+    "include": "incluye",
+    "notInclude": "no incluye",
+    "allInclusivePlan": {
+      "title": " PLAN TODO  INCLUIDO",
+      "include": "Hotel, alimentación completa, full pass del evento, traslados hotel aeropuerto hotel, categoría de regalo."
+    },
+    "hotelPlanAndFullPass": {
+      "title": "  PLAN HOTEL  Y FULL PASS",
+      "include":"Hotel con desayuno y full pass del evento.",
+      "noInclude": "Alimentación, traslados hotel aeropuerto hotel, categoría de regalo."
+    },
+    "hotelOnlyPlan": {
+      "title": "PLAN SOLO HOTEL",
+      "include":"Desayuno.",
+      "noInclude": "Alimentación, traslados aeropuerto hotel aeropuerto, Full pass del evento, categoría de regalo."
+    },
+    "fullPass": {
+      "title": "Full Pass",
+      "noInclude": "Hotel, alimentación, traslados categoría de regalo."
+    },
+    "categoriesAdditional": {
+      "title": "categorías adicionales",
+      "noInclude": "hotel, alimentación, traslado hotel aeropuerto hotel, categoría de regalo."
     }
   }
 }
