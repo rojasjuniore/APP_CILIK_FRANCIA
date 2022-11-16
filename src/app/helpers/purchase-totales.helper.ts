@@ -112,7 +112,7 @@ export function purchaseTotales(orderDoc: any = {}){
         evenPassesAmount
     ].reduce((prev, curr) => prev + curr, 0);
 
-    const coupon = (coupons.length > 0) ? coupons[0] : 0;
+    const coupon = (coupons.length > 0) ? coupons[0] : { type: 'amount', discount: 0 };
     const couponAmount = (coupon.type == 'percentage') ? (subTotal * coupon.discount) / 100 : coupon.discount;
 
     const discount = subTotalFullPrice - (subTotal - couponAmount);
@@ -126,6 +126,7 @@ export function purchaseTotales(orderDoc: any = {}){
         additionalCategoryPasses,
         evenPassesFullAmount,
         evenPassesAmount,
+        couponAmount,
         subTotalFullPrice,
         subTotal,
         discount,
