@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, Query } from '@angular/fire/compat/firestore';
 import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
+import { increment } from 'firebase/firestore';
 import { map, Observable } from 'rxjs';
 import { handlerArrayResult } from '../helpers/model.helper';
 
@@ -29,6 +30,11 @@ export class CouponsService {
 
   async getById(docId: string){
     return this.afs.collection(this.collection).doc(docId).get().toPromise();
+  }
+
+  async updateCounter(docId: string, field: string, value = 1){
+    const ref = this.afs.collection(this.collection).doc(docId);
+    await ref.update({ [field]: increment(value) });
   }
 
   getDynamic(where: any[] = [], opts: any = {}): Observable<any[]>{
