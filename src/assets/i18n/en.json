@@ -212,7 +212,9 @@
     "coupon": "Coupon",
     "apply": "Apply",
     "remove": "Remove",
-    "couponCode": "Coupon Code"
+    "couponCode": "Coupon Code",
+    "pay":"Pay",
+    "payed": "Payed"
   },
   "hotel": {
     "roomType": {

@@ -11,7 +11,7 @@
 
                     <ng-container *ngIf="!item.payed; else alreadyPayed">
                         <button type="button" class="btn btn-danger btn-sm" (click)="goToPayCuota()">
-                            Pay
+                            {{ "general.pay" | translate }}
                         </button>
                     </ng-container>
 
@@ -37,6 +37,6 @@
 
 <ng-template #alreadyPayed>
     <button type="button" class="btn btn-danger btn-sm" disabled>
-        Payed
+        {{ "general.payed" | translate }}
     </button>
 </ng-template>
