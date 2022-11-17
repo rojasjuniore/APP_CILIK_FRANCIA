@@ -166,7 +166,6 @@ export class PreSalePaymentMethodsComponent implements OnInit {
     // const total = subTotal - groupDiscount;
 
     const totales = purchaseTotales(preSaleDocument);
-
     const coutaAmount = totales.total / coutas.length;
 
     const currentDate = moment();
