@@ -109,6 +109,7 @@
     "amount": "Monto",
     "amountOf": "Cantidad de",
     "amountWithoutDiscount": "Valor sin descuento",
+    "apply": "Aplicar",
     "approvedOrders": "Órdenes aprobadas",
     "automaticSetup": "Acomodación Automática",
     "back": "Regresar",
@@ -133,6 +134,8 @@
     "country": "País",
     "couple": "Pareja",
     "coupleCategory": "Categoría de Pareja",
+    "coupon": "Cupón",
+    "couponCode": "Código del cupón",
     "current": "Actual",
     "discount": "Descuento",
     "dni": "Nro. Documento",
@@ -147,6 +150,7 @@
     "groupCategory": "Categoría de Grupo",
     "groupDiscount": "Descuento por grupo",
     "hello": "Hola",
+    "iWantIt": "lo quiero",
     "lastName": "Apellido",
     "listOrders": "Lista de ordenes",
     "loading": "Cargando",
@@ -164,6 +168,8 @@
     "onlyImageFileTypeAllowed": "Solo se aceptan archivos en formato JPG, JPEG y PNG",
     "order": "Orden",
     "password": "Contraseña",
+    "pay": "Pagar",
+    "payed": "Pagado",
     "payment": "Pago",
     "pending": "Pendiente",
     "pendingOrders": "Órdenes pendientes",
@@ -179,6 +185,7 @@
     "rejected": "Rechazado",
     "rejectedOrder": "Marcar como rechazado",
     "rejectedOrders": "Órdenes rechazadas",
+    "remove": "Eliminar",
     "removeOrder": "¿Desea eliminar la orden de compra?",
     "room": "Habitación",
     "roomCardAddPeopleIntoTheroom": "Agregar personas a la habitación.",
@@ -207,14 +214,7 @@
     "valueToBeCancelledFrom": "Valor a cancelar de",
     "valueWithoutDiscount": "Valor sin descuento",
     "verify": "Verificar",
-    "yes": "Sí",
-    "iWantIt": "lo quiero",
-    "coupon": "Cupón",
-    "apply": "Aplicar",
-    "remove": "Eliminar",
-    "couponCode": "Código del cupón",
-    "pay":"Pagar",
-    "payed": "Pagado"
+    "yes": "Sí"
   },
   "hotel": {
     "roomType": {
@@ -267,6 +267,34 @@
     "paypal": "Paypal",
     "transfer": "Transferencia bancarias"
   },
+  "plansCard": {
+    "allInclusivePlan": {
+      "include": "Hotel, alimentación completa, full pass del evento, traslados hotel aeropuerto hotel, categoría de regalo.",
+      "title": " PLAN TODO  INCLUIDO"
+    },
+    "categoriesAdditional": {
+      "noInclude": "hotel, alimentación, traslado hotel aeropuerto hotel, categoría de regalo.",
+      "title": "categorías adicionales"
+    },
+    "fullPass": {
+      "include": "Concierto, Fiestas, Talleres, Conferencias, Competencia, Gran Final, Ultimate Championship, Music Park Fest, Pool Partys, Playas, Gimnasio.",
+      "noInclude": "Hotel, alimentación, traslados, categoría de regalo.",
+      "title": "Full Pass"
+    },
+    "hotelOnlyPlan": {
+      "include": "Desayuno.",
+      "noInclude": "Alimentación, traslados aeropuerto hotel aeropuerto, Full pass del evento, categoría de regalo.",
+      "title": "PLAN SOLO HOTEL"
+    },
+    "hotelPlanAndFullPass": {
+      "include": "Hotel con desayuno y full pass del evento.",
+      "noInclude": "Alimentación, traslados hotel aeropuerto hotel, categoría de regalo.",
+      "title": "  PLAN HOTEL  Y FULL PASS"
+    },
+    "include": "incluye",
+    "notInclude": "no incluye",
+    "recommendedOption": "OPCIÓN RECOMENDADA"
+  },
   "pruchases": {
     "confirmEmailPurchase": "Muy pronto recibirás un e-mail de confirmación con el resumen de la compra."
   },
@@ -309,34 +337,6 @@
     "validations": {
       "emptyToken": "El código no puede estar vacío",
       "tokenLength": "El código debe tener {{tokenLong}} dígitos"
-    }
-  },
-  "plansCard": {
-    "recommendedOption": "OPCIÓN RECOMENDADA",
-    "include": "incluye",
-    "notInclude": "no incluye",
-    "allInclusivePlan": {
-      "title": " PLAN TODO  INCLUIDO",
-      "include": "Hotel, alimentación completa, full pass del evento, traslados hotel aeropuerto hotel, categoría de regalo."
-    },
-    "hotelPlanAndFullPass": {
-      "title": "  PLAN HOTEL  Y FULL PASS",
-      "include":"Hotel con desayuno y full pass del evento.",
-      "noInclude": "Alimentación, traslados hotel aeropuerto hotel, categoría de regalo."
-    },
-    "hotelOnlyPlan": {
-      "title": "PLAN SOLO HOTEL",
-      "include":"Desayuno.",
-      "noInclude": "Alimentación, traslados aeropuerto hotel aeropuerto, Full pass del evento, categoría de regalo."
-    },
-    "fullPass": {
-      "title": "Full Pass",
-      "include":"Concierto, Fiestas, Talleres, Conferencias, Competencia, Gran Final, Ultimate Championship, Music Park Fest, Pool Partys, Playas, Gimnasio.",
-      "noInclude": "Hotel, alimentación, traslados, categoría de regalo."
-    },
-    "categoriesAdditional": {
-      "title": "categorías adicionales",
-      "noInclude": "hotel, alimentación, traslado hotel aeropuerto hotel, categoría de regalo."
     }
   }
 }
