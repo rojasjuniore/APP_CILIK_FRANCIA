@@ -331,7 +331,8 @@
     },
     "fullPass": {
       "title": "Full Pass",
-      "noInclude": "Hotel, alimentación, traslados categoría de regalo."
+      "include":"Concierto, Fiestas, Talleres, Conferencias, Competencia, Gran Final, Ultimate Championship, Music Park Fest, Pool Partys, Playas, Gimnasio",
+      "noInclude": "Hotel, alimentación, traslados, categoría de regalo."
     },
     "categoriesAdditional": {
       "title": "categorías adicionales",

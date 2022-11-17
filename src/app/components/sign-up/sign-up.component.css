@@ -25,3 +25,8 @@
     1.5em 1.5em;
   background-repeat: no-repeat;
 }
+
+.pass-ico {
+  align-items: flex-start;
+  top: 18px;
+}
