@@ -125,9 +125,9 @@ export function purchaseTotales(orderDoc: any = {}){
      * Calcular descuento por grupo
      */
     if(nroParticipantsByRoom >= 20){
-      groupDiscount = subTotal * 0.10;
+      groupDiscount = 0.10;
     }else if(nroParticipantsByRoom >= 10){
-      groupDiscount = subTotal * 0.05;
+      groupDiscount = 0.05;
     }
 
     const discount = subTotalFullPrice - (subTotal - couponAmount);
