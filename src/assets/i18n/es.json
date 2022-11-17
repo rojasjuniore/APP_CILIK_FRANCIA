@@ -331,7 +331,7 @@
     },
     "fullPass": {
       "title": "Full Pass",
-      "include":"Concierto, Fiestas, Talleres, Conferencias, Competencia, Gran Final, Ultimate Championship, Music Park Fest, Pool Partys, Playas, Gimnasio",
+      "include":"Concierto, Fiestas, Talleres, Conferencias, Competencia, Gran Final, Ultimate Championship, Music Park Fest, Pool Partys, Playas, Gimnasio.",
       "noInclude": "Hotel, alimentación, traslados, categoría de regalo."
     },
     "categoriesAdditional": {
