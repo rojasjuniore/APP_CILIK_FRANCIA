@@ -111,15 +111,12 @@ export function purchaseTotales(orderDoc: any = {}){
         evenPassesFullAmount
     ].reduce((prev, curr) => prev + curr, 0)
 
-    const subTotal = [
+    let subTotal = [
         roomsPrice, 
         additionalDaysAmount, 
         additionalCategoryPasses,
         evenPassesAmount
     ].reduce((prev, curr) => prev + curr, 0);
-
-    const coupon = (coupons.length > 0) ? coupons[0] : { type: 'amount', discount: 0 };
-    const couponAmount = (coupon.type == 'percentage') ? (subTotal * coupon.discount) / 100 : coupon.discount;
 
     /**
      * Calcular descuento por grupo
@@ -130,21 +127,30 @@ export function purchaseTotales(orderDoc: any = {}){
       groupDiscount = 0.05;
     }
 
-    const discount = subTotalFullPrice - (subTotal - couponAmount);
-    const groupDiscountAmount = groupDiscount * (subTotal - couponAmount);
-    const total = subTotal - groupDiscountAmount - couponAmount;
+    const groupDiscountAmount = groupDiscount * subTotal;
+    subTotal -= groupDiscountAmount;
+
+    const coupon = (coupons.length > 0) ? coupons[0] : { type: 'amount', discount: 0 };
+    const couponAmount = (coupon.type == 'percentage') ? (subTotal * coupon.discount) / 100 : coupon.discount;
+    subTotal -= couponAmount;
+
+    const discount = subTotalFullPrice - subTotal;
+    const total = subTotal;
 
     return {
         roomsFullPrice,
         roomsPrice,
         additionalDaysAmountFullPrice,
+        additionalDaysAmount,
         additionalCategoryPasses,
+        additionalCategoryPassesAmountFullPrice,
         evenPassesFullAmount,
         evenPassesAmount,
         couponAmount,
         subTotalFullPrice,
         subTotal,
         discount,
+        groupDiscount,
         groupDiscountAmount,
         total
     };
