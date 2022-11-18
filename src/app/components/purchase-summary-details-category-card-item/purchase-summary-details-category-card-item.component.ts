@@ -22,7 +22,7 @@ export class PurchaseSummaryDetailsCategoryCardItemComponent implements OnInit {
 
   get additionalCategoryPasses(): any[]{
     const snapshot = this.order?.additionalCategoryPasses || [];
-    return snapshot.sort((a, b) => a.order - b.order);
+    return snapshot.filter((row) => row.type !== 'wldc').sort((a, b) => a.order - b.order);
   }
 
   get additionalCategoryPassesAmountFullPrice(){
