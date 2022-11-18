@@ -72,7 +72,20 @@ export class PreSaleCheckoutListComponent implements OnInit {
       groupDiscount = 0.05;
     }
 
-    this.preSaleSrv.updateDocumentLocalStorage({rooms, nroParticipants, groupDiscount});
+    /**
+     * Actualizar nro de pases al evento
+     */
+    let eventPasses: any = [];
+    if(['fullPass', 'hotelAndEventPass'].includes(this.preSaleDocument.orderType)){
+      const row = Object.assign({}, this.preSaleSrv.EVENTPASS_DEFAULT, {
+        quantity: nroParticipants, 
+        price: 0, 
+        fullPrice: 0
+      });
+      eventPasses.push(row);
+    }
+
+    this.preSaleSrv.updateDocumentLocalStorage({rooms, nroParticipants, groupDiscount, eventPasses});
     this.loadLocalData();
   }
 

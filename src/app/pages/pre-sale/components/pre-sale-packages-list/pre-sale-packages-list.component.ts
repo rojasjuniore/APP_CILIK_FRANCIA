@@ -219,7 +219,20 @@ export class PreSalePackagesListComponent implements OnInit {
       return;
     }
 
-    this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale/step2'});
+    /**
+     * Añadir pases por defecto en la orden segun su tipo
+     */
+    let eventPasses: any = [];
+    if(['fullPass', 'hotelAndEventPass'].includes(this.orderType)){
+      const row = Object.assign({}, this.preSaleSrv.EVENTPASS_DEFAULT, {
+        quantity: this.nroParticipants, 
+        price: 0, 
+        fullPrice: 0
+      });
+      eventPasses.push(row);
+    }
+
+    this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale/step2', eventPasses});
     this.router.navigate(['/pre-sale', 'step2']);
   }
 
