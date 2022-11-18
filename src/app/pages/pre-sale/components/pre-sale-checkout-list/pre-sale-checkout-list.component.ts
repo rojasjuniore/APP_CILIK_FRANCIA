@@ -85,7 +85,26 @@ export class PreSaleCheckoutListComponent implements OnInit {
       eventPasses.push(row);
     }
 
-    this.preSaleSrv.updateDocumentLocalStorage({rooms, nroParticipants, groupDiscount, eventPasses});
+    /**
+     * Actualizar nro de pases de categorias si la orden de WLDC
+     */
+    let additionalCategoryPasses: any = [];
+    if(this.preSaleDocument.orderType == 'fullPass'){
+      const row = this.preSaleDocument.additionalCategoryPasses || [];
+      additionalCategoryPasses = row.map((row) => {
+        if(row.type == 'wldc'){ row.quantity = nroParticipants; }
+        return row;
+      });
+    }
+
+    this.preSaleSrv.updateDocumentLocalStorage({
+      rooms, 
+      nroParticipants, 
+      groupDiscount, 
+      eventPasses,
+      additionalCategoryPasses
+    });
+
     this.loadLocalData();
   }
 

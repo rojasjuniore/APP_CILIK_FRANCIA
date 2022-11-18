@@ -232,7 +232,19 @@ export class PreSalePackagesListComponent implements OnInit {
       eventPasses.push(row);
     }
 
-    this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale/step2', eventPasses});
+    let additionalCategoryPasses: any = [];
+    if (this.orderType == 'fullPass') {
+      additionalCategoryPasses.push({
+        type: "wldc",
+        quantity: this.nroParticipants,
+        price: 0,
+        fullPrice: 0,
+        label: "WLDC",
+        order: 0
+      });
+    }
+
+    this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale/step2', eventPasses, additionalCategoryPasses});
     this.router.navigate(['/pre-sale', 'step2']);
   }
 
