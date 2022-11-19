@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
+import moment from 'moment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { PreSaleModalBankTransferDetailComponent } from 'src/app/components/pre-sale-modal-bank-transfer-detail/pre-sale-modal-bank-transfer-detail.component';
 import { HotelService } from 'src/app/services/hotel.service';
@@ -166,7 +167,7 @@ export class PreSaleOnlyCategoriesInstallmentsPayCoutaComponent implements OnIni
 
       const url = `/purchase/summary/${this.preSaleDocument.orderId}/details`;
 
-      const coutaPayed = Object.assign({}, this.currentCoutaToPay, { metadata, payed: true});
+      const coutaPayed = Object.assign({}, this.currentCoutaToPay, { metadata, payed: true, payedAt: moment().valueOf()});
 
       this.preSaleDocument.installments[0] = coutaPayed;
 

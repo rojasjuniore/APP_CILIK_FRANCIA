@@ -159,6 +159,7 @@ export class PreSaleOnlyCategoriesPaymentMethodsComponent implements OnInit {
         paymentMethod: null,
         amount: coutaAmount,
         payed: false,
+        payedAt: null,
         metatada: null,
         url: environment.urlWeb + 'purchase/summary/' + preSaleDocument.orderId + '/pay-couta/' + index,
       }
