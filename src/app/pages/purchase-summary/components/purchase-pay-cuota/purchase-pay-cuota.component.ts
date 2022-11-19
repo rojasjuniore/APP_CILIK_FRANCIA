@@ -109,13 +109,19 @@ export class PurchasePayCuotaComponent implements OnInit {
         // console.log('success', data);
         await this.spinner.show();
 
+        /**
+         * - Actualizar cuota pagada
+         * - Actualizar contador de cuotas pagadas
+         * - Enviar mail de notificación de cuota pagada
+         */
         await Promise.all([
           this.purchaseSrv.updatePurchaseInstallmentCouta(this.orderId, this.nroCuota, {
             metadata: data,
             payed: true,
             payedAt: moment().valueOf(),
           }),
-          this.purchaseSrv.updatePurchaseCounter(this.orderId, 'installmentsPayed', 1)
+          this.purchaseSrv.updatePurchaseCounter(this.orderId, 'installmentsPayed', 1),
+          this.purchaseSrv.sendPurchaseTransferApprovedNotification(this.orderId, {cuota: this.nroCuota})
         ]);
 
         /**
