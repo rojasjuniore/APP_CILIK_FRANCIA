@@ -7,7 +7,7 @@ export const environment = {
   // DEV
   seedKey: 'nftixProject-dev-inTECH',
   API_URL: 'https://dev-cilik.uc.r.appspot.com/',
-  urlWeb: 'https://wldc.cilik.io/',
+  urlWeb: 'https://dev-cilik.web.app/',
   paypal: {
     currency: 'USD',
     payPalEnvironmentProduction:

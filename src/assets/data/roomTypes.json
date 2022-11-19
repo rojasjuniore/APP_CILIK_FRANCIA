@@ -10,10 +10,17 @@
             "capacity": 1,
             "fullPrice": 1785,
             "priceList": [
-                {"from": "2022/09/10", "to": "2022/09/30", "percentage": 0.30, "price": 1249, "pricePerPeople": 1249, "discount": 535.28, "discountPerPeople": 535.28},
-                {"from": "2022/10/01", "to": "2022/10/31", "percentage": 0.22, "price": 1399, "pricePerPeople": 1399, "discount": 0.78, "discountPerPeople": 0.78},
-                {"from": "2022/11/01", "to": "2022/12/15", "percentage": 0.11, "price": 1581, "pricePerPeople": 1581, "discount": 0.89, "discountPerPeople": 0.89},
-                {"from": "2022/12/16", "to": "2023/01/10", "percentage": 0.00, "price": 1785, "pricePerPeople": 1785, "discount": 0, "discountPerPeople": 0}
+                {"type": "fullPass", "from": "2022/11/01", "to": "2022/11/30", "percentage": 0.22, "price": 1399, "pricePerPeople": 1399, "discount": 0.78, "discountPerPeople": 0.78},
+                {"type": "fullPass", "from": "2022/12/01", "to": "2022/12/28", "percentage": 0.11, "price": 1581, "pricePerPeople": 1581, "discount": 0.89, "discountPerPeople": 0.89},
+                {"type": "fullPass", "from": "2022/12/29", "to": "2023/01/28", "percentage": 0.00, "price": 1785, "pricePerPeople": 1785, "discount": 0, "discountPerPeople": 0},
+                
+                {"type": "hotelAndEventPass", "from": "2022/11/01", "to": "2022/11/30", "percentage": 0.22, "price": 1175, "pricePerPeople": 1175, "discount": 0.78, "discountPerPeople": 0.78},
+                {"type": "hotelAndEventPass", "from": "2022/12/01", "to": "2022/12/28", "percentage": 0.11, "price": 1328, "pricePerPeople": 1328, "discount": 0.89, "discountPerPeople": 0.89},
+                {"type": "hotelAndEventPass", "from": "2022/12/29", "to": "2023/01/28", "percentage": 0.00, "price": 1499, "pricePerPeople": 1499, "discount": 0, "discountPerPeople": 0},
+
+                {"type": "hotelPass", "from": "2022/11/01", "to": "2022/11/30", "percentage": 0.22, "price": 956, "pricePerPeople": 956, "discount": 0.78, "discountPerPeople": 0.78},
+                {"type": "hotelPass", "from": "2022/12/01", "to": "2022/12/28", "percentage": 0.11, "price": 1080, "pricePerPeople": 1080, "discount": 0.89, "discountPerPeople": 0.89},
+                {"type": "hotelPass", "from": "2022/12/29", "to": "2023/01/28", "percentage": 0.00, "price": 1219, "pricePerPeople": 1219, "discount": 0, "discountPerPeople": 0}
             ]
         },
         {
@@ -26,10 +33,17 @@
             "capacity": 2,
             "fullPrice": 3570,
             "priceList": [
-                {"from": "2022/09/10", "to": "2022/09/30", "percentage": 0.30, "price": 2498, "pricePerPeople": 1249, "discount": 535.28, "discountPerPeople": 535.28},
-                {"from": "2022/10/01", "to": "2022/10/31", "percentage": 0.22, "price": 2798, "pricePerPeople": 1399, "discount": 0.78, "discountPerPeople": 0.78},
-                {"from": "2022/11/01", "to": "2022/12/15", "percentage": 0.11, "price": 3162, "pricePerPeople": 1581, "discount": 0.89, "discountPerPeople": 0.89},
-                {"from": "2022/12/16", "to": "2023/01/10", "percentage": 0.00, "price": 1785, "pricePerPeople": 1785, "discount": 0, "discountPerPeople": 0}
+                {"type": "fullPass", "from": "2022/11/01", "to": "2022/11/30", "percentage": 0.22, "price": 2798, "pricePerPeople": 1399, "discount": 0.78, "discountPerPeople": 0.78},
+                {"type": "fullPass", "from": "2022/12/01", "to": "2022/12/28", "percentage": 0.11, "price": 3162, "pricePerPeople": 1581, "discount": 0.89, "discountPerPeople": 0.89},
+                {"type": "fullPass", "from": "2022/12/29", "to": "2023/01/28", "percentage": 0.00, "price": 1785, "pricePerPeople": 1785, "discount": 0, "discountPerPeople": 0},
+
+                {"type": "hotelAndEventPass", "from": "2022/11/01", "to": "2022/11/30", "percentage": 0.22, "price": 2350, "pricePerPeople": 1175, "discount": 0.78, "discountPerPeople": 0.78},
+                {"type": "hotelAndEventPass", "from": "2022/12/01", "to": "2022/12/28", "percentage": 0.11, "price": 2656, "pricePerPeople": 1328, "discount": 0.89, "discountPerPeople": 0.89},
+                {"type": "hotelAndEventPass", "from": "2022/12/29", "to": "2023/01/28", "percentage": 0.00, "price": 2998, "pricePerPeople": 1499, "discount": 0, "discountPerPeople": 0},
+
+                {"type": "hotelPass", "from": "2022/11/01", "to": "2022/11/30", "percentage": 0.22, "price": 1912, "pricePerPeople": 956, "discount": 0.78, "discountPerPeople": 0.78},
+                {"type": "hotelPass", "from": "2022/12/01", "to": "2022/12/28", "percentage": 0.11, "price": 2160, "pricePerPeople": 1080, "discount": 0.89, "discountPerPeople": 0.89},
+                {"type": "hotelPass", "from": "2022/12/29", "to": "2023/01/28", "percentage": 0.00, "price": 2438, "pricePerPeople": 1219, "discount": 0, "discountPerPeople": 0}
             ]
         },
         {
@@ -42,10 +56,17 @@
             "capacity": 2,
             "fullPrice": 2714,
             "priceList": [
-                {"from": "2022/09/10", "to": "2022/09/30", "percentage": 0.30, "price": 1898, "pricePerPeople": 949, "discount": 535.28, "discountPerPeople": 407},
-                {"from": "2022/10/01", "to": "2022/10/31", "percentage": 0.22, "price": 2128, "pricePerPeople": 1064, "discount": 0.78, "discountPerPeople": 0.78},
-                {"from": "2022/11/01", "to": "2022/12/15", "percentage": 0.11, "price": 2404, "pricePerPeople": 1202, "discount": 0.89, "discountPerPeople": 0.89},
-                {"from": "2022/12/16", "to": "2023/01/10", "percentage": 0.00, "price": 2714, "pricePerPeople": 1357, "discount": 0, "discountPerPeople": 0}
+                {"type": "fullPass", "from": "2022/11/01", "to": "2022/11/30", "percentage": 0.22, "price": 2128, "pricePerPeople": 1064, "discount": 0.78, "discountPerPeople": 0.78},
+                {"type": "fullPass", "from": "2022/12/01", "to": "2022/12/28", "percentage": 0.11, "price": 2404, "pricePerPeople": 1202, "discount": 0.89, "discountPerPeople": 0.89},
+                {"type": "fullPass", "from": "2022/12/29", "to": "2023/01/28", "percentage": 0.00, "price": 2714, "pricePerPeople": 1357, "discount": 0, "discountPerPeople": 0},
+
+                {"type": "hotelAndEventPass", "from": "2022/11/01", "to": "2022/11/30", "percentage": 0.22, "price": 1676, "pricePerPeople": 838, "discount": 0.78, "discountPerPeople": 0.78},
+                {"type": "hotelAndEventPass", "from": "2022/12/01", "to": "2022/12/28", "percentage": 0.11, "price": 1894, "pricePerPeople": 947, "discount": 0.89, "discountPerPeople": 0.89},
+                {"type": "hotelAndEventPass", "from": "2022/12/29", "to": "2023/01/28", "percentage": 0.00, "price": 2138, "pricePerPeople": 1069, "discount": 0, "discountPerPeople": 0},
+
+                {"type": "hotelPass", "from": "2022/11/01", "to": "2022/11/30", "percentage": 0.22, "price": 1208, "pricePerPeople": 604, "discount": 0.78, "discountPerPeople": 0.78},
+                {"type": "hotelPass", "from": "2022/12/01", "to": "2022/12/28", "percentage": 0.11, "price": 1366, "pricePerPeople": 683, "discount": 0.89, "discountPerPeople": 0.89},
+                {"type": "hotelPass", "from": "2022/12/29", "to": "2023/01/28", "percentage": 0.00, "price": 1542, "pricePerPeople": 771, "discount": 0, "discountPerPeople": 0}
             ]
         },
         {
@@ -58,10 +79,17 @@
             "capacity": 3,
             "fullPrice": 3642,
             "priceList": [
-                {"from": "2022/09/10", "to": "2022/09/30", "percentage": 0.30, "price": 2547, "pricePerPeople": 849, "discount": 535.28, "discountPerPeople": 407},
-                {"from": "2022/10/01", "to": "2022/10/31", "percentage": 0.22, "price": 2856, "pricePerPeople": 952, "discount": 0.78, "discountPerPeople": 0.78},
-                {"from": "2022/11/01", "to": "2022/12/15", "percentage": 0.11, "price": 3225, "pricePerPeople": 1075, "discount": 0.89, "discountPerPeople": 0.89},
-                {"from": "2022/12/16", "to": "2023/01/10", "percentage": 0.00, "price": 3642, "pricePerPeople": 1214, "discount": 0, "discountPerPeople": 0}
+                {"type": "fullPass", "from": "2022/11/01", "to": "2022/11/30", "percentage": 0.22, "price": 2856, "pricePerPeople": 952, "discount": 0.78, "discountPerPeople": 0.78},
+                {"type": "fullPass", "from": "2022/12/01", "to": "2022/12/28", "percentage": 0.11, "price": 3225, "pricePerPeople": 1075, "discount": 0.89, "discountPerPeople": 0.89},
+                {"type": "fullPass", "from": "2022/12/29", "to": "2023/01/28", "percentage": 0.00, "price": 3642, "pricePerPeople": 1214, "discount": 0, "discountPerPeople": 0},
+
+                {"type": "hotelAndEventPass", "from": "2022/11/01", "to": "2022/11/30", "percentage": 0.22, "price": 2208, "pricePerPeople": 736, "discount": 0.78, "discountPerPeople": 0.78},
+                {"type": "hotelAndEventPass", "from": "2022/12/01", "to": "2022/12/28", "percentage": 0.11, "price": 2496, "pricePerPeople": 832, "discount": 0.89, "discountPerPeople": 0.89},
+                {"type": "hotelAndEventPass", "from": "2022/12/29", "to": "2023/01/28", "percentage": 0.00, "price": 2817, "pricePerPeople": 939, "discount": 0, "discountPerPeople": 0},
+
+                {"type": "hotelPass", "from": "2022/11/01", "to": "2022/11/30", "percentage": 0.22, "price": 1503, "pricePerPeople": 501, "discount": 0.78, "discountPerPeople": 0.78},
+                {"type": "hotelPass", "from": "2022/12/01", "to": "2022/12/28", "percentage": 0.11, "price": 1698, "pricePerPeople": 566, "discount": 0.89, "discountPerPeople": 0.89},
+                {"type": "hotelPass", "from": "2022/12/29", "to": "2023/01/28", "percentage": 0.00, "price": 1917, "pricePerPeople": 639, "discount": 0, "discountPerPeople": 0}
             ]
         },
         {
@@ -74,10 +102,17 @@
             "capacity": 2,
             "fullPrice": 2888,
             "priceList": [
-                {"from": "2022/09/10", "to": "2022/09/30", "percentage": 0.30, "price": 2022, "pricePerPeople": 1011, "discount": 535.28, "discountPerPeople": 407},
-                {"from": "2022/10/01", "to": "2022/10/31", "percentage": 0.22, "price": 2264, "pricePerPeople": 1132, "discount": 0.78, "discountPerPeople": 0.78},
-                {"from": "2022/11/01", "to": "2022/12/15", "percentage": 0.11, "price": 3450, "pricePerPeople": 1725, "discount": 0.89, "discountPerPeople": 0.89},
-                {"from": "2022/12/16", "to": "2023/01/10", "percentage": 0.00, "price": 2888, "pricePerPeople": 1444, "discount": 0, "discountPerPeople": 0}
+                {"type": "fullPass", "from": "2022/11/01", "to": "2022/11/30", "percentage": 0.22, "price": 2264, "pricePerPeople": 1132, "discount": 0.78, "discountPerPeople": 0.78},
+                {"type": "fullPass", "from": "2022/12/01", "to": "2022/12/28", "percentage": 0.11, "price": 3450, "pricePerPeople": 1725, "discount": 0.89, "discountPerPeople": 0.89},
+                {"type": "fullPass", "from": "2022/12/29", "to": "2023/01/28", "percentage": 0.00, "price": 2888, "pricePerPeople": 1444, "discount": 0, "discountPerPeople": 0},
+
+                {"type": "hotelAndEventPass", "from": "2022/11/01", "to": "2022/11/30", "percentage": 0.22, "price": 1812, "pricePerPeople": 906, "discount": 0.78, "discountPerPeople": 0.78},
+                {"type": "hotelAndEventPass", "from": "2022/12/01", "to": "2022/12/28", "percentage": 0.11, "price": 2048, "pricePerPeople": 1024, "discount": 0.89, "discountPerPeople": 0.89},
+                {"type": "hotelAndEventPass", "from": "2022/12/29", "to": "2023/01/28", "percentage": 0.00, "price": 2312, "pricePerPeople": 1156, "discount": 0, "discountPerPeople": 0},
+
+                {"type": "hotelPass", "from": "2022/11/01", "to": "2022/11/30", "percentage": 0.22, "price": 1346, "pricePerPeople": 673, "discount": 0.78, "discountPerPeople": 0.78},
+                {"type": "hotelPass", "from": "2022/12/01", "to": "2022/12/28", "percentage": 0.11, "price": 1520, "pricePerPeople": 760, "discount": 0.89, "discountPerPeople": 0.89},
+                {"type": "hotelPass", "from": "2022/12/29", "to": "2023/01/28", "percentage": 0.00, "price": 1716, "pricePerPeople": 858, "discount": 0, "discountPerPeople": 0}
             ]
         },
         {
@@ -90,10 +125,17 @@
             "capacity": 3,
             "fullPrice": 3810,
             "priceList": [
-                {"from": "2022/09/10", "to": "2022/09/30", "percentage": 0.30, "price": 2667, "pricePerPeople": 889, "discount": 535.28, "discountPerPeople": 407},
-                {"from": "2022/10/01", "to": "2022/10/31", "percentage": 0.22, "price": 2988, "pricePerPeople": 996, "discount": 0.78, "discountPerPeople": 0.78},
-                {"from": "2022/11/01", "to": "2022/12/15", "percentage": 0.11, "price": 3375, "pricePerPeople": 1125, "discount": 0.89, "discountPerPeople": 0.89},
-                {"from": "2022/12/16", "to": "2023/01/10", "percentage": 0.00, "price": 3810, "pricePerPeople": 1270, "discount": 0, "discountPerPeople": 0}
+                {"type": "fullPass", "from": "2022/11/01", "to": "2022/11/30", "percentage": 0.22, "price": 2988, "pricePerPeople": 996, "discount": 0.78, "discountPerPeople": 0.78},
+                {"type": "fullPass", "from": "2022/12/01", "to": "2022/12/28", "percentage": 0.11, "price": 3375, "pricePerPeople": 1125, "discount": 0.89, "discountPerPeople": 0.89},
+                {"type": "fullPass", "from": "2022/12/29", "to": "2023/01/28", "percentage": 0.00, "price": 3810, "pricePerPeople": 1270, "discount": 0, "discountPerPeople": 0},
+
+                {"type": "hotelAndEventPass", "from": "2022/11/01", "to": "2022/11/30", "percentage": 0.22, "price": 2340, "pricePerPeople": 780, "discount": 0.78, "discountPerPeople": 0.78},
+                {"type": "hotelAndEventPass", "from": "2022/12/01", "to": "2022/12/28", "percentage": 0.11, "price": 2643, "pricePerPeople": 881, "discount": 0.89, "discountPerPeople": 0.89},
+                {"type": "hotelAndEventPass", "from": "2022/12/29", "to": "2023/01/28", "percentage": 0.00, "price": 2985, "pricePerPeople": 995, "discount": 0, "discountPerPeople": 0},
+
+                {"type": "hotelPass", "from": "2022/11/01", "to": "2022/11/30", "percentage": 0.22, "price": 1635, "pricePerPeople": 545, "discount": 0.78, "discountPerPeople": 0.78},
+                {"type": "hotelPass", "from": "2022/12/01", "to": "2022/12/28", "percentage": 0.11, "price": 1848, "pricePerPeople": 616, "discount": 0.89, "discountPerPeople": 0.89},
+                {"type": "hotelPass", "from": "2022/12/29", "to": "2023/01/28", "percentage": 0.00, "price": 2085, "pricePerPeople": 695, "discount": 0, "discountPerPeople": 0}
             ]
         },
         {
@@ -106,10 +148,17 @@
             "capacity": 1,
             "fullPrice": 2398,
             "priceList": [
-                {"from": "2022/09/10", "to": "2022/09/30", "percentage": 0.30, "price": 1679, "pricePerPeople": 1679, "discount": 720, "discountPerPeople": 720},
-                {"from": "2022/10/01", "to": "2022/10/31", "percentage": 0.22, "price": 1880, "pricePerPeople": 1880, "discount": 518, "discountPerPeople": 518},
-                {"from": "2022/11/01", "to": "2022/12/15", "percentage": 0.11, "price": 2125, "pricePerPeople": 2125, "discount": 274, "discountPerPeople": 274},
-                {"from": "2022/12/16", "to": "2023/01/10", "percentage": 0.00, "price": 2398, "pricePerPeople": 2398, "discount": 0, "discountPerPeople": 0}
+                {"type": "fullPass", "from": "2022/11/01", "to": "2022/11/30", "percentage": 0.22, "price": 1880, "pricePerPeople": 1880, "discount": 518, "discountPerPeople": 518},
+                {"type": "fullPass", "from": "2022/12/01", "to": "2022/12/28", "percentage": 0.11, "price": 2125, "pricePerPeople": 2125, "discount": 274, "discountPerPeople": 274},
+                {"type": "fullPass", "from": "2022/12/29", "to": "2023/01/28", "percentage": 0.00, "price": 2398, "pricePerPeople": 2398, "discount": 0, "discountPerPeople": 0},
+
+                {"type": "hotelAndEventPass", "from": "2022/11/01", "to": "2022/11/30", "percentage": 0.22, "price": 1656, "pricePerPeople": 1656, "discount": 0.78, "discountPerPeople": 0.78},
+                {"type": "hotelAndEventPass", "from": "2022/12/01", "to": "2022/12/28", "percentage": 0.11, "price": 1871, "pricePerPeople": 1871, "discount": 0.89, "discountPerPeople": 0.89},
+                {"type": "hotelAndEventPass", "from": "2022/12/29", "to": "2023/01/28", "percentage": 0.00, "price": 2112, "pricePerPeople": 2112, "discount": 0, "discountPerPeople": 0},
+
+                {"type": "hotelPass", "from": "2022/11/01", "to": "2022/11/30", "percentage": 0.22, "price": 1436, "pricePerPeople": 1436, "discount": 0.78, "discountPerPeople": 0.78},
+                {"type": "hotelPass", "from": "2022/12/01", "to": "2022/12/28", "percentage": 0.11, "price": 1623, "pricePerPeople": 1623, "discount": 0.89, "discountPerPeople": 0.89},
+                {"type": "hotelPass", "from": "2022/12/29", "to": "2023/01/28", "percentage": 0.00, "price": 1832, "pricePerPeople": 1832, "discount": 0, "discountPerPeople": 0}
             ]
         },
         {
@@ -122,10 +171,17 @@
             "capacity": 2,
             "fullPrice": 4796,
             "priceList": [
-                {"from": "2022/09/10", "to": "2022/09/30", "percentage": 0.30, "price": 3358, "pricePerPeople": 1679, "discount": 1440, "discountPerPeople": 720},
-                {"from": "2022/10/01", "to": "2022/10/31", "percentage": 0.22, "price": 3760, "pricePerPeople": 1880, "discount": 1036, "discountPerPeople": 518},
-                {"from": "2022/11/01", "to": "2022/12/15", "percentage": 0.11, "price": 4250, "pricePerPeople": 2125, "discount": 548, "discountPerPeople": 274},
-                {"from": "2022/12/16", "to": "2023/01/10", "percentage": 0.00, "price": 4796, "pricePerPeople": 2398, "discount": 0, "discountPerPeople": 0}
+                {"type": "fullPass", "from": "2022/11/01", "to": "2022/11/30", "percentage": 0.22, "price": 3760, "pricePerPeople": 1880, "discount": 1036, "discountPerPeople": 518},
+                {"type": "fullPass", "from": "2022/12/01", "to": "2022/12/28", "percentage": 0.11, "price": 4250, "pricePerPeople": 2125, "discount": 548, "discountPerPeople": 274},
+                {"type": "fullPass", "from": "2022/12/29", "to": "2023/01/28", "percentage": 0.00, "price": 4796, "pricePerPeople": 2398, "discount": 0, "discountPerPeople": 0},
+
+                {"type": "hotelAndEventPass", "from": "2022/11/01", "to": "2022/11/30", "percentage": 0.22, "price": 3312, "pricePerPeople": 1656, "discount": 0.78, "discountPerPeople": 0.78},
+                {"type": "hotelAndEventPass", "from": "2022/12/01", "to": "2022/12/28", "percentage": 0.11, "price": 3742, "pricePerPeople": 1871, "discount": 0.89, "discountPerPeople": 0.89},
+                {"type": "hotelAndEventPass", "from": "2022/12/29", "to": "2023/01/28", "percentage": 0.00, "price": 4224, "pricePerPeople": 2112, "discount": 0, "discountPerPeople": 0},
+
+                {"type": "hotelPass", "from": "2022/11/01", "to": "2022/11/30", "percentage": 0.22, "price": 2872, "pricePerPeople": 1436, "discount": 0.78, "discountPerPeople": 0.78},
+                {"type": "hotelPass", "from": "2022/12/01", "to": "2022/12/28", "percentage": 0.11, "price": 3246, "pricePerPeople": 1623, "discount": 0.89, "discountPerPeople": 0.89},
+                {"type": "hotelPass", "from": "2022/12/29", "to": "2023/01/28", "percentage": 0.00, "price": 3664, "pricePerPeople": 1832, "discount": 0, "discountPerPeople": 0}
             ]
         },
         {
@@ -138,10 +194,17 @@
             "capacity": 2,
             "fullPrice": 3372,
             "priceList": [
-                {"from": "2022/09/10", "to": "2022/09/30", "percentage": 0.30, "price": 2362, "pricePerPeople": 1181, "discount": 1012, "discountPerPeople": 506},
-                {"from": "2022/10/01", "to": "2022/10/31", "percentage": 0.22, "price": 2644, "pricePerPeople": 1322, "discount": 720, "discountPerPeople": 365},
-                {"from": "2022/11/01", "to": "2022/12/15", "percentage": 0.11, "price": 2988, "pricePerPeople": 1494, "discount": 386, "discountPerPeople": 193},
-                {"from": "2022/12/16", "to": "2023/01/10", "percentage": 0.00, "price": 3372, "pricePerPeople": 1686, "discount": 0, "discountPerPeople": 0}
+                {"type": "fullPass", "from": "2022/11/01", "to": "2022/11/30", "percentage": 0.22, "price": 2644, "pricePerPeople": 1322, "discount": 720, "discountPerPeople": 365},
+                {"type": "fullPass", "from": "2022/12/01", "to": "2022/12/28", "percentage": 0.11, "price": 2988, "pricePerPeople": 1494, "discount": 386, "discountPerPeople": 193},
+                {"type": "fullPass", "from": "2022/12/29", "to": "2023/01/28", "percentage": 0.00, "price": 3372, "pricePerPeople": 1686, "discount": 0, "discountPerPeople": 0},
+
+                {"type": "hotelAndEventPass", "from": "2022/11/01", "to": "2022/11/30", "percentage": 0.22, "price": 2192, "pricePerPeople": 1096, "discount": 0.78, "discountPerPeople": 0.78},
+                {"type": "hotelAndEventPass", "from": "2022/12/01", "to": "2022/12/28", "percentage": 0.11, "price": 2476, "pricePerPeople": 1238, "discount": 0.89, "discountPerPeople": 0.89},
+                {"type": "hotelAndEventPass", "from": "2022/12/29", "to": "2023/01/28", "percentage": 0.00, "price": 2796, "pricePerPeople": 1398, "discount": 0, "discountPerPeople": 0},
+
+                {"type": "hotelPass", "from": "2022/11/01", "to": "2022/11/30", "percentage": 0.22, "price": 1724, "pricePerPeople": 862, "discount": 0.78, "discountPerPeople": 0.78},
+                {"type": "hotelPass", "from": "2022/12/01", "to": "2022/12/28", "percentage": 0.11, "price": 1948, "pricePerPeople": 974, "discount": 0.89, "discountPerPeople": 0.89},
+                {"type": "hotelPass", "from": "2022/12/29", "to": "2023/01/28", "percentage": 0.00, "price": 2200, "pricePerPeople": 1100, "discount": 0, "discountPerPeople": 0}
             ]
         },
         {
@@ -154,10 +217,17 @@
             "capacity": 3,
             "fullPrice": 4278,
             "priceList": [
-                {"from": "2022/09/10", "to": "2022/09/30", "percentage": 0.30, "price": 2994, "pricePerPeople": 998, "discount": 1284, "discountPerPeople": 428},
-                {"from": "2022/10/01", "to": "2022/10/31", "percentage": 0.22, "price": 3354, "pricePerPeople": 1118, "discount": 924, "discountPerPeople": 308},
-                {"from": "2022/11/01", "to": "2022/12/15", "percentage": 0.11, "price": 3789, "pricePerPeople": 1263, "discount": 489, "discountPerPeople": 163},
-                {"from": "2022/12/16", "to": "2023/01/10", "percentage": 0.00, "price": 4278, "pricePerPeople": 1426, "discount": 0, "discountPerPeople": 0}
+                {"type": "fullPass", "from": "2022/11/01", "to": "2022/11/30", "percentage": 0.22, "price": 3354, "pricePerPeople": 1118, "discount": 924, "discountPerPeople": 308},
+                {"type": "fullPass", "from": "2022/12/01", "to": "2022/12/28", "percentage": 0.11, "price": 3789, "pricePerPeople": 1263, "discount": 489, "discountPerPeople": 163},
+                {"type": "fullPass", "from": "2022/12/29", "to": "2023/01/28", "percentage": 0.00, "price": 4278, "pricePerPeople": 1426, "discount": 0, "discountPerPeople": 0},
+
+                {"type": "hotelAndEventPass", "from": "2022/11/01", "to": "2022/11/30", "percentage": 0.22, "price": 2706, "pricePerPeople": 902, "discount": 0.78, "discountPerPeople": 0.78},
+                {"type": "hotelAndEventPass", "from": "2022/12/01", "to": "2022/12/28", "percentage": 0.11, "price": 3060, "pricePerPeople": 1020, "discount": 0.89, "discountPerPeople": 0.89},
+                {"type": "hotelAndEventPass", "from": "2022/12/29", "to": "2023/01/28", "percentage": 0.00, "price": 3453, "pricePerPeople": 1151, "discount": 0, "discountPerPeople": 0},
+
+                {"type": "hotelPass", "from": "2022/11/01", "to": "2022/11/30", "percentage": 0.22, "price": 2001, "pricePerPeople": 667, "discount": 0.78, "discountPerPeople": 0.78},
+                {"type": "hotelPass", "from": "2022/12/01", "to": "2022/12/28", "percentage": 0.11, "price": 2262, "pricePerPeople": 754, "discount": 0.89, "discountPerPeople": 0.89},
+                {"type": "hotelPass", "from": "2022/12/29", "to": "2023/01/28", "percentage": 0.00, "price": 2553, "pricePerPeople": 851, "discount": 0, "discountPerPeople": 0}
             ]
         }
     ]

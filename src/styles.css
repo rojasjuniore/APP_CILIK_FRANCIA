@@ -2,6 +2,49 @@
 /* @import url("assets/css/style.css"); */
 @import url("assets/css/reserve.css");
 
+
+/* card color */
+
+.red-card {
+    background-color: #e5334c !important;
+}
+
+.red-card .seprd2{
+    background-color: #7e1a36;
+}
+
+.purple-card {
+    background-color: #574794;
+}
+
+.purple-card .seprd2{
+    background-color: #22003e;
+}
+
+.green-card {
+    background-color: #54b282;
+}
+
+.green-card .seprd2{
+    background-color: #005330;
+}
+
+.yellow-card {
+    background-color: #ff8f26;
+}
+
+.yellow-card .seprd2{
+    background-color: #cc6300;
+}
+
+.blue-card {
+    background-color: #0056ab;
+}
+
+.blue-card .seprd2{
+    background-color: #000f55;
+}
+
 .router-wrapper {
     position: relative;
     overflow: hidden;

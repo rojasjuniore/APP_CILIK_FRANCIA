@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CustomTranslateService } from 'src/app/services/custom-translate.service';
 
 @Component({
@@ -10,14 +12,26 @@ export class LanguageBarComponent implements OnInit {
 
   constructor(
     public translateSrv: CustomTranslateService,
+    private authSrv: AuthenticationService,
+    private spinner: NgxSpinnerService,
   ) { }
 
   ngOnInit(): void {
   }
 
-  changeLanguage(lang: string){
+  async changeLanguage(lang: string){
+
     this.translateSrv.changeLanguage(lang);
     window.localStorage.setItem('lang', lang);
+
+    const uid = this.authSrv.getLocalUID();
+    if(uid){
+      await this.spinner.show();
+      await this.authSrv.updateUser(uid, {language: lang});
+      this.spinner.hide();
+    }
+
+    return;
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { purchaseTotales } from 'src/app/helpers/purchase-totales.helper';
 
 @Component({
   selector: 'app-purchase-summary-totales',
@@ -16,129 +17,149 @@ export class PurchaseSummaryTotalesComponent implements OnInit {
 
 
   get roomsAmountFullPrice(): number {
-    const rooms = this.order?.rooms.map((row) => row.fullPrice)
-      .reduce((prev, curr) => prev + curr, 0);
+    return purchaseTotales(this.order).roomsFullPrice;
+    // const rooms = this.order?.rooms.map((row) => row.fullPrice)
+    //   .reduce((prev, curr) => prev + curr, 0);
 
-    return (this.order) ? rooms : 0;
+    // return (this.order) ? rooms : 0;
   }
 
   get roomsAmount(): number {
-    const rooms = this.order?.rooms.map((row) => row.price)
-      .reduce((prev, curr) => prev + curr, 0);
+    return purchaseTotales(this.order).roomsPrice;
+    // const rooms = this.order?.rooms.map((row) => row.price)
+    //   .reduce((prev, curr) => prev + curr, 0);
 
-    return (this.order) ? rooms : 0;
+    // return (this.order) ? rooms : 0;
   }
 
   get additionalDaysAmountFullPrice(): number {
-
-    if(!this.order) return 0;
+    return purchaseTotales(this.order).additionalDaysAmountFullPrice;
+    // if(!this.order) return 0;
     
-    const additionalDays = this.order?.rooms || []
+    // const additionalDays = this.order?.rooms || []
 
-    return additionalDays.map((row) => row.additionals)
-    .filter((row) => row.length > 0)
-    .map((data) => data.map((row) => row.quantity * row.fullPrice).reduce((prev, curr) => prev + curr, 0))
-    .reduce((prev, curr) => prev + curr, 0);
+    // return additionalDays.map((row) => row.additionals)
+    // .filter((row) => row.length > 0)
+    // .map((data) => data.map((row) => row.quantity * row.fullPrice).reduce((prev, curr) => prev + curr, 0))
+    // .reduce((prev, curr) => prev + curr, 0);
   }
 
   get additionalDaysAmount(): number {
-
-    if(!this.order) return 0;
+    return purchaseTotales(this.order).additionalDaysAmount;
+    // if(!this.order) return 0;
     
-    const additionalDays = this.order?.rooms || []
+    // const additionalDays = this.order?.rooms || []
 
-    return additionalDays.map((row) => row.additionals)
-    .filter((row) => row.length > 0)
-    .map((data) => data.map((row) => row.quantity * row.price).reduce((prev, curr) => prev + curr, 0))
-    .reduce((prev, curr) => prev + curr, 0);
+    // return additionalDays.map((row) => row.additionals)
+    // .filter((row) => row.length > 0)
+    // .map((data) => data.map((row) => row.quantity * row.price).reduce((prev, curr) => prev + curr, 0))
+    // .reduce((prev, curr) => prev + curr, 0);
   }
 
   get additionalCategoryPassesAmountFullPrice(){
+    return purchaseTotales(this.order).additionalCategoryPassesAmountFullPrice;
+    // if(!this.order) return 0;
 
-    if(!this.order) return 0;
+    // const { additionalCategoryPasses } = this.order;
 
-    const { additionalCategoryPasses } = this.order;
+    // return additionalCategoryPasses.map((row) => {
+    //   if(row.type == 'group'){
+    //     return row.data.map((group) => group.quantity * group.fullPrice)
+    //       .reduce((prev, curr) => prev + curr, 0)
 
-    return additionalCategoryPasses.map((row) => {
-      if(row.type == 'group'){
-        return row.data.map((group) => group.quantity * group.fullPrice)
-          .reduce((prev, curr) => prev + curr, 0)
-
-      }else{
-        return row.quantity * row.fullPrice;
-      }
-    })
-      .reduce((prev, curr) => prev + curr, 0);
+    //   }else{
+    //     return row.quantity * row.fullPrice;
+    //   }
+    // })
+    //   .reduce((prev, curr) => prev + curr, 0);
   }
 
   get additionalCategoryPassesAmount(){
+    return purchaseTotales(this.order).additionalCategoryPasses;
+    // if(!this.order) return 0;
 
-    if(!this.order) return 0;
+    // const { additionalCategoryPasses } = this.order;
 
-    const { additionalCategoryPasses } = this.order;
+    // return additionalCategoryPasses.map((row) => {
+    //   if(row.type == 'group'){
+    //     return row.data.map((group) => group.quantity * group.price)
+    //       .reduce((prev, curr) => prev + curr, 0)
 
-    return additionalCategoryPasses.map((row) => {
-      if(row.type == 'group'){
-        return row.data.map((group) => group.quantity * group.price)
-          .reduce((prev, curr) => prev + curr, 0)
-
-      }else{
-        return row.quantity * row.price;
-      }
-    })
-      .reduce((prev, curr) => prev + curr, 0);
+    //   }else{
+    //     return row.quantity * row.price;
+    //   }
+    // })
+    //   .reduce((prev, curr) => prev + curr, 0);
   }
 
   get evenPassesFullAmount(){
-    if(!this.order) return 0;
+    return purchaseTotales(this.order).evenPassesFullAmount;
+    // if(!this.order) return 0;
 
-    const { eventPasses } = this.order;
+    // const { eventPasses } = this.order;
 
-    return eventPasses.map((row) => row.quantity * row.fullPrice);
+    // return eventPasses.map((row) => row.quantity * row.fullPrice);
   }
 
   get evenPassesAmount(){
-    if(!this.order) return 0;
+    return purchaseTotales(this.order).evenPassesAmount;
+    // if(!this.order) return 0;
 
-    const { eventPasses } = this.order;
+    // const { eventPasses } = this.order;
 
-    return eventPasses.map((row) => row.quantity * row.price);
+    // return eventPasses.map((row) => row.quantity * row.price);
   }
 
   get subTotalFullPrice(){
-    return [
-      this.roomsAmountFullPrice, 
-      this.additionalDaysAmountFullPrice, 
-      this.additionalCategoryPassesAmountFullPrice,
-      this.evenPassesFullAmount
-    ]
-    .reduce((prev, curr) => prev + curr, 0);
+    return purchaseTotales(this.order).subTotalFullPrice;
+    // return [
+    //   this.roomsAmountFullPrice, 
+    //   this.additionalDaysAmountFullPrice, 
+    //   this.additionalCategoryPassesAmountFullPrice,
+    //   this.evenPassesFullAmount
+    // ]
+    // .reduce((prev, curr) => prev + curr, 0);
   }
 
   get subTotal(){
-    return [
-      this.roomsAmount, 
-      this.additionalDaysAmount, 
-      this.additionalCategoryPassesAmount,
-      this.evenPassesAmount
-    ]
-    .reduce((prev, curr) => prev + curr, 0);
+    // return [
+    //   this.roomsAmount, 
+    //   this.additionalDaysAmount, 
+    //   this.additionalCategoryPassesAmount,
+    //   this.evenPassesAmount
+    // ]
+    // .reduce((prev, curr) => prev + curr, 0);
+    return purchaseTotales(this.order).subTotal;
   }
 
   get discount(){
-    return this.subTotalFullPrice - this.subTotal;
+    // return this.subTotalFullPrice - (this.subTotal - this.couponAmount);
+    return purchaseTotales(this.order).discount;
   }
 
   get groupDiscount(){
-    return this.order?.groupDiscount || 0;
+    return purchaseTotales(this.order).groupDiscount;
+    // return this.order?.groupDiscount || 0;
   }
   
   get groupDiscountAmount(){
-    return (this.subTotal * this.groupDiscount);
+    // return (this.subTotal * this.groupDiscount);
+    return purchaseTotales(this.order).groupDiscountAmount;
+  }
+
+  get couponAmount(){
+    return purchaseTotales(this.order).couponAmount;
+    // const coupons = this.order?.coupons || [];
+
+    // if(coupons.length == 0) return 0;
+
+    // const row = coupons[0];
+    // return (row.type == 'percentage') ? Number((this.subTotal * row.discount) / 100) : Number(row.discount);
   }
 
   get total(){
-    return this.subTotal  - this.groupDiscountAmount;
+    return purchaseTotales(this.order).total;
+    // return this.subTotal  - this.groupDiscountAmount - this.couponAmount;
   }
 
   get nroCoutas(){

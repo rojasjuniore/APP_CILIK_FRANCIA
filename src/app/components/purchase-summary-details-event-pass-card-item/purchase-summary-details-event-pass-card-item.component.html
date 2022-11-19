@@ -1,0 +1,37 @@
+<div class="card card-box p-3 mb-3" *ngIf="nroEventPasses > 0">
+    <div class="row g-2 d-flex align-items-center">
+        <div class="col-12 px-3">
+            <div class="d-flex justify-content-between">
+                <span class="text-rslt fw-bold fs-5">
+                    FULL PASS
+                </span>
+            </div>
+        </div>
+        <div class="seprd2"></div>
+        <div class="col-12 px-3">
+
+            <p class="m-0">
+                # de pases {{nroEventPasses}}
+            </p>
+
+            <!-- <div class="seprd m-0 mb-2"></div> -->
+
+        <!-- <p class="m-0 mt-4">
+            {{ "general.valueWithoutDiscount" | translate }}:
+            <span class="text-decoration-line-through">
+                USD {{eventPassAmountFullPrice | mask:'separator.0':','}}
+            </span>
+        </p> -->
+        <!-- <p class="m-0">
+            {{ "general.discount" | translate }}: USD {{discount | mask:'separator.0':','}}
+        </p> -->
+        <!-- <div class="d-flex justify-content-between">
+            <span class="fs-4 fw-bolder">
+                {{'general.total' | translate | uppercase}}: USD {{subTotal | mask:'separator.0':','}}
+            </span>
+        </div>  -->
+
+
+        </div>
+    </div>
+</div>

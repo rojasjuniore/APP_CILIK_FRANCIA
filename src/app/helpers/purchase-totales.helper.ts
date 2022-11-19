@@ -9,9 +9,14 @@ export function purchaseTotales(orderDoc: any = {}){
     const { 
         rooms = [], 
         additionalCategoryPasses: categoryPasses = [], 
-        groupDiscount = 0,
-        eventPasses = []
+        eventPasses = [],
+        coupons = [],
     } = Object.assign({}, orderDoc);
+    let groupDiscount = 0;
+
+    const nroParticipantsByRoom = rooms
+      .map((room: any) => room.capacity)
+      .reduce((a: number, b: number) => a + b, 0);
 
     const {
         roomsFullPrice,
@@ -38,7 +43,8 @@ export function purchaseTotales(orderDoc: any = {}){
         .reduce((prev, curr) => {
             prev.fullPrice += curr.fullPrice;
             prev.price += curr.price;
-        }, {
+            return prev;
+        },{
             fullPrice: 0,
             price: 0
         })
@@ -64,6 +70,7 @@ export function purchaseTotales(orderDoc: any = {}){
             })).reduce((prev, curr) =>{
                 prev.fullPrice += curr.fullPrice;
                 prev.price += curr.price;
+                return prev;
             },{
                 fullPrice: 0,
                 price: 0
@@ -104,27 +111,46 @@ export function purchaseTotales(orderDoc: any = {}){
         evenPassesFullAmount
     ].reduce((prev, curr) => prev + curr, 0)
 
-    const subTotal = [
+    let subTotal = [
         roomsPrice, 
         additionalDaysAmount, 
         additionalCategoryPasses,
         evenPassesAmount
     ].reduce((prev, curr) => prev + curr, 0);
 
-    const discount = subTotalFullPrice - subTotal;
+    /**
+     * Calcular descuento por grupo
+     */
+    if(nroParticipantsByRoom >= 20){
+      groupDiscount = 0.10;
+    }else if(nroParticipantsByRoom >= 10){
+      groupDiscount = 0.05;
+    }
+
     const groupDiscountAmount = groupDiscount * subTotal;
-    const total = subTotal - groupDiscountAmount;
+    subTotal -= groupDiscountAmount;
+
+    const coupon = (coupons.length > 0) ? coupons[0] : { type: 'amount', discount: 0 };
+    const couponAmount = (coupon.type == 'percentage') ? (subTotal * coupon.discount) / 100 : coupon.discount;
+    subTotal -= couponAmount;
+
+    const discount = subTotalFullPrice - subTotal;
+    const total = subTotal;
 
     return {
         roomsFullPrice,
         roomsPrice,
         additionalDaysAmountFullPrice,
+        additionalDaysAmount,
         additionalCategoryPasses,
+        additionalCategoryPassesAmountFullPrice,
         evenPassesFullAmount,
         evenPassesAmount,
+        couponAmount,
         subTotalFullPrice,
         subTotal,
         discount,
+        groupDiscount,
         groupDiscountAmount,
         total
     };

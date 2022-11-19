@@ -12,6 +12,7 @@ export class PreSaleOnlyEventPassCardItemComponent implements OnInit, OnChanges 
   @Input() min = 0;
   @Input() max = 99;
   @Input() quantity = 0;
+  @Input() price = 0;
 
   @Output() onUpdateQuantity = new Subject();
 
@@ -22,10 +23,9 @@ export class PreSaleOnlyEventPassCardItemComponent implements OnInit, OnChanges 
   ngOnInit(): void { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { quantity } = changes;
-    if (quantity) {
-      this.quantity = quantity.currentValue;
-    }
+    const { quantity, price } = changes;
+    if (quantity) { this.quantity = quantity.currentValue; }
+    if (price) { this.price = price.currentValue; }
   }
 
   updateQuantity(quantity: any) {

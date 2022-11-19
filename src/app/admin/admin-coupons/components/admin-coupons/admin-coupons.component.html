@@ -1,0 +1,100 @@
+<div class="row">
+
+    <div class="col-12">
+        <div class="fs-2 fw-bold text-center mb-3">
+            Listado de cupones 
+            <span class="badge bg-danger" (click)="add()">
+                <i class="bi bi-plus"></i>
+            </span>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Code</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Value</th>
+                        <th scope="col">Used</th>
+                        <th scope="col">Handle</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <ng-container *ngIf="(couponList$ | async) as couponList; else loading">
+                        <ng-container *ngIf="couponList.length > 0; else noRecords">
+                            <tr *ngFor="let item of couponList; index as idx">
+                                <th scope="row">
+                                    {{ idx + 1 }}
+                                </th>
+                                <td>
+                                    {{ item.code | uppercase}}
+                                </td>
+                                <td>
+                                    {{ item.type | uppercase}}
+                                </td>
+                                <td>
+                                    {{ item.discount }}
+                                </td>
+                                <td>
+                                    {{ item.nroUsed }}
+                                </td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn" [ngClass]="{'btn-success': item.status, 'btn-danger': !item.status}" (click)="changeStatus(item)">
+                                            <i class="bi" [ngClass]="{'bi-eye': item.status, 'bi-eye-slash': !item.status}"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-danger" (click)="update(item)">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-warning" (click)="remove(item)">
+                                            <i class="bi bi-trash3"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </ng-container>
+
+                    
+                    <!-- <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td colspan="2">Larry the Bird</td>
+                        <td>@twitter</td>
+                    </tr> -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<ng-template #noRecords>
+    <tr>
+        <th scope="row" colspan="6">
+            <h5 class="text-center">
+                No hay registros
+            </h5>
+        </th>
+    </tr>
+</ng-template>
+
+<ng-template #loading>
+    <tr *ngFor="let item of [1,1,1,1]">
+        <th scope="row" colspan="6" class="placeholder-glow">
+            <span class="placeholder col-12" style="height: 16px;"></span>
+        </th>
+    </tr>
+</ng-template>
+
+<app-add-coupon-modal></app-add-coupon-modal>
+<app-update-coupon-modal></app-update-coupon-modal>

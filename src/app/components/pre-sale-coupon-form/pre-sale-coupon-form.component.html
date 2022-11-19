@@ -1,0 +1,33 @@
+<div class="mb-3">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+        <label for="exampleInputEmail1" class="form-label">
+            
+            {{'general.coupon' | translate}}
+        </label>
+        <div class="input-group mb-3">
+            <input 
+                type="text" 
+                class="form-control" 
+                formControlName="coupon" 
+                placeholder="{{ 'general.couponCode' | translate }}" 
+                aria-label="Coupon Code" 
+                aria-describedby="button-apply-coupon"
+            >
+            <button class="btn btn-sm btn-danger" id="button-apply-coupon" type="submit" *ngIf="!form.disabled">
+                {{'general.apply' | translate}}
+            </button>
+            <button class="btn btn-sm btn-danger" id="button-apply-coupon" type="button" *ngIf="form.disabled" (click)="removeCoupon()">
+                {{'general.remove' | translate}}
+            </button>
+        </div>
+
+        <ng-container *ngIf="submit">
+            <ng-container *ngFor="let item of vm.coupon">
+                <div id="couponHelp" class="form-text text-danger" *ngIf="f.coupon.hasError(item.type)">
+                    {{ item.message | translate }}
+                </div>
+            </ng-container>
+        </ng-container>
+
+    </form>
+</div>

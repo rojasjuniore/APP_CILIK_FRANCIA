@@ -105,10 +105,12 @@
     "accept": "To accept",
     "addGroup": "Add group",
     "addRoom": "Add Room",
+    "acquireAdditionalCategories": "Acquire additional categories",
     "additionalCategories": "Additional categories",
     "amount": "Amount",
     "amountOf": "Amount of",
     "amountWithoutDiscount": "Value without discount",
+    "apply": "Apply",
     "approvedOrders": "Approved orders",
     "automaticSetup": "Automatic Accommodation",
     "back": "Go Back",
@@ -133,6 +135,8 @@
     "country": "Country",
     "couple": "Couple",
     "coupleCategory": "Couple Category",
+    "coupon": "Coupon",
+    "couponCode": "Coupon Code",
     "current": "Current",
     "discount": "Discount",
     "dni": "Nro. Document",
@@ -147,6 +151,7 @@
     "groupCategory": "Group Category",
     "groupDiscount": "Group discount",
     "hello": "Hello",
+    "iWantIt": "I want it",
     "lastName": "Last name",
     "listOrders": "Order list",
     "loading": "Loading",
@@ -164,6 +169,8 @@
     "onlyImageFileTypeAllowed": "Only files in JPG, JPEG and PNG format are accepted",
     "order": "Order",
     "password": "Password",
+    "pay": "Pay",
+    "payed": "Payed",
     "payment": "Payment",
     "pending": "Pending",
     "pendingOrders": "Pending orders",
@@ -179,6 +186,7 @@
     "rejected": "Rejected",
     "rejectedOrder": "Mark as rejected",
     "rejectedOrders": "Rejected orders",
+    "remove": "Remove",
     "removeOrder": "You want to delete the purchase order?",
     "room": "Room",
     "roomCardAddPeopleIntoTheroom": "Add people to the room.",
@@ -259,6 +267,34 @@
     "paymentDeadline": "Payday limit",
     "paypal": "Paypal",
     "transfer": "Bank transfer"
+  },
+  "plansCard": {
+    "allInclusivePlan": {
+      "include": "Hotel, full meal, full event pass, hotel airport hotel transfers, gift category.",
+      "title": "all inclusive plan"
+    },
+    "categoriesAdditional": {
+      "noInclude": "hotel, food, transfer hotel airport hotel, gift category.",
+      "title": "Categories Additional"
+    },
+    "fullPass": {
+      "include": "Concert, Parties, Workshops, Conferences, Competition, Grand Final, Ultimate Championship, Music Park Fest, Pool Partys, Beaches, Gym.",
+      "noInclude": "Hotel, meals, transfers, gift category.",
+      "title": "Full Pass"
+    },
+    "hotelOnlyPlan": {
+      "include": "Breakfast.",
+      "noInclude": "Food, airport hotel airport transfers, Full event pass, gift category.",
+      "title": "Hotel Only Plan"
+    },
+    "hotelPlanAndFullPass": {
+      "include": "Hotel with breakfast and full pass of the event.",
+      "noInclude": "Food, hotel airport hotel transfers, gift category.",
+      "title": "Hotel plan and Full Pass"
+    },
+    "include": "include",
+    "notInclude": "not included",
+    "recommendedOption": "RECOMMENDED OPTION"
   },
   "pruchases": {
     "confirmEmailPurchase": "Very soon you will receive a confirmation e-mail with the summary of the purchase."

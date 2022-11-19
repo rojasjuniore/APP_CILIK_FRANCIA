@@ -111,10 +111,10 @@ export class PurchaseService {
     }
   }
 
-  async sendPurchaseTransferApprovedNotification(orderId: string){
+  async sendPurchaseTransferApprovedNotification(orderId: string, params: any = {}){
     try {
       const result = await lastValueFrom( 
-        this.http.post(`${URL_ROOT}email-notification/purchase-transfer-approved`, {orderId})
+        this.http.post(`${URL_ROOT}email-notification/purchase-transfer-approved`, {orderId, ...params})
       );
 
       return result;

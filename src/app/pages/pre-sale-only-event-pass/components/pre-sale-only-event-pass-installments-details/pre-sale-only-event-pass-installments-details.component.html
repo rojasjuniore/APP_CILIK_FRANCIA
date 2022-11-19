@@ -1,0 +1,57 @@
+<div class="row">
+
+    <app-pre-sale-categories-step-counter [step]="2"></app-pre-sale-categories-step-counter>
+
+    <div class="col-12 my-4">
+        <app-pre-sale-banner-card-item [orderType]="preSaleDocument?.orderType"></app-pre-sale-banner-card-item>
+    </div>
+
+    <div class="col-12 text-center mb-2 mt-5">
+        {{ "paymentMethods.installmentPayment" | translate }}
+    </div>
+
+    <ng-container *ngIf="installments; else loading">
+        <div class="col-12 mb-4" *ngFor="let item of installments">
+            <app-pre-sale-installment-couta-card-item [index]="item.nro" [item]="item"></app-pre-sale-installment-couta-card-item>
+        </div>
+    </ng-container>
+
+    <ng-template #loading>
+        <div class="col-12 mb-4" *ngFor="let item of [1,1,1,1]">
+            <div class="card card-box p-3 mb-3">
+                <div class="row g-2 d-flex align-items-center">
+                    <div class="col-12">
+                        <div class="d-flex justify-content-between placeholder-glow">
+                            <span class="text-rslt fw-bold fs-5 placeholder col-7"></span>
+                        </div>
+                    </div>
+                    <div class="col-12 m-0">
+                        <hr>
+                    </div>
+                    <div class="col-12 col-md-6 placeholder-glow">
+                        <span class="fw-bold d-flex align-items-center placeholder col-7"></span>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <h5 class="text-end fw-bolder placeholder-glow">
+                            <span class="placeholder col-7"></span>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+
+
+    <div class="col-12">
+        <div class="d-flex justify-content-between">
+            <button class="btn btn-three text-uppercase" type="button" (click)="onBack()">
+                <i class="bi bi-chevron-left"></i>
+                {{ "general.back" | translate | uppercase }}
+            </button>
+            <button class="btn btn-one text-uppercase" type="button" (click)="onNext()">
+                {{ "paymentMethods.payFee1" | translate| uppercase }}
+            </button>
+        </div>
+    </div>
+
+</div>

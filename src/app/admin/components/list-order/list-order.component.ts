@@ -60,47 +60,6 @@ export class ListOrderComponent implements OnInit {
       orderBy: [{field: 'createdAt', order: 'desc'}]
     });
 
-
-
-    // this.getOrderList();
-  }
-
-
-
-
-  async getOrderList(){
-    this.loading = true;
-    this.listOrders = [];
-    this.listOrdersPending = [];
-    this.listOrdersCompleted = [];
-    this.listOrdersRejected = [];
-
-    await this.hotelService.getOrderPending().subscribe({
-      next: (resp) => {
-        console.log(resp);
-        this.listOrders = resp;
-        this.listOrders.forEach(x => {
-          if(x.status){
-            switch (x.status){
-              case 'pending':
-                this.listOrdersPending.push(x);
-              break;
-
-              case 'completed':
-                this.listOrdersCompleted.push(x);
-              break;
-
-              case 'rejected':
-                this.listOrdersRejected.push(x);
-              break;
-            }
-          }else{
-            this.listOrdersCompleted.push(x)
-          }
-        })
-        this.loading = false;
-      }
-    });
   }
 
   onShowDetails(order: any){

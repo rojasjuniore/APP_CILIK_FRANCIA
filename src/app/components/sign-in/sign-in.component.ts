@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { pick } from 'underscore';
 import { TranslatePipe } from '@ngx-translate/core';
+import { CustomTranslateService } from 'src/app/services/custom-translate.service';
 
 
 @Component({
@@ -36,6 +37,7 @@ export class SignInComponent implements OnInit {
     private sweetAlert2Srv: Sweetalert2Service,
     private authSrv: AuthenticationService,
     private translatePipe: TranslatePipe,
+    public translateSrv: CustomTranslateService,
   ) {
     this.buildForm();
   }
@@ -99,7 +101,8 @@ export class SignInComponent implements OnInit {
        */
       this.authSrv.setLocalUID(uid);
 
-      const userDoc = await this.authSrv.getByUID(uid);
+      const userDoc = await this.authSrv.getByUIDPromise(uid);
+      console.log('userDoc', userDoc);
       const toParse = pick(
         userDoc,
         [
@@ -111,9 +114,14 @@ export class SignInComponent implements OnInit {
         ]
       );
 
+      const userLanguage = userDoc.language || 'en';
+
       localStorage.setItem("profile", JSON.stringify(toParse));
       localStorage.setItem('email', data.email)
       localStorage.setItem('auth', 'user')
+      localStorage.setItem('lang', userLanguage)
+
+      this.translateSrv.changeLanguage(userLanguage);
 
       /** Redirect To */
       return this.router.navigate(['/pages/dashboard']);

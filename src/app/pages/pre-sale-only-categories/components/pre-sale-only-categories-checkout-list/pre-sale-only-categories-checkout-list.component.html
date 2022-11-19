@@ -2,6 +2,10 @@
 
     <app-pre-sale-categories-step-counter [step]="2"></app-pre-sale-categories-step-counter>
 
+    <div class="col-12 my-4">
+        <app-pre-sale-banner-card-item [orderType]="preSaleDocument?.orderType"></app-pre-sale-banner-card-item>
+    </div>
+
     <div class="col-12 text-center mb-2 fw-bold fs-5 mt-5 text-uppercase">
         {{ "general.summaryOfThePurchase" | translate }}
     </div>
@@ -11,6 +15,10 @@
             [order]="preSaleDocument"
             (onUpdate)="onUpdateAdditionalCategoryPasses($event)"
             (onRemove)="onRemoveAdditionalCategoryPasses($event)"></app-pre-sale-checkout-only-category-card-item>
+    </div>
+
+    <div class="col-12 mb-4">
+        <app-pre-sale-coupon-form></app-pre-sale-coupon-form>
     </div>
 
     <app-pre-sale-totales></app-pre-sale-totales>

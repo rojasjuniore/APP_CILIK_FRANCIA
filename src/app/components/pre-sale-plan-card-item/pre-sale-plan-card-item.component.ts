@@ -11,6 +11,7 @@ export class PreSalePlanCardItemComponent implements OnInit {
 
   @Input() index!: number;
   @Input() item: any;
+  @Input() orderType = "fullPass";
   @Output() onUpdateNroParticipants = new Subject();
   @Output() onUpdateRoom= new Subject();
   @Output() onUpdateAdditionalDays = new Subject();
@@ -48,7 +49,7 @@ export class PreSalePlanCardItemComponent implements OnInit {
 
   async onUpdateQuantity(quantity: number) {
     // console.log('quantity', quantity);
-    const toParse = await this.hotelSrv.getRoomDefaultByCapacity(quantity);
+    const toParse = await this.hotelSrv.getRoomDefaultByCapacity(quantity, this.orderType);
     const roomDoc = this.hotelSrv.parseRoomDefaultByCapacityDocument(toParse);
     // console.log('roomDoc', roomDoc);
     const data = Object.assign({additionals: []}, roomDoc);

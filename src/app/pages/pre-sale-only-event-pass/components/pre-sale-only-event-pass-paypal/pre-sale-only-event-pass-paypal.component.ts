@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import moment from 'moment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { purchaseTotales } from 'src/app/helpers/purchase-totales.helper';
 import { PreSaleService } from 'src/app/services/pre-sale.service';
@@ -25,7 +26,7 @@ export class PreSaleOnlyEventPassPaypalComponent implements OnInit {
 
   ngOnInit(): void {
     const totales = purchaseTotales(this.preSaleDocument);
-    console.log({totales});
+    // console.log({totales});
   }
 
 
@@ -35,7 +36,7 @@ export class PreSaleOnlyEventPassPaypalComponent implements OnInit {
 
   async onPaypalResponse(params: any){
     const { type, data } = params;
-    console.log({type, data});
+    // console.log({type, data});
 
     switch (type) {
       case 'cancel':
@@ -49,7 +50,7 @@ export class PreSaleOnlyEventPassPaypalComponent implements OnInit {
         return this.saveDocument(data);
     }
 
-    console.log({type, data});
+    // console.log({type, data});
   }
 
   async saveDocument(metadata: any){
@@ -57,7 +58,7 @@ export class PreSaleOnlyEventPassPaypalComponent implements OnInit {
       await this.spinner.show();
 
       /** Procesar orden y retornar enlace de redirección */
-      const url = await this.preSaleSrv.completePreSaleOrder(metadata);
+      const url = await this.preSaleSrv.completePreSaleOrder(metadata, {payedAt: moment().valueOf()});
       this.router.navigate([url]);
       return;
       

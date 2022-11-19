@@ -22,6 +22,7 @@ export class PreSaleExtrasComponent implements OnInit {
   public preSaleDocument: any;
 
   public additionalCategoryPasses: any[] = [];
+  public orderType = "fullPass"
 
   constructor(
     public preSaleSrv: PreSaleService,
@@ -29,9 +30,11 @@ export class PreSaleExtrasComponent implements OnInit {
     private sweetAlert2Srv: Sweetalert2Service,
     private translatePipe: TranslatePipe,
   ) {
-    const { additionalCategoryPasses } = this.preSaleSrv.checkAndLoadDocumentLocalStorage();
+    const { additionalCategoryPasses, orderType } = this.preSaleSrv.checkAndLoadDocumentLocalStorage();
     // console.log('additionalCategoryPasses', additionalCategoryPasses);
+    console.log({additionalCategoryPasses, orderType});
     this.additionalCategoryPasses = additionalCategoryPasses;
+    this.orderType = orderType;
   }
 
   ngOnInit(): void {

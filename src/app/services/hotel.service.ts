@@ -56,7 +56,7 @@ export class HotelService {
     ]);
   }
 
-  parseRoomPrice(room: any){
+  parseRoomPrice(room: any, type = 'fullPass'){
     const currentDate = moment();
     let price = room?.fullPrice;
     let indexPrice = room.priceList.length - 1;
@@ -66,6 +66,7 @@ export class HotelService {
       const from = moment(row.from, 'YYYY/MM/DD').startOf('day');
       const to = moment(row.to, 'YYYY/MM/DD').endOf('day');
       const isBetween = currentDate.isBetween(from, to);
+      const rowType = row.type || type;
 
       // console.log({
       //   currentDate: currentDate.format('DD/MM/YYYY'),
@@ -73,7 +74,7 @@ export class HotelService {
       //   to: to.format('DD/MM/YYYY'),
       // });
 
-      if(isBetween){
+      if(isBetween && rowType === type){
         indexPrice = index;
         break;
       }
@@ -127,7 +128,7 @@ export class HotelService {
   }
 
 
-  async getRoomDefaultByCapacity(capacity: number){
+  async getRoomDefaultByCapacity(capacity: number, type = 'fullPass'){
     const snapshot = await lastValueFrom(
       this.afs.collection(
         this.roomTypesCollection,
@@ -136,7 +137,7 @@ export class HotelService {
     );
 
     const result = await handlerArrayResult(snapshot);
-    return this.parseRoomPrice(result.shift());
+    return this.parseRoomPrice(result.shift(), type);
   }
 
   getDynamicRoomTypeCollection(where: any[] = [], opts: any = {}): Observable<any>{

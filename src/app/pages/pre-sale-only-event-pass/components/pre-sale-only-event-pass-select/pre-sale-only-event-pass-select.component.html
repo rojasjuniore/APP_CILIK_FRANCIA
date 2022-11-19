@@ -2,24 +2,31 @@
 
     <app-pre-sale-event-pass-step-counter [step]="1"></app-pre-sale-event-pass-step-counter>
 
+    <div class="col-12 my-4">
+        <app-pre-sale-banner-card-item [orderType]="'eventPass'"></app-pre-sale-banner-card-item>
+    </div>
+
     <div class="col-12 text-center mb-2 fw-bold fs-5 mt-5">
         Elige las pases al evento que deseas
     </div>
 
     <app-pre-sale-only-event-pass-card-item 
         [quantity]="nroParticipants"
+        [price]="eventPassPrice"
         (onUpdateQuantity)="onUpdateQuantity($event)"></app-pre-sale-only-event-pass-card-item>
 
     <app-pre-sale-totales></app-pre-sale-totales>
     
     
     <div class="col-12">
-        <div class="d-flex justify-content-between">
-            <app-remove-order-on-back-button></app-remove-order-on-back-button>
+        <div class="d-flex justify-content-center justify-content-sm-around flex-wrap flex-column flex-sm-row align-items-center">
 
-            <button class="btn btn-one text-uppercase" type="button" (click)="onNext()">
+            
+            <app-remove-order-on-back-button></app-remove-order-on-back-button>
+            <button class="btn btn-one text-uppercase mb-4 mb-sm-0" type="button" (click)="onNext()">
                 {{ "general.continue" | translate | uppercase}}
             </button>
+            
         </div> 
     </div>
 

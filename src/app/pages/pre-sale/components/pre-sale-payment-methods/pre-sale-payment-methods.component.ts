@@ -4,6 +4,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import moment from 'moment';
 import { PreSaleModalBankTransferDetailComponent } from 'src/app/components/pre-sale-modal-bank-transfer-detail/pre-sale-modal-bank-transfer-detail.component';
 import { PreSaleModalPaymentCoutasDetailsComponent } from 'src/app/components/pre-sale-modal-payment-coutas-details/pre-sale-modal-payment-coutas-details.component';
+import { purchaseTotales } from 'src/app/helpers/purchase-totales.helper';
 import { PreSaleService } from 'src/app/services/pre-sale.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 import { environment } from 'src/environments/environment';
@@ -51,8 +52,8 @@ export class PreSalePaymentMethodsComponent implements OnInit {
     //   status: false,
     // },
   ];
-
-  loading = false;
+  public orderType = "fullPass";
+  public loading = false;
 
   constructor(
     public preSaleSrv: PreSaleService,
@@ -66,7 +67,8 @@ export class PreSalePaymentMethodsComponent implements OnInit {
   ngOnInit(): void { }
 
   loadLocalData(){
-    const { paymentMethodType } = this.preSaleSrv.checkAndLoadDocumentLocalStorage();
+    const { paymentMethodType, orderType } = this.preSaleSrv.checkAndLoadDocumentLocalStorage();
+    this.orderType = orderType;
     if(paymentMethodType){
       this.paymentMethodType = paymentMethodType;
     }
@@ -119,51 +121,52 @@ export class PreSalePaymentMethodsComponent implements OnInit {
     const preSaleDocument = await this.preSaleSrv.getDocumentLocalStorage();
     const coutas = this.preSaleSrv.getCuotas();
 
-    const nroParticipantsByRoom = preSaleDocument.rooms
-      .map((room: any) => room.capacity)
-      .reduce((a: number, b: number) => a + b, 0);
+    // const nroParticipantsByRoom = preSaleDocument.rooms
+    //   .map((room: any) => room.capacity)
+    //   .reduce((a: number, b: number) => a + b, 0);
 
-    const roomsAmount = preSaleDocument?.rooms
-      .map((row) => row.price)
-      .reduce((prev, curr) => prev + curr, 0);
-    console.log('roomsAmount', roomsAmount);
+    // const roomsAmount = preSaleDocument?.rooms
+    //   .map((row) => row.price)
+    //   .reduce((prev, curr) => prev + curr, 0);
+    // console.log('roomsAmount', roomsAmount);
 
-    const additionalDaysAmount = preSaleDocument?.rooms
-      .map((room) => room.additionals)
-      .filter((row) => row.length > 0)
-      .map((data) => data.map((row) => row.quantity * row.price).reduce((prev, curr) => prev + curr, 0))
-      .reduce((prev, curr) => prev + curr, 0);
-    console.log('additionalDaysAmount', additionalDaysAmount);
+    // const additionalDaysAmount = preSaleDocument?.rooms
+    //   .map((room) => room.additionals)
+    //   .filter((row) => row.length > 0)
+    //   .map((data) => data.map((row) => row.quantity * row.price).reduce((prev, curr) => prev + curr, 0))
+    //   .reduce((prev, curr) => prev + curr, 0);
+    // console.log('additionalDaysAmount', additionalDaysAmount);
 
-    const additionalCategoryPasses = preSaleDocument?.additionalCategoryPasses
-      .map((row) => {
-        if(row.type == 'group'){
-          return row.data.map((group) => group.quantity * group.price)
-            .reduce((prev, curr) => prev + curr, 0)
+    // const additionalCategoryPasses = preSaleDocument?.additionalCategoryPasses
+    //   .map((row) => {
+    //     if(row.type == 'group'){
+    //       return row.data.map((group) => group.quantity * group.price)
+    //         .reduce((prev, curr) => prev + curr, 0)
   
-        }else{
-          return row.quantity * row.price;
-        }
-      })
-      .reduce((prev, curr) => prev + curr, 0)
+    //     }else{
+    //       return row.quantity * row.price;
+    //     }
+    //   })
+    //   .reduce((prev, curr) => prev + curr, 0)
 
-    const subTotal = [roomsAmount, additionalDaysAmount, additionalCategoryPasses]
-      .reduce((prev, curr) => prev + curr, 0);
+    // const subTotal = [roomsAmount, additionalDaysAmount, additionalCategoryPasses]
+    //   .reduce((prev, curr) => prev + curr, 0);
 
 
-    /**
-     * Calcular descuento por grupo
-     */
-    let groupDiscount = 0;
-    if(nroParticipantsByRoom >= 20){
-      groupDiscount = subTotal * 0.10;
-    }else if(nroParticipantsByRoom >= 10){
-      groupDiscount = subTotal * 0.05;
-    }
+    // /**
+    //  * Calcular descuento por grupo
+    //  */
+    // let groupDiscount = 0;
+    // if(nroParticipantsByRoom >= 20){
+    //   groupDiscount = subTotal * 0.10;
+    // }else if(nroParticipantsByRoom >= 10){
+    //   groupDiscount = subTotal * 0.05;
+    // }
 
-    const total = subTotal - groupDiscount;
+    // const total = subTotal - groupDiscount;
 
-    const coutaAmount = total / coutas.length;
+    const totales = purchaseTotales(preSaleDocument);
+    const coutaAmount = totales.total / coutas.length;
 
     const currentDate = moment();
     const installments = coutas.map((row, index) => {
@@ -175,6 +178,7 @@ export class PreSalePaymentMethodsComponent implements OnInit {
         paymentMethod: null,
         amount: coutaAmount,
         payed: false,
+        payedAt: null,
         metadata: null,
         url: environment.urlWeb + 'purchase/summary/' + preSaleDocument.orderId + '/pay-couta/' + index,
       }

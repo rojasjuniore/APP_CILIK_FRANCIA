@@ -72,7 +72,39 @@ export class PreSaleCheckoutListComponent implements OnInit {
       groupDiscount = 0.05;
     }
 
-    this.preSaleSrv.updateDocumentLocalStorage({rooms, nroParticipants, groupDiscount});
+    /**
+     * Actualizar nro de pases al evento
+     */
+    let eventPasses: any = [];
+    if(['fullPass', 'hotelAndEventPass'].includes(this.preSaleDocument.orderType)){
+      const row = Object.assign({}, this.preSaleSrv.EVENTPASS_DEFAULT, {
+        quantity: nroParticipants, 
+        price: 0, 
+        fullPrice: 0
+      });
+      eventPasses.push(row);
+    }
+
+    /**
+     * Actualizar nro de pases de categorias si la orden de WLDC
+     */
+    let additionalCategoryPasses: any = [];
+    if(this.preSaleDocument.orderType == 'fullPass'){
+      const row = this.preSaleDocument.additionalCategoryPasses || [];
+      additionalCategoryPasses = row.map((row) => {
+        if(row.type == 'wldc'){ row.quantity = nroParticipants; }
+        return row;
+      });
+    }
+
+    this.preSaleSrv.updateDocumentLocalStorage({
+      rooms, 
+      nroParticipants, 
+      groupDiscount, 
+      eventPasses,
+      additionalCategoryPasses
+    });
+
     this.loadLocalData();
   }
 

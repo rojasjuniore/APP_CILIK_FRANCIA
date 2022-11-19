@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import moment from 'moment';
 import { distinctUntilChanged, from, interval, map, switchMap } from 'rxjs';
+import { CouponsService } from './coupons.service';
 import { DataService } from './data.service';
 import { HotelService } from './hotel.service';
 import { PurchaseService } from './purchase.service';
@@ -58,6 +59,7 @@ export class PreSaleService {
     private sweetAlert2Srv: Sweetalert2Service,
     private purchaseSrv: PurchaseService,
     private hotelSrv: HotelService,
+    private couponSrv: CouponsService
   ) { }
 
   generateDocId(){ return this.afs.createId(); }
@@ -81,9 +83,11 @@ export class PreSaleService {
       createdAt: currentDate.valueOf(),
       groupDiscount: 0,
       expiredAt: currentDate.add(30, 'minutes').valueOf(),
+      payedAt: null,
       orderType: params.orderType || 'fullPass', // 'fullPass' | 'categoryPass'
       setup: params.setup || null, // 'manual' | 'automatic'
       status: params.status || 'pending',
+      coupons: params.coupons || [],
     };
   }
 
@@ -228,6 +232,7 @@ export class PreSaleService {
       payed = true,
       completed = true,
       status = 'completed',
+      payedAt = null,
     } = params;
 
     const url = `/purchase/summary/${preSaleDocument.orderId}/details`;
@@ -251,10 +256,20 @@ export class PreSaleService {
       metadata,
       step: url,
       payed,
+      payedAt,
       completed,
       status,
       rooms,
     });
+
+    /**
+     * Actualizar contador de usos de los cupones
+     */
+    const couponsList = preSaleDocument.coupons || [];
+    if(couponsList.length > 0){
+      const coupon = couponsList[0];
+      await this.couponSrv.updateCounter(coupon.code, 'nroUsed', 1);
+    }
 
     // console.log('order', document);
     // return;

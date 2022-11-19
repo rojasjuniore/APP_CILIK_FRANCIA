@@ -1,0 +1,65 @@
+<!-- Modal -->
+<div class="modal fade" id="modalAddCoupon" tabindex="-1" aria-labelledby="modalAddCouponLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalAddCouponLabel">
+                    Registrar Cupon
+                </h5>
+                <button type="button" class="btn-close" (click)="hide()"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="form" novalidate>
+
+                    <div class="mb-3">
+                        <label for="code" class="form-label">Code</label>
+                        <input type="text" class="form-control" formControlName="code" placeholder="coupon-code-example">
+
+                        <ng-container *ngIf="submit">
+                            <ng-container *ngFor="let item of vm.code">
+                                <div id="emailHelp" class="form-text text-danger" *ngIf="f.code.hasError(item.type)">
+                                    {{ item.message | translate }}
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Coupon Type</label>
+                        <select class="form-select" formControlName="type" aria-label="Default select example">
+                            <option value="amount">Amount</option>
+                            <option value="percentage">Percent</option>
+                        </select>
+                        
+                        <ng-container *ngIf="submit">
+                            <ng-container *ngFor="let item of vm.type">
+                                <div id="emailHelp" class="form-text text-danger" *ngIf="f.type.hasError(item.type)">
+                                    {{ item.message | translate }}
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="discount" class="form-label">
+                            Discount {{ f.type.value === 'amount' ? '$' : '%' }}
+                        </label>
+                        <input type="text" class="form-control" formControlName="discount" [placeholder]="'Discount ' + ((f.type.value == 'amount') ? '$' : '%')">
+
+                        <ng-container *ngIf="submit">
+                            <ng-container *ngFor="let item of vm.discount">
+                                <div id="emailHelp" class="form-text text-danger" *ngIf="f.discount.hasError(item.type)">
+                                    {{ item.message | translate }}
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-danger" (click)="onSubmit()">Store</button>
+            </div>
+        </div>
+    </div>
+</div>

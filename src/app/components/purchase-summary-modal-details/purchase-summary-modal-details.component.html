@@ -33,6 +33,11 @@
                             </app-purchase-summary-details-category-card-item>
                         </div>
 
+                        <div class="col-12 mb-4">
+                            <app-purchase-summary-details-event-pass-card-item [order]="order">
+                            </app-purchase-summary-details-event-pass-card-item>
+                        </div>
+
                         <div  *ngIf="order?.installments.length > 0">
                             <div class="col-12 mb-4" *ngFor="let item of order.installments">
                                 <app-pre-sale-installment-couta-card-item 

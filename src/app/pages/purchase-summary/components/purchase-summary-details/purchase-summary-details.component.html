@@ -27,6 +27,11 @@
             </app-purchase-summary-details-category-card-item>
         </div>
 
+        <div class="col-12 mb-4">
+            <app-purchase-summary-details-event-pass-card-item [order]="purchaseDocument">
+            </app-purchase-summary-details-event-pass-card-item>
+        </div>
+
         <ng-container *ngIf="purchaseDocument.paymentMethodType == 'installments'">
             <div *ngIf="purchaseDocument?.installments.length > 0">
                 <div class="col-12 mb-4" *ngFor="let item of purchaseDocument.installments">

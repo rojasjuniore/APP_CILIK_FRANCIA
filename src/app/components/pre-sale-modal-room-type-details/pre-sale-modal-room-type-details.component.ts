@@ -53,7 +53,7 @@ export class PreSaleModalRoomTypeDetailsComponent implements OnInit, OnDestroy {
   }
 
   async showModal(params: any) {
-    const { data, index } = params;
+    const { data, index, orderType = "fullPass" } = params;
     // console.log('params', params);
     // console.log('data', data);
     
@@ -66,7 +66,7 @@ export class PreSaleModalRoomTypeDetailsComponent implements OnInit, OnDestroy {
       orderBy: [{field: 'priority', order: 'asc'}]
     })
     .pipe(
-      map((data: any[]) => data.map((row) => this.hotelSrv.parseRoomPrice(row)) ),
+      map((data: any[]) => data.map((row) => this.hotelSrv.parseRoomPrice(row, orderType)) ),
       map((data: any[]) => data.map((row) => omit(row, ['priceList'])) ),
     );
 

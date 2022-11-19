@@ -16,30 +16,6 @@
 
             <div class="seprd m-0 mb-2"></div>
 
-            <!-- <p class="border-bottom fw-bold m-0">
-                {{ "general.additionalCategories" | translate }}:
-            </p>
-            
-            <p class="m-0 fw-bold" [ngClass]="{'border-bottom': !isLast}"
-                *ngFor="let item of additionalCategoryPasses; last as isLast">
-
-                <ng-container *ngIf="item.type !== 'group'; else showGroupList">
-                    {{ "general.amountOf" | translate }} {{'general.'+item.type | translate | titlecase}}:
-                    {{getTotalAdditional(item)}}
-                </ng-container>
-
-                <ng-template #showGroupList>
-
-                    <ng-container *ngFor="let row of item.data; index as rowIdx; last as isLastRow">
-                        <strong>{{'general.group' | translate | titlecase}} #{{rowIdx + 1}}</strong><br>
-                        - {{'general.numberOfMembers' | translate}}: {{row.quantity}}
-
-                        <br *ngIf="!isLastRow">
-                    </ng-container>
-
-                </ng-template>
-
-            </p> -->
         <p class="m-0 mt-4">
             {{ "general.valueWithoutDiscount" | translate }}:
             <span class="text-decoration-line-through">

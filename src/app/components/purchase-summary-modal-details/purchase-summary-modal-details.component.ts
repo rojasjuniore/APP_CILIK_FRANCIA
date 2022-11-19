@@ -10,6 +10,7 @@ import { HotelService } from 'src/app/services/hotel.service';
 import { PurchaseService } from 'src/app/services/purchase.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 import html2canvas from "html2canvas";
+import moment from 'moment';
 
 @Component({
   selector: 'app-purchase-summary-modal-details',
@@ -115,15 +116,19 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
 
       await this.spinner.show();
 
+      const currentDate =  moment().valueOf();
+
       /**
        * 1. Cambiar el estado de la orden a 'completed'
-       * 2. TODO: enviar email de notificación de orden de compra completada
+       * 2. Enviar email de notificación de orden de compra completada
        */
       await Promise.all([
         this.hotelService.updateOrder(order.orderId, { 
           status: 'completed',
           completed: true,
-          payed: true
+          payed: true,
+          payedAt: currentDate,
+          'metadata.payedAt': currentDate,
         }),
         this.purchaseSrv.sendPurchaseTransferApprovedNotification(order.orderId)
       ]);
@@ -151,13 +156,19 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
 
       await this.spinner.show();
 
+      const currentDate =  moment().valueOf();
+
       /**
        * 1. Cambiar el estado de la orden a 'rejected'
        * 2. Cambiar el estado de la habitacion a 'available'
-       * 3. TODO: enviar email de notificación de orden de compra rechazada
+       * 3. Enviar email de notificación de orden de compra rechazada
        */
       await Promise.all([
-        this.hotelService.updateOrder(order.orderId, { status: 'rejected' }),
+        this.hotelService.updateOrder(order.orderId, {
+          status: 'rejected', 
+          payedAt: currentDate,
+          'metadata.payedAt': currentDate, 
+        }),
         this.hotelService.restoreRoomsOnReject(order.orderId),
         this.purchaseSrv.sendPurchaseTransferRejectedNotification(order.orderId)
       ]);
