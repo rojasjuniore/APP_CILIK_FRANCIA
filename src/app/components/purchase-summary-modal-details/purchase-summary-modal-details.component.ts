@@ -156,13 +156,19 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
 
       await this.spinner.show();
 
+      const currentDate =  moment().valueOf();
+
       /**
        * 1. Cambiar el estado de la orden a 'rejected'
        * 2. Cambiar el estado de la habitacion a 'available'
-       * 3. TODO: enviar email de notificación de orden de compra rechazada
+       * 3. Enviar email de notificación de orden de compra rechazada
        */
       await Promise.all([
-        this.hotelService.updateOrder(order.orderId, { status: 'rejected' }),
+        this.hotelService.updateOrder(order.orderId, {
+          status: 'rejected', 
+          payedAt: currentDate,
+          'metadata.payedAt': currentDate, 
+        }),
         this.hotelService.restoreRoomsOnReject(order.orderId),
         this.purchaseSrv.sendPurchaseTransferRejectedNotification(order.orderId)
       ]);
