@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import moment from 'moment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { from, Observable } from 'rxjs';
 import { PurchaseService } from 'src/app/services/purchase.service';
@@ -111,7 +112,8 @@ export class PurchasePayCuotaComponent implements OnInit {
         await Promise.all([
           this.purchaseSrv.updatePurchaseInstallmentCouta(this.orderId, this.nroCuota, {
             metadata: data,
-            payed: true
+            payed: true,
+            payedAt: moment().valueOf(),
           }),
           this.purchaseSrv.updatePurchaseCounter(this.orderId, 'installmentsPayed', 1)
         ]);
