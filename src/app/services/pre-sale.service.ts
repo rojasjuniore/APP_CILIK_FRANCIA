@@ -232,7 +232,7 @@ export class PreSaleService {
       payed = true,
       completed = true,
       status = 'completed',
-
+      payedAt = null,
     } = params;
 
     const url = `/purchase/summary/${preSaleDocument.orderId}/details`;
@@ -256,6 +256,7 @@ export class PreSaleService {
       metadata,
       step: url,
       payed,
+      payedAt,
       completed,
       status,
       rooms,
