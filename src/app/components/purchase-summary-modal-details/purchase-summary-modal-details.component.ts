@@ -10,6 +10,7 @@ import { HotelService } from 'src/app/services/hotel.service';
 import { PurchaseService } from 'src/app/services/purchase.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 import html2canvas from "html2canvas";
+import moment from 'moment';
 
 @Component({
   selector: 'app-purchase-summary-modal-details',
@@ -117,13 +118,14 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
 
       /**
        * 1. Cambiar el estado de la orden a 'completed'
-       * 2. TODO: enviar email de notificación de orden de compra completada
+       * 2. Enviar email de notificación de orden de compra completada
        */
       await Promise.all([
         this.hotelService.updateOrder(order.orderId, { 
           status: 'completed',
           completed: true,
-          payed: true
+          payed: true,
+          metadata: { payedAt: moment().valueOf() }
         }),
         this.purchaseSrv.sendPurchaseTransferApprovedNotification(order.orderId)
       ]);
