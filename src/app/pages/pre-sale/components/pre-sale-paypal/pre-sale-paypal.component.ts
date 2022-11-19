@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import moment from 'moment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { purchaseTotales } from 'src/app/helpers/purchase-totales.helper';
 import { PreSaleService } from 'src/app/services/pre-sale.service';
@@ -54,7 +55,7 @@ export class PreSalePaypalComponent implements OnInit {
       await this.spinner.show();
 
       /** Procesar orden y retornar enlace de redirección */
-      const url = await this.preSaleSrv.completePreSaleOrder(metadata);
+      const url = await this.preSaleSrv.completePreSaleOrder(metadata, {payedAt: moment().valueOf()});
       this.router.navigate([url]);
       return;
       
