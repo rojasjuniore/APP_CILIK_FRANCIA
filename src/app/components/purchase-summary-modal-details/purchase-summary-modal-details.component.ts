@@ -116,6 +116,8 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
 
       await this.spinner.show();
 
+      const currentDate =  moment().valueOf();
+
       /**
        * 1. Cambiar el estado de la orden a 'completed'
        * 2. Enviar email de notificación de orden de compra completada
@@ -125,7 +127,8 @@ export class PurchaseSummaryModalDetailsComponent implements OnInit, OnDestroy {
           status: 'completed',
           completed: true,
           payed: true,
-          metadata: { payedAt: moment().valueOf() }
+          payedAt: currentDate,
+          'metadata.payedAt': currentDate,
         }),
         this.purchaseSrv.sendPurchaseTransferApprovedNotification(order.orderId)
       ]);
