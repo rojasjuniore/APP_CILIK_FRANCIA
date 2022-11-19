@@ -121,8 +121,9 @@ export class PurchasePayCuotaComponent implements OnInit {
             payedAt: moment().valueOf(),
           }),
           this.purchaseSrv.updatePurchaseCounter(this.orderId, 'installmentsPayed', 1),
-          this.purchaseSrv.sendPurchaseTransferApprovedNotification(this.orderId, {cuota: this.nroCuota})
         ]);
+
+        await this.purchaseSrv.sendPurchaseTransferApprovedNotification(this.orderId, {cuota: this.nroCuota})
 
         /**
          * Validar si ya se cancelaron todas las cuotas pendientes
