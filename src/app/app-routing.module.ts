@@ -37,10 +37,7 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    /**
-     * TODO: Uncomment this line to enable admin guard
-     */
-    // canActivate: [ CheckAdminRoleGuard ],
+    canActivate: [ CheckAdminRoleGuard ],
     loadChildren: () => import("./admin/admin.module").then((m) => m.AdminModule),
   },
   {

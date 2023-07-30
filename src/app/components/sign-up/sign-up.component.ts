@@ -74,7 +74,7 @@ export class SignUpComponent implements OnInit {
       { type: 'maxlength', message: 'formValidations.maxlength12' }
     ],
     confirmPassword: [
-      { type: 'required', message: 'formValidations.required'},
+      { type: 'required', message: 'formValidations.required' },
       { type: 'mustMatch', message: 'formValidations.passwordsNotMatch' }
     ],
     termsAndCondition: [
@@ -116,18 +116,18 @@ export class SignUpComponent implements OnInit {
     this.paises = data;
   }
 
-    /**
-   * filter
-   */
+  /**
+ * filter
+ */
 
-  filter () {
+  filter() {
     let text: any = document.getElementById("filter")
     console.log(text.value);
-    
-    var result =  this.phoneData.filter(function(item) {
+
+    var result = this.phoneData.filter(function (item) {
       return item.name.indexOf(text?.value.toLowerCase()) > -1;
     });
-    
+
     console.log(result);
 
     this.phoneData = result
@@ -211,7 +211,7 @@ export class SignUpComponent implements OnInit {
       const formData = this.form.value;
 
       const checkDNI = await this.authenticationSrv.checkDNI(formData.dni, formData.documentType);
-      if(checkDNI){
+      if (checkDNI) {
         this.f.dni.setErrors({ dniStored: true });
         return;
       }
@@ -255,8 +255,11 @@ export class SignUpComponent implements OnInit {
 
       const uid = afsUser.user?.uid;
 
+      /**
+       * TODO: estructura de la base de datos que tiene settle/cilik v2 -
+       */
       /** Registrar usuario */
-      await this.authenticationSrv.store(`${uid}`, data);
+      // await this.authenticationSrv.store(`${uid}`, data);
 
       /** Enviar mail de bienvenida */
       await this.emailNotificationSrv.sendWelcomeNotification([data.firstName, data.lastName].join(' '), data.email);
@@ -264,10 +267,16 @@ export class SignUpComponent implements OnInit {
       /** Guardar identificador en el localStorage */
       this.authenticationSrv.setLocalUID(uid);
 
+
+      /**
+       * TODO: este metodo se ajusta al la estrutura de la base de datos que tiene settle/cilik v1
+       */
+      await this.authenticationSrv.saveProfile(data, uid);
+
       const message = this.translatePipe.transform('general.successfulRegistration');
       this.sweetAlert2Srv.showSuccess(message, 2);
 
-      return this.router.navigate(['pages','dashboard']);
+      return this.router.navigate(['pages', 'dashboard']);
 
     } catch (err) {
       console.log('Error on SignUpComponent.onSubmit', err);
@@ -276,6 +285,8 @@ export class SignUpComponent implements OnInit {
       this.loader = false;
     }
   }
+
+
 
 
   async openPopup() {

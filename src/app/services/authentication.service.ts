@@ -96,6 +96,7 @@ export class AuthenticationService {
     });
   }
 
+
   saveTokenPush(uid) {
     localStorage.setItem("uid", uid)
   }
@@ -111,6 +112,102 @@ export class AuthenticationService {
       })
 
     return result
+  }
+
+
+  /**
+   * 
+   * @param profile 
+   * @param uid 
+   * @returns 
+   */
+  async saveProfile(profile, uid) {
+    return new Promise(async (resolve, reject) => {
+      try {
+
+
+        const identification = this.transformarString(profile.dni);
+        const name = `${profile.firstName} ${profile.lastName}`.toLowerCase();
+        const email = profile.email.toLowerCase();
+
+        const user = {
+          uid: uid,
+          _language: "en",
+          language: "en",
+          rol: 0,
+          status: "incomplete_profile",
+          stageName: false,
+          avatar: "/assets/img/002-man.svg",
+          name: name,
+          prefijo: profile.prefijo.phonecode,
+          phone: profile.phone,
+          identification: identification,
+          dni: identification,
+          email: email,
+          roles: ['user'],
+          firstName: profile.firstName,
+          lastName: profile.firstName,
+          documentType: profile.firstName,
+          prefix: profile.prefijo.prefix,
+          phoneNumber: profile.prefijo.prefix,
+        };
+
+        const user_2 = {
+          uid: uid,
+          email: email,
+          name: profile.firstName.toLowerCase(),
+          surnames: profile.lastName.toLowerCase(),
+          idType: "incomplete_profile",
+          gender: null,
+          birthdate: null,
+          identificationNumber: identification,
+          school: null,
+          tShirtSize: null,
+          bio: null,
+          celular: null,
+          cityOfBirth: null,
+          countryOfBirth: null,
+          countryOfResidence: null,
+          facebook: null,
+          instagram: null,
+          prefijo: profile.prefix,
+          phone: profile.phoneNumber,
+          stageName: null,
+          stateOfBirth: null,
+          stateOfResidence: null,
+        };
+
+        const p = Object.assign(user, { profile: user_2 });
+        console.log("profile", p);
+
+
+        localStorage.setItem("uid", uid);
+        localStorage.setItem("profile", JSON.stringify(user_2));
+        localStorage.setItem("avatar", "/assets/img/002-man.svg");
+
+        await this.db.object(`users/${uid}`).update(p);
+        await this.afs.collection("users").doc(uid).set(user);
+        await this.afs.collection("profile").doc(uid).set(user_2);
+
+        console.log("uid", uid)
+        console.log("user_2", user_2)
+        console.log("uid", user)
+        console.log("p", p)
+
+        return resolve("ok")
+      } catch (error) {
+        return reject(error)
+      }
+
+    });
+  }
+
+  transformarString(string) {
+    if (!string) {
+      return null;
+    }
+    const number = string.toString();
+    return number.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, "").toLowerCase()
   }
 
 
@@ -375,7 +472,7 @@ export class AuthenticationService {
    * @returns 
    */
   getDynamic(collection: string, where: any[] = [], opts: any = {}): Observable<any[]> {
-    const { 
+    const {
       idField = "_id",
       startAt = null,
       endAt = null,
@@ -389,9 +486,9 @@ export class AuthenticationService {
 
         for (const order of orderBy) { query = ref.orderBy(order.field, order.order); }
 
-        if(startAt){ query = query.startAt(startAt); }
+        if (startAt) { query = query.startAt(startAt); }
 
-        if(endAt){ query = query.endAt(endAt); }
+        if (endAt) { query = query.endAt(endAt); }
 
         return query;
       }
@@ -407,9 +504,9 @@ export class AuthenticationService {
   }
 
 
-  
-  getUserAuth(email){
-    return this.afs.collection('users', ref =>   ref.where('email', '==', email)).valueChanges();
+
+  getUserAuth(email) {
+    return this.afs.collection('users', ref => ref.where('email', '==', email)).valueChanges();
   }
 }
 
