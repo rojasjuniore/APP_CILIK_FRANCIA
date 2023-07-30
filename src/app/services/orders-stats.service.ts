@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class OrdersStatsService {
 
-  public collection = 'paymentHistory';
+  public collection = environment.production ?  'paymentHistory' : 'paymentHistory-dev';
   public baseUrl = [environment.API_URL, 'reports'].join('/');
 
   constructor(

@@ -4,42 +4,43 @@ import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/fo
 import { increment } from 'firebase/firestore';
 import { map, Observable } from 'rxjs';
 import { handlerArrayResult, handlerObjectResult } from '../helpers/model.helper';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CouponsService {
 
-  public collection = "coupons";
+  public collection = environment.production ? "coupons" : "coupons-dev";
 
   constructor(
     public afs: AngularFirestore,
   ) { }
 
-  async store(docId: string, data: any){
+  async store(docId: string, data: any) {
     return this.afs.collection(this.collection).doc(docId).set(data);
   }
 
-  async update(docId: string, data: any){
+  async update(docId: string, data: any) {
     return this.afs.collection(this.collection).doc(docId).update(data);
   }
 
-  async delete(docId: string){
+  async delete(docId: string) {
     return this.afs.collection(this.collection).doc(docId).delete();
   }
 
-  async getById(docId: string){
+  async getById(docId: string) {
     const snapshot = await this.afs.collection(this.collection).doc(docId).get().toPromise();
     return handlerObjectResult(snapshot);
   }
 
-  async updateCounter(docId: string, field: string, value = 1){
+  async updateCounter(docId: string, field: string, value = 1) {
     const ref = this.afs.collection(this.collection).doc(docId);
     await ref.update({ [field]: increment(value) });
   }
 
-  getDynamic(where: any[] = [], opts: any = {}): Observable<any[]>{
-    const {idField = "_id", orderBy = []} = opts;
+  getDynamic(where: any[] = [], opts: any = {}): Observable<any[]> {
+    const { idField = "_id", orderBy = [] } = opts;
 
     return this.afs.collection(
       this.collection,
@@ -60,7 +61,7 @@ export class CouponsService {
  * @param service 
  * @returns 
  */
- export function checkCouponCodeExist(service: CouponsService): AsyncValidatorFn {
+export function checkCouponCodeExist(service: CouponsService): AsyncValidatorFn {
   return (control: AbstractControl): Observable<ValidationErrors | null> => {
     return service.afs.collection('coupons', (ref) => ref.where('code', '==', `${control.value}`.trim()).limit(1)).get()
       .pipe(

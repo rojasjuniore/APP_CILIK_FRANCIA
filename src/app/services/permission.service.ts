@@ -4,20 +4,21 @@ import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/fo
 import { map, Observable, switchMap, tap } from 'rxjs';
 import { handlerObjectResult } from '../helpers/model.helper';
 import { slugify } from '../helpers/slugify';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PermissionService {
 
-  public roleCollection = "permission__roles";
+  public roleCollection = environment.production ? "permission__roles" : "permission__roles-dev";
   public userRolesCollection = "users";
 
   constructor(
     public afs: AngularFirestore,
   ) { }
 
-  async addRole(slug: string, data: any){
+  async addRole(slug: string, data: any) {
     try {
       await this.afs.collection(this.roleCollection).doc(slug).set(data);
       return true;
@@ -26,19 +27,19 @@ export class PermissionService {
       return false;
     }
   }
-  
-  async updateRole(slug: string, data: any){
+
+  async updateRole(slug: string, data: any) {
     try {
       await this.afs.collection(this.roleCollection).doc(slug).update(data);
       return true;
     } catch (err) {
       console.warn('Error on try to update a document', err);
       return false;
-      
+
     }
   }
 
-  async removeRole(slug: string){
+  async removeRole(slug: string) {
     try {
       await this.afs.collection(this.roleCollection).doc(slug).delete();
       return true;
@@ -48,9 +49,9 @@ export class PermissionService {
     }
   }
 
-  async updateUserRoles(uid: string, roles: any){
+  async updateUserRoles(uid: string, roles: any) {
     try {
-      await this.afs.collection(this.userRolesCollection).doc(uid).update({roles});
+      await this.afs.collection(this.userRolesCollection).doc(uid).update({ roles });
       return true;
     } catch (err) {
       console.warn('Error on try to update user groups', err);
@@ -58,18 +59,18 @@ export class PermissionService {
     }
   }
 
-  checkUserHasRoles(uid: string){
+  checkUserHasRoles(uid: string) {
     return this.afs.collection(this.userRolesCollection).doc(uid).get()
-    .pipe(
-      switchMap((doc) =>  handlerObjectResult(doc)),
-      map((user: any) => {
-        if(user && user.roles && user.roles.length > 0){
-          return true;
-        }
-        return false;
-      }),
-      // tap((hasRoles) =>  console.log('hasRoles', hasRoles))
-    );
+      .pipe(
+        switchMap((doc) => handlerObjectResult(doc)),
+        map((user: any) => {
+          if (user && user.roles && user.roles.length > 0) {
+            return true;
+          }
+          return false;
+        }),
+        // tap((hasRoles) =>  console.log('hasRoles', hasRoles))
+      );
   }
 
   /**
@@ -87,9 +88,9 @@ export class PermissionService {
    * 
    * @returns 
    */
-  getRolesDynamic(where: any[] = [], opts: any = {}): Observable<any>{
+  getRolesDynamic(where: any[] = [], opts: any = {}): Observable<any> {
     const {
-      idField = "_id", 
+      idField = "_id",
       orderBy = [],
       startAt = null,
       endAt = null,
@@ -103,9 +104,9 @@ export class PermissionService {
 
         for (const order of orderBy) { query = ref.orderBy(order.field, order.order); }
 
-        if(startAt){ query = query.startAt(startAt); }
+        if (startAt) { query = query.startAt(startAt); }
 
-        if(endAt){ query = query.endAt(endAt); }
+        if (endAt) { query = query.endAt(endAt); }
 
         return query;
       }
@@ -120,7 +121,7 @@ export class PermissionService {
  * @param service 
  * @returns 
  */
- export function checkRoleSlug(service: PermissionService): AsyncValidatorFn {
+export function checkRoleSlug(service: PermissionService): AsyncValidatorFn {
   return (control: AbstractControl): Observable<ValidationErrors | null> => {
 
     const controlValue = slugify(`${control.value}`.trim());

@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PaymentHistoryService {
 
-  public collection = 'paymentHistory';
+  public collection = environment.production ? 'paymentHistory' : 'paymentHistory-dev';
 
 
   constructor(
     private afs: AngularFirestore
   ) { }
 
-  generateDocId(){ return this.afs.createId(); }
+  generateDocId() { return this.afs.createId(); }
 
 
   /**
@@ -31,11 +32,11 @@ export class PaymentHistoryService {
     return await this.afs.collection(this.collection).add(data);
   }
 
-  async update(docId: string, data: any): Promise<any>{
+  async update(docId: string, data: any): Promise<any> {
     return await this.afs.collection(this.collection).doc(docId).update(data);
   }
 
-  async remove(docId: string){
+  async remove(docId: string) {
     return await this.afs.collection(this.collection).doc(docId).delete();
   }
 
@@ -45,7 +46,7 @@ export class PaymentHistoryService {
    * @param docId 
    * @returns 
    */
-  getById(docId: string){
+  getById(docId: string) {
     return this.afs.collection(this.collection).doc(docId).valueChanges();
   }
 
@@ -77,8 +78,8 @@ export class PaymentHistoryService {
    * 
    * @returns 
    */
-   getDynamic(where: any[] = [], opts: any = {}): Observable<any[]>{
-    const {idField = "_id", orderBy = []} = opts;
+  getDynamic(where: any[] = [], opts: any = {}): Observable<any[]> {
+    const { idField = "_id", orderBy = [] } = opts;
 
     return this.afs.collection(
       this.collection,

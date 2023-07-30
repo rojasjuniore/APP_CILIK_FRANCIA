@@ -14,7 +14,7 @@ const URL_ROOT: any = environment.API_URL;
 })
 export class PurchaseService {
 
-  public purchaseCollection = 'purchases';
+  public purchaseCollection = environment.production ? 'purchases' : 'purchases-dev';
 
   constructor(
     private afs: AngularFirestore,
@@ -30,7 +30,7 @@ export class PurchaseService {
     return this.afs.collection(this.purchaseCollection).doc(docId).update(data);
   }
 
-  async updatePurchaseInstallmentCouta(docId: string, index: number, data: any){
+  async updatePurchaseInstallmentCouta(docId: string, index: number, data: any) {
     try {
       // console.log({
       //   docId,
@@ -45,7 +45,7 @@ export class PurchaseService {
 
       const { installments } = result;
       const newInstallments = installments.map((item: any, i: number) => {
-        if(i === index){
+        if (i === index) {
           return {
             ...item,
             ...data
@@ -57,68 +57,68 @@ export class PurchaseService {
       await this.updatePurchase(docId, { installments: newInstallments });
 
       return true;
-      
+
     } catch (err) {
       console.log('Error on PurchaseService.updatePurchaseInstallmentCouta', err);
       return false;
     }
   }
 
-  async updatePurchaseCounter(docId: string, field: any, data = 1){
+  async updatePurchaseCounter(docId: string, field: any, data = 1) {
     const ref = this.afs.collection(this.purchaseCollection).doc(docId);
     await ref.update({ [field]: increment(data) });
   }
 
-  async sendPurchaseSummaryNotification(uid: string, orderId: string){
+  async sendPurchaseSummaryNotification(uid: string, orderId: string) {
     try {
-      const result = await lastValueFrom( 
-        this.http.post(`${URL_ROOT}email-notification/purchase-summary`, {uid, orderId})
+      const result = await lastValueFrom(
+        this.http.post(`${URL_ROOT}email-notification/purchase-summary`, { uid, orderId })
       );
 
       return result;
-      
+
     } catch (err) {
       console.log('Error on PurchaseService.sendPurchaseSummaryNotification', err);
       throw err;
     }
   }
 
-  async sendPurchaseTransferNotification(orderId: string){
+  async sendPurchaseTransferNotification(orderId: string) {
     try {
-      const result = await lastValueFrom( 
-        this.http.post(`${URL_ROOT}email-notification/purchase-transfer-information`, {orderId})
+      const result = await lastValueFrom(
+        this.http.post(`${URL_ROOT}email-notification/purchase-transfer-information`, { orderId })
       );
 
       return result;
-      
+
     } catch (err) {
       console.log('Error on PurchaseService.sendPurchaseTransferNotification', err);
       throw err;
     }
   }
 
-  async sendPurchaseTransferRejectedNotification(orderId: string){
+  async sendPurchaseTransferRejectedNotification(orderId: string) {
     try {
-      const result = await lastValueFrom( 
-        this.http.post(`${URL_ROOT}email-notification/purchase-transfer-rejected`, {orderId})
+      const result = await lastValueFrom(
+        this.http.post(`${URL_ROOT}email-notification/purchase-transfer-rejected`, { orderId })
       );
 
       return result;
-      
+
     } catch (err) {
       console.log('Error on PurchaseService.sendPurchaseTransferRejectedNotification', err);
       throw err;
     }
   }
 
-  async sendPurchaseTransferApprovedNotification(orderId: string, params: any = {}){
+  async sendPurchaseTransferApprovedNotification(orderId: string, params: any = {}) {
     try {
-      const result = await lastValueFrom( 
-        this.http.post(`${URL_ROOT}email-notification/purchase-transfer-approved`, {orderId, ...params})
+      const result = await lastValueFrom(
+        this.http.post(`${URL_ROOT}email-notification/purchase-transfer-approved`, { orderId, ...params })
       );
 
       return result;
-      
+
     } catch (err) {
       console.log('Error on PurchaseService.sendPurchaseTransferRejectedNotification', err);
       throw err;
@@ -127,19 +127,19 @@ export class PurchaseService {
 
 
 
-  async getPurchaseDocument(docId: string): Promise<any>{
+  async getPurchaseDocument(docId: string): Promise<any> {
     const snapshot = await this.afs.collection(this.purchaseCollection).doc(docId).get().toPromise();
     return await handlerObjectResult(snapshot);
   }
 
-  userPurchaseList(uid: string){
+  userPurchaseList(uid: string) {
     return this.getDynamic([
       { field: "uid", condition: "==", value: uid }
     ], { orderBy: [{ field: "createdAt", order: "desc" }] });
   }
 
 
-  userPurchaseListPending(uid: string){
+  userPurchaseListPending(uid: string) {
     return this.getDynamic([
       { field: "uid", condition: "==", value: uid },
       { field: "completed", condition: "==", value: false },
@@ -147,14 +147,14 @@ export class PurchaseService {
     ], { orderBy: [{ field: "createdAt", order: "desc" }] });
   }
 
-  userPurchaseListCompleted(uid: string){
+  userPurchaseListCompleted(uid: string) {
     return this.getDynamic([
       { field: "uid", condition: "==", value: uid },
       { field: "completed", condition: "==", value: true },
     ], { orderBy: [{ field: "createdAt", order: "desc" }] });
   }
 
-  userPurchaseListRejected(uid: string){
+  userPurchaseListRejected(uid: string) {
     return this.getDynamic([
       { field: "uid", condition: "==", value: uid },
       { field: "completed", condition: "==", value: false },
@@ -162,8 +162,8 @@ export class PurchaseService {
     ], { orderBy: [{ field: "createdAt", order: "desc" }] });
   }
 
-  getDynamic(where: any[] = [], opts: any = {}): Observable<any[]>{
-    const {idField = "_id", orderBy = []} = opts;
+  getDynamic(where: any[] = [], opts: any = {}): Observable<any[]> {
+    const { idField = "_id", orderBy = [] } = opts;
 
     return this.afs.collection(
       this.purchaseCollection,
@@ -177,8 +177,8 @@ export class PurchaseService {
     ).valueChanges({ idField });
   }
 
-  async getDynamicPromise(where: any[] = [], opts: any = {}): Promise<any[]>{
-    const {idField = "_id", orderBy = []} = opts;
+  async getDynamicPromise(where: any[] = [], opts: any = {}): Promise<any[]> {
+    const { idField = "_id", orderBy = [] } = opts;
 
     const snapshot = await lastValueFrom(
       this.afs.collection(
@@ -193,10 +193,10 @@ export class PurchaseService {
       ).get()
     );
 
-    return await handlerArrayResult(snapshot, {idField});
+    return await handlerArrayResult(snapshot, { idField });
   }
 
-  async getAllPurchaseExcel(){
+  async getAllPurchaseExcel() {
     try {
       const url = `${environment.API_URL}admin/all-purchase-report`;
       const snapshot: any = await lastValueFrom(this.http.get(url));
