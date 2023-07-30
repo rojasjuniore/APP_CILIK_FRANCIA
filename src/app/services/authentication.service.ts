@@ -139,8 +139,8 @@ export class AuthenticationService {
           stageName: false,
           avatar: "/assets/img/002-man.svg",
           name: name,
-          prefijo: profile.prefijo.phonecode,
-          phone: profile.phone,
+          prefijo: profile.prefix,
+          phone: profile.phoneNumber,
           identification: identification,
           dni: identification,
           email: email,
@@ -148,8 +148,8 @@ export class AuthenticationService {
           firstName: profile.firstName,
           lastName: profile.firstName,
           documentType: profile.firstName,
-          prefix: profile.prefijo.prefix,
-          phoneNumber: profile.prefijo.prefix,
+          prefix: profile.prefix,
+          phoneNumber: profile.phoneNumber,
         };
 
         const user_2 = {
