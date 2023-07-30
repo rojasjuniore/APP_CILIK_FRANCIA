@@ -19,19 +19,28 @@ const routes: Routes = [
       {
         path: 'permission',
         data: { profiles: ['admin-permission'] },
-        canActivate: [ AuthProfileGuard ],
+        /**
+         * TODO: Uncomment this line to enable admin guard
+        */
+        // canActivate: [AuthProfileGuard],
         component: PermissionComponent,
       },
       {
         path: 'orderList',
         data: { profiles: ['admin-payments'] },
-        canActivate: [ AuthProfileGuard, AuthRoleGuard ],
+        /**
+        * TODO: Uncomment this line to enable admin guard
+        */
+        // canActivate: [AuthProfileGuard, AuthRoleGuard],
         component: ListOrderComponent,
       },
       {
         path: 'coupons',
-        // data: { profiles: ['admin-permission'] },
-        canActivate: [ AuthProfileGuard ],
+        // data: { profiles: ['admin_permission'] },
+         /**
+         * TODO: Uncomment this line to enable admin guard
+         */
+        // canActivate: [AuthProfileGuard],
         loadChildren: () => import("./admin-coupons/admin-coupons.module").then((m) => m.AdminCouponsModule),
       },
       {

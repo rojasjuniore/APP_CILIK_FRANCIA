@@ -2,7 +2,20 @@
   "projects": {
     "default": "dev-cilik",
     "development": "dev-cilik",
-    "production": "cilik-presale"
+    "production": "cilik-presale",
+    "prod": "wldc-app"
   },
-  "targets": {}
+  "targets": {
+    "wldc-app": {
+      "hosting": {
+        "prod-wldc": [
+          "prod-wldc"
+        ],
+        "dev-wldc": [
+          "dev-wldc"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }

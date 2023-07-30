@@ -15,15 +15,16 @@ export const environment = {
     payPalEnvironmentSandbox:
       "ASay2oTezuJ4AhyNrm4UGcJbRE6O82APiOcx5J-l9aBT_r4TzeN0bi4acCuwmfXHWlMIfT79xu2HvdzC",
   },
-  firebase: {
-    apiKey: "AIzaSyAZz-h4xrLTAQfE7apAoxohGOx4hCB5KQU",
-    authDomain: "dev-cilik.firebaseapp.com",
-    projectId: "dev-cilik",
-    storageBucket: "dev-cilik.appspot.com",
-    messagingSenderId: "320718866241",
-    appId: "1:320718866241:web:81fc149c6da3d3684003c0",
-    measurementId: "G-VEHKCDWKTK"
-  }
+  firebaseConfig: {
+    apiKey: "AIzaSyC1MxrCfXicJ8gxAOMJut2fGouYH0QjMao",
+    authDomain: "wldc-app.firebaseapp.com",
+    databaseURL: "https://wldc-app.firebaseio.com",
+    projectId: "wldc-app",
+    storageBucket: "wldc-app.appspot.com",
+    messagingSenderId: "1046500872667",
+    appId: "1:1046500872667:web:39c435daa2f776166f17fe",
+    measurementId: "G-8YQ92LN4ZK"
+  },
 };
 
 /*

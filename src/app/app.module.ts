@@ -65,7 +65,7 @@ const maskConfig: Partial<IConfig> = {
       defaultLanguage: 'es',
     }),
     NgxPayPalModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAnalyticsModule,
     AngularFirestoreModule,
     AngularFireStorageModule,

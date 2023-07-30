@@ -11,13 +11,14 @@ export const environment = {
     payPalEnvironmentSandbox:
       "ASay2oTezuJ4AhyNrm4UGcJbRE6O82APiOcx5J-l9aBT_r4TzeN0bi4acCuwmfXHWlMIfT79xu2HvdzC",
   },
-  firebase: {
-    apiKey: "AIzaSyD2rH0VMiThVa1amThTDS8EgHLGHy5jHFc",
-    authDomain: "cilik-presale.firebaseapp.com",
-    projectId: "cilik-presale",
-    storageBucket: "cilik-presale.appspot.com",
-    messagingSenderId: "609693079729",
-    appId: "1:609693079729:web:2a97e3f9242fa5486b6a90",
-    measurementId: "G-626T0C3HZN"
-  }
+  firebaseConfig: {
+    apiKey: "AIzaSyC1MxrCfXicJ8gxAOMJut2fGouYH0QjMao",
+    authDomain: "wldc-app.firebaseapp.com",
+    databaseURL: "https://wldc-app.firebaseio.com",
+    projectId: "wldc-app",
+    storageBucket: "wldc-app.appspot.com",
+    messagingSenderId: "1046500872667",
+    appId: "1:1046500872667:web:39c435daa2f776166f17fe",
+    measurementId: "G-8YQ92LN4ZK"
+  },
 };
