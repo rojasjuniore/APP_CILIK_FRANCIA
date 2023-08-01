@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
@@ -17,12 +17,7 @@ export class HeaderWelcomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.profile$ = this.authSrv.userDoc$.pipe(
-      map((user: any) => {
-        if(user){
-          user = Object.assign({fullName: user.firstName + ' ' + user.lastName}, user)
-        }
-        return user;
-      })
+      tap((data) => console.log('data', data)),
     );
   }
 
