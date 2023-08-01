@@ -17,7 +17,7 @@ export class HeaderWelcomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.profile$ = this.authSrv.userDoc$.pipe(
-      tap((data) => console.log('data', data)),
+      // tap((data) => console.log('data', data)),
     );
   }
 
