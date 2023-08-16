@@ -6,7 +6,7 @@
     "start": "ng serve",
     "start:prod": "ng serve --configuration production",
     "build": "npm install -g @angular/cli@latest && npm install && ng build --configuration development",
-    "deploy:dev": "ng build  && firebase deploy --project=wldc-app --only hosting:dev-wldc",
+    "deploy:dev": "ng build --configuration development && firebase deploy --project=wldc-app --only hosting:dev-wldc",
     "deploy:prod": "ng build --configuration production && firebase deploy --project=wldc-app --only hosting:prod-wldc",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
