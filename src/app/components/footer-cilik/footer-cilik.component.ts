@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-footer-cilik',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterCilikComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private commonSrv: CommonService,
+  ) { }
 
   ngOnInit(): void {
   }
+
+  get currentVersion(){ return this.commonSrv.getCurrentVersion(); }
 
 }
