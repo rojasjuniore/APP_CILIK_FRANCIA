@@ -26,6 +26,11 @@ const routes: Routes = [
     loadChildren: () => import("./pages/pre-sale-only-event-pass/pre-sale-only-event-pass.module").then((m) => m.PreSaleOnlyEventPassModule),
   },
   {
+    path: 'pre-sale-weekend',
+    canActivate: [IsAuthGuard],
+    loadChildren: () => import("./pages/pre-sale-only-weekend/pre-sale-only-weekend.module").then((m) => m.PreSaleOnlyWeekendModule),
+  },
+  {
     path: 'purchase',
     canActivate: [IsAuthGuard],
     loadChildren: () => import("./pages/purchase-summary/purchase-summary.module").then((m) => m.PurchaseSummaryModule),
@@ -37,7 +42,7 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    canActivate: [ CheckAdminRoleGuard ],
+    canActivate: [CheckAdminRoleGuard],
     loadChildren: () => import("./admin/admin.module").then((m) => m.AdminModule),
   },
   {
@@ -76,7 +81,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'})],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
