@@ -29,6 +29,12 @@ export class PreSaleOnlyCategoriesPaymentMethodsComponent implements OnInit {
       status: true,
     },
     {
+      label: 'paymentMethods.tucompra',
+      value: 'tucompra',
+      icon: 'card-outline',
+      status: true,
+    },
+    {
       label: 'paymentMethods.transfer',
       value: 'transfer',
       icon: 'bi bi-bank',

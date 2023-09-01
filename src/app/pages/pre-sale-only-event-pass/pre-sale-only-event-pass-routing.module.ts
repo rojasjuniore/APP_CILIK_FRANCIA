@@ -7,6 +7,7 @@ import { PreSaleOnlyEventPassPaymentMethodsComponent } from './components/pre-sa
 import { PreSaleOnlyEventPassPaypalComponent } from './components/pre-sale-only-event-pass-paypal/pre-sale-only-event-pass-paypal.component';
 import { PreSaleOnlyEventPassSelectComponent } from './components/pre-sale-only-event-pass-select/pre-sale-only-event-pass-select.component';
 import { PreSaleOnlyEventPassComponent } from './components/pre-sale-only-event-pass/pre-sale-only-event-pass.component';
+import { PreSaleOnlyEventPassTucompraComponent } from './components/pre-sale-only-event-pass-tucompra/pre-sale-only-event-pass-tucompra.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,10 @@ const routes: Routes = [
       {
         path: 'paypal',
         component: PreSaleOnlyEventPassPaypalComponent
+      },
+      {
+        path: 'tucompra',
+        component: PreSaleOnlyEventPassTucompraComponent
       },
       {
         path: 'installments-details',

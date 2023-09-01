@@ -29,6 +29,12 @@ export class PreSaleOnlyEventPassPaymentMethodsComponent implements OnInit {
       status: true,
     },
     {
+      label: 'paymentMethods.tucompra',
+      value: 'tucompra',
+      icon: 'bi bi-credit-card-fill',
+      status: true,
+    },
+    {
       label: 'paymentMethods.transfer',
       value: 'transfer',
       icon: 'bi bi-bank',
@@ -234,6 +240,10 @@ export class PreSaleOnlyEventPassPaymentMethodsComponent implements OnInit {
       case "paypal":
         this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale-event-pass/paypal'});
         this.router.navigate(['/pre-sale-event-pass/paypal']);
+        break;
+      case "tucompra":
+        this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale-event-pass/tucompra'});
+        this.router.navigate(['/pre-sale-event-pass/tucompra']);
         break;
       case "installments":
         this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale-event-pass/installments-details'});
