@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { purchaseTotales } from 'src/app/helpers/purchase-totales.helper';
 import { PreSaleService } from 'src/app/services/pre-sale.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-pre-sale-only-event-pass-tucompra',
@@ -12,6 +13,7 @@ import { PreSaleService } from 'src/app/services/pre-sale.service';
 export class PreSaleOnlyEventPassTucompraComponent implements OnInit {
 
   public preSaleDocument: any;
+  public tuCompraDoc: any;
 
   constructor(
     private router: Router,
@@ -23,6 +25,14 @@ export class PreSaleOnlyEventPassTucompraComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const tuCompraDoc = {
+      usuario: environment.tuCompra.Idsistema,
+      factura: Date.now(),
+      valor: purchaseTotales(this.preSaleDocument).total || 0,
+      descripcionFactura: "Compra de boletas para el evento - WLDC Cartagena 2024",
+    };
+
+    console.log('tuCompraDoc', tuCompraDoc);
   }
 
   get total(){
@@ -33,7 +43,7 @@ export class PreSaleOnlyEventPassTucompraComponent implements OnInit {
     this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale-event-pass/payment-method'});
     this.router.navigate(['/pre-sale-event-pass/payment-method']);
   }
-  
+
   onNext(){
     this.preSaleSrv.updateDocumentLocalStorage({step: '/purchase/summary', completed: true});
     this.router.navigate(['/purchase/summary']);

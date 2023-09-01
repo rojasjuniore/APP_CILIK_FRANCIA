@@ -1,4 +1,4 @@
-<form *ngIf="tuCompraObject" method="POST" id="tuCompraPresale" [action]="tuCompraObject.url">
+<!-- <form *ngIf="tuCompraObject" method="POST" id="tuCompraPresale" [action]="tuCompraObject.url">
     <input name="factura" [(ngModel)]="tuCompraObject.factura" id="factura" type="hidden">
     <input name="valor" [(ngModel)]="tuCompraObject.valor" id="valor" type="hidden">
     <input name="descripcionFactura" [(ngModel)]="tuCompraObject.descripcionFactura" id="descripcionFactura"
@@ -24,4 +24,108 @@
 
 <button class="btn btn-danger" (click)="payWithTuCompra()">
     Comprar con tuCompra
-</button>
+</button> -->
+
+<form class="mb-5" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+    <div class="mb-3">
+        <label for="documentoComprador" class="form-label">Nro. Documento</label>
+        <input type="text" class="form-control" formControlName="documentoComprador" aria-describedby="documentoCompradorHelp">
+        <ng-container 
+            *ngIf="submitted" 
+            [ngTemplateOutlet]="renderFormVM" 
+            [ngTemplateOutletContext]="{ field: 'documentoComprador' }"
+        ></ng-container>
+    </div>
+
+    <div class="mb-3">
+        <label for="tipoDocumento" class="form-label">Tipo Documento</label>
+        <select class="form-select" formControlName="tipoDocumento" placeholder="Tipo Documento">
+            <option value="" selected>Seleccionar...</option>
+            <option value="passport">Pasaporte</option>
+            <option value="dni">DNI</option>
+        </select>
+        <ng-container 
+            *ngIf="submitted" 
+            [ngTemplateOutlet]="renderFormVM" 
+            [ngTemplateOutletContext]="{ field: 'tipoDocumento' }"
+        ></ng-container>
+    </div>
+
+    <div class="mb-3">
+        <label for="nombreComprador" class="form-label">Nombres</label>
+        <input type="text" class="form-control" formControlName="nombreComprador" aria-describedby="nombreCompradorHelp">
+        <ng-container 
+            *ngIf="submitted" 
+            [ngTemplateOutlet]="renderFormVM" 
+            [ngTemplateOutletContext]="{ field: 'nombreComprador' }"
+        ></ng-container>
+    </div>
+
+    <div class="mb-3">
+        <label for="apellidoComprador" class="form-label">Apellidos</label>
+        <input type="text" class="form-control" formControlName="apellidoComprador" aria-describedby="apellidoCompradorHelp">
+        <ng-container 
+            *ngIf="submitted" 
+            [ngTemplateOutlet]="renderFormVM" 
+            [ngTemplateOutletContext]="{ field: 'apellidoComprador' }"
+        ></ng-container>
+    </div>
+
+    <div class="mb-3">
+        <label for="correoComprador" class="form-label">Email</label>
+        <input type="text" class="form-control" formControlName="correoComprador" aria-describedby="correoCompradorHelp">
+        <ng-container 
+            *ngIf="submitted" 
+            [ngTemplateOutlet]="renderFormVM" 
+            [ngTemplateOutletContext]="{ field: 'correoComprador' }"
+        ></ng-container>
+    </div>
+
+    <div class="mb-3">
+        <label for="celularComprador" class="form-label">Celular</label>
+        <input type="text" class="form-control" formControlName="celularComprador" aria-describedby="celularCompradorHelp">
+        <ng-container 
+            *ngIf="submitted" 
+            [ngTemplateOutlet]="renderFormVM" 
+            [ngTemplateOutletContext]="{ field: 'celularComprador' }"
+        ></ng-container>
+    </div>
+
+    <div class="mb-3">
+        <label for="direccionComprador" class="form-label">Dirección</label>
+        <input type="text" class="form-control" formControlName="direccionComprador" aria-describedby="direccionCompradorHelp">
+        <ng-container 
+            *ngIf="submitted" 
+            [ngTemplateOutlet]="renderFormVM" 
+            [ngTemplateOutletContext]="{ field: 'direccionComprador' }"
+        ></ng-container>
+    </div>
+
+    <button type="submit" class="btn btn-danger">
+        Pagar con tuCompra
+    </button>
+</form>
+
+
+<ng-template #renderFormVM let-field="field">
+    <ng-container *ngFor="let val of vm[field]">
+        <div id="{{field}}Help" class="form-text text-danger" *ngIf="f[field].hasError(val.type)">
+            {{ val.message | translate | titlecase }}
+        </div>
+    </ng-container>
+</ng-template>
+
+
+<!-- <ng-container *ngIf="(payConfig); then renderPayButton; else renderOutButton"></ng-container>
+
+<ng-template #renderPayButton>
+    <button class="btn btn-danger" (click)="payWithTuCompra()">
+        Comprar con tuCompra
+    </button>
+</ng-template>
+
+<ng-template #renderOutButton>
+    <button class="btn btn-danger">
+        Configura tuCompra
+    </button>
+</ng-template> -->
