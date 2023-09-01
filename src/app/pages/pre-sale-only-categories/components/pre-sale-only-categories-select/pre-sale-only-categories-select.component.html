@@ -25,10 +25,13 @@
     <app-pre-sale-totales></app-pre-sale-totales>
     
     <div class="col-12">
-        <div class="d-flex justify-content-between">
-            <app-remove-order-on-back-button></app-remove-order-on-back-button>
+        <div class="d-flex justify-content-between flex-column flex-md-row align-items-center">
+            <div class="order-2 order-md-1 w100">
+                <app-remove-order-on-back-button></app-remove-order-on-back-button>
+            </div>
+           
 
-            <button class="btn btn-one text-uppercase" type="button" (click)="onNext()">
+            <button class="btn btn-one text-uppercase order-1 order-md-2 mb-3 mb-md-0" type="button" (click)="onNext()">
                 {{ "general.continue" | translate | uppercase}}
             </button>
         </div> 
