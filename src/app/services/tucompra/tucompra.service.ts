@@ -240,25 +240,25 @@ export class TucompraService {
 
   buildDocument(params: any): TuCompraObject {
     return {
-      usuario: params.usuario,
+      usuario: params.usuario || null,
       factura: params.factura || Date.now(), 
-      valor: params.valor,
+      valor: params.valor || 0,
       descripcionFactura: params.descripcionFactura || "Compra de boletas para el evento - WLDC Cartagena 2024",
-      documentoComprador: params.documentoComprador,
-      tipoDocumento: params.tipoDocumento,
-      nombreComprador: params.nombreComprador,
-      apellidoComprador: params.apellidoComprador,
-      correoComprador: params.correoComprador,
-      celularComprador: params.celularComprador,
-      direccionComprador: params.direccionComprador,
+      documentoComprador: params.documentoComprador || null,
+      tipoDocumento: params.tipoDocumento  || null,
+      nombreComprador: params.nombreComprador  || null,
+      apellidoComprador: params.apellidoComprador || null,
+      correoComprador: params.correoComprador  || null,
+      celularComprador: params.celularComprador  || null,
+      direccionComprador: params.direccionComprador  || null,
       tipoMoneda: params.tipoMoneda || 'USD',
       lenguaje: params.lenguaje || 'ES',
       recurrencia: params.recurrencia || null,
       periodo: params.periodo || null,
       cantidadCobros: params.cantidadCobros || 1,
       metodoPago: params.metodoPago || null,
-      valorBase: params.valorBase || 0,
-      valorIva: params.valorIva || 0,
+      valorBase: params.valorBase || null,
+      valorIva: params.valorIva || null,
       tokenTarjeta: params.tokenTarjeta || null,
       tokenSeguridad: params.tokenSeguridad || null,
       md5ValidacionValor: params.md5ValidacionValor || null,
@@ -279,6 +279,19 @@ export class TucompraService {
       descripcionCobroAdicional: params.descripcionCobroAdicional || null,
       valorAdicional: params.valorAdicional || null,
     }
+  }
+
+  createHTMLInputTag(key: string, value: any): HTMLInputElement {
+    const input = document.createElement('input');
+
+    /** Buscar referencia en objeto */
+    const ref = this.tuCompraObjetProperties[key];
+
+    input.type = ref.type;
+    input.name = key;
+    input.value = value;
+
+    return input;
   }
 }
 
