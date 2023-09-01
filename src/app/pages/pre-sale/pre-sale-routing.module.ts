@@ -10,6 +10,7 @@ import { PreSaleCreditCardComponent } from './components/pre-sale-credit-card/pr
 import { PreSaleCryptoComponent } from './components/pre-sale-crypto/pre-sale-crypto.component';
 import { PreSaleInstallmentsPayCoutaComponent } from './components/pre-sale-installments-pay-couta/pre-sale-installments-pay-couta.component';
 import { PreSalePaypalComponent } from './components/pre-sale-paypal/pre-sale-paypal.component';
+import { TucompraPresaleComponent } from './components/tucompra-presale/tucompra-presale.component';
 
 const routes: Routes = [
   {
@@ -52,6 +53,11 @@ const routes: Routes = [
         path: 'paypal',
         component: PreSalePaypalComponent,
       },
+      {
+        path: 'tu-compra',
+        component: TucompraPresaleComponent,
+      },
+
       {
         path: '',
         pathMatch: 'full',

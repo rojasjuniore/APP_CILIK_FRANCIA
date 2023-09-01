@@ -22,6 +22,12 @@ export class PreSalePaymentMethodsComponent implements OnInit {
   public paymentMethodType: any;
   public paymentMethods = [
     {
+      label: 'credit and debit card',
+      value: 'tucompra.com.co',
+      icon: 'bi bi-calendar-check',
+      status: true,
+    },
+    {
       label: 'paymentMethods.paypal',
       value: 'paypal',
       icon: 'bi bi-paypal',
@@ -39,6 +45,7 @@ export class PreSalePaymentMethodsComponent implements OnInit {
       icon: 'bi bi-calendar-check',
       status: true,
     },
+
     // {
     //   label: 'paymentMethods.creditCard',
     //   value: 'creditCard',
@@ -66,58 +73,58 @@ export class PreSalePaymentMethodsComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  loadLocalData(){
+  loadLocalData() {
     const { paymentMethodType, orderType } = this.preSaleSrv.checkAndLoadDocumentLocalStorage();
     this.orderType = orderType;
-    if(paymentMethodType){
+    if (paymentMethodType) {
       this.paymentMethodType = paymentMethodType;
     }
   }
 
-  selectPaymentMethod(item: any){
+  selectPaymentMethod(item: any) {
     const { value } = item;
     console.log(value)
     console.log(this.paymentMethodType)
-    if(this.paymentMethodType){
+    if (this.paymentMethodType) {
 
-      if(this.paymentMethodType === value){
+      if (this.paymentMethodType === value) {
         this.paymentMethodType = null;
-      }else{
-        if(value === 'installments'){
+      } else {
+        if (value === 'installments') {
           this.modalInstallments.showModal();
-        }else if(value === 'transfer'){
+        } else if (value === 'transfer') {
           this.modalBackTransfer.showModal();
-          
+
         }
-        else{
+        else {
           this.paymentMethodType = value;
         }
       }
 
-      
 
 
-    }else{
 
-      if(value === 'installments'){
+    } else {
+
+      if (value === 'installments') {
         this.modalInstallments.showModal();
-      }else if(value === 'transfer'){
+      } else if (value === 'transfer') {
         this.modalBackTransfer.showModal();
-      }else{
+      } else {
         this.paymentMethodType = value;
       }
 
     }
 
-    if(this.paymentMethodType){
-      this.preSaleSrv.updateDocumentLocalStorage({ 
+    if (this.paymentMethodType) {
+      this.preSaleSrv.updateDocumentLocalStorage({
         paymentMethodType: this.paymentMethodType,
         installments: []
       });
     }
   }
 
-  async calculateInstallments(){
+  async calculateInstallments() {
     const preSaleDocument = await this.preSaleSrv.getDocumentLocalStorage();
     const coutas = this.preSaleSrv.getCuotas();
 
@@ -142,7 +149,7 @@ export class PreSalePaymentMethodsComponent implements OnInit {
     //     if(row.type == 'group'){
     //       return row.data.map((group) => group.quantity * group.price)
     //         .reduce((prev, curr) => prev + curr, 0)
-  
+
     //     }else{
     //       return row.quantity * row.price;
     //     }
@@ -172,7 +179,7 @@ export class PreSalePaymentMethodsComponent implements OnInit {
     const installments = coutas.map((row, index) => {
       return {
         nro: index + 1,
-        date: (index == 0) 
+        date: (index == 0)
           ? currentDate.valueOf()
           : currentDate.add(30, 'days').endOf('day').valueOf(),
         paymentMethod: null,
@@ -184,11 +191,11 @@ export class PreSalePaymentMethodsComponent implements OnInit {
       }
     });
 
-    this.preSaleSrv.updateDocumentLocalStorage({installments});
+    this.preSaleSrv.updateDocumentLocalStorage({ installments });
   }
 
-  async onInstallmentsModalClose(status: any){
-    if(status){
+  async onInstallmentsModalClose(status: any) {
+    if (status) {
       this.paymentMethodType = 'installments';
 
       /** Calculate installments */
@@ -199,11 +206,11 @@ export class PreSalePaymentMethodsComponent implements OnInit {
     }
   }
 
-  async crearteOrderBankTransfer(status: any){
+  async crearteOrderBankTransfer(status: any) {
     // console.log(this.preSaleSrv.getDocumentLocalStorage())
     // let document = this.preSaleSrv.getDocumentLocalStorage();
 
-    if(!status){ return; }
+    if (!status) { return; }
 
     this.loading = true;
 
@@ -227,27 +234,31 @@ export class PreSalePaymentMethodsComponent implements OnInit {
     this.loading = false;
   }
 
-  onBack(){
-    this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale/step3'});
+  onBack() {
+    this.preSaleSrv.updateDocumentLocalStorage({ step: '/pre-sale/step3' });
     this.router.navigate(['/pre-sale/step3']);
   }
 
-  async onNext(){
+  async onNext() {
     switch (this.paymentMethodType) {
       case "creditCard":
-        this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale/credit-card'});
+        this.preSaleSrv.updateDocumentLocalStorage({ step: '/pre-sale/credit-card' });
         this.router.navigate(['/pre-sale/credit-card']);
         break;
       case "crypto":
-        this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale/crypto'});
+        this.preSaleSrv.updateDocumentLocalStorage({ step: '/pre-sale/crypto' });
         this.router.navigate(['/pre-sale/crypto']);
         break;
       case "paypal":
-        this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale/paypal'});
+        this.preSaleSrv.updateDocumentLocalStorage({ step: '/pre-sale/paypal' });
         this.router.navigate(['/pre-sale/paypal']);
         break;
+      case "tucompra.com.co":
+        this.preSaleSrv.updateDocumentLocalStorage({ step: '/pre-sale/tu-compra' });
+        this.router.navigate(['/pre-sale/tu-compra']);
+        break;
       case "installments":
-        this.preSaleSrv.updateDocumentLocalStorage({step: '/pre-sale/installments-details'});
+        this.preSaleSrv.updateDocumentLocalStorage({ step: '/pre-sale/installments-details' });
         this.router.navigate(['/pre-sale/installments-details']);
         break;
     }

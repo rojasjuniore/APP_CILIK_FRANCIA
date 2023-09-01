@@ -22,6 +22,7 @@ import { PreSaleCryptoComponent } from './components/pre-sale-crypto/pre-sale-cr
 import { PreSaleInstallmentsPayCoutaComponent } from './components/pre-sale-installments-pay-couta/pre-sale-installments-pay-couta.component';
 import { PreSalePaypalComponent } from './components/pre-sale-paypal/pre-sale-paypal.component';
 import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
+import { TucompraPresaleComponent } from './components/tucompra-presale/tucompra-presale.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
     PreSaleCryptoComponent,
     PreSalePaypalComponent,
     PreSaleInstallmentsPayCoutaComponent,
+    TucompraPresaleComponent,
   ],
   imports: [
     CommonModule,

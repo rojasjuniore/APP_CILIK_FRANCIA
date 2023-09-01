@@ -1,0 +1,27 @@
+<form *ngIf="tuCompraObject" method="POST" id="tuCompraPresale" [action]="tuCompraObject.url">
+    <input name="factura" [(ngModel)]="tuCompraObject.factura" id="factura" type="hidden">
+    <input name="valor" [(ngModel)]="tuCompraObject.valor" id="valor" type="hidden">
+    <input name="descripcionFactura" [(ngModel)]="tuCompraObject.descripcionFactura" id="descripcionFactura"
+        type="hidden">
+    <input name="documentoComprador" [(ngModel)]="tuCompraObject.documentoComprador" id="documentoComprador"
+        type="hidden">
+    <input name="tipoDocumento" [(ngModel)]="tuCompraObject.tipoDocumento" id="tipoDocumento" type="hidden">
+    <input name="nombreComprador" [(ngModel)]="tuCompraObject.nombreComprador" id="nombreComprador" type="hidden">
+    <input name="apellidoComprador" [(ngModel)]="tuCompraObject.apellidoComprador" id="apellidoComprador" type="hidden">
+    <input name="correoComprador" [(ngModel)]="tuCompraObject.correoComprador" id="correoComprador" type="hidden">
+    <input name="celularComprador" [(ngModel)]="tuCompraObject.celularComprador" id="celularComprador" type="hidden">
+    <input name="telefonoComprador" [(ngModel)]="tuCompraObject.telefonoComprador" id="celularComprador" type="hidden">
+    <input name="paisComprador" [(ngModel)]="tuCompraObject.paisComprador" id="paisComprador" type="hidden">
+    <input name="ciudadComprador" [(ngModel)]="tuCompraObject.ciudadComprador" id="ciudadComprador" type="hidden">
+    <input name="direccionComprador" [(ngModel)]="tuCompraObject.direccionComprador" id="direccionComprador"
+        type="hidden">
+    <input name="tipoMoneda" [(ngModel)]="tuCompraObject.tipoMoneda" id="tipoMoneda" type="hidden">
+    <input name="campoExtra1" [(ngModel)]="tuCompraObject.campoExtra1" id="campoExtra1" type="hidden">
+    <input name="campoExtra2" [(ngModel)]="tuCompraObject.campoExtra2" id="campoExtra2" type="hidden">
+    <input name="campoExtra3" [(ngModel)]="tuCompraObject.campoExtra3" id="campoExtra3" type="hidden">
+    <input name="usuario" type="hidden" [(ngModel)]="tuCompraObject.usuario">
+</form>
+
+<button class="btn btn-danger" (click)="payWithTuCompra()">
+    Comprar con tuCompra
+</button>

@@ -59,6 +59,7 @@ import { PurchaseSummaryDetailsEventPassCardItemComponent } from './purchase-sum
 import { PurchaseTitleCardItemComponent } from './purchase-title-card-item/purchase-title-card-item.component';
 import { PreSaleBannerCardItemComponent } from './pre-sale-banner-card-item/pre-sale-banner-card-item.component';
 import { PreSaleCouponFormComponent } from './pre-sale-coupon-form/pre-sale-coupon-form.component';
+import { TucompraComponent } from './tucompra/tucompra.component';
 
 
 @NgModule({
@@ -126,6 +127,7 @@ import { PreSaleCouponFormComponent } from './pre-sale-coupon-form/pre-sale-coup
     PurchaseTitleCardItemComponent,
     PreSaleBannerCardItemComponent,
     PreSaleCouponFormComponent,
+    TucompraComponent,
   ],
   exports: [
     CommonModule,
@@ -183,6 +185,7 @@ import { PreSaleCouponFormComponent } from './pre-sale-coupon-form/pre-sale-coup
     PurchaseTitleCardItemComponent,
     PreSaleBannerCardItemComponent,
     PreSaleCouponFormComponent,
+    TucompraComponent
   ],
   providers: [
     TranslatePipe,

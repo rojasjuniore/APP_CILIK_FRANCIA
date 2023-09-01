@@ -11,6 +11,11 @@ export const environment = {
     payPalEnvironmentSandbox:
       "ASay2oTezuJ4AhyNrm4UGcJbRE6O82APiOcx5J-l9aBT_r4TzeN0bi4acCuwmfXHWlMIfT79xu2HvdzC",
   },
+  tuCompra: {
+    url: "https://gateway2.tucompra.com.co/tc3/app/inputs/compra.jsp",
+    Nombre: "FUNDACION BALLET NACIONAL EL FIRULETE",
+    Idsistema: "eyau170k7bhvasdu",
+  },
   firebaseConfig: {
     apiKey: "AIzaSyC1MxrCfXicJ8gxAOMJut2fGouYH0QjMao",
     authDomain: "wldc-app.firebaseapp.com",
