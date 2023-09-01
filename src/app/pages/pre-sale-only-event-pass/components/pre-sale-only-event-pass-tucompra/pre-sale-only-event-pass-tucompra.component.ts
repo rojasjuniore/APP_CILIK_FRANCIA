@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { purchaseTotales } from 'src/app/helpers/purchase-totales.helper';
 import { PreSaleService } from 'src/app/services/pre-sale.service';
+import { TucompraService } from 'src/app/services/tucompra/tucompra.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -19,20 +20,23 @@ export class PreSaleOnlyEventPassTucompraComponent implements OnInit {
     private router: Router,
     private spinner: NgxSpinnerService,
     private preSaleSrv: PreSaleService,
+    private tuCompraSrv: TucompraService
   ) {
     this.preSaleDocument = this.preSaleSrv.checkAndLoadDocumentLocalStorage();
 
   }
 
   ngOnInit(): void {
-    const tuCompraDoc = {
+    const tuCompraDoc = this.tuCompraSrv.buildDocument({
       usuario: environment.tuCompra.Idsistema,
       factura: Date.now(),
       valor: purchaseTotales(this.preSaleDocument).total || 0,
       descripcionFactura: "Compra de boletas para el evento - WLDC Cartagena 2024",
-    };
+      campoExtra1: this.preSaleDocument.orderId
+    });
 
     console.log('tuCompraDoc', tuCompraDoc);
+    this.tuCompraDoc = tuCompraDoc;
   }
 
   get total(){

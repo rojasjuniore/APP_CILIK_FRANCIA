@@ -26,7 +26,7 @@
     Comprar con tuCompra
 </button> -->
 
-<form class="mb-5" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+<form class="mb-5" [formGroup]="form" (ngSubmit)="onSubmit()" #userForm novalidate>
     <div class="mb-3">
         <label for="documentoComprador" class="form-label">Nro. Documento</label>
         <input type="text" class="form-control" formControlName="documentoComprador" aria-describedby="documentoCompradorHelp">
@@ -41,8 +41,10 @@
         <label for="tipoDocumento" class="form-label">Tipo Documento</label>
         <select class="form-select" formControlName="tipoDocumento" placeholder="Tipo Documento">
             <option value="" selected>Seleccionar...</option>
-            <option value="passport">Pasaporte</option>
-            <option value="dni">DNI</option>
+            <option value="CC">cedula ciudadanía</option>
+            <option value="CE">cedula extranjería</option>
+            <option value="NIT">número identificación tributaria</option>
+            <option value="PAS">pasaporte</option>
         </select>
         <ng-container 
             *ngIf="submitted" 
@@ -105,7 +107,6 @@
         Pagar con tuCompra
     </button>
 </form>
-
 
 <ng-template #renderFormVM let-field="field">
     <ng-container *ngFor="let val of vm[field]">

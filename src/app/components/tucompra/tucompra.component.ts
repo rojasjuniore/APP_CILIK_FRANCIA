@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -17,6 +17,7 @@ import { environment } from 'src/environments/environment';
 export class TucompraComponent implements OnInit, OnChanges {
 
   @Input() payConfig!: any;
+  @ViewChild('userForm') userForm!: any;
 
   public form!: FormGroup;
   public vm: any = {
@@ -59,42 +60,43 @@ export class TucompraComponent implements OnInit, OnChanges {
     private fb: FormBuilder,
     private preSaleSrv: PreSaleService,
     private authSrv: AuthenticationService,
-    private tuCompraSrv: TucompraService
+    private tuCompraSrv: TucompraService,
+    private spinner: NgxSpinnerService,
   ) {
 
     this.form = this.fb.group({
       documentoComprador: [
-        '',
+        '123456',
         [
           Validators.required,
           Validators.minLength(6),
           Validators.pattern(/^[0-9]+$/)
         ]
       ],
-      tipoDocumento: ['', [Validators.required]],
+      tipoDocumento: ['PAS', [Validators.required]],
       nombreComprador: [
-        '', 
+        'Pedro', 
         [
           Validators.required,
           Validators.pattern(/^[a-zA-Z ]+$/)
         ]
       ],
       apellidoComprador: [
-        '',
+        'Lars',
         [
           Validators.required,
           Validators.pattern(/^[a-zA-Z ]+$/)
         ]
       ],
       correoComprador: [
-        '', 
+        'plars@gmail.com', 
         [
           Validators.required,
           Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
         ]
       ],
       celularComprador: [
-        '', 
+        '1234567890', 
         [
           Validators.required,
           Validators.pattern(/^[0-9]+$/),
@@ -102,7 +104,7 @@ export class TucompraComponent implements OnInit, OnChanges {
           Validators.maxLength(10)
         ]
       ],
-      direccionComprador: ['', [Validators.required]],
+      direccionComprador: ['lorem', [Validators.required]],
     });
   }
 
@@ -175,13 +177,66 @@ export class TucompraComponent implements OnInit, OnChanges {
 
   async onSubmit(){
     try {
+      this.form.updateValueAndValidity();
       this.submitted = true;
       const formData= this.form.value;
       console.log('formData', formData);
       
+
+      if(this.form.invalid){
+        return;
+      }
+
+      await this.spinner.show();
+
+      const newFormData = Object.entries({...this.payConfig, ...formData})
+      // remove null values
+      .filter(([_, v]) => v !== null)
+      // convert to json
+      .reduce((acc, [k, v]) => ({ ...acc, [k]: v }), {});
+      // console.log('newFormData', newFormData);
+
+      /** Construir inputs */
+      const tuCompraInputs = Object.entries(newFormData).map(([k, v]) => this.tuCompraSrv.createHTMLInputTag(k, v));
+      console.log('tuCompraInputs', tuCompraInputs); 
+
+      const tuCompraForm = document.createElement('form');
+      tuCompraForm.action = environment.tuCompra.url; 
+      tuCompraForm.method = 'POST';
+      tuCompraForm.id= 'tuCompraPresale';
+
+      /** Agregar inputs al formulario */
+      for (const input of tuCompraInputs) {
+        tuCompraForm.appendChild(input);
+      }
+
+      /** Agregar formulario al DOM */
+      document.body.appendChild(tuCompraForm);
+
+
+      /** Obtener documento de orden de compra desde el localStorage */
+      const order = this.preSaleSrv.getDocumentLocalStorage();
+
+      /** Finalizar documento de orden de compra */
+      await this.preSaleSrv.completePreSaleOrder(
+        {...this.payConfig, ...formData},
+        {
+          completed: false,
+          payed: false,
+          status: 'pending',
+        }
+      );
+
+      /** Realizar Submit */
+      tuCompraForm.submit();
+      console.log('Trying to create preSale');
+      return;
+
     } catch (err) {
       console.log('Error on TucompraComponent.onSubmit', err);
       return;
+    } finally {
+      // await this.spinner.hide();
     }
   }
 
