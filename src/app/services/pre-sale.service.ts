@@ -86,7 +86,7 @@ export class PreSaleService {
       payedAt: null,
       orderType: params.orderType || 'fullPass', // 'fullPass' | 'categoryPass'
       setup: params.setup || null, // 'manual' | 'automatic'
-      status: params.status || 'pending',
+      status: params.status || 'pending', // pending | completed | canceled
       coupons: params.coupons || [],
     };
   }
