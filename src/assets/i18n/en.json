@@ -266,6 +266,7 @@
     "paymentByInstallment": "payment by installments",
     "paymentDeadline": "Payday limit",
     "paypal": "Paypal",
+    "tucompra": "TuCompra",
     "transfer": "Bank transfer"
   },
   "plansCard": {

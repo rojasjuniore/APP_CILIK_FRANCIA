@@ -266,6 +266,7 @@
     "paymentByInstallment": "Pago por cuotas",
     "paymentDeadline": "Fecha límite de pago",
     "paypal": "Paypal",
+    "tucompra": "TuCompra",
     "transfer": "Transferencia bancarias"
   },
   "plansCard": {
