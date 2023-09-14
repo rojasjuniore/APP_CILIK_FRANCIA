@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable, map, of, switchMap, tap } from 'rxjs';
 import { AuthenticationService } from '../services/authentication.service';
 import { PermissionService } from '../services/permission.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -18,16 +19,17 @@ export class CheckAdminRoleGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> {
-
-    const uid = window.localStorage.getItem('uid') || null;
-    // console.log('uid', uid);
-
-    if(!uid){
-      return of(false);
-    }
-
-    return this.permissionSrv.checkUserHasRoles(uid);
-    // return of(true);
+    return this.authSrv.afAuth.authState.pipe(
+      map(user => user ? user.uid : null),
+      tap((uid) => console.log({ uid })),
+      switchMap((uid) => (uid)
+        ? this.permissionSrv.getUserEventFullRolesObservable( environment.dataEvent.keyDb, uid)
+        : of({superAdmin: false, roles: []})
+      ),
+      map((user: any) => {
+        return (user.superAdmin || user.roles.length > 0) ? true : false;
+      })
+    );
   }
   
 }
