@@ -1,5 +1,13 @@
 export const environment = {
   production: true,
+  dataEvent: {
+    keyDb: "8kFLt69mby4jk0WN7fhy",
+    appURL: "https://la-dev.web.app",
+    name: "WORLD LATIN DANCE CUP Cartagena 2024",
+    termsAndConditions: "",
+    subject: "WORLD LATIN DANCE CUP Cartagena 2024",
+    description: "",
+  },
   // PROD
   seedKey: 'nftixProject-dev-inTECH',
   API_URL: 'https://cilik-presale.uc.r.appspot.com/',
