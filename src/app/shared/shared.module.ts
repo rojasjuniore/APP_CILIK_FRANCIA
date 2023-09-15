@@ -6,16 +6,18 @@ import { TranslateModule } from '@ngx-translate/core';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { LanguageBarComponent } from '../components/language-bar/language-bar.component';
 import { RegistroExitosoComponent } from '../components/registro-exitoso/registro-exitoso.component';
-import { HeaderCilikComponent } from '../components/header-cilik/header-cilik.component';
+import { HeaderCilikComponent } from './header-cilik/header-cilik.component';
 import { RouterModule } from '@angular/router';
 import { FooterCilikComponent } from '../components/footer-cilik/footer-cilik.component';
 import { OutPagesLayoutComponent } from './out-pages-layout/out-pages-layout.component';
+import { HeaderWelcomeComponent } from './header-welcome/header-welcome.component';
 
 
 
 @NgModule({
   declarations: [
     HeaderCilikComponent,
+    HeaderWelcomeComponent,
     FooterCilikComponent,
     LanguageBarComponent,
     RegistroExitosoComponent,
@@ -38,6 +40,7 @@ import { OutPagesLayoutComponent } from './out-pages-layout/out-pages-layout.com
     RouterModule,
 
     HeaderCilikComponent,
+    HeaderWelcomeComponent,
     FooterCilikComponent,
     LanguageBarComponent,
     RegistroExitosoComponent,

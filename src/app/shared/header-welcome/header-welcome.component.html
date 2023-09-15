@@ -1,0 +1,36 @@
+<div class="presale-steps">
+    <div class="row align-items-center">
+        <div class="col d-flex align-items-center">
+            <div class="avtr">
+                <img src="assets/img/cilik/icon-39.png" alt="">
+            </div>
+            <div>
+                
+                <ng-container
+                    *ngIf="(profile$ | async) as profile; else renderLoader"
+                    [ngTemplateOutlet]="renderInfo" 
+                    [ngTemplateOutletContext]="{profile}"
+                ></ng-container>
+
+            </div>
+            
+        </div>
+        <div class="seprd"></div>
+    </div>
+</div>  
+
+<ng-template #renderInfo let-profile="profile">
+    <div class="fs-2 fw-bold ps-3 d-flex jsutify-content-center flex-column">
+        <div>{{ "general.hello" | translate }} {{ profile?.name | titlecase }}</div>
+        <a routerLink="/pages/dashboard" class="text-rslt fs-6">
+            {{'general.goToDashboard' | translate}}
+        </a>
+    </div>
+</ng-template>
+
+<ng-template #renderLoader>
+    <div class="fs-2 fw-bold ps-3 placeholder-glow">
+        <span class="placeholder col-12" style="height: 16px; width: 20rem;"></span>
+        <span class="placeholder text-danger col-12" style="font-size: 18px;"></span>
+    </div>
+</ng-template> 

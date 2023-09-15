@@ -20,7 +20,6 @@ import { PreSaleModalPaymentCoutasDetailsComponent } from './pre-sale-modal-paym
 import { PreSaleInstallmentCoutaCardItemComponent } from './pre-sale-installment-couta-card-item/pre-sale-installment-couta-card-item.component';
 import { PurchaseSummaryDetailsCardItemComponent } from './purchase-summary-details-card-item/purchase-summary-details-card-item.component';
 import { PurchaseSummaryDetailsCategoryCardItemComponent } from './purchase-summary-details-category-card-item/purchase-summary-details-category-card-item.component';
-import { HeaderWelcomeComponent } from './header-welcome/header-welcome.component';
 import { InputNumberFormTwoComponent } from './input-number-form-two/input-number-form-two.component';
 import { HistoryCardPurchaseItemComponent } from './history-card-purchase-item/history-card-purchase-item.component';
 import { HistoryCardCategoryPurchaseItemComponent } from './history-card-category-purchase-item/history-card-category-purchase-item.component';
@@ -75,7 +74,6 @@ import { TucompraComponent } from './tucompra/tucompra.component';
     PreSaleTotalesComponent,
     PreSaleModalRoomTypeDetailsComponent,
     PreSaleModalAdditionalDaysComponent,
-    HeaderWelcomeComponent,
     PreSaleStepsCounterComponent,
     PreSaleCheckoutCardItemComponent,
     PreSaleCheckoutCategoryCardItemComponent,
@@ -132,7 +130,6 @@ import { TucompraComponent } from './tucompra/tucompra.component';
     PreSaleCheckoutCardItemComponent,
     PreSaleCheckoutCategoryCardItemComponent,
     MyPurchasesListItemComponent,
-    HeaderWelcomeComponent,
     PreSaleModalPaymentCoutasDetailsComponent,
     PreSaleInstallmentCoutaCardItemComponent,
     PurchaseSummaryDetailsCardItemComponent,
