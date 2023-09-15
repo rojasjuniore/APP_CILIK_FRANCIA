@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PagesLayoutComponent implements OnInit {
 
+  public ayuda = false;
+
   constructor() { }
 
   ngOnInit(): void {
