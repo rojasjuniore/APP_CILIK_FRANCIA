@@ -4,7 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 // import { IsAuthGuard } from './guards/is-auth.guard';
 // import { AlreadyAuthGuard } from './guards/already-auth.guard';
 // import { CheckAdminRoleGuard } from './guards/check-admin-role.guard';
-// import { LogoutComponent } from './components/logout/logout.component';
 import { PagesLayoutComponent } from './shared/pages-layout/pages-layout.component';
 import { OutPagesLayoutComponent } from './shared/out-pages-layout/out-pages-layout.component';
 
@@ -51,10 +50,7 @@ const routes: Routes = [
   //   canActivate: [CheckAdminRoleGuard],
   //   loadChildren: () => import("./admin/admin.module").then((m) => m.AdminModule),
   // },
-  // {
-  //   path: 'logout',
-  //   component: LogoutComponent
-  // },
+
   // {
   //   path: 'register-completed',
   //   component: RegistroExitosoComponent
