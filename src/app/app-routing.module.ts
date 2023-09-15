@@ -55,25 +55,12 @@ const routes: Routes = [
   //   loadChildren: () => import("./admin/admin.module").then((m) => m.AdminModule),
   // },
   // {
-  //   path: 'sign-up',
-  //   component: SignUpComponent
-  // },
-  // {
   //   path: 'logout',
   //   component: LogoutComponent
   // },
   // {
   //   path: 'register-completed',
   //   component: RegistroExitosoComponent
-  // },
-  // {
-  //   path: 'sign-in',
-  //   // canActivate: [AlreadyAuthGuard],
-  //   component: SignInComponent
-  // },
-  // {
-  //   path: 'recovery',
-  //   component: SecurePasswordComponent
   // },
   // {
   //   path: '',
