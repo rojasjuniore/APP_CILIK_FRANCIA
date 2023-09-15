@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import moment from 'moment';
 import { CustomTranslateService } from './custom-translate.service';
+import { QuickNotificationService } from './quick-notification/quick-notification.service';
 
 
 const URL_ROOT: any = environment.API_URL;
@@ -27,6 +28,7 @@ export class TemporalTokenService {
     private http: HttpClient,
     private spinner: NgxSpinnerService,
     private customTranslateSrv: CustomTranslateService,
+    private quickNotificationSrv: QuickNotificationService
   ) { }
 
 
@@ -74,17 +76,41 @@ export class TemporalTokenService {
    * @returns 
    */
   async sendToken(data: any) {
+    // try {
+    //   await this.spinner.show();
+    //   const result = await lastValueFrom(
+    //     this.http.post(`${URL_ROOT}email-notification/send-token`, data)
+    //   );
+
+    //   return result;
+
+    // } catch (err) {
+    //   console.log('Error on TemporalTokenService.sendToken', err);
+    //   throw err;
+    // } finally {
+    //   this.spinner.hide();
+    // }
+
     try {
       await this.spinner.show();
-      const result = await lastValueFrom(
-        this.http.post(`${URL_ROOT}email-notification/send-token`, data)
-      );
 
-      return result;
-
+      await this.quickNotificationSrv.sendEmailNotification({
+        type: "2FANotification",
+        email: data.email,
+        subject: "WLDC Cartagena 2024 - Token Temporal - " + moment().format("DD/MM/YYYY HH:mm:ss"),
+        greeting: `¡Hola!`,
+        messageBody: [
+          {type: "line", text: "El código necesario para continuar con tu operación es el siguiente:"},
+          {type: "html", html: `<h1 style='text-align: center;'><strong>${data.token}</strong></h1>`},
+          {type: 'line', text: `Este código a caducará en ${data.tokenTime.value} ${data.tokenTime.unit} o al cancelar la transacción.`},
+          {type: "line", text: "Si no solicitó este código, no se requiere ninguna acción adicional."}
+        ],
+        salutation: '¡Saludos!'
+      });
+      
     } catch (err) {
-      console.log('Error on TemporalTokenService.sendToken', err);
-      throw err;
+      console.log('Error on TemporalTokenService@sendToken', err);
+      return;
     } finally {
       this.spinner.hide();
     }
