@@ -55,4 +55,8 @@ export class StoreComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSelectItem(item: any){
+    console.log(item);
+  }
+
 }
