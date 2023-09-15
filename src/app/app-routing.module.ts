@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 // import { RegistroExitosoComponent } from './components/registro-exitoso/registro-exitoso.component';
-// import { IsAuthGuard } from './guards/is-auth.guard';
 // import { AlreadyAuthGuard } from './guards/already-auth.guard';
 // import { CheckAdminRoleGuard } from './guards/check-admin-role.guard';
 import { PagesLayoutComponent } from './shared/pages-layout/pages-layout.component';
 import { OutPagesLayoutComponent } from './shared/out-pages-layout/out-pages-layout.component';
+import { IsAuthGuard } from './guards/is-auth.guard';
 
 const routes: Routes = [
   // {
@@ -35,7 +35,7 @@ const routes: Routes = [
   // },
   {
     path: 'pages',
-    // canActivate: [IsAuthGuard],
+    canActivate: [IsAuthGuard],
     component: PagesLayoutComponent,
     loadChildren: () => import("./pages/pages.module").then((m) => m.PagesModule),
   },
