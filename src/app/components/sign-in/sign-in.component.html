@@ -47,7 +47,7 @@
             </div>
 
             <div class="d-flex justify-content-center">
-              <ng-container *ngIf="submit && loading; else canSubmit">
+              <ng-container *ngIf="submit && loading; else renderCanSubmitBtn">
                 <button class="btn btn-one btn-large text-uppercase fw-bold" type="button" disabled>
                   <div class="text-center">
                     <div class="spinner-border spinner-border-sm" role="status">
@@ -57,7 +57,7 @@
                 </button>
               </ng-container>
 
-              <ng-template #canSubmit>
+              <ng-template #renderCanSubmitBtn>
                 <button class="btn btn-one btn-large text-uppercase fw-bold" type="submit">
                   {{ "general.logIn" | translate | uppercase }}
                 </button>
@@ -92,74 +92,70 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
     <div class="form-floating form-camp mb-3">
-      <input type="email" [ngClass]="{ valid: submit && f.email.errors }" formControlName="email"
-        class="form-control" id="floatingInputEmail" placeholder="name@example.com" />
+      <input type="email"[ngClass]="{valid: submit && f.email.errors}" 
+        formControlName="email" class="form-control" id="floatingInputEmail" placeholder="name@example.com"/>
 
-      <label for="floatingInputEmail">
-        {{ "general.email" | translate }}</label>
+      <label for="floatingInputEmail">{{ "general.email" | translate }}</label>
 
-      <ng-container *ngIf="submit">
-        <ng-container *ngFor="let item of vm.email">
-          <span class="badge bg-danger" *ngIf="f.email.hasError(item.type)">
-            {{ item.message | translate }}
-          </span>
-        </ng-container>
-      </ng-container>
+      <ng-container *ngIf="submit" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'email'}"></ng-container>
     </div>
 
     <div class="form-floating form-camp mb-3">
+      <input [type]="typeInput" class="form-control" [ngClass]="{valid: submit && f.password.errors}"
+        formControlName="password" id="floatingPassword" [placeholder]="'general.password' | translate"/>
 
-      <input [type]="typeInput" class="form-control" [ngClass]="{ valid: submit && f.email.errors }"
-        formControlName="password" id="floatingPassword" [placeholder]="'general.password' | translate" />
+      <label for="floatingPassword">{{ "general.password" | translate }}</label>
 
-      <label for="floatingPassword">
-        {{ "general.password" | translate }}
-      </label>
       <div (click)="changeTypeInput()" class="pass-ico">
         <i *ngIf="typeInput == 'password'" class="bi bi-eye-slash"></i>
         <i *ngIf="typeInput == 'text'" class="bi bi-eye-fill"></i>
       </div>
-      <ng-container *ngIf="submit">
-        <ng-container *ngFor="let item of vm.password">
-          <span class="badge bg-danger" *ngIf="f.password.hasError(item.type)">
-            {{ item.message | translate }}
-          </span>
-        </ng-container>
-      </ng-container>
+
+      <ng-container *ngIf="submit" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'password'}"></ng-container>
     </div>
 
     <div class="d-flex justify-content-center">
-      <ng-container *ngIf="submit && loading; else canSubmit">
-        <button class="btn btn-one btn-large text-uppercase fw-bold" type="button" disabled>
-          <div class="text-center">
-            <div class="spinner-border spinner-border-sm" role="status">
-              <span class="visually-hidden">{{ "general.loading" | translate }}...</span>
-            </div>
-          </div>
-        </button>
-      </ng-container>
-
-      <ng-template #canSubmit>
-        <button class="btn btn-one btn-large text-uppercase fw-bold" type="submit">
-          {{ "general.logIn" | translate | uppercase }}
-        </button>
-      </ng-template>
+      <ng-container *ngIf="submit && loading; then renderLoaderBtn; else renderCanSubmitBtn"></ng-container>
     </div>
+
     <div class="d-flex justify-content-center">
       <div class="mt-3">
-        <a routerLink="/recovery">
-          {{ "general.forgotPassword" | translate }}
-        </a>
+        <a routerLink="/recovery">{{ "general.forgotPassword" | translate }}</a>
       </div>
     </div>
+
     <div class="seprd"></div>
+
     <div class="d-flex justify-content-center flex-column align-items-center mb-2">
-      <div class="pb-2">
-        {{ "general.notRegistered" | translate }}
-      </div>
+      <div class="pb-2">{{ "general.notRegistered" | translate }}</div>
       <a class="btn btn-two btn-large" routerLink="/sign-up">
         {{ "general.signUpHere" | translate | uppercase }}
       </a>
     </div>
+
   </form>
 </div>
+
+<ng-template #renderCanSubmitBtn>
+  <button class="btn btn-one btn-large text-uppercase fw-bold" type="submit">
+    {{ "general.logIn" | translate | uppercase }}
+  </button>
+</ng-template>
+
+<ng-template #renderLoaderBtn>
+  <button class="btn btn-one btn-large text-uppercase fw-bold" type="button" disabled>
+    <div class="text-center">
+      <div class="spinner-border spinner-border-sm" role="status">
+        <span class="visually-hidden">{{ "general.loading" | translate }}...</span>
+      </div>
+    </div>
+  </button>
+</ng-template>
+
+<ng-template #renderFormVM let-field="field">
+    <ng-container *ngFor="let item of vm[field]">
+      <span class="badge bg-danger" *ngIf="f[field].hasError(item.type)">
+        {{ item.message | translate }}
+      </span>
+    </ng-container>
+</ng-template>
