@@ -27,6 +27,7 @@ import { provideFirestore } from '@angular/fire/firestore';
 import { getFirestore } from 'firebase/firestore';
 import { provideFirebaseApp } from '@angular/fire/app';
 import { initializeApp } from 'firebase/app';
+import { SharedModule } from './shared/shared.module';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -54,7 +55,6 @@ const maskConfig: Partial<IConfig> = {
     AppRoutingModule,
     NgxSpinnerModule,
     PipesModule,
-    ComponentsModule,
     NgxMaskModule.forRoot(maskConfig),
     TranslateModule.forRoot({
       loader: {
@@ -70,6 +70,8 @@ const maskConfig: Partial<IConfig> = {
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireAuthModule,
+    ComponentsModule,
+    SharedModule,
   ],
   providers: [{ provide: USE_DEVICE_LANGUAGE, useValue: true }],
   bootstrap: [AppComponent],

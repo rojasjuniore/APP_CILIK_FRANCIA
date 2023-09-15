@@ -124,7 +124,7 @@ export class SignInComponent implements OnInit {
       this.translateSrv.changeLanguage(userLanguage);
 
       /** Redirect To */
-      return this.router.navigate(['/pages/dashboard']);
+      return this.router.navigate(['/pages']);
 
     } catch (err: any) {
       // console.log('Error on SignInComponent.onSubmit', err.message);

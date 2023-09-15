@@ -5,18 +5,18 @@ import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
 import { NgxMaskModule } from 'ngx-mask';
 import { Footer1Component } from './footer1/footer1.component';
 import { Footer2Component } from './footer2/footer2.component';
-import { SignInComponent } from './sign-in/sign-in.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
+// import { SignInComponent } from './sign-in/sign-in.component';
+// import { SignUpComponent } from './sign-up/sign-up.component';
 import { RouterModule } from '@angular/router';
-import { RegistroExitosoComponent } from './registro-exitoso/registro-exitoso.component';
-import { SecurePasswordComponent } from './secure-password/secure-password.component';
+// import { RegistroExitosoComponent } from './registro-exitoso/registro-exitoso.component';
+// import { SecurePasswordComponent } from './secure-password/secure-password.component';
 import { ModalPlanDetailsComponent } from './modal-plan-details/modal-plan-details.component';
 import { InputNumberFormComponent } from './input-number-form/input-number-form.component';
 import { PreSalePlanCardItemComponent } from './pre-sale-plan-card-item/pre-sale-plan-card-item.component';
 import { PreSaleAddRoomButtonComponent } from './pre-sale-add-room-button/pre-sale-add-room-button.component';
 import { PreSaleTotalesComponent } from './pre-sale-totales/pre-sale-totales.component';
-import { HeaderCilikComponent } from './header-cilik/header-cilik.component';
-import { FooterCilikComponent } from './footer-cilik/footer-cilik.component';
+// import { HeaderCilikComponent } from './header-cilik/header-cilik.component';
+// import { FooterCilikComponent } from './footer-cilik/footer-cilik.component';
 import { PreSaleModalRoomTypeDetailsComponent } from './pre-sale-modal-room-type-details/pre-sale-modal-room-type-details.component';
 import { PreSaleModalAdditionalDaysComponent } from './pre-sale-modal-additional-days/pre-sale-modal-additional-days.component';
 import { PreSaleStepsCounterComponent } from './pre-sale-steps-counter/pre-sale-steps-counter.component';
@@ -42,7 +42,7 @@ import { PreSaleExtraSoloGroupItemComponent } from './pre-sale-extra-solo-group-
 import { PreSaleModalOnlyCategoriesTermsComponent } from './pre-sale-modal-only-categories-terms/pre-sale-modal-only-categories-terms.component';
 import { PreSaleCategoriesStepCounterComponent } from './pre-sale-categories-step-counter/pre-sale-categories-step-counter.component';
 import { PreSaleCheckoutOnlyCategoryCardItemComponent } from './pre-sale-checkout-only-category-card-item/pre-sale-checkout-only-category-card-item.component';
-import { LanguageBarComponent } from './language-bar/language-bar.component';
+// import { LanguageBarComponent } from './language-bar/language-bar.component';
 import { RemoveOrderOnBackButtonComponent } from './remove-order-on-back-button/remove-order-on-back-button.component';
 import { PreSaleModalBankTransferDetailComponent } from './pre-sale-modal-bank-transfer-detail/pre-sale-modal-bank-transfer-detail.component';
 import { CardBankTransferComponent } from './card-bank-transfer/card-bank-transfer.component';
@@ -50,7 +50,7 @@ import { PermissionRolesAddComponent } from './permission-roles-add/permission-r
 import { PermissionRolesUpdateComponent } from './permission-roles-update/permission-roles-update.component';
 import { PermissionRolesRemoveComponent } from './permission-roles-remove/permission-roles-remove.component';
 import { PermissionProfileUpdateComponent } from './permission-profile-update/permission-profile-update.component';
-import { LogoutComponent } from './logout/logout.component'; 
+// import { LogoutComponent } from './logout/logout.component'; 
 import { PruchaseInstallmentPayCoutaCardItemComponent } from './pruchase-installment-pay-couta-card-item/pruchase-installment-pay-couta-card-item.component';
 import { PreSaleEventPassStepCounterComponent } from './pre-sale-event-pass-step-counter/pre-sale-event-pass-step-counter.component';
 import { PreSaleOnlyEventPassCardItemComponent } from './pre-sale-only-event-pass-card-item/pre-sale-only-event-pass-card-item.component';
@@ -75,18 +75,18 @@ import { TucompraComponent } from './tucompra/tucompra.component';
   declarations: [
     Footer1Component,
     Footer2Component,
-    SignInComponent,
-    SignUpComponent,
-    RegistroExitosoComponent,
-    SecurePasswordComponent,
+    // SignInComponent,
+    // SignUpComponent,
+    // RegistroExitosoComponent,
+    // SecurePasswordComponent,
     ModalPlanDetailsComponent,
     InputNumberFormComponent,
     InputNumberFormTwoComponent,
     PreSalePlanCardItemComponent,
     PreSaleAddRoomButtonComponent,
     PreSaleTotalesComponent,
-    HeaderCilikComponent,
-    FooterCilikComponent,
+    // HeaderCilikComponent,
+    // FooterCilikComponent,
     PreSaleModalRoomTypeDetailsComponent,
     PreSaleModalAdditionalDaysComponent,
     HeaderWelcomeComponent,
@@ -110,7 +110,7 @@ import { TucompraComponent } from './tucompra/tucompra.component';
     PreSaleModalOnlyCategoriesTermsComponent,
     PreSaleCategoriesStepCounterComponent,
     PreSaleCheckoutOnlyCategoryCardItemComponent,
-    LanguageBarComponent,
+    // LanguageBarComponent,
     RemoveOrderOnBackButtonComponent,
     PreSaleModalBankTransferDetailComponent,
     CardBankTransferComponent,
@@ -118,7 +118,7 @@ import { TucompraComponent } from './tucompra/tucompra.component';
     PermissionRolesUpdateComponent,
     PermissionRolesRemoveComponent,
     PermissionProfileUpdateComponent,
-    LogoutComponent,
+    // LogoutComponent,
     PruchaseInstallmentPayCoutaCardItemComponent,
     PreSaleEventPassStepCounterComponent,
     PreSaleOnlyEventPassCardItemComponent,
@@ -136,8 +136,8 @@ import { TucompraComponent } from './tucompra/tucompra.component';
     TranslateModule,
     Footer1Component,
     Footer2Component,
-    SignInComponent,
-    SignUpComponent,
+    // SignInComponent,
+    // SignUpComponent,
     ModalPlanDetailsComponent,
     InputNumberFormComponent,
     InputNumberFormTwoComponent,
@@ -149,8 +149,8 @@ import { TucompraComponent } from './tucompra/tucompra.component';
     PreSaleStepsCounterComponent,
     PreSaleCheckoutCardItemComponent,
     PreSaleCheckoutCategoryCardItemComponent,
-    HeaderCilikComponent,
-    FooterCilikComponent,
+    // HeaderCilikComponent,
+    // FooterCilikComponent,
     MyPurchasesListItemComponent,
     HeaderWelcomeComponent,
     PreSaleModalPaymentCoutasDetailsComponent,
@@ -169,14 +169,14 @@ import { TucompraComponent } from './tucompra/tucompra.component';
     PreSaleModalOnlyCategoriesTermsComponent,
     PreSaleCategoriesStepCounterComponent,
     PreSaleCheckoutOnlyCategoryCardItemComponent,
-    LanguageBarComponent,
+    // LanguageBarComponent,
     RemoveOrderOnBackButtonComponent,
     PreSaleModalBankTransferDetailComponent,
     PermissionRolesAddComponent,
     PermissionRolesUpdateComponent,
     PermissionRolesRemoveComponent,
     PermissionProfileUpdateComponent,
-    LogoutComponent,
+    // LogoutComponent,
     PruchaseInstallmentPayCoutaCardItemComponent,
     PreSaleEventPassStepCounterComponent,
     PreSaleOnlyEventPassCardItemComponent,

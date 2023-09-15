@@ -1,0 +1,60 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { PagesLayoutComponent } from './pages-layout/pages-layout.component';
+import { SecurePasswordComponent } from '../components/secure-password/secure-password.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
+import { NgxPayPalModule } from 'ngx-paypal';
+import { LanguageBarComponent } from '../components/language-bar/language-bar.component';
+import { SignInComponent } from '../components/sign-in/sign-in.component';
+import { RegistroExitosoComponent } from '../components/registro-exitoso/registro-exitoso.component';
+import { SignUpComponent } from '../components/sign-up/sign-up.component';
+import { LogoutComponent } from '../components/logout/logout.component';
+import { HeaderCilikComponent } from '../components/header-cilik/header-cilik.component';
+import { RouterModule } from '@angular/router';
+import { FooterCilikComponent } from '../components/footer-cilik/footer-cilik.component';
+import { OutPagesLayoutComponent } from './out-pages-layout/out-pages-layout.component';
+
+
+
+@NgModule({
+  declarations: [
+    HeaderCilikComponent,
+    FooterCilikComponent,
+    LanguageBarComponent,
+    RegistroExitosoComponent,
+    SignUpComponent,
+    SignInComponent,
+    SecurePasswordComponent,
+    LogoutComponent,
+    PagesLayoutComponent,
+    OutPagesLayoutComponent,
+  ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    TranslateModule,
+    NgxPayPalModule,
+    RouterModule,
+  ],
+  exports: [
+    FormsModule,
+    ReactiveFormsModule,
+    TranslateModule,
+    NgxPayPalModule,
+    RouterModule,
+
+    HeaderCilikComponent,
+    FooterCilikComponent,
+    LanguageBarComponent,
+    RegistroExitosoComponent,
+    SignUpComponent,
+    SignInComponent,
+    SecurePasswordComponent,
+    LogoutComponent,
+    PagesLayoutComponent,
+    OutPagesLayoutComponent,
+  ]
+})
+export class SharedModule { }
