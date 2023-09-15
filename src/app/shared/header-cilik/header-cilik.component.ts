@@ -40,11 +40,9 @@ export class HeaderCilikComponent implements OnInit {
 
   
   public async logout() {
-    const message = this.translatePipe.transform('general.logOutMessage');
-    const ask = await this.sweetAlert2Srv.askConfirm(message);
+    const ask = await this.sweetAlert2Srv.askConfirm('¿Está seguro que desea cerrar sesión?');
     if (!ask) { return ;}
     this.authSrv.logout();
-    this.router.navigate(['/sign-in']);
   }
 
 }

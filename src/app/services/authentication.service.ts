@@ -385,11 +385,10 @@ export class AuthenticationService {
   }
 
   async logout() {
-    window.localStorage.clear();
-    this.authenticationState.next(false);
     this.afAuth.signOut();
-
+    this.authenticationState.next(false);
     this.router.navigate(["/sign-in"]);
+    window.localStorage.clear();
   }
 
 

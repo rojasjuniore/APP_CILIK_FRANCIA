@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable, map } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
 import { AuthenticationService } from '../services/authentication.service';
 
 @Injectable({
@@ -13,40 +13,38 @@ export class IsAuthGuard implements CanActivate {
     private router: Router
   ) { }
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): 
-    Observable<boolean> 
-  {
-    return this.authSrv.afAuth.authState.pipe(
-      map(user => user ? user.uid : null),
-      // tap((uid) => console.log({ uid })),
-      map((uid) => {
-        if (uid) { return true; }
-        this.router.navigate(["/sign-in"]);
-        return false;
-      })
-    );
-  }
-
   // canActivate(
   //   next: ActivatedRouteSnapshot,
   //   state: RouterStateSnapshot
   // ): 
-  //   Promise<boolean> 
+  //   Observable<boolean> 
   // {
-  //   return new Promise((resolve, reject) => {
-  //     this.authSrv.afAuth
-  //     .onAuthStateChanged((user: any) => {
-  //       // console.log({ user })
-
-  //       if (user) return resolve(true);
-        
+  //   return this.authSrv.afAuth.authState.pipe(
+  //     map(user => user ? user.uid : null),
+  //     tap((uid) => console.log('IsAuthGuard', { uid })),
+  //     map((uid) => {
+  //       if (uid) { return true; }
   //       this.router.navigate(["/sign-in"]);
-  //       return resolve(false);
-        
-  //     });
-  //   });
+  //       return false;
+  //     })
+  //   );
   // }
+
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.authSrv.afAuth
+      .onAuthStateChanged((user: any) => {
+        console.log('IsAuthGuard', { user })
+
+        if (user) return resolve(true);
+        
+        this.router.navigate(["/sign-in"]);
+        return resolve(false);
+        
+      });
+    });
+  }
 }
