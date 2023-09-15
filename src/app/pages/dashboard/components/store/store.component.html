@@ -1,0 +1,288 @@
+<div class="row mt-4">
+    <div class="col-12 col-md-6 mb-3">
+        <app-store-item-card></app-store-item-card>
+    </div>
+    
+    <div class="col-12 col-md-6 mb-3">
+
+
+        <div class="card plan-selection-item">
+            <div class="recomendation">{{'plansCard.recommendedOption' | translate}}</div>
+            <div class="card-header red">
+
+                <div class="row g-0">
+                    <div class="col-5">
+                        <img src="assets/images/icons/plan-icon-1.png" class="img-fluid" alt="" />
+                        <h4 class="text-uppercase"
+                            [innerHTML]="'plansCard.allInclusivePlan.title' | translate">
+                        </h4>
+
+                    </div>
+
+                    <div class="col-7">
+                        <div class="plan-selection-include">
+                            <span class="bold text-uppercase">
+                                {{'plansCard.include' | translate}}:
+                            </span>
+                            <span>
+                                {{'plansCard.allInclusivePlan.include' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-one red">
+                    {{'general.iWantIt' | translate}}
+                </button>
+            </div>
+        </div>
+
+        <!-- <div class="card-box text-center p-3">
+            <div class="item-dash-icon">
+                <img src="assets/img/cilik/dash-08.png" alt="">
+            </div>
+            <button class="btn btn-one" (click)="newOrder('fullPass')">
+                PLAN TODO INCLUIDO
+            </button>
+        </div> -->
+    </div>
+    <div class="col-12 col-md-6 mb-3">
+        <div class="card plan-selection-item">
+            <div class="card-header purple">
+                <div class="row g-0">
+                    <div class="col-5">
+                        <img src="assets/images/icons/plan-icon-2.png" class="img-fluid" alt="" />
+
+                        <h4 class="text-uppercase"
+                            [innerHTML]="'plansCard.hotelPlanAndFullPass.title' | translate">
+                        </h4>
+
+                    </div>
+
+                    <div class="col-7">
+                        <div class="plan-selection-include">
+                            <span class="bold text-uppercase">
+                                {{'plansCard.include' | translate}}:
+                            </span>
+                            <span>
+                                {{'plansCard.hotelPlanAndFullPass.include' | translate}}
+                            </span>
+                            <span class="bold text-uppercase">
+                                {{'plansCard.notInclude' | translate}}:
+                            </span>
+                            <span>
+                                {{'plansCard.hotelPlanAndFullPass.noInclude' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <button class="btn btn-one purple">
+                    {{'general.iWantIt' | translate}}
+                </button>
+            </div>
+        </div>
+        <!-- <div class="card-box text-center p-3">
+            <div class="item-dash-icon">
+                <img src="assets/img/cilik/dash-08.png" alt="">
+            </div>
+            <button class="btn btn-one" style="background-color: #b661f8;" (click)="newOrder('hotelAndEventPass')">
+                PLAN HOTEL Y FULL PASS
+            </button>
+        </div> -->
+    </div>
+
+
+    <div class="col-12 col-md-6 mb-3">
+        <div class="card plan-selection-item flex-2">
+            <div class="card-header green">
+                <div class="row g-0">
+                    <div class="col-5 d-flex flex-column">
+                        <img src="assets/images/icons/plan-icon-3.png" class="img-fluid plan-icon-3"
+                            alt="" />
+
+                        <h4 class="text-uppercase"
+                            [innerHTML]="'plansCard.hotelOnlyPlan.title' | translate">
+                        </h4>
+
+                    </div>
+
+                    <div class="col-7">
+                        <div class="plan-selection-include">
+                            <span class="bold text-uppercase">
+                                {{'plansCard.include' | translate}}:
+                            </span>
+                            <span>
+                                {{'plansCard.hotelOnlyPlan.include' | translate}}
+                            </span>
+                            <span class="bold text-uppercase">
+
+                                {{'plansCard.notInclude' | translate}}:
+                            </span>
+                            <span>
+                                {{'plansCard.hotelOnlyPlan.noInclude' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <button class="btn btn-one green">
+                    {{'general.iWantIt' | translate}}
+                </button>
+            </div>
+        </div>
+        <!-- <div class="card-box text-center p-3">
+            <div class="item-dash-icon">
+                <img src="assets/img/cilik/dash-08.png" alt="">
+            </div>
+            <button class="btn btn-one" style="background-color: #73cf89;" (click)="newOrder('hotelPass')">
+                PLAN SOLO HOTEL
+            </button>
+        </div> -->
+    </div>
+
+    <div class="col-12 col-md-6 mb-3">
+        <div class="card plan-selection-item">
+            <div class="card-header yellow">
+                <div class="row g-0">
+                    <div class="col-5 d-flex flex-column">
+                        <img src="assets/images/icons/plan-icon-4.png" class="img-fluid plan-icon-4"
+                            alt="" />
+                        <h4 class="m-0 text-uppercase">
+                            {{'plansCard.fullPass.title' | translate}}
+                        </h4>
+
+                    </div>
+
+                    <div class="col-7">
+                        <div class="plan-selection-include">
+                            <span class="bold text-uppercase">
+                                {{'plansCard.include' | translate}}:
+                            </span>
+                            <span>
+                                {{'plansCard.fullPass.include' | translate}}
+                            </span>
+                            <span class="bold text-uppercase">
+                                {{'plansCard.notInclude' | translate}}:
+                            </span>
+                            <span>
+                                {{'plansCard.fullPass.noInclude' | translate}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card-footer">
+                <button class="btn btn-one yellow">
+                    {{'general.iWantIt' | translate}}
+                </button>
+            </div>
+        </div>
+        <!-- <div class="card-box text-center p-3">
+            <div class="item-dash-icon">
+                <img src="assets/img/cilik/dash-08.png" alt="">
+            </div>
+            <button class="btn btn-one" style="background-color: #d79142;" (click)="newOrder('eventPass')">
+                FULL PASS
+            </button>
+        </div> -->
+    </div>
+    <!-- <div class="col-12 col-md-6 mb-3">
+        <div class="card-box text-center p-3">
+            <div class="item-dash-icon">
+                <img src="assets/img/cilik/dash-08.png" alt="">
+            </div>
+            <button class="btn btn-one" (click)="newOrder()">
+                {{'general.buyPlans' | translate | uppercase}}
+            </button>
+        </div>
+    </div> -->
+    <div class="col-12 col-md-6 mb-3">
+
+        <div class="card plan-selection-item">
+            <div class="card-header blue">
+                <div class="row g-0">
+                    <div class="col-12 d-flex flex-column align-items-center">
+                        <img src="assets/images/icons/plan-icon-5.png" class="img-fluid plan-icon-3"
+                            alt="" />
+                        <h4 class="text-uppercase"
+                            [innerHTML]="'plansCard.categoriesAdditional.title' | translate">
+
+                        </h4>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <button class="btn btn-one blue">
+                    {{'general.iWantIt' | translate}}
+                </button>
+            </div>
+        </div>
+        <!-- <div class="card-box text-center p-3">
+            <div class="item-dash-icon">
+                <img src="assets/img/cilik/dash-09.png" alt="">
+            </div>
+            <button class="btn btn-one" style="background-color: #848382;" (click)="showCategoriesTerms()">
+                {{'general.buyCategories' | translate | uppercase}}
+            </button>
+        </div> -->
+    </div>
+
+
+    <div class="col-12 col-md-6 mb-3">
+        <div class="card plan-selection-item">
+            <div class="card-header purple">
+                <div class="row g-0">
+                    <div class="col-5">
+                        <img src="" class="img-fluid" alt="" />
+
+                        <h4 class="text-uppercase"
+                            [innerHTML]="'WEEKEND' | translate">
+                        </h4>
+
+                    </div>
+
+                    <div class="col-7">
+                        <div class="plan-selection-include">
+                            <span class="bold text-uppercase">
+                                WEEKEND {{'plansCard.include' | translate}}:
+                            </span>
+                            <!-- <span>
+                                {{'plansCard.hotelPlanAndFullPass.include' | translate}}
+                            </span>
+                            <span class="bold text-uppercase">
+                                {{'plansCard.notInclude' | translate}}:
+                            </span>
+                            <span>
+                                {{'plansCard.hotelPlanAndFullPass.noInclude' | translate}}
+                            </span> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <button class="btn btn-one purple">
+                    {{'general.iWantIt' | translate}}
+                </button>
+            </div>
+        </div>
+        <!-- <div class="card-box text-center p-3">
+            <div class="item-dash-icon">
+                <img src="assets/img/cilik/dash-08.png" alt="">
+            </div>
+            <button class="btn btn-one" style="background-color: #b661f8;" (click)="newOrder('hotelAndEventPass')">
+                PLAN HOTEL Y FULL PASS
+            </button>
+        </div> -->
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="card plan-selection-item">
+    <div class="recomendation" *ngIf="item.isRecommended">{{'plansCard.recommendedOption' | translate}}</div>
+    <div class="card-header {{item.headerColor}}">
+
+        <div class="row g-0">
+            <div class="col-5">
+                <img [src]="item.img" class="img-fluid" alt="" />
+                <h4 class="text-uppercase">{{item.title | translate | uppercase}}</h4>
+            </div>
+
+            <div class="col-7">
+                <div class="plan-selection-include">
+                    <span class="bold text-uppercase">{{'include' | translate}}:</span>
+                    <span>{{item.include | translate}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <button class="btn btn-one red">
+            {{'general.iWantIt' | translate}}
+        </button>
+    </div>
+</div>
