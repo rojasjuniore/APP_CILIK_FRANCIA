@@ -5,13 +5,22 @@
         <div class="row g-0">
             <div class="col-5">
                 <img [src]="item.img" class="img-fluid" alt="" />
-                <h4 class="text-uppercase">{{item.title | translate | uppercase}}</h4>
+                <h4 class="text-uppercase" [innerHTML]="item.title | translate"></h4>
             </div>
 
             <div class="col-7">
                 <div class="plan-selection-include">
                     <span class="bold text-uppercase">{{'include' | translate}}:</span>
                     <span>{{item.include | translate}}</span>
+
+                    <ng-container *ngIf="item.noInclude">
+                        <span class="bold text-uppercase">
+                            {{'plansCard.notInclude' | translate}}:
+                        </span>
+                        <span>
+                            {{item.noInclude | translate}}
+                        </span>
+                    </ng-container>
                 </div>
             </div>
         </div>

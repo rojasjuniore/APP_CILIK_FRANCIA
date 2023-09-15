@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class StoreItemCardComponent implements OnInit {
 
-  @Input() item: any = {
+  @Input() item: StoreItemCardParams = {
     isRecommended: true,
     img: 'assets/images/icons/plan-icon-1.png',
     title: 'Card Title',
@@ -20,4 +20,13 @@ export class StoreItemCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+}
+
+export interface StoreItemCardParams {
+  isRecommended: boolean;
+  img: string;
+  title: string;
+  include: string;
+  noInclude?: string;
+  headerColor: string;
 }
