@@ -5,6 +5,7 @@ import { handlerObjectResult } from '../helpers/model.helper';
 import { AuthenticationService } from './authentication.service';
 import { environment } from 'src/environments/environment';
 import moment from 'moment';
+import { CustomizationfileService } from './customizationfile/customizationfile.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class CartService {
 
   constructor(
     private afs: AngularFirestore,
-    private authSrv: AuthenticationService,
+    public _cf: CustomizationfileService,
   ) { }
 
   /**
@@ -25,7 +26,7 @@ export class CartService {
    */
   buildCardDoc(params: any = {}){
     return {
-      uid: params.uid || this.authSrv.getLocalUID(),
+      uid: params.uid || this._cf.getUid(),
       eventId: params.eventId || environment.dataEvent.keyDb,
       createdAt: params.createdAt || moment().valueOf(),
       product: params.product || [],

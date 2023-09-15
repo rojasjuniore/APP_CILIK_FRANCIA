@@ -11,6 +11,7 @@ export const environment = {
   // PROD
   seedKey: 'nftixProject-dev-inTECH',
   API_URL: 'https://cilik-presale.uc.r.appspot.com/',
+  urlrootFunctions: "https://wldc-app.uc.r.appspot.com",
   urlWeb: 'https://wldc.cilik.io/',
   paypal: {
     currency: 'USD',
