@@ -44,6 +44,7 @@ export class HeaderCilikComponent implements OnInit {
     const ask = await this.sweetAlert2Srv.askConfirm(message);
     if (!ask) { return ;}
     this.authSrv.logout();
+    this.router.navigate(['/sign-in']);
   }
 
 }
