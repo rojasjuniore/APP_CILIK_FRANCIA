@@ -6,7 +6,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { LanguageBarComponent } from '../components/language-bar/language-bar.component';
 import { RegistroExitosoComponent } from '../components/registro-exitoso/registro-exitoso.component';
-import { SignUpComponent } from '../components/sign-up/sign-up.component';
 import { LogoutComponent } from '../components/logout/logout.component';
 import { HeaderCilikComponent } from '../components/header-cilik/header-cilik.component';
 import { RouterModule } from '@angular/router';
@@ -21,7 +20,6 @@ import { OutPagesLayoutComponent } from './out-pages-layout/out-pages-layout.com
     FooterCilikComponent,
     LanguageBarComponent,
     RegistroExitosoComponent,
-    SignUpComponent,
     LogoutComponent,
     PagesLayoutComponent,
     OutPagesLayoutComponent,
@@ -45,7 +43,6 @@ import { OutPagesLayoutComponent } from './out-pages-layout/out-pages-layout.com
     FooterCilikComponent,
     LanguageBarComponent,
     RegistroExitosoComponent,
-    SignUpComponent,
     LogoutComponent,
     PagesLayoutComponent,
     OutPagesLayoutComponent,

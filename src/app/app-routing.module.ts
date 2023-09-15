@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-// import { SignInComponent } from './components/sign-in/sign-in.component';
-// import { SignUpComponent } from './components/sign-up/sign-up.component';
-// import { SecurePasswordComponent } from './components/secure-password/secure-password.component';
 // import { RegistroExitosoComponent } from './components/registro-exitoso/registro-exitoso.component';
 // import { IsAuthGuard } from './guards/is-auth.guard';
 // import { AlreadyAuthGuard } from './guards/already-auth.guard';
