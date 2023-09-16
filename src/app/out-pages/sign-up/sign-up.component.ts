@@ -14,6 +14,7 @@ import { CustomizationfileService } from 'src/app/services/customizationfile/cus
 import { QuickNotificationService } from 'src/app/services/quick-notification/quick-notification.service';
 import moment from 'moment';
 import { DocumentService } from 'src/app/services/documents/document.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-sign-up',
@@ -270,6 +271,7 @@ export class SignUpComponent implements OnInit {
 
       this.submit = true;
       this.loader = true;
+      // console.log('data', this.form.value);
 
       if (!this.form.valid) {
         this.form.markAllAsTouched();
@@ -299,16 +301,26 @@ export class SignUpComponent implements OnInit {
       /** Crear usuario en sistema de autenticación */
       const afsUser = await this.authenticationSrv.createUserWithEmailAndPassword(data.email, password);
       // console.log('afsUser', afsUser);
+      const uid = afsUser.user.uid;
+      console.log('uid', uid);
 
       /** Guardar usuario - Utilizando la estructura de CILIK */
       await this.saveProfile(formData, afsUser);
+
+      /** Guardar Aceptación de terminos para el evento */
+      await this.documentSrv.updateOrStore(environment.dataEvent.keyDb, afsUser.user.uid, {
+        tac: formData.tac,
+        tacAt: moment().valueOf(),
+        imageUseAuthorization: formData.imageUseAuthorization,
+        informedConsentForMinors: formData.informedConsentForMinors,
+      });
 
       /** Enviar mail de bienvenida */
       const names = `${data.name} ${data.surnames}`.toUpperCase();
       await this.quickNotificationSrv.sendEmailNotification({
         type: "2FANotification",
         email: data.email,
-        subject: `WLDC Cartagena 2024 - Bienvenido a WLDC ${names} - ` + moment().format("DD/MM/YYYY HH:mm:ss"),
+        subject: `Bienvenido a WLDC Cartagena 2024 ${names} - ` + moment().format("DD/MM/YYYY HH:mm:ss"),
         greeting: `¡Hola ${names}!`,
         messageBody: [
           {type: "html", html: `<h1 style='text-align: center;'><strong>¡Bienvenido a la aplicación WLDC Cartagena 2024!</strong></h1>`},
