@@ -31,4 +31,10 @@ export class CustomizationfileService {
     return window.localStorage.getItem("uid");
   }
 
+  transformarString(string) {
+    if (!string) { return null; }
+    const number = string.toString();
+    return number.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, "").toLowerCase()
+  }
+
 }
