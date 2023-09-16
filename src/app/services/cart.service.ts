@@ -30,6 +30,7 @@ export class CartService {
       eventId: params.eventId || environment.dataEvent.keyDb,
       createdAt: params.createdAt || moment().valueOf(),
       product: params.product || [],
+      status: 'pending'
     };
   }
 
@@ -43,6 +44,15 @@ export class CartService {
   async store(eventId: string, uid: string, data: any){
     return await this.afs.collection(this.collection)
       .doc(eventId).collection('list').doc(uid).set(data);
+  }
+
+  async buildAndStore(eventId: string){
+    const uid: any = this._cf.getUid();
+    const data = this.buildCardDoc();
+    /** Buscar, si no existe crear */
+    const find = await this.getCartToPromise(eventId, uid);
+    if(!find){ await this.store(eventId, uid, data); };
+    return data;
   }
 
   /**
