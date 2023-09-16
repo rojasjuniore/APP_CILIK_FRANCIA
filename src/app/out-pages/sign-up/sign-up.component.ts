@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Sweetalert2Service } from '../../services/sweetalert2.service';
 import { Router } from '@angular/router';
 import data from '../../../assets/i18n/from.json';
-import { AuthenticationService, checkIfEmailDoesExist } from 'src/app/services/authentication.service';
+import { AuthenticationService, checkIdentificationForExists, checkIfEmailDoesExist } from 'src/app/services/authentication.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from 'src/app/helpers/must-match.validator';
 import { DataService } from 'src/app/services/data.service';
@@ -52,7 +52,7 @@ export class SignUpComponent implements OnInit {
       { type: 'required', message: 'formValidations.required' },
       { type: 'minlength', message: 'formValidations.minlength6' },
       { type: 'pattern', message: 'formValidations.onlyNumbers' },
-      { type: 'dniStored', message: 'formValidations.dniStored' },
+      { type: 'existingIdentification', message: 'formValidations.dniStored' },
     ],
     prefijo: [
       { type: 'required', message: 'formValidations.required' },
@@ -159,11 +159,16 @@ export class SignUpComponent implements OnInit {
         ]
       ],
       identificationType: ['cedula', Validators.required],
-      identification: ['', [
-        Validators.required,
-        Validators.minLength(6),
-        Validators.pattern(/^[0-9]+$/)
-      ]],
+      identification: ['', 
+        [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.pattern(/^[0-9]+$/)
+        ],
+        [
+          checkIdentificationForExists(this.authenticationSrv)
+        ]
+      ],
       prefijo: ["", [
         Validators.required
       ]],
@@ -191,8 +196,7 @@ export class SignUpComponent implements OnInit {
       termsAndCondition: [false, [Validators.requiredTrue]],
       imageUseAuthorization: [false, [Validators.requiredTrue]],
       informedConsentForMinors: [false, [Validators.requiredTrue]],
-
-    }, { validator: MustMatch('password', 'confirmPassword') })
+    }, { validator: MustMatch('password', 'confirmPassword') });
   }
 
   get f() { return this.form.controls; }
