@@ -97,6 +97,66 @@ export class AuthenticationService {
   }
 
 
+  /**
+   * Crear documento y almacenar para la colección de usuarios
+   * @param params
+   */
+  async buildAndStoreUserDoc(params: any) {
+    const doc = {
+      uid: params.uid,
+      _language: "es",
+      rol: 0,
+      status: "incomplete_profile",
+      stageName: null,
+      avatar: params.avatar,
+      name: params.name,
+      prefijo: params.prefijo.phonecode,
+      phone: params.phone,
+      identificationType: params.identificationType || 'cedula',
+      identification: params.identification,
+      email: params.email
+    };
+
+    await this.afs.collection("users").doc(params.uid).set(doc);
+    return doc;
+  }
+
+  /**
+   * Crear documento para la colección de perfiles
+   * @param params
+   */
+  async buildAndStoreProfileDoc(params: any) {
+    const doc = {
+      uid: params.uid,
+      email: params.email,
+      name: params.name.toLowerCase(),
+      surnames: params.surnames.toLowerCase(),
+      idType: "incomplete_profile",
+      gender: null,
+      birthdate: null,
+      identificationType: params.identificationType || 'cedula',
+      identificationNumber: params.identification,
+      school: null,
+      tShirtSize: null,
+      bio: null,
+      celular: null,
+      cityOfBirth: null,
+      countryOfBirth: null,
+      countryOfResidence: null,
+      facebook: null,
+      instagram: null,
+      prefijo: params.prefijo.phonecode,
+      phone: params.phone,
+      stageName: null,
+      stateOfBirth: null,
+      stateOfResidence: null,
+    };
+
+    await this.afs.collection("profile").doc(params.uid).set(doc);
+    return doc;
+  }
+
+
   saveTokenPush(uid) {
     localStorage.setItem("uid", uid)
   }
