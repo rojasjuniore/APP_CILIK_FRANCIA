@@ -147,20 +147,18 @@
       <!-- Terms and conditions -->
       <div class="col-12 mb-3">
         <div class="form-check">
-          <input class="form-check-input" [ngClass]="{'is-invalid': submit && f.termsAndCondition.errors}"
-            type="checkbox" value="" id="termsAndConditionsCheck" formControlName="termsAndCondition">
+          <input class="form-check-input" [ngClass]="{'is-invalid': submit && f.tac.errors}"
+            type="checkbox" value="" id="tac" formControlName="tac">
           <label class="form-check-label" for="termsAndConditionsCheck">
             {{ "signUp.checkTermsAndConditions" | translate }}
             <br>
-            <!-- <a class="fw-bold" >Ver políticas aquí.</a> -->
-            <a [href]="('signUp.termsAndConditionsLink' | translate)"
-              target="_blank" class="fw-bold" rel="noopener noreferrer">
+            <a [href]="('signUp.termsAndConditionsLink' | translate)"target="_blank" class="fw-bold" rel="noopener noreferrer">
               {{ "general.seePoliciesHere" | translate }}
             </a>
           </label>
         </div>
 
-        <ng-container *ngIf="submit" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'termsAndCondition'}"></ng-container>
+        <ng-container *ngIf="submit" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'tac'}"></ng-container>
       </div>
 
       <hr>
