@@ -29,7 +29,7 @@ export class SignUpComponent implements OnInit {
     dni: "",
     phone: "",
     name: "",
-    last_name: ""
+    surnames: ""
   };
   public submitStatus = 0;
 
@@ -37,27 +37,27 @@ export class SignUpComponent implements OnInit {
 
   public form!: FormGroup;
   public vm = {
-    firstName: [
+    name: [
       { type: 'required', message: 'formValidations.required' },
       { type: 'pattern', message: 'formValidations.onlyCharacters' }
     ],
-    lastName: [
+    surnames: [
       { type: 'required', message: 'formValidations.required' },
       { type: 'pattern', message: 'formValidations.onlyCharacters' }
     ],
-    documentType: [
+    identificationType: [
       { type: 'required', message: 'formValidations.required' }
     ],
-    dni: [
+    identification: [
       { type: 'required', message: 'formValidations.required' },
       { type: 'minlength', message: 'formValidations.minlength6' },
       { type: 'pattern', message: 'formValidations.onlyNumbers' },
       { type: 'dniStored', message: 'formValidations.dniStored' },
     ],
-    prefix: [
+    prefijo: [
       { type: 'required', message: 'formValidations.required' },
     ],
-    phoneNumber: [
+    phone: [
       { type: 'required', message: 'formValidations.required' },
       { type: 'pattern', message: 'formValidations.onlyNumbers' },
       { type: 'minlength', message: 'formValidations.minlength9' },
@@ -144,30 +144,30 @@ export class SignUpComponent implements OnInit {
 
   buildForm() {
     this.form = this.fb.group({
-      firstName: [
+      name: [
         '',
         [
           Validators.required,
           Validators.pattern(/^[a-zA-Z ]+$/)
         ]
       ],
-      lastName: [
+      surnames: [
         '',
         [
           Validators.required,
           Validators.pattern(/^[a-zA-Z ]+$/)
         ]
       ],
-      documentType: ['dni', Validators.required],
-      dni: ['', [
+      identificationType: ['cedula', Validators.required],
+      identification: ['', [
         Validators.required,
         Validators.minLength(6),
         Validators.pattern(/^[0-9]+$/)
       ]],
-      prefix: ["", [
+      prefijo: ["", [
         Validators.required
       ]],
-      phoneNumber: ['', [
+      phone: ['', [
         Validators.required,
         Validators.pattern(/^[0-9]+$/),
         Validators.minLength(9),
@@ -210,7 +210,7 @@ export class SignUpComponent implements OnInit {
 
       const formData = this.form.value;
 
-      const checkDNI = await this.authenticationSrv.checkDNI(formData.dni, formData.documentType);
+      const checkDNI = await this.authenticationSrv.checkDNI(formData.dni, formData.identificationType);
       if (checkDNI) {
         this.f.dni.setErrors({ dniStored: true });
         return;
@@ -218,12 +218,12 @@ export class SignUpComponent implements OnInit {
 
 
       const data = {
-        firstName: this.commonService.noSpecialCharacters(formData.firstName),
-        lastName: this.commonService.noSpecialCharacters(formData.lastName),
-        documentType: formData.documentType,
-        dni: formData.dni,
-        prefix: formData.prefix,
-        phoneNumber: formData.phoneNumber,
+        name: this.commonService.noSpecialCharacters(formData.name),
+        surnames: this.commonService.noSpecialCharacters(formData.surnames),
+        identificationType: formData.identificationType,
+        identification: formData.identification,
+        prefijo: formData.prefijo,
+        phone: formData.phone,
         email: `${formData.email}`.trim().toLowerCase(),
         roles: ['user'],
         language: 'en'
@@ -232,7 +232,7 @@ export class SignUpComponent implements OnInit {
 
 
       /** valid document */
-      const validDocument = await this.authenticationSrv.getByDocument(data.dni, data.documentType);
+      const validDocument = await this.authenticationSrv.getByDocument(data.identification, data.identificationType);
       console.log('validDocument', validDocument);
       if (validDocument != null) {
         const message = this.translatePipe.transform('formValidations.dniStored');
@@ -262,7 +262,7 @@ export class SignUpComponent implements OnInit {
       // await this.authenticationSrv.store(`${uid}`, data);
 
       /** Enviar mail de bienvenida */
-      await this.emailNotificationSrv.sendWelcomeNotification([data.firstName, data.lastName].join(' '), data.email);
+      await this.emailNotificationSrv.sendWelcomeNotification([data.name, data.surnames].join(' '), data.email);
 
       /** Guardar identificador en el localStorage */
       this.authenticationSrv.setLocalUID(uid);

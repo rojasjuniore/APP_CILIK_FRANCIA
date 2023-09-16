@@ -1,344 +1,3 @@
-<div class="container" *ngIf="false">
-  <div class="row">
-    <div class="col-12 col-sm-12 col-md-10 col-lg-8 mx-auto">
-      <div class="card border-0 p-3 p-lg-4 my-3 my-lg-5">
-        <app-language-bar></app-language-bar>
-
-        <app-header-cilik></app-header-cilik>
-        <div class="px-4 px-sm-5">
-          <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
-
-            <div class="row">
-
-              <!-- Input First Name -->
-              <div class="col-12 col-md-6">
-                <div class="form-floating form-camp mb-3">
-                  <input type="text" [ngClass]="{'is-invalid': submit && f.firstName.errors}"
-                    formControlName="firstName" class="form-control" id="floatingInputFirstName" placeholder="{{ 'general.name' | translate }}">
-                  <label for="floatingInputFirstName">{{ "general.name" | translate }}</label>
-
-                  <ng-container *ngIf="submit">
-                    <ng-container *ngFor="let item of vm.firstName">
-                      <span class="badge bg-danger" *ngIf="f.firstName.hasError(item.type)">
-                        {{item.message | translate}}
-                      </span>
-
-                    </ng-container>
-                  </ng-container>
-                </div>
-              </div>
-
-              <!-- Input Last Name -->
-              <div class="col-12 col-md-6">
-                <div class="form-floating form-camp mb-3">
-                  <input type="text" [ngClass]="{'is-invalid': submit && f.lastName.errors}" formControlName="lastName"
-                    class="form-control" id="floatingInputLastName" placeholder="{{ 'general.last-name' | translate }}">
-                  <label for="floatingInputLastName">{{ "general.lastName" | translate }}</label>
-
-                  <ng-container *ngIf="submit">
-                    <ng-container *ngFor="let item of vm.lastName">
-                      <span class="badge bg-danger" *ngIf="f.lastName.hasError(item.type)">
-                        {{item.message | translate}}
-                      </span>
-
-                    </ng-container>
-                  </ng-container>
-                </div>
-              </div>
-
-              <!-- Input Document Type -->
-              <div class="col-12 col-md-6 col-xl-4">
-                <div class="form-floating form-camp mb-3">
-                  <select class="form-select" [ngClass]="{'is-invalid': submit && f.documentType.errors}"
-                    formControlName="documentType" id="floatingSelectDocumentType" aria-label="Document Type">
-                    <option value="dni">{{ "general.DNI1" | translate }}</option>
-                    <option value="foreigner">{{ "general.DNI2" | translate }}</option>
-                    <option value="taxnumber">{{ "general.DNI3" | translate }}</option>
-                    <option value="passport">{{ "general.DNI4" | translate }}</option>
-                    <option value="minors">{{ "general.DNI5" | translate }}</option>
-                  </select>
-                  <label for="floatingSelectDocumentType"> 
-                    {{ "general.dniType" | translate }}
-                  </label>
-
-                  <ng-container *ngIf="submit">
-                    <ng-container *ngFor="let item of vm.documentType">
-                      <span class="badge bg-danger" *ngIf="f.documentType.hasError(item.type)">
-                        {{item.message | translate}}
-                      </span>
-
-                    </ng-container>
-                  </ng-container>
-                </div>
-              </div>
-
-              <!-- Input DNI -->
-              <div class="col-12 col-md-6 col-xl-8">
-                <div class="form-floating form-camp mb-3">
-                  <input type="text" [ngClass]="{'is-invalid': submit && f.dni.errors}" formControlName="dni"
-                    class="form-control" id="floatingInputDNI" placeholder="DNI">
-                  <label for="floatingInputDNI"> {{ "general.dni" | translate }}</label>
-
-                  <ng-container *ngIf="submit">
-                    <ng-container *ngFor="let item of vm.dni">
-                      <span class="badge bg-danger" *ngIf="f.dni.hasError(item.type)">
-                        {{item.message | translate}}
-                      </span>
-
-                    </ng-container>
-                  </ng-container>
-                </div>
-              </div>
-
-              <!-- Input Prefix -->
-              <div class="col-12 col-md-4">
-                <div class="form-floating form-camp mb-3">
-                  <select class="form-select" [ngClass]="{'is-invalid': submit && f.prefix.errors}"
-                    formControlName="prefix" id="floatingSelectPrefix" aria-label="Prefix">
-                    <ng-container *ngFor="let item of phoneData">
-                      <option [value]="item.dial_code">
-                        {{item.dial_code}} {{item.name}} {{item.flag}}
-                      </option>
-                    </ng-container>
-                  </select>
-                  <label for="floatingSelectPrefix">{{ "general.country" | translate }}</label>
-
-                  <ng-container *ngIf="submit">
-                    <ng-container *ngFor="let item of vm.prefix">
-                      <span class="badge bg-danger" *ngIf="f.prefix.hasError(item.type)">
-                        {{item.message | translate}}
-                      </span>
-
-                    </ng-container>
-                  </ng-container>
-                </div>
-              </div>
-
-              <!-- Input Phone Number -->
-              <div class="col-12 col-md-8">
-                <div class="form-floating form-camp mb-3">
-                  <input 
-                    type="text" [ngClass]="{'is-invalid': submit && f.phoneNumber.errors}"
-                    formControlName="phoneNumber" class="form-control" id="floatingInputPhoneNumber"
-                    placeholder="{{ 'general.phoneNumber' | translate }}"
-                  >
-                  <label for="floatingInputPhoneNumber"> 
-                    {{ "general.phoneNumber" | translate }}
-                  </label>
-
-                  <ng-container *ngIf="submit">
-                    <ng-container *ngFor="let item of vm.phoneNumber">
-                      <span class="badge bg-danger" *ngIf="f.phoneNumber.hasError(item.type)">
-                        {{item.message | translate}}
-                      </span>
-
-                    </ng-container>
-                  </ng-container>
-                </div>
-              </div>
-
-              <!-- Input Email -->
-              <div class="col-12">
-                <div class="form-floating form-camp mb-3">
-                  <input 
-                    type="email" [ngClass]="{'is-invalid': submit && f.email.errors}" formControlName="email"
-                    class="form-control" 
-                    id="floatingInputEmail" 
-                    placeholder="{{ 'general.email' | translate }}"
-                  >
-                  <label for="floatingInputEmail">{{ "general.email" | translate }}</label>
-
-                  <ng-container *ngIf="submit">
-                    <ng-container *ngFor="let item of vm.email">
-                      <span class="badge bg-danger" *ngIf="f.email.hasError(item.type)">
-                        {{item.message | translate}}
-                      </span>
-
-                    </ng-container>
-                  </ng-container>
-                </div>
-              </div>
-
-              <!-- Input Password -->
-              <div class="col-12">
-                <div class="form-floating form-camp mb-3">
-                  <input 
-                    [type]="typeInput" 
-                    [ngClass]="{'is-invalid': submit && f.password.errors}"
-                    formControlName="password" 
-                    class="form-control" 
-                    id="floatingInputPassword" 
-                    placeholder="{{ 'general.password' | translate }}"
-                  >
-                  <label for="floatingInputPassword">{{ "general.password" | translate }}</label>
-                  <div id="emailHelp" class="form-text text-start" *ngIf="form.controls['password'].value.length < 6">
-                    {{ 'formValidations.signUpPasswordLength' | translate }}
-                  </div>
-
-                  <div (click)="changeTypeInput()" class="pass-ico">
-                    <i *ngIf="typeInput =='password'" class="bi bi-eye-slash"></i>
-                    <i *ngIf="typeInput =='text'" class="bi bi-eye-fill"></i>
-                  </div>
-
-                  <ng-container *ngIf="submit">
-                    <ng-container *ngFor="let item of vm.password">
-                      <span class="badge bg-danger" *ngIf="f.password.hasError(item.type)">
-                        {{item.message | translate}}
-                      </span>
-
-                    </ng-container>
-                  </ng-container>
-                </div>
-              </div>
-
-              <!-- Input Confirm Password -->
-              <div class="col-12">
-                <div class="form-floating form-camp mb-3">
-                  <input 
-                    [type]="typeInput" 
-                    [ngClass]="{'is-invalid': submit && f.confirmPassword.errors}"
-                    formControlName="confirmPassword" class="form-control" id="floatingInputConfirmPassword"
-                    placeholder="{{ 'general.confirm-password' | translate }}"
-                  >
-                  <label for="floatingInputConfirmPassword">
-                    {{ "general.confirmPassword" | translate }}
-                  </label>
-
-
-                  <div (click)="changeTypeInput()" class="pass-ico">
-                    <i *ngIf="typeInput =='password'" class="bi bi-eye-slash"></i>
-                    <i *ngIf="typeInput =='text'" class="bi bi-eye-fill"></i>
-                  </div>
-
-                  <ng-container *ngIf="submit">
-                    <ng-container *ngFor="let item of vm.confirmPassword">
-                      <span class="badge bg-danger" *ngIf="f.confirmPassword.hasError(item.type)">
-                        {{item.message | translate}}
-                      </span>
-
-                    </ng-container>
-                  </ng-container>
-                </div>
-              </div>
-
-              <!-- Terms and conditions -->
-              <div class="col-12 mb-3">
-                <div class="form-check">
-                  <input class="form-check-input" [ngClass]="{'is-invalid': submit && f.termsAndCondition.errors}"
-                    type="checkbox" value="" id="termsAndConditionsCheck" formControlName="termsAndCondition">
-                  <label class="form-check-label" for="termsAndConditionsCheck">
-                    {{ "signUp.checkTermsAndConditions" | translate }}
-                    <br>
-                    <!-- <a class="fw-bold" >Ver políticas aquí.</a> -->
-                    <a [href]="('signUp.termsAndConditionsLink' | translate)"
-                      target="_blank" class="fw-bold" rel="noopener noreferrer">
-                      {{ "general.seePoliciesHere" | translate }}
-                    </a>
-                  </label>
-
-                </div>
-                <ng-container *ngIf="submit">
-                  <ng-container *ngFor="let item of vm.termsAndCondition">
-                    <span class="badge bg-danger" *ngIf="f.termsAndCondition.hasError(item.type)">
-                      {{item.message | translate}}
-                    </span>
-
-                  </ng-container>
-                </ng-container>
-              </div>
-
-              <!-- imageUseAuthorization -->
-              <div class="col-12 mb-3">
-                <div class="form-check">
-                  <input class="form-check-input" [ngClass]="{'is-invalid': submit && f.imageUseAuthorization.errors}"
-                    type="checkbox" value="" id="imageUseAuthorizationCheck" formControlName="imageUseAuthorization">
-                  <label class="form-check-label" for="imageUseAuthorizationCheck">
-                    {{ "signUp.imageUseAuthorization" | translate }}
-                    <br>
-                    <!-- <a class="fw-bold" >Ver políticas aquí.</a> -->
-                    <a [href]="('signUp.imageUseAuthorizationLink' | translate)"
-                      target="_blank" class="fw-bold" rel="noopener noreferrer">
-                      {{ "general.seePoliciesHere" | translate }}
-                    </a>
-                  </label>
-
-                </div>
-                <ng-container *ngIf="submit">
-                  <ng-container *ngFor="let item of vm.imageUseAuthorization">
-                    <span class="badge bg-danger" *ngIf="f.imageUseAuthorization.hasError(item.type)">
-                      {{item.message | translate}}
-                    </span>
-
-                  </ng-container>
-                </ng-container>
-              </div>
-
-              <!-- informedConsentForMinors -->
-              <div class="col-12 mb-3">
-                <div class="form-check">
-                  <input class="form-check-input" [ngClass]="{'is-invalid': submit && f.informedConsentForMinors.errors}"
-                    type="checkbox" value="" id="informedConsentForMinorsCheck" formControlName="informedConsentForMinors">
-                  <label class="form-check-label" for="informedConsentForMinorsCheck">
-                    {{ "signUp.informedConsentForMinors" | translate }}
-                    <br>
-                    <!-- <a class="fw-bold" >Ver políticas aquí.</a> -->
-                    <a [href]="('signUp.informedConsentForMinorsLink' | translate)"
-                      target="_blank" class="fw-bold" rel="noopener noreferrer">
-                      {{ "general.seePoliciesHere" | translate }}
-                    </a>
-                  </label>
-
-                </div>
-                <ng-container *ngIf="submit">
-                  <ng-container *ngFor="let item of vm.informedConsentForMinors">
-                    <span class="badge bg-danger" *ngIf="f.informedConsentForMinors.hasError(item.type)">
-                      {{item.message | translate}}
-                    </span>
-
-                  </ng-container>
-                </ng-container>
-              </div>
-
-              <div class="col-12">
-                <div class="d-grid">
-
-                  <ng-container *ngIf="submit && loader; else renderCanSubmit">
-                    <button class="btn btn-one btn-large text-uppercase fw-bold" type="button" disabled>
-                      <div class="text-center">
-                        <div class="spinner-border spinner-border-sm" role="status">
-                          <span class="visually-hidden"> {{ "general.loading" | translate }}...</span>
-                        </div>
-                      </div>
-                    </button>
-
-                  </ng-container>
-
-                  <ng-template #renderCanSubmit>
-                    <div class="d-sm-flex justify-content-between">
-                      <button class="btn btn-three btn-small text-uppercase fw-bold mb-3 mb-sm-0" type="button"
-                        routerLink="/sign-in">
-                        <i class="bi bi-chevron-left"></i> {{ "general.back" | translate }}
-                      </button>
-                      <button class="btn btn-one btn-small text-uppercase fw-bold" type="submit">
-                        {{ "general.signUp" | translate }}
-                      </button>
-                    </div>
-                  </ng-template>
-
-                </div>
-              </div>
-
-            </div>
-
-          </form>
-
-        </div>
-        <app-footer-cilik></app-footer-cilik>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div>
   <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
 
@@ -347,67 +6,63 @@
       <!-- Input First Name -->
       <div class="col-12 col-md-6">
         <div class="form-floating form-camp mb-3">
-          <input type="text" [ngClass]="{'is-invalid': submit && f.firstName.errors}"
-            formControlName="firstName" class="form-control" id="floatingInputFirstName" placeholder="{{ 'general.name' | translate }}">
+          <input type="text" [ngClass]="{'is-invalid': submit && f.name.errors}"
+            formControlName="name" class="form-control" id="floatingInputFirstName" placeholder="{{ 'general.name' | translate }}">
           <label for="floatingInputFirstName">{{ "general.name" | translate }}</label>
 
-          <ng-container *ngIf="submit" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'firstName'}"></ng-container>
+          <ng-container *ngIf="submit" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'name'}"></ng-container>
         </div>
       </div>
 
       <!-- Input Last Name -->
       <div class="col-12 col-md-6">
         <div class="form-floating form-camp mb-3">
-          <input type="text" [ngClass]="{'is-invalid': submit && f.lastName.errors}" formControlName="lastName"
+          <input type="text" [ngClass]="{'is-invalid': submit && f.surnames.errors}" formControlName="surnames"
             class="form-control" id="floatingInputLastName" placeholder="{{ 'general.last-name' | translate }}">
           <label for="floatingInputLastName">{{ "general.lastName" | translate }}</label>
 
-          <ng-container *ngIf="submit" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'lastName'}"></ng-container>
+          <ng-container *ngIf="submit" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'surnames'}"></ng-container>
         </div>
       </div>
 
       <!-- Input Document Type -->
       <div class="col-12 col-md-6 col-xl-4">
         <div class="form-floating form-camp mb-3">
-          <select class="form-select" [ngClass]="{'is-invalid': submit && f.documentType.errors}"
-            formControlName="documentType" id="floatingSelectDocumentType" aria-label="Document Type">
-            <option value="dni">{{ "general.DNI1" | translate }}</option>
-            <option value="foreigner">{{ "general.DNI2" | translate }}</option>
-            <option value="taxnumber">{{ "general.DNI3" | translate }}</option>
-            <option value="passport">{{ "general.DNI4" | translate }}</option>
-            <option value="minors">{{ "general.DNI5" | translate }}</option>
+          <select class="form-select" [ngClass]="{'is-invalid': submit && f.identificationType.errors}"
+            formControlName="identificationType" id="floatingSelectDocumentType" aria-label="Document Type">
+            <option value="cedula">Cédula / ID / DNI</option>
+            <option value="passport">Pasaporte</option>
+            <option value="identityCard">Tarjeta de Identidad</option>
           </select>
-          <label for="floatingSelectDocumentType"> 
-            {{ "general.dniType" | translate }}
-          </label>
+          <label for="floatingSelectDocumentType">Identification Type</label>
 
-          <ng-container *ngIf="submit" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'documentType'}"></ng-container>
+          <ng-container *ngIf="submit" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'identificationType'}"></ng-container>
         </div>
       </div>
 
       <!-- Input DNI -->
       <div class="col-12 col-md-6 col-xl-8">
         <div class="form-floating form-camp mb-3">
-          <input type="text" [ngClass]="{'is-invalid': submit && f.dni.errors}" formControlName="dni"
+          <input type="text" [ngClass]="{'is-invalid': submit && f.identification.errors}" formControlName="identification"
             class="form-control" id="floatingInputDNI" placeholder="DNI">
-          <label for="floatingInputDNI"> {{ "general.dni" | translate }}</label>
+          <label for="floatingInputDNI">{{ "general.dni" | translate }}</label>
 
-          <ng-container *ngIf="submit" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'dni'}"></ng-container>
+          <ng-container *ngIf="submit" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'identification'}"></ng-container>
         </div>
       </div>
 
       <!-- Input Prefix -->
       <div class="col-12 col-md-4">
         <div class="form-floating form-camp mb-3">
-          <select class="form-select" [ngClass]="{'is-invalid': submit && f.prefix.errors}"
-            formControlName="prefix" id="floatingSelectPrefix" aria-label="Prefix">
+          <select class="form-select" [ngClass]="{'is-invalid': submit && f.prefijo.errors}"
+            formControlName="prefijo" id="floatingSelectPrefix" aria-label="Prefix">
             <ng-container *ngFor="let item of phoneData">
               <option [value]="item.dial_code">{{item.dial_code}} {{item.name}} {{item.flag}}</option>
             </ng-container>
           </select>
           <label for="floatingSelectPrefix">{{ "general.country" | translate }}</label>
 
-          <ng-container *ngIf="submit" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'prefix'}"></ng-container>
+          <ng-container *ngIf="submit" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'prefijo'}"></ng-container>
         </div>
       </div>
 
@@ -415,13 +70,13 @@
       <div class="col-12 col-md-8">
         <div class="form-floating form-camp mb-3">
           <input 
-            type="text" [ngClass]="{'is-invalid': submit && f.phoneNumber.errors}"
-            formControlName="phoneNumber" class="form-control" id="floatingInputPhoneNumber"
+            type="text" [ngClass]="{'is-invalid': submit && f.phone.errors}"
+            formControlName="phone" class="form-control" id="floatingInputPhoneNumber"
             placeholder="{{ 'general.phoneNumber' | translate }}"
           >
           <label for="floatingInputPhoneNumber">{{ "general.phoneNumber" | translate }}</label>
 
-          <ng-container *ngIf="submit" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'phoneNumber'}"></ng-container>
+          <ng-container *ngIf="submit" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'phone'}"></ng-container>
         </div>
       </div>
 
