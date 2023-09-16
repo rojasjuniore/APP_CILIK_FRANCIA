@@ -481,7 +481,7 @@ export class AuthenticationService {
     return this.afs.collection(collection,
       (ref) => {
         let query: Query = ref;
-        for (const row of where) { query = ref.where(row.field, row.condition, row.value); }
+        for (const row of where) { query = query.where(row.field, row.condition, row.value); }
 
         for (const order of orderBy) { query = ref.orderBy(order.field, order.order); }
 
@@ -492,6 +492,34 @@ export class AuthenticationService {
         return query;
       }
     ).valueChanges({ idField });
+  }
+
+  async getDynamicToPromise(collection: string, where: any[] = [], opts: any = {}): Promise<any[]> {
+    const {
+      idField = "_id",
+      startAt = null,
+      endAt = null,
+      orderBy = [],
+    } = opts;
+
+    console.log({where});
+
+    const snapshot =  await this.afs.collection(collection,
+      (ref) => {
+        let query: Query = ref;
+        for (const row of where) { query = query.where(row.field, row.condition, row.value); }
+
+        for (const order of orderBy) { query = ref.orderBy(order.field, order.order); }
+
+        if (startAt) { query = query.startAt(startAt); }
+
+        if (endAt) { query = query.endAt(endAt); }
+
+        return query;
+      }
+    ).get().toPromise()
+
+    return await handlerArrayResult(snapshot, opts);
   }
 
   async checkDNI(dni: string, documentType: string) {
@@ -506,6 +534,26 @@ export class AuthenticationService {
 
   getUserAuth(email) {
     return this.afs.collection('users', ref => ref.where('email', '==', email)).valueChanges();
+  }
+}
+
+
+/**
+ * Validar si usuario registrado a través de un identificador
+ *
+ * @param service
+ * @returns
+ */
+export function checkIdentificationForExists(service: AuthenticationService): AsyncValidatorFn {
+  return (control: AbstractControl): Observable<ValidationErrors | null> => {
+    return service.afs.collection('users', (ref) => ref.where('identification', '==', `${control.value}`.trim())).get()
+      .pipe(
+        // tap((result) => console.log(result) ),
+        map((data) => {
+          // console.log({data});
+          return (data.empty) ? null : { existingIdentification: true };
+        })
+      );
   }
 }
 
