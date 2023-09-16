@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CartService } from 'src/app/services/cart.service';
 import { CustomizationfileService } from 'src/app/services/customizationfile/customizationfile.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-store',
@@ -61,14 +62,40 @@ export class StoreComponent implements OnInit {
   constructor(
     private spinner: NgxSpinnerService,
     private cartSrv: CartService,
-    private _cf: CustomizationfileService
+    private _cf: CustomizationfileService,
   ) { }
 
   ngOnInit(): void {
   }
 
+  async runShoppingCartCheck(){
+    try {
+      await this.spinner.show();
+
+      /** Crear Carrito si no existe o verificar si existe antes de procesar */
+      await this.cartSrv.buildAndStore(environment.dataEvent.keyDb);
+      return;
+      
+    } catch (err) {
+      console.log('Error on StoreComponent.runShoppingCartCheck', err);
+      return;
+    } finally {
+      this.spinner.hide();
+    }
+  }
+
   async onSelectItem(item: any){
-    console.log(item);
+    try {
+      /** Ejecutar validación de carrito de compras */
+      await this.runShoppingCartCheck();
+      
+      console.log(item);
+      return;
+      
+    } catch (err) {
+      console.log('Error on StoreComponent.onSelectItem', err);
+      return;
+    } 
   }
 
 }
