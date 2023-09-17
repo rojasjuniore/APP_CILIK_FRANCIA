@@ -63,11 +63,15 @@ export class CartService {
    * @param field             Campo aplicar la operación
    * @returns 
    */
-  async addOnCart(eventId: string, uid: string, data: any, field: string = 'product'){
-    return await this.afs.collection(this.collection)
-      .doc(eventId).collection('list').doc(uid).update({
-        [field]: arrayUnion(data)
-      });
+  async addOnCart(eventId: string, uid: string, data: any[], field: string = 'product'){
+    await Promise.all(
+      data.map(async (item: any) => 
+        this.afs.collection(this.collection).doc(eventId).collection('list').doc(uid).update({[field]: arrayUnion(item)})
+      )
+    );
+    return true;
+    // return await this.afs.collection(this.collection)
+    //   .doc(eventId).collection('list').doc(uid).update({[field]: arrayUnion(data)});
   }
 
   /**
