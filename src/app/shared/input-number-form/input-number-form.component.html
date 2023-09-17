@@ -1,0 +1,21 @@
+<div class="card-box-number">
+    <div class="card-box-number-header">
+        <label for="inputNroParticipants" class="form-label w-100 text-center">
+            {{label}}
+        </label>
+    </div>  
+    <div class="card-box-number-body">
+        <div class="input-group">
+            <button class="btn" type="button" id="button-addon1" (click)="handlerQuantity('sub')" [disabled]="quantity == min">
+                <i class="bi bi-dash"></i>
+            </button>
+            <input type="text" class="form-control text-center" placeholder="00" readonly
+                id="inputNroParticipants" aria-label="Example text with button addon" aria-describedby="button-addon1"
+                [(ngModel)]="quantity">
+            <button class="btn" type="button" id="button-addon1" (click)="handlerQuantity('add')" [disabled]="quantity == max">
+                <i class="bi bi-plus"></i>
+            </button>
+        </div>
+    </div>
+</div>
+  

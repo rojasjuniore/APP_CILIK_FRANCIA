@@ -11,6 +11,8 @@ import { RouterModule } from '@angular/router';
 import { FooterCilikComponent } from '../components/footer-cilik/footer-cilik.component';
 import { OutPagesLayoutComponent } from './out-pages-layout/out-pages-layout.component';
 import { HeaderWelcomeComponent } from './header-welcome/header-welcome.component';
+import { ModalOnlyInputNumberComponent } from './modal-only-input-number/modal-only-input-number.component';
+import { InputNumberFormComponent } from './input-number-form/input-number-form.component';
 
 
 
@@ -23,6 +25,8 @@ import { HeaderWelcomeComponent } from './header-welcome/header-welcome.componen
     RegistroExitosoComponent,
     PagesLayoutComponent,
     OutPagesLayoutComponent,
+    InputNumberFormComponent,
+    ModalOnlyInputNumberComponent,
   ],
   imports: [
     CommonModule,
@@ -46,6 +50,8 @@ import { HeaderWelcomeComponent } from './header-welcome/header-welcome.componen
     RegistroExitosoComponent,
     PagesLayoutComponent,
     OutPagesLayoutComponent,
+    InputNumberFormComponent,
+    ModalOnlyInputNumberComponent,
   ]
 })
 export class SharedModule { }
