@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import moment from 'moment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CartService } from 'src/app/services/cart.service';
 import { CustomizationfileService } from 'src/app/services/customizationfile/customizationfile.service';
+import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 import { ModalOnlyInputNumberComponent } from 'src/app/shared/modal-only-input-number/modal-only-input-number.component';
 import { environment } from 'src/environments/environment';
 
@@ -66,6 +68,7 @@ export class StoreComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private cartSrv: CartService,
     private _cf: CustomizationfileService,
+    private sweetAlert2Srv: Sweetalert2Service
   ) { }
 
   ngOnInit(): void {
@@ -105,6 +108,45 @@ export class StoreComponent implements OnInit {
       console.log('Error on StoreComponent.onSelectItem', err);
       return;
     } 
+  }
+
+  async onModalInputNumberResponse(params: any){
+    try {
+      console.log('onModalInputNumberResponse', params);
+      const { status, quantity, data } = params;
+
+      /** Se cancelo la ejecución */
+      if(!status){ return; }
+
+      await this.spinner.show();
+
+      let toCart: any[] = [];
+      const uid: any = this._cf.getUid();
+
+      switch (data.slug) {
+        case 'full-pass':
+
+          toCart = new Array(quantity).fill({...data, quantity: 1})
+          .map((item: any, index: number) => ({...item, seed: moment().valueOf() + (index + 1) }))
+          // console.log('snapshot', toCart);
+
+          /** Almacenar articulos en el carrito */
+          await this.cartSrv.addOnCart(environment.dataEvent.keyDb, uid, toCart);
+
+          this.sweetAlert2Srv.showToast('Artículo agregado al carrito', 'success');
+          return;
+      
+        default:
+          console.log('default');
+          break;
+      }
+      
+    } catch (err) {
+      console.log('Error on StoreComponent.onModalInputNumberResponse', err);
+      return;
+    } finally {
+      this.spinner.hide();
+    }
   }
 
 }
