@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CartService } from 'src/app/services/cart.service';
 import { CustomizationfileService } from 'src/app/services/customizationfile/customizationfile.service';
+import { ModalOnlyInputNumberComponent } from 'src/app/shared/modal-only-input-number/modal-only-input-number.component';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -10,6 +11,8 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./store.component.css']
 })
 export class StoreComponent implements OnInit {
+
+  @ViewChild('modalOnlyInputNumber') modalOnlyInputNumber!: ModalOnlyInputNumberComponent;
 
   public storeOptions: any[] = [
     {
@@ -86,10 +89,16 @@ export class StoreComponent implements OnInit {
 
   async onSelectItem(item: any){
     try {
+      console.log(item);
+
       /** Ejecutar validación de carrito de compras */
       await this.runShoppingCartCheck();
+
+      if(['full-pass'].includes(item.slug)){
+        this.modalOnlyInputNumber.showModal(item);
+        return;
+      }
       
-      console.log(item);
       return;
       
     } catch (err) {
