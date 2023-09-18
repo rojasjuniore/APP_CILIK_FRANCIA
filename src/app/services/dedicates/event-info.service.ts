@@ -47,6 +47,14 @@ export class EventInfoService {
 
   constructor() { }
 
+  getStartEventDate(){
+    return this.eventDates[0];
+  }
+
+  getEndEventDate(){
+    return this.eventDates[this.eventDates.length - 1];
+  }
+
   getWeekendDays(){
     return this.eventDates.filter((date) => date.weekend);
   }
