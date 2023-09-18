@@ -14,6 +14,7 @@ import { HeaderWelcomeComponent } from './header-welcome/header-welcome.componen
 import { ModalOnlyInputNumberComponent } from './modal-only-input-number/modal-only-input-number.component';
 import { InputNumberFormComponent } from './input-number-form/input-number-form.component';
 import { ModalStoreOnlyCategoriesComponent } from './modal-store-only-categories/modal-store-only-categories.component';
+import { InputSigleCalendarComponent } from './input-sigle-calendar/input-sigle-calendar.component';
 
 
 
@@ -26,7 +27,9 @@ import { ModalStoreOnlyCategoriesComponent } from './modal-store-only-categories
     RegistroExitosoComponent,
     PagesLayoutComponent,
     OutPagesLayoutComponent,
+
     InputNumberFormComponent,
+    InputSigleCalendarComponent,
     
     ModalOnlyInputNumberComponent,
     ModalStoreOnlyCategoriesComponent,
@@ -53,7 +56,9 @@ import { ModalStoreOnlyCategoriesComponent } from './modal-store-only-categories
     RegistroExitosoComponent,
     PagesLayoutComponent,
     OutPagesLayoutComponent,
+    
     InputNumberFormComponent,
+    InputSigleCalendarComponent,
 
     ModalOnlyInputNumberComponent,
     ModalStoreOnlyCategoriesComponent,
