@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
-import { Observable, catchError, map, of, tap } from 'rxjs';
+import { Observable, catchError, map, of, switchMap, tap } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CartService } from 'src/app/services/cart.service';
 import { PreSaleService } from 'src/app/services/pre-sale.service';
@@ -34,9 +34,9 @@ export class HeaderCilikComponent implements OnInit {
     /** Váidar si existe carrito */
     this.cart$ = this.authSrv.uid$.pipe(
       // tap(console.log),
-      map((uid: any) => (uid) 
+      switchMap((uid: any) => (uid) 
         ? this.cartSrv.getCartObservable(environment.dataEvent.keyDb, uid)
-        : null
+        : of(null)
       ),
       catchError((err) => of(null))
     );
