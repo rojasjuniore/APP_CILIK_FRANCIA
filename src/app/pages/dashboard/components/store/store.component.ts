@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import moment from 'moment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CartService } from 'src/app/services/cart.service';
@@ -75,6 +76,7 @@ export class StoreComponent implements OnInit {
     private _cf: CustomizationfileService,
     private sweetAlert2Srv: Sweetalert2Service,
     private eventInfoSrv: EventInfoService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -117,11 +119,13 @@ export class StoreComponent implements OnInit {
         return;
       }
 
+      /** CATEGORY PASS */
       if(item.slug === 'category-pass'){
         this.modalOnlyCategories.showModal({...item});
         return;
       }
 
+      /** DAY PASS */
       if(item.slug === 'day-pass'){
         this.modalOnlyDayPass.showModal({
           ...item,
@@ -129,6 +133,12 @@ export class StoreComponent implements OnInit {
           startDate: moment(this.eventInfoSrv.getStartEventDate().date).format('MM/DD/YYYY'),
           endDate: moment(this.eventInfoSrv.getEndEventDate().date).format('MM/DD/YYYY'),
         });
+        return;
+      }
+
+      /** HOTEL AND EVENT */
+      if(item.slug === 'hotel-event'){
+        this.router.navigate(['/pages/hotel-and-event']);
         return;
       }
       
