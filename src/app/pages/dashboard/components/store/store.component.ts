@@ -3,6 +3,7 @@ import moment from 'moment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CartService } from 'src/app/services/cart.service';
 import { CustomizationfileService } from 'src/app/services/customizationfile/customizationfile.service';
+import { EventInfoService } from 'src/app/services/dedicates/event-info.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 import { ModalOnlyInputNumberComponent } from 'src/app/shared/modal-only-input-number/modal-only-input-number.component';
 import { environment } from 'src/environments/environment';
@@ -68,7 +69,8 @@ export class StoreComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private cartSrv: CartService,
     private _cf: CustomizationfileService,
-    private sweetAlert2Srv: Sweetalert2Service
+    private sweetAlert2Srv: Sweetalert2Service,
+    private eventInfoSrv: EventInfoService,
   ) { }
 
   ngOnInit(): void {
@@ -97,8 +99,17 @@ export class StoreComponent implements OnInit {
       /** Ejecutar validación de carrito de compras */
       await this.runShoppingCartCheck();
 
-      if(['full-pass'].includes(item.slug)){
-        this.modalOnlyInputNumber.showModal(item);
+      /** FULL PASS */
+      if(item.slug === 'full-pass'){
+        const allDays = this.eventInfoSrv.eventDates;
+        this.modalOnlyInputNumber.showModal({...item, dates: allDays});
+        return;
+      }
+
+      /** WEEKEND PASS */
+      if(item.slug === 'weekend-pass'){
+        const weekendDays = this.eventInfoSrv.getWeekendDays();
+        this.modalOnlyInputNumber.showModal({...item, dates: weekendDays});
         return;
       }
       
@@ -125,21 +136,28 @@ export class StoreComponent implements OnInit {
 
       switch (data.slug) {
         case 'full-pass':
-
+          /** Crear items a añadir */
           toCart = new Array(quantity).fill({...data, quantity: 1})
-          .map((item: any, index: number) => ({...item, seed: moment().valueOf() + (index + 1) }))
-          // console.log('snapshot', toCart);
+          .map((item: any) => ({...item, seed: this.cartSrv.generateId()}));
+          break;
 
-          /** Almacenar articulos en el carrito */
-          await this.cartSrv.addOnCart(environment.dataEvent.keyDb, uid, toCart);
-
-          this.sweetAlert2Srv.showToast('Artículo agregado al carrito', 'success');
-          return;
+        case 'weekend-pass':
+          /** Crear items a añadir */
+          toCart = new Array(quantity).fill({...data, quantity: 1})
+          .map((item: any) => ({...item, seed: this.cartSrv.generateId()}));
+          break;
+          
       
         default:
           console.log('default');
           break;
       }
+
+      /** Almacenar articulos en el carrito */
+      await this.cartSrv.addOnCart(environment.dataEvent.keyDb, uid, toCart);
+
+      this.sweetAlert2Srv.showToast('Artículo agregado al carrito', 'success');
+      return;
       
     } catch (err) {
       console.log('Error on StoreComponent.onModalInputNumberResponse', err);
