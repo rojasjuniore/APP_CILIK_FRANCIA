@@ -13,6 +13,7 @@ import { OutPagesLayoutComponent } from './out-pages-layout/out-pages-layout.com
 import { HeaderWelcomeComponent } from './header-welcome/header-welcome.component';
 import { ModalOnlyInputNumberComponent } from './modal-only-input-number/modal-only-input-number.component';
 import { InputNumberFormComponent } from './input-number-form/input-number-form.component';
+import { ModalStoreOnlyCategoriesComponent } from './modal-store-only-categories/modal-store-only-categories.component';
 
 
 
@@ -26,7 +27,9 @@ import { InputNumberFormComponent } from './input-number-form/input-number-form.
     PagesLayoutComponent,
     OutPagesLayoutComponent,
     InputNumberFormComponent,
+    
     ModalOnlyInputNumberComponent,
+    ModalStoreOnlyCategoriesComponent,
   ],
   imports: [
     CommonModule,
@@ -51,7 +54,9 @@ import { InputNumberFormComponent } from './input-number-form/input-number-form.
     PagesLayoutComponent,
     OutPagesLayoutComponent,
     InputNumberFormComponent,
+
     ModalOnlyInputNumberComponent,
+    ModalStoreOnlyCategoriesComponent,
   ]
 })
 export class SharedModule { }
