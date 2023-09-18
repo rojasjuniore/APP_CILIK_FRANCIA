@@ -1,1 +1,101 @@
 <p>cart works!</p>
+<div class="row">
+
+    <div class="col-12">
+
+        <div class="card card-box p-3 mb-3">
+            <div class="row g-2 d-flex align-items-center">
+                <div class="col-12 px-3">
+                    <div class="d-flex justify-content-between">
+                        <span class="text-rslt fw-bold fs-5">
+                            {{ "general.room" | translate }} #0
+                        </span>
+                    </div>
+                </div>
+                <div class="seprd2"></div>
+                <div class="col-12 px-3 mb-2">
+                    <!-- {{item?.ubicationTypeDescription | uppercase }} {{item?.description | uppercase}} -->
+                    <!-- {{'hotel.ubitacion.'+item.ubicationType | translate | uppercase}} - {{ 'hotel.roomType.'+item.roomCode | translate | uppercase}} -->
+                    description
+                </div>
+                <div class="col-12 px-3">
+                    <p class="m-0">
+                        {{ "general.#ofGuests" | translate }} 0 | 
+        
+                        {{ "general.person" | translate | lowercase}}
+                        {{ "general.people" | translate | lowercase}}
+                    </p>
+                    <p class="m-0">
+                        {{ "general.extraNight" | translate }} 0
+                    </p>
+                    <hr>
+                    <p class="m-0">
+                        {{ "general.valueWithoutDiscount" | translate }} 
+                        <span class="text-decoration-line-through">
+                            USD 0
+                        </span>
+                    </p>
+                    <p class="m-0">
+                        {{ "general.discount" | translate }}: USD 0
+                    </p>
+                    <div class="d-flex justify-content-between">
+                        <span class="fs-4 fw-bolder">
+                            {{ "general.total" | translate }}: USD 0
+                        </span>
+                        <div>
+                            <button type="button" class="btn-icon btn-icon-one">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                            &nbsp;
+                            <button type="button" class="btn-icon btn-icon-two">
+                                <i class="bi bi-trash3"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card card-box p-3 mb-3">
+            <div class="row g-2 d-flex align-items-center">
+                <div class="col-12 px-3">
+                    <div class="d-flex justify-content-between">
+                        <span class="text-rslt fw-bold fs-5">Titulo</span>
+                    </div>
+                </div>
+
+                <div class="seprd2"></div>
+
+                <div class="col-12 px-3">
+                    <p class="fw-bold m-0">Subtitulo:</p>
+                    <div class="seprd m-0 mb-2"></div>
+                    <p class="m-0">Monto: 0</p>
+                    <h5 class="pb-3 fw-bold">Total: USD 0</h5>
+
+                    <div class="seprd2"></div>
+
+                    <p class="m-0 mt-4">
+                        Monto sin descuento:
+                        <span class="text-decoration-line-through">USD 0</span>
+                    </p>
+                    <p class="m-0">Descuento: USD 0</p>
+                    <div class="d-flex justify-content-between">
+                        <span class="fs-4 fw-bolder">Total: USD 0</span>
+                        <div>
+                            <button type="button" class="btn-icon btn-icon-one">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                            &nbsp;
+                            <button type="button" class="btn-icon btn-icon-two">
+                                <i class="bi bi-trash3"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
