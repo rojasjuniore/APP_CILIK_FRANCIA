@@ -35,7 +35,7 @@ export class InputSigleCalendarComponent implements OnInit, AfterViewInit, OnCha
 
   @Output() onUpdateDates = new Subject<string | string[]>();
 
-  public datesSelected: string | string[] = '';
+  public datesSelected: any = '';
 
 
   constructor() { }
@@ -90,12 +90,20 @@ export class InputSigleCalendarComponent implements OnInit, AfterViewInit, OnCha
     .on('changeDate', (e: any) => {
       // Si es multidate
       if(this.multidate) {
-        this.datesSelected = e.dates.map((item: any) => moment(item).format('MM/DD/YYYY'));
+        this.datesSelected = e.dates.map((item: any) => ({
+          dateParsed: moment(item).format('MM/DD/YYYY'),
+          order: moment(item).valueOf()
+        }))
+        .sort((a: any, b: any) => a.order - b.order)
+        .map((item: any) => item.dateParsed);
       } else {
         this.datesSelected = moment(e.date).format('MM/DD/YYYY');
       }
 
-      this.onUpdateDates.next(this.datesSelected);
+      const res = (this.multidate)
+        ? this.datesSelected.map((item: any) => moment(item, 'MM/DD/YYYY').format('YYYY-MM-DD'))
+        : moment(this.datesSelected).format('YYYY-MM-DD');
+      this.onUpdateDates.next(res);
     })
     // .on('clearDate', (e: any) => { })
   }
@@ -109,7 +117,6 @@ export class InputSigleCalendarComponent implements OnInit, AfterViewInit, OnCha
     this.datesSelected = '';
     this.onUpdateDates.next(this.datesSelected);
   }
-
 
   ngOnDestroy() {
     $(`#${this._id}`).datepicker('destroy');
