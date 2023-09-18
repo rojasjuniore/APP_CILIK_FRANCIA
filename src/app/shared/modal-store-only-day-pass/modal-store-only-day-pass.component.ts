@@ -88,7 +88,7 @@ export class ModalStoreOnlyDayPassComponent implements OnInit, AfterViewInit {
         console.log('Formulario inválido');
         return;
       }
-      
+
       /** Responde a elemento padre */
       this.closeModal({
         status: true,
