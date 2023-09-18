@@ -7,6 +7,7 @@ import { EventInfoService } from 'src/app/services/dedicates/event-info.service'
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 import { ModalOnlyInputNumberComponent } from 'src/app/shared/modal-only-input-number/modal-only-input-number.component';
 import { ModalStoreOnlyCategoriesComponent } from 'src/app/shared/modal-store-only-categories/modal-store-only-categories.component';
+import { ModalStoreOnlyDayPassComponent } from 'src/app/shared/modal-store-only-day-pass/modal-store-only-day-pass.component';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -18,6 +19,7 @@ export class StoreComponent implements OnInit {
 
   @ViewChild('modalOnlyInputNumber') modalOnlyInputNumber!: ModalOnlyInputNumberComponent;
   @ViewChild('modalOnlyCategories') modalOnlyCategories!: ModalStoreOnlyCategoriesComponent;
+  @ViewChild('modalOnlyDayPass') modalOnlyDayPass!: ModalStoreOnlyDayPassComponent;
 
   public storeOptions: any[] = [
     {
@@ -119,6 +121,16 @@ export class StoreComponent implements OnInit {
         this.modalOnlyCategories.showModal({...item});
         return;
       }
+
+      if(item.slug === 'day-pass'){
+        this.modalOnlyDayPass.showModal({
+          ...item,
+          multidate: true,
+          startDate: moment(this.eventInfoSrv.getStartEventDate().date).format('MM/DD/YYYY'),
+          endDate: moment(this.eventInfoSrv.getEndEventDate().date).format('MM/DD/YYYY'),
+        });
+        return;
+      }
       
       return;
       
@@ -185,20 +197,21 @@ export class StoreComponent implements OnInit {
 
       let toCart: any[] = [];
       const uid: any = this._cf.getUid();
+      const allDays = this.eventInfoSrv.eventDates;
 
       if(form.categoryTypes === 'solo'){
         toCart = new Array(form.quantity).fill({...data, quantity: 1, categoryType: form.categoryTypes, capacity: 1})
-        .map((item: any) => ({...item, seed: this.cartSrv.generateId()}));
+        .map((item: any) => ({...item, dates: allDays, seed: this.cartSrv.generateId()}));
       }
 
       if(form.categoryTypes === 'couple'){
         toCart = new Array(form.quantity).fill({...data, quantity: 1, categoryType: form.categoryTypes, capacity: 2})
-        .map((item: any) => ({...item, seed: this.cartSrv.generateId()}));
+        .map((item: any) => ({...item, dates: allDays, seed: this.cartSrv.generateId()}));
       }
 
       if(form.categoryTypes === 'group'){
         toCart = new Array(1).fill({...data, quantity: 1, categoryType: form.categoryTypes, capacity: form.quantity})
-        .map((item: any) => ({...item, seed: this.cartSrv.generateId()}));
+        .map((item: any) => ({...item, dates: allDays, seed: this.cartSrv.generateId()}));
       }
 
       /** Almacenar articulos en el carrito */
@@ -209,6 +222,39 @@ export class StoreComponent implements OnInit {
       
     } catch (err) {
       console.log('Error on StoreComponent.onModalInputNumberResponse', err);
+      return;
+    } finally {
+      this.spinner.hide();
+    }
+  }
+
+  async onModalDayPassResponse(params: any){
+    try {
+      console.log('onModalCategoriesResponse', params);
+      const { status, form,  data } = params;
+
+      /** Se cancelo la ejecución */
+      if(!status){ return; }
+
+      await this.spinner.show();
+
+      const dates = this.eventInfoSrv.eventDates.filter((date: any) => form.dates.includes(date.date));
+
+      const toCart = new Array(form.quantity).fill({...data, quantity: 1, capacity: 1, dates})
+      .map((item: any) => ({...item, seed: this.cartSrv.generateId()}));
+      // console.log('toCart', toCart);
+
+      const uid: any = this._cf.getUid();
+
+
+      /** Almacenar articulos en el carrito */
+      await this.cartSrv.addOnCart(environment.dataEvent.keyDb, uid, toCart);
+
+      this.sweetAlert2Srv.showToast('Artículo agregado al carrito', 'success');
+      return;
+      
+    } catch (err) {
+      console.log('Error on StoreComponent.onModalDayPassResponse', err);
       return;
     } finally {
       this.spinner.hide();
