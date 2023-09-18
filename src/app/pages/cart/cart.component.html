@@ -1,11 +1,11 @@
 <div class="row">
 
 
-    <ng-container *ngIf="(cart); then renderCart; else renderEmptyCart"></ng-container>
+    <ng-container *ngIf="(cart?.product.length > 0); then renderCart; else renderEmptyCart"></ng-container>
 
     
 
-    <div class="col-12">
+    <div class="col-12" *ngIf="false">
         <div class="card card-box p-3 mb-3">
             <div class="row g-2 d-flex align-items-center">
                 <div class="col-12 px-3">
@@ -117,7 +117,7 @@
 
 <ng-template #renderEmptyCart>
     <div class="col-12">
-        <h5>
+        <h5 class="text-center">
             Your cart is empty
         </h5>
     </div>

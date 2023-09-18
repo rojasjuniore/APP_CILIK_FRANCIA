@@ -34,7 +34,7 @@ export class CartComponent implements OnInit, OnDestroy {
       distinctUntilChanged((prev, next) => JSON.stringify(prev) === JSON.stringify(next)),
     )
     .subscribe(cart => {
-      console.log('cart', cart);
+      // console.log('cart', cart);
       this.cart = cart;
       this.uid = this.cart.uid;
     });
