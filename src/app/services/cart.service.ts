@@ -36,7 +36,7 @@ export class CartService {
       eventId: params.eventId || environment.dataEvent.keyDb,
       createdAt: params.createdAt || moment().valueOf(),
       product: params.product || [],
-      status: 'pending'
+      status: 'draw' // draw, pending, completed, rejected
     };
   }
 
