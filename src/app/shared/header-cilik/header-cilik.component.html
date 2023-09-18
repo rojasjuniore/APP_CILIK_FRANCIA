@@ -21,9 +21,11 @@
             
             <div class="d-flex align-items-center">
 
-                <ng-container *ngIf="(preSaleOrder$ | async)?.orderId">
-                    <div class="btn-navbar-c d-flex justify-content-center align-items-center ms-3" (click)="removePreSaleOrder()">
-                        <span class="text-whi fs-4"><i class="bi bi-trash"></i></span> 
+                <ng-container *ngIf="(cart$ | async)">
+                    <div class="btn-navbar-c d-flex justify-content-center align-items-center ms-3" routerLink="/pages/cart">
+                        <span class="text-whi fs-4">
+                            <i class="bi bi-cart3"></i>
+                        </span> 
                     </div>
                 </ng-container>
 

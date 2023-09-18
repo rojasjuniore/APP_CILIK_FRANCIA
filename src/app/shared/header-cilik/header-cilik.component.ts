@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, map, of, tap } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { CartService } from 'src/app/services/cart.service';
 import { PreSaleService } from 'src/app/services/pre-sale.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-header-cilik',
@@ -14,7 +16,8 @@ import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 export class HeaderCilikComponent implements OnInit {
 
   public profile$!: Observable<any>;
-  public preSaleOrder$!: Observable<any>;
+  public cart$!: Observable<any>;
+  // public preSaleOrder$!: Observable<any>;
 
   constructor(
     private sweetAlert2Srv: Sweetalert2Service,
@@ -22,23 +25,24 @@ export class HeaderCilikComponent implements OnInit {
     private preSaleSrv: PreSaleService,
     private router: Router,
     private translatePipe: TranslatePipe,
+    private cartSrv: CartService
   ) { }
 
   ngOnInit(): void {
     this.profile$ = this.authSrv.userDoc$;
-    this.preSaleOrder$ = this.preSaleSrv.getDocumentLocalStorageObservable();
+
+    /** Váidar si existe carrito */
+    this.cart$ = this.authSrv.uid$.pipe(
+      tap(console.log),
+      map((uid: any) => (uid) 
+        ? this.cartSrv.getCartObservable(environment.dataEvent.keyDb, uid)
+        : null
+      ),
+      catchError((err) => of(null))
+    );
+    // this.preSaleOrder$ = this.preSaleSrv.getDocumentLocalStorageObservable();
   }
 
-  async removePreSaleOrder(){
-    const message = this.translatePipe.transform('general.removeOrder');
-    const ask = await this.sweetAlert2Srv.askConfirm(message);
-    if (!ask) { return ;}
-
-    this.preSaleSrv.removeDocumentLocalStorage();
-    this.router.navigate(['/pages/dashboard']);
-  }
-
-  
   public async logout() {
     const ask = await this.sweetAlert2Srv.askConfirm('¿Está seguro que desea cerrar sesión?');
     if (!ask) { return ;}
