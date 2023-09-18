@@ -153,24 +153,6 @@ export class StoreComponent implements OnInit {
           toCart = new Array(quantity).fill({...data, quantity: 1, capacity: 1})
           .map((item: any) => ({...item, seed: this.cartSrv.generateId()}));
           break;
-
-        case 'category-pass':
-
-          if(form.categoryTypes === 'solo'){
-            toCart = new Array(form.quantity).fill({...data, quantity: 1, categoryType: form.categoryTypes, capacity: 1})
-            .map((item: any) => ({...item, seed: this.cartSrv.generateId()}));
-          }
-
-          if(form.categoryTypes === 'couple'){
-            toCart = new Array(form.quantity).fill({...data, quantity: 1, categoryType: form.categoryTypes, capacity: 2})
-            .map((item: any) => ({...item, seed: this.cartSrv.generateId()}));
-          }
-
-          if(form.categoryTypes === 'group'){
-            toCart = new Array(1).fill({...data, quantity: 1, categoryType: form.categoryTypes, capacity: form.quantity})
-            .map((item: any) => ({...item, seed: this.cartSrv.generateId()}));
-          }
-          break;
       
         default:
           console.log('default');
