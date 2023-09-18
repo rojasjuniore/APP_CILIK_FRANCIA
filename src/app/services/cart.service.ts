@@ -20,6 +20,12 @@ export class CartService {
   ) { }
 
   /**
+   * Generar un id para un documento
+   * @returns 
+   */
+  generateId(){ return this.afs.createId(); }
+
+  /**
    * Crear estructura de documento para carrito de compras
    * @param params 
    * @returns 
