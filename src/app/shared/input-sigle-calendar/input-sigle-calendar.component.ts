@@ -24,6 +24,7 @@ export class InputSigleCalendarComponent implements OnInit, AfterViewInit, OnCha
   @Input() maxViewMode: number = 0;
 
   @Input() clearBtn: boolean = false;
+  @Input() keyboardNavigation: boolean = false;
 
   // https://bootstrap-datepicker.readthedocs.io/en/latest/options.html#language
   @Input() language: string = 'es';
@@ -68,6 +69,7 @@ export class InputSigleCalendarComponent implements OnInit, AfterViewInit, OnCha
       multidateSeparator: this.multidateSeparator,
       language: this.language,
       clearBtn: this.clearBtn,
+      keyboardNavigation: this.keyboardNavigation,
     };
 
     const filter = Object.keys(options).reduce((acc, key) => {
