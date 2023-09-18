@@ -2,8 +2,11 @@
     <span class="input-group-text" (click)="show()">
         <i class="bi bi-calendar3"></i>
     </span>
-    <input type="text" [id]="_id" class="form-control" [placeholder]="placeholder">
-    <button class="btn btn-one red" type="button" (click)="clearDates()" [disabled]="!datesSelected">
+    <input type="text" [id]="_id" class="form-control" [placeholder]="placeholder" readonly>
+    <span class="input-group-text" (click)="clearDates()">
         <i class="bi bi-trash3"></i>
-    </button>
+    </span>
+    <!-- <button class="btn btn-one red" type="button" (click)="clearDates()" [disabled]="!datesSelected">
+        <i class="bi bi-trash3"></i>
+    </button> -->
 </div>

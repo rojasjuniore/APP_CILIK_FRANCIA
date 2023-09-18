@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import 'bootstrap-datepicker';
 import moment from 'moment';
 import { Subject } from 'rxjs';
@@ -10,7 +10,7 @@ declare var $: any;
   templateUrl: './input-sigle-calendar.component.html',
   styleUrls: ['./input-sigle-calendar.component.css']
 })
-export class InputSigleCalendarComponent implements OnInit, AfterViewInit, OnDestroy {
+export class InputSigleCalendarComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
 
   @Input() _id: string = 'datepicker';
   @Input() placeholder: string = 'Selecciona una fecha';
@@ -42,6 +42,24 @@ export class InputSigleCalendarComponent implements OnInit, AfterViewInit, OnDes
   }
 
   ngAfterViewInit() {
+    this.buildDatepicker();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const { startDate, endDate } = changes;
+
+    if(startDate && startDate.currentValue) {
+      this.startDate = startDate.currentValue;
+      $(`#${this._id}`).datepicker('setStartDate', this.startDate);
+    }
+
+    if(endDate && endDate.currentValue) {
+      this.endDate = endDate.currentValue;
+      $(`#${this._id}`).datepicker('setEndDate', this.endDate);
+    }
+  }
+
+  public buildDatepicker(){
     const options = {
       format: 'mm/dd/yyyy',
       startDate: this.startDate,
