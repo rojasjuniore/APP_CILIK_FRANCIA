@@ -5,6 +5,12 @@ import { Injectable } from '@angular/core';
 })
 export class EventInfoService {
 
+  /** Fecha tope para días extras antes */
+  public beforeLimit = '2024-02-26'
+
+  /** Fecha tope para días extras después */
+  public afterLimit = '2024-02-18'
+
   /**
    * Días del evento
    */
@@ -27,7 +33,7 @@ export class EventInfoService {
     },
     {
       date: '2024-02-09',
-      weekend: true,
+      weekend: false,
     },
     {
       date: '2024-02-10',
