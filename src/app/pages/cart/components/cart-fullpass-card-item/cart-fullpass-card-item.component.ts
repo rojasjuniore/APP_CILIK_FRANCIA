@@ -17,8 +17,6 @@ export class CartFullpassCardItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  remove(): void{
-    this.onRemoveItem.next(this.item);
-  }
+  remove(): void{ this.onRemoveItem.next(this.item); }
 
 }
