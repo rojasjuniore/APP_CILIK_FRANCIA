@@ -22,6 +22,7 @@ export class InputSigleCalendarComponent implements OnInit, AfterViewInit, OnCha
   // https://bootstrap-datepicker.readthedocs.io/en/latest/options.html#maxviewmode
   @Input() minViewMode: number = 0;
   @Input() maxViewMode: number = 0;
+  @Input() weekStart: number = 0;
 
   @Input() clearBtn: boolean = false;
   @Input() keyboardNavigation: boolean = false;
@@ -84,6 +85,7 @@ export class InputSigleCalendarComponent implements OnInit, AfterViewInit, OnCha
       ...filter,
       minViewMode: this.minViewMode,
       maxViewMode: this.maxViewMode,
+      weekStart: this.weekStart,
     })
     .on('changeDate', (e: any) => {
       // Si es multidate
