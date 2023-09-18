@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HotelAndEventComponent implements OnInit {
 
+  public rooms: any[] = [];
+
   constructor() { }
 
   ngOnInit(): void {
