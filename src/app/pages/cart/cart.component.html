@@ -1,8 +1,11 @@
-<p>cart works!</p>
 <div class="row">
 
-    <div class="col-12">
 
+    <ng-container *ngIf="(cart); then renderCart; else renderEmptyCart"></ng-container>
+
+    
+
+    <div class="col-12">
         <div class="card card-box p-3 mb-3">
             <div class="row g-2 d-flex align-items-center">
                 <div class="col-12 px-3">
@@ -55,7 +58,9 @@
                 </div>
             </div>
         </div>
+    </div>
 
+    <div class="col-12">
         <div class="card card-box p-3 mb-3">
             <div class="row g-2 d-flex align-items-center">
                 <div class="col-12 px-3">
@@ -95,7 +100,24 @@
                 </div>
             </div>
         </div>
-
     </div>
 
 </div>
+
+
+<ng-template #renderCart>
+    <div class="col-12" *ngFor="let item of cart.product">
+        <ng-container [ngSwitch]="item.slug">
+            <app-cart-fullpass-card-item *ngSwitchCase="'full-pass'" [item]="item" (onRemoveItem)="onRemoveItem($event)"></app-cart-fullpass-card-item>
+        </ng-container>
+    </div>
+</ng-template>
+
+
+<ng-template #renderEmptyCart>
+    <div class="col-12">
+        <h5>
+            Your cart is empty
+        </h5>
+    </div>
+</ng-template>
