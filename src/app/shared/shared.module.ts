@@ -15,6 +15,7 @@ import { ModalOnlyInputNumberComponent } from './modal-only-input-number/modal-o
 import { InputNumberFormComponent } from './input-number-form/input-number-form.component';
 import { ModalStoreOnlyCategoriesComponent } from './modal-store-only-categories/modal-store-only-categories.component';
 import { InputSigleCalendarComponent } from './input-sigle-calendar/input-sigle-calendar.component';
+import { ModalStoreOnlyDayPassComponent } from './modal-store-only-day-pass/modal-store-only-day-pass.component';
 
 
 
@@ -33,6 +34,7 @@ import { InputSigleCalendarComponent } from './input-sigle-calendar/input-sigle-
     
     ModalOnlyInputNumberComponent,
     ModalStoreOnlyCategoriesComponent,
+    ModalStoreOnlyDayPassComponent,
   ],
   imports: [
     CommonModule,
@@ -62,6 +64,7 @@ import { InputSigleCalendarComponent } from './input-sigle-calendar/input-sigle-
 
     ModalOnlyInputNumberComponent,
     ModalStoreOnlyCategoriesComponent,
+    ModalStoreOnlyDayPassComponent,
   ]
 })
 export class SharedModule { }
