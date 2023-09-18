@@ -269,4 +269,34 @@ export class Sweetalert2Service {
     return await Swal.fire(title, message, type);
   }
 
+
+  async showCustomNumberCard(params: any){
+    const {
+
+    } = params;
+
+    const { value: formValues } = await Swal.fire({
+      title: 'Multiple inputs',
+      html:
+        '<input id="swal-input1" class="swal2-input">' +
+        '<input id="swal-input2" class="swal2-input">',
+      focusConfirm: false,
+      preConfirm: () => {
+
+        const a: any = document.getElementById('swal-input1') as HTMLInputElement;
+        const b: any = document.getElementById('swal-input2') as HTMLInputElement;
+
+        return [
+          a.value,
+          b.value
+          // document.getElementById('swal-input1').value,
+          // document.getElementById('swal-input2').value
+        ]
+      }
+    });
+
+    console.log({formValues});
+    return null;
+  }
+
 }
