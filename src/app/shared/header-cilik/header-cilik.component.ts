@@ -33,7 +33,7 @@ export class HeaderCilikComponent implements OnInit {
 
     /** Váidar si existe carrito */
     this.cart$ = this.authSrv.uid$.pipe(
-      tap(console.log),
+      // tap(console.log),
       map((uid: any) => (uid) 
         ? this.cartSrv.getCartObservable(environment.dataEvent.keyDb, uid)
         : null
