@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ModalHotelEventRoomsListComponent } from 'src/app/shared/modal-hotel-event-rooms-list/modal-hotel-event-rooms-list.component';
 
 @Component({
   selector: 'app-hotel-and-event',
@@ -7,11 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HotelAndEventComponent implements OnInit {
 
+  @ViewChild('modalRoomsList') modalRoomsList!: ModalHotelEventRoomsListComponent;
+
   public rooms: any[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  openModalRoomsList(){
+    this.modalRoomsList.showModal({});
+  }
+
+  resetRooms(){
+    this.rooms = [];
   }
 
 }
