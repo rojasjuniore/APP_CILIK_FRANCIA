@@ -17,6 +17,12 @@ export class CartFullpassCardItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log('CartFullpassCardItemComponent.item', this.item);
+  }
+
+  get totales() {
+    if(!this.item) return 0;
+    return Number(this.item.price) * Number(this.item.quantity);
   }
 
   remove(): void{ 

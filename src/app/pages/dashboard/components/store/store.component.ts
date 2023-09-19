@@ -5,6 +5,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { CartService } from 'src/app/services/cart.service';
 import { CustomizationfileService } from 'src/app/services/customizationfile/customizationfile.service';
 import { EventInfoService } from 'src/app/services/dedicates/event-info.service';
+import { PassesService } from 'src/app/services/dedicates/passes.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 import { ModalOnlyInputNumberComponent } from 'src/app/shared/modal-only-input-number/modal-only-input-number.component';
 import { ModalStoreOnlyCategoriesComponent } from 'src/app/shared/modal-store-only-categories/modal-store-only-categories.component';
@@ -30,6 +31,7 @@ export class StoreComponent implements OnInit {
     private _cf: CustomizationfileService,
     private sweetAlert2Srv: Sweetalert2Service,
     private eventInfoSrv: EventInfoService,
+    private passesSrv: PassesService,
     private router: Router,
   ) { }
 
@@ -54,15 +56,27 @@ export class StoreComponent implements OnInit {
 
   async onSelectItem(item: any){
     try {
-      console.log(item);
+      // console.log(item);
 
       /** Ejecutar validación de carrito de compras */
       await this.runShoppingCartCheck();
 
+      const currentDate = moment().format('YYYY-MM-DD');
+
       /** FULL PASS */
       if(item.slug === 'full-pass'){
+
+        /** Obtener días del evento */
         const allDays = this.eventInfoSrv.eventDates;
-        this.modalOnlyInputNumber.showModal({...item, dates: allDays});
+
+        /** Obtener precio del pase */
+        const passPrice = this.passesSrv.getPassPriceByDateAndSlug(currentDate ,item.slug);
+
+        this.modalOnlyInputNumber.showModal({
+          ...item, 
+          dates: allDays,
+          price: passPrice.price,
+        });
         return;
       }
 

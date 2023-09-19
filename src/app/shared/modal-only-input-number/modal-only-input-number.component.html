@@ -28,6 +28,10 @@
 
 
                         </div>
+
+                        <div class="col-12 text-center" *ngIf="item">
+                            <span class="fw-bold fs-4">Total: USD {{f['quantity'].value * item.price}}</span>
+                        </div>
                     </div>
                 </div>
             </div>
