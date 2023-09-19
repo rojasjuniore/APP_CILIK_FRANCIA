@@ -10,11 +10,11 @@
                     &nbsp;
                     Añadir
                 </button>
-                <button class="btn btn-one" (click)="resetRooms()">
+                <!-- <button class="btn btn-one" (click)="resetRooms()">
                     <i class="bi bi-trash3"></i>
                     &nbsp;
                     Limpiar
-                </button>
+                </button> -->
             </div>
         </div>
     </div>
@@ -35,10 +35,9 @@
 
 
 <ng-template #renderRooms>
-    <div class="col-12">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, reiciendis.
+    <div class="col-12" *ngFor="let item of rooms">
+        <app-cart-hotel-event-card-item [item]="item"></app-cart-hotel-event-card-item>
     </div>
-
 </ng-template>
 
 <ng-template #renderNoRooms>
@@ -49,4 +48,4 @@
     </div>
 </ng-template>
 
-<app-modal-hotel-event-rooms-list #modalRoomsList></app-modal-hotel-event-rooms-list>
+<app-modal-hotel-event-rooms-list #modalRoomsList (onCloseModal)="onAddRoom($event)"></app-modal-hotel-event-rooms-list>

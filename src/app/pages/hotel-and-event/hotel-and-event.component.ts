@@ -1,9 +1,11 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import moment from 'moment';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Subscription, catchError, distinctUntilChanged, map, of, switchMap } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CartService } from 'src/app/services/cart.service';
 import { EventInfoService } from 'src/app/services/dedicates/event-info.service';
+import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 import { ModalHotelEventRoomsListComponent } from 'src/app/shared/modal-hotel-event-rooms-list/modal-hotel-event-rooms-list.component';
 import { environment } from 'src/environments/environment';
 
@@ -25,6 +27,8 @@ export class HotelAndEventComponent implements OnInit, OnDestroy {
     private authSrv: AuthenticationService,
     private cartSrv: CartService,
     private eventInfoSrv: EventInfoService,
+    private spinner: NgxSpinnerService,
+    private sweetAlert2Srv: Sweetalert2Service,
   ) { }
 
   ngOnInit(): void {
@@ -55,6 +59,35 @@ export class HotelAndEventComponent implements OnInit, OnDestroy {
       startDate: moment(this.eventInfoSrv.beforeLimit).format('MM/DD/YYYY'),
       endDate: moment(this.eventInfoSrv.afterLimit).format('MM/DD/YYYY'),
     });
+  }
+
+  async onAddRoom(room: any){
+    console.log('onAddRoom', room);
+    try {
+
+      if(!room.status){ return; }
+
+      await this.spinner.show();
+
+      const eventOption = this.eventInfoSrv.getStoreOptionBySlug('hotel-event');
+
+      const toCart = {
+        room: room.data,
+        ...eventOption,
+        seed: this.cartSrv.generateId()
+      };
+
+      await this.cartSrv.addOnCart(environment.dataEvent.keyDb, this.uid, [toCart]);
+
+      this.sweetAlert2Srv.showToast('Artículo agregado al carrito', 'success');
+      return;
+      
+    } catch (err) {
+      console.log('Error on HotelAndEventComponent.onAddRoom', err);
+      return;
+    } finally {
+      this.spinner.hide();
+    }
   }
 
   resetRooms(){
