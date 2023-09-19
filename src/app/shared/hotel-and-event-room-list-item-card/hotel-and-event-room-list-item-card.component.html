@@ -31,7 +31,7 @@
             </div>
 
             <div class="text-sm-center">
-                <a href="javascript:void(0)" class="btn btn-one btn-small">
+                <a href="javascript:void(0)" class="btn btn-one btn-small" [ngClass]="{'disabled': dates.length == 0}" (click)="selectRoom()">
                     Añadir
                     &nbsp;
                     <i class="bi bi-cart-plus"></i>
