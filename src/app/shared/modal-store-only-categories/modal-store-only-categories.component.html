@@ -53,6 +53,10 @@
         (onUpdateQuantity)="onInputValueChange($event)"
     ></app-input-number-form>
 
+    <p class="text-center mt-4"> 
+        <span class="fw-bold fs-4">Total: USD 0</span>
+    </p>
+
     <p class="text-center">
         <ng-container *ngIf="submitted" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'quantity'}"></ng-container>
     </p>
