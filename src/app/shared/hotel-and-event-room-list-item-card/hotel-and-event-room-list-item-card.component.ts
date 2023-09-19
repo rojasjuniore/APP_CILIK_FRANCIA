@@ -50,7 +50,11 @@ export class HotelAndEventRoomListItemCardComponent implements OnInit, OnChanges
   }
 
   selectRoom(){
-    this.onSelectRoom.next({...this.item, dates: this.dates});
+    this.onSelectRoom.next({
+      ...this.item, 
+      dates: this.dates,
+      totales: this.totales,
+    });
   }
 
 }
