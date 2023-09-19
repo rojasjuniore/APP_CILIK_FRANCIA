@@ -98,4 +98,16 @@ export class PassesService {
   constructor(
     private eventInfoSrv: EventInfoService,
   ) { }
+
+  getPassPriceBySlug(slug: string){
+    return this.passPrice[slug];
+  }
+
+  getPassPriceByDateAndSlug(date: string, slug: string){
+    const priceList = this.getPassPriceBySlug(slug);
+    const price = priceList.find((item: any) => {
+      return this.eventInfoSrv.isDateInRange(date, item.ranges);
+    });
+    return price;
+  }
 }
