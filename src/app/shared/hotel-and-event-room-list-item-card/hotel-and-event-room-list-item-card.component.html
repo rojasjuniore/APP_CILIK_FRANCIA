@@ -1,9 +1,10 @@
 <div class="card card-box" >
     <div class="card-body">
-        <h5 class="card-title fw-bolder">
+        <h5 class="card-title fw-bolder text-rslt">
             <ng-container [ngTemplateOutlet]="renderCapacityIcon"></ng-container>
             | {{item.locationLabel}}
         </h5>
+        <div class="seprd2"></div>
         <p class="card-text">
             <!-- {{ 'hotel.roomType.'+row.roomCode | translate | uppercase}} -->
             <!-- {{row.description}} -->
@@ -24,10 +25,7 @@
         
         <div class="d-flex flex-column flex-md-row align-content-md-center justify-content-md-between">
             <div class="d-flex justify-content-center align-items-md-center">
-                <p class="card-text">
-                    Total
-                    <span class="fw-bold fs-4">USD {{totales}}</span>
-                </p>
+                <span class="fw-bold fs-4">Total: USD {{totales}}</span>
             </div>
 
             <div class="text-sm-center">
