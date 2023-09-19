@@ -9,6 +9,7 @@ import { pick } from 'underscore';
 import moment from 'moment';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { environment } from 'src/environments/environment';
+import { EventInfoService } from './dedicates/event-info.service';
 
 @Injectable({
   providedIn: 'root'
@@ -392,7 +393,8 @@ export class HotelService {
 
   constructor(
     private afs: AngularFirestore,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    private eventInfoSrv: EventInfoService
   ) { }
 
 
@@ -435,6 +437,83 @@ export class HotelService {
       return subRoomsTypes;
     })
     .flat();
+  }
+
+  /**
+   * Es antes de la fecha del evento
+   * @param date 
+   * @returns 
+   */
+  isBeforeEventDate(date: string){
+    return moment(date).isBefore(this.eventInfoSrv.getStartEventDate().date);
+  }
+
+  /**
+   * Es después de la fecha del evento
+   * @param date 
+   * @returns 
+   */
+  isAfterEventDate(date: string){
+    return moment(date).isAfter(this.eventInfoSrv.getEndEventDate().date);
+  }
+
+  /**
+   * Es en la fecha del evento
+   * @param date 
+   * @returns 
+   */
+  isEventDate(date: string){
+    return moment(date).isBetween(
+      this.eventInfoSrv.getStartEventDate().date,
+      this.eventInfoSrv.getEndEventDate().date,
+      'days',
+      '[]'
+    );
+  }
+
+
+  getRoomPriceByDate(code: string, date: string){
+
+    const subRoom = this.subRoomTypes[code];
+    const roomPrices = this.roomPrices[code];
+
+    const snapshot = {
+      date,
+      order: moment(date).valueOf(),
+      code,
+      capacity: subRoom.capacity,
+      isBefore: this.isBeforeEventDate(date),
+      isAfter: this.isAfterEventDate(date),
+      isEvent: this.isEventDate(date),
+      price: 0,
+    };
+
+    /** Si la fecha de agendar es para días antes o despues del evento */
+    if(snapshot.isBefore || snapshot.isAfter){
+      const currentDate = moment().format('YYYY-MM-DD');
+
+      const priceList = roomPrices.find((row: any) => {
+        const from = moment(row.ranges.from, 'YYYY/MM/DD').startOf('day');
+        const to = moment(row.ranges.to, 'YYYY/MM/DD').endOf('day');
+
+        return moment(currentDate, 'YYYY/MM/DD').isBetween(from, to);
+      });
+      // console.log('priceList', priceList);
+
+      const field = snapshot.isBefore ? 'before' : 'after';
+      const roomPrice = Number(priceList[field] * snapshot.capacity)
+      snapshot.price = roomPrice;
+
+    } else {
+      // const price = roomPrices.find((row: any) => {
+      //   const from = moment(row.ranges.from, 'YYYY/MM/DD').startOf('day');
+      //   const to = moment(row.ranges.to, 'YYYY/MM/DD').endOf('day');
+  
+      //   return moment(date, 'YYYY/MM/DD').isBetween(from, to);
+      // });
+    }
+
+    return snapshot;
   }
 
 
