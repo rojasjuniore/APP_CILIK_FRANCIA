@@ -27,10 +27,6 @@ export class ModalHotelEventRoomsListComponent implements OnInit, AfterViewInit 
       { type: 'required', message: 'Este campo es requerido' },
       { type: 'minlength', message: 'La cantidad mínima es 1' },
     ],
-    quantity: [
-      { type: 'required', message: 'Este campo es requerido' },
-      { type: 'min', message: 'La cantidad mínima es 1' },
-    ]
   };
   public submitted = false;
 
@@ -46,7 +42,6 @@ export class ModalHotelEventRoomsListComponent implements OnInit, AfterViewInit 
   ) {
     this.form = this.fb.group({
       dates: ['', [Validators.required, Validators.minLength(1)]],
-      quantity: [0, [Validators.required, Validators.min(1)]],
     });
   }
 
@@ -86,9 +81,11 @@ export class ModalHotelEventRoomsListComponent implements OnInit, AfterViewInit 
   }
 
   onSelectRoom(item: any){
-    console.log('onSelectRoom', item);
+    /** Responde a elemento padre */
+    this.closeModal({status: true, data: item});
   }
 
+  /** TODO - revisar antes de eliminar */
   async onSubmit(){
     try {
       this.submitted = true;
@@ -100,11 +97,7 @@ export class ModalHotelEventRoomsListComponent implements OnInit, AfterViewInit 
       }
 
       /** Responde a elemento padre */
-      this.closeModal({
-        status: true,
-        form: formData,
-        data: this.item,
-      });
+      this.closeModal({status: true, data: this.item});
       return;
 
     } catch (err) {
@@ -114,17 +107,9 @@ export class ModalHotelEventRoomsListComponent implements OnInit, AfterViewInit 
   }
 
   async closeModal(params: ModalOnlyCategoriesEvent = {}){
-    const {
-      status = false,
-      form = null,
-      data = null,
-    } = params;
+    const {status = false, data = null} = params;
 
-    this.onCloseModal.next({
-      status,
-      form,
-      data,
-    });
+    this.onCloseModal.next({status, data});
 
     this.form.patchValue({ categoryTypes: '', quantity: 0});
     this.submitted = false;
@@ -139,6 +124,5 @@ export class ModalHotelEventRoomsListComponent implements OnInit, AfterViewInit 
 
 export interface ModalOnlyCategoriesEvent {
   status?: boolean;
-  form?: any;
   data?: any;
 }
