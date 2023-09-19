@@ -110,6 +110,7 @@
         <ng-container [ngSwitch]="item.slug">
             <app-cart-fullpass-card-item *ngSwitchCase="'full-pass'" [item]="item" (onRemoveItem)="onRemoveItem($event)"></app-cart-fullpass-card-item>
             <app-cart-category-pass-card-item *ngSwitchCase="'category-pass'" [item]="item" (onRemoveItem)="onRemoveItem($event)"></app-cart-category-pass-card-item>
+            <app-cart-weekend-pass-card-item *ngSwitchCase="'weekend-pass'" [item]="item" (onRemoveItem)="onRemoveItem($event)"></app-cart-weekend-pass-card-item>
         </ng-container>
     </div>
 </ng-template>

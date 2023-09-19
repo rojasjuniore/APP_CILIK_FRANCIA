@@ -26,7 +26,6 @@ export class CartComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-
     this.sub$ = this.authSrv.uid$
     .pipe(
       distinctUntilChanged(),
