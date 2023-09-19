@@ -58,67 +58,205 @@ export class HotelService {
     },
   };
 
+  /**
+   * Subtipos de habitación
+   */
   public subRoomTypes = {
     HAB101: {
       code: 'HAB1',
       subcode: 'HAB101',
-      label: 'UNA PERSONA EN LA HABITACION'
+      label: 'UNA PERSONA EN LA HABITACION',
+      capacity: 1,
     },
     HAB102: {
       code: 'HAB1',
       subcode: 'HAB102',
-      label: 'DOS PERSONAS EN LA HABITACION'
+      label: 'DOS PERSONAS EN LA HABITACION',
+      capacity: 2,
     },
     HAB103: {
       code: 'HAB1',
       subcode: 'HAB103',
-      label: 'TRES PERSONAS EN LA HABITACION'
+      label: 'TRES PERSONAS EN LA HABITACION',
+      capacity: 3,
     },
     HAB201: {
       code: 'HAB2',
       subcode: 'HAB201',
-      label: 'UNA PERSONA EN LA HABITACION'
+      label: 'UNA PERSONA EN LA HABITACION',
+      capacity: 1,
     },
     HAB202: {
       code: 'HAB2',
       subcode: 'HAB202',
-      label: 'DOS PERSONAS EN LA HABITACION'
+      label: 'DOS PERSONAS EN LA HABITACION',
+      capacity: 2,
     },
     HAB203: {
       code: 'HAB2',
       subcode: 'HAB203',
-      label: 'TRES PERSONAS EN LA HABITACION'
+      label: 'TRES PERSONAS EN LA HABITACION',
+      capacity: 3,
     },
     HAB301: {
       code: 'HAB3',
       subcode: 'HAB301',
-      label: 'UNA PERSONA EN LA HABITACION'
+      label: 'UNA PERSONA EN LA HABITACION',
+      capacity: 1,
     },
     HAB302: {
       code: 'HAB3',
       subcode: 'HAB302',
-      label: 'DOS PERSONAS EN LA HABITACION'
+      label: 'DOS PERSONAS EN LA HABITACION',
+      capacity: 2,
     },
     HAB303: {
       code: 'HAB3',
       subcode: 'HAB303',
-      label: 'TRES PERSONAS EN LA HABITACION'
+      label: 'TRES PERSONAS EN LA HABITACION',
+      capacity: 3,
     },
     HAB401: {
       code: 'HAB4',
       subcode: 'HAB401',
-      label: 'UNA PERSONA EN LA HABITACION'
+      label: 'UNA PERSONA EN LA HABITACION',
+      capacity: 1,
     },
     HAB402: {
       code: 'HAB4',
       subcode: 'HAB402',
-      label: 'DOS PERSONAS EN LA HABITACION'
+      label: 'DOS PERSONAS EN LA HABITACION',
+      capacity: 2,
     },
     HAB403: {
       code: 'HAB4',
       subcode: 'HAB403',
-      label: 'TRES PERSONAS EN LA HABITACION'
+      label: 'TRES PERSONAS EN LA HABITACION',
+      capacity: 3,
     },
+  }
+
+  public roomPrices = {
+    HAB101: [
+      {
+        ranges: {from: '2023-08-01', to: '2023-11-10'},
+        before: 124,
+        after: 124,
+        dayOfWeek: [175, 175, 175, 187, 199, 244, 0]
+      },
+      {
+        ranges: {from: '2023-11-11', to: '2023-12-16'},
+        before: 149,
+        after: 149,
+        dayOfWeek: [184, 184, 184, 200, 210, 236, 0]
+      },
+      {
+        ranges: {from: '2023-12-17', to: '2024-01-20'},
+        before: 172,
+        after: 172,
+        dayOfWeek: [193, 193, 193, 209, 221, 248, 0]
+      },
+    ],
+    HAB102: [
+      {
+        ranges: {from: '2023-08-01', to: '2023-11-10'},
+        before: 140,
+        after: 140,
+        dayOfWeek: [115, 115, 115, 127, 139, 164, 0]
+      },
+      {
+        ranges: {from: '2023-11-11', to: '2023-12-16'},
+        before: 168,
+        after: 168,
+        dayOfWeek: [121, 121, 121, 137, 147, 173, 0]
+      },
+      {
+        ranges: {from: '2023-12-17', to: '2024-01-20'},
+        before: 194,
+        after: 194,
+        dayOfWeek: [127, 127, 127, 143, 154, 182, 0]
+      },
+    ],
+    HAB103: [
+      {
+        ranges: {from: '2023-08-01', to: '2023-11-10'},
+        before: 120,
+        after: 120,
+        dayOfWeek: [103, 103, 103, 115, 128, 152, 0]
+      },
+      {
+        ranges: {from: '2023-11-11', to: '2023-12-16'},
+        before: 144,
+        after: 144,
+        dayOfWeek: [110, 110, 110, 121, 137, 163, 0]
+      },
+      {
+        ranges: {from: '2023-12-17', to: '2024-01-20'},
+        before: 164,
+        after: 164,
+        dayOfWeek: [116, 116, 116, 127, 143, 171, 0]
+      },
+    ],
+    HAB201: [
+      {
+        ranges: {from: '2023-08-01', to: '2023-11-10'},
+        before: 190,
+        after: 190,
+        dayOfWeek: [248, 248, 248, 260, 273, 297, 0]
+      },
+      {
+        ranges: {from: '2023-11-11', to: '2023-12-16'},
+        before: 228,
+        after: 228,
+        dayOfWeek: [263, 263, 263, 273, 289, 315, 0]
+      },
+      {
+        ranges: {from: '2023-12-17', to: '2024-01-20'},
+        before: 263,
+        after: 263,
+        dayOfWeek: [276, 276, 276, 287, 303, 331, 0]
+      },
+    ],
+    HAB202: [
+      {
+        ranges: {from: '2023-08-01', to: '2023-11-10'},
+        before: 204,
+        after: 204,
+        dayOfWeek: [150, 150, 150, 163, 175, 199, 0]
+      },
+      {
+        ranges: {from: '2023-11-11', to: '2023-12-16'},
+        before: 246,
+        after: 246,
+        dayOfWeek: [158, 158, 158, 173, 184, 210, 0]
+      },
+      {
+        ranges: {from: '2023-12-17', to: '2024-01-20'},
+        before: 282,
+        after: 282,
+        dayOfWeek: [165, 165, 165, 182, 193, 221, 0]
+      },
+    ],
+    HAB203: [
+      {
+        ranges: {from: '2023-08-01', to: '2023-11-10'},
+        before: 162,
+        after: 162,
+        dayOfWeek: [127, 127, 127, 139, 152, 176, 0]
+      },
+      {
+        ranges: {from: '2023-11-11', to: '2023-12-16'},
+        before: 196,
+        after: 196,
+        dayOfWeek: [133, 133, 133, 147, 161, 185, 0]
+      },
+      {
+        ranges: {from: '2023-12-17', to: '2024-01-20'},
+        before: 224,
+        after: 224,
+        dayOfWeek: [140, 140, 140, 154, 169, 194, 0]
+      },
+    ],
   }
 
   constructor(
