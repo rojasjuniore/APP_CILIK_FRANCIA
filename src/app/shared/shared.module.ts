@@ -17,6 +17,7 @@ import { ModalStoreOnlyCategoriesComponent } from './modal-store-only-categories
 import { InputSigleCalendarComponent } from './input-sigle-calendar/input-sigle-calendar.component';
 import { ModalStoreOnlyDayPassComponent } from './modal-store-only-day-pass/modal-store-only-day-pass.component';
 import { ModalHotelEventRoomsListComponent } from './modal-hotel-event-rooms-list/modal-hotel-event-rooms-list.component';
+import { HotelAndEventRoomListItemCardComponent } from './hotel-and-event-room-list-item-card/hotel-and-event-room-list-item-card.component';
 
 
 
@@ -29,6 +30,7 @@ import { ModalHotelEventRoomsListComponent } from './modal-hotel-event-rooms-lis
     RegistroExitosoComponent,
     PagesLayoutComponent,
     OutPagesLayoutComponent,
+    HotelAndEventRoomListItemCardComponent,
 
     InputNumberFormComponent,
     InputSigleCalendarComponent,
@@ -37,6 +39,7 @@ import { ModalHotelEventRoomsListComponent } from './modal-hotel-event-rooms-lis
     ModalStoreOnlyCategoriesComponent,
     ModalStoreOnlyDayPassComponent,
     ModalHotelEventRoomsListComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -60,6 +63,7 @@ import { ModalHotelEventRoomsListComponent } from './modal-hotel-event-rooms-lis
     RegistroExitosoComponent,
     PagesLayoutComponent,
     OutPagesLayoutComponent,
+    HotelAndEventRoomListItemCardComponent,
     
     InputNumberFormComponent,
     InputSigleCalendarComponent,

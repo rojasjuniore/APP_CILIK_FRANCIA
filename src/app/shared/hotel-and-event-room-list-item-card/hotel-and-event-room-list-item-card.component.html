@@ -1,0 +1,47 @@
+<div class="card card-box" >
+    <div class="card-body">
+        <h5 class="card-title fw-bolder">
+            <!-- {{'hotel.ubitacion.'+row.ubicationType | translate | uppercase}} -->
+            <i class="bi" [ngClass]="{'bi-person-fill': item.capacity == 1, 'bi-people-fill': item.capacity > 1}"></i> {{item.capacity}} | {{item.locationLabel}}
+            <!-- {{row.ubicationTypeDescription}} -->
+        </h5>
+        <p class="card-text">
+            <!-- {{ 'hotel.roomType.'+row.roomCode | translate | uppercase}} -->
+            <!-- {{row.description}} -->
+            {{item.title}}
+        </p>
+        <p class="card-text">
+            <small class="text-muted">
+                Precio por persona
+                <!-- {{ "general.pricePerPerson" | translate }}:  -->
+                <!-- <i class="bi" [ngClass]="{'bi-person-fill': row?.capacity == 1, 'bi-people-fill': row?.capacity > 1}"></i>
+                USD {{ (row.price / row.capacity) | mask:'separator.0':',' }} -->
+            </small>
+        </p>
+        <p class="card-text">
+            {{ "general.valueWithoutDiscount" | translate }} 
+            <span class="fw-bold text-decoration-line-through">USD  0</span>
+        </p>
+        <p class="card-text">
+            {{ "general.amount" | translate }} 
+            <span class="fw-bold fs-4">USD 0</span>
+        </p>
+        <div class="d-flex justify-content-end">
+            <a href="javascript:void(0)" class="btn btn-three btn-small disbled">
+                <i class="bi bi-house"></i>
+                {{ "general.current" | translate }} 
+                
+            </a>
+            
+            <ng-template #canUpdate>
+                <a href="javascript:void(0)" class="btn btn-one btn-small">
+                    <i class="bi bi-arrow-left-right"></i> 
+                    
+                    {{ "general.change" | translate }}
+                </a>
+            </ng-template>
+        </div>
+        
+
+    </div>
+</div>

@@ -26,7 +26,7 @@
                                 <ng-container *ngIf="submitted" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'dates'}"></ng-container>
                             </p>
 
-                            <app-input-number-form
+                            <!-- <app-input-number-form
                                 *ngIf="item"
                                 [label]="item.title| uppercase"
                                 placeholder="0"
@@ -38,28 +38,46 @@
 
                             <p class="text-center">
                                 <ng-container *ngIf="submitted" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'quantity'}"></ng-container>
-                            </p>
+                            </p> -->
 
                         </div>
+
+
+                        <ng-container *ngIf="(roomList.length > 0); then renderRoomsList; else renderNoRooms"></ng-container>
+
                     </div>
                 </div>
             </div>
 
             <div class="modal-footer d-flex justify-content-center align-items-center justify-content-lg-around flex-wrap">
-                <button type="button" class="btn btn-one text-uppercase" *ngIf="item" (click)="onSubmit()">
-                    Añadir
-                    &nbsp;
-                    <i class="bi bi-cart-plus"></i>
-                </button>
                 <button class="btn btn-three btn-medium-c text-uppercase" type="button" (click)="closeModal()">
                     <i class="bi bi-x-circle"></i>
                     &nbsp;
                     Cancelar
                 </button>
+                <button type="button" class="btn btn-one text-uppercase" *ngIf="item" (click)="onSubmit()">
+                    Añadir
+                    &nbsp;
+                    <i class="bi bi-cart-plus"></i>
+                </button>
             </div>
         </div>
     </div>
 </div>
+
+<ng-template #renderRoomsList>
+    <div class="col-12" *ngFor="let item of roomList">
+        <app-hotel-and-event-room-list-item-card [item]="item" [dates]="f['dates'].value"></app-hotel-and-event-room-list-item-card>
+    </div>
+</ng-template>
+
+<ng-template #renderNoRooms>
+    <div class="col-12">
+        <h5 class="text-center">
+            No hay habitaciones añadidas aún
+        </h5>
+    </div>
+</ng-template>
 
 <ng-template #renderFormVM let-field="field">
     <ng-container *ngFor="let item of vm[field]">
