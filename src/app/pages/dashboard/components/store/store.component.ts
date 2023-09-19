@@ -82,8 +82,18 @@ export class StoreComponent implements OnInit {
 
       /** WEEKEND PASS */
       if(item.slug === 'weekend-pass'){
+
+        /** Obtener días del evento */
         const weekendDays = this.eventInfoSrv.getWeekendDays();
-        this.modalOnlyInputNumber.showModal({...item, dates: weekendDays});
+
+        /** Obtener precio del pase */
+        const passPrice = this.passesSrv.getPassPriceByDateAndSlug(currentDate ,item.slug);
+
+        this.modalOnlyInputNumber.showModal({
+          ...item,
+          dates: weekendDays,
+          price: passPrice.price,
+        });
         return;
       }
 

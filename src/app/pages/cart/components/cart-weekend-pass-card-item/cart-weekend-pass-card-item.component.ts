@@ -14,7 +14,11 @@ export class CartWeekendPassCardItemComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
+
+  get totales() {
+    if(!this.item) return 0;
+    return Number(this.item.price) * Number(this.item.quantity);
   }
 
   remove(): void{ this.onRemoveItem.next(this.item); }
