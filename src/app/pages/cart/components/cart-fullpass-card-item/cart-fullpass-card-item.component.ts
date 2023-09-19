@@ -12,11 +12,16 @@ export class CartFullpassCardItemComponent implements OnInit {
 
   @Output() onRemoveItem = new Subject<any>();
 
+  public loader = false;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  remove(): void{ this.onRemoveItem.next(this.item); }
+  remove(): void{ 
+    this.loader = true;
+    this.onRemoveItem.next(this.item); 
+  }
 
 }

@@ -19,6 +19,9 @@ export class CartDayPassCardItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  remove(): void{ this.onRemoveItem.next(this.item); }
+  remove(): void{ 
+    this.loader = true;
+    this.onRemoveItem.next(this.item); 
+  }
 
 }
