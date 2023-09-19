@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Subject } from 'rxjs';
+import { HotelService } from 'src/app/services/hotel.service';
 
 @Component({
   selector: 'app-hotel-and-event-room-list-item-card',
@@ -13,7 +14,11 @@ export class HotelAndEventRoomListItemCardComponent implements OnInit, OnChanges
 
   @Output() onSelectRoom = new Subject();
 
-  constructor() { }
+  public loading = false;
+
+  constructor(
+    private hotelSrv: HotelService,
+  ) { }
 
   ngOnInit(): void {
   }
@@ -21,9 +26,27 @@ export class HotelAndEventRoomListItemCardComponent implements OnInit, OnChanges
   ngOnChanges(changes: SimpleChanges): void {
     const { dates } = changes;
     if(dates && dates.currentValue){
-      this.dates = dates.currentValue;
-      console.log('this.dates', this.dates);
+      // console.log('this.dates', this.dates);
+      this.updateDates(this.dates);
     }
+  }
+
+  get totales(){
+    if(this.dates.length == 0) { return 0;}
+    return this.dates.map((date: any) => date.price).reduce((a: any, b: any) => a + b);
+  }
+
+  updateDates(dates: any){
+    this.loading = true;
+
+    /** Realizar calculo de montos */
+    const prices = dates.map((date: string) => this.hotelSrv.getRoomPriceByDate(this.item.subcode , date))
+    .sort((a: any, b: any) => a.order - b.order);
+
+    /** Actualizar variable de fechas */
+    this.dates = prices;
+
+    this.loading = false;
   }
 
   selectRoom(){

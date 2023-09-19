@@ -25,24 +25,37 @@
         <div class="d-flex flex-column flex-md-row align-content-md-center justify-content-md-between">
             <div class="d-flex justify-content-center align-items-md-center">
                 <p class="card-text">
-                    {{ "general.amount" | translate }} 
-                    <span class="fw-bold fs-4">USD 0</span>
+                    Total
+                    <span class="fw-bold fs-4">USD {{totales}}</span>
                 </p>
             </div>
 
             <div class="text-sm-center">
-                <a href="javascript:void(0)" class="btn btn-one btn-small" [ngClass]="{'disabled': dates.length == 0}" (click)="selectRoom()">
-                    Añadir
-                    &nbsp;
-                    <i class="bi bi-cart-plus"></i>
-                </a>
+                <ng-container *ngIf="(!loading); then renderCartBtn; else renderLoaderBtn"></ng-container>
             </div>
         </div>
 
     </div>
 </div>
 
+<ng-template #renderCartBtn>
+    <a href="javascript:void(0)" class="btn btn-one btn-small" [ngClass]="{'disabled': dates.length == 0}" (click)="selectRoom()">
+        Añadir
+        &nbsp;
+        <i class="bi bi-cart-plus"></i>
+    </a>
+</ng-template>
+
+<ng-template #renderLoaderBtn>
+    <a href="javascript:void(0)" class="btn btn-one btn-small disabled">
+        <div class="spinner-border spinner-border-sm" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </a>
+</ng-template>
+
 
 <ng-template #renderCapacityIcon>
     <i class="bi" [ngClass]="{'bi-person-fill': item.capacity == 1, 'bi-people-fill': item.capacity > 1}"></i> {{item.capacity}}
 </ng-template>
+
