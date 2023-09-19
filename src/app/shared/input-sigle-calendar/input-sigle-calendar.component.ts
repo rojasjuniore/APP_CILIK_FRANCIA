@@ -113,7 +113,10 @@ export class InputSigleCalendarComponent implements OnInit, AfterViewInit, OnCha
   }
 
   clearDates(){
+    /** Se llama dos veces al método por un BUG en la libreria */
     $(`#${this._id}`).datepicker('clearDates');
+    $(`#${this._id}`).datepicker('clearDates');
+    
     this.datesSelected = '';
     this.onUpdateDates.next(this.datesSelected);
   }
