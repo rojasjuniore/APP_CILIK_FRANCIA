@@ -317,6 +317,66 @@ export class HotelService {
         dayOfWeek: [121, 121, 121, 133, 149, 176, 0]
       },
     ],
+    HAB401: [
+      {
+        ranges: {from: '2023-08-01', to: '2023-11-10'},
+        before: 266,
+        after: 266,
+        dayOfWeek: [332, 332, 332, 344, 357, 380, 0]
+      },
+      {
+        ranges: {from: '2023-11-11', to: '2023-12-16'},
+        before: 319,
+        after: 319,
+        dayOfWeek: [349, 349, 349, 362, 378, 399, 0]
+      },
+      {
+        ranges: {from: '2023-12-17', to: '2024-01-20'},
+        before: 367,
+        after: 367,
+        dayOfWeek: [366, 366, 366, 380, 397, 419, 0]
+      },
+    ],
+    HAB402: [
+      {
+        ranges: {from: '2023-08-01', to: '2023-11-10'},
+        before: 140,
+        after: 140,
+        dayOfWeek: [192, 192, 192, 204, 216, 241, 0]
+      },
+      {
+        ranges: {from: '2023-11-11', to: '2023-12-16'},
+        before: 169,
+        after: 169,
+        dayOfWeek: [202, 202, 202, 215, 227, 254, 0]
+      },
+      {
+        ranges: {from: '2023-12-17', to: '2024-01-20'},
+        before: 194,
+        after: 194,
+        dayOfWeek: [212, 212, 212, 226, 238, 267, 0]
+      },
+    ],
+    HAB403: [
+      {
+        ranges: {from: '2023-08-01', to: '2023-11-10'},
+        before: 107,
+        after: 107,
+        dayOfWeek: [155, 155, 155, 167, 180, 204, 0]
+      },
+      {
+        ranges: {from: '2023-11-11', to: '2023-12-16'},
+        before: 128,
+        after: 128,
+        dayOfWeek: [163, 163, 163, 175, 190, 215, 0]
+      },
+      {
+        ranges: {from: '2023-12-17', to: '2024-01-20'},
+        before: 147,
+        after: 147,
+        dayOfWeek: [171, 171, 171, 184, 200, 226, 0]
+      },
+    ],
   }
 
   constructor(
