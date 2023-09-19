@@ -388,6 +388,49 @@ export class HotelService {
   ) { }
 
 
+  getRoomsByDate(date: string = moment().format('YYYY-MM-DD')) {
+    return Object.entries(this.roomTypes).map(([key, value]) => {
+
+      console.log('key', key);
+      console.log('value', value);
+
+      const subRoomsTypes = Object.values(this.subRoomTypes)
+        .filter((row: any) => row.code === key)
+        .map((row: any) => {
+
+          const priceList = this.roomPrices[row.subcode];
+          const price = priceList.find((row: any) => {
+
+            const from = moment(row.ranges.from, 'YYYY/MM/DD').startOf('day');
+            const to = moment(row.ranges.to, 'YYYY/MM/DD').endOf('day');
+
+            return moment(date, 'YYYY/MM/DD').isBetween(from, to);
+
+          });
+
+          return {
+            code: value.code,
+            title: value.label,
+            location: value.location,
+            locationLabel: this.roomLocations[value.location],
+            subcode: row.subcode,
+            capacity: row.capacity,
+            capacityLabel: row.label,
+            before: price?.before || 0,
+            beforeFull: (price?.before || 0) * row.capacity,
+            after: price?.after || 0,
+            afterFull: (price?.after || 0) * row.capacity,
+            ranges: price?.ranges || {},
+            dayOfWeek: price?.dayOfWeek || [],
+          }
+        })
+
+      return subRoomsTypes;
+    })
+    .flat();
+  }
+
+
 
 
 
