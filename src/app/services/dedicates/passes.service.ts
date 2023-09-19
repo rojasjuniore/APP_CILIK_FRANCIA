@@ -35,50 +35,26 @@ export class PassesService {
         price: 149
       },
     ],
-    'category-pass': {
-      solo: [
-        {
-          ranges: {from: '2023-08-01', to: '2023-11-10'},
-          price: 50
-        },
-        {
-          ranges: {from: '2023-11-11', to: '2023-12-16'},
-          price: 60
-        },
-        {
-          ranges: {from: '2023-12-17', to: '2024-01-20'},
-          price: 75
-        },
-      ],
-      couple: [
-        {
-          ranges: {from: '2023-08-01', to: '2023-11-10'},
-          price: 35
-        },
-        {
-          ranges: {from: '2023-11-11', to: '2023-12-16'},
-          price: 45
-        },
-        {
-          ranges: {from: '2023-12-17', to: '2024-01-20'},
-          price: 60
-        },
-      ],
-      group: [
-        {
-          ranges: {from: '2023-08-01', to: '2023-11-10'},
-          price: 15
-        },
-        {
-          ranges: {from: '2023-11-11', to: '2023-12-16'},
-          price: 20
-        },
-        {
-          ranges: {from: '2023-12-17', to: '2024-01-20'},
-          price: 25
-        },
-      ]
-    },
+    'category-pass': [
+      {
+        ranges: {from: '2023-08-01', to: '2023-11-10'},
+        solo: 50,
+        couple: 35,
+        group: 15
+      },
+      {
+        ranges: {from: '2023-11-11', to: '2023-12-16'},
+        solo: 60,
+        couple: 45,
+        group: 20
+      },
+      {
+        ranges: {from: '2023-12-17', to: '2024-01-20'},
+        solo: 75,
+        couple: 60,
+        group: 25
+      },
+    ],
     'day-pass': [
       {
         ranges: {from: '2023-08-01', to: '2023-11-10'},
