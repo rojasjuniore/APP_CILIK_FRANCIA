@@ -21,11 +21,10 @@ export class HotelAndEventComponent implements OnInit, OnDestroy {
 
   constructor(
     private authSrv: AuthenticationService,
-    private cartSrv: CartService
+    private cartSrv: CartService,
   ) { }
 
   ngOnInit(): void {
-
     this.sub$ = this.authSrv.uid$.pipe(
       // tap(console.log),
       switchMap((uid: any) => (uid) 
