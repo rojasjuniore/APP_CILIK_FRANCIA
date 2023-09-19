@@ -85,6 +85,10 @@ export class ModalHotelEventRoomsListComponent implements OnInit, AfterViewInit 
     this.form.patchValue({quantity: value});
   }
 
+  onSelectRoom(item: any){
+    console.log('onSelectRoom', item);
+  }
+
   async onSubmit(){
     try {
       this.submitted = true;
@@ -126,6 +130,7 @@ export class ModalHotelEventRoomsListComponent implements OnInit, AfterViewInit 
     this.submitted = false;
     this.item = null;
     this.mi.hide();
+    this.inputDates.clearDates();
   }
 
   ngOnDestroy(): void { this.sub$.unsubscribe(); }

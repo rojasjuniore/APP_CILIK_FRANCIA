@@ -15,6 +15,7 @@
                             <app-input-sigle-calendar 
                                 #inputDates
                                 *ngIf="item"
+                                _id="datepickerHotelEvent"
                                 [multidate]="item?.multidate"
                                 [startDate]="item?.startDate"
                                 [endDate]="item?.endDate"
@@ -67,7 +68,11 @@
 
 <ng-template #renderRoomsList>
     <div class="col-12" *ngFor="let item of roomList">
-        <app-hotel-and-event-room-list-item-card [item]="item" [dates]="f['dates'].value"></app-hotel-and-event-room-list-item-card>
+        <app-hotel-and-event-room-list-item-card
+            [item]="item" 
+            [dates]="f['dates'].value"
+            (onSelectRoom)="onSelectRoom($event)"
+        ></app-hotel-and-event-room-list-item-card>
     </div>
 </ng-template>
 
