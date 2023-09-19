@@ -24,10 +24,130 @@ export class HotelService {
 
   loading = false;
 
+  /**
+   * Tipos de ubicación
+   */
+  public roomLocations: any = {
+    1: 'Casa de playa',
+    2: 'Torre del mar',
+  };
+
+  /**
+   * Tipos de Habitación
+   */
+  public roomTypes = {
+    HAB1: {
+      code: 'HAB1',
+      label: 'HABITACION SUPERIOS SENCILLA EN CASA DE PLAYA',
+      location: 1,
+    },
+    HAB2: {
+      code: 'HAB2',
+      label: 'HABITACION JUNIOR O DUPLEX EN CASA DE PLAYA',
+      location: 1,
+    },
+    HAB3: {
+      code: 'HAB3',
+      label: 'HABITACION SUPERIOS SENCILLA EN TORRE DEL MAR',
+      location: 2,
+    },
+    HAB4: {
+      code: 'HAB4',
+      label: 'HABITACION JUNIOR SUITE EN TORRE DEL MAR',
+      location: 2,
+    },
+  };
+
+  public subRoomTypes = {
+    HAB101: {
+      code: 'HAB1',
+      subcode: 'HAB101',
+      label: 'UNA PERSONA EN LA HABITACION'
+    },
+    HAB102: {
+      code: 'HAB1',
+      subcode: 'HAB102',
+      label: 'DOS PERSONAS EN LA HABITACION'
+    },
+    HAB103: {
+      code: 'HAB1',
+      subcode: 'HAB103',
+      label: 'TRES PERSONAS EN LA HABITACION'
+    },
+    HAB201: {
+      code: 'HAB2',
+      subcode: 'HAB201',
+      label: 'UNA PERSONA EN LA HABITACION'
+    },
+    HAB202: {
+      code: 'HAB2',
+      subcode: 'HAB202',
+      label: 'DOS PERSONAS EN LA HABITACION'
+    },
+    HAB203: {
+      code: 'HAB2',
+      subcode: 'HAB203',
+      label: 'TRES PERSONAS EN LA HABITACION'
+    },
+    HAB301: {
+      code: 'HAB3',
+      subcode: 'HAB301',
+      label: 'UNA PERSONA EN LA HABITACION'
+    },
+    HAB302: {
+      code: 'HAB3',
+      subcode: 'HAB302',
+      label: 'DOS PERSONAS EN LA HABITACION'
+    },
+    HAB303: {
+      code: 'HAB3',
+      subcode: 'HAB303',
+      label: 'TRES PERSONAS EN LA HABITACION'
+    },
+    HAB401: {
+      code: 'HAB4',
+      subcode: 'HAB401',
+      label: 'UNA PERSONA EN LA HABITACION'
+    },
+    HAB402: {
+      code: 'HAB4',
+      subcode: 'HAB402',
+      label: 'DOS PERSONAS EN LA HABITACION'
+    },
+    HAB403: {
+      code: 'HAB4',
+      subcode: 'HAB403',
+      label: 'TRES PERSONAS EN LA HABITACION'
+    },
+  }
+
   constructor(
     private afs: AngularFirestore,
     private storage: AngularFireStorage
   ) { }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /**
+   * TODO: revisar todo de aqui hacia abajo para eliminar
+   */
 
   buildRoomDoc(params: any = {}) {
     return {
