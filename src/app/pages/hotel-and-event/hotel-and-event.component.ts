@@ -1,7 +1,9 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import moment from 'moment';
 import { Subscription, catchError, distinctUntilChanged, map, of, switchMap } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CartService } from 'src/app/services/cart.service';
+import { EventInfoService } from 'src/app/services/dedicates/event-info.service';
 import { ModalHotelEventRoomsListComponent } from 'src/app/shared/modal-hotel-event-rooms-list/modal-hotel-event-rooms-list.component';
 import { environment } from 'src/environments/environment';
 
@@ -22,6 +24,7 @@ export class HotelAndEventComponent implements OnInit, OnDestroy {
   constructor(
     private authSrv: AuthenticationService,
     private cartSrv: CartService,
+    private eventInfoSrv: EventInfoService,
   ) { }
 
   ngOnInit(): void {
@@ -46,7 +49,12 @@ export class HotelAndEventComponent implements OnInit, OnDestroy {
   }
 
   openModalRoomsList(){
-    this.modalRoomsList.showModal({});
+    this.modalRoomsList.showModal({
+      currentDate: moment().format('YYYY-MM-DD'),
+      multidate: true,
+      startDate: moment(this.eventInfoSrv.beforeLimit).format('MM/DD/YYYY'),
+      endDate: moment(this.eventInfoSrv.afterLimit).format('MM/DD/YYYY'),
+    });
   }
 
   resetRooms(){
