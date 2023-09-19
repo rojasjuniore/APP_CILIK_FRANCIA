@@ -69,7 +69,7 @@ export class ModalHotelEventRoomsListComponent implements OnInit, AfterViewInit 
   }
 
   async showModal(item: any){
-    console.log('item', item);
+    // console.log('item', item);
     this.item = item;
     this.roomList = this.hotelSrv.getRoomsByDate(item.currentDate)
     this.mi.show();
