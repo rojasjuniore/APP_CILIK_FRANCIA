@@ -99,7 +99,15 @@ export class StoreComponent implements OnInit {
 
       /** CATEGORY PASS */
       if(item.slug === 'category-pass'){
-        this.modalOnlyCategories.showModal({...item});
+
+        /** Obtener precio del pase */
+        const passPrice = this.passesSrv.getPassPriceByDateAndSlug(currentDate ,item.slug);
+        console.log('passPrice', passPrice);
+
+        this.modalOnlyCategories.showModal({
+          ...item,
+          prices: passPrice,
+        });
         return;
       }
 
