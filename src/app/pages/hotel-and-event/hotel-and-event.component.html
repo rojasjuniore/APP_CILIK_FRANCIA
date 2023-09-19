@@ -10,11 +10,11 @@
                     &nbsp;
                     Añadir
                 </button>
-                <!-- <button class="btn btn-one" (click)="resetRooms()">
+                <button class="btn btn-one" (click)="resetRooms()">
                     <i class="bi bi-trash3"></i>
                     &nbsp;
                     Limpiar
-                </button> -->
+                </button>
             </div>
         </div>
     </div>
@@ -35,8 +35,8 @@
 
 
 <ng-template #renderRooms>
-    <div class="col-12" *ngFor="let item of rooms">
-        <app-cart-hotel-event-card-item [item]="item"></app-cart-hotel-event-card-item>
+    <div class="col-12 mb-4" *ngFor="let item of rooms">
+        <app-cart-hotel-event-card-item [item]="item" (onRemoveItem)="onRemoveRoom($event)"></app-cart-hotel-event-card-item>
     </div>
 </ng-template>
 

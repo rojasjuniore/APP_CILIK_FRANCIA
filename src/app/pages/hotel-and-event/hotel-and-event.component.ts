@@ -90,8 +90,13 @@ export class HotelAndEventComponent implements OnInit, OnDestroy {
     }
   }
 
-  resetRooms(){
-    this.rooms = [];
+  async onRemoveRoom(room: any){
+    this.cartSrv.removeOnCart(environment.dataEvent.keyDb, this.uid, room);
+  }
+
+  async resetRooms(){
+    console.log('resetRooms');
+    // this.rooms = [];
   }
 
   ngOnDestroy(): void {
