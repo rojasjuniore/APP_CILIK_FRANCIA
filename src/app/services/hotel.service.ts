@@ -391,9 +391,6 @@ export class HotelService {
   getRoomsByDate(date: string = moment().format('YYYY-MM-DD')) {
     return Object.entries(this.roomTypes).map(([key, value]) => {
 
-      console.log('key', key);
-      console.log('value', value);
-
       const subRoomsTypes = Object.values(this.subRoomTypes)
         .filter((row: any) => row.code === key)
         .map((row: any) => {
