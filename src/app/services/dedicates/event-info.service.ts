@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -109,6 +110,14 @@ export class EventInfoService {
 
   getWeekendDays(){
     return this.eventDates.filter((date) => date.weekend);
+  }
+
+  isDateInRange(date: string, ranges: any){
+    const dateMoment = moment(date);
+    const fromMoment = moment(ranges.from);
+    const toMoment = moment(ranges.to);
+
+    return dateMoment.isBetween(fromMoment, toMoment, null, '[]');
   }
 
 }
