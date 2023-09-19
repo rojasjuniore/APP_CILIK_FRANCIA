@@ -136,6 +136,9 @@ export class HotelService {
     },
   }
 
+  /**
+   * Precios de habitaciones
+   */
   public roomPrices = {
     HAB101: [
       {
