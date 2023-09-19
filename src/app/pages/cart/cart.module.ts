@@ -7,6 +7,7 @@ import { CartComponent } from './cart.component';
 import { CartFullpassCardItemComponent } from './components/cart-fullpass-card-item/cart-fullpass-card-item.component';
 import { CartCategoryPassCardItemComponent } from './components/cart-category-pass-card-item/cart-category-pass-card-item.component';
 import { CartWeekendPassCardItemComponent } from './components/cart-weekend-pass-card-item/cart-weekend-pass-card-item.component';
+import { CartDayPassCardItemComponent } from './components/cart-day-pass-card-item/cart-day-pass-card-item.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { CartWeekendPassCardItemComponent } from './components/cart-weekend-pass
     CartComponent,
     CartFullpassCardItemComponent,
     CartCategoryPassCardItemComponent,
-    CartWeekendPassCardItemComponent
+    CartWeekendPassCardItemComponent,
+    CartDayPassCardItemComponent
   ],
   imports: [
     CommonModule,

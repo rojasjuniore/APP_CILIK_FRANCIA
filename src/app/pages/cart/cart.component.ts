@@ -43,7 +43,7 @@ export class CartComponent implements OnInit, OnDestroy {
   async onRemoveItem(item: any){
     try {
 
-      await this.spinner.show();
+      // await this.spinner.show();
 
       await this.cartSrv.removeOnCart(environment.dataEvent.keyDb, this.uid, item);
 
@@ -55,7 +55,7 @@ export class CartComponent implements OnInit, OnDestroy {
       return;
 
     } finally {
-      this.spinner.hide();
+      // this.spinner.hide();
     }
   }
 
