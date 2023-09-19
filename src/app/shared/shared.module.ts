@@ -18,6 +18,7 @@ import { InputSigleCalendarComponent } from './input-sigle-calendar/input-sigle-
 import { ModalStoreOnlyDayPassComponent } from './modal-store-only-day-pass/modal-store-only-day-pass.component';
 import { ModalHotelEventRoomsListComponent } from './modal-hotel-event-rooms-list/modal-hotel-event-rooms-list.component';
 import { HotelAndEventRoomListItemCardComponent } from './hotel-and-event-room-list-item-card/hotel-and-event-room-list-item-card.component';
+import { CartHotelEventCardItemComponent } from './cart-hotel-event-card-item/cart-hotel-event-card-item.component';
 
 
 
@@ -31,6 +32,7 @@ import { HotelAndEventRoomListItemCardComponent } from './hotel-and-event-room-l
     PagesLayoutComponent,
     OutPagesLayoutComponent,
     HotelAndEventRoomListItemCardComponent,
+    CartHotelEventCardItemComponent,
 
     InputNumberFormComponent,
     InputSigleCalendarComponent,
@@ -64,6 +66,7 @@ import { HotelAndEventRoomListItemCardComponent } from './hotel-and-event-room-l
     PagesLayoutComponent,
     OutPagesLayoutComponent,
     HotelAndEventRoomListItemCardComponent,
+    CartHotelEventCardItemComponent,
     
     InputNumberFormComponent,
     InputSigleCalendarComponent,

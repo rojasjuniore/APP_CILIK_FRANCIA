@@ -1,0 +1,58 @@
+<div class="card card-box" >
+    <div class="card-body">
+        <h5 class="card-title fw-bolder">
+            <ng-container [ngTemplateOutlet]="renderCapacityIcon"></ng-container>
+            |
+            {{item.room.locationLabel}}
+        </h5>
+        <p class="card-text">
+            <!-- {{ 'hotel.roomType.'+row.roomCode | translate | uppercase}} -->
+            <!-- {{row.description}} -->
+            {{item.room.title}}
+        </p>
+        <p class="card-text">
+            Incluye:
+            <small class="text-muted">
+                {{item.room.include}}
+            </small>
+        </p>
+        <p class="card-text">
+            No Incluye:
+            <span class="text-muted">
+                {{item.room.noInclude}}
+            </span>
+        </p>
+        
+        <div class="d-flex flex-column flex-md-row align-content-md-center justify-content-md-between">
+            <div class="d-flex justify-content-center align-items-md-center">
+                <p class="card-text">
+                    Total
+                    <span class="fw-bold fs-4">USD {{totales}}</span>
+                </p>
+            </div>
+
+            <div class="text-sm-center">
+                <ng-container *ngIf="(!loader); then renderCartBtn; else renderLoaderBtn"></ng-container>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<ng-template #renderCartBtn>
+    <button type="button" class="btn-icon btn-icon-two" (click)="remove()">
+        <i class="bi bi-trash3"></i>
+    </button>
+</ng-template>
+
+<ng-template #renderLoaderBtn>
+    <a href="javascript:void(0)" class="btn btn-one btn-small disabled">
+        <div class="spinner-border spinner-border-sm" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </a>
+</ng-template>
+
+<ng-template #renderCapacityIcon>
+    <i class="bi" [ngClass]="{'bi-person-fill': item.room.capacity == 1, 'bi-people-fill': item.room.capacity > 1}"></i> {{item.room.capacity}}
+</ng-template>
