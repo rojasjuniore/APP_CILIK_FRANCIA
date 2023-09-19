@@ -5,6 +5,54 @@ import { Injectable } from '@angular/core';
 })
 export class EventInfoService {
 
+  public storeOptions: any[] = [
+    {
+      isRecommended: true,
+      img: 'assets/images/icons/plan-icon-1.png',
+      title: 'Hotel y Evento',
+      slug: 'hotel-event',
+      include: 'incluye texto',
+      noInclude: null,
+      headerColor: 'red',
+    },
+    {
+      isRecommended: false,
+      img: 'assets/images/icons/plan-icon-2.png',
+      title: 'Full Pass',
+      slug: 'full-pass',
+      include: 'incluye texto',
+      noInclude: null,
+      headerColor: 'red',
+    },
+    {
+      isRecommended: false,
+      img: 'assets/images/icons/plan-icon-2.png',
+      title: 'Pase por día',
+      slug: 'day-pass',
+      include: 'incluye texto',
+      noInclude: null,
+      headerColor: 'red',
+    },
+    {
+      isRecommended: false,
+      img: 'assets/images/icons/plan-icon-2.png',
+      title: 'Pase de fin de semana',
+      slug: 'weekend-pass',
+      include: 'incluye texto',
+      noInclude: null,
+      headerColor: 'red',
+    },
+    {
+      isRecommended: false,
+      img: 'assets/images/icons/plan-icon-2.png',
+      title: 'Pases de Categoria',
+      slug: 'category-pass',
+      include: 'incluye texto',
+      noInclude: null,
+      headerColor: 'red',
+    },
+  ];
+
   /** Fecha tope para días extras antes */
   public beforeLimit = '2024-01-29';
 
@@ -46,6 +94,10 @@ export class EventInfoService {
   ];
 
   constructor() { }
+
+  getStoreOptionBySlug(slug: string){
+    return this.storeOptions.find((item) => item.slug === slug);
+  }
 
   getStartEventDate(){
     return this.eventDates[0];
