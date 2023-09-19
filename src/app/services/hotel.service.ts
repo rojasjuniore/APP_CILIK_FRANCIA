@@ -160,40 +160,40 @@ export class HotelService {
     HAB102: [
       {
         ranges: {from: '2023-08-01', to: '2023-11-10'},
-        before: 140,
-        after: 140,
+        before: 70,
+        after: 70,
         dayOfWeek: [115, 115, 115, 127, 139, 164, 0]
       },
       {
         ranges: {from: '2023-11-11', to: '2023-12-16'},
-        before: 168,
-        after: 168,
+        before: 84,
+        after: 84,
         dayOfWeek: [121, 121, 121, 137, 147, 173, 0]
       },
       {
         ranges: {from: '2023-12-17', to: '2024-01-20'},
-        before: 194,
-        after: 194,
+        before: 97,
+        after: 97,
         dayOfWeek: [127, 127, 127, 143, 154, 182, 0]
       },
     ],
     HAB103: [
       {
         ranges: {from: '2023-08-01', to: '2023-11-10'},
-        before: 120,
-        after: 120,
+        before: 60,
+        after: 60,
         dayOfWeek: [103, 103, 103, 115, 128, 152, 0]
       },
       {
         ranges: {from: '2023-11-11', to: '2023-12-16'},
-        before: 144,
-        after: 144,
+        before: 72,
+        after: 72,
         dayOfWeek: [110, 110, 110, 121, 137, 163, 0]
       },
       {
         ranges: {from: '2023-12-17', to: '2024-01-20'},
-        before: 164,
-        after: 164,
+        before: 82,
+        after: 82,
         dayOfWeek: [116, 116, 116, 127, 143, 171, 0]
       },
     ],
@@ -220,41 +220,101 @@ export class HotelService {
     HAB202: [
       {
         ranges: {from: '2023-08-01', to: '2023-11-10'},
-        before: 204,
-        after: 204,
+        before: 102,
+        after: 102,
         dayOfWeek: [150, 150, 150, 163, 175, 199, 0]
       },
       {
         ranges: {from: '2023-11-11', to: '2023-12-16'},
-        before: 246,
-        after: 246,
+        before: 123,
+        after: 123,
         dayOfWeek: [158, 158, 158, 173, 184, 210, 0]
       },
       {
         ranges: {from: '2023-12-17', to: '2024-01-20'},
-        before: 282,
-        after: 282,
+        before: 141,
+        after: 141,
         dayOfWeek: [165, 165, 165, 182, 193, 221, 0]
       },
     ],
     HAB203: [
       {
         ranges: {from: '2023-08-01', to: '2023-11-10'},
-        before: 162,
-        after: 162,
+        before: 81,
+        after: 81,
         dayOfWeek: [127, 127, 127, 139, 152, 176, 0]
       },
       {
         ranges: {from: '2023-11-11', to: '2023-12-16'},
-        before: 196,
-        after: 196,
+        before: 98,
+        after: 98,
         dayOfWeek: [133, 133, 133, 147, 161, 185, 0]
       },
       {
         ranges: {from: '2023-12-17', to: '2024-01-20'},
-        before: 224,
-        after: 224,
+        before: 112,
+        after: 112,
         dayOfWeek: [140, 140, 140, 154, 169, 194, 0]
+      },
+    ],
+    HAB301: [
+      {
+        ranges: {from: '2023-08-01', to: '2023-11-10'},
+        before: 142,
+        after: 142,
+        dayOfWeek: [194, 194, 194, 206, 219, 243, 0]
+      },
+      {
+        ranges: {from: '2023-11-11', to: '2023-12-16'},
+        before: 170,
+        after: 170,
+        dayOfWeek: [205, 205, 205, 216, 231, 257, 0]
+      },
+      {
+        ranges: {from: '2023-12-17', to: '2024-01-20'},
+        before: 196,
+        after: 196,
+        dayOfWeek: [215, 215, 215, 227, 243, 270, 0]
+      },
+    ],
+    HAB302: [
+      {
+        ranges: {from: '2023-08-01', to: '2023-11-10'},
+        before: 78,
+        after: 78,
+        dayOfWeek: [124, 124, 124, 135, 148, 173, 0]
+      },
+      {
+        ranges: {from: '2023-11-11', to: '2023-12-16'},
+        before: 94,
+        after: 94,
+        dayOfWeek: [131, 131, 131, 142, 158, 184, 0]
+      },
+      {
+        ranges: {from: '2023-12-17', to: '2024-01-20'},
+        before: 108,
+        after: 108,
+        dayOfWeek: [138, 138, 138, 149, 165, 193, 0]
+      },
+    ],
+    HAB303: [
+      {
+        ranges: {from: '2023-08-01', to: '2023-11-10'},
+        before: 65,
+        after: 65,
+        dayOfWeek: [109, 109, 109, 121, 134, 158, 0]
+      },
+      {
+        ranges: {from: '2023-11-11', to: '2023-12-16'},
+        before: 78,
+        after: 78,
+        dayOfWeek: [116, 116, 116, 127, 142, 168, 0]
+      },
+      {
+        ranges: {from: '2023-12-17', to: '2024-01-20'},
+        before: 90,
+        after: 90,
+        dayOfWeek: [121, 121, 121, 133, 149, 176, 0]
       },
     ],
   }
