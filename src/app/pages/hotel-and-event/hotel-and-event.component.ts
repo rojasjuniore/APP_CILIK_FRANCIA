@@ -52,7 +52,7 @@ export class HotelAndEventComponent implements OnInit, OnDestroy {
     });
   }
 
-  openModalRoomsList(){
+  openModalRoomsList(): void{
     this.modalRoomsList.showModal({
       currentDate: moment().format('YYYY-MM-DD'),
       multidate: true,
@@ -62,7 +62,7 @@ export class HotelAndEventComponent implements OnInit, OnDestroy {
   }
 
   async onAddRoom(room: any){
-    console.log('onAddRoom', room);
+    // console.log('onAddRoom', room);
     try {
 
       if(!room.status){ return; }
@@ -95,8 +95,27 @@ export class HotelAndEventComponent implements OnInit, OnDestroy {
   }
 
   async resetRooms(){
-    console.log('resetRooms');
-    // this.rooms = [];
+    // console.log('resetRooms');
+    try {
+      const ask = await this.sweetAlert2Srv.askConfirm('¿Está seguro de eliminar todas las habitaciones?');
+      if(!ask){ return; }
+
+      await this.spinner.show();
+
+      const snapshot = await Promise.all(
+        this.rooms.map((item: any) => this.cartSrv.removeOnCart(environment.dataEvent.keyDb, this.uid, item))
+      );
+      console.log('snapshot', snapshot);
+
+      this.sweetAlert2Srv.showToast('Habitaciones eliminadas', 'success');
+      return;
+      
+    } catch (err) {
+      console.log('Error on HotelAndEventComponent.resetRooms', err);
+      return;
+    } finally {
+      this.spinner.hide();
+    }
   }
 
   ngOnDestroy(): void {
