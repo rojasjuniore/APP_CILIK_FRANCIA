@@ -280,7 +280,6 @@ export class StoreComponent implements OnInit {
 
       const uid: any = this._cf.getUid();
 
-
       /** Almacenar articulos en el carrito */
       await this.cartSrv.addOnCart(environment.dataEvent.keyDb, uid, toCart);
 
