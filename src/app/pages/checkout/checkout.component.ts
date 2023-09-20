@@ -66,6 +66,10 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
+  onSelectPaymentOption(item: any){
+    console.log('onSelectPaymentOption', item);
+  }
+
   ngOnDestroy(): void {
     this.sub$.unsubscribe();
   }

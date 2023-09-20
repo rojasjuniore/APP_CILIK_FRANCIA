@@ -52,7 +52,7 @@
 </div>
 
 <ng-template #renderPaymentOptions>
-    <button class="btn btn-payment btn-lg mb-3" type="button" *ngFor="let item of paymentOptions">
+    <button class="btn btn-payment btn-lg mb-3" type="button" *ngFor="let item of paymentOptions" (click)="onSelectPaymentOption(item)">
         <span class="icon-payment"><i [class]="item.icon"></i>&nbsp;</span>
         <span class="label-payment">
             {{item.label | translate | titlecase}}
