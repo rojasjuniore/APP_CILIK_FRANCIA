@@ -16,6 +16,11 @@ export class CartCategoryPassCardItemComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  get totales(){
+    if(!this.item) return 0;
+    return Number(this.item.totales);
+  }
+
   remove(): void{ this.onRemoveItem.next(this.item); }
 
 }
