@@ -153,13 +153,21 @@ export class StoreComponent implements OnInit {
         case 'full-pass':
           /** Crear items a añadir */
           toCart = new Array(quantity).fill({...data, quantity: 1, capacity: 1})
-          .map((item: any) => ({...item, seed: this.cartSrv.generateId()}));
+          .map((item: any) => ({
+            ...item, 
+            totales: item.price,
+            seed: this.cartSrv.generateId()
+          }));
           break;
 
         case 'weekend-pass':
           /** Crear items a añadir */
           toCart = new Array(quantity).fill({...data, quantity: 1, capacity: 1})
-          .map((item: any) => ({...item, seed: this.cartSrv.generateId()}));
+          .map((item: any) => ({
+            ...item, 
+            totales: item.price,
+            seed: this.cartSrv.generateId()
+          }));
           break;
       
         default:
@@ -197,17 +205,32 @@ export class StoreComponent implements OnInit {
 
       if(form.categoryTypes === 'solo'){
         toCart = new Array(form.quantity).fill({...data, quantity: 1, categoryType: form.categoryTypes, capacity: 1})
-        .map((item: any) => ({...item, dates: allDays, seed: this.cartSrv.generateId()}));
+        .map((item: any) => ({
+          ...item, 
+          totales: Number(item.prices.solo),
+          dates: allDays, 
+          seed: this.cartSrv.generateId()
+        }));
       }
 
       if(form.categoryTypes === 'couple'){
         toCart = new Array(form.quantity).fill({...data, quantity: 1, categoryType: form.categoryTypes, capacity: 2})
-        .map((item: any) => ({...item, dates: allDays, seed: this.cartSrv.generateId()}));
+        .map((item: any) => ({
+          ...item, 
+          totales: Number(item.prices.couple * 2),
+          dates: allDays, 
+          seed: this.cartSrv.generateId()
+        }));
       }
 
       if(form.categoryTypes === 'group'){
         toCart = new Array(1).fill({...data, quantity: 1, categoryType: form.categoryTypes, capacity: form.quantity})
-        .map((item: any) => ({...item, dates: allDays, seed: this.cartSrv.generateId()}));
+        .map((item: any) => ({
+          ...item, 
+          totales: Number(item.prices.group * form.quantity),
+          dates: allDays, 
+          seed: this.cartSrv.generateId()
+        }));
       }
 
       /** Almacenar articulos en el carrito */
