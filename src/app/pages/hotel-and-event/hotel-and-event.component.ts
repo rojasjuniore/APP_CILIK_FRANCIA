@@ -73,6 +73,7 @@ export class HotelAndEventComponent implements OnInit, OnDestroy {
 
       const toCart = {
         room: room.data,
+        totales: room.data.totales,
         ...eventOption,
         seed: this.cartSrv.generateId()
       };
