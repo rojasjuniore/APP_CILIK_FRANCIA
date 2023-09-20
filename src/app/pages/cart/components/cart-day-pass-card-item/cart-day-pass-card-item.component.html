@@ -3,7 +3,14 @@
         <div class="col-12 px-3">
             <div class="d-flex justify-content-between">
                 <span class="text-rslt fw-bold fs-5">
+                    <i class="bi bi-ticket-perforated"></i>
+                    &nbsp;
                     {{item?.title}}
+                </span>
+
+                <span class="d-none d-md-block">
+                    <i class="bi bi-person-fill"></i>
+                    {{item?.capacity}}
                 </span>
             </div>
         </div>
@@ -11,6 +18,11 @@
         <div class="seprd2"></div>
 
         <div class="col-12 px-3">
+
+            <p class="m-0 d-block d-sm-none">
+                <i class="bi bi-person-fill"></i>
+                {{item?.capacity}}
+            </p>
 
             <!-- <p class="fw-bold m-0">Subtitulo:</p>
             <div class="seprd m-0 mb-2"></div>
@@ -26,7 +38,7 @@
             <p class="m-0">Descuento: USD 0</p> -->
 
             <div class="d-flex justify-content-between">
-                <span class="fs-4 fw-bolder">Total: USD 0</span>
+                <span class="fs-4 fw-bolder">Total: USD {{totales}}</span>
                 <div>
                     <!-- <button type="button" class="btn-icon btn-icon-one">
                         <i class="bi bi-pencil"></i>

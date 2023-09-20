@@ -19,6 +19,11 @@ export class CartDayPassCardItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  get totales() {
+    if(!this.item) return 0;
+    return Number(this.item.totales);
+  }
+
   remove(): void{ 
     this.loader = true;
     this.onRemoveItem.next(this.item); 
