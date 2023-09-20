@@ -113,8 +113,14 @@ export class StoreComponent implements OnInit {
 
       /** DAY PASS */
       if(item.slug === 'day-pass'){
+
+        /** Obtener precio del pase */
+        const passPrice = this.passesSrv.getPassPriceByDateAndSlug(currentDate ,item.slug);
+        console.log('passPrice', passPrice);
+
         this.modalOnlyDayPass.showModal({
           ...item,
+          prices: passPrice,
           multidate: true,
           startDate: moment(this.eventInfoSrv.getStartEventDate().date).format('MM/DD/YYYY'),
           endDate: moment(this.eventInfoSrv.getEndEventDate().date).format('MM/DD/YYYY'),
@@ -191,7 +197,7 @@ export class StoreComponent implements OnInit {
 
   async onModalCategoriesResponse(params: any){
     try {
-      console.log('onModalCategoriesResponse', params);
+      // console.log('onModalCategoriesResponse', params);
       const { status, form,  data } = params;
 
       /** Se cancelo la ejecución */
@@ -249,7 +255,7 @@ export class StoreComponent implements OnInit {
 
   async onModalDayPassResponse(params: any){
     try {
-      console.log('onModalCategoriesResponse', params);
+      // console.log('onModalDayPassResponse', params);
       const { status, form,  data } = params;
 
       /** Se cancelo la ejecución */
@@ -257,10 +263,19 @@ export class StoreComponent implements OnInit {
 
       await this.spinner.show();
 
-      const dates = this.eventInfoSrv.eventDates.filter((date: any) => form.dates.includes(date.date));
+      const dates = this.eventInfoSrv.eventDates
+        .filter((date: any) => form.dates.includes(date.date))
+        .map((row: any) => ({
+          ...row,
+          price: data.prices.dayOfWeek[moment(row.date).day()],
+        }))
 
       const toCart = new Array(form.quantity).fill({...data, quantity: 1, capacity: 1, dates})
-      .map((item: any) => ({...item, seed: this.cartSrv.generateId()}));
+      .map((item: any) => ({
+        ...item,
+        totales: dates.map((date: any) => date.price).reduce((a: number, b: number) => a + b, 0),
+        seed: this.cartSrv.generateId()
+      }));
       // console.log('toCart', toCart);
 
       const uid: any = this._cf.getUid();
