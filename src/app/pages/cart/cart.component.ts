@@ -39,6 +39,13 @@ export class CartComponent implements OnInit, OnDestroy {
     });
   }
 
+  get totales(){
+    if(!this.cart) return 0;
+    const total = this.cart.product.map((item: any) => item.totales)
+    .reduce((prev: any, next: any) => prev + next, 0);
+    return total;
+  }
+
 
   async onRemoveItem(item: any){
     try {
