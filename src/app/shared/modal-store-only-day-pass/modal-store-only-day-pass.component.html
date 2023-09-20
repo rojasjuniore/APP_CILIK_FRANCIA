@@ -40,6 +40,10 @@
                                 <ng-container *ngIf="submitted" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'quantity'}"></ng-container>
                             </p>
 
+                            <p class="text-center mt-4" *ngIf="item"> 
+                                <span class="fw-bold fs-4">Total: USD {{totales}}</span>
+                            </p>
+
                         </div>
                     </div>
                 </div>

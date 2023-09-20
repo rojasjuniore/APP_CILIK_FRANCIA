@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Subject, Subscription } from 'rxjs';
 import { BsModalService } from 'src/app/services/bs-modal.service';
 import { InputSigleCalendarComponent } from '../input-sigle-calendar/input-sigle-calendar.component';
+import moment from 'moment';
 
 @Component({
   selector: 'app-modal-store-only-day-pass',
@@ -70,6 +71,23 @@ export class ModalStoreOnlyDayPassComponent implements OnInit, AfterViewInit {
   }
 
   get f() { return this.form.controls; }
+
+  get totales() {
+    if(!this.item) { return 0 ;}
+
+    const dates = this.form.value.dates;
+    if(!dates) { return 0 ;}
+    
+    const quantity = this.form.value.quantity;
+    if(!quantity) { return 0 ;}
+
+    const totales = dates
+    .map((date: any) => moment(date).day())
+    .map((dn: any) => this.item.prices.dayOfWeek[dn] * quantity)
+    .reduce((a: number, b: number) => a + b, 0)
+    
+    return totales;
+  }
 
   onInputDatesChange(value: string | string[]){
     this.form.patchValue({dates: value});
