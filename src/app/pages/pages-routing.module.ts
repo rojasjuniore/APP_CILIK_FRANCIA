@@ -11,12 +11,16 @@ const routes: Routes = [
         loadChildren: () => import("./dashboard/dashboard.module").then((m) => m.DashboardModule),
     },
     {
+        path: "hotel-and-event",
+        loadChildren: () => import("./hotel-and-event/hotel-and-event.module").then((m) => m.HotelAndEventModule),
+    },
+    {
         path: "cart",
         loadChildren: () => import("./cart/cart.module").then((m) => m.CartModule),
     },
     {
-        path: "hotel-and-event",
-        loadChildren: () => import("./hotel-and-event/hotel-and-event.module").then((m) => m.HotelAndEventModule),
+        path: "checkout",
+        loadChildren: () => import("./checkout/checkout.module").then((m) => m.CheckoutModule),
     },
     // {
     //     path: "dashboard",
