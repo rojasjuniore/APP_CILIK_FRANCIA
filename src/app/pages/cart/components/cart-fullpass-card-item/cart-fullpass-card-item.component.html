@@ -1,16 +1,35 @@
 <div class="card card-box p-3 mb-3">
     <div class="row g-2 d-flex align-items-center">
         <div class="col-12 px-3">
-            <div class="d-flex justify-content-between">
+            <h5 class="card-title fw-bolder text-rslt">
+                <i class="bi bi-ticket-perforated"></i>
+                &nbsp;
+                {{item?.title}}
+            </h5>
+            <!-- <div class="d-flex justify-content-between">
+                <i class="bi bi-ticket-perforated"></i>
                 <span class="text-rslt fw-bold fs-5">
                     {{item?.title}}
                 </span>
-            </div>
+            </div> -->
         </div>
 
         <div class="seprd2"></div>
 
         <div class="col-12 px-3">
+
+            <p class="card-text" *ngIf="item?.include">
+                Incluye:
+                <small class="text-muted">
+                    {{item.include}}
+                </small>
+            </p>
+            <p class="card-text" *ngIf="item?.noInclude">
+                No Incluye:
+                <span class="text-muted">
+                    {{item.noInclude}}
+                </span>
+            </p>
 
             <!-- <p class="fw-bold m-0">Subtitulo:</p>
             <div class="seprd m-0 mb-2"></div>
