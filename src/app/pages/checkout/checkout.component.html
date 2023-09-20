@@ -1,5 +1,39 @@
-<p>checkout works!</p>
 <div class="row">
+
+    <div class="col-12 text-center mb-4">
+        <h5>
+            Elige tu método de pago
+        </h5>
+    </div>
+
+    <div class="col-12 mb-4">
+
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 col-sm-8 col-md-6 mb-4">
+                <div class="d-flex flex-column align-items-center justify-content-center">
+
+                    <ng-container *ngIf="(cart && uid); then renderPaymentOptions; else renderLoader"></ng-container>
+
+                    <!-- <button class="btn btn-payment btn-lg mb-3" type="button" *ngFor="let item of paymentOptions">
+                        <span class="icon-payment"><i [class]="item.icon"></i>&nbsp;</span>
+                        <span class="label-payment">
+                            {{item.label | translate | titlecase}}
+                        </span>
+                    </button> -->
+                </div>
+            </div>
+        </div>
+        <!-- <div class="row">
+            <div class="col-12 d-flex flex-column justify-content-center" *ngFor="let item of paymentOptions">
+                <button class="btn btn-payment btn-lg mb-3" type="button">
+                    <span class="icon-payment"><i [class]="item.icon"></i>&nbsp;</span>
+                    <span class="label-payment">
+                        {{item.label | translate | titlecase}}
+                    </span>
+                </button>
+            </div>
+        </div> -->
+    </div>
 
     <div class="col-12">
         <div class="d-flex justify-content-between">
@@ -16,3 +50,18 @@
     </div>
 
 </div>
+
+<ng-template #renderPaymentOptions>
+    <button class="btn btn-payment btn-lg mb-3" type="button" *ngFor="let item of paymentOptions">
+        <span class="icon-payment"><i [class]="item.icon"></i>&nbsp;</span>
+        <span class="label-payment">
+            {{item.label | translate | titlecase}}
+        </span>
+    </button>
+</ng-template>
+
+<ng-template #renderLoader>
+    <button class="btn btn-payment btn-lg mb-3 placeholder-glow" type="button" *ngFor="let item of [1,1,1,1]">
+        <span class="placeholder col-12" style="height: 60px;"></span>
+    </button>
+</ng-template>
