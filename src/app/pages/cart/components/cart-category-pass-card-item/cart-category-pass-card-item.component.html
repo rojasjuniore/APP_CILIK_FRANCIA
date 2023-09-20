@@ -3,7 +3,16 @@
         <div class="col-12 px-3">
             <div class="d-flex justify-content-between">
                 <span class="text-rslt fw-bold fs-5">
+                    <i class="bi bi-ticket-perforated"></i>
+                    &nbsp;
                     {{item?.title}} - {{item?.categoryType | uppercase}}
+                </span>
+
+                <span class="d-none d-md-block">
+                    <i class="bi"
+                        [ngClass]="(item?.categoryType === 'solo') ? 'bi-person-fill' : 'bi-people-fill'"
+                    ></i>
+                    {{item?.capacity}}
                 </span>
             </div>
         </div>
@@ -23,7 +32,7 @@
             </p>
             <p class="m-0">Descuento: USD 0</p> -->
 
-            <p class="m-0">
+            <p class="m-0 d-block d-sm-none">
                 <i class="bi"
                     [ngClass]="(item?.categoryType === 'solo') ? 'bi-person-fill' : 'bi-people-fill'"
                 ></i>
