@@ -23,6 +23,26 @@
                 <i class="bi bi-person-fill"></i>
                 {{item?.capacity}}
             </p>
+            
+            <p class="card-text" *ngIf="item?.include">
+                Incluye:
+                <small class="text-muted">
+                    {{item.include}}
+                </small>
+            </p>
+            <p class="card-text" *ngIf="item?.noInclude">
+                No Incluye:
+                <span class="text-muted">
+                    {{item.noInclude}}
+                </span>
+            </p>
+
+            <p class="card-text" *ngIf="item">
+                Fechas:
+                <span class="badge bg-danger" [ngClass]="(!isLast) ? 'me-1': ''" *ngFor="let item of item.dates; last as isLast">
+                    {{item.date}}
+                </span>
+            </p>
 
             <!-- <p class="fw-bold m-0">Subtitulo:</p>
             <div class="seprd m-0 mb-2"></div>
