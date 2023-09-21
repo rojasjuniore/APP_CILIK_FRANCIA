@@ -43,11 +43,12 @@ export class PaypalButtonComponent implements OnInit, OnChanges {
     const _fee = new BN(this.amount).multipliedBy(0.056).toFixed(2)
     const _amount = new BN(this.amount).plus(_fee).toFixed(2)
 
-    console.log({
-      _clientId,
-      _currency,
-      _amount
-    });
+    // console.log({
+    //   _clientId,
+    //   _currency,
+    //   _fee,
+    //   _amount
+    // });
 
 
     this.payPalConfig = {
