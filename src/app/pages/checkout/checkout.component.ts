@@ -28,23 +28,24 @@ export class CheckoutComponent implements OnInit {
       slug: 'tucompra',
       type: 'navigation',
       icon: 'bi bi-credit-card',
-      available: true
+      available: false
     },
     {
       label: 'Transferencia',
       slug: 'transfer',
       type: 'method',
       icon: 'bi bi-bank',
-      available: true
+      available: false
     },
     {
       label: 'Cuotas',
       slug: 'installments',
       type: 'method',
       icon: 'bi bi-calendar-check',
-      available: true
+      available: false
     },
   ];
+  public paymentOptionSelected: any;
 
   private sub$!: Subscription;
 
@@ -69,6 +70,9 @@ export class CheckoutComponent implements OnInit {
 
   onSelectPaymentOption(item: any){
     console.log('onSelectPaymentOption', item);
+    if(item.type === 'navigation'){
+      this.paymentOptionSelected = item;
+    }
   }
 
   onPaypalCallback(event: any){

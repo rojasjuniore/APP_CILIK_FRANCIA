@@ -12,7 +12,9 @@
             <div class="col-12 col-sm-8 col-md-6 mb-4">
                 <div class="d-flex flex-column align-items-center justify-content-center">
 
-                    <ng-container *ngIf="(cart && uid); then renderPaymentOptions; else renderLoader"></ng-container>
+                    <ng-container *ngIf="(cart && uid); else renderLoader">
+                        <ng-container *ngIf="(!paymentOptionSelected); then renderPaymentOptions; else renderPaymentOption"></ng-container>
+                    </ng-container>
 
                     <!-- <button class="btn btn-payment btn-lg mb-3" type="button" *ngFor="let item of paymentOptions">
                         <span class="icon-payment"><i [class]="item.icon"></i>&nbsp;</span>
@@ -21,9 +23,6 @@
                         </span>
                     </button> -->
 
-                    <div class="col-12">
-                        <app-paypal-button (onCallback)="onPaypalCallback($event)"></app-paypal-button>
-                    </div>
                 </div>
             </div>
         </div>
@@ -54,6 +53,15 @@
     </div>
 
 </div>
+
+
+<ng-template #renderPaymentOption>
+    <ng-container [ngSwitch]="paymentOptionSelected.slug">
+        <div class="col-12" *ngSwitchCase="'paypal'">
+            <app-paypal-button (onCallback)="onPaypalCallback($event)"></app-paypal-button>
+        </div>
+    </ng-container>
+</ng-template>
 
 <ng-template #renderPaymentOptions>
     <ng-container *ngFor="let item of paymentOptions">
