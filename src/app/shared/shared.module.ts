@@ -19,6 +19,7 @@ import { ModalStoreOnlyDayPassComponent } from './modal-store-only-day-pass/moda
 import { ModalHotelEventRoomsListComponent } from './modal-hotel-event-rooms-list/modal-hotel-event-rooms-list.component';
 import { HotelAndEventRoomListItemCardComponent } from './hotel-and-event-room-list-item-card/hotel-and-event-room-list-item-card.component';
 import { CartHotelEventCardItemComponent } from './cart-hotel-event-card-item/cart-hotel-event-card-item.component';
+import { PaypalButtonComponent } from './paypal-button/paypal-button.component';
 
 
 
@@ -36,12 +37,12 @@ import { CartHotelEventCardItemComponent } from './cart-hotel-event-card-item/ca
 
     InputNumberFormComponent,
     InputSigleCalendarComponent,
+    PaypalButtonComponent,
     
     ModalOnlyInputNumberComponent,
     ModalStoreOnlyCategoriesComponent,
     ModalStoreOnlyDayPassComponent,
     ModalHotelEventRoomsListComponent,
-    
   ],
   imports: [
     CommonModule,
@@ -70,6 +71,7 @@ import { CartHotelEventCardItemComponent } from './cart-hotel-event-card-item/ca
     
     InputNumberFormComponent,
     InputSigleCalendarComponent,
+    PaypalButtonComponent,
 
     ModalOnlyInputNumberComponent,
     ModalStoreOnlyCategoriesComponent,
