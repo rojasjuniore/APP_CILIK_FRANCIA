@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subscription, distinctUntilChanged, switchMap } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CartService } from 'src/app/services/cart.service';
+import { PaypalButtonComponent } from 'src/app/shared/paypal-button/paypal-button.component';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -68,6 +69,10 @@ export class CheckoutComponent implements OnInit {
 
   onSelectPaymentOption(item: any){
     console.log('onSelectPaymentOption', item);
+  }
+
+  onPaypalCallback(event: any){
+    console.log('onPaypalCallback', event);
   }
 
   ngOnDestroy(): void {
