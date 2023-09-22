@@ -71,7 +71,12 @@ export class CheckoutComponent implements OnInit {
     )
     .subscribe(cart => {
       console.log('cart', cart);
-      if(!cart) { return; }
+
+      if(!cart) {
+        this.router.navigate(['/pages/dashboard']);
+        return;
+      }
+      
       this.cart = cart;
       this.uid = this.cart.uid;
     });

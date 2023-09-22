@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CheckHasCartGuard } from '../guards/check-has-cart.guard';
 // import { DashboardComponent } from './dashboard/dashboard.component';
 // import { LandingFormComponent } from './landing/components/landing-form/landing-form.component';
 // import { LandingSection7Component } from './landing/components/landing-section7/landing-section7.component';
@@ -16,10 +17,12 @@ const routes: Routes = [
     },
     {
         path: "cart",
+        canActivate: [ CheckHasCartGuard ],
         loadChildren: () => import("./cart/cart.module").then((m) => m.CartModule),
     },
     {
         path: "checkout",
+        canActivate: [ CheckHasCartGuard ],
         loadChildren: () => import("./checkout/checkout.module").then((m) => m.CheckoutModule),
     },
     // {
