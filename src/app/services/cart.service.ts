@@ -12,7 +12,7 @@ import { CustomizationfileService } from './customizationfile/customizationfile.
 })
 export class CartService {
 
-  public collection: string = 'event_cart';
+  public collection: string = 'hotel_event';
 
   constructor(
     private afs: AngularFirestore,
@@ -49,7 +49,7 @@ export class CartService {
    */
   async store(eventId: string, uid: string, data: any){
     return await this.afs.collection(this.collection)
-      .doc(eventId).collection('list').doc(uid).set(data);
+      .doc(eventId).collection('cart').doc(uid).set(data);
   }
 
   async buildAndStore(eventId: string){
@@ -72,7 +72,7 @@ export class CartService {
   async addOnCart(eventId: string, uid: string, data: any[], field: string = 'product'){
     await Promise.all(
       data.map(async (item: any) => 
-        this.afs.collection(this.collection).doc(eventId).collection('list').doc(uid).update({[field]: arrayUnion(item)})
+        this.afs.collection(this.collection).doc(eventId).collection('cart').doc(uid).update({[field]: arrayUnion(item)})
       )
     );
     return true;
@@ -90,7 +90,7 @@ export class CartService {
    */
   async removeOnCart(eventId: string, uid: string, data: any, field: string = 'product'){
     return await this.afs.collection(this.collection)
-      .doc(eventId).collection('list').doc(uid).update({
+      .doc(eventId).collection('cart').doc(uid).update({
         [field]: arrayRemove(data)
       });
   }
@@ -104,7 +104,7 @@ export class CartService {
   async getCartToPromise(eventId: string, uid: string){
     try {
       const snapshot = await this.afs.collection(this.collection)
-        .doc(eventId).collection('list').doc(uid).get().toPromise();
+        .doc(eventId).collection('cart').doc(uid).get().toPromise();
       return await handlerObjectResult(snapshot);
       
     } catch (err) {
@@ -121,7 +121,7 @@ export class CartService {
    */
   getCartObservable(eventId: string, uid: string){
     return this.afs.collection(this.collection)
-      .doc(eventId).collection('list').doc(uid).valueChanges();
+      .doc(eventId).collection('cart').doc(uid).valueChanges();
   }
 
   /**
@@ -132,7 +132,7 @@ export class CartService {
    */
   async deleteCart(eventId: string, uid: string){
     return await this.afs.collection(this.collection)
-      .doc(eventId).collection('list').doc(uid).delete();
+      .doc(eventId).collection('cart').doc(uid).delete();
   }
 
 }
