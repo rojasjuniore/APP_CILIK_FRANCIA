@@ -241,7 +241,7 @@ export class TucompraService {
 
   buildDocument(params: any): TuCompraObject {
     return {
-      usuario: params.usuario || null,
+      usuario: environment.tuCompra.Idsistema,
       factura: params.factura || Date.now(), 
       valor: params.valor || 0,
       descripcionFactura: params.descripcionFactura || "Compra de boletas para el evento - WLDC Cartagena 2024",
@@ -278,7 +278,7 @@ export class TucompraService {
       campoExtra8: params.campoExtra8 || null,
       campoExtra9: params.campoExtra9 || null,
       descripcionCobroAdicional: params.descripcionCobroAdicional || null,
-      valorAdicional: params.valorAdicional || null,
+      valorAdicional: params.valorAdicional || null
     }
   }
 
@@ -295,7 +295,7 @@ export class TucompraService {
     return input;
   }
 
-  launchForm(formData: any[]){
+  launchForm(formData: any[], newTab: boolean = false){
     
     /** Construir inputs */
     const tuCompraInputs = Object.entries(formData).map(([k, v]) => this.createHTMLInputTag(k, v));
@@ -306,6 +306,9 @@ export class TucompraService {
     tuCompraForm.action = environment.tuCompra.url;
     tuCompraForm.method = 'POST';
     tuCompraForm.id = 'tuCompraPresale';
+
+    // open on new tab
+    if(newTab) tuCompraForm.target = '_blank';
 
     /** Agregar inputs al formulario */
     for (const input of tuCompraInputs) {
