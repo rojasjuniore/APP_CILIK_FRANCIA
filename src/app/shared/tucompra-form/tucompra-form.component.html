@@ -1,1 +1,11 @@
 <p>tucompra-form works!</p>
+
+
+
+<ng-template #renderFormVM let-field="field">
+    <ng-container *ngFor="let item of vm[field]">
+      <span class="badge bg-danger" *ngIf="f[field].hasError(item.type)">
+        {{ item.message | translate }}
+      </span>
+    </ng-container>
+  </ng-template>
