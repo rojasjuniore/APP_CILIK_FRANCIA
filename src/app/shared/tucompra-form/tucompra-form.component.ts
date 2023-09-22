@@ -133,7 +133,7 @@ export class TucompraFormComponent implements OnInit, OnChanges {
       const orderId = this.cartSrv.generateId();
 
       const extraField = {
-        type: 'settle',
+        type: 'presale',
         uid: uid,
         keyDB: environment.dataEvent.keyDb,
         orderId: orderId,
@@ -144,15 +144,19 @@ export class TucompraFormComponent implements OnInit, OnChanges {
         ...formData,
         valor: this.amount,
         campoExtra1: JSON.stringify(extraField),
-        campoExtra2: environment.dataEvent.appURL
+        campoExtra2: environment.dataEvent.appURL,
+        telefonoComprador: formData.celularComprador,
+        paisComprador: 'COLOMBIA',
+        ciudadComprador: 'Cartagena'
       });
+      // console.log('data', data);
 
       /** Capturar solo campos con valores*/
       const newFormData = Object.entries(data)
         .filter(([_, v]) => v !== null)
         .reduce((acc, [k, v]) => ({ ...acc, [k]: v }), {});
 
-      console.log('Try to submit form', newFormData);
+      // console.log('Try to submit form', newFormData);
       this.onSendForm.next(newFormData);
       return;
       
