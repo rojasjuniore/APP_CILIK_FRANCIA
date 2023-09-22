@@ -1,11 +1,95 @@
-<p>tucompra-form works!</p>
+<form class="mb-5" [formGroup]="form" (ngSubmit)="onSubmit()" #userForm novalidate>
 
+    <div class="row">
+        <div class="col-12 mb-3">
+            <label for="documentoComprador" class="form-label">Nro. Documento</label>
+            <input type="text" class="form-control" formControlName="documentoComprador" aria-describedby="documentoCompradorHelp">
+            <ng-container 
+                *ngIf="submitted" 
+                [ngTemplateOutlet]="renderFormVM" 
+                [ngTemplateOutletContext]="{ field: 'documentoComprador' }"
+            ></ng-container>
+        </div>
+      
+        <div class="col-12 mb-3">
+            <label for="tipoDocumento" class="form-label">Tipo Documento</label>
+            <select class="form-select" formControlName="tipoDocumento" placeholder="Tipo Documento">
+                <option value="" selected>Seleccionar...</option>
+                <option value="CC">cedula ciudadanía</option>
+                <option value="CE">cedula extranjería</option>
+                <option value="NIT">número identificación tributaria</option>
+                <option value="PAS">pasaporte</option>
+            </select>
+            <ng-container 
+                *ngIf="submitted" 
+                [ngTemplateOutlet]="renderFormVM" 
+                [ngTemplateOutletContext]="{ field: 'tipoDocumento' }"
+            ></ng-container>
+        </div>
+      
+        <div class="col-12 mb-3">
+            <label for="nombreComprador" class="form-label">Nombres</label>
+            <input type="text" class="form-control" formControlName="nombreComprador" aria-describedby="nombreCompradorHelp">
+            <ng-container 
+                *ngIf="submitted" 
+                [ngTemplateOutlet]="renderFormVM" 
+                [ngTemplateOutletContext]="{ field: 'nombreComprador' }"
+            ></ng-container>
+        </div>
+      
+        <div class="col-12 mb-3">
+            <label for="apellidoComprador" class="form-label">Apellidos</label>
+            <input type="text" class="form-control" formControlName="apellidoComprador" aria-describedby="apellidoCompradorHelp">
+            <ng-container 
+                *ngIf="submitted" 
+                [ngTemplateOutlet]="renderFormVM" 
+                [ngTemplateOutletContext]="{ field: 'apellidoComprador' }"
+            ></ng-container>
+        </div>
+      
+        <div class="col-12 mb-3">
+            <label for="correoComprador" class="form-label">Email</label>
+            <input type="text" class="form-control" formControlName="correoComprador" aria-describedby="correoCompradorHelp">
+            <ng-container 
+                *ngIf="submitted" 
+                [ngTemplateOutlet]="renderFormVM" 
+                [ngTemplateOutletContext]="{ field: 'correoComprador' }"
+            ></ng-container>
+        </div>
+      
+        <div class="col-12 mb-3">
+            <label for="celularComprador" class="form-label">Celular</label>
+            <input type="text" class="form-control" formControlName="celularComprador" aria-describedby="celularCompradorHelp">
+            <ng-container 
+                *ngIf="submitted" 
+                [ngTemplateOutlet]="renderFormVM" 
+                [ngTemplateOutletContext]="{ field: 'celularComprador' }"
+            ></ng-container>
+        </div>
+      
+        <div class="col-12 mb-3">
+            <label for="direccionComprador" class="form-label">Dirección</label>
+            <input type="text" class="form-control" formControlName="direccionComprador" aria-describedby="direccionCompradorHelp">
+            <ng-container 
+                *ngIf="submitted" 
+                [ngTemplateOutlet]="renderFormVM" 
+                [ngTemplateOutletContext]="{ field: 'direccionComprador' }"
+            ></ng-container>
+        </div>
 
+        <div class="col-12 text-center">
+            <button type="submit" class="btn btn-danger">
+                Pagar con tuCompra
+            </button>
+        </div>
+    </div>
+
+</form>
 
 <ng-template #renderFormVM let-field="field">
-    <ng-container *ngFor="let item of vm[field]">
-      <span class="badge bg-danger" *ngIf="f[field].hasError(item.type)">
-        {{ item.message | translate }}
-      </span>
-    </ng-container>
-  </ng-template>
+  <ng-container *ngFor="let val of vm[field]">
+      <div id="{{field}}Help" class="form-text text-danger" *ngIf="f[field].hasError(val.type)">
+          {{ val.message | translate | titlecase }}
+      </div>
+  </ng-container>
+</ng-template>
