@@ -19,10 +19,7 @@ export const environment = {
   urlWeb: 'https://dev-cilik.web.app/',
   paypal: {
     currency: 'USD',
-    payPalEnvironmentProduction:
-      "AUek7V91U1RKcGTgzZadqSuLIwvjuuV0Ljyqh3jh7-foQRutWkjvKLm_u30d5M8aFVFTBGEByvcbY45P",
-    payPalEnvironmentSandbox:
-      "ASay2oTezuJ4AhyNrm4UGcJbRE6O82APiOcx5J-l9aBT_r4TzeN0bi4acCuwmfXHWlMIfT79xu2HvdzC",
+    clientId: "ASay2oTezuJ4AhyNrm4UGcJbRE6O82APiOcx5J-l9aBT_r4TzeN0bi4acCuwmfXHWlMIfT79xu2HvdzC",
   },
   tuCompra: {
     url: "https://demover3-1.tucompra.net/tc3/app/inputs/compra.jsp",

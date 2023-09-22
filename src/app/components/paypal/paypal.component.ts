@@ -31,9 +31,7 @@ export class PaypalComponent implements OnInit {
 
   private initConfig(): void {
 
-    const _clientId = environment.production ?
-      environment.paypal.payPalEnvironmentProduction :
-      environment.paypal.payPalEnvironmentSandbox
+    const _clientId = environment.paypal.clientId;
     const _currency = environment.paypal.currency;
     const _amount = new BN(this.amount).toFixed(2)
 
@@ -51,7 +49,7 @@ export class PaypalComponent implements OnInit {
         intent: 'CAPTURE',
         purchase_units: [{
           amount: {
-            currency_code: "USD",
+            currency_code: _currency,
             value: `${_amount}` // Can also reference a variable or function
           }
         }]
