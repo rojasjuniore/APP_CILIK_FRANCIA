@@ -26,8 +26,9 @@
                 {{ "general.back" | translate }}
             </button>
             
-            <button class="btn btn-one text-uppercase btn-medium-c" type="button" *ngIf="false">
+            <button class="btn btn-one text-uppercase btn-medium-c" [ngClass]="{'disabled': rooms.length == 0}" type="button" routerLink="/pages/cart">
                 {{ "general.continue" | translate | uppercase }}
+                <i class="bi bi-chevron-right"></i>
             </button>
         </div>
     </div>
