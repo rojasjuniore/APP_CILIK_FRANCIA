@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -292,6 +293,31 @@ export class TucompraService {
     input.value = value;
 
     return input;
+  }
+
+  launchForm(formData: any[]){
+    
+    /** Construir inputs */
+    const tuCompraInputs = Object.entries(formData).map(([k, v]) => this.createHTMLInputTag(k, v));
+    console.log('tuCompraInputs', tuCompraInputs);
+
+    /** Construir formulario */
+    const tuCompraForm = document.createElement('form');
+    tuCompraForm.action = environment.tuCompra.url;
+    tuCompraForm.method = 'POST';
+    tuCompraForm.id = 'tuCompraPresale';
+
+    /** Agregar inputs al formulario */
+    for (const input of tuCompraInputs) {
+      tuCompraForm.appendChild(input);
+    }
+
+    /** Agregar formulario al DOM */
+    document.body.appendChild(tuCompraForm);
+
+    /** Realizar Submit */
+    tuCompraForm.submit();
+    return;
   }
 }
 
