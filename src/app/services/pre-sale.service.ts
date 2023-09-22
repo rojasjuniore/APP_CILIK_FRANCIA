@@ -8,6 +8,7 @@ import { DataService } from './data.service';
 import { HotelService } from './hotel.service';
 import { PurchaseService } from './purchase.service';
 import { Sweetalert2Service } from './sweetalert2.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -275,7 +276,7 @@ export class PreSaleService {
     // return;
 
     /** Store Document */
-    await this.purchaseSrv.storePurchase(document.orderId,document);
+    await this.purchaseSrv.storePurchase(environment.dataEvent.keyDb, document.orderId,document);
 
     /** Send Mail Summary */
     await this.purchaseSrv.sendPurchaseSummaryNotification(document.uid, document.orderId);
