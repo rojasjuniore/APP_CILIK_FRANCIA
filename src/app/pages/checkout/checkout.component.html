@@ -1,42 +1,8 @@
 <div class="row">
 
-    <div class="col-12 text-center mb-4">
-        <h5>
-            Elige tu método de pago
-        </h5>
-    </div>
-
-    <div class="col-12 mb-4">
-
-        <div class="row d-flex justify-content-center">
-            <div class="col-12 col-sm-8 col-md-6 mb-4">
-                <div class="d-flex flex-column align-items-center justify-content-center">
-
-                    <ng-container *ngIf="(cart && uid); else renderLoader">
-                        <ng-container *ngIf="(!paymentOptionSelected); then renderPaymentOptions; else renderPaymentOption"></ng-container>
-                    </ng-container>
-
-                    <!-- <button class="btn btn-payment btn-lg mb-3" type="button" *ngFor="let item of paymentOptions">
-                        <span class="icon-payment"><i [class]="item.icon"></i>&nbsp;</span>
-                        <span class="label-payment">
-                            {{item.label | translate | titlecase}}
-                        </span>
-                    </button> -->
-
-                </div>
-            </div>
-        </div>
-        <!-- <div class="row">
-            <div class="col-12 d-flex flex-column justify-content-center" *ngFor="let item of paymentOptions">
-                <button class="btn btn-payment btn-lg mb-3" type="button">
-                    <span class="icon-payment"><i [class]="item.icon"></i>&nbsp;</span>
-                    <span class="label-payment">
-                        {{item.label | translate | titlecase}}
-                    </span>
-                </button>
-            </div>
-        </div> -->
-    </div>
+    <ng-container *ngIf="(cart && uid); else renderLoader">
+        <ng-container *ngIf="(!paymentOptionSelected); then renderPaymentOptions; else renderPaymentOption"></ng-container>
+    </ng-container>
 
     <div class="seprd2"></div>
 
@@ -65,25 +31,55 @@
 
 <ng-template #renderPaymentOption>
     <ng-container [ngSwitch]="paymentOptionSelected.slug">
+
         <div class="col-12" *ngSwitchCase="'paypal'">
             <app-paypal-button [amount]="totales" (onCallback)="onPaypalCallback($event)"></app-paypal-button>
         </div>
+
+        <div class="col-12" *ngSwitchCase="'tucompra'">
+            <app-tucompra-form [amount]="totales" (onSendForm)="onTuCompraCallback($event)"></app-tucompra-form>
+        </div>
+        
     </ng-container>
 </ng-template>
 
 <ng-template #renderPaymentOptions>
-    <ng-container *ngFor="let item of paymentOptions">
-        <button class="btn btn-payment btn-lg mb-3" type="button" *ngIf="item.available" (click)="onSelectPaymentOption(item)">
-            <span class="icon-payment"><i [class]="item.icon"></i>&nbsp;</span>
-            <span class="label-payment">
-                {{item.label | translate | titlecase}}
-            </span>
-        </button>
-    </ng-container>
+    <div class="col-12 text-center mb-4">
+        <h5>Elige tu método de pago</h5>
+    </div>
+
+    <div class="col-12 mb-4">
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 col-sm-8 col-md-6 mb-4">
+                <div class="d-flex flex-column align-items-center justify-content-center">
+                    <ng-container *ngFor="let item of paymentOptions">
+                        <button class="btn btn-payment btn-lg mb-3" type="button" *ngIf="item.available" (click)="onSelectPaymentOption(item)">
+                            <span class="icon-payment"><i [class]="item.icon"></i>&nbsp;</span>
+                            <span class="label-payment">
+                                {{item.label | translate | titlecase}}
+                            </span>
+                        </button>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
 </ng-template>
 
 <ng-template #renderLoader>
-    <button class="btn btn-payment btn-lg mb-3 placeholder-glow" type="button" *ngFor="let item of [1,1,1,1]">
-        <span class="placeholder col-12" style="height: 60px;"></span>
-    </button>
+    <div class="col-12 text-center mb-4">
+        <h5>Elige tu método de pago</h5>
+    </div>
+
+    <div class="col-12 mb-4">
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 col-sm-8 col-md-6 mb-4">
+                <div class="d-flex flex-column align-items-center justify-content-center">
+                    <button class="btn btn-payment btn-lg mb-3 placeholder-glow" type="button" *ngFor="let item of [1,1,1,1]">
+                        <span class="placeholder col-12" style="height: 60px;"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </ng-template>

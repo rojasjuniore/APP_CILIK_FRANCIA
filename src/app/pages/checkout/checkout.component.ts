@@ -7,6 +7,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CartService } from 'src/app/services/cart.service';
 import { PurchaseService } from 'src/app/services/purchase.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
+import { TucompraService } from 'src/app/services/tucompra/tucompra.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -32,7 +33,7 @@ export class CheckoutComponent implements OnInit {
       slug: 'tucompra',
       type: 'navigation',
       icon: 'bi bi-credit-card',
-      available: false
+      available: true
     },
     {
       label: 'Transferencia',
@@ -60,6 +61,7 @@ export class CheckoutComponent implements OnInit {
     private purchaseSrv: PurchaseService,
     private sweetAlert2Srv: Sweetalert2Service,
     private router: Router,
+    private tuCompraSrv: TucompraService
   ) { }
 
   ngOnInit(): void {
@@ -141,6 +143,33 @@ export class CheckoutComponent implements OnInit {
       return;
     } finally {
       this.spinner.hide();
+    }
+  }
+
+  async onTuCompraCallback(formData: any){
+    try {
+      console.log('onTuCompraCallback', formData);
+
+      const campoExtra1 = JSON.parse(formData.campoExtra1);
+      console.log('campoExtra1', campoExtra1);
+
+      const purchase = {
+        ...this.cart,
+        paymentMethod: 'tucompra',
+        metadata: formData,
+        status: 'pending',
+        payedAt: moment().valueOf(),
+        orderId: campoExtra1.orderId,
+        totales: this.totales
+      };
+      console.log('purchase', purchase);
+
+      this.tuCompraSrv.launchForm(formData);
+      return;
+      
+    } catch (err) {
+      console.log('Error on CheckoutComponent.onTuCompraCallback()', err);
+      return;
     }
   }
 
