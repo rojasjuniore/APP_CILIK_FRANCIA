@@ -25,6 +25,7 @@ export const environment = {
     url: "https://demover3-1.tucompra.net/tc3/app/inputs/compra.jsp",
     Nombre: "FUNDACION BALLET NACIONAL EL FIRULETE",
     Idsistema: "qo4xdqn7cx0lv5t6",
+    descripcionFactura: "DEV - CARTAGENA LATIN DANCE CUP 2024"
   },
   firebaseConfig: {
     apiKey: "AIzaSyC1MxrCfXicJ8gxAOMJut2fGouYH0QjMao",
