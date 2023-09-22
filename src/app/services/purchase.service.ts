@@ -14,7 +14,7 @@ const URL_ROOT: any = environment.API_URL;
 })
 export class PurchaseService {
 
-  public purchaseCollection = environment.production ? 'purchases' : 'purchases-dev';
+  public purchaseCollection = 'purchases';
 
   constructor(
     private afs: AngularFirestore,
@@ -22,12 +22,14 @@ export class PurchaseService {
     private excelSrv: ExcelService,
   ) { }
 
-  async storePurchase(docId: string, data: any) {
-    return this.afs.collection(this.purchaseCollection).doc(docId).set(data);
+  async storePurchase(eventId: string, docId: string, data: any) {
+    // return this.afs.collection(this.purchaseCollection).doc(docId).set(data);
+    return await this.afs.collection(this.purchaseCollection).doc(eventId).collection('list').doc(docId).set(data);
   }
 
-  async updatePurchase(docId: string, data: any) {
-    return this.afs.collection(this.purchaseCollection).doc(docId).update(data);
+  async updatePurchase(eventId: string, docId: string, data: any) {
+    // return this.afs.collection(this.purchaseCollection).doc(docId).update(data);
+    return await this.afs.collection(this.purchaseCollection).doc(eventId).collection('list').doc(docId).update(data);
   }
 
   async updatePurchaseInstallmentCouta(docId: string, index: number, data: any) {
@@ -54,7 +56,7 @@ export class PurchaseService {
         return item;
       });
 
-      await this.updatePurchase(docId, { installments: newInstallments });
+      await this.updatePurchase(environment.dataEvent.keyDb, docId, { installments: newInstallments });
 
       return true;
 
