@@ -1,6 +1,10 @@
 import { Component, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { CartService } from 'src/app/services/cart.service';
+import { TucompraService } from 'src/app/services/tucompra/tucompra.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-tucompra-form',
@@ -46,9 +50,13 @@ export class TucompraFormComponent implements OnInit, OnChanges {
     ],
   };
   public submitted = false;
+  public showLoader = false;
 
   constructor(
     private fb: FormBuilder,
+    private authSrv: AuthenticationService,
+    private cartSrv: CartService,
+    private tuCompraSrv: TucompraService
   ) {
     this.buildForm();
   }
@@ -118,7 +126,34 @@ export class TucompraFormComponent implements OnInit, OnChanges {
         return;
       }
 
-      console.log('Try to submit form', formData);
+      this.showLoader = true;
+      this.form.disable();
+
+      const uid = await this.authSrv.getUIDPromise();
+      const orderId = this.cartSrv.generateId();
+
+      const extraField = {
+        type: 'settle',
+        uid: uid,
+        keyDB: environment.dataEvent.keyDb,
+        orderId: orderId,
+        paymentMethod: 'TUCOMPRA'
+      };
+
+      const data = this.tuCompraSrv.buildDocument({
+        ...formData,
+        valor: this.amount,
+        campoExtra1: JSON.stringify(extraField),
+        campoExtra2: environment.dataEvent.appURL
+      });
+
+      /** Capturar solo campos con valores*/
+      const newFormData = Object.entries(data)
+        .filter(([_, v]) => v !== null)
+        .reduce((acc, [k, v]) => ({ ...acc, [k]: v }), {});
+
+      console.log('Try to submit form', newFormData);
+      this.onSendForm.next(newFormData);
       return;
       
     } catch (err) {

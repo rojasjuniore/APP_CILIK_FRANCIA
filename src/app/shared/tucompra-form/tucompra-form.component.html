@@ -78,13 +78,27 @@
         </div>
 
         <div class="col-12 text-center">
-            <button type="submit" class="btn btn-danger">
-                Pagar con tuCompra
-            </button>
+            <ng-container *ngIf="(!showLoader); then renderSubmitBtn; else renderLoaderBtn"></ng-container>
         </div>
     </div>
 
 </form>
+
+<ng-template #renderSubmitBtn>
+    <button type="submit" class="btn btn-danger">
+        Pagar con tuCompra
+    </button>
+</ng-template>
+
+<ng-template #renderLoaderBtn>
+    <button type="submit" class="btn btn-danger disabled">
+        <div class="text-center">
+            <div class="spinner-border spinner-border-sm" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </button>
+</ng-template>
 
 <ng-template #renderFormVM let-field="field">
   <ng-container *ngFor="let val of vm[field]">
