@@ -148,10 +148,12 @@ export class CheckoutComponent implements OnInit {
 
   async onTuCompraCallback(formData: any){
     try {
-      console.log('onTuCompraCallback', formData);
+      // console.log('onTuCompraCallback', formData);
+
+      await this.spinner.show();
 
       const campoExtra1 = JSON.parse(formData.campoExtra1);
-      console.log('campoExtra1', campoExtra1);
+      // console.log('campoExtra1', campoExtra1);
 
       const purchase = {
         ...this.cart,
@@ -162,14 +164,23 @@ export class CheckoutComponent implements OnInit {
         orderId: campoExtra1.orderId,
         totales: this.totales
       };
-      console.log('purchase', purchase);
+      // console.log('purchase', purchase);
 
+      /** Almacenar orden de compra */
+      await this.purchaseSrv.storePurchase(environment.dataEvent.keyDb, purchase.orderId, purchase);
+
+      /** Eliminar carrito de compra */
+      await this.cartSrv.deleteCart(environment.dataEvent.keyDb, this.uid);
+
+      /** Disparar formulario */
       this.tuCompraSrv.launchForm(formData);
       return;
       
     } catch (err) {
       console.log('Error on CheckoutComponent.onTuCompraCallback()', err);
       return;
+    } finally {
+      this.spinner.hide();
     }
   }
 
