@@ -20,6 +20,7 @@ import { ModalHotelEventRoomsListComponent } from './modal-hotel-event-rooms-lis
 import { HotelAndEventRoomListItemCardComponent } from './hotel-and-event-room-list-item-card/hotel-and-event-room-list-item-card.component';
 import { CartHotelEventCardItemComponent } from './cart-hotel-event-card-item/cart-hotel-event-card-item.component';
 import { PaypalButtonComponent } from './paypal-button/paypal-button.component';
+import { TucompraFormComponent } from './tucompra-form/tucompra-form.component';
 
 
 
@@ -38,6 +39,7 @@ import { PaypalButtonComponent } from './paypal-button/paypal-button.component';
     InputNumberFormComponent,
     InputSigleCalendarComponent,
     PaypalButtonComponent,
+    TucompraFormComponent,
     
     ModalOnlyInputNumberComponent,
     ModalStoreOnlyCategoriesComponent,
@@ -72,6 +74,7 @@ import { PaypalButtonComponent } from './paypal-button/paypal-button.component';
     InputNumberFormComponent,
     InputSigleCalendarComponent,
     PaypalButtonComponent,
+    TucompraFormComponent,
 
     ModalOnlyInputNumberComponent,
     ModalStoreOnlyCategoriesComponent,
