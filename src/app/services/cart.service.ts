@@ -124,4 +124,15 @@ export class CartService {
       .doc(eventId).collection('list').doc(uid).valueChanges();
   }
 
+  /**
+   * Eliminar el carrito de compras de un usuario
+   * @param eventId           Id del evento
+   * @param uid               Id del usuario
+   * @returns 
+   */
+  async deleteCart(eventId: string, uid: string){
+    return await this.afs.collection(this.collection)
+      .doc(eventId).collection('list').doc(uid).delete();
+  }
+
 }
