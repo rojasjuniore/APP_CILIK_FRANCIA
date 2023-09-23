@@ -35,7 +35,7 @@ export class PurchaseService {
 
 
 
-  
+
 
   async updatePurchaseInstallmentCouta(docId: string, index: number, data: any) {
     // try {
@@ -172,8 +172,8 @@ export class PurchaseService {
   getDynamic(eventId: string, where: any[] = [], opts: any = {}): Observable<any[]> {
     const { idField = "_id", orderBy = [] } = opts;
 
-    return this.afs.collection(
-      this.purchaseCollection,
+    return this.afs.collection(this.purchaseCollection).doc(eventId).collection(
+      'purchases',
       (ref) => {
         let query: any = ref;
         for (const row of where) { query = query.where(row.field, row.condition, row.value); }
@@ -184,12 +184,12 @@ export class PurchaseService {
     ).valueChanges({ idField });
   }
 
-  async getDynamicPromise(where: any[] = [], opts: any = {}): Promise<any[]> {
+  async getDynamicPromise(eventId: string, where: any[] = [], opts: any = {}): Promise<any[]> {
     const { idField = "_id", orderBy = [] } = opts;
 
     const snapshot = await lastValueFrom(
-      this.afs.collection(
-        this.purchaseCollection,
+      this.afs.collection(this.purchaseCollection).doc(eventId).collection(
+        'purchases',
         (ref) => {
           let query: any = ref;
           for (const row of where) { query = query.where(row.field, row.condition, row.value); }
