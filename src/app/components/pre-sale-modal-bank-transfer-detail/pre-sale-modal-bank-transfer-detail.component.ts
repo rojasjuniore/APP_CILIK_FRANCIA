@@ -72,22 +72,22 @@ export class PreSaleModalBankTransferDetailComponent implements OnInit {
   }
 
   async orders(){
-    const uid = await this.authSrv.getUIDPromise();
-    this.purchaseSrv.userPurchaseList(String(uid)).subscribe({
-      next: (resp) => {
-        // console.log(resp)
-        this.orderPendings = [];
-        if(resp){
+    // const uid = await this.authSrv.getUIDPromise();
+    // this.purchaseSrv.userPurchaseList(String(uid)).subscribe({
+    //   next: (resp) => {
+    //     // console.log(resp)
+    //     this.orderPendings = [];
+    //     if(resp){
           
-          resp.forEach(x => {
-            if(x.status && x.status === 'pending'){
-              this.orderPendings.push(x)
-            }
-          })
-        }
+    //       resp.forEach(x => {
+    //         if(x.status && x.status === 'pending'){
+    //           this.orderPendings.push(x)
+    //         }
+    //       })
+    //     }
        
-      }
-    })
+    //   }
+    // })
 
   }
 

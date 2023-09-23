@@ -37,32 +37,32 @@ export class MyPurchasesComponent implements OnInit {
       return;
     };
 
-    this.purchasesListP$ = this.purchaseSrv.userPurchaseListPending(uid.toString())
-    .pipe(
-      map((data) => {
-        // console.log(data)
-        const counter = data.length + 1;
-        return data.map((row, index) => Object.assign({}, row, { index: counter - (index + 1) }))
-      })
-    );
+    // this.purchasesListP$ = this.purchaseSrv.userPurchaseListPending(uid.toString())
+    // .pipe(
+    //   map((data) => {
+    //     // console.log(data)
+    //     const counter = data.length + 1;
+    //     return data.map((row, index) => Object.assign({}, row, { index: counter - (index + 1) }))
+    //   })
+    // );
 
-    this.purchasesListC$ = this.purchaseSrv.userPurchaseListCompleted(uid.toString())
-    .pipe(
-      map((data) => {
-        // console.log(data)
-        const counter = data.length + 1;
-        return data.map((row, index) => Object.assign({}, row, { index: counter - (index + 1) }))
-      })
-    );
+    // this.purchasesListC$ = this.purchaseSrv.userPurchaseListCompleted(uid.toString())
+    // .pipe(
+    //   map((data) => {
+    //     // console.log(data)
+    //     const counter = data.length + 1;
+    //     return data.map((row, index) => Object.assign({}, row, { index: counter - (index + 1) }))
+    //   })
+    // );
 
-    this.purchasesListR$ = this.purchaseSrv.userPurchaseListRejected(uid.toString())
-    .pipe(
-      map((data) => {
-        // console.log(data)
-        const counter = data.length + 1;
-        return data.map((row, index) => Object.assign({}, row, { index: counter - (index + 1) }))
-      })
-    );
+    // this.purchasesListR$ = this.purchaseSrv.userPurchaseListRejected(uid.toString())
+    // .pipe(
+    //   map((data) => {
+    //     // console.log(data)
+    //     const counter = data.length + 1;
+    //     return data.map((row, index) => Object.assign({}, row, { index: counter - (index + 1) }))
+    //   })
+    // );
 
   }
 
