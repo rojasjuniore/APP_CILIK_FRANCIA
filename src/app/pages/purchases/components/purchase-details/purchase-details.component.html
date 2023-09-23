@@ -1,1 +1,27 @@
-<p>purchase-details works!</p>
+<div class="row">
+    <div class="col text-center mb-3">
+        <div class="fs-4 fw-bold">
+            Purchase
+        </div>
+        <div>
+            {{orderId}}
+        </div>
+    </div>
+
+    <div class="seprd2"></div>
+
+    <div class="col-12 mt-4">
+        <h5 class="fw-bold fs-3 text-end">
+            Total: USD {{totales}}
+        </h5>
+    </div>
+
+    <div class="col-12">
+        <div class="d-flex justify-content-between">
+            <button class="btn btn-three btn-medium-c text-uppercase" type="button" routerLink="/pages/dashboard">
+                <i class="bi bi-chevron-left"></i>
+                {{ "general.back" | translate }}
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-purchase-details',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PurchaseDetailsComponent implements OnInit {
 
-  constructor() { }
+  public orderId!: string;
+
+  constructor(
+    private router: ActivatedRoute,
+  ) {
+
+    const orderId = this.router.snapshot.paramMap.get('orderId');
+    console.log('orderId', orderId);
+    this.orderId = orderId || '';
+  }
 
   ngOnInit(): void {
+  }
+
+  get totales() {
+    return 0;
   }
 
 }
