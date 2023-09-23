@@ -4,7 +4,7 @@ import { PurchaseDetailsComponent } from './components/purchase-details/purchase
 
 const routes: Routes = [
   {
-    path:'/:id/details',
+    path:':id/details',
     component: PurchaseDetailsComponent
   }
 ];
