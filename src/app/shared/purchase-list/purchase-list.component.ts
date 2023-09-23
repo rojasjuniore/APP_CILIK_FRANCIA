@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { AuthenticationService } from 'src/app/services/authentication.service';
-import { CartService } from 'src/app/services/cart.service';
+import { PurchaseService } from 'src/app/services/purchase.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-purchase-list',
@@ -16,8 +16,7 @@ export class PurchaseListComponent implements OnInit, OnChanges {
   public purchases$!: Observable<any[]>;
 
   constructor(
-    private authSrv: AuthenticationService,
-    private cartSrv: CartService,
+    private purchaseSrv: PurchaseService,
   ) { }
 
   ngOnInit(): void {
@@ -28,7 +27,9 @@ export class PurchaseListComponent implements OnInit, OnChanges {
     const { query } = changes;
 
     if(query && query.currentValue) {
+      // console.log('query', query.currentValue);
       this.query = query.currentValue;
+      this.loadData();
     }
   }
 
@@ -38,7 +39,10 @@ export class PurchaseListComponent implements OnInit, OnChanges {
       return;
     }
 
-    console.log('query', this.query);
+    // console.log('query', this.query);
+    /** Actualizar observable de listado de compras */
+    this.purchases$ = this.purchaseSrv.getDynamic(environment.dataEvent.keyDb, this.query);
+    return;
   }
 
 }
