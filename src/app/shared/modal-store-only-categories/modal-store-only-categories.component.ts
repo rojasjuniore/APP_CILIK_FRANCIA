@@ -20,6 +20,7 @@ export class ModalStoreOnlyCategoriesComponent implements OnInit {
     quantity: [
       { type: 'required', message: 'Este campo es requerido' },
       { type: 'min', message: 'La cantidad mínima es 1' },
+
     ]
   };
   public submitted = false;
@@ -105,7 +106,21 @@ export class ModalStoreOnlyCategoriesComponent implements OnInit {
   }
 
   onSelectCategoryType(item: any){
+    console.log('onSelectCategoryType', item);
     this.form.patchValue({categoryTypes: item.value});
+
+    /** Si es grupo */
+    if(item.value === 'group'){
+
+      /** Añadir regla de minimo 3 */
+      this.form.controls['quantity'].setValidators([Validators.required, Validators.min(3)]);
+
+      /** Actualizar mensaje de validación */
+      this.vm.quantity = this.vm.quantity.map((item: any) => {
+        return (item.type === 'min') ? { type: 'min', message: 'La cantidad mínima es 3' } : item;
+      });
+    }
+
     this.step = 'quantity';
   }
 
