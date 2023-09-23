@@ -32,6 +32,22 @@ export class PurchaseService {
     return await this.afs.collection(this.purchaseCollection).doc(eventId).collection('purchases').doc(docId).update(data);
   }
 
+  getByEventAndId(eventId: string, docId: string) {
+    return this.afs.collection(this.purchaseCollection).doc(eventId).collection('purchases').doc(docId).valueChanges();
+  }
+
+  async getByEventAndIdPromise(eventId: string, docId: string) {
+    try {
+      const snapshot = await lastValueFrom(
+        this.afs.collection(this.purchaseCollection).doc(eventId).collection('purchases').doc(docId).get()
+      );
+      return await handlerObjectResult(snapshot);
+      
+    } catch (err) {
+      console.log('Error on PurchaseService.getByEventAndIdPromise', err);
+      return null;
+    }
+  }
 
 
 
