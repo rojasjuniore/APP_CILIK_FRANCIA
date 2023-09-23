@@ -42,12 +42,6 @@ export class PurchaseDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
-  get totales() {
-    if(!this.orderDoc) { return 0; }
-    if(!this.orderDoc.exist) { return 0; }
-    return this.orderDoc.totales;
-  }
-
   ngOnDestroy(): void {
     this.sub$.unsubscribe();
   }
