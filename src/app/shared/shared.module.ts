@@ -21,6 +21,8 @@ import { HotelAndEventRoomListItemCardComponent } from './hotel-and-event-room-l
 import { CartHotelEventCardItemComponent } from './cart-hotel-event-card-item/cart-hotel-event-card-item.component';
 import { PaypalButtonComponent } from './paypal-button/paypal-button.component';
 import { TucompraFormComponent } from './tucompra-form/tucompra-form.component';
+import { PurchaseListComponent } from './purchase-list/purchase-list.component';
+import { PurchaseListItemCardComponent } from './purchase-list-item-card/purchase-list-item-card.component';
 
 
 
@@ -35,6 +37,8 @@ import { TucompraFormComponent } from './tucompra-form/tucompra-form.component';
     OutPagesLayoutComponent,
     HotelAndEventRoomListItemCardComponent,
     CartHotelEventCardItemComponent,
+    PurchaseListComponent,
+    PurchaseListItemCardComponent,
 
     InputNumberFormComponent,
     InputSigleCalendarComponent,
@@ -70,6 +74,8 @@ import { TucompraFormComponent } from './tucompra-form/tucompra-form.component';
     OutPagesLayoutComponent,
     HotelAndEventRoomListItemCardComponent,
     CartHotelEventCardItemComponent,
+    PurchaseListComponent,
+    PurchaseListItemCardComponent,
     
     InputNumberFormComponent,
     InputSigleCalendarComponent,
