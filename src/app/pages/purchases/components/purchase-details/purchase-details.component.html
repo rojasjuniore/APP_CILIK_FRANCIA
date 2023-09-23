@@ -10,13 +10,11 @@
         </div>
     </div>
 
-    <div class="col-12 mb-4">
-        <div class="card-box card-box-b3 p-3 mb-3">
-            <h5 class="text-center">
-                No se encontro orden de compra
-            </h5>
-        </div>
-    </div>
+    <ng-container *ngIf="(orderDoc); else renderLoaderview"
+        [ngTemplateOutlet]="renderCheckOrderDoc"
+        [ngTemplateOutletContext]="{item: orderDoc}"
+    ></ng-container>
+
 
     <div class="seprd2"></div>
 
@@ -35,3 +33,43 @@
         </div>
     </div>
 </div>
+
+
+<ng-template #renderOrderDoc let-order="order">
+    <div class="col-12 mb-4">
+        <div class="card-box card-box-b3 p-3 mb-3">
+            <pre>
+                {{order | json}}
+            </pre>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #renderCheckOrderDoc let-item="item">
+    <ng-container 
+        *ngIf="(item.exist); else renderNotFoundOrderDoc"
+        [ngTemplateOutlet]="renderOrderDoc"
+        [ngTemplateOutletContext]="{order: item}"
+    ></ng-container>
+</ng-template>
+
+<ng-template #renderNotFoundOrderDoc>
+    <div class="col-12 mb-4">
+        <div class="card-box card-box-b3 p-3 mb-3">
+            <h5 class="text-center">
+                No se encontro orden de compra
+            </h5>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #renderLoaderview>
+    <div class="col-12 mb-4">
+        <div class="card-box card-box-b3 p-3 mb-3">
+            <div class="d-flex align-items-center">
+                <strong>Loading...</strong>
+                <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+            </div>
+        </div>
+    </div>
+</ng-template>
