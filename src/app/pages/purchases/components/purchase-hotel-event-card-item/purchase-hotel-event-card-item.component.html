@@ -1,0 +1,86 @@
+<div class="card card-box" >
+    <div class="card-body">
+        <!-- <h5 class="card-title fw-bolder text-rslt">
+            <ng-container [ngTemplateOutlet]="renderCapacityIcon"></ng-container>
+            |
+            {{item.room.locationLabel}}
+        </h5> -->
+
+        <div class="d-flex justify-content-between">
+            <span class="text-rslt fw-bold fs-5">
+                <i class="bi bi-building"></i>
+                &nbsp;
+                <i class="bi bi-ticket-perforated"></i>
+                &nbsp;
+                {{item?.title}}
+            </span>
+
+            <span class="d-none d-md-block">
+                <i class="bi bi-person-fill"></i>
+                {{item?.room.capacity}}
+            </span>
+        </div>
+
+        <div class="seprd2"></div>
+
+        <p class="card-text">
+            <!-- {{ 'hotel.roomType.'+row.roomCode | translate | uppercase}} -->
+            <!-- {{row.description}} -->
+            {{item.room.title}}
+        </p>
+
+        <p class="m-0 d-block d-sm-none">
+            <i class="bi bi-person-fill"></i>
+            {{item?.room.capacity}}
+        </p>
+
+        <p class="card-text">
+            Incluye:
+            <small class="text-muted">
+                {{item.room.include}}
+            </small>
+        </p>
+        <p class="card-text">
+            No Incluye:
+            <span class="text-muted">
+                {{item.room.noInclude}}
+            </span>
+        </p>
+
+        <p class="card-text" *ngIf="item">
+            Fechas:
+            <span class="badge bg-danger" [ngClass]="(!isLast) ? 'me-1': ''" *ngFor="let item of item.room.dates; last as isLast">
+                {{item.date}}
+            </span>
+        </p>
+        
+        <div class="d-flex flex-row align-content-center justify-content-between">
+            <div class="d-flex justify-content-center align-items-md-center">
+                <span class="fw-bold fs-4">Total: USD {{totales}}</span>
+            </div>
+
+            <div class="text-sm-center">
+                <!-- <ng-container *ngIf="(!loader); then renderCartBtn; else renderLoaderBtn"></ng-container> -->
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<ng-template #renderCartBtn>
+    <button type="button" class="btn-icon btn-icon-two">
+        <i class="bi bi-trash3"></i>
+    </button>
+</ng-template>
+
+<ng-template #renderLoaderBtn>
+    <a href="javascript:void(0)" class="btn btn-one btn-small disabled">
+        <div class="spinner-border spinner-border-sm" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </a>
+</ng-template>
+
+<ng-template #renderCapacityIcon>
+    <i class="bi" [ngClass]="{'bi-person-fill': item.room.capacity == 1, 'bi-people-fill': item.room.capacity > 1}"></i> {{item.room.capacity}}
+</ng-template>

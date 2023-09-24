@@ -107,11 +107,13 @@
     </div>
 
     <div class="col-12 mb-4" *ngFor="let item of order.product">
-        <div class="card-box card-box-b3 p-3 mb-3">
-            <pre>
-                {{item | json}}
-            </pre>
-        </div>
+        <ng-container [ngSwitch]="item.slug">
+            <app-purchase-fullpass-card-item *ngSwitchCase="'full-pass'" [item]="item"></app-purchase-fullpass-card-item>
+            <app-purchase-category-pass-card-item *ngSwitchCase="'category-pass'" [item]="item"></app-purchase-category-pass-card-item>
+            <app-purchase-weekend-pass-card-item *ngSwitchCase="'weekend-pass'" [item]="item"></app-purchase-weekend-pass-card-item>
+            <app-purchase-day-pass-card-item *ngSwitchCase="'day-pass'" [item]="item"></app-purchase-day-pass-card-item>
+            <app-purchase-hotel-event-card-item *ngSwitchCase="'hotel-event'" [item]="item"></app-purchase-hotel-event-card-item>
+        </ng-container>
     </div>
 </ng-template>
 
