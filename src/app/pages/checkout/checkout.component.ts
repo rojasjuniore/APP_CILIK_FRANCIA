@@ -133,9 +133,9 @@ export class CheckoutComponent implements OnInit {
       /** Almacenar orden de compra */
       await this.purchaseSrv.storePurchase(environment.dataEvent.keyDb, purchase.orderId, purchase);
 
-      /** TODO: enviar notificación vía email de la compra realizada */
+      /** Enviar notificación de compra realizada */
       await this.quickNotificationSrv.sendEmailNotification({
-        type: "2FANotification",
+        type: "purchaseInfo",
         email: userDoc.email,
         subject: `Purchase ${purchase.orderId} a WLDC Cartagena 2024 - ` + moment().format("DD/MM/YYYY HH:mm:ss"),
         greeting: `¡Hola!`,
@@ -148,6 +148,7 @@ export class CheckoutComponent implements OnInit {
       ],
         salutation: '¡Saludos!'
       });
+
       this.router.navigate(['/pages/dashboard']);
 
       /** Eliminar carrito de compra */
