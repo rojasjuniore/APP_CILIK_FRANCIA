@@ -17,7 +17,7 @@ export const environment = {
   API_URL: 'https://cilik-presale.uc.r.appspot.com/',
   // urlrootFunctions: "https://wldc-app.uc.r.appspot.com",
   urlrootFunctions: "https://2-dot-wldc-app.uc.r.appspot.com",
-  urlWeb: 'https://dev-cilik.web.app/',
+  urlWeb: 'https://dev-wldc.web.app/',
   paypal: {
     currency: 'USD',
     clientId: "ASay2oTezuJ4AhyNrm4UGcJbRE6O82APiOcx5J-l9aBT_r4TzeN0bi4acCuwmfXHWlMIfT79xu2HvdzC",
