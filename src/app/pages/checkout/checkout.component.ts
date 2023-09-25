@@ -143,7 +143,7 @@ export class CheckoutComponent implements OnInit {
           {type: "html", html: `<h1 style='text-align: center;'><strong>Compra #${purchase.orderId}</strong></h1>`},
           {type: 'line', text: `Estamos muy felices de contar con tu presencia en la edición WLDC 2024.`},
           {type: 'line', text: `A continuación encontrarás los detalles de tu compra:`},
-          {type: 'action', action: 'Aquí', url: environment.urlWeb + 'pages/purchases/' + purchase.orderId + '/details'},
+          {type: 'action', action: 'Aquí', url: environment.dataEvent.appURL + '/pages/purchases/' + purchase.orderId + '/details'},
           {type: "line", text: "Si no reconoce esta actividad, no se requiere ninguna acción adicional."}
       ],
         salutation: '¡Saludos!'

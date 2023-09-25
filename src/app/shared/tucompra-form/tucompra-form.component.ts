@@ -144,7 +144,7 @@ export class TucompraFormComponent implements OnInit, OnChanges {
         ...formData,
         valor: this.amount,
         campoExtra1: JSON.stringify(extraField),
-        campoExtra2: environment.dataEvent.appURL,
+        campoExtra2: environment.dataEvent.appURL + '/pages/purchases/' + orderId + '/details', 
         telefonoComprador: formData.celularComprador,
         paisComprador: 'COLOMBIA',
         ciudadComprador: 'Cartagena'
