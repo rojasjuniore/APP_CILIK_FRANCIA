@@ -6,6 +6,7 @@ import { Subscription, distinctUntilChanged, switchMap } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CartService } from 'src/app/services/cart.service';
 import { PurchaseService } from 'src/app/services/purchase.service';
+import { QuickNotificationService } from 'src/app/services/quick-notification/quick-notification.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 import { TucompraService } from 'src/app/services/tucompra/tucompra.service';
 import { environment } from 'src/environments/environment';
@@ -61,7 +62,8 @@ export class CheckoutComponent implements OnInit {
     private purchaseSrv: PurchaseService,
     private sweetAlert2Srv: Sweetalert2Service,
     private router: Router,
-    private tuCompraSrv: TucompraService
+    private tuCompraSrv: TucompraService,
+    private quickNotificationSrv: QuickNotificationService
   ) { }
 
   ngOnInit(): void {
@@ -114,6 +116,9 @@ export class CheckoutComponent implements OnInit {
 
       await this.spinner.show();
 
+      const userDoc = await this.authSrv.getByUIDPromise(this.cart.uid);
+      console.log('userDoc', userDoc);
+
       const purchase = {
         ...this.cart,
         paymentMethod: 'paypal',
@@ -129,7 +134,20 @@ export class CheckoutComponent implements OnInit {
       await this.purchaseSrv.storePurchase(environment.dataEvent.keyDb, purchase.orderId, purchase);
 
       /** TODO: enviar notificación vía email de la compra realizada */
-
+      await this.quickNotificationSrv.sendEmailNotification({
+        type: "2FANotification",
+        email: userDoc.email,
+        subject: `Purchase ${purchase.orderId} a WLDC Cartagena 2024 - ` + moment().format("DD/MM/YYYY HH:mm:ss"),
+        greeting: `¡Hola!`,
+        messageBody: [
+          {type: "html", html: `<h1 style='text-align: center;'><strong>Compra #${purchase.orderId}</strong></h1>`},
+          {type: 'line', text: `Estamos muy felices de contar con tu presencia en la edición WLDC 2024.`},
+          {type: 'line', text: `A continuación encontrarás los detalles de tu compra:`},
+          {type: 'action', action: 'Aquí', url: environment.urlWeb + 'pages/purchases/' + purchase.orderId + '/details'},
+          {type: "line", text: "Si no reconoce esta actividad, no se requiere ninguna acción adicional."}
+      ],
+        salutation: '¡Saludos!'
+      });
       this.router.navigate(['/pages/dashboard']);
 
       /** Eliminar carrito de compra */
