@@ -24,6 +24,8 @@ export class CustomInputFileComponent implements OnInit {
 
   @Input() submitBtnText: string = "Submit";
 
+  @Input() confirmBtnText: string = "Confirm";
+
   @Input() cancelBtnText: string = "Cancel";
 
   @Input() clearBtnText: string = "Clear";
@@ -83,10 +85,14 @@ export class CustomInputFileComponent implements OnInit {
 
     this.formFile = files[0];
     console.log(this.formFile);
-    this.onSelectFile.next(this.formFile);
+    // this.onSelectFile.next(this.formFile);
     
     // clear input file
     this.inputFileRef.nativeElement.value = "";
+  }
+
+  onConfirm(){
+    this.onSelectFile.next(this.formFile);
   }
 
 }
