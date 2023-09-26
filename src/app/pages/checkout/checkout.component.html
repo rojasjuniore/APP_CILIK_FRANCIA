@@ -41,7 +41,7 @@
         </div>
 
         <div class="col-12" *ngSwitchCase="'bankTransfer'">
-            <app-custom-input-file></app-custom-input-file>
+            <app-custom-input-file (onSelectFile)="onSelectBankTransferFile($event)"></app-custom-input-file>
         </div>
         
     </ng-container>
