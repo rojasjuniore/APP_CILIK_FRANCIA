@@ -38,13 +38,14 @@
             </div>
         </div>
     </div>
-    <div class="col-12 text-center">
+    <div class="col-12 col-md-6 mb-2 mb-md-0 text-center">
         <button type="button" class="btn btn-danger" (click)="clearFile()">
             <i class="bi bi-folder"></i>
             &nbsp;
             {{clearBtnText | uppercase}}
         </button>
-        &nbsp;
+    </div>
+    <div class="col-12 col-md-6 mb-2 mb-md-0 text-center">
         <button type="button" class="btn btn-danger" (click)="onConfirm()">
             {{confirmBtnText | uppercase}}
             &nbsp;
