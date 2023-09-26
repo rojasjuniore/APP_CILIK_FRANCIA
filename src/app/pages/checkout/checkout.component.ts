@@ -182,7 +182,7 @@ export class CheckoutComponent implements OnInit {
         paymentMethod: 'tucompra',
         metadata: formData,
         status: 'pending',
-        payedAt: moment().valueOf(),
+        payedAt: null,
         orderId: campoExtra1.orderId,
         totales: this.totales
       };
@@ -238,7 +238,7 @@ export class CheckoutComponent implements OnInit {
         },
         canEdit: false,
         status: 'pending',
-        payedAt: moment().valueOf(),
+        payedAt: null,
         orderId: orderId,
         totales: this.totales
       };
