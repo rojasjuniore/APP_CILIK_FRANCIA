@@ -1,21 +1,26 @@
 <div class="container-fluid">
-
+    
     <ng-container *ngIf="(profile$ | async) as profile; then renderFullHeader; else renderOnlyLanguage">
 
     </ng-container>
 
-    <div class="row">
+    <!-- <div class="row">
         <div class="col pb-5">
             <div class="logo d-flex justify-content-center">
                 <img src="assets/img/cilik/logo.png" alt="">
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
 
 <ng-template #renderFullHeader>
-    <div class="row">
-        <div class="col d-flex justify-content-between header-cilik">
+    <div class="row align-items-center">
+        <div class="col">
+            <div class="logo">
+                <img src="assets/img/cilik/logo.png" alt="">
+            </div>
+        </div>
+        <div class="col d-flex align-items-center justify-content-between justify-content-md-end header-cilik">
             
             <app-language-bar></app-language-bar>
             
@@ -23,7 +28,7 @@
 
                 <ng-container *ngIf="(cart$ | async)">
                     <div class="btn-navbar-c d-flex justify-content-center align-items-center ms-3" routerLink="/pages/cart">
-                        <span class="text-whi fs-4">
+                        <span class="icon-header text-whi fs-4">
                             <i class="bi bi-cart3"></i>
                         </span> 
                     </div>
@@ -31,10 +36,13 @@
 
                 <div class="seprd-h"></div>
                 <div class="btn-logout d-flex align-items-center" (click)="logout()">
-                    <span class="fw-bold lh-1 pe-2">  
-                        {{ "general.logOut" | translate }} 
-                    </span>
-                    <img src="assets/img/cilik/icon-28.png" alt="">
+                    
+                    <div class="icon-header">
+                        <span class="text-ps fw-bold">  
+                            {{ "general.logOut" | translate }} 
+                        </span>
+                        <img src="assets/img/cilik/icon-28.png" alt="">
+                    </div>
                 </div>
             </div>
         </div>

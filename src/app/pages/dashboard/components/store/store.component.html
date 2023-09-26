@@ -1,5 +1,5 @@
 <div class="row mt-4">
-    <div class="col-12 col-md-6 mb-3" *ngFor="let item of storeOptions">
+    <div class="col-12 mb-3" *ngFor="let item of storeOptions">
         <app-store-item-card [item]="item" (click)="onSelectItem(item)"></app-store-item-card>
     </div>
 </div>
