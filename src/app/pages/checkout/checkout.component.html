@@ -39,6 +39,10 @@
         <div class="col-12" *ngSwitchCase="'tucompra'">
             <app-tucompra-form [amount]="totales" (onSendForm)="onTuCompraCallback($event)"></app-tucompra-form>
         </div>
+
+        <div class="col-12" *ngSwitchCase="'bankTransfer'">
+            <app-custom-input-file (onSelectFile)="onSelectBankTransferFile($event)"></app-custom-input-file>
+        </div>
         
     </ng-container>
 </ng-template>

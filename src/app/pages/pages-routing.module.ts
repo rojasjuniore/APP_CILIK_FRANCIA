@@ -25,6 +25,10 @@ const routes: Routes = [
         canActivate: [ CheckHasCartGuard ],
         loadChildren: () => import("./checkout/checkout.module").then((m) => m.CheckoutModule),
     },
+    {
+        path: "purchases",
+        loadChildren: () => import("./purchases/purchases.module").then((m) => m.PurchasesModule),
+    },
     // {
     //     path: "dashboard",
     //     component: DashboardComponent,

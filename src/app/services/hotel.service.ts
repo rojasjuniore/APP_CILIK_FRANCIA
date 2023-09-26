@@ -154,7 +154,7 @@ export class HotelService {
         ranges: {from: '2023-08-01', to: '2023-11-10'},
         before: 124,
         after: 124,
-        dayOfWeek: [0, 175, 175, 175, 187, 199, 244]
+        dayOfWeek: [0, 175, 175, 175, 187, 199, 224]
       },
       {
         ranges: {from: '2023-11-11', to: '2023-12-16'},

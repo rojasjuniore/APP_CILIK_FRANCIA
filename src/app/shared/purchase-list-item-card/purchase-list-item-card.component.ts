@@ -25,8 +25,9 @@ export class PurchaseListItemCardComponent implements OnInit, OnChanges {
     }
   }
 
-  goToDetails(){
+  goToDetails(): void{
     console.log('goToDetails', this.item);
+    this.router.navigate([`/pages/purchases/${this.item._id}/details`]);
   }
 
 }
