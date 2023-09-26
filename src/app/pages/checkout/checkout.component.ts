@@ -232,6 +232,7 @@ export class CheckoutComponent implements OnInit {
           name: file.name,
           type: file.type,
           size: file.size,
+          path: urlToSaveFile,
           url: fileRef,
           timeline: []
         },
