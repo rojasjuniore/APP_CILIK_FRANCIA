@@ -38,10 +38,10 @@ export class CheckoutComponent implements OnInit {
     },
     {
       label: 'Transferencia',
-      slug: 'transfer',
-      type: 'method',
+      slug: 'bankTransfer',
+      type: 'navigation',
       icon: 'bi bi-bank',
-      available: false
+      available: true
     },
     {
       label: 'Cuotas',

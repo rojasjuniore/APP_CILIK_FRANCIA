@@ -1,0 +1,65 @@
+
+<div class="row mb-4">
+    <ng-container *ngIf="(formFile); then renderFileSelected; else renderNoFileSelected"></ng-container>
+</div>
+
+<input #inputFileRef type="file" [multiple]="multiple" [accept]="accept" style="display: none;" (change)="onFileSelected()">
+
+
+<ng-template #renderFileSelected>
+    <div class="col-12">
+        <div class="card-box card-box-b3 p-3 mb-3">
+            <div class="row g-2 d-flex align-items-center">
+                <div class="col-12 px-3">
+
+                    <p class="card-text text-center">
+                        File name:
+                        <small class="text-muted">
+                            {{formFile?.name}}
+                        </small>
+                    </p>
+
+                    <p class="card-text text-center">
+                        File type:
+                        <small class="text-muted">
+                            {{formFile?.type}}
+                        </small>
+                    </p>
+
+                    <p class="card-text text-center">
+                        Size:
+                        <small class="text-muted">
+                            <!-- {{formFile?.size}} -->
+                            {{sizeParsed}}
+                        </small>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 text-center">
+        <button type="button" class="btn btn-danger" (click)="clearFile()">
+            <i class="bi bi-folder"></i>
+            &nbsp;
+            {{clearBtnText | uppercase}}
+        </button>
+    </div>
+</ng-template>
+
+<ng-template #renderNoFileSelected>
+    <div class="col-12">
+        <div class="card-box card-box-b3 p-3 mb-3">
+            <h5 class="text-center">
+                {{noSelectFileText | uppercase}}
+            </h5>
+        </div>
+    </div>
+    <div class="col-12 text-center">
+        <button type="button" class="btn btn-danger" (click)="openFileSelection()">
+            <i class="bi bi-folder"></i>
+            &nbsp;
+            {{uploadBtnText | uppercase}}
+        </button>
+    </div>
+</ng-template>

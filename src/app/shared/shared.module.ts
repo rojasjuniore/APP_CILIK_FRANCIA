@@ -23,6 +23,7 @@ import { PaypalButtonComponent } from './paypal-button/paypal-button.component';
 import { TucompraFormComponent } from './tucompra-form/tucompra-form.component';
 import { PurchaseListComponent } from './purchase-list/purchase-list.component';
 import { PurchaseListItemCardComponent } from './purchase-list-item-card/purchase-list-item-card.component';
+import { CustomInputFileComponent } from './custom-input-file/custom-input-file.component';
 
 
 
@@ -44,11 +45,13 @@ import { PurchaseListItemCardComponent } from './purchase-list-item-card/purchas
     InputSigleCalendarComponent,
     PaypalButtonComponent,
     TucompraFormComponent,
+    CustomInputFileComponent,
     
     ModalOnlyInputNumberComponent,
     ModalStoreOnlyCategoriesComponent,
     ModalStoreOnlyDayPassComponent,
     ModalHotelEventRoomsListComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -81,6 +84,7 @@ import { PurchaseListItemCardComponent } from './purchase-list-item-card/purchas
     InputSigleCalendarComponent,
     PaypalButtonComponent,
     TucompraFormComponent,
+    CustomInputFileComponent,
 
     ModalOnlyInputNumberComponent,
     ModalStoreOnlyCategoriesComponent,
