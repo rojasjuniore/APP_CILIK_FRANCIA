@@ -5,6 +5,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Subscription, distinctUntilChanged, switchMap } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CartService } from 'src/app/services/cart.service';
+import { UploadFileService } from 'src/app/services/dedicates/upload-file.service';
 import { PurchaseService } from 'src/app/services/purchase.service';
 import { QuickNotificationService } from 'src/app/services/quick-notification/quick-notification.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
@@ -63,7 +64,8 @@ export class CheckoutComponent implements OnInit {
     private sweetAlert2Srv: Sweetalert2Service,
     private router: Router,
     private tuCompraSrv: TucompraService,
-    private quickNotificationSrv: QuickNotificationService
+    private quickNotificationSrv: QuickNotificationService,
+    private uploadFileSrv: UploadFileService,
   ) { }
 
   ngOnInit(): void {
@@ -149,6 +151,7 @@ export class CheckoutComponent implements OnInit {
         salutation: '¡Saludos!'
       });
 
+      /** Redireccionar */
       this.router.navigate(['/pages/dashboard']);
 
       /** Eliminar carrito de compra */
@@ -179,7 +182,7 @@ export class CheckoutComponent implements OnInit {
         paymentMethod: 'tucompra',
         metadata: formData,
         status: 'pending',
-        payedAt: moment().valueOf(),
+        payedAt: null,
         orderId: campoExtra1.orderId,
         totales: this.totales
       };
@@ -197,6 +200,64 @@ export class CheckoutComponent implements OnInit {
       
     } catch (err) {
       console.log('Error on CheckoutComponent.onTuCompraCallback()', err);
+      return;
+    } finally {
+      this.spinner.hide();
+    }
+  }
+
+  async onSelectBankTransferFile(file: any){
+    try {
+      const ask = await this.sweetAlert2Srv.askConfirm('¿Está seguro de realizar esta acción?');
+      if(!ask) { return; }
+
+      console.log('onSelectBankTransferFile', file);
+
+      await this.spinner.show();
+
+      const orderId = this.cartSrv.generateId();
+
+      const userDoc = await this.authSrv.getByUIDPromise(this.cart.uid);
+      console.log('userDoc', userDoc);
+
+      const fileName = `${orderId}_${file.name}_${moment().valueOf()}`;
+
+      const urlToSaveFile = `purchases/${environment.dataEvent.keyDb}/${orderId}/${fileName}`;
+      const fileRef = await this.uploadFileSrv.uploadFileDocumentIntoRoute(urlToSaveFile, file);
+
+      const purchase = {
+        ...this.cart,
+        paymentMethod: 'bankTransfer',
+        voucher: {
+          name: file.name,
+          type: file.type,
+          size: file.size,
+          path: urlToSaveFile,
+          url: fileRef,
+          timeline: []
+        },
+        canEdit: false,
+        status: 'pending',
+        payedAt: null,
+        orderId: orderId,
+        totales: this.totales
+      };
+      console.log('purchase', purchase);
+
+      /** Almacenar orden de compra */
+      await this.purchaseSrv.storePurchase(environment.dataEvent.keyDb, purchase.orderId, purchase);
+
+      /** Redireccionar */
+      this.router.navigate(['/pages/dashboard']);
+
+      /** Eliminar carrito de compra */
+      await this.cartSrv.deleteCart(environment.dataEvent.keyDb, this.uid);
+
+      this.sweetAlert2Srv.showToast('Compra realizada satisfactoriamente', 'success');
+      return;
+      
+    } catch (err) {
+      console.log('Error on CheckoutComponent.onSelectBankTransferFile()', err);
       return;
     } finally {
       this.spinner.hide();
