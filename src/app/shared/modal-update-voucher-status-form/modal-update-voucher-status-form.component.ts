@@ -21,7 +21,9 @@ export class ModalUpdateVoucherStatusFormComponent implements OnInit {
     status: [
       { type: 'required', message: 'Este campo es requerido' },
     ],
-    observation: []
+    observation: [
+      { type: 'required', message: 'Este campo es requerido' },
+    ]
   };
   public submitted = false;
 
@@ -40,7 +42,25 @@ export class ModalUpdateVoucherStatusFormComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.form.get('status')?.valueChanges.subscribe((value) => {
+      switch (value) {
+        case "pending":
+          this.form.get('observation')?.setValidators([Validators.required]);
+          this.form.get('observation')?.updateValueAndValidity();
+          break;
+        case "rejected":
+          this.form.get('observation')?.setValidators([Validators.required]);
+          this.form.get('observation')?.updateValueAndValidity();
+          break;
+      
+        default:
+          this.form.get('observation')?.clearValidators();
+          this.form.get('observation')?.updateValueAndValidity();
+          break;
+      }
+    });
+  }
 
   ngAfterViewInit(): void {
     this.buildModal();
@@ -95,7 +115,9 @@ export class ModalUpdateVoucherStatusFormComponent implements OnInit {
     this.mi.hide();
   }
 
-  ngOnDestroy(): void { this.sub$.unsubscribe(); }
+  ngOnDestroy(): void {
+    this.sub$.unsubscribe();
+  }
 
 }
 
