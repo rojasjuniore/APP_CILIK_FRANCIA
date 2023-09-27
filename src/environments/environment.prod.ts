@@ -15,7 +15,7 @@ export const environment = {
   urlWeb: 'https://wldc.cilik.io/',
   paypal: {
     currency: 'USD',
-    clientId: "AUek7V91U1RKcGTgzZadqSuLIwvjuuV0Ljyqh3jh7-foQRutWkjvKLm_u30d5M8aFVFTBGEByvcbY45P",
+    clientId: "AWNtZh591VSoWmuGlTUz_LjHwbRXPBoJ-pSkT7LnoFF_GVKQTSkQ9NtppzY4P1FdULUbM23gSpLuScK8",
   },
   tuCompra: {
     url: "https://gateway2.tucompra.com.co/tc3/app/inputs/compra.jsp",
