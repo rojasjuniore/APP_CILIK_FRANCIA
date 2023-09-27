@@ -8,7 +8,7 @@ import { formatBytes } from 'src/app/helpers/formatBytes.helper';
 })
 export class VoucherCardItemComponent implements OnInit {
 
-  @Input() order!: any;
+  @Input() voucher!: any;
 
   constructor() { }
 
@@ -16,11 +16,11 @@ export class VoucherCardItemComponent implements OnInit {
   }
 
   get sizeParsed(): string | null {
-    return (this.order && this.order.voucher) ? formatBytes(this.order.voucher.size) : null;
+    return (this.voucher && this.voucher) ? formatBytes(this.voucher.size) : null;
   }
 
   openVoucherFileLink(){
-    window.open(this.order.voucher.url, '_blank');
+    window.open(this.voucher.url, '_blank');
   }
 
 }
