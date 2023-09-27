@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PagesLayoutComponent } from './shared/pages-layout/pages-layout.component';
 import { OutPagesLayoutComponent } from './shared/out-pages-layout/out-pages-layout.component';
 import { IsAuthGuard } from './guards/is-auth.guard';
+import { AdminLayoutComponent } from './shared/admin-layout/admin-layout.component';
 
 const routes: Routes = [
   // {
@@ -40,16 +41,18 @@ const routes: Routes = [
     loadChildren: () => import("./pages/pages.module").then((m) => m.PagesModule),
   },
   {
+    path: 'admin',
+    // canActivate: [CheckAdminRoleGuard],
+    component: AdminLayoutComponent,
+    // loadChildren: () => import("./admin/admin.module").then((m) => m.AdminModule),
+  },
+  {
     path: '',
     component: OutPagesLayoutComponent,
     loadChildren: () => import("./out-pages/out-pages.module").then((m) => m.OutPagesModule)
   },
 
-  // {
-  //   path: 'admin',
-  //   canActivate: [CheckAdminRoleGuard],
-  //   loadChildren: () => import("./admin/admin.module").then((m) => m.AdminModule),
-  // },
+
 
   // {
   //   path: 'register-completed',

@@ -24,6 +24,7 @@ import { TucompraFormComponent } from './tucompra-form/tucompra-form.component';
 import { PurchaseListComponent } from './purchase-list/purchase-list.component';
 import { PurchaseListItemCardComponent } from './purchase-list-item-card/purchase-list-item-card.component';
 import { CustomInputFileComponent } from './custom-input-file/custom-input-file.component';
+import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 
 
 
@@ -40,6 +41,7 @@ import { CustomInputFileComponent } from './custom-input-file/custom-input-file.
     CartHotelEventCardItemComponent,
     PurchaseListComponent,
     PurchaseListItemCardComponent,
+    AdminLayoutComponent,
 
     InputNumberFormComponent,
     InputSigleCalendarComponent,
@@ -79,6 +81,7 @@ import { CustomInputFileComponent } from './custom-input-file/custom-input-file.
     CartHotelEventCardItemComponent,
     PurchaseListComponent,
     PurchaseListItemCardComponent,
+    AdminLayoutComponent,
     
     InputNumberFormComponent,
     InputSigleCalendarComponent,

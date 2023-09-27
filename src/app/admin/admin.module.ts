@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
-import { AdminLayoutComponent } from './components/admin-layout/admin-layout.component';
+// import { AdminLayoutComponent } from './components/admin-layout/admin-layout.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { ComponentsModule } from '../components/components.module';
 import { PermissionComponent } from './components/permission/permission.component';
@@ -10,11 +10,12 @@ import { PermissionRolesComponent } from './components/permission-roles/permissi
 import { ListOrderComponent } from './components/list-order/list-order.component';
 import { PermissionProfilesComponent } from './components/permission-profiles/permission-profiles.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
   declarations: [
-    AdminLayoutComponent,
+    // AdminLayoutComponent,
     PermissionComponent,
     PermissionRolesComponent,
     ListOrderComponent,
@@ -23,7 +24,8 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
   ],
   imports: [
     CommonModule,
-    ComponentsModule,
+    // ComponentsModule,
+    SharedModule,
     AdminRoutingModule,
     TranslateModule,
   ]
