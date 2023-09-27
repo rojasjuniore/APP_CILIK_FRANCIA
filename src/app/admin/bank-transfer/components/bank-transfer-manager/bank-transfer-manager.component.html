@@ -23,7 +23,7 @@
                 {{ "general.back" | translate }}
             </button>
 
-            <button class="btn btn-one btn-medium-c text-uppercase" type="button" [disabled]="!orderDoc" (click)="openModalUpdateVoucherStatus()">
+            <button class="btn btn-one btn-medium-c text-uppercase" type="button" [disabled]="!orderDoc || orderDoc.status !== 'pending' " (click)="openModalUpdateVoucherStatus()">
                 Actualizar
                 <i class="bi bi-cloud-arrow-up"></i>
             </button>

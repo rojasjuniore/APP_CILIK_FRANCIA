@@ -7,9 +7,24 @@
 <ng-template #renderTimelineRecords let-list="list">
     <div class="col-12 mb-4" *ngFor="let item of list">
         <div class="card-box card-box-b3 p-3 mb-3">
-            <h5 class="text-center">
-                {{item | json}}
-            </h5>
+            <p class="card-text">
+                Date:
+                <small class="text-muted">
+                    {{item.updatedAt | date: 'medium'}}
+                </small>
+            </p>
+            <p class="card-text" *ngIf="item">
+                Status:
+                <span class="badge bg-danger">
+                    {{item.status}}
+                </span>
+            </p>
+            <p class="card-text" *ngIf="item">
+                Observation:
+                <small class="text-muted">
+                    {{item.observation}}
+                </small>
+            </p>
         </div>
     </div>
 </ng-template>

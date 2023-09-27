@@ -83,7 +83,14 @@ export class BankTransferManagerComponent implements OnInit, OnDestroy {
       await this.purchaseSrv.addOnArray(environment.dataEvent.keyDb, this.orderId, [timelineSnap], 'voucher.timeline');
 
       /** Actualizar estado de la orden de compra */
-      await this.purchaseSrv.updatePurchase(environment.dataEvent.keyDb, this.orderId, { status: data.status })
+      await this.purchaseSrv.updatePurchase(
+        environment.dataEvent.keyDb,
+        this.orderId,
+        {
+          status: data.status,
+          payedAt: (data.status === 'completed') ?  timelineSnap.updatedAt : null,
+        }
+      );
 
       this.sweetAlert2Srv.showSuccess('Comprobante actualizado correctamente');
       return;
