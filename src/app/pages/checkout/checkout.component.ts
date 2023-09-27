@@ -208,6 +208,10 @@ export class CheckoutComponent implements OnInit {
 
   async onSelectBankTransferFile(file: any){
     try {
+
+      /** Si se limpia el archivo */
+      if(!file){ return; }
+
       const ask = await this.sweetAlert2Srv.askConfirm('¿Está seguro de realizar esta acción?');
       if(!ask) { return; }
 
