@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 // import { RegistroExitosoComponent } from './components/registro-exitoso/registro-exitoso.component';
 // import { AlreadyAuthGuard } from './guards/already-auth.guard';
-// import { CheckAdminRoleGuard } from './guards/check-admin-role.guard';
+import { CheckAdminRoleGuard } from './guards/check-admin-role.guard';
 import { PagesLayoutComponent } from './shared/pages-layout/pages-layout.component';
 import { OutPagesLayoutComponent } from './shared/out-pages-layout/out-pages-layout.component';
 import { IsAuthGuard } from './guards/is-auth.guard';
@@ -42,7 +42,7 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    // canActivate: [CheckAdminRoleGuard],
+    canActivate: [CheckAdminRoleGuard],
     component: AdminLayoutComponent,
     // loadChildren: () => import("./admin/admin.module").then((m) => m.AdminModule),
   },

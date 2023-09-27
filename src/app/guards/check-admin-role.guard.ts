@@ -21,11 +21,12 @@ export class CheckAdminRoleGuard implements CanActivate {
   ): Observable<boolean> {
     return this.authSrv.afAuth.authState.pipe(
       map(user => user ? user.uid : null),
-      tap((uid) => console.log({ uid })),
+      // tap((uid) => console.log({ uid })),
       switchMap((uid) => (uid)
         ? this.permissionSrv.getUserEventFullRolesObservable( environment.dataEvent.keyDb, uid)
         : of({superAdmin: false, roles: []})
       ),
+      // tap((user) => console.log({ user })),
       map((user: any) => {
         return (user.superAdmin || user.roles.length > 0) ? true : false;
       })
