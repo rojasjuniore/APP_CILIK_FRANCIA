@@ -23,7 +23,7 @@
 <ng-template #renderInfo let-profile="profile">
     <div class="fs-4 fw-bold ps-3 d-flex jsutify-content-center flex-column">
         <div>{{ "general.hello" | translate }} {{ profile?.name | titlecase }}</div>
-        <a routerLink="/pages/dashboard" class="text-rslt fs-6">
+        <a [routerLink]="backTo" class="text-rslt fs-6">
             {{'general.goToDashboard' | translate}}
         </a>
     </div>

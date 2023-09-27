@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { map, Observable, tap } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
@@ -8,6 +8,8 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   styleUrls: ['./header-welcome.component.css']
 })
 export class HeaderWelcomeComponent implements OnInit {
+
+  @Input() backTo = '/pages/dashboard';
 
   public profile$!: Observable<any>;
 
