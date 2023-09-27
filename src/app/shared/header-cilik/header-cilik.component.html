@@ -26,11 +26,13 @@
             
             <div class="d-flex align-items-center">
 
-                <ng-container *ngIf="(cart$ | async)">
+                <ng-container *ngIf="(cart$ | async) as cart">
                     <div class="btn-navbar-c d-flex justify-content-center align-items-center ms-3" routerLink="/pages/cart">
                         <span class="icon-header active-cart  text-whi fs-4">
                             <i class="bi bi-cart3"></i>
-                            <div class="ntf-cart">1</div>
+                            <div class="ntf-cart" *ngIf="cart.product.length > 0">
+                                {{cart.product.length}}
+                            </div>
                         </span> 
                     </div>
                 </ng-container>
