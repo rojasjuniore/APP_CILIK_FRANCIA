@@ -68,14 +68,24 @@ export class BankTransferManagerComponent implements OnInit, OnDestroy {
 
     try {
 
-      const uid = await this.authSrv.getUIDPromise()
+      await this.spinner.show();
+
+      const uid = await this.authSrv.getUIDPromise();
 
       const timelineSnap = {
         ...data,
         updateBy: uid,
         updatedAt: moment().valueOf()
-      }
-      console.log('timelineSnap', timelineSnap);
+      };
+      // console.log('timelineSnap', timelineSnap);
+
+      /** Actualizar lista de cambios del documento */
+      await this.purchaseSrv.addOnArray(environment.dataEvent.keyDb, this.orderId, [timelineSnap], 'voucher.timeline');
+
+      /** Actualizar estado de la orden de compra */
+      await this.purchaseSrv.updatePurchase(environment.dataEvent.keyDb, this.orderId, { status: data.status })
+
+      this.sweetAlert2Srv.showSuccess('Comprobante actualizado correctamente');
       return;
       
     } catch (err) {
