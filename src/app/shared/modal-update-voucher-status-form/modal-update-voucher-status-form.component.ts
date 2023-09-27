@@ -16,13 +16,12 @@ export class ModalUpdateVoucherStatusFormComponent implements OnInit {
   @Input() _id: string = 'modalVoucherStatusForm';
 
   public mi: any;
-  public item: any;
   public form: FormGroup;
   public vm: any = {
-    dates: [
+    status: [
       { type: 'required', message: 'Este campo es requerido' },
-      { type: 'minlength', message: 'La cantidad mínima es 1' },
     ],
+    observation: []
   };
   public submitted = false;
 
@@ -36,7 +35,8 @@ export class ModalUpdateVoucherStatusFormComponent implements OnInit {
     private fb: FormBuilder,
   ) {
     this.form = this.fb.group({
-      dates: ['', [Validators.required, Validators.minLength(1)]],
+      status: ['', [Validators.required,]],
+      observation: [''],
     });
   }
 
@@ -76,8 +76,7 @@ export class ModalUpdateVoucherStatusFormComponent implements OnInit {
       }
 
       /** Responde a elemento padre */
-      // this.closeModal({status: true, data: this.item});
-      console.log('formData', formData);
+      this.closeModal({status: true, data: formData});
       return;
 
     } catch (err) {
@@ -91,9 +90,8 @@ export class ModalUpdateVoucherStatusFormComponent implements OnInit {
 
     this.onCloseModal.next({status, data});
 
-    this.form.patchValue({ categoryTypes: '', quantity: 0});
+    this.form.patchValue({ status: '', observation: ''});
     this.submitted = false;
-    this.item = null;
     this.mi.hide();
   }
 
