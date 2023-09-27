@@ -2,9 +2,52 @@
 .header-cilik{
     padding: 0.5rem;
     border-radius: 20px;
+    
+}
+.logo img{
+    width: 200px;
+}
+.icon-header{
+    background-color: #cecece;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    color: #aeaeae;
+}
+.icon-header-two{
+    background-color: #ff7487;
+    color: #ffffff;
+    animation: pulse infinite 1s;
+}
+.text-ps{
+    position: absolute;
+    bottom: -20px;
+    font-size: 0.8rem;
 }
 @media (max-width: 575px) {
+    .logo{
+        margin: 0 auto;
+        text-align: center;
+    }
     .header-cilik{
         background-color: #f7f7f7;
+        padding-bottom: 20px;
+    }
+}
+
+@keyframes pulse {
+    0%{
+        background-color: #ff7487;
+        transform: scale(1);
+        transition: all 05s;
+    }
+    100%{
+        background-color: #e7344c;
+        transform: scale(1.1);
+        transition: all 05s;
     }
 }

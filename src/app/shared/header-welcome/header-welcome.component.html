@@ -1,5 +1,6 @@
 <div class="presale-steps">
     <div class="row align-items-center">
+        <div class="seprd"></div>
         <div class="col d-flex align-items-center">
             <div class="avtr">
                 <img src="assets/img/cilik/icon-39.png" alt="">
@@ -20,7 +21,7 @@
 </div>  
 
 <ng-template #renderInfo let-profile="profile">
-    <div class="fs-2 fw-bold ps-3 d-flex jsutify-content-center flex-column">
+    <div class="fs-4 fw-bold ps-3 d-flex jsutify-content-center flex-column">
         <div>{{ "general.hello" | translate }} {{ profile?.name | titlecase }}</div>
         <a routerLink="/pages/dashboard" class="text-rslt fs-6">
             {{'general.goToDashboard' | translate}}
