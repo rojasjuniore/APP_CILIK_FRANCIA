@@ -23,7 +23,7 @@ export class CheckAdminRoleGuard implements CanActivate {
       map(user => user ? user.uid : null),
       // tap((uid) => console.log({ uid })),
       switchMap((uid) => (uid)
-        ? this.permissionSrv.getUserEventFullRolesObservable( environment.dataEvent.keyDb, uid)
+        ? this.permissionSrv.getUserEventFullRolesObservable(environment.dataEvent.keyDb, uid)
         : of({superAdmin: false, roles: []})
       ),
       // tap((user) => console.log({ user })),
