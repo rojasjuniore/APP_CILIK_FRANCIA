@@ -14,7 +14,7 @@ export class AdminDashboardComponent implements OnInit {
       icon: 'fa fa-money',
       description: 'Manager Transfer Payments',
       type: 'navigation',
-      url: '/admin/payments',
+      url: '/admin/bank-transfer',
       available: true
     }
   ];

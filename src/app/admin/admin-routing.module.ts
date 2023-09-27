@@ -12,6 +12,12 @@ const routes: Routes = [
     path: 'dashboard',
     component: AdminDashboardComponent
   },
+  {
+    path: 'bank-transfer',
+    // data: { profiles: ['admin-bank-transfer'] },
+    // canActivate: [AuthProfileGuard],
+    loadChildren: () => import("./bank-transfer/bank-transfer.module").then((m) => m.BankTransferModule),
+  },
   // {
   //   path: '',
   //   component: AdminLayoutComponent,
