@@ -1,8 +1,11 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import moment from 'moment';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Subscription, catchError, map, of, switchMap } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { PurchaseService } from 'src/app/services/purchase.service';
+import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 import { ModalUpdateVoucherStatusFormComponent } from 'src/app/shared/modal-update-voucher-status-form/modal-update-voucher-status-form.component';
 import { environment } from 'src/environments/environment';
 
@@ -23,7 +26,9 @@ export class BankTransferManagerComponent implements OnInit, OnDestroy {
   constructor(
     private router: ActivatedRoute,
     private authSrv: AuthenticationService,
-    private purchaseSrv: PurchaseService
+    private purchaseSrv: PurchaseService,
+    private spinner: NgxSpinnerService,
+    private sweetAlert2Srv: Sweetalert2Service
   ) {
     const orderId = this.router.snapshot.paramMap.get('orderId');
     // console.log('orderId', orderId);
@@ -53,8 +58,33 @@ export class BankTransferManagerComponent implements OnInit, OnDestroy {
     this.modalUpdateVoucherStatus.showModal();
   }
 
-  onCloseModalUpdateVoucherStatus(event: any){
+  async onCloseModalUpdateVoucherStatus(event: any){
+    const {status, data} = event;
     console.log('onCloseModalUpdateVoucherStatus', event);
+    if(!status){ return; }
+
+    const ask = await this.sweetAlert2Srv.askConfirm(`¿Estás seguro de actualizar el estado del comprobante a "${data.status}"?`);
+    if(!ask){ return; }
+
+    try {
+
+      const uid = await this.authSrv.getUIDPromise()
+
+      const timelineSnap = {
+        ...data,
+        updateBy: uid,
+        updatedAt: moment().valueOf()
+      }
+      console.log('timelineSnap', timelineSnap);
+      return;
+      
+    } catch (err) {
+      console.log('Error on onCloseModalUpdateVoucherStatus', err);
+      return;
+    } finally {
+      this.spinner.hide();
+    }
+
   }
 
   ngOnDestroy(): void {
