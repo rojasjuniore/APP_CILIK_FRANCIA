@@ -25,6 +25,7 @@ import { PurchaseListComponent } from './purchase-list/purchase-list.component';
 import { PurchaseListItemCardComponent } from './purchase-list-item-card/purchase-list-item-card.component';
 import { CustomInputFileComponent } from './custom-input-file/custom-input-file.component';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
+import { VoucherCardItemComponent } from './voucher-card-item/voucher-card-item.component';
 
 
 
@@ -48,12 +49,12 @@ import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
     PaypalButtonComponent,
     TucompraFormComponent,
     CustomInputFileComponent,
+    VoucherCardItemComponent,
     
     ModalOnlyInputNumberComponent,
     ModalStoreOnlyCategoriesComponent,
     ModalStoreOnlyDayPassComponent,
     ModalHotelEventRoomsListComponent,
-    
   ],
   imports: [
     CommonModule,
@@ -88,6 +89,7 @@ import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
     PaypalButtonComponent,
     TucompraFormComponent,
     CustomInputFileComponent,
+    VoucherCardItemComponent,
 
     ModalOnlyInputNumberComponent,
     ModalStoreOnlyCategoriesComponent,

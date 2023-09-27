@@ -101,45 +101,7 @@
     </div>
 
     <div class="col-12 mb-4" *ngIf="order?.voucher">
-        <div class="card-box card-box-b3 p-3 mb-3">
-            <div class="row g-2 d-flex align-items-center">
-                <div class="col-12 px-3">
-
-                    <p class="card-text text-center">
-                        File name:
-                        <small class="text-muted">
-                            {{order?.voucher.name}}
-                        </small>
-                    </p>
-
-                    <p class="card-text text-center">
-                        File type:
-                        <small class="text-muted">
-                            {{order?.voucher.type}}
-                        </small>
-                    </p>
-
-                    <p class="card-text text-center">
-                        Size:
-                        <small class="text-muted">
-                            <!-- {{formFile?.size}} -->
-                            {{order?.voucher.size}}
-                        </small>
-                    </p>
-
-                </div>
-
-                <div class="col-12 text-center">
-                    <button class="btn btn-danger" type="button" (click)="openVoucherFileLink()">
-                        <i class="bi bi-filetype-pdf"></i>
-                        &nbsp;
-                        Voucher
-                        <!-- &nbsp;
-                        <i class="bi bi-link-45deg"></i> -->
-                    </button>
-                </div>
-            </div>
-        </div>
+        <app-voucher-card-item [order]="order"></app-voucher-card-item>
     </div>
 
 </ng-template>
