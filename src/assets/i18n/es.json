@@ -220,7 +220,8 @@
     "pagar": "Pagar",
     "add": "Añadir",
     "clean": "Limpiar",
-    "noroom": "No hay habitaciones añadidas aún"
+    "noroom": "No hay habitaciones añadidas aún",
+    "selectDate": "Selecciona una fecha"
   },
   "hotel": {
     "roomType": {
@@ -345,5 +346,43 @@
       "emptyToken": "El código no puede estar vacío",
       "tokenLength": "El código debe tener {{tokenLong}} dígitos"
     }
+  },
+  "type":{
+    "one": "Casa de playa",
+    "two": "Torre del mar"
+  },
+  "hab1": {
+    "label": "HABITACION SUPERIOS SENCILLA EN CASA DE PLAYA",
+    "include": "HABITACION SUPERIOS SENCILLA EN CASA DE PLAYA , DESAYUNO BUFFET, ACCESO TODOS LOS EVENTOS DEL WLDC EL DIA QUE ADQUIRIO EL HOTEL. - POR LA COMPRA DE LA NOCHE DEL SABADO SE INCLUIRA EL ACCESO AL EVENTO DEL DOMINGO",
+    "noInclude": "- Cena de Gala el dia viernes 9 de Febrero - No incluye categorias para competir - No incluyen cenas -"
+  },
+  "hab2": {
+    "label": "HABITACION JUNIOR O DUPLEX EN CASA DE PLAYA",
+    "include": "HABITACION JUNIOR O DUPLEX EN CASA DE PLAYA , DESAYUNO BUFFET, ACCESO TODOS LOS EVENTOS DEL WLDC EL DIA QUE ADQUIRIO EL HOTEL - POR LA COMPRA DE LA NOCHE DEL SABADO SE INCLUIRA EL ACCESO AL EVENTO DEL DOMINGO",
+    "noInclude": "- Cena de Gala el dia viernes 9 de Febrero - No incluye categorias para competir - No incluyen cenas -"
+  },
+  "hab3": {
+    "label": "HABITACION SUPERIOS SENCILLA EN TORRE DEL MAR",
+    "include": "HABITACION SUPERIOS SENCILLA  EN TORRE DEL MAR, DESAYUNO BUFFET, ACCESO TODOS LOS EVENTOS DEL WLDC EL DIA QUE ADQUIRIO EL HOTEL - POR LA COMPRA DE LA NOCHE DEL SABADO SE INCLUIRA EL ACCESO AL EVENTO DEL DOMINGO",
+    "noInclude": "- Cena de Gala el dia viernes 9 de Febrero - No incluye categorias para competir - No incluyen cenas -"
+  },
+  "hab4": {
+    "label": "HABITACION JUNIOR SUITE EN TORRE DEL MAR",
+    "include": "HABITACION JUNIOR SUITE EN TORRE DEL MAR, DESAYUNO BUFFET, ACCESO TODOS LOS EVENTOS DEL WLDC EL DIA QUE ADQUIRIO EL HOTEL - POR LA COMPRA DE LA NOCHE DEL SABADO SE INCLUIRA EL ACCESO AL EVENTO DEL DOMINGO",
+    "noInclude": "- Cena de Gala el dia viernes 9 de Febrero - No incluye categorias para competir - No incluyen cenas -"
+  },
+  "subRoom": {
+    "labelHAB101": "UNA PERSONA EN LA HABITACION",
+    "labelHAB102": "DOS PERSONAS EN LA HABITACION",
+    "labelHAB103": "TRES PERSONAS EN LA HABITACION",
+    "labelHAB201": "UNA PERSONA EN LA HABITACION",
+    "labelHAB202": "DOS PERSONAS EN LA HABITACION",
+    "labelHAB203": "TRES PERSONAS EN LA HABITACION",
+    "labelHAB301": "UNA PERSONA EN LA HABITACION",
+    "labelHAB302": "DOS PERSONAS EN LA HABITACION",
+    "labelHAB303": "TRES PERSONAS EN LA HABITACION",
+    "labelHAB401": "UNA PERSONA EN LA HABITACION",
+    "labelHAB402": "DOS PERSONAS EN LA HABITACION",
+    "labelHAB403": "TRES PERSONAS EN LA HABITACION"
   }
 }

@@ -220,7 +220,8 @@
     "pagar": "Pay",
     "add": "Add",
     "clean": "Clean",
-    "noroom": "There are no rooms added yet"
+    "noroom": "There are no rooms added yet",
+    "selectDate": "Select a date"
   },
   "hotel": {
     "roomType": {
@@ -345,5 +346,43 @@
       "emptyToken": "Code cannot be empty",
       "tokenLength": "The code must have {{tokenLong}} digits"
     }
+  },
+  "type":{
+    "one": "Beach house",
+    "two": "Sea Tower"
+  },
+  "hab1": {
+    "label": "SINGLE SUPERIOR ROOM IN BEACH HOUSE",
+    "include": "SINGLE SUPERIOR ROOM IN BEACH HOUSE, BUFFET BREAKFAST, ACCESS TO ALL WLDC EVENTS ON THE DAY YOU PURCHASED THE HOTEL. - ACCESS TO THE SUNDAY EVENT WILL BE INCLUDED WITH THE PURCHASE ON SATURDAY NIGHT",
+    "noInclude": "- Gala Dinner on Friday, February 9 - Does not include categories to compete - Does not include dinners -"
+  },
+  "hab2": {
+    "label": "JUNIOR ROOM OR DUPLEX IN BEACH HOUSE",
+    "include": "JUNIOR ROOM OR DUPLEX IN A BEACH HOUSE, BUFFET BREAKFAST, ACCESS TO ALL WLDC EVENTS ON THE DAY THE HOTEL WAS PURCHASED - ACCESS TO THE SUNDAY EVENT WILL BE INCLUDED WITH THE PURCHASE ON SATURDAY NIGHT",
+    "noInclude": "- Gala Dinner on Friday, February 9 - Does not include categories to compete - Does not include dinners -"
+  },
+  "hab3": {
+    "label": "SINGLE SUPERIOR ROOM IN TORRE DEL MAR",
+    "include": "SINGLE SUPERIOR ROOM IN TORRE DEL MAR, BUFFET BREAKFAST, ACCESS TO ALL WLDC EVENTS ON THE DAY YOU PURCHASED THE HOTEL - ACCESS TO THE SUNDAY EVENT WILL BE INCLUDED WITH THE PURCHASE ON SATURDAY NIGHT",
+    "noInclude": "- Gala Dinner on Friday, February 9 - Does not include categories to compete - Does not include dinners -"
+  },
+  "hab4": {
+    "label": "JUNIOR SUITE ROOM IN TORRE DEL MAR",
+    "include": "JUNIOR SUITE ROOM IN TORRE DEL MAR, BUFFET BREAKFAST, ACCESS TO ALL WLDC EVENTS ON THE DAY YOU PURCHASED THE HOTEL - ACCESS TO THE SUNDAY EVENT WILL BE INCLUDED WITH THE PURCHASE ON SATURDAY NIGHT",
+    "noInclude": "- Gala Dinner on Friday, February 9 - Does not include categories to compete - Does not include dinners -"
+  },
+  "subRoom": {
+    "labelHAB101": "ONE PERSON IN THE ROOM",
+    "labelHAB102": "TWO PEOPLE IN THE ROOM",
+    "labelHAB103": "THREE PEOPLE IN THE ROOM",
+    "labelHAB201": "ONE PERSON IN THE ROOM",
+    "labelHAB202": "TWO PEOPLE IN THE ROOM",
+    "labelHAB203": "THREE PEOPLE IN THE ROOM",
+    "labelHAB301": "ONE PERSON IN THE ROOM",
+    "labelHAB302": "TWO PEOPLE IN THE ROOM",
+    "labelHAB303": "THREE PEOPLE IN THE ROOM",
+    "labelHAB401": "ONE PERSON IN THE ROOM",
+    "labelHAB402": "TWO PEOPLE IN THE ROOM",
+    "labelHAB403": "THREE PEOPLE IN THE ROOM"
   }
 }

@@ -10,6 +10,7 @@ import moment from 'moment';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { environment } from 'src/environments/environment';
 import { EventInfoService } from './dedicates/event-info.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root'
@@ -29,8 +30,10 @@ export class HotelService {
    * Tipos de ubicación
    */
   public roomLocations: any = {
-    1: 'Casa de playa',
-    2: 'Torre del mar',
+    // 1: 'Casa de playa',
+    // 2: 'Torre del mar',
+    1: 'type.one',
+    2: 'type.two',
   };
 
   /**
@@ -39,31 +42,31 @@ export class HotelService {
   public roomTypes = {
     HAB1: {
       code: 'HAB1',
-      label: 'HABITACION SUPERIOS SENCILLA EN CASA DE PLAYA',
+      label: 'hab1.label',
       location: 1,
-      include: 'HABITACION SUPERIOS SENCILLA EN CASA DE PLAYA , DESAYUNO BUFFET, ACCESO TODOS LOS EVENTOS DEL WLDC EL DIA QUE ADQUIRIO EL HOTEL. - POR LA COMPRA DE LA NOCHE DEL SABADO SE INCLUIRA EL ACCESO AL EVENTO DEL DOMINGO',
-      noInclude: '- Cena de Gala el dia viernes 9 de Febrero - No incluye categorias para competir - No incluyen cenas -',
+      include: 'hab1.include',
+      noInclude: 'hab1.noInclude',
     },
     HAB2: {
       code: 'HAB2',
-      label: 'HABITACION JUNIOR O DUPLEX EN CASA DE PLAYA',
+      label: 'hab2.label',
       location: 1,
-      include: 'HABITACION JUNIOR O DUPLEX EN CASA DE PLAYA , DESAYUNO BUFFET, ACCESO TODOS LOS EVENTOS DEL WLDC EL DIA QUE ADQUIRIO EL HOTEL - POR LA COMPRA DE LA NOCHE DEL SABADO SE INCLUIRA EL ACCESO AL EVENTO DEL DOMINGO',
-      noInclude: '- Cena de Gala el dia viernes 9 de Febrero - No incluye categorias para competir - No incluyen cenas -'
+      include: 'hab2.include',
+      noInclude: 'hab1.noInclude'
     },
     HAB3: {
       code: 'HAB3',
-      label: 'HABITACION SUPERIOS SENCILLA EN TORRE DEL MAR',
+      label: 'hab3.label',
       location: 2,
-      include: 'HABITACION SUPERIOS SENCILLA  EN TORRE DEL MAR, DESAYUNO BUFFET, ACCESO TODOS LOS EVENTOS DEL WLDC EL DIA QUE ADQUIRIO EL HOTEL - POR LA COMPRA DE LA NOCHE DEL SABADO SE INCLUIRA EL ACCESO AL EVENTO DEL DOMINGO',
-      noInclude: '- Cena de Gala el dia viernes 9 de Febrero - No incluye categorias para competir - No incluyen cenas -'
+      include: 'hab3.include',
+      noInclude: 'hab3.noInclude'
     },
     HAB4: {
       code: 'HAB4',
-      label: 'HABITACION JUNIOR SUITE EN TORRE DEL MAR',
+      label: 'hab4.label',
       location: 2,
-      include: 'HABITACION JUNIOR SUITE EN TORRE DEL MAR, DESAYUNO BUFFET, ACCESO TODOS LOS EVENTOS DEL WLDC EL DIA QUE ADQUIRIO EL HOTEL - POR LA COMPRA DE LA NOCHE DEL SABADO SE INCLUIRA EL ACCESO AL EVENTO DEL DOMINGO',
-      noInclude: '- Cena de Gala el dia viernes 9 de Febrero - No incluye categorias para competir - No incluyen cenas -'
+      include: 'hab4.include',
+      noInclude: 'hab4.noInclude'
     },
   };
 
@@ -394,7 +397,8 @@ export class HotelService {
   constructor(
     private afs: AngularFirestore,
     private storage: AngularFireStorage,
-    private eventInfoSrv: EventInfoService
+    private eventInfoSrv: EventInfoService,
+    private translate: TranslateService
   ) { }
 
 
@@ -416,12 +420,12 @@ export class HotelService {
           });
 
           return {
-            code: value.code,
-            title: value.label,
+            code: this.translate.instant(value.code),
+            title: this.translate.instant(value.label),
             location: value.location,
-            locationLabel: this.roomLocations[value.location],
-            include: value.include,
-            noInclude: value.noInclude,
+            locationLabel: this.translate.instant(this.roomLocations[value.location]),
+            include: this.translate.instant(value.include),
+            noInclude: this.translate.instant(value.noInclude),
             subcode: row.subcode,
             capacity: row.capacity,
             capacityLabel: row.label,
