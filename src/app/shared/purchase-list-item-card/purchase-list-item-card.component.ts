@@ -1,5 +1,6 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-purchase-list-item-card',
@@ -9,6 +10,7 @@ import { Router } from '@angular/router';
 export class PurchaseListItemCardComponent implements OnInit, OnChanges {
 
   @Input() item: any;
+  @Output() onItemDetails = new Subject<any>();
 
   constructor(
     private router: Router,
@@ -26,8 +28,9 @@ export class PurchaseListItemCardComponent implements OnInit, OnChanges {
   }
 
   goToDetails(): void{
-    console.log('goToDetails', this.item);
-    this.router.navigate([`/pages/purchases/${this.item._id}/details`]);
+    // console.log('goToDetails', this.item);
+    // this.router.navigate([`/pages/purchases/${this.item._id}/details`]);
+    this.onItemDetails.next(this.item);
   }
 
 }

@@ -7,6 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BankTransferComponent implements OnInit {
 
+  public query = [
+    {field: 'status', condition: '==', value: 'pending'},
+    {field: 'paymentMethod', condition: '==', value: 'bankTransfer'},
+  ];
+
+  public opts = {
+    orderBy: [{ field: "createdAt", order: "asc" }]
+  }
+
   constructor() { }
 
   ngOnInit(): void {

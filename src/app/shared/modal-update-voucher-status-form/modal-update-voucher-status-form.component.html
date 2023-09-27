@@ -1,0 +1,76 @@
+<div class="modal fade" [id]="_id" data-bs-backdrop="static"
+    data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <form class="mb-5" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+                        <div class="row g-3">
+
+                            <div class="col-12 text-center mb-3">
+                                <div class="fs-4 fw-bold">
+                                    Voucher Status Form
+                                </div>
+                            </div>
+
+                            <div class="col-12 mb-3">
+                                <label for="status" class="form-label">Estado</label>
+                                <select class="form-select" formControlName="status" placeholder="Tipo Documento">
+                                    <option value="" selected>Seleccionar...</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="completed">Completed</option>
+                                    <option value="rejected">Rejected</option>
+                                </select>
+                                <ng-container
+                                    *ngIf="submitted"
+                                    [ngTemplateOutlet]="renderFormVM"
+                                    [ngTemplateOutletContext]="{ field: 'status' }"
+                                ></ng-container>
+                            </div>
+
+                            <div class="col-12 mb-3">
+                                <label for="nombreComprador" class="form-label">Observación</label>
+                                <textarea class="form-control" formControlName="observation" rows="3"></textarea>
+                                <ng-container 
+                                    *ngIf="submitted" 
+                                    [ngTemplateOutlet]="renderFormVM" 
+                                    [ngTemplateOutletContext]="{ field: 'observation' }"
+                                ></ng-container>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal-footer d-flex justify-content-center align-items-center justify-content-lg-around flex-wrap">
+                <button type="button" class="btn btn-one text-uppercase" (click)="onSubmit()">
+                    Update
+                    &nbsp;
+                    <i class="bi bi-pencil-square"></i>
+                </button>
+                <button class="btn btn-three btn-medium-c text-uppercase" type="button" (click)="closeModal()">
+                    <i class="bi bi-x-circle"></i>
+                    &nbsp;
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #renderFormVM let-field="field">
+    <ng-container *ngFor="let item of vm[field]">
+        <p class="text-center mt-1">
+            <span class="badge bg-danger" *ngIf="f[field].hasError(item.type)">
+                {{ item.message | translate }}
+            </span>
+        </p>
+    </ng-container>
+</ng-template>

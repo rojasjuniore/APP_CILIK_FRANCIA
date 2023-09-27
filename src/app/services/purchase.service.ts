@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { increment } from 'firebase/firestore';
+import { arrayRemove, arrayUnion, increment } from 'firebase/firestore';
 import moment from 'moment';
 import { lastValueFrom, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -49,6 +49,37 @@ export class PurchaseService {
     }
   }
 
+  /**
+   * Añadir elementos al arreglo
+   * @param eventId           Id del evento
+   * @param docId               Id del usuario
+   * @param data              Datos a añadir
+   * @param field             Campo aplicar la operación
+   * @returns 
+   */
+  async addOnArray(eventId: string, docId: string, data: any[], field: string = 'timeline'){
+    await Promise.all(
+      data.map(async (item: any) => 
+        this.afs.collection(this.purchaseCollection).doc(eventId).collection('purchases').doc(docId).update({[field]: arrayUnion(item)})
+      )
+    );
+    return true;
+  }
+
+  /**
+   * Remover elementos del arreglo
+   * @param eventId           Id del evento
+   * @param docId               Id del usuario
+   * @param data              Datos a remover
+   * @param field             Campo aplicar la operación
+   * @returns 
+   */
+  async removeOnArray(eventId: string, docId: string, data: any, field: string = 'timeline'){
+    return await this.afs.collection(this.purchaseCollection)
+      .doc(eventId).collection('purchases').doc(docId).update({
+        [field]: arrayRemove(data)
+      });
+  }
 
 
 

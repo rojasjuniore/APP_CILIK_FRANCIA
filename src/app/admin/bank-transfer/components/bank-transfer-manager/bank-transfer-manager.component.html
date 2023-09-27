@@ -1,0 +1,154 @@
+<div class="row">
+    <div class="col text-center mb-3">
+        <div class="fs-4 fw-bold">
+            Purchase
+        </div>
+        <div class="text-rslt fw-bold fs-5">
+            <i class="bi bi-cart3"></i>
+            &nbsp;
+            {{orderId}}
+        </div>
+    </div>
+
+    <ng-container *ngIf="(orderDoc); else renderLoaderview"
+        [ngTemplateOutlet]="renderCheckOrderDoc"
+        [ngTemplateOutletContext]="{item: orderDoc}"
+    ></ng-container>
+
+
+    <div class="col-12">
+        <div class="d-flex justify-content-between">
+            <button class="btn btn-three btn-medium-c text-uppercase" type="button" routerLink="/admin/bank-transfer">
+                <i class="bi bi-chevron-left"></i>
+                {{ "general.back" | translate }}
+            </button>
+
+            <button class="btn btn-one btn-medium-c text-uppercase" type="button" [disabled]="!orderDoc || orderDoc.status !== 'pending' " (click)="openModalUpdateVoucherStatus()">
+                Actualizar
+                <i class="bi bi-cloud-arrow-up"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<app-modal-update-voucher-status-form 
+    #modalUpdateVoucherStatus 
+    (onCloseModal)="onCloseModalUpdateVoucherStatus($event)"
+></app-modal-update-voucher-status-form>
+
+<ng-template #renderOrderDoc let-order="order">
+
+    <div class="col-12 mb-4">
+        <div class="card card-box p-3 mb-3">
+            <div class="row g-2 d-flex align-items-center">
+
+                <!-- <div class="col-12 px-3">
+                    <span class="text-rslt fw-bold fs-5">
+                        <i class="bi bi-cart3"></i>
+                        &nbsp;
+                        _id
+                    </span>
+                </div>
+        
+                <div class="seprd2"></div> -->
+        
+                <div class="col-12 px-3">
+                    <div class="row mb-1">
+                        <div class="col-12 col-md-6">
+                            <p class="card-text mb-0">
+                                CreatedAt:
+                                <small class="text-muted">
+                                    {{order.createdAt | date: 'medium'}}
+                                </small>
+                            </p>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <p class="card-text mb-0 text-md-end">
+                                Status:
+                                <span class="badge bg-danger">
+                                    {{order.status}}
+                                </span>
+                            </p>
+                        </div>
+
+                        <div class="col-12 col-md-6">
+                            <p class="card-text mb-0">
+                                PaymentMethod:
+                                <small class="text-muted">
+                                    {{order.paymentMethod}}
+                                </small>
+                            </p>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <p class="card-text mb-0 text-md-end">
+                                ProcessedAt:
+                                <small class="text-muted">
+                                    <ng-container *ngIf="order.status === 'pending'">
+                                        in process
+                                    </ng-container>
+
+                                    <ng-container *ngIf="order.status === 'rejected'">
+                                        {{order.rejectedAt | date: 'medium'}}
+                                    </ng-container>
+
+                                    <ng-container *ngIf="order.status === 'completed'">
+                                        {{order.payedAt | date: 'medium'}}
+                                    </ng-container>
+                                </small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="seprd2"></div>
+
+                <div class="col-12 text-center text-md-end">
+                    <span class="fs-4 fw-bolder">Total: USD {{order.totales}}</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 mb-4" *ngIf="order?.voucher">
+        <app-voucher-card-item [voucher]="order?.voucher"></app-voucher-card-item>
+    </div>
+
+    <div class="col-12 text-center mb-3">
+        <div class="fs-4 fw-bold">
+            Timeline
+        </div>
+    </div>
+
+    <app-voucher-timeline-card [voucher]="order?.voucher"></app-voucher-timeline-card>
+
+</ng-template>
+
+<ng-template #renderCheckOrderDoc let-item="item">
+    <ng-container 
+        *ngIf="(item.exist); else renderNotFoundOrderDoc"
+        [ngTemplateOutlet]="renderOrderDoc"
+        [ngTemplateOutletContext]="{order: item}"
+    ></ng-container>
+</ng-template>
+
+<ng-template #renderNotFoundOrderDoc>
+    <div class="col-12 mb-4">
+        <div class="card-box card-box-b3 p-3 mb-3">
+            <h5 class="text-center">
+                No se encontro orden de compra
+            </h5>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #renderLoaderview>
+    <div class="col-12 mb-4">
+        <div class="card-box card-box-b3 p-3 mb-3">
+            <div class="d-flex align-items-center">
+                <strong>Loading...</strong>
+                <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+            </div>
+        </div>
+    </div>
+</ng-template>

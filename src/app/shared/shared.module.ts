@@ -25,6 +25,9 @@ import { PurchaseListComponent } from './purchase-list/purchase-list.component';
 import { PurchaseListItemCardComponent } from './purchase-list-item-card/purchase-list-item-card.component';
 import { CustomInputFileComponent } from './custom-input-file/custom-input-file.component';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
+import { VoucherCardItemComponent } from './voucher-card-item/voucher-card-item.component';
+import { VoucherTimelineCardComponent } from './voucher-timeline-card/voucher-timeline-card.component';
+import { ModalUpdateVoucherStatusFormComponent } from './modal-update-voucher-status-form/modal-update-voucher-status-form.component';
 
 
 
@@ -48,12 +51,14 @@ import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
     PaypalButtonComponent,
     TucompraFormComponent,
     CustomInputFileComponent,
+    VoucherCardItemComponent,
+    VoucherTimelineCardComponent,
     
     ModalOnlyInputNumberComponent,
     ModalStoreOnlyCategoriesComponent,
     ModalStoreOnlyDayPassComponent,
     ModalHotelEventRoomsListComponent,
-    
+    ModalUpdateVoucherStatusFormComponent,
   ],
   imports: [
     CommonModule,
@@ -88,11 +93,14 @@ import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
     PaypalButtonComponent,
     TucompraFormComponent,
     CustomInputFileComponent,
+    VoucherCardItemComponent,
+    VoucherTimelineCardComponent,
 
     ModalOnlyInputNumberComponent,
     ModalStoreOnlyCategoriesComponent,
     ModalStoreOnlyDayPassComponent,
     ModalHotelEventRoomsListComponent,
+    ModalUpdateVoucherStatusFormComponent,
   ]
 })
 export class SharedModule { }

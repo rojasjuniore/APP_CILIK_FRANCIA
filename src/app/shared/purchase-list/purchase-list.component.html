@@ -10,7 +10,7 @@
 
 <ng-template #renderOrderList let-list="list">
     <div class="col-12" *ngFor="let item of list">
-        <app-purchase-list-item-card [item]="item"></app-purchase-list-item-card>
+        <app-purchase-list-item-card [item]="item" (onItemDetails)="onItemDetails($event)"></app-purchase-list-item-card>
     </div>
 </ng-template>
 
