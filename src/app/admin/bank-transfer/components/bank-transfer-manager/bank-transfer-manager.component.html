@@ -104,17 +104,13 @@
         <app-voucher-card-item [voucher]="order?.voucher"></app-voucher-card-item>
     </div>
 
-    <div class="col text-center mb-3">
+    <div class="col-12 text-center mb-3">
         <div class="fs-4 fw-bold">
             Timeline
         </div>
     </div>
 
-    <ng-container 
-        *ngIf="(order?.voucher.timeline.length > 0); else renderNoTimelineRecords"
-        [ngTemplateOutlet]="renderTimelineRecords"
-        [ngTemplateOutletContext]="{list: order?.voucher.timeline}"
-    ></ng-container>
+    <app-voucher-timeline-card [voucher]="order?.voucher"></app-voucher-timeline-card>
 
 </ng-template>
 
@@ -124,26 +120,6 @@
         [ngTemplateOutlet]="renderOrderDoc"
         [ngTemplateOutletContext]="{order: item}"
     ></ng-container>
-</ng-template>
-
-<ng-template #renderTimelineRecords let-list="list">
-    <div class="col-12 mb-4" *ngFor="let item of list">
-        <div class="card-box card-box-b3 p-3 mb-3">
-            <h5 class="text-center">
-                {{item | json}}
-            </h5>
-        </div>
-    </div>
-</ng-template>
-
-<ng-template #renderNoTimelineRecords>
-    <div class="col-12 mb-4">
-        <div class="card-box card-box-b3 p-3 mb-3">
-            <h5 class="text-center">
-                No hay registros de seguimiento aún
-            </h5>
-        </div>
-    </div>
 </ng-template>
 
 <ng-template #renderNotFoundOrderDoc>
