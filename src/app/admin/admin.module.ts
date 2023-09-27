@@ -8,7 +8,7 @@ import { TranslateModule } from '@ngx-translate/core';
 // import { PermissionRolesComponent } from './components/permission-roles/permission-roles.component';
 // import { ListOrderComponent } from './components/list-order/list-order.component';
 // import { PermissionProfilesComponent } from './components/permission-profiles/permission-profiles.component';
-// import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { SharedModule } from '../shared/shared.module';
 
 
@@ -18,7 +18,7 @@ import { SharedModule } from '../shared/shared.module';
     // PermissionRolesComponent,
     // ListOrderComponent,
     // PermissionProfilesComponent,
-    // AdminDashboardComponent
+    AdminDashboardComponent
   ],
   imports: [
     CommonModule,
