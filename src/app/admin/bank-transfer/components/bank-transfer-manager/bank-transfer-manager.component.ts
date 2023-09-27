@@ -1,8 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription, catchError, map, of, switchMap } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { PurchaseService } from 'src/app/services/purchase.service';
+import { ModalUpdateVoucherStatusFormComponent } from 'src/app/shared/modal-update-voucher-status-form/modal-update-voucher-status-form.component';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -11,6 +12,8 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./bank-transfer-manager.component.css']
 })
 export class BankTransferManagerComponent implements OnInit, OnDestroy {
+
+  @ViewChild('modalUpdateVoucherStatus') modalUpdateVoucherStatus!: ModalUpdateVoucherStatusFormComponent;
 
   public orderId!: string;
   public orderDoc: any;
@@ -44,6 +47,14 @@ export class BankTransferManagerComponent implements OnInit, OnDestroy {
 
   openVoucherFileLink(){
     window.open(this.orderDoc.voucher.url, '_blank');
+  }
+
+  openModalUpdateVoucherStatus(){
+    this.modalUpdateVoucherStatus.showModal();
+  }
+
+  onCloseModalUpdateVoucherStatus(event: any){
+    console.log('onCloseModalUpdateVoucherStatus', event);
   }
 
   ngOnDestroy(): void {

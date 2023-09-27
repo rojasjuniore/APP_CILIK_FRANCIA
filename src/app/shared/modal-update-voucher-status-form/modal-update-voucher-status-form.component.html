@@ -1,0 +1,57 @@
+<div class="modal fade" [id]="_id" data-bs-backdrop="static"
+    data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row g-3">
+                        <div class="col-12">
+
+                            <!-- <app-input-number-form
+                                *ngIf="item"
+                                [label]="item.title| uppercase"
+                                placeholder="0"
+                                [quantity]="0"
+                                [min]="0"
+                                [max]="99"
+                                (onUpdateQuantity)="onInputValueChange($event)"
+                            ></app-input-number-form>
+
+                            <p class="text-center">
+                                <ng-container *ngIf="submitted" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'quantity'}"></ng-container>
+                            </p> -->
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer d-flex justify-content-center align-items-center justify-content-lg-around flex-wrap">
+                <button class="btn btn-three btn-medium-c text-uppercase" type="button" (click)="closeModal()">
+                    <i class="bi bi-x-circle"></i>
+                    &nbsp;
+                    Cancelar
+                </button>
+                <!-- <button type="button" class="btn btn-one text-uppercase" *ngIf="item" (click)="onSubmit()">
+                    Añadir
+                    &nbsp;
+                    <i class="bi bi-cart-plus"></i>
+                </button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #renderFormVM let-field="field">
+    <ng-container *ngFor="let item of vm[field]">
+        <span class="badge bg-danger" *ngIf="f[field].hasError(item.type)">
+            {{ item.message | translate }}
+        </span>
+    </ng-container>
+</ng-template>

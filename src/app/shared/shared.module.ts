@@ -27,6 +27,7 @@ import { CustomInputFileComponent } from './custom-input-file/custom-input-file.
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { VoucherCardItemComponent } from './voucher-card-item/voucher-card-item.component';
 import { VoucherTimelineCardComponent } from './voucher-timeline-card/voucher-timeline-card.component';
+import { ModalUpdateVoucherStatusFormComponent } from './modal-update-voucher-status-form/modal-update-voucher-status-form.component';
 
 
 
@@ -57,6 +58,7 @@ import { VoucherTimelineCardComponent } from './voucher-timeline-card/voucher-ti
     ModalStoreOnlyCategoriesComponent,
     ModalStoreOnlyDayPassComponent,
     ModalHotelEventRoomsListComponent,
+    ModalUpdateVoucherStatusFormComponent,
   ],
   imports: [
     CommonModule,
@@ -98,6 +100,7 @@ import { VoucherTimelineCardComponent } from './voucher-timeline-card/voucher-ti
     ModalStoreOnlyCategoriesComponent,
     ModalStoreOnlyDayPassComponent,
     ModalHotelEventRoomsListComponent,
+    ModalUpdateVoucherStatusFormComponent,
   ]
 })
 export class SharedModule { }
