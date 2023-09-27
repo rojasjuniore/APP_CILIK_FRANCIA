@@ -26,6 +26,7 @@ import { PurchaseListItemCardComponent } from './purchase-list-item-card/purchas
 import { CustomInputFileComponent } from './custom-input-file/custom-input-file.component';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { VoucherCardItemComponent } from './voucher-card-item/voucher-card-item.component';
+import { VoucherTimelineCardComponent } from './voucher-timeline-card/voucher-timeline-card.component';
 
 
 
@@ -50,6 +51,7 @@ import { VoucherCardItemComponent } from './voucher-card-item/voucher-card-item.
     TucompraFormComponent,
     CustomInputFileComponent,
     VoucherCardItemComponent,
+    VoucherTimelineCardComponent,
     
     ModalOnlyInputNumberComponent,
     ModalStoreOnlyCategoriesComponent,
@@ -90,6 +92,7 @@ import { VoucherCardItemComponent } from './voucher-card-item/voucher-card-item.
     TucompraFormComponent,
     CustomInputFileComponent,
     VoucherCardItemComponent,
+    VoucherTimelineCardComponent,
 
     ModalOnlyInputNumberComponent,
     ModalStoreOnlyCategoriesComponent,

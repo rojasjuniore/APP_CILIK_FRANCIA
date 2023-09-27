@@ -1,0 +1,25 @@
+<ng-container 
+    *ngIf="(timeline.length > 0); else renderNoTimelineRecords"
+    [ngTemplateOutlet]="renderTimelineRecords"
+    [ngTemplateOutletContext]="{list: timeline}"
+></ng-container>
+
+<ng-template #renderTimelineRecords let-list="list">
+    <div class="col-12 mb-4" *ngFor="let item of list">
+        <div class="card-box card-box-b3 p-3 mb-3">
+            <h5 class="text-center">
+                {{item | json}}
+            </h5>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #renderNoTimelineRecords>
+    <div class="col-12 mb-4">
+        <div class="card-box card-box-b3 p-3 mb-3">
+            <h5 class="text-center">
+                No hay registros de seguimiento aún
+            </h5>
+        </div>
+    </div>
+</ng-template>
