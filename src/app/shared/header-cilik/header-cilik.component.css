@@ -18,10 +18,21 @@
     position: relative;
     color: #aeaeae;
 }
-.icon-header-two{
-    background-color: #ff7487;
+.active-cart{
+    position: relative;
+}
+.ntf-cart{
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    width: 15px;
+    height: 15px;
+    background-color: #e7344c;
+    border-radius: 50%;
+    font-size: 10px;
     color: #ffffff;
-    animation: pulse infinite 1s;
+    text-align: center;
+    font-weight: bold;
 }
 .text-ps{
     position: absolute;
@@ -39,15 +50,3 @@
     }
 }
 
-@keyframes pulse {
-    0%{
-        background-color: #ff7487;
-        transform: scale(1);
-        transition: all 05s;
-    }
-    100%{
-        background-color: #e7344c;
-        transform: scale(1.1);
-        transition: all 05s;
-    }
-}

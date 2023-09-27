@@ -6,7 +6,7 @@
 
     <div class="col-12 mt-4 mb-5">
         <h5 class="fw-bold fs-3 text-end">
-            Total: USD {{totales}}
+            {{ "general.total" | translate }}: USD {{totales}}
         </h5>
     </div>
 
@@ -18,7 +18,7 @@
             </button>
 
             <button class="btn btn-one btn-medium-c text-uppercase" [ngClass]="{'disabled': totales === 0}" type="button" routerLink="/pages/checkout">
-                Pagar
+                {{ "general.pay" | translate }}
                 <i class="bi bi-chevron-right"></i>
             </button>
         </div>
@@ -43,7 +43,7 @@
     <div class="col-12 mb-4">
         <div class="card-box card-box-b3 p-3 mb-3">
             <h5 class="text-center">
-                No hay productos añadidos aún
+                {{ "general.noproduct" | translate }}
             </h5>
         </div>
     </div>

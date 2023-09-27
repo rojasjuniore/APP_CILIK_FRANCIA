@@ -215,7 +215,12 @@
     "valueToBeCancelledFrom": "Valor a cancelar de",
     "valueWithoutDiscount": "Valor sin descuento",
     "verify": "Verificar",
-    "yes": "Sí"
+    "yes": "Sí",
+    "noproduct": "No hay productos añadidos aún ",
+    "pagar": "Pagar",
+    "add": "Añadir",
+    "clean": "Limpiar",
+    "noroom": "No hay habitaciones añadidas aún"
   },
   "hotel": {
     "roomType": {

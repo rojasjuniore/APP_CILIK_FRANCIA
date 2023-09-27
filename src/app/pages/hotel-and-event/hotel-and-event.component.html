@@ -8,12 +8,12 @@
                 <button class="btn btn-two mb-3 mb-sm-0" (click)="openModalRoomsList()">
                     <i class="bi bi-hand-index"></i>
                     &nbsp;
-                    Añadir
+                    {{ "general.add" | translate }}
                 </button>
                 <button class="btn btn-one" (click)="resetRooms()">
                     <i class="bi bi-trash3"></i>
                     &nbsp;
-                    Limpiar
+                    {{ "general.clean" | translate }}
                 </button>
             </div>
         </div>
@@ -44,7 +44,7 @@
 <ng-template #renderNoRooms>
     <div class="col-12">
         <div class="card-box card-box-b3 p-3 mb-3">
-            <h5 class="text-center">No hay habitaciones añadidas aún</h5>
+            <h5 class="text-center">{{ "general.noroom" | translate }}</h5>
         </div>
     </div>
 </ng-template>
