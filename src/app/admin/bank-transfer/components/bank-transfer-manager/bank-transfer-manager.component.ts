@@ -42,6 +42,10 @@ export class BankTransferManagerComponent implements OnInit, OnDestroy {
     });
   }
 
+  openVoucherFileLink(){
+    window.open(this.orderDoc.voucher.url, '_blank');
+  }
+
   ngOnDestroy(): void {
     this.sub$.unsubscribe();
   }
