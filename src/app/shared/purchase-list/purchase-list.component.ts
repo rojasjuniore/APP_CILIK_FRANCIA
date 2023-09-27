@@ -12,6 +12,7 @@ export class PurchaseListComponent implements OnInit, OnChanges {
 
   @Input() title: string = 'Title';
   @Input() query: any[] = [];
+  @Input() opts: any = {};
 
   public purchases$!: Observable<any[]>;
 
@@ -41,7 +42,7 @@ export class PurchaseListComponent implements OnInit, OnChanges {
 
     // console.log('query', this.query);
     /** Actualizar observable de listado de compras */
-    this.purchases$ = this.purchaseSrv.getDynamic(environment.dataEvent.keyDb, this.query);
+    this.purchases$ = this.purchaseSrv.getDynamic(environment.dataEvent.keyDb, this.query, this.opts);
     return;
   }
 

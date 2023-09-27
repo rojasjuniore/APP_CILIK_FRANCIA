@@ -16,21 +16,24 @@ export class MyPurchasesComponent implements OnInit, OnDestroy {
       query: [
         {field: 'status', condition: '==', value: 'pending'},
         {field: 'uid', condition: '==', value: null},
-      ]
+      ],
+      opts: { orderBy: [{ field: "createdAt", order: "desc" }] }
     },
     completed: {
       available: false,
       query: [
         {field: 'status', condition: '==', value: 'completed'},
         {field: 'uid', condition: '==', value: null},
-      ]
+      ],
+      opts: { orderBy: [{ field: "createdAt", order: "desc" }] }
     },
     rejected: {
       available: false,
       query: [
         {field: 'status', condition: '==', value: 'rejected'},
         {field: 'uid', condition: '==', value: null},
-      ]
+      ],
+      opts: { orderBy: [{ field: "createdAt", order: "desc" }] }
     },
   };
 
