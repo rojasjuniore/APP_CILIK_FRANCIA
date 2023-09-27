@@ -44,7 +44,7 @@ const routes: Routes = [
     path: 'admin',
     canActivate: [CheckAdminRoleGuard],
     component: AdminLayoutComponent,
-    // loadChildren: () => import("./admin/admin.module").then((m) => m.AdminModule),
+    loadChildren: () => import("./admin/admin.module").then((m) => m.AdminModule),
   },
   {
     path: '',
