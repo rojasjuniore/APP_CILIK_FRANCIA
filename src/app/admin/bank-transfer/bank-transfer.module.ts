@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { BankTransferRoutingModule } from './bank-transfer-routing.module';
 import { BankTransferComponent } from './bank-transfer.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -11,6 +12,7 @@ import { BankTransferComponent } from './bank-transfer.component';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     BankTransferRoutingModule
   ]
 })

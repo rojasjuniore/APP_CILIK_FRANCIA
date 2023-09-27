@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { PurchaseService } from 'src/app/services/purchase.service';
 import { environment } from 'src/environments/environment';
@@ -14,10 +15,14 @@ export class PurchaseListComponent implements OnInit, OnChanges {
   @Input() query: any[] = [];
   @Input() opts: any = {};
 
+  @Input() redirectTo: string = `/pages/purchases/$/details`;
+  @Input() fieldToRedirect: string = '_id';
+
   public purchases$!: Observable<any[]>;
 
   constructor(
     private purchaseSrv: PurchaseService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -44,6 +49,14 @@ export class PurchaseListComponent implements OnInit, OnChanges {
     /** Actualizar observable de listado de compras */
     this.purchases$ = this.purchaseSrv.getDynamic(environment.dataEvent.keyDb, this.query, this.opts);
     return;
+  }
+
+  onItemDetails(item: any): void{
+    const id = item[this.fieldToRedirect];
+    const url = this.redirectTo.replace('$', id);
+    // console.log('url', url);
+    this.router.navigate([url]);
+    // this.router.navigate([`/pages/purchases/${this.item._id}/details`]);
   }
 
 }
