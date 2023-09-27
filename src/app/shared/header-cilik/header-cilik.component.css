@@ -18,6 +18,11 @@
     position: relative;
     color: #aeaeae;
 }
+.icon-header-two{
+    background-color: #ff7487;
+    color: #ffffff;
+    animation: pulse infinite 1s;
+}
 .text-ps{
     position: absolute;
     bottom: -20px;
@@ -31,5 +36,18 @@
     .header-cilik{
         background-color: #f7f7f7;
         padding-bottom: 20px;
+    }
+}
+
+@keyframes pulse {
+    0%{
+        background-color: #ff7487;
+        transform: scale(1);
+        transition: all 05s;
+    }
+    100%{
+        background-color: #e7344c;
+        transform: scale(1.1);
+        transition: all 05s;
     }
 }
