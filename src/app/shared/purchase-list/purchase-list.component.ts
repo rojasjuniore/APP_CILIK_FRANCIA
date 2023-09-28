@@ -30,13 +30,19 @@ export class PurchaseListComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { query } = changes;
+    const { query, opts } = changes;
 
     if(query && query.currentValue) {
       // console.log('query', query.currentValue);
       this.query = query.currentValue;
-      this.loadData();
     }
+
+    if(opts && opts.currentValue) {
+      // console.log('opts', opts.currentValue);
+      this.opts = opts.currentValue;
+    }
+
+    this.loadData();
   }
 
   loadData(){

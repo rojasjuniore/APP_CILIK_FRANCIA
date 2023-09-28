@@ -61,7 +61,8 @@ export class MyPurchasesComponent implements OnInit, OnDestroy {
     const snapshot = Object.entries(this.queries).map(([key, value]) => {
       const available = (this.uid) ? true : false;
       const query = value.query.map((query) =>  query.field === 'uid' ? {...query, value: this.uid } : query);
-      return { [key]: {available, query} };
+      const opts = value.opts;
+      return { [key]: {available, query, opts} };
     })
     .reduce((acc, cur) => ({...acc, ...cur}), {});
     // console.log('snapshot', snapshot);
