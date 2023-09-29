@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable, map, of, switchMap, tap } from 'rxjs';
 import { AuthenticationService } from '../services/authentication.service';
 import { PermissionService } from '../services/permission.service';
@@ -13,6 +13,7 @@ export class CheckAdminRoleGuard implements CanActivate {
   constructor(
     private authSrv: AuthenticationService,
     private permissionSrv: PermissionService,
+    private router: Router,
   ){}
 
   canActivate(
@@ -28,7 +29,11 @@ export class CheckAdminRoleGuard implements CanActivate {
       ),
       // tap((user) => console.log({ user })),
       map((user: any) => {
-        return (user.superAdmin || user.roles.length > 0) ? true : false;
+
+        if(user.superAdmin || user.roles.length > 0){ return true; }
+
+        this.router.navigate(['/sign-in']);
+        return false;
       })
     );
   }
