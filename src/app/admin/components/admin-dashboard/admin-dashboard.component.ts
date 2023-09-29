@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable, map, of, switchMap, tap } from 'rxjs';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { PermissionService } from 'src/app/services/permission.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -15,15 +19,44 @@ export class AdminDashboardComponent implements OnInit {
       description: 'Manager Transfer Payments',
       type: 'navigation',
       url: '/admin/bank-transfer',
+      profiles: ['manager-hotel-event-bank-transfer-payment'],
       available: true
     }
   ];
 
+  public userRoles$!: Observable<any>;
+
   constructor(
     private router: Router,
+    private authSrv: AuthenticationService,
+    private permissionSrv: PermissionService,
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+
+    this.userRoles$ = this.authSrv.afAuth.authState.pipe(
+      map(user => user ? user.uid : null),
+      // tap((uid) => console.log({ uid })),
+      switchMap((uid) => (uid)
+        ? this.permissionSrv.getUserEventFullRolesObservable(environment.dataEvent.keyDb, uid)
+        : of({superAdmin: false, roles: []})
+      ),
+      tap((user) => console.log({ user })),
+      map((user: any) => {
+        return this.adminOptions.filter((item) => item.available)
+        .filter((item) => {
+          if(user.superAdmin) { return true; }
+          if(user.roles.length > 0){
+            if(user.roles.some((role: any) => item.profiles.includes(role))){
+              return true;
+            }
+          }
+
+          return false;
+        })
+      }),
+    );
+  }
 
   launch(item: any){
     switch (item.type) {

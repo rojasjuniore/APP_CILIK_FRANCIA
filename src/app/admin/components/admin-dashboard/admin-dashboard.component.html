@@ -1,17 +1,11 @@
 <div class="row row-cols-1 row-cols-md-2 g-4">
 
-    <ng-container *ngFor="let item of adminOptions">
-        <div class="col" *ngIf="item.available">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        {{item.label | titlecase}}
-                    </h5>
-                    <p class="card-text">{{item.description}}</p>
-                    <button type="button" class="btn btn-sm btn-danger stretched-link" (click)="launch(item)">Go</button>
-                </div>
-            </div>
-        </div>
+    <ng-container *ngIf="(userRoles$ | async) as list; else renderLoaderCards">
+        <ng-container 
+            *ngIf="(list.length > 0); else renderNoOptionsAvailables"
+            [ngTemplateOutlet]="renderAdminOptions"
+            [ngTemplateOutletContext]="{list: list}"
+        ></ng-container>
     </ng-container>
 
     <!-- <div class="col">
@@ -48,3 +42,46 @@
     </div> -->
 
 </div>
+
+<ng-template #renderAdminOptions let-list="list">
+    <ng-container *ngFor="let item of list">
+        <div class="col" *ngIf="item.available">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        {{item.label | titlecase}}
+                    </h5>
+                    <p class="card-text">{{item.description}}</p>
+                    <button type="button" class="btn btn-sm btn-danger stretched-link" (click)="launch(item)">Go</button>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</ng-template>
+
+<ng-template #renderNoOptionsAvailables>
+    <div class="col-12 mb-4">
+        <div class="card-box card-box-b3 p-3 mb-3">
+            <h5 class="text-center">
+                No options availables
+            </h5>
+        </div>
+    </div>
+</ng-template>
+
+
+<ng-template #renderLoaderCards>
+    <div class="col" *ngFor="let item of [1,1,1,1]">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title placeholder-glow">
+                    <span class="placeholder placeholder-lg col-12"></span>
+                </h5>
+                <p class="card-text placeholder-glow">
+                    <span class="placeholder col-12"></span>
+                </p>
+                <a href="#" tabindex="-1" class="btn btn-sm btn-danger stretched-link disabled placeholder col-4" aria-hidden="true"></a>
+            </div>
+        </div>
+    </div>
+</ng-template>
