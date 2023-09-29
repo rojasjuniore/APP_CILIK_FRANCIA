@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-// import { AuthProfileGuard } from '../guards/auth-profile.guard';
+import { AuthProfileGuard } from '../guards/auth-profile.guard';
 // import { AuthRoleGuard } from '../guards/auth-role.guard';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 // import { AdminLayoutComponent } from './components/admin-layout/admin-layout.component';
@@ -14,8 +14,8 @@ const routes: Routes = [
   },
   {
     path: 'bank-transfer',
-    // data: { profiles: ['admin-bank-transfer'] },
-    // canActivate: [AuthProfileGuard],
+    data: { profiles: ['manager-hotel-event-bank-transfer-payment'] },
+    canActivate: [AuthProfileGuard],
     loadChildren: () => import("./bank-transfer/bank-transfer.module").then((m) => m.BankTransferModule),
   },
   // {

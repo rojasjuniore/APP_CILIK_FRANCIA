@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterStateSnapshot } from '@angular/router';
-import { map, Observable } from 'rxjs';
+import { map, Observable, of, switchMap, tap } from 'rxjs';
 import { AuthenticationService } from '../services/authentication.service';
+import { environment } from 'src/environments/environment';
+import { PermissionService } from '../services/permission.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthProfileGuard implements CanActivate, CanActivateChild {
+export class AuthProfileGuard implements CanActivate {
 
   constructor(
     private router: Router,
-    private authService: AuthenticationService
+    private authSrv: AuthenticationService,
+    private permissionSrv: PermissionService,
   ) { }
 
   canActivate(
@@ -19,66 +22,99 @@ export class AuthProfileGuard implements CanActivate, CanActivateChild {
   ): Observable<boolean> {
 
     const profiles = route.data.profiles || [];
-    // console.log('router profiles', profiles);
+    console.log('router profiles', profiles);
 
-    return this.authService.userDoc$.pipe(
+    return this.authSrv.afAuth.authState.pipe(
+      map(user => user ? user.uid : null),
+      // tap((uid) => console.log({ uid })),
+      switchMap((uid) => (uid)
+        ? this.permissionSrv.getUserEventFullRolesObservable(environment.dataEvent.keyDb, uid)
+        : of({superAdmin: false, roles: []})
+      ),
+      // tap((user) => console.log({ user })),
       map((user: any) => {
-        const roles = user.roles || [];
 
-        /** No posee roles asignados */
-        if(profiles.roles == 0){ 
-          this.router.navigate(['/admin']);
-          return false; 
-        }
-
-        /** La ruta no posee perfiles asignados */
+        /** No tiene roles que verificar */
         if(profiles.length == 0){ return true; }
 
-        /** La ruta posee perfiles asignados */
-        const hasProfile = roles.some((role: any) => profiles.includes(role));
-        if(!hasProfile){ 
-          this.router.navigate(['/admin']); 
-          return false;
+        /** Es Super-Admin */
+        if(user.superAdmin) { return true; }
+
+        /** Tiene roles asignados */
+        if(user.roles.length > 0){
+
+          /** Tiene alguno de los roles permitidos */
+          if(user.roles.some((role: any) => profiles.includes(role))){
+            return true;
+          }
+
         }
 
-        return true;
-      })
+        // return (user.superAdmin || user.roles.length > 0) ? true : false;
+        this.router.navigate(['/admin']);
+        return false;
+      }),
+      // tap((user) => console.log('canActivate',user)),
     );
+
+    // return this.authSrv.userDoc$.pipe(
+    //   map((user: any) => {
+    //     const roles = user.roles || [];
+
+    //     /** No posee roles asignados */
+    //     if(profiles.roles == 0){ 
+    //       this.router.navigate(['/admin']);
+    //       return false; 
+    //     }
+
+    //     /** La ruta no posee perfiles asignados */
+    //     if(profiles.length == 0){ return true; }
+
+    //     /** La ruta posee perfiles asignados */
+    //     const hasProfile = roles.some((role: any) => profiles.includes(role));
+    //     if(!hasProfile){ 
+    //       this.router.navigate(['/admin']); 
+    //       return false;
+    //     }
+
+    //     return true;
+    //   })
+    // );
   }
   
-  canActivateChild(
-    childRoute: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<boolean> {
+  // canActivateChild(
+  //   childRoute: ActivatedRouteSnapshot,
+  //   state: RouterStateSnapshot
+  // ): Observable<boolean> {
 
-    // console.log('childRoute', childRoute);
+  //   // console.log('childRoute', childRoute);
 
-    const profiles = childRoute.data.profiles || [];
-    console.log('childRoute profiles', profiles);
+  //   const profiles = childRoute.data.profiles || [];
+  //   console.log('childRoute profiles', profiles);
 
-    return this.authService.userDoc$.pipe(
-      map((user: any) => {
-        const roles = user.roles || [];
+  //   return this.authSrv.userDoc$.pipe(
+  //     map((user: any) => {
+  //       const roles = user.roles || [];
 
-        /** No posee roles asignados */
-        if(profiles.roles == 0){ 
-          this.router.navigate(['/admin']);
-          return false; 
-        }
+  //       /** No posee roles asignados */
+  //       if(profiles.roles == 0){ 
+  //         this.router.navigate(['/admin']);
+  //         return false; 
+  //       }
 
-        /** La ruta no posee perfiles asignados */
-        if(profiles.length == 0){ return true; }
+  //       /** La ruta no posee perfiles asignados */
+  //       if(profiles.length == 0){ return true; }
 
-        /** La ruta posee perfiles asignados */
-        const hasProfile = roles.some((role: any) => profiles.includes(role));
-        if(!hasProfile){ 
-          this.router.navigate(['/admin']); 
-          return false;
-        }
+  //       /** La ruta posee perfiles asignados */
+  //       const hasProfile = roles.some((role: any) => profiles.includes(role));
+  //       if(!hasProfile){ 
+  //         this.router.navigate(['/admin']); 
+  //         return false;
+  //       }
 
-        return true;
-      })
-    );
-  }
+  //       return true;
+  //     })
+  //   );
+  // }
   
 }
