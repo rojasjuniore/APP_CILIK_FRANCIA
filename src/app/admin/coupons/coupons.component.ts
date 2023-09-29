@@ -12,4 +12,8 @@ export class CouponsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  async launchAddCouponForm() {
+    console.log('launchAddCouponForm');
+  }
+
 }
