@@ -8,7 +8,7 @@
 
     <div class="col-12 mt-4">
         <h5 class="fw-bold fs-3 text-end">
-            Total: USD {{totales}}
+            {{ "general.total" | translate }}: USD {{totales}}
         </h5>
     </div>
 
@@ -49,7 +49,7 @@
 
 <ng-template #renderPaymentOptions>
     <div class="col-12 text-center mb-4">
-        <h5>Elige tu método de pago</h5>
+        <h5>{{ "paymentMethods.chooseYourPaymentMethod" | translate }}</h5>
     </div>
 
     <div class="col-12 mb-4">
@@ -72,7 +72,7 @@
 
 <ng-template #renderLoader>
     <div class="col-12 text-center mb-4">
-        <h5>Elige tu método de pago</h5>
+        <h5>{{ "paymentMethods.chooseYourPaymentMethod" | translate }}</h5>
     </div>
 
     <div class="col-12 mb-4">

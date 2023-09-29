@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Subject } from 'rxjs';
 import { formatBytes } from 'src/app/helpers/formatBytes.helper';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
@@ -12,7 +13,7 @@ export class CustomInputFileComponent implements OnInit {
 
   @ViewChild('inputFileRef') inputFileRef!: ElementRef<HTMLInputElement>;
 
-  @Input() label: string = "Select a file";
+  @Input() label: string = "general.selectFile";
 
   /** Accept only PDF */
   // @Input() accept: string = "application/pdf";
@@ -20,17 +21,17 @@ export class CustomInputFileComponent implements OnInit {
 
   @Input() multiple: boolean = false;
 
-  @Input() uploadBtnText: string = "Select file";
+  @Input() uploadBtnText: string = "general.selectFile";
 
-  @Input() submitBtnText: string = "Submit";
+  @Input() submitBtnText: string = "general.submit";
 
-  @Input() confirmBtnText: string = "Confirm";
+  @Input() confirmBtnText: string = "general.Confirm";
 
-  @Input() cancelBtnText: string = "Cancel";
+  @Input() cancelBtnText: string = "general.Cancel";
 
-  @Input() clearBtnText: string = "Clear";
+  @Input() clearBtnText: string = "general.Clear";
 
-  @Input() noSelectFileText: string = "No file selected";
+  @Input() noSelectFileText: string = "general.noFileSelec";
 
   @Output() onSelectFile = new Subject<File | null>();
 
@@ -39,6 +40,7 @@ export class CustomInputFileComponent implements OnInit {
 
   constructor(
     private sweetAlert2Srv: Sweetalert2Service,
+    private translate: TranslateService
   ) { }
 
   ngOnInit(): void {
@@ -76,9 +78,9 @@ export class CustomInputFileComponent implements OnInit {
 
     const fileLength = files.length;
     const fileValidation = files[0].type;
-
+    const msj = this.translate.instant("general.onlyPDF")
     if (fileValidation !== "application/pdf") {
-      this.sweetAlert2Srv.showError(" solo se admiten archivos pdf");
+      this.sweetAlert2Srv.showError(msj);
       this.clearFile();
       return;
     }

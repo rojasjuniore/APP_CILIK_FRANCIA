@@ -2,7 +2,7 @@
 
     <div class="row">
         <div class="col-12 mb-3">
-            <label for="documentoComprador" class="form-label">Nro. Documento</label>
+            <label for="documentoComprador" class="form-label">{{ "general.dni" | translate }}</label>
             <input type="text" class="form-control" formControlName="documentoComprador" aria-describedby="documentoCompradorHelp">
             <ng-container 
                 *ngIf="submitted" 
@@ -12,13 +12,13 @@
         </div>
       
         <div class="col-12 mb-3">
-            <label for="tipoDocumento" class="form-label">Tipo Documento</label>
-            <select class="form-select" formControlName="tipoDocumento" placeholder="Tipo Documento">
-                <option value="" selected>Seleccionar...</option>
-                <option value="CC">cedula ciudadanía</option>
-                <option value="CE">cedula extranjería</option>
-                <option value="NIT">número identificación tributaria</option>
-                <option value="PAS">pasaporte</option>
+            <label for="tipoDocumento" class="form-label">{{ "general.dniType" | translate }}</label>
+            <select class="form-select" formControlName="tipoDocumento">
+                <option value="" selected>{{ "general.selec" | translate }}...</option>
+                <option value="CC">{{ "general.cc" | translate }}</option>
+                <option value="CE">{{ "general.ce" | translate }}</option>
+                <option value="NIT">{{ "general.nit" | translate }}</option>
+                <option value="PAS">{{ "general.pas" | translate }}</option>
             </select>
             <ng-container 
                 *ngIf="submitted" 
@@ -28,7 +28,7 @@
         </div>
       
         <div class="col-12 mb-3">
-            <label for="nombreComprador" class="form-label">Nombres</label>
+            <label for="nombreComprador" class="form-label">{{ "general.names" | translate }}</label>
             <input type="text" class="form-control" formControlName="nombreComprador" aria-describedby="nombreCompradorHelp">
             <ng-container 
                 *ngIf="submitted" 
@@ -38,7 +38,7 @@
         </div>
       
         <div class="col-12 mb-3">
-            <label for="apellidoComprador" class="form-label">Apellidos</label>
+            <label for="apellidoComprador" class="form-label">{{ "general.lastNames" | translate }}</label>
             <input type="text" class="form-control" formControlName="apellidoComprador" aria-describedby="apellidoCompradorHelp">
             <ng-container 
                 *ngIf="submitted" 
@@ -48,7 +48,7 @@
         </div>
       
         <div class="col-12 mb-3">
-            <label for="correoComprador" class="form-label">Email</label>
+            <label for="correoComprador" class="form-label">{{ "general.email" | translate }}</label>
             <input type="text" class="form-control" formControlName="correoComprador" aria-describedby="correoCompradorHelp">
             <ng-container 
                 *ngIf="submitted" 
@@ -58,7 +58,7 @@
         </div>
       
         <div class="col-12 mb-3">
-            <label for="celularComprador" class="form-label">Celular</label>
+            <label for="celularComprador" class="form-label">{{ "general.phone" | translate }}</label>
             <input type="text" class="form-control" formControlName="celularComprador" aria-describedby="celularCompradorHelp">
             <ng-container 
                 *ngIf="submitted" 
@@ -68,7 +68,7 @@
         </div>
       
         <div class="col-12 mb-3">
-            <label for="direccionComprador" class="form-label">Dirección</label>
+            <label for="direccionComprador" class="form-label">{{ "general.address" | translate }}</label>
             <input type="text" class="form-control" formControlName="direccionComprador" aria-describedby="direccionCompradorHelp">
             <ng-container 
                 *ngIf="submitted" 
@@ -86,7 +86,7 @@
 
 <ng-template #renderSubmitBtn>
     <button type="submit" class="btn btn-danger">
-        Pagar con tuCompra
+        {{ "general.payWith" | translate }} tuCompra
     </button>
 </ng-template>
 
@@ -94,7 +94,7 @@
     <button type="submit" class="btn btn-danger disabled">
         <div class="text-center">
             <div class="spinner-border spinner-border-sm" role="status">
-                <span class="visually-hidden">Loading...</span>
+                <span class="visually-hidden">{{ "general.loading" | translate }}...</span>
             </div>
         </div>
     </button>
