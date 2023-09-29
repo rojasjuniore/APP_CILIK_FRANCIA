@@ -18,6 +18,12 @@ const routes: Routes = [
     canActivate: [AuthProfileGuard],
     loadChildren: () => import("./bank-transfer/bank-transfer.module").then((m) => m.BankTransferModule),
   },
+  {
+    path: 'coupons',
+    data: { profiles: ['manager-hotel-event-coupons'] },
+    canActivate: [AuthProfileGuard],
+    loadChildren: () => import("./coupons/coupons.module").then((m) => m.CouponsModule),
+  },
   // {
   //   path: '',
   //   component: AdminLayoutComponent,

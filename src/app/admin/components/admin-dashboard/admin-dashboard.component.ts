@@ -21,7 +21,16 @@ export class AdminDashboardComponent implements OnInit {
       url: '/admin/bank-transfer',
       profiles: ['manager-hotel-event-bank-transfer-payment'],
       available: true
-    }
+    },
+    {
+      label: 'Manager Coupon',
+      icon: 'fa fa-money',
+      description: 'Manager Coupons',
+      type: 'navigation',
+      url: '/admin/coupons',
+      profiles: ['manager-hotel-event-coupons'],
+      available: true
+    },
   ];
 
   public userRoles$!: Observable<any>;
