@@ -41,7 +41,7 @@ export class AdminDashboardComponent implements OnInit {
         ? this.permissionSrv.getUserEventFullRolesObservable(environment.dataEvent.keyDb, uid)
         : of({superAdmin: false, roles: []})
       ),
-      tap((user) => console.log({ user })),
+      // tap((user) => console.log({ user })),
       map((user: any) => {
         return this.adminOptions.filter((item) => item.available)
         .filter((item) => {
