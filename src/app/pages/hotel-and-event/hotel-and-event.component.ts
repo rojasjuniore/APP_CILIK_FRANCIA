@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import moment from 'moment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Subscription, catchError, distinctUntilChanged, map, of, switchMap } from 'rxjs';
@@ -29,6 +30,7 @@ export class HotelAndEventComponent implements OnInit, OnDestroy {
     private eventInfoSrv: EventInfoService,
     private spinner: NgxSpinnerService,
     private sweetAlert2Srv: Sweetalert2Service,
+    private translate: TranslateService
   ) { }
 
   ngOnInit(): void {
@@ -79,8 +81,8 @@ export class HotelAndEventComponent implements OnInit, OnDestroy {
       };
 
       await this.cartSrv.addOnCart(environment.dataEvent.keyDb, this.uid, [toCart]);
-
-      this.sweetAlert2Srv.showToast('Artículo agregado al carrito', 'success');
+      const msj = this.translate.instant("general.artAddCart")
+      this.sweetAlert2Srv.showToast(msj, 'success');
       return;
       
     } catch (err) {
@@ -98,7 +100,8 @@ export class HotelAndEventComponent implements OnInit, OnDestroy {
   async resetRooms(){
     // console.log('resetRooms');
     try {
-      const ask = await this.sweetAlert2Srv.askConfirm('¿Está seguro de eliminar todas las habitaciones?');
+      const msj = this.translate.instant('general.msjAskHab')
+      const ask = await this.sweetAlert2Srv.askConfirm(msj);
       if(!ask){ return; }
 
       await this.spinner.show();
@@ -107,8 +110,10 @@ export class HotelAndEventComponent implements OnInit, OnDestroy {
         this.rooms.map((item: any) => this.cartSrv.removeOnCart(environment.dataEvent.keyDb, this.uid, item))
       );
       console.log('snapshot', snapshot);
+      
 
-      this.sweetAlert2Srv.showToast('Habitaciones eliminadas', 'success');
+      const msjOne = this.translate.instant('general.habRemoved')
+      this.sweetAlert2Srv.showToast(msjOne, 'success');
       return;
       
     } catch (err) {

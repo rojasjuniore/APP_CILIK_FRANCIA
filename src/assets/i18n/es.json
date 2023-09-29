@@ -245,7 +245,22 @@
     "Cancel": "Cancelar",
     "Clear": "Limpiar",
     "noFileSelec": "Ningún archivo seleccionado",
-    "onlyPDF": "Solo se admiten archivos pdf"
+    "onlyPDF": "Solo se admiten archivos pdf",
+    "compraSuccess": "Compra realizada satisfactoriamente",
+    "msjAsk": "¿Está seguro de realizar esta acción?",
+    "artRemove": "Artículo eliminado del carrito",
+    "artAddCart": "Artículo agregado al carrito",
+    "msjAskHab": "¿Está seguro de eliminar todas las habitaciones?",
+    "habRemoved": "Habitaciones eliminadas",
+    "dates": "Fechas",
+    "hotelAndEvent": "Hotel y Evento",
+    "passPerDay": "Pase por día",
+    "weekendPass": "Pase de fin de semana",
+    "categoryPasses": "Pases de Categoria",
+    "date": "Fecha",
+    "cantSolista": "Cantidad de solistas",
+    "cantParejas": "Cantidad de parejas",
+    "nrPartc": "Nro. participantes"
   },
   "hotel": {
     "roomType": {
@@ -297,7 +312,10 @@
     "paymentDeadline": "Fecha límite de pago",
     "paypal": "Paypal",
     "tucompra": "TuCompra",
-    "transfer": "Transferencia bancarias"
+    "transfer": "Transferencia bancarias",
+    "payCardMethods": "Tarjeta de crédito o débito",
+    "transf": "Transferencia",
+    "quota": "Cuotas"
   },
   "plansCard": {
     "allInclusivePlan": {

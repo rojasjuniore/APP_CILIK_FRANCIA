@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Subscription, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -23,6 +24,7 @@ export class CartComponent implements OnInit, OnDestroy {
     private cartSrv: CartService,
     private spinner: NgxSpinnerService,
     private sweetAlert2Srv: Sweetalert2Service,
+    private translate: TranslateService
   ) { }
 
   ngOnInit(): void {
@@ -54,7 +56,8 @@ export class CartComponent implements OnInit, OnDestroy {
 
       await this.cartSrv.removeOnCart(environment.dataEvent.keyDb, this.uid, item);
 
-      this.sweetAlert2Srv.showToast('Artículo eliminado del carrito', 'success');
+      const msj = this.translate.instant('general.artRemove')
+      this.sweetAlert2Srv.showToast(msj, 'success');
       return;
       
     } catch (err) {

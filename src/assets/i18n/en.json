@@ -245,7 +245,22 @@
     "Cancel": "Cancel",
     "Clear": "Clear",
     "noFileSelec": "No file selected",
-    "onlyPDF": "Only pdf files are supported"
+    "onlyPDF": "Only pdf files are supported",
+    "compraSuccess": "Purchase completed successfully",
+    "msjAsk": "Are you sure to perform this action?",
+    "artRemove": "Item removed from cart",
+    "artAddCart": "Item added to cart",
+    "msjAskHab": "Are you sure to delete all rooms?",
+    "habRemoved": "Deleted rooms",
+    "dates": "Dates",
+    "hotelAndEvent": "Hotel and Event",
+    "passPerDay": "Pass per day",
+    "weekendPass": "Weekend pass",
+    "categoryPasses": "Category Passes",
+    "date": "Date",
+    "cantSolista": "Number of soloists",
+    "cantParejas": "Number of couples",
+    "nrPartc": "No. participants"
   },
   "hotel": {
     "roomType": {
@@ -297,7 +312,10 @@
     "paymentDeadline": "Payday limit",
     "paypal": "Paypal",
     "tucompra": "TuCompra",
-    "transfer": "Bank transfer"
+    "transfer": "Bank transfer",
+    "payCardMethods": "Credit or debit card",
+    "transf": "Transfer",
+    "quota": "Quotas"
   },
   "plansCard": {
     "allInclusivePlan": {

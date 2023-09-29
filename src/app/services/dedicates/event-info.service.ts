@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import moment from 'moment';
 
 @Injectable({
@@ -10,7 +11,7 @@ export class EventInfoService {
     {
       isRecommended: true,
       img: 'assets/images/icons/plan-icon-1.png',
-      title: 'Hotel y Evento',
+      title: 'general.hotelAndEvent',
       slug: 'hotel-event',
       include: 'HOTEL OFICIAL WLDC CON ACCESOS CON ACCESOS AL EVENTO INCLUIDOS',
       noInclude: null,
@@ -28,7 +29,7 @@ export class EventInfoService {
     {
       isRecommended: false,
       img: 'assets/images/icons/plan-icon-2.png',
-      title: 'Pase por día',
+      title: 'general.passPerDay',
       slug: 'day-pass',
       include: 'TODAS LAS ACTIVIDADES DE ESTE DÍA',
       noInclude: '-VIPPoolparties - Gala dinner - Bootcamp especiales con profesiores internacionales - no incluye categorias para competir',
@@ -37,7 +38,7 @@ export class EventInfoService {
     {
       isRecommended: false,
       img: 'assets/images/icons/plan-icon-2.png',
-      title: 'Pase de fin de semana',
+      title: 'general.weekendPass',
       slug: 'weekend-pass',
       include: 'Accesso a todas las actividades desde el 9 al 11 de Febrero. Concierto, Fiestas, Talleres, Conferencias, Competencia, Gran Final, Ultimate Championship, Music Park Fest, Pool Partys, Playas, Gimnasio',
       noInclude: '-VIPPoolparties - Gala dinner - Bootcamp especiales con profesiores internacionales - no incluye categorias para competir',
@@ -46,7 +47,7 @@ export class EventInfoService {
     {
       isRecommended: false,
       img: 'assets/images/icons/plan-icon-2.png',
-      title: 'Pases de Categoria',
+      title: 'general.categoryPasses',
       slug: 'category-pass',
       include: '',
       noInclude: null,
@@ -94,7 +95,9 @@ export class EventInfoService {
     },
   ];
 
-  constructor() { }
+  constructor(
+    private translate: TranslateService
+  ) { }
 
   getStoreOptionBySlug(slug: string){
     return this.storeOptions.find((item) => item.slug === slug);

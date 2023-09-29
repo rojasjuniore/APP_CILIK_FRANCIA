@@ -13,6 +13,7 @@
                         <div class="col-12">
 
                             <app-input-sigle-calendar 
+                                placeholder="{{ 'general.selectDate'| translate }}"
                                 #inputDates
                                 *ngIf="item"
                                 [multidate]="item?.multidate"
@@ -28,7 +29,7 @@
 
                             <app-input-number-form
                                 *ngIf="item"
-                                [label]="item.title| uppercase"
+                                [label]="item.title"
                                 placeholder="0"
                                 [quantity]="0"
                                 [min]="0"
@@ -51,14 +52,14 @@
 
             <div class="modal-footer d-flex justify-content-center align-items-center justify-content-lg-around flex-wrap">
                 <button type="button" class="btn btn-one text-uppercase" *ngIf="item" (click)="onSubmit()">
-                    Añadir
+                    {{ "general.add" | translate }} 
                     &nbsp;
                     <i class="bi bi-cart-plus"></i>
                 </button>
                 <button class="btn btn-three btn-medium-c text-uppercase" type="button" (click)="closeModal()">
                     <i class="bi bi-x-circle"></i>
                     &nbsp;
-                    Cancelar
+                    {{ "general.cancel" | translate }}
                 </button>
             </div>
         </div>

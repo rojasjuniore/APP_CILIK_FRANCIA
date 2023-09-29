@@ -17,7 +17,7 @@
             <div class="row mb-1">
                 <div class="col-12 col-md-6">
                     <p class="card-text mb-0">
-                        Fecha:
+                       {{ "general.date" | translate }}:
                         <small class="text-muted">
                             {{item.createdAt | date: 'medium'}}
                         </small>
@@ -25,9 +25,9 @@
                 </div>
                 <div class="col-12 col-md-6">
                     <p class="card-text mb-0 text-md-end">
-                        Estado:
+                        {{ "general.status" | translate }}:
                         <span class="badge bg-danger">
-                            {{item.status}}
+                            {{item.status | translate}}
                         </span>
                     </p>
                 </div>
@@ -35,7 +35,7 @@
 
             <div class="d-flex flex-row align-content-center justify-content-between">
                 <div class="d-flex justify-content-center align-items-center">
-                    <span class="fs-4 fw-bolder">Total: USD {{item.totales}}</span>
+                    <span class="fs-4 fw-bolder">{{ "general.total" | translate }}: USD {{item.totales}}</span>
                 </div>
                 <div>
                     <button type="button" class="btn-icon btn-icon-two" (click)="goToDetails()">

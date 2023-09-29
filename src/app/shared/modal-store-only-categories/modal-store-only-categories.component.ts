@@ -29,19 +29,19 @@ export class ModalStoreOnlyCategoriesComponent implements OnInit {
   public step = 'category'; // category, quantity
   public categoryTypes: any[] = [
     {
-      label: 'Solista',
+      label: 'general.solo',
       value: 'solo',
-      description: 'Cantidad de solistas'
+      description: 'general.cantSolista'
     },
     {
-      label: 'Pareja',
+      label: 'general.couple',
       value: 'couple',
-      description: 'Cantidad de parejas'
+      description: 'general.cantParejas'
     },
     {
-      label: 'Grupo',
+      label: 'general.group',
       value: 'group',
-      description: 'Nro. participantes'
+      description: 'general.nrPartc'
     },
   ];
 
