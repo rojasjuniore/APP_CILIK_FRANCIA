@@ -221,7 +221,46 @@
     "add": "Añadir",
     "clean": "Limpiar",
     "noroom": "No hay habitaciones añadidas aún",
-    "selectDate": "Selecciona una fecha"
+    "selectDate": "Selecciona una fecha",
+    "store": "Tienda",
+    "purchases": "Compras",
+    "Approved": "Aprobada",
+    "NoRFound": "No se encontraron registros",
+    "selec": "Seleccionar",
+    "cc": "Cedula ciudadanía",
+    "ce": "Cedula extranjería",
+    "nit": "Número identificación tributaria",
+    "pas": "Pasaporte",
+    "fileName": "Nombre del archivo",
+    "fileType": "Tipo de archivo",
+    "size": "Tamaño",
+    "names": "Nombres",
+    "lastNames": "Apellidos",
+    "phone": "Celular",
+    "address": "Dirección",
+    "payWith": "Pagar con",
+    "selectFile": "Seleccione un archivo",
+    "submit": "Enviar",
+    "Confirm": "Confirmar",
+    "Cancel": "Cancelar",
+    "Clear": "Limpiar",
+    "noFileSelec": "Ningún archivo seleccionado",
+    "onlyPDF": "Solo se admiten archivos pdf",
+    "compraSuccess": "Compra realizada satisfactoriamente",
+    "msjAsk": "¿Está seguro de realizar esta acción?",
+    "artRemove": "Artículo eliminado del carrito",
+    "artAddCart": "Artículo agregado al carrito",
+    "msjAskHab": "¿Está seguro de eliminar todas las habitaciones?",
+    "habRemoved": "Habitaciones eliminadas",
+    "dates": "Fechas",
+    "hotelAndEvent": "Hotel y Evento",
+    "passPerDay": "Pase por día",
+    "weekendPass": "Pase de fin de semana",
+    "categoryPasses": "Pases de Categoria",
+    "date": "Fecha",
+    "cantSolista": "Cantidad de solistas",
+    "cantParejas": "Cantidad de parejas",
+    "nrPartc": "Nro. participantes"
   },
   "hotel": {
     "roomType": {
@@ -273,7 +312,10 @@
     "paymentDeadline": "Fecha límite de pago",
     "paypal": "Paypal",
     "tucompra": "TuCompra",
-    "transfer": "Transferencia bancarias"
+    "transfer": "Transferencia bancarias",
+    "payCardMethods": "Tarjeta de crédito o débito",
+    "transf": "Transferencia",
+    "quota": "Cuotas"
   },
   "plansCard": {
     "allInclusivePlan": {
@@ -352,8 +394,8 @@
     "two": "Torre del mar"
   },
   "hab1": {
-    "label": "HABITACION SUPERIOS SENCILLA EN CASA DE PLAYA",
-    "include": "HABITACION SUPERIOS SENCILLA EN CASA DE PLAYA , DESAYUNO BUFFET, ACCESO TODOS LOS EVENTOS DEL WLDC EL DIA QUE ADQUIRIO EL HOTEL. - POR LA COMPRA DE LA NOCHE DEL SABADO SE INCLUIRA EL ACCESO AL EVENTO DEL DOMINGO",
+    "label": "HABITACION SUPERIOR SENCILLA EN CASA DE PLAYA",
+    "include": "HABITACION SUPERIOR SENCILLA EN CASA DE PLAYA , DESAYUNO BUFFET, ACCESO TODOS LOS EVENTOS DEL WLDC EL DIA QUE ADQUIRIO EL HOTEL. - POR LA COMPRA DE LA NOCHE DEL SABADO SE INCLUIRA EL ACCESO AL EVENTO DEL DOMINGO",
     "noInclude": "- Cena de Gala el dia viernes 9 de Febrero - No incluye categorias para competir - No incluyen cenas -"
   },
   "hab2": {
@@ -362,8 +404,8 @@
     "noInclude": "- Cena de Gala el dia viernes 9 de Febrero - No incluye categorias para competir - No incluyen cenas -"
   },
   "hab3": {
-    "label": "HABITACION SUPERIOS SENCILLA EN TORRE DEL MAR",
-    "include": "HABITACION SUPERIOS SENCILLA  EN TORRE DEL MAR, DESAYUNO BUFFET, ACCESO TODOS LOS EVENTOS DEL WLDC EL DIA QUE ADQUIRIO EL HOTEL - POR LA COMPRA DE LA NOCHE DEL SABADO SE INCLUIRA EL ACCESO AL EVENTO DEL DOMINGO",
+    "label": "HABITACION SUPERIOR SENCILLA EN TORRE DEL MAR",
+    "include": "HABITACION SUPERIOR SENCILLA  EN TORRE DEL MAR, DESAYUNO BUFFET, ACCESO TODOS LOS EVENTOS DEL WLDC EL DIA QUE ADQUIRIO EL HOTEL - POR LA COMPRA DE LA NOCHE DEL SABADO SE INCLUIRA EL ACCESO AL EVENTO DEL DOMINGO",
     "noInclude": "- Cena de Gala el dia viernes 9 de Febrero - No incluye categorias para competir - No incluyen cenas -"
   },
   "hab4": {

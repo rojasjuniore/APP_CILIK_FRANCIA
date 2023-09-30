@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import moment from 'moment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CartService } from 'src/app/services/cart.service';
@@ -33,6 +34,7 @@ export class StoreComponent implements OnInit {
     private eventInfoSrv: EventInfoService,
     private passesSrv: PassesService,
     private router: Router,
+    private translate: TranslateService
   ) { }
 
   ngOnInit(): void {
@@ -183,8 +185,8 @@ export class StoreComponent implements OnInit {
 
       /** Almacenar articulos en el carrito */
       await this.cartSrv.addOnCart(environment.dataEvent.keyDb, uid, toCart);
-
-      this.sweetAlert2Srv.showToast('Artículo agregado al carrito', 'success');
+      const msj = this.translate.instant("general.artAddCart")
+      this.sweetAlert2Srv.showToast(msj, 'success');
       return;
       
     } catch (err) {
@@ -282,8 +284,8 @@ export class StoreComponent implements OnInit {
 
       /** Almacenar articulos en el carrito */
       await this.cartSrv.addOnCart(environment.dataEvent.keyDb, uid, toCart);
-
-      this.sweetAlert2Srv.showToast('Artículo agregado al carrito', 'success');
+      const msj = this.translate.instant("general.artAddCart")
+      this.sweetAlert2Srv.showToast(msj, 'success');
       return;
       
     } catch (err) {

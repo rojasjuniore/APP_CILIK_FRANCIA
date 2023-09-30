@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import moment from 'moment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Subscription, distinctUntilChanged, switchMap } from 'rxjs';
@@ -31,21 +32,21 @@ export class CheckoutComponent implements OnInit {
       available: true
     },
     {
-      label: 'Tarjeta de crédito o débito',
+      label: 'paymentMethods.payCardMethods',
       slug: 'tucompra',
       type: 'navigation',
       icon: 'bi bi-credit-card',
       available: true
     },
     {
-      label: 'Transferencia',
+      label: 'paymentMethods.transf',
       slug: 'bankTransfer',
       type: 'navigation',
       icon: 'bi bi-bank',
       available: true
     },
     {
-      label: 'Cuotas',
+      label: 'paymentMethods.quota',
       slug: 'installments',
       type: 'method',
       icon: 'bi bi-calendar-check',
@@ -66,6 +67,8 @@ export class CheckoutComponent implements OnInit {
     private tuCompraSrv: TucompraService,
     private quickNotificationSrv: QuickNotificationService,
     private uploadFileSrv: UploadFileService,
+    private translate: TranslateService
+    
   ) { }
 
   ngOnInit(): void {
@@ -157,7 +160,8 @@ export class CheckoutComponent implements OnInit {
       /** Eliminar carrito de compra */
       await this.cartSrv.deleteCart(environment.dataEvent.keyDb, this.uid);
 
-      this.sweetAlert2Srv.showToast('Compra realizada satisfactoriamente', 'success');
+      const msjCS = this.translate.instant("general.compraSuccess")
+      this.sweetAlert2Srv.showToast(msjCS, 'success');
       return;
       
     } catch (err) {
@@ -231,7 +235,9 @@ export class CheckoutComponent implements OnInit {
       /** Si se limpia el archivo */
       if(!file){ return; }
 
-      const ask = await this.sweetAlert2Srv.askConfirm('¿Está seguro de realizar esta acción?');
+
+      const msjS = this.translate.instant("general.msjAsk")
+      const ask = await this.sweetAlert2Srv.askConfirm(msjS);
       if(!ask) { return; }
 
       console.log('onSelectBankTransferFile', file);
@@ -292,7 +298,9 @@ export class CheckoutComponent implements OnInit {
       /** Eliminar carrito de compra */
       await this.cartSrv.deleteCart(environment.dataEvent.keyDb, this.uid);
 
-      this.sweetAlert2Srv.showToast('Compra realizada satisfactoriamente', 'success');
+      const msjCS = this.translate.instant("general.compraSuccess")
+
+      this.sweetAlert2Srv.showToast(msjCS, 'success');
       return;
       
     } catch (err) {
