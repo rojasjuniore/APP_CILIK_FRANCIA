@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CouponsComponent } from './coupons.component';
 import { CouponsAddFormComponent } from './components/coupons-add-form/coupons-add-form.component';
+import { CouponsUpdateFormComponent } from './components/coupons-update-form/coupons-update-form.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'store',
     component: CouponsAddFormComponent,
+  },
+  {
+    path: ':id/edit',
+    component: CouponsUpdateFormComponent,
   },
   {
     path: '**',

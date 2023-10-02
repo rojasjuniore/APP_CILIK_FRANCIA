@@ -56,6 +56,11 @@ export class CouponsComponent implements OnInit {
     this.router.navigate(['/admin/coupons/store']);
   }
 
+  goToEdit(coupon: any) {
+    console.log('goToEdit', coupon);
+    this.router.navigate(['/admin/coupons', coupon._id, 'edit']);
+  }
+
   async removeCoupon(coupon: any) {
     try {
       console.log('removeCoupon', coupon);
