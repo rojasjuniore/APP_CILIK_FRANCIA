@@ -19,28 +19,13 @@ export class CouponService {
     public afs: AngularFirestore
   ) { }
 
-  async store(docId: string, data: any) {
-    return await this.afs.collection(this.collection).doc(environment.dataEvent.keyDb).collection(this.subCollection).doc(docId).set(data);
+  async store(eventId: string, docId: string, data: any) {
+    return await this.afs.collection(this.collection).doc(eventId).collection(this.subCollection).doc(docId).set(data);
   }
 
   async update(eventId: string, docId: string, data: any) {
-    return await this.afs.collection(this.collection).doc(environment.dataEvent.keyDb).collection(this.subCollection).doc(docId).update(data);
+    return await this.afs.collection(this.collection).doc(eventId).collection(this.subCollection).doc(docId).update(data);
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
   getByEventAndId(eventId: string, docId: string) {
     return this.afs.collection(this.collection).doc(eventId).collection(this.subCollection).doc(docId).valueChanges();

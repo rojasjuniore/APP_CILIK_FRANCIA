@@ -7,6 +7,7 @@ import { slugify } from 'src/app/helpers/slugify';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CouponService, checkCouponCodeExist } from 'src/app/services/coupon.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-coupons-add-form',
@@ -131,7 +132,7 @@ export class CouponsAddFormComponent implements OnInit {
       }
       // console.log('formData', data);
 
-      await this.couponSrv.store(data.slug, data);
+      await this.couponSrv.store(environment.dataEvent.keyDb, data.slug, data);
 
       this.sweetAlert2Srv.showSuccess('Coupon created successfully');
       this.router.navigate(['/admin/coupons']);
