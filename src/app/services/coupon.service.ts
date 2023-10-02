@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable, lastValueFrom } from 'rxjs';
+import { Observable, lastValueFrom, map } from 'rxjs';
 import { handlerArrayResult, handlerObjectResult } from '../helpers/model.helper';
+import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -73,5 +75,28 @@ export class CouponService {
     );
 
     return await handlerArrayResult(snapshot, { idField });
+  }
+}
+
+export function checkCouponCodeExist(service: CouponService): AsyncValidatorFn {
+  return (control: AbstractControl): Observable<ValidationErrors | null> => {
+    return service.getDynamic(environment.dataEvent.keyDb, [
+      {field: 'code', condition: '==', value: `${control.value}`.trim()}
+    ])
+    .pipe(
+      // tap((result) => console.log(result) ),
+      map((data) => {
+        // console.log({data});
+        return (data.length > 0) ? { couponCodeExist: true } : null;
+      })
+    );
+    // return service.afs.collection('users', (ref) => ref.where('walletAddress', '==', `${control.value}`.trim()).limit(1)).get()
+    //   .pipe(
+    //     // tap((result) => console.log(result) ),
+    //     map((data) => {
+    //       // console.log({data});
+    //       return (data.empty) ? null : { walletStored: true };
+    //     })
+    //   );
   }
 }
