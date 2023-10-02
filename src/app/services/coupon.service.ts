@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable, lastValueFrom, map } from 'rxjs';
+import { Observable, lastValueFrom, map, tap } from 'rxjs';
 import { handlerArrayResult, handlerObjectResult } from '../helpers/model.helper';
 import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
 import { environment } from 'src/environments/environment';
+import { ref } from 'firebase/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -15,17 +16,32 @@ export class CouponService {
   public subCollection = 'coupons';
 
   constructor(
-    private afs: AngularFirestore
+    public afs: AngularFirestore
   ) { }
 
-  async storePurchase(eventId: string, docId: string, data: any) {
-    return await this.afs.collection(this.collection).doc(eventId).collection(this.subCollection).doc(docId).set(data);
+  async store(docId: string, data: any) {
+    return await this.afs.collection(this.collection).doc(environment.dataEvent.keyDb).collection(this.subCollection).doc(docId).set(data);
   }
 
-  async updatePurchase(eventId: string, docId: string, data: any) {
-    return await this.afs.collection(this.collection).doc(eventId).collection(this.subCollection).doc(docId).update(data);
+  async update(eventId: string, docId: string, data: any) {
+    return await this.afs.collection(this.collection).doc(environment.dataEvent.keyDb).collection(this.subCollection).doc(docId).update(data);
   }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
   getByEventAndId(eventId: string, docId: string) {
     return this.afs.collection(this.collection).doc(eventId).collection(this.subCollection).doc(docId).valueChanges();
   }
@@ -80,16 +96,34 @@ export class CouponService {
 
 export function checkCouponCodeExist(service: CouponService): AsyncValidatorFn {
   return (control: AbstractControl): Observable<ValidationErrors | null> => {
-    return service.getDynamic(environment.dataEvent.keyDb, [
-      {field: 'code', condition: '==', value: `${control.value}`.trim()}
-    ])
-    .pipe(
-      // tap((result) => console.log(result) ),
-      map((data) => {
-        // console.log({data});
-        return (data.length > 0) ? { couponCodeExist: true } : null;
-      })
-    );
+
+
+    return service.afs.collection(service.collection)
+      .doc(environment.dataEvent.keyDb)
+      .collection(
+        service.subCollection,
+        (ref) => ref.where('code', '==', `${control.value}`.trim()).limit(1)
+      )
+      .get()
+      .pipe(
+        tap((result) => console.log(result) ),
+        map((data) => {
+          return (data.empty) ? null : { couponCodeExist: true };
+        })
+      );  
+
+    // return service.getDynamic(environment.dataEvent.keyDb, [
+    //   {field: 'code', condition: '==', value: `${control.value}`.trim()}
+    // ])
+    // .pipe(
+    //   // tap((result) => console.log(result) ),
+    //   map((data) => {
+    //     // console.log({data});
+    //     return (data.length > 0) ? { couponCodeExist: true } : null;
+    //   })
+    // );
+
+
     // return service.afs.collection('users', (ref) => ref.where('walletAddress', '==', `${control.value}`.trim()).limit(1)).get()
     //   .pipe(
     //     // tap((result) => console.log(result) ),
