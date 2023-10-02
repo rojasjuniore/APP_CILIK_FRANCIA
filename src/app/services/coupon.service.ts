@@ -26,6 +26,10 @@ export class CouponService {
   async update(eventId: string, docId: string, data: any) {
     return await this.afs.collection(this.collection).doc(eventId).collection(this.subCollection).doc(docId).update(data);
   }
+
+  async remove(eventId: string, docId: string) {
+    return await this.afs.collection(this.collection).doc(eventId).collection(this.subCollection).doc(docId).delete();
+  }
   
   getByEventAndId(eventId: string, docId: string) {
     return this.afs.collection(this.collection).doc(eventId).collection(this.subCollection).doc(docId).valueChanges();
