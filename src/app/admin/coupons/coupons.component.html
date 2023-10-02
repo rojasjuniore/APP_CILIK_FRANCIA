@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-12">
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="couponCodeInput" placeholder="Coupon Code">
+            <input type="text" class="form-control" id="couponCodeInput" placeholder="Coupon Code" [(ngModel)]="query">
             <label for="couponCodeInput">Search by Coupon Code</label>
         </div>
     </div>
@@ -26,12 +26,6 @@
         [ngTemplateOutlet]="renderCheckList"
         [ngTemplateOutletContext]="{list: list}"
     ></ng-container>
-
-
-
-
-
-
 
 </div>
 
