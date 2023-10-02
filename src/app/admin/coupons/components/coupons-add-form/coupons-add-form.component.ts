@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import moment from 'moment';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { CouponService } from 'src/app/services/coupon.service';
-import { checkCouponCodeExist } from 'src/app/services/coupons.service';
+import { slugify } from 'src/app/helpers/slugify';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { CouponService, checkCouponCodeExist } from 'src/app/services/coupon.service';
+import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 
 @Component({
   selector: 'app-coupons-add-form',
@@ -15,6 +19,8 @@ export class CouponsAddFormComponent implements OnInit {
   public vm = {
     code: [
       { type: 'required', message: 'is required' },
+      { type: 'pattern', message: 'only strings and numbers' },
+      { type: 'couponCodeExist', message: 'already exists' },
     ],
     ownerId: [
       { type: 'required', message: 'is required' },
@@ -58,14 +64,22 @@ export class CouponsAddFormComponent implements OnInit {
     private fb: FormBuilder,
     private couponSrv: CouponService,
     private spinner: NgxSpinnerService,
+    private authSrv: AuthenticationService,
+    private sweetAlert2Srv: Sweetalert2Service,
+    private router: Router
   ) {
     this.form = this.fb.group({
       code: [
         '',
-        [Validators.required]
+        [
+          Validators.required,
+          // only strings and numbers
+          Validators.pattern(/^[a-zA-Z0-9]*$/)
+        ],
+        [checkCouponCodeExist(this.couponSrv)]
       ],
       ownerType: ['', [Validators.required]],
-      ownerId: ['', [Validators.required]],
+      ownerId: ['rs6ohZKMuEOTDg9Alh1YFCTiYz42', [Validators.required]],
       type: ['amount', [Validators.required]],
       value: ['', this.valueRules.amount],
     });
@@ -96,8 +110,31 @@ export class CouponsAddFormComponent implements OnInit {
         return;
       }
 
+      const ask = await this.sweetAlert2Srv.askConfirm(`Are you sure to create this coupon?`);
+      if(!ask) { return; }
+
+      await this.spinner.show();
+
       const formData = this.form.value;
-      console.log('formData', formData);
+      const uid = await this.authSrv.getUIDPromise();
+
+      const data = {
+        code: `${formData.code}`.trim().toLowerCase(),
+        slug: slugify(`${formData.code}`.trim().toLowerCase()),
+        ownerType: formData.ownerType,
+        ownerId: formData.ownerId,
+        type: formData.type,
+        value: formData.value,
+        status: true, 
+        createdAt: moment().valueOf(),
+        createdBy: uid,
+      }
+      // console.log('formData', data);
+
+      await this.couponSrv.store(data.slug, data);
+
+      this.sweetAlert2Srv.showSuccess('Coupon created successfully');
+      this.router.navigate(['/admin/coupons']);
       return;
       
     } catch (err) {
