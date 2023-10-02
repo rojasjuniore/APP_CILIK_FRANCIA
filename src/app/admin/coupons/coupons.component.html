@@ -20,15 +20,23 @@
         <div class="seprd2"></div>
     </div>
 
-    <div class="col-12 mb-4">
-        <div class="card-box card-box-b3 p-3 mb-3">
-            <h5 class="text-center">
-                No records found
-            </h5>
-        </div>
-    </div>
 
-    <div class="col-12">
+    <ng-container 
+        *ngIf="(coupons$ | async) as list; else renderLoaderList"
+        [ngTemplateOutlet]="renderCheckList"
+        [ngTemplateOutletContext]="{list: list}"
+    ></ng-container>
+
+
+
+
+
+
+
+</div>
+
+<ng-template #renderList let-list="list">
+    <div class="col-12" *ngFor="let item of list">
         <div class="card card-box p-3 mb-3">
             <div class="row g-2 d-flex align-items-center">
                 <div class="col-12 px-3">
@@ -74,8 +82,31 @@
             </div>
         </div>
     </div>
+</ng-template>
 
-    <div class="col-12">
+
+<ng-template #renderCheckList let-list="list">
+    <ng-container 
+        *ngIf="list.length > 0; else renderNoRecords"
+        [ngTemplateOutlet]="renderList"
+        [ngTemplateOutletContext]="{list: list}"
+    ></ng-container>
+</ng-template>
+
+
+<ng-template #renderNoRecords>
+    <div class="col-12 mb-4">
+        <div class="card-box card-box-b3 p-3 mb-3">
+            <h5 class="text-center">
+                No records found
+            </h5>
+        </div>
+    </div>
+</ng-template>
+
+
+<ng-template #renderLoaderList>
+    <div class="col-12" *ngFor="let item of [1,1,1,1]">
         <div class="card card-box p-3 mb-3">
             <div class="row g-2 d-flex align-items-center">
                 <div class="col-12 px-3">
@@ -109,5 +140,4 @@
             </div>
         </div>
     </div>
-
-</div>
+</ng-template>
