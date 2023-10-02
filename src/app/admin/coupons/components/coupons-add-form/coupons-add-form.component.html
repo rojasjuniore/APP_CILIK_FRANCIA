@@ -1,0 +1,104 @@
+<div class="row">
+
+    <div class="col text-center mb-4">
+        <div class="fs-4 fw-bold mb-2">
+            Store Coupon
+        </div>
+        <div class="seprd2"></div>
+    </div>
+
+    <form class="mb-5" [formGroup]="form" #userForm novalidate>
+
+        <div class="col-12 mb-3">
+            <label for="code" class="form-label">Coupon Code</label>
+            <input type="text" class="form-control" formControlName="code" aria-describedby="codeHelp">
+            <ng-container 
+                *ngIf="submitted" 
+                [ngTemplateOutlet]="renderFormVM" 
+                [ngTemplateOutletContext]="{ field: 'code' }"
+            ></ng-container>
+        </div>
+
+        <div class="col-12 mb-3">
+            <label for="ownerType" class="form-label">
+                Owner Type
+            </label>
+            <select class="form-select" formControlName="ownerType">
+                <option value="" selected>{{ "general.selec" | translate }}...</option>
+                <option *ngFor="let item of ownerTypes" [value]="item.value">{{ item.label| translate }}</option>
+            </select>
+            <ng-container 
+                *ngIf="submitted" 
+                [ngTemplateOutlet]="renderFormVM" 
+                [ngTemplateOutletContext]="{ field: 'ownerType' }"
+            ></ng-container>
+        </div>
+
+        <div class="col-12 mb-3">
+            <label for="ownerId" class="form-label">Owner Id</label>
+            <input type="text" class="form-control" formControlName="ownerId" aria-describedby="ownerIdHelp">
+            <ng-container 
+                *ngIf="submitted" 
+                [ngTemplateOutlet]="renderFormVM" 
+                [ngTemplateOutletContext]="{ field: 'ownerId' }"
+            ></ng-container>
+        </div>
+
+        <div class="col-12 mb-3">
+            <label for="owner" class="form-label">
+                Type
+            </label>
+            <select class="form-select" formControlName="type">
+                <option value="" selected>{{ "general.selec" | translate }}...</option>
+                <option *ngFor="let item of couponTypes" [value]="item.value">{{ item.label| translate }}</option>
+            </select>
+            <ng-container 
+                *ngIf="submitted" 
+                [ngTemplateOutlet]="renderFormVM" 
+                [ngTemplateOutletContext]="{ field: 'type' }"
+            ></ng-container>
+        </div>
+
+        <div class="col-12 mb-3">
+            <label for="value" class="form-label">
+                Value
+
+                <ng-container *ngIf="(f['type'].value === 'percentage')">(%)</ng-container>
+                <ng-container *ngIf="(f['type'].value === 'amount')">(USD)</ng-container>
+
+            </label>
+            <input type="text" class="form-control" formControlName="value" aria-describedby="valueHelp">
+            <ng-container 
+                *ngIf="submitted" 
+                [ngTemplateOutlet]="renderFormVM" 
+                [ngTemplateOutletContext]="{ field: 'value' }"
+            ></ng-container>
+        </div>
+
+
+    </form>
+
+    <div class="col-12">
+        <div class="d-flex justify-content-between">
+            <button class="btn btn-three btn-medium-c text-uppercase" type="button" routerLink="/admin/coupons">
+                <i class="bi bi-chevron-left"></i>
+                &nbsp;
+                {{ "general.back" | translate }}
+            </button>
+
+            <button class="btn btn-one btn-medium-c text-uppercase" type="button" (click)="onSubmit()">
+                Store
+                &nbsp;
+                <i class="bi bi-pencil"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<ng-template #renderFormVM let-field="field">
+    <ng-container *ngFor="let val of vm[field]">
+        <div id="{{field}}Help" class="form-text text-danger" *ngIf="f[field].hasError(val.type)">
+            {{ val.message | translate | titlecase }}
+        </div>
+    </ng-container>
+  </ng-template>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-coupons',
@@ -7,13 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CouponsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
 
   async launchAddCouponForm() {
     console.log('launchAddCouponForm');
+    this.router.navigate(['/admin/coupons/store']);
   }
 
 }
