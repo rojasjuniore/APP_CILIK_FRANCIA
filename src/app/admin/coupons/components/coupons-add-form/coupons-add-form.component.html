@@ -7,76 +7,83 @@
         <div class="seprd2"></div>
     </div>
 
-    <form class="mb-5" [formGroup]="form" #userForm novalidate>
-
-        <div class="col-12 mb-3">
-            <label for="code" class="form-label">Coupon Code</label>
-            <input type="text" class="form-control" formControlName="code" aria-describedby="codeHelp">
-            <ng-container 
-                *ngIf="submitted" 
-                [ngTemplateOutlet]="renderFormVM" 
-                [ngTemplateOutletContext]="{ field: 'code' }"
-            ></ng-container>
+    <div class="col-12 mb-3">
+        <div class="card card-box p-3">
+            <div class="row g-2 d-flex align-items-center">
+                <form [formGroup]="form" #userForm novalidate>
+            
+                    <div class="col-12 mb-3">
+                        <label for="code" class="form-label">Coupon Code</label>
+                        <input type="text" class="form-control" formControlName="code" aria-describedby="codeHelp">
+                        <ng-container 
+                            *ngIf="submitted" 
+                            [ngTemplateOutlet]="renderFormVM" 
+                            [ngTemplateOutletContext]="{ field: 'code' }"
+                        ></ng-container>
+                    </div>
+            
+                    <div class="col-12 mb-3">
+                        <label for="ownerType" class="form-label">
+                            Owner Type
+                        </label>
+                        <select class="form-select" formControlName="ownerType">
+                            <option value="" selected>{{ "general.selec" | translate }}...</option>
+                            <option *ngFor="let item of ownerTypes" [value]="item.value">{{ item.label| translate }}</option>
+                        </select>
+                        <ng-container 
+                            *ngIf="submitted" 
+                            [ngTemplateOutlet]="renderFormVM" 
+                            [ngTemplateOutletContext]="{ field: 'ownerType' }"
+                        ></ng-container>
+                    </div>
+            
+                    <div class="col-12 mb-3">
+                        <label for="ownerId" class="form-label">Owner Id</label>
+                        <input type="text" class="form-control" formControlName="ownerId" aria-describedby="ownerIdHelp">
+                        <ng-container 
+                            *ngIf="submitted" 
+                            [ngTemplateOutlet]="renderFormVM" 
+                            [ngTemplateOutletContext]="{ field: 'ownerId' }"
+                        ></ng-container>
+                    </div>
+            
+                    <div class="col-12 mb-3">
+                        <label for="owner" class="form-label">
+                            Type
+                        </label>
+                        <select class="form-select" formControlName="type">
+                            <option value="" selected>{{ "general.selec" | translate }}...</option>
+                            <option *ngFor="let item of couponTypes" [value]="item.value">{{ item.label| translate }}</option>
+                        </select>
+                        <ng-container 
+                            *ngIf="submitted" 
+                            [ngTemplateOutlet]="renderFormVM" 
+                            [ngTemplateOutletContext]="{ field: 'type' }"
+                        ></ng-container>
+                    </div>
+            
+                    <div class="col-12 mb-3">
+                        <label for="value" class="form-label">
+                            Value
+            
+                            <ng-container *ngIf="(f['type'].value === 'percentage')">(%)</ng-container>
+                            <ng-container *ngIf="(f['type'].value === 'amount')">(USD)</ng-container>
+            
+                        </label>
+                        <input type="text" class="form-control" formControlName="value" aria-describedby="valueHelp">
+                        <ng-container 
+                            *ngIf="submitted" 
+                            [ngTemplateOutlet]="renderFormVM" 
+                            [ngTemplateOutletContext]="{ field: 'value' }"
+                        ></ng-container>
+                    </div>
+            
+            
+                </form>
+            </div>
         </div>
+    </div>
 
-        <div class="col-12 mb-3">
-            <label for="ownerType" class="form-label">
-                Owner Type
-            </label>
-            <select class="form-select" formControlName="ownerType">
-                <option value="" selected>{{ "general.selec" | translate }}...</option>
-                <option *ngFor="let item of ownerTypes" [value]="item.value">{{ item.label| translate }}</option>
-            </select>
-            <ng-container 
-                *ngIf="submitted" 
-                [ngTemplateOutlet]="renderFormVM" 
-                [ngTemplateOutletContext]="{ field: 'ownerType' }"
-            ></ng-container>
-        </div>
-
-        <div class="col-12 mb-3">
-            <label for="ownerId" class="form-label">Owner Id</label>
-            <input type="text" class="form-control" formControlName="ownerId" aria-describedby="ownerIdHelp">
-            <ng-container 
-                *ngIf="submitted" 
-                [ngTemplateOutlet]="renderFormVM" 
-                [ngTemplateOutletContext]="{ field: 'ownerId' }"
-            ></ng-container>
-        </div>
-
-        <div class="col-12 mb-3">
-            <label for="owner" class="form-label">
-                Type
-            </label>
-            <select class="form-select" formControlName="type">
-                <option value="" selected>{{ "general.selec" | translate }}...</option>
-                <option *ngFor="let item of couponTypes" [value]="item.value">{{ item.label| translate }}</option>
-            </select>
-            <ng-container 
-                *ngIf="submitted" 
-                [ngTemplateOutlet]="renderFormVM" 
-                [ngTemplateOutletContext]="{ field: 'type' }"
-            ></ng-container>
-        </div>
-
-        <div class="col-12 mb-3">
-            <label for="value" class="form-label">
-                Value
-
-                <ng-container *ngIf="(f['type'].value === 'percentage')">(%)</ng-container>
-                <ng-container *ngIf="(f['type'].value === 'amount')">(USD)</ng-container>
-
-            </label>
-            <input type="text" class="form-control" formControlName="value" aria-describedby="valueHelp">
-            <ng-container 
-                *ngIf="submitted" 
-                [ngTemplateOutlet]="renderFormVM" 
-                [ngTemplateOutletContext]="{ field: 'value' }"
-            ></ng-container>
-        </div>
-
-
-    </form>
 
     <div class="col-12">
         <div class="d-flex justify-content-between">
