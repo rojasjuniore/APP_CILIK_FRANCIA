@@ -85,41 +85,36 @@ export class CouponService {
 
 export function checkCouponCodeExist(service: CouponService): AsyncValidatorFn {
   return (control: AbstractControl): Observable<ValidationErrors | null> => {
-
-
     return service.afs.collection(service.collection)
       .doc(environment.dataEvent.keyDb)
       .collection(
         service.subCollection,
-        (ref) => ref.where('code', '==', `${control.value}`.trim()).limit(1)
+        (ref) => ref.where('code', '==', `${control.value}`.trim().toUpperCase()).limit(1)
       )
       .get()
       .pipe(
-        tap((result) => console.log(result) ),
+        // tap((result) => console.log(result) ),
         map((data) => {
           return (data.empty) ? null : { couponCodeExist: true };
         })
       );  
+  }
+}
 
-    // return service.getDynamic(environment.dataEvent.keyDb, [
-    //   {field: 'code', condition: '==', value: `${control.value}`.trim()}
-    // ])
-    // .pipe(
-    //   // tap((result) => console.log(result) ),
-    //   map((data) => {
-    //     // console.log({data});
-    //     return (data.length > 0) ? { couponCodeExist: true } : null;
-    //   })
-    // );
-
-
-    // return service.afs.collection('users', (ref) => ref.where('walletAddress', '==', `${control.value}`.trim()).limit(1)).get()
-    //   .pipe(
-    //     // tap((result) => console.log(result) ),
-    //     map((data) => {
-    //       // console.log({data});
-    //       return (data.empty) ? null : { walletStored: true };
-    //     })
-    //   );
+export function checkAvailableCouponCodeExist(service: CouponService): AsyncValidatorFn {
+  return (control: AbstractControl): Observable<ValidationErrors | null> => {
+    return service.afs.collection(service.collection)
+      .doc(environment.dataEvent.keyDb)
+      .collection(
+        service.subCollection,
+        (ref) => ref.where('code', '==', `${control.value}`.trim().toUpperCase()).limit(1)
+      )
+      .get()
+      .pipe(
+        // tap((result) => console.log(result) ),
+        map((data) => {
+          return (data.empty) ? {availableCouponCode: true} : ((data.docs[0].data().status) ? null : {availableCouponCode: true});
+        })
+      );  
   }
 }
