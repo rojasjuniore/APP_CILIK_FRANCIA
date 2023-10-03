@@ -28,6 +28,7 @@ import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { VoucherCardItemComponent } from './voucher-card-item/voucher-card-item.component';
 import { VoucherTimelineCardComponent } from './voucher-timeline-card/voucher-timeline-card.component';
 import { ModalUpdateVoucherStatusFormComponent } from './modal-update-voucher-status-form/modal-update-voucher-status-form.component';
+import { CartCouponFormComponent } from './cart-coupon-form/cart-coupon-form.component';
 
 
 
@@ -53,6 +54,7 @@ import { ModalUpdateVoucherStatusFormComponent } from './modal-update-voucher-st
     CustomInputFileComponent,
     VoucherCardItemComponent,
     VoucherTimelineCardComponent,
+    CartCouponFormComponent,
     
     ModalOnlyInputNumberComponent,
     ModalStoreOnlyCategoriesComponent,
@@ -95,6 +97,7 @@ import { ModalUpdateVoucherStatusFormComponent } from './modal-update-voucher-st
     CustomInputFileComponent,
     VoucherCardItemComponent,
     VoucherTimelineCardComponent,
+    CartCouponFormComponent,
 
     ModalOnlyInputNumberComponent,
     ModalStoreOnlyCategoriesComponent,
