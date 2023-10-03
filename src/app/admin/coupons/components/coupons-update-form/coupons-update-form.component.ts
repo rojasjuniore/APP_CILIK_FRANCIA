@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import moment from 'moment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Subscription, catchError, map, of, switchMap } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -102,18 +103,21 @@ export class CouponsUpdateFormComponent implements OnInit, OnDestroy {
         return;
       }
 
-      const formData = this.form.value;
-      const data = {
-        value: formData.value,
-        status: formData.status === 'true',
-      };
-      console.log('Try to update coupon', data);
-
       const ask = await this.sweetAlert2Srv.askConfirm(`Are you sure to update this coupon?`);
       if(!ask) { return; }
 
-
       await this.spinner.show();
+
+      const formData = this.form.value;
+      const uid = await this.authSrv.getUIDPromise();
+
+      const data = {
+        value: formData.value,
+        status: formData.status === 'false' ? false : true,
+        updatedAt: moment().valueOf(),
+        updatedBy: uid,
+      };
+      // console.log('Try to update coupon', data);
 
       await this.couponSrv.update(environment.dataEvent.keyDb, this.couponId, data);
 
