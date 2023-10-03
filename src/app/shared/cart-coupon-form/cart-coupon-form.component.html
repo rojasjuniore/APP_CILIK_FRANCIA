@@ -1,10 +1,16 @@
-<div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="{{ 'general.couponCode' | translate }}" [attr.readOnly]="showLoadingBtn">
-    <ng-container *ngIf="(!showLoadingBtn); then renderApplyBtn; else renderLoaderBtn"></ng-container>
-</div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" formControlName="code" placeholder="{{ 'general.couponCode' | translate }}" [attr.readOnly]="showLoadingBtn">
+        <ng-container *ngIf="(!showLoadingBtn); then renderApplyBtn; else renderLoaderBtn"></ng-container>
+    </div>
+    <div class="text-center">
+        <ng-container *ngIf="submitted" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'code'}"></ng-container>
+    </div>
+</form>
+
 
 <ng-template #renderApplyBtn>
-    <button class="btn btn-sm btn-danger" id="button-apply-coupon" type="button">
+    <button class="btn btn-sm btn-danger" id="button-apply-coupon" type="submit">
         {{'general.apply' | translate}}
     </button>
 </ng-template>
@@ -18,3 +24,11 @@
         </div>
     </button>
 </ng-template>
+
+<ng-template #renderFormVM let-field="field">
+    <ng-container *ngFor="let item of vm[field]">
+      <span class="badge bg-danger" *ngIf="f[field].hasError(item.type)">
+        {{ item.message | translate }}
+      </span>
+    </ng-container>
+  </ng-template>
