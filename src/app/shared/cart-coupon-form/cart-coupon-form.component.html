@@ -1,6 +1,6 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
     <div class="input-group mb-3">
-        <input type="text" class="form-control" formControlName="code" placeholder="{{ 'general.couponCode' | translate }}" [attr.readOnly]="showLoadingBtn">
+        <input type="text" class="form-control" formControlName="code" placeholder="{{ 'general.couponCode' | translate }}" [attr.readOnly]="(showLoadingBtn === false) ? null : true">
         <ng-container *ngIf="(!showLoadingBtn); then renderApplyBtn; else renderLoaderBtn"></ng-container>
     </div>
     <div class="text-center">

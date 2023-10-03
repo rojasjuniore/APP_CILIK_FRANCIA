@@ -1,5 +1,8 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CartService } from 'src/app/services/cart.service';
+import { CouponService, checkAvailableCouponCodeExist } from 'src/app/services/coupon.service';
+import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 
 @Component({
   selector: 'app-cart-coupon-form',
@@ -17,12 +20,16 @@ export class CartCouponFormComponent implements OnInit, OnChanges {
     code: [
       { type: 'required', message: 'is required' },
       { type: 'pattern', message: 'only letters and numbers' },
+      { type: 'availableCouponCode', message: 'invalid coupon code' }
     ]
   };
   public submitted = false;
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private couponSrv: CouponService,
+    private cartSrv: CartService,
+    private sweetAlert2Srv: Sweetalert2Service,
   ) {
     this.form = this.fb.group({
       code: [
@@ -30,6 +37,9 @@ export class CartCouponFormComponent implements OnInit, OnChanges {
         [
           Validators.required,
           Validators.pattern('^[a-zA-Z0-9]*$')
+        ],
+        [
+          checkAvailableCouponCodeExist(this.couponSrv)
         ]
       ]
     });
@@ -55,20 +65,62 @@ export class CartCouponFormComponent implements OnInit, OnChanges {
       this.submitted = true;
       
       const formData = this.form.value;
+      const couponCode = `${formData.code}`.trim().toUpperCase();
+      const slugCouponCode = `${formData.code}`.trim().toLowerCase();
       
       if(!this.form.valid){
         console.log('Form is invalid');
         return;
       }
-      
+
+      /** Cambiar a cargando para bloquear interacción */
       this.showLoadingBtn = true;
 
+      const cartCoupons = this.cart.coupons || [];
+
+      /** Válidar si ya no se aplico al carrito */
+      const find = cartCoupons.find((item: any) => item.code === couponCode);
+      if(find){
+        this.sweetAlert2Srv.showInfo('Coupon already applied');
+        this.form.patchValue({code: ''});
+        this.submitted = false;
+        return;
+      }
+
+      console.log('cart', this.cart);
       console.log('Form is valid', formData);
+
+      /** Obtener documento del cupon */
+      const couponDoc = await this.couponSrv.getByEventAndIdPromise(this.cart.eventId, slugCouponCode);
+      console.log('couponDoc', couponDoc);
+
+
+      /** Válidar el tipo de cupon */
+      const typeRule = (['academy', 'ambassador'].includes(couponDoc.ownerType))
+        ? cartCoupons.some((item: any) => item.ownerType === couponDoc.ownerType)
+        : false;
+      console.log('typeRule', typeRule);
+      if(typeRule){
+        this.sweetAlert2Srv.showError('You can only apply one coupon of this type');
+        this.form.patchValue({code: ''});
+        this.submitted = false;
+        return;
+      }
+
+      /** Añadir cupon a configuración del carrito */
+      await this.cartSrv.addOnCart(this.cart.eventId, this.cart.uid, [couponDoc], 'coupons');
+
+      this.form.patchValue({code: ''});
+      this.submitted = false;
+      
+      this.sweetAlert2Srv.showSuccess('Coupon applied successfully');
       return;
       
     } catch (err) {
       console.log('Error on CartCouponFormComponent.onSubmit', err);
       return;
+    } finally {
+      this.showLoadingBtn = false;
     }
   }
 
