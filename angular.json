@@ -46,18 +46,22 @@
               "core-js/modules/web.dom-collections.iterator.js",
               "raf",
               "rgbcolor",
-              "html2canvas"
+              "html2canvas",
+              "daterangepicker"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css",
+              "node_modules/daterangepicker/daterangepicker.css",
               "src/styles.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/@popperjs/core/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"
+              "node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js",
+              "node_modules/moment/dist/moment.js",
+              "node_modules/daterangepicker/daterangepicker.js"
             ]
           },
           "configurations": {
