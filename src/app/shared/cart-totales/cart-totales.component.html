@@ -1,0 +1,20 @@
+
+<ng-container *ngIf="discount > 0">
+    <h6 class="text-end">
+        {{ "general.valueWithoutDiscount" | translate }}: 
+        <span class="text-decoration-line-through">USD {{subTotal}}</span>
+    </h6>
+    
+    <h6 class="text-end">
+        <span class="badge rounded-pill bg-danger">
+            <i class="bi bi-info-circle"></i>
+        </span>
+        &nbsp;
+        {{ "general.discount" | translate }}: 
+        <span>USD {{discount}}</span>
+    </h6>
+</ng-container>
+
+<h5 class="fw-bold fs-3 text-end">
+    {{ "general.total" | translate }}: USD {{totales}}
+</h5>

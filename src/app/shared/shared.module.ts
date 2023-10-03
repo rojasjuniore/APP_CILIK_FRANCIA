@@ -29,6 +29,7 @@ import { VoucherCardItemComponent } from './voucher-card-item/voucher-card-item.
 import { VoucherTimelineCardComponent } from './voucher-timeline-card/voucher-timeline-card.component';
 import { ModalUpdateVoucherStatusFormComponent } from './modal-update-voucher-status-form/modal-update-voucher-status-form.component';
 import { CartCouponFormComponent } from './cart-coupon-form/cart-coupon-form.component';
+import { CartTotalesComponent } from './cart-totales/cart-totales.component';
 
 
 
@@ -55,6 +56,7 @@ import { CartCouponFormComponent } from './cart-coupon-form/cart-coupon-form.com
     VoucherCardItemComponent,
     VoucherTimelineCardComponent,
     CartCouponFormComponent,
+    CartTotalesComponent,
     
     ModalOnlyInputNumberComponent,
     ModalStoreOnlyCategoriesComponent,
@@ -98,6 +100,7 @@ import { CartCouponFormComponent } from './cart-coupon-form/cart-coupon-form.com
     VoucherCardItemComponent,
     VoucherTimelineCardComponent,
     CartCouponFormComponent,
+    CartTotalesComponent,
 
     ModalOnlyInputNumberComponent,
     ModalStoreOnlyCategoriesComponent,
