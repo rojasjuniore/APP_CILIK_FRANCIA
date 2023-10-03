@@ -51,7 +51,6 @@ export class CouponsAddFormComponent implements OnInit {
     { label: 'Amount', value: 'amount' },
   ];
 
-
   private valueRules = {
     percentage: [Validators.required, Validators.min(1), Validators.max(100)],
     amount: [

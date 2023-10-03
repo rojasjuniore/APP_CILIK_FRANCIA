@@ -1,1 +1,126 @@
-<p>coupons-update-form works!</p>
+<div class="row">
+
+    <div class="col text-center mb-3">
+        <div class="fs-4 fw-bold">
+            Update Coupon Form
+        </div>
+        <!-- <div class="text-rslt fw-bold fs-5">
+            <i class="bi bi-cart3"></i>
+            &nbsp;
+            {{couponId | uppercase}}
+        </div> -->
+    </div>
+
+    <ng-container *ngIf="(couponDoc); else renderLoaderview"
+    [ngTemplateOutlet]="renderCheckCouponDoc"
+    [ngTemplateOutletContext]="{item: couponDoc}"
+></ng-container>
+
+
+    <div class="col-12">
+        <div class="d-flex justify-content-between">
+            <button class="btn btn-three btn-medium-c text-uppercase" type="button" routerLink="/admin/coupons">
+                <i class="bi bi-chevron-left"></i>
+                &nbsp;
+                {{ "general.back" | translate }}
+            </button>
+            <button class="btn btn-one btn-medium-c text-uppercase" type="button" [disabled]="!couponDoc" (click)="onSubmit()">
+                {{ "general.update" | translate }}
+                &nbsp;
+                <i class="bi bi-cloud-upload"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<ng-template #renderCoupinDoc let-item="item">
+    <div class="col-12 mb-4">
+        <div class="card card-box p-3 mb-3">
+            <div class="row g-2 d-flex align-items-center">
+
+                <form [formGroup]="form" #userForm novalidate>
+                    <div class="mb-3">
+                        <label for="couponCodeInput" class="form-label fw-bold">Coupon Code</label>
+                        <input type="text" class="form-control-plaintext" id="couponCodeInput" [value]="item.code" placeholder="" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="ownerIdInput" class="form-label fw-bold">Owner Id</label>
+                        <input type="text" class="form-control-plaintext" formControlName="ownerId" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="ownerIdInput" class="form-label fw-bold">type</label>
+                        <input type="text" class="form-control-plaintext" formControlName="type" readonly>
+                    </div>
+    
+                    <div class="col-12 mb-3">
+                        <label for="ownerType" class="form-label fw-bold">
+                            {{"general.status" | translate}}
+                        </label>
+                        <select class="form-select" formControlName="status">
+                            <option [value]="true">{{"general.available" | translate}}</option>
+                            <option [value]="false">{{"general.unavailable" | translate}}</option>
+                        </select>
+
+                        <ng-container 
+                            *ngIf="submitted" 
+                            [ngTemplateOutlet]="renderFormVM" 
+                            [ngTemplateOutletContext]="{ field: 'status' }"
+                        ></ng-container>
+                    </div>
+
+                    <div class="mb-2">
+                        <label class="form-label fw-bold">Value</label>
+                        <input type="text" class="form-control" formControlName="value" placeholder="">
+
+                        <ng-container 
+                            *ngIf="submitted" 
+                            [ngTemplateOutlet]="renderFormVM" 
+                            [ngTemplateOutletContext]="{ field: 'value' }"
+                        ></ng-container>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</ng-template>
+
+<ng-template #renderCheckCouponDoc let-item="item">
+    <ng-container 
+        *ngIf="(item.exist); else renderNotFoundCouponDoc"
+        [ngTemplateOutlet]="renderCoupinDoc"
+        [ngTemplateOutletContext]="{item: item}"
+    ></ng-container>
+</ng-template>
+
+<ng-template #renderNotFoundCouponDoc>
+    <div class="col-12 mb-4">
+        <div class="card-box card-box-b3 p-3 mb-3">
+            <h5 class="text-center">
+                No se encontro orden de compra
+            </h5>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #renderLoaderview>
+    <div class="col-12 mb-4">
+        <div class="card-box card-box-b3 p-3 mb-3">
+            <div class="d-flex align-items-center">
+                <strong>Loading...</strong>
+                <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #renderFormVM let-field="field">
+    <ng-container *ngFor="let val of vm[field]">
+        <div id="{{field}}Help" class="form-text text-danger" *ngIf="f[field].hasError(val.type)">
+            {{ val.message | translate | titlecase }}
+        </div>
+    </ng-container>
+</ng-template>
