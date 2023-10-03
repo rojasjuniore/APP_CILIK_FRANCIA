@@ -30,6 +30,7 @@ import { VoucherTimelineCardComponent } from './voucher-timeline-card/voucher-ti
 import { ModalUpdateVoucherStatusFormComponent } from './modal-update-voucher-status-form/modal-update-voucher-status-form.component';
 import { CartCouponFormComponent } from './cart-coupon-form/cart-coupon-form.component';
 import { CartTotalesComponent } from './cart-totales/cart-totales.component';
+import { InputRangeCalendarComponent } from './input-range-calendar/input-range-calendar.component';
 
 
 
@@ -50,6 +51,7 @@ import { CartTotalesComponent } from './cart-totales/cart-totales.component';
 
     InputNumberFormComponent,
     InputSigleCalendarComponent,
+    InputRangeCalendarComponent,
     PaypalButtonComponent,
     TucompraFormComponent,
     CustomInputFileComponent,
@@ -94,6 +96,7 @@ import { CartTotalesComponent } from './cart-totales/cart-totales.component';
     
     InputNumberFormComponent,
     InputSigleCalendarComponent,
+    InputRangeCalendarComponent,
     PaypalButtonComponent,
     TucompraFormComponent,
     CustomInputFileComponent,
