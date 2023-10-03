@@ -93,6 +93,8 @@
     "userDoesNotExist": "El usuario no existe"
   },
   "general": {
+    "available": "Disponible",
+    "unavailable": "No disponible",
     "#membersOfGroup": "Cantidad de integrantes de este grupo",
     "#nroPeople": "# de Personas",
     "#ofGuests": "# de huéspedes",
