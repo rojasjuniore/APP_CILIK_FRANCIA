@@ -3,7 +3,7 @@ import 'bootstrap-datepicker';
 import moment from 'moment';
 import { Subject } from 'rxjs';
 // jquery
-declare var $: any;
+import $ from 'jquery';
 
 @Component({
   selector: 'app-input-sigle-calendar',
