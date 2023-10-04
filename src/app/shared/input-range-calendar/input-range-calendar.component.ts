@@ -54,6 +54,8 @@ export class InputRangeCalendarComponent implements OnInit, AfterViewInit, OnCha
     //   startDate: this.startDate,
     //   endDate: this.endDate,
     // });
+
+    // this.onUpdateDates.next(this.getDates(this.startDate, this.endDate));
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -104,26 +106,47 @@ export class InputRangeCalendarComponent implements OnInit, AfterViewInit, OnCha
 
     // console.log('prop', $(`#${this._id}`).data('daterangepicker'));
 
+    /** Al aplicar cambios en el calendario */
     $(`#${this._id}`).on('apply.daterangepicker', (ev, picker) => {
-      const startDate = picker.startDate.format('YYYY-MM-DD');
-      const endDate = picker.endDate.format('YYYY-MM-DD');
-      console.log({startDate, endDate});
+      // const startDate = picker.startDate.format('YYYY-MM-DD');
+      // const endDate = picker.endDate.format('YYYY-MM-DD');
+      // console.log({startDate, endDate});
 
-      const diff = moment(endDate).diff(moment(startDate), 'days');
-      // console.log('diff', diff);
-
-      const dates: any = [];
-
-      for (let index = 0; index <= diff; index++) {
-        const date = moment(startDate).add(index, 'days').format('YYYY-MM-DD');
-        dates.push(date);
-      }
-
+      const dates = this.getDates(
+        picker.startDate.format('MM/DD/YYYY'),
+        picker.endDate.format('MM/DD/YYYY')
+      );
       // console.log('dates', dates);
-      // this.onUpdateDates.next(`${startDate};${endDate}`);
+
       this.onUpdateDates.next(dates);
     });
+
+    /** Si no se autocompleta automaticamente - Actualizar manualmente */
+    if(!this.autoUpdateInput){
+      $(`#${this._id}`).on('apply.daterangepicker', (ev, picker) => {
+        $(`#${this._id}`).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+      });
+    }
   }
+
+  getDates(start: string, end: string){
+    const startDate = moment(start, 'MM/DD/YYYY').format('YYYY-MM-DD');
+    const endDate = moment(end, 'MM/DD/YYYY').format('YYYY-MM-DD');
+    console.log({startDate, endDate});
+
+    const diff = moment(endDate).diff(moment(startDate), 'days');
+    // console.log('diff', diff);
+
+    const dates: any = [];
+
+    for (let index = 0; index <= diff; index++) {
+      const date = moment(startDate).add(index, 'days').format('YYYY-MM-DD');
+      dates.push(date);
+    }
+
+    return dates;
+  }
+
 
   show(){
     $(`#${this._id}`).data('daterangepicker').show();
