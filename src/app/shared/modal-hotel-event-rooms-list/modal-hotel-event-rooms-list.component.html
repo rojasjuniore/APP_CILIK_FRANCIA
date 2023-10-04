@@ -25,18 +25,6 @@
                                         Elije las fechas de tu estancia
                                     </label>
 
-                                    <!-- <app-input-sigle-calendar 
-                                        placeholder="{{'general.selectDate' | translate}}"
-                                        #inputDates
-                                        *ngIf="item"
-                                        _id="datepickerHotelEvent"
-                                        [multidate]="item?.multidate"
-                                        [startDate]="item?.minDate"
-                                        [endDate]="item?.maxDate"
-                                        [weekStart]="1"
-                                        (onUpdateDates)="onInputDatesChange($event)"
-                                    ></app-input-sigle-calendar> -->
-
                                     <app-input-range-calendar
                                         *ngIf="item"
                                         [autoUpdateInput]="false"
@@ -56,10 +44,15 @@
                                         Indica el número de personas en la habitación
                                     </label>
 
-                                    <app-input-group-number-form (onUpdateQuantity)="onInputNumberChange($event)"></app-input-group-number-form>
+                                    <app-input-group-number-form
+                                        #inputNumber
+                                        *ngIf="item"
+                                        [max]="3"
+                                        (onUpdateQuantity)="onInputNumberChange($event)"
+                                    ></app-input-group-number-form>
 
                                     <div class=" d-flex justify-content-center align-items-center justify-content-lg-around flex-wrap">
-                                        <button class="btn btn-one btn-medium-c text-uppercase" type="button" [disabled]="!form.valid">
+                                        <button class="btn btn-one btn-medium-c text-uppercase" type="button" [disabled]="!form.valid" (click)="searchRooms()">
                                             <i class="bi bi-binoculars"></i>
                                             &nbsp;
                                             Buscar
@@ -72,28 +65,14 @@
 
                                 </div>
                             </div>
-
-                            <!-- <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-                            </div> -->
-
-                            <!-- <app-input-number-form
-                                *ngIf="item"
-                                [label]="item.title| uppercase"
-                                placeholder="0"
-                                [quantity]="0"
-                                [min]="0"
-                                [max]="99"
-                                (onUpdateQuantity)="onInputValueChange($event)"
-                            ></app-input-number-form>
-
-                            <p class="text-center">
-                                <ng-container *ngIf="submitted" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'quantity'}"></ng-container>
-                            </p> -->
-
                         </div>
 
+                        <div class="col-12 text-center mt-4">
+                            <div class="fs-4 fw-bold">
+                                Habitaciones disponibles
+                            </div>
+                            <div class="seprd2"></div>
+                        </div>
 
                         <ng-container *ngIf="(roomList.length > 0); then renderRoomsList; else renderNoRooms"></ng-container>
 
@@ -129,9 +108,13 @@
 
 <ng-template #renderNoRooms>
     <div class="col-12">
-        <h5 class="text-center">
-            {{"general.noroom" | translate }}
-        </h5>
+        <div class="card card-box">
+            <div class="card-body">
+                <h5 class="text-center">
+                    Aquí se mostrarán las habitaciones disponibles
+                </h5>
+            </div>
+        </div>
     </div>
 </ng-template>
 

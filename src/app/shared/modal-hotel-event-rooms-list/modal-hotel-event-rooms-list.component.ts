@@ -1,10 +1,10 @@
 import { AfterViewInit, Component, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { InputSigleCalendarComponent } from '../input-sigle-calendar/input-sigle-calendar.component';
 import { Subject, Subscription } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalService } from 'src/app/services/bs-modal.service';
 import { Router } from '@angular/router';
 import { HotelService } from 'src/app/services/hotel.service';
+import { InputGroupNumberFormComponent } from '../input-group-number-form/input-group-number-form.component';
 
 @Component({
   selector: 'app-modal-hotel-event-rooms-list',
@@ -13,7 +13,7 @@ import { HotelService } from 'src/app/services/hotel.service';
 })
 export class ModalHotelEventRoomsListComponent implements OnInit, AfterViewInit {
 
-  @ViewChild('inputDates') inputDates!: InputSigleCalendarComponent;
+  @ViewChild('inputNumber') inputGroupNumber!: InputGroupNumberFormComponent;
 
   @Output() onCloseModal = new Subject<ModalOnlyCategoriesEvent>();
 
@@ -71,7 +71,6 @@ export class ModalHotelEventRoomsListComponent implements OnInit, AfterViewInit 
   async showModal(item: any){
     console.log('item', item);
     this.item = item;
-    this.roomList = this.hotelSrv.getRoomsByDate(item.currentDate)
     this.mi.show();
   }
 
@@ -87,6 +86,18 @@ export class ModalHotelEventRoomsListComponent implements OnInit, AfterViewInit 
     this.form.patchValue({capacity: value});
   }
 
+  onSelectRoom(item: any){
+    /** Responde a elemento padre */
+    this.closeModal({status: true, data: item});
+  }
+
+  searchRooms(){
+    console.log('searchRooms', this.form.value);
+    const formData = this.form.value;
+    this.roomList = this.hotelSrv.getRoomsByDate(this.item.currentDate)
+    .filter((item: any) => item.capacity == formData.capacity)
+  }
+
   /**
    * TODO: revisar antes de eliminar
    * @param value 
@@ -95,12 +106,7 @@ export class ModalHotelEventRoomsListComponent implements OnInit, AfterViewInit 
     this.form.patchValue({quantity: value});
   }
 
-  onSelectRoom(item: any){
-    /** Responde a elemento padre */
-    this.closeModal({status: true, data: item});
-  }
-
-  /** TODO - revisar antes de eliminar */
+  /** TODO: - revisar antes de eliminar */
   async onSubmit(){
     try {
       this.submitted = true;
@@ -130,7 +136,8 @@ export class ModalHotelEventRoomsListComponent implements OnInit, AfterViewInit 
     this.submitted = false;
     this.item = null;
     this.mi.hide();
-    this.inputDates.clearDates();
+    this.roomList = [];
+    this.inputGroupNumber.quantity = 1;
   }
 
   ngOnDestroy(): void { this.sub$.unsubscribe(); }
