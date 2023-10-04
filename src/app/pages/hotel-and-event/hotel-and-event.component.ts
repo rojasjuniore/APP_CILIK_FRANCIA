@@ -58,8 +58,10 @@ export class HotelAndEventComponent implements OnInit, OnDestroy {
     this.modalRoomsList.showModal({
       currentDate: moment().format('YYYY-MM-DD'),
       multidate: true,
-      startDate: moment(this.eventInfoSrv.beforeLimit).format('MM/DD/YYYY'),
-      endDate: moment(this.eventInfoSrv.afterLimit).format('MM/DD/YYYY'),
+      minDate: moment(this.eventInfoSrv.beforeLimit).format('MM/DD/YYYY'),
+      maxDate: moment(this.eventInfoSrv.afterLimit).format('MM/DD/YYYY'),
+      startDate: moment(this.eventInfoSrv.getStartEventDate().date).format('MM/DD/YYYY'),
+      endDate: moment(this.eventInfoSrv.getEndEventDate().date).format('MM/DD/YYYY'),
     });
   }
 
