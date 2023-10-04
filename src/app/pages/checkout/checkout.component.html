@@ -37,8 +37,10 @@
             <app-paypal-button [amount]="totales" (onCallback)="onPaypalCallback($event)"></app-paypal-button>
         </div>
 
-        <div class="col-12" *ngSwitchCase="'tucompra'">
-            <app-tucompra-form [amount]="totales" (onSendForm)="onTuCompraCallback($event)"></app-tucompra-form>
+        <div class="col-12 mb-4" *ngSwitchCase="'tucompra'">
+            <div class="card-box card-box-b3 p-3">
+                <app-tucompra-form [amount]="totales" (onSendForm)="onTuCompraCallback($event)"></app-tucompra-form>
+            </div>
         </div>
 
         <div class="col-12" *ngSwitchCase="'bankTransfer'">

@@ -130,7 +130,8 @@ export class CheckoutComponent implements OnInit {
         payload: event.data,
         status: 'completed',
         payedAt: moment().valueOf(),
-        orderId: this.cartSrv.generateId(),
+        // orderId: this.cartSrv.generateId(),
+        orderId: this.cart.cartId,
         totales: this.totales
       };
       console.log('purchase', purchase);
@@ -179,15 +180,27 @@ export class CheckoutComponent implements OnInit {
       await this.spinner.show();
 
       const userDoc = await this.authSrv.getByUIDPromise(this.cart.uid);
-      console.log('userDoc', userDoc);
+      // console.log('userDoc', userDoc);
 
-      const campoExtra1 = JSON.parse(formData.campoExtra1);
+      
+      // const campoExtra1 = JSON.parse(formData.campoExtra1);
+      /** Actualizar referencia del ID de la orden de compra */
+      const campoExtra1 = {...formData.campoExtra1, orderId: this.cart.cartId};
       // console.log('campoExtra1', campoExtra1);
+
+      /** Actualizar referencia de redirección */
+      const campoExtra2 = formData.campoExtra2;
+      campoExtra2[2] = this.cart.cartId;
+      // console.log('campoExtra2', campoExtra2);
 
       const purchase = {
         ...this.cart,
         paymentMethod: 'tucompra',
-        metadata: formData,
+        metadata: {
+          ...formData,
+          campoExtra1: JSON.stringify(campoExtra1),
+          campoExtra2: campoExtra2.join(''),
+        },
         status: 'pending',
         payedAt: null,
         orderId: campoExtra1.orderId,
@@ -218,7 +231,7 @@ export class CheckoutComponent implements OnInit {
       await this.cartSrv.deleteCart(environment.dataEvent.keyDb, this.uid);
 
       /** Disparar formulario */
-      this.tuCompraSrv.launchForm(formData);
+      this.tuCompraSrv.launchForm(purchase.metadata);
       return;
       
     } catch (err) {
