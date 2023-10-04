@@ -78,10 +78,19 @@ export class ModalHotelEventRoomsListComponent implements OnInit, AfterViewInit 
   get f() { return this.form.controls; }
 
   onInputDatesChange(value: string | string[]){
-    console.log('onInputDatesChange', value);
+    // console.log('onInputDatesChange', value);
     this.form.patchValue({dates: value});
   }
 
+  onInputNumberChange(value: number){
+    // console.log('onInputNumberChange', value);
+    this.form.patchValue({capacity: value});
+  }
+
+  /**
+   * TODO: revisar antes de eliminar
+   * @param value 
+   */
   onInputValueChange(value: number){
     this.form.patchValue({quantity: value});
   }

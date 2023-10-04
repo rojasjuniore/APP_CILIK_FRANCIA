@@ -37,11 +37,9 @@
                                         (onUpdateDates)="onInputDatesChange($event)"
                                     ></app-input-sigle-calendar> -->
 
-                                    <!-- [minDate]="item?.minDate"
-                                        [startDate]="'02/05/2024'"
-                                    [maxDate]="item?.maxDate" -->
                                     <app-input-range-calendar
                                         *ngIf="item"
+                                        [autoUpdateInput]="false"
                                         [minDate]="item?.minDate"
                                         [maxDate]="item?.maxDate"
                                         [startDate]="item?.startDate"
@@ -53,6 +51,13 @@
                                         <ng-container *ngIf="submitted" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'dates'}"></ng-container>
                                     </p>
 
+
+                                    <label class="form-label fw-bolder mt-2">
+                                        Indica el número de personas en la habitación
+                                    </label>
+
+                                    <app-input-group-number-form (onUpdateQuantity)="onInputNumberChange($event)"></app-input-group-number-form>
+
                                     <div class=" d-flex justify-content-center align-items-center justify-content-lg-around flex-wrap">
                                         <button class="btn btn-one btn-medium-c text-uppercase" type="button" [disabled]="!form.valid">
                                             <i class="bi bi-binoculars"></i>
@@ -60,6 +65,10 @@
                                             Buscar
                                         </button>
                                     </div>
+
+                                    <p class="card-text text-center">
+                                        <ng-container *ngIf="submitted" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'capacity'}"></ng-container>
+                                    </p>
 
                                 </div>
                             </div>
