@@ -66,12 +66,12 @@ export class InputRangeCalendarComponent implements OnInit, AfterViewInit, OnCha
 
     if(startDate && startDate.currentValue) {
       this.startDate = startDate.currentValue;
-      $(`#${this._id}`).data('daterangepicker').setStartDate(this.startDate);
+      // $(`#${this._id}`).data('daterangepicker').setStartDate(this.startDate);
     }
 
     if(endDate && endDate.currentValue) {
       this.endDate = endDate.currentValue;
-      $(`#${this._id}`).data('daterangepicker').setEndDate(this.endDate);
+      // $(`#${this._id}`).data('daterangepicker').setEndDate(this.endDate);
     }
   }
 
@@ -108,7 +108,7 @@ export class InputRangeCalendarComponent implements OnInit, AfterViewInit, OnCha
       const startDate = picker.startDate.format('YYYY-MM-DD');
       const endDate = picker.endDate.format('YYYY-MM-DD');
       console.log({startDate, endDate});
-      this.onUpdateDates.next(`${startDate}-${endDate}`);
+      this.onUpdateDates.next(`${startDate};${endDate}`);
     });
   }
 
