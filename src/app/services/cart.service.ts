@@ -32,6 +32,7 @@ export class CartService {
    */
   buildCardDoc(params: any = {}){
     return {
+      cartId: params.cartId || this.generateId(),
       uid: params.uid || this._cf.getUid(),
       eventId: params.eventId || environment.dataEvent.keyDb,
       createdAt: params.createdAt || moment().valueOf(),
