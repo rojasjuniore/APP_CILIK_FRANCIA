@@ -104,7 +104,7 @@ export class StoreComponent implements OnInit {
 
         /** Obtener precio del pase */
         const passPrice = this.passesSrv.getPassPriceByDateAndSlug(currentDate ,item.slug);
-        console.log('passPrice', passPrice);
+        // console.log('category-pass', passPrice);
 
         this.modalOnlyCategories.showModal({
           ...item,
@@ -118,7 +118,7 @@ export class StoreComponent implements OnInit {
 
         /** Obtener precio del pase */
         const passPrice = this.passesSrv.getPassPriceByDateAndSlug(currentDate ,item.slug);
-        console.log('passPrice', passPrice);
+        // console.log('passPrice', passPrice);
 
         this.modalOnlyDayPass.showModal({
           ...item,
@@ -146,7 +146,7 @@ export class StoreComponent implements OnInit {
 
   async onModalInputNumberResponse(params: any){
     try {
-      console.log('onModalInputNumberResponse', params);
+      // console.log('onModalInputNumberResponse', params);
       const { status, quantity, form,  data } = params;
 
       /** Se cancelo la ejecución */

@@ -79,7 +79,7 @@ export class CheckoutComponent implements OnInit {
       distinctUntilChanged((prev, next) => JSON.stringify(prev) === JSON.stringify(next)),
     )
     .subscribe(cart => {
-      console.log('cart', cart);
+      // console.log('cart', cart);
 
       if(!cart) {
         this.router.navigate(['/pages/dashboard']);
@@ -100,7 +100,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   onSelectPaymentOption(item: any){
-    console.log('onSelectPaymentOption', item);
+    // console.log('onSelectPaymentOption', item);
     if(item.type === 'navigation'){
       this.paymentOptionSelected = item;
     }
@@ -253,14 +253,14 @@ export class CheckoutComponent implements OnInit {
       const ask = await this.sweetAlert2Srv.askConfirm(msjS);
       if(!ask) { return; }
 
-      console.log('onSelectBankTransferFile', file);
+      // console.log('onSelectBankTransferFile', file);
 
       await this.spinner.show();
 
       const orderId = this.cart.cartId;
 
       const userDoc = await this.authSrv.getByUIDPromise(this.cart.uid);
-      console.log('userDoc', userDoc);
+      // console.log('userDoc', userDoc);
 
       const fileName = `${orderId}_${file.name}_${moment().valueOf()}`;
 
@@ -284,7 +284,7 @@ export class CheckoutComponent implements OnInit {
         orderId: orderId,
         totales: this.totales
       };
-      console.log('purchase', purchase);
+      // console.log('purchase', purchase);
 
       /** Almacenar orden de compra */
       await this.purchaseSrv.storePurchase(environment.dataEvent.keyDb, purchase.orderId, purchase);

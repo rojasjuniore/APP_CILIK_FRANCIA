@@ -87,19 +87,18 @@ export class CartCouponFormComponent implements OnInit, OnChanges {
         return;
       }
 
-      console.log('cart', this.cart);
-      console.log('Form is valid', formData);
+      // console.log('cart', this.cart);
+      // console.log('Form is valid', formData);
 
       /** Obtener documento del cupon */
       const couponDoc = await this.couponSrv.getByEventAndIdPromise(this.cart.eventId, slugCouponCode);
-      console.log('couponDoc', couponDoc);
-
+      // console.log('couponDoc', couponDoc);
 
       /** Válidar el tipo de cupon */
       const typeRule = (['academy', 'ambassador'].includes(couponDoc.ownerType))
         ? cartCoupons.some((item: any) => item.ownerType === couponDoc.ownerType)
         : false;
-      console.log('typeRule', typeRule);
+      // console.log('typeRule', typeRule);
       if(typeRule){
         this.sweetAlert2Srv.showError('You can only apply one coupon of this type');
         this.form.patchValue({code: ''});
@@ -116,7 +115,7 @@ export class CartCouponFormComponent implements OnInit, OnChanges {
       this.form.patchValue({code: ''});
       this.submitted = false;
       
-      this.sweetAlert2Srv.showSuccess('Coupon applied successfully');
+      this.sweetAlert2Srv.showToast('Coupon applied', 'success');
       return;
       
     } catch (err) {

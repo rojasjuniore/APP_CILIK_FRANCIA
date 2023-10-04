@@ -26,7 +26,7 @@ export class CartTotalesComponent implements OnInit, OnChanges {
     const { cart } = changes;
 
     if (cart && cart.currentValue) {
-      console.log('CartTotalesComponent', cart.currentValue);
+      // console.log('CartTotalesComponent', cart.currentValue);
       this.cart = cart.currentValue;
     }
   }
