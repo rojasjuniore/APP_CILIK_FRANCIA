@@ -257,7 +257,7 @@ export class CheckoutComponent implements OnInit {
 
       await this.spinner.show();
 
-      const orderId = this.cartSrv.generateId();
+      const orderId = this.cart.cartId;
 
       const userDoc = await this.authSrv.getByUIDPromise(this.cart.uid);
       console.log('userDoc', userDoc);
