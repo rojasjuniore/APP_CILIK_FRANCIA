@@ -99,7 +99,7 @@ export class InputRangeCalendarComponent implements OnInit, AfterViewInit, OnCha
       } 
     };
 
-    console.log('options', options);
+    // console.log('options', options);
     $(`#${this._id}`).daterangepicker({...options});
 
     // console.log('prop', $(`#${this._id}`).data('daterangepicker'));
@@ -108,7 +108,20 @@ export class InputRangeCalendarComponent implements OnInit, AfterViewInit, OnCha
       const startDate = picker.startDate.format('YYYY-MM-DD');
       const endDate = picker.endDate.format('YYYY-MM-DD');
       console.log({startDate, endDate});
-      this.onUpdateDates.next(`${startDate};${endDate}`);
+
+      const diff = moment(endDate).diff(moment(startDate), 'days');
+      // console.log('diff', diff);
+
+      const dates: any = [];
+
+      for (let index = 0; index <= diff; index++) {
+        const date = moment(startDate).add(index, 'days').format('YYYY-MM-DD');
+        dates.push(date);
+      }
+
+      // console.log('dates', dates);
+      // this.onUpdateDates.next(`${startDate};${endDate}`);
+      this.onUpdateDates.next(dates);
     });
   }
 
