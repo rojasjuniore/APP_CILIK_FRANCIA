@@ -31,6 +31,7 @@ import { ModalUpdateVoucherStatusFormComponent } from './modal-update-voucher-st
 import { CartCouponFormComponent } from './cart-coupon-form/cart-coupon-form.component';
 import { CartTotalesComponent } from './cart-totales/cart-totales.component';
 import { InputRangeCalendarComponent } from './input-range-calendar/input-range-calendar.component';
+import { InputGroupNumberFormComponent } from './input-group-number-form/input-group-number-form.component';
 
 
 
@@ -50,6 +51,7 @@ import { InputRangeCalendarComponent } from './input-range-calendar/input-range-
     AdminLayoutComponent,
 
     InputNumberFormComponent,
+    InputGroupNumberFormComponent,
     InputSigleCalendarComponent,
     InputRangeCalendarComponent,
     PaypalButtonComponent,
@@ -95,6 +97,7 @@ import { InputRangeCalendarComponent } from './input-range-calendar/input-range-
     AdminLayoutComponent,
     
     InputNumberFormComponent,
+    InputGroupNumberFormComponent,
     InputSigleCalendarComponent,
     InputRangeCalendarComponent,
     PaypalButtonComponent,
