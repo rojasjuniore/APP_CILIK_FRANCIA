@@ -32,6 +32,7 @@ import { CartCouponFormComponent } from './cart-coupon-form/cart-coupon-form.com
 import { CartTotalesComponent } from './cart-totales/cart-totales.component';
 import { InputRangeCalendarComponent } from './input-range-calendar/input-range-calendar.component';
 import { InputGroupNumberFormComponent } from './input-group-number-form/input-group-number-form.component';
+import { PurchaseTotalesComponent } from './purchase-totales/purchase-totales.component';
 
 
 
@@ -61,6 +62,7 @@ import { InputGroupNumberFormComponent } from './input-group-number-form/input-g
     VoucherTimelineCardComponent,
     CartCouponFormComponent,
     CartTotalesComponent,
+    PurchaseTotalesComponent,
     
     ModalOnlyInputNumberComponent,
     ModalStoreOnlyCategoriesComponent,
@@ -107,6 +109,7 @@ import { InputGroupNumberFormComponent } from './input-group-number-form/input-g
     VoucherTimelineCardComponent,
     CartCouponFormComponent,
     CartTotalesComponent,
+    PurchaseTotalesComponent,
 
     ModalOnlyInputNumberComponent,
     ModalStoreOnlyCategoriesComponent,
