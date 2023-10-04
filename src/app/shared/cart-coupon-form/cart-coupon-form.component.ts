@@ -107,6 +107,9 @@ export class CartCouponFormComponent implements OnInit, OnChanges {
         return;
       }
 
+      /** Añadir semilla al cupon */
+      couponDoc.seed = this.cartSrv.generateId();
+
       /** Añadir cupon a configuración del carrito */
       await this.cartSrv.addOnCart(this.cart.eventId, this.cart.uid, [couponDoc], 'coupons');
 
