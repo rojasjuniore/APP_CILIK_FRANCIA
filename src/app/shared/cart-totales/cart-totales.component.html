@@ -1,11 +1,25 @@
 
 <ng-container *ngIf="discount > 0">
+
+    <!-- Full Price -->
     <h6 class="text-end">
         {{ "general.valueWithoutDiscount" | translate }}: 
         <span class="text-decoration-line-through">USD {{subTotal}}</span>
     </h6>
     
-    <h6 class="text-end">
+
+    <h5 class="text-end" *ngFor="let item of coupons">
+        <span class="badge bg-danger" (click)="removeCoupon(item)">
+            <i class="bi bi-x-circle"></i>
+            &nbsp;
+            Coupon 
+            {{item.code | uppercase}}: 
+            &nbsp;
+            -USD {{discount}}
+        </span>
+    </h5>
+
+    <h6 class="text-end" *ngIf="false">
         <!-- <span class="badge rounded-pill bg-danger">
             <i class="bi bi-info-circle"></i>
         </span>
