@@ -12,21 +12,44 @@
                     <div class="row g-3">
                         <div class="col-12">
 
-                            <app-input-sigle-calendar 
-                                placeholder="{{'general.selectDate' | translate}}"
-                                #inputDates
-                                *ngIf="item"
-                                _id="datepickerHotelEvent"
-                                [multidate]="item?.multidate"
-                                [startDate]="item?.startDate"
-                                [endDate]="item?.endDate"
-                                [weekStart]="1"
-                                (onUpdateDates)="onInputDatesChange($event)"
-                            ></app-input-sigle-calendar>
+                            <div class="card card-box" >
+                                <div class="card-body">
 
-                            <p class="text-center">
-                                <ng-container *ngIf="submitted" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'dates'}"></ng-container>
-                            </p>
+                                    <h5 class="card-title fw-bolder text-rslt">
+                                        {{'general.selectDate' | translate}}
+                                    </h5>
+
+                                    <app-input-sigle-calendar 
+                                        placeholder="{{'general.selectDate' | translate}}"
+                                        #inputDates
+                                        *ngIf="item"
+                                        _id="datepickerHotelEvent"
+                                        [multidate]="item?.multidate"
+                                        [startDate]="item?.startDate"
+                                        [endDate]="item?.endDate"
+                                        [weekStart]="1"
+                                        (onUpdateDates)="onInputDatesChange($event)"
+                                    ></app-input-sigle-calendar>
+
+                                    <p class="card-text text-center">
+                                        <ng-container *ngIf="submitted" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'dates'}"></ng-container>
+                                    </p>
+
+                                    <div class=" d-flex justify-content-center align-items-center justify-content-lg-around flex-wrap">
+                                        <button class="btn btn-one btn-medium-c text-uppercase" type="button">
+                                            <i class="bi bi-binoculars"></i>
+                                            &nbsp;
+                                            Buscar
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                            </div> -->
 
                             <!-- <app-input-number-form
                                 *ngIf="item"
