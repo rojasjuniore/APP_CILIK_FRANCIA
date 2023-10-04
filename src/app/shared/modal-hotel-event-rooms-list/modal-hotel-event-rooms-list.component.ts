@@ -27,6 +27,10 @@ export class ModalHotelEventRoomsListComponent implements OnInit, AfterViewInit 
       { type: 'required', message: 'Este campo es requerido' },
       { type: 'minlength', message: 'La cantidad mínima es 1' },
     ],
+    capacity: [
+      { type: 'required', message: 'Este campo es requerido' },
+      { type: 'minlength', message: 'La cantidad mínima es 1' },
+    ],
   };
   public submitted = false;
 
@@ -42,6 +46,7 @@ export class ModalHotelEventRoomsListComponent implements OnInit, AfterViewInit 
   ) {
     this.form = this.fb.group({
       dates: ['', [Validators.required, Validators.minLength(1)]],
+      capacity: [1, [Validators.required, Validators.minLength(1)]],
     });
   }
 
@@ -64,7 +69,7 @@ export class ModalHotelEventRoomsListComponent implements OnInit, AfterViewInit 
   }
 
   async showModal(item: any){
-    // console.log('item', item);
+    console.log('item', item);
     this.item = item;
     this.roomList = this.hotelSrv.getRoomsByDate(item.currentDate)
     this.mi.show();
@@ -73,6 +78,7 @@ export class ModalHotelEventRoomsListComponent implements OnInit, AfterViewInit 
   get f() { return this.form.controls; }
 
   onInputDatesChange(value: string | string[]){
+    console.log('onInputDatesChange', value);
     this.form.patchValue({dates: value});
   }
 

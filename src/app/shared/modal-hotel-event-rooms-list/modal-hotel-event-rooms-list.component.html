@@ -16,27 +16,45 @@
                                 <div class="card-body">
 
                                     <h5 class="card-title fw-bolder text-rslt">
-                                        {{'general.selectDate' | translate}}
+                                        Completa los campos para buscar habitaciones
                                     </h5>
 
-                                    <app-input-sigle-calendar 
+                                    <div class="seprd2"></div>
+
+                                    <label class="form-label fw-bolder mt-2">
+                                        Elije las fechas de tu estancia
+                                    </label>
+
+                                    <!-- <app-input-sigle-calendar 
                                         placeholder="{{'general.selectDate' | translate}}"
                                         #inputDates
                                         *ngIf="item"
                                         _id="datepickerHotelEvent"
                                         [multidate]="item?.multidate"
-                                        [startDate]="item?.startDate"
-                                        [endDate]="item?.endDate"
+                                        [startDate]="item?.minDate"
+                                        [endDate]="item?.maxDate"
                                         [weekStart]="1"
                                         (onUpdateDates)="onInputDatesChange($event)"
-                                    ></app-input-sigle-calendar>
+                                    ></app-input-sigle-calendar> -->
+
+                                    <!-- [minDate]="item?.minDate"
+                                        [startDate]="'02/05/2024'"
+                                    [maxDate]="item?.maxDate" -->
+                                    <app-input-range-calendar
+                                        *ngIf="item"
+                                        [minDate]="item?.minDate"
+                                        [maxDate]="item?.maxDate"
+                                        [startDate]="item?.startDate"
+                                        [endDate]="item?.endDate"
+                                        (onUpdateDates)="onInputDatesChange($event)"
+                                    ></app-input-range-calendar>
 
                                     <p class="card-text text-center">
                                         <ng-container *ngIf="submitted" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'dates'}"></ng-container>
                                     </p>
 
                                     <div class=" d-flex justify-content-center align-items-center justify-content-lg-around flex-wrap">
-                                        <button class="btn btn-one btn-medium-c text-uppercase" type="button">
+                                        <button class="btn btn-one btn-medium-c text-uppercase" type="button" [disabled]="!form.valid">
                                             <i class="bi bi-binoculars"></i>
                                             &nbsp;
                                             Buscar
