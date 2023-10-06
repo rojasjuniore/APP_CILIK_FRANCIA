@@ -1,9 +1,11 @@
 <div class="row">
     <div class="col-12">
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="couponCodeInput" placeholder="Coupon Code" [(ngModel)]="query">
-            <label for="couponCodeInput">Search by Coupon Code</label>
-        </div>
+        <form [formGroup]="form" novalidate>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" formControlName="query" placeholder="Coupon Code">
+                <label for="couponCodeInput">Search by Coupon Code</label>
+            </div>
+        </form>
     </div>
     <div class="col-12 text-center mb-4">
         <button class="btn btn-danger" type="button" (click)="launchAddCouponForm()">

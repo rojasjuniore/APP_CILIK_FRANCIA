@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Observable, of } from 'rxjs';
+import { Observable, debounceTime, distinctUntilChanged, map, of } from 'rxjs';
 import { CouponService } from 'src/app/services/coupon.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 import { environment } from 'src/environments/environment';
@@ -15,9 +16,10 @@ export class CouponsComponent implements OnInit {
 
   public coupons$!: Observable<any[]>;
 
-  public query = '';
+  public form: FormGroup = this.fb.group({query: ''});
 
   constructor(
+    private fb: FormBuilder,
     private router: Router,
     private couponSrv: CouponService,
     private sweetAlert2Srv: Sweetalert2Service,
@@ -26,27 +28,40 @@ export class CouponsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadData();
+
+    this.form.get('query')?.valueChanges
+    .pipe(
+      debounceTime(500),
+      /// only email format with regex
+      map((value: string) => (value.length > 0) ? value.trim().toLocaleLowerCase() : ''),
+      map((value: string) =>  value.replace(/[^a-zA-Z0-9@.]/g, '') ),
+      distinctUntilChanged(),
+    )
+    .subscribe((value: string) => {
+      console.log('valueChanges', value);
+      this.loadData(value);
+    });
   }
 
-
-  loadData(){
+  loadData(query = ''){
 
     // regex only works with strings and numbers
-    const regex = new RegExp(this.query, 'i');
+    const regex = new RegExp(query, 'i');
 
     // run regex validation
-    const isValid = regex.test(this.query);
+    const isValid = regex.test(query);
     console.log('isValid', isValid);
 
-    if(isValid && this.query.length > 0){
-      console.log('valid query', this.query);
+    if(isValid && query.length > 0){
+      console.log('valid query', query);
       this.coupons$ = this.couponSrv.getDynamic(environment.dataEvent.keyDb, [
-        {field: 'slug', condition: '==', value: this.query},
+        { field: 'slug', condition: '>=', value: query},
+        { field: 'slug', condition: '<=', value: query + '\uf8ff'},
       ], {
         orderBy: [{field: 'slug', order: 'asc'}]
       });
     } else {
-      console.log('invalid query');
+      console.log('no query');
       this.coupons$ = this.couponSrv.getDynamic(environment.dataEvent.keyDb, [], {orderBy: [{field: 'slug', order: 'asc'}]});
     }
   }
