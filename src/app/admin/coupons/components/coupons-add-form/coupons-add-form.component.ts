@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import moment from 'moment';
@@ -8,6 +8,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CouponService, checkCouponCodeExist } from 'src/app/services/coupon.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 import { environment } from 'src/environments/environment';
+import { ModalCouponFindOwnerComponent } from '../modal-coupon-find-owner/modal-coupon-find-owner.component';
 
 @Component({
   selector: 'app-coupons-add-form',
@@ -15,6 +16,8 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./coupons-add-form.component.css']
 })
 export class CouponsAddFormComponent implements OnInit {
+
+  @ViewChild('modalFindOwner') modalFindOwner!: ModalCouponFindOwnerComponent;
 
   public form: FormGroup;
   public vm = {
@@ -97,9 +100,17 @@ export class CouponsAddFormComponent implements OnInit {
 
       this.form.get('value')?.updateValueAndValidity();
     });
+
+    this.form.get('ownerType')?.valueChanges.subscribe((value) => {
+      this.form.patchValue({ ownerId: '' });
+    });
   }
 
   get f() { return this.form.controls; }
+
+  launchFindOwnerModal() {
+    this.modalFindOwner.showModal({});
+  }
 
   async onSubmit() {
     try {

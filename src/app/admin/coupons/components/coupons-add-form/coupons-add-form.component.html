@@ -36,6 +36,17 @@
                             [ngTemplateOutletContext]="{ field: 'ownerType' }"
                         ></ng-container>
                     </div>
+
+                    <div class="col-12 mb-3">
+                        <label for="ownerId" class="form-label">Owner</label>
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <button class="btn btn-danger" type="button" (click)="launchFindOwnerModal()" [disabled]="!f['ownerType'].value">
+                                <i class="bi bi-search"></i>
+                                &nbsp;
+                                Find Owner
+                            </button>
+                          </div>
+                    </div>
             
                     <div class="col-12 mb-3">
                         <label for="ownerId" class="form-label">Owner Id</label>
@@ -109,3 +120,5 @@
         </div>
     </ng-container>
 </ng-template>
+
+<app-modal-coupon-find-owner #modalFindOwner [ownerType]="f['ownerType'].value"></app-modal-coupon-find-owner>
