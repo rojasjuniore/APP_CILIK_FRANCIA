@@ -9,29 +9,59 @@
 
             <div class="modal-body">
                 <div class="container">
-                    <div class="row g-3">
-                        <div class="col-12">
-                            <!-- <app-input-number-form
-                                *ngIf="item"
-                                [label]="item?.title"
-                                placeholder="0"
-                                [quantity]="0"
-                                [min]="0"
-                                [max]="99"
-                                (onUpdateQuantity)="onInputValueChange($event)"
-                            ></app-input-number-form>
 
-                            <p class="text-center">
-                                <ng-container *ngIf="submitted" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'quantity'}"></ng-container>
-                            </p> -->
+                    <div class="row">
 
-
+                        <div class="col-12 text-center">
+                            <div class="fs-4 fw-bold mb-2">
+                                Filter
+                            </div>
                         </div>
 
-                        <!-- <div class="col-12 text-center" *ngIf="item">
-                            <span class="fw-bold fs-4">Total: USD {{f['quantity'].value * item.price}}</span>
-                        </div> -->
+                        <div class="col-12">
+                            <div class="card card-box p-3">
+                                <div class="row g-2 d-flex align-items-center">
+
+                                    <form [formGroup]="form" novalidate>
+                                        <div class="col-12 mb-4">
+                                            <div class="form-floating">
+                                                <select class="form-select" formControlName="filterField" aria-label="Floating label select example">
+                                                    <option value="email">Correo</option>
+                                                    <option value="name">Nombre</option>
+                                                </select>
+                                                <label for="floatingSelect">Filtrar por:</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mb-4">
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control" formControlName="value" placeholder="Ingresar valor a buscar">
+                                                <label for="floatingInput">Ingresar valor a buscar</label>
+                                              </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 text-center mt-3 mb-4">
+                            <div class="fs-4 fw-bold mb-2">
+                                Results
+                            </div>
+                            <div class="seprd2"></div>
+                        </div>
+
+                        <ng-container 
+                            *ngIf="(results$ | async) as data; else renderLoader"
+                            [ngTemplateOutlet]="renderCheckResponse"
+                            [ngTemplateOutletContext]="{list: data}"
+                        ></ng-container>
+
                     </div>
+
+                    <!-- <div class="col-12 text-center" *ngIf="item">
+                        <span class="fw-bold fs-4">Total: USD {{f['quantity'].value * item.price}}</span>
+                    </div> -->
                 </div>
             </div>
 
@@ -59,3 +89,108 @@
         </span>
     </ng-container>
 </ng-template> -->
+
+<ng-template #renderAcademyCard let-item="item">
+    <div class="card card-box p-3">
+        <div class="row g-2 d-flex align-items-center">
+            academy
+            <br>
+            <pre>
+                {{item | json}}
+            </pre>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #renderAmbassadorCard let-item="item">
+    <div class="card card-box p-3" (click)="onSelectItem(item)">
+        <div class="row g-2 d-flex align-items-center">
+
+            <div class="col-12 px-3">
+                <h5 class="card-title fw-bolder text-rslt">
+                    <i class="bi bi-person-fill"></i>
+                    &nbsp;
+                    {{item?.name | uppercase}}
+                </h5>
+            </div>
+
+            <div class="seprd2"></div>
+
+            <div class="col-12 px-3">
+
+                <p class="card-text m-0">
+                    Email:
+                    <small class="text-muted">
+                        {{item.email}}
+                    </small>
+                </p>
+
+                <p class="card-text m-0">
+                    identification:
+                    <small class="text-muted">
+                        {{item.identification}}
+                    </small>
+                </p>
+                <p class="card-text m-0">
+                    phoneNumber:
+                    <small class="text-muted">
+                        +{{item.prefijo}} {{item.phone}}
+                    </small>
+                </p>
+                <p class="card-text m-0">
+                    uid:
+                    <small class="text-muted">
+                        {{item.uid}}
+                    </small>
+                </p>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #renderCardList let-list="list">
+    <div class="col-12 mb-4" *ngFor="let item of list">
+        <ng-container [ngSwitch]="ownerType">
+            <ng-container 
+                *ngSwitchCase="'academy'"
+                [ngTemplateOutlet]="renderAcademyCard"
+                [ngTemplateOutletContext]="{item: item}"
+            ></ng-container>
+
+            <ng-container *ngSwitchCase="'ambassador'"
+                [ngTemplateOutlet]="renderAmbassadorCard"
+                [ngTemplateOutletContext]="{item: item}"
+            ></ng-container>
+        </ng-container>
+    </div>
+</ng-template>
+
+<ng-template #renderCheckResponse let-list="list">
+    <ng-container 
+        *ngIf="(list.length > 0); else renderNoRecords" 
+        [ngTemplateOutlet]="renderCardList" 
+        [ngTemplateOutletContext]="{list: list}"
+    ></ng-container>
+</ng-template>
+
+<ng-template #renderNoRecords>
+    <div class="col-12 mb-4">
+        <div class="card-box card-box-b3 p-3 mb-3">
+            <h5 class="text-center">
+                No records found
+            </h5>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #renderLoader>
+    <div class="col-12 mb-4">
+        <div class="card-box card-box-b3 p-3 mb-3">
+            <div class="text-center">
+                <div class="spinner-border" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
