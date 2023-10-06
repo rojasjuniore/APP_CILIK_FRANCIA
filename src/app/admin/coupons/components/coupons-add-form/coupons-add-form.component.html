@@ -37,7 +37,7 @@
                         ></ng-container>
                     </div>
 
-                    <div class="col-12 mb-3">
+                    <div class="col-12 mb-3" *ngIf="!f['owner'].value">
                         <label for="ownerId" class="form-label">Owner</label>
                         <div class="d-grid gap-2 col-6 mx-auto">
                             <button class="btn btn-danger" type="button" (click)="launchFindOwnerModal()" [disabled]="!f['ownerType'].value">
@@ -45,17 +45,49 @@
                                 &nbsp;
                                 Find Owner
                             </button>
-                          </div>
-                    </div>
-            
-                    <div class="col-12 mb-3">
-                        <label for="ownerId" class="form-label">Owner Id</label>
-                        <input type="text" class="form-control" formControlName="ownerId" aria-describedby="ownerIdHelp">
+                        </div>
+                    
                         <ng-container 
                             *ngIf="submitted" 
-                            [ngTemplateOutlet]="renderFormVM" 
+                            [ngTemplateOutlet]="renderFormVM"
                             [ngTemplateOutletContext]="{ field: 'ownerId' }"
                         ></ng-container>
+                    </div>
+            
+                    <div class="col-12 mb-3" *ngIf="f['owner'].value">
+                        <label for="ownerId" class="form-label">Owner</label>
+
+
+                        <ng-container [ngSwitch]="f['ownerType'].value">
+                            <ng-container 
+                                *ngSwitchCase="'ambassador'"
+                                [ngTemplateOutlet]="renderAmbassadorAlertInfo"
+                                [ngTemplateOutletContext]="{item: f['owner'].value}"
+                            ></ng-container>
+                        </ng-container>
+
+                        <!-- <div class="alert alert-info" role="alert"  (click)="clearOwnerId()">
+                            <pre>
+                                {{ f['owner'].value | json }}
+                            </pre>
+
+
+
+                            <ng-container *ngIf="f['ownerType'].value === 'ambassador'">
+                                <div class="d-flex justify-content-between mb-0">
+                                    <h4 class="alert-heading mb-0">
+                                        {{f['owner'].value.name | uppercase}}
+                                    </h4>
+                                    
+                                    <button type="button" class="btn-close" aria-label="Close"></button>
+                                </div>
+                                <hr>
+                                <p class="m-0">Email: <small class="text-muted">{{f['owner'].value.email}}</small></p>
+                                <p class="m-0">identification: <small class="text-muted">{{f['owner'].value.identification}}</small></p>
+                                <p class="m-0">phoneNumber: <small class="text-muted">{{f['owner'].value.prefijo}} {{f['owner'].value.phone}}</small></p>
+                                <p class="m-0">uid: <small class="text-muted">{{f['owner'].value.uid}}</small></p>
+                            </ng-container>
+                        </div> -->
                     </div>
             
                     <div class="col-12 mb-3">
@@ -113,6 +145,24 @@
     </div>
 </div>
 
+
+<ng-template #renderAmbassadorAlertInfo let-item="item">
+    <div class="alert alert-info" role="alert"  (click)="clearOwnerId()">
+        <div class="d-flex justify-content-between mb-0">
+            <h4 class="alert-heading mb-0">
+                {{item.name | uppercase}}
+            </h4>
+            
+            <button type="button" class="btn-close" aria-label="Close"></button>
+        </div>
+        <hr>
+        <p class="m-0">Email: <small class="text-muted">{{item.email}}</small></p>
+        <p class="m-0">identification: <small class="text-muted">{{item.identification}}</small></p>
+        <p class="m-0">phoneNumber: <small class="text-muted">{{item.prefijo}} {{item.phone}}</small></p>
+        <p class="m-0">uid: <small class="text-muted">{{item.uid}}</small></p>
+    </div>
+</ng-template>
+
 <ng-template #renderFormVM let-field="field">
     <ng-container *ngFor="let val of vm[field]">
         <div id="{{field}}Help" class="form-text text-danger" *ngIf="f[field].hasError(val.type)">
@@ -121,4 +171,8 @@
     </ng-container>
 </ng-template>
 
-<app-modal-coupon-find-owner #modalFindOwner [ownerType]="f['ownerType'].value"></app-modal-coupon-find-owner>
+<app-modal-coupon-find-owner 
+    #modalFindOwner 
+    [ownerType]="f['ownerType'].value"
+    (onCloseModal)="onSelectOwner($event)"
+></app-modal-coupon-find-owner>

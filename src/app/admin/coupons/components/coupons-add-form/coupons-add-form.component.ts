@@ -82,7 +82,8 @@ export class CouponsAddFormComponent implements OnInit {
         [checkCouponCodeExist(this.couponSrv)]
       ],
       ownerType: ['', [Validators.required]],
-      ownerId: ['rs6ohZKMuEOTDg9Alh1YFCTiYz42', [Validators.required]],
+      owner: [''],
+      ownerId: ['', [Validators.required]],
       type: ['amount', [Validators.required]],
       value: ['', this.valueRules.amount],
     });
@@ -110,6 +111,23 @@ export class CouponsAddFormComponent implements OnInit {
 
   launchFindOwnerModal() {
     this.modalFindOwner.showModal({});
+  }
+
+
+  clearOwnerId(){
+    this.form.patchValue({ownerId: '', owner: ''});
+  }
+
+  onSelectOwner(res: any) {
+    console.log('res', res);
+    const {status, data } = res;
+
+    if(!status) { return; }
+
+    this.form.patchValue({
+      owner: data,
+      ownerId: data._id,
+    });
   }
 
   async onSubmit() {
