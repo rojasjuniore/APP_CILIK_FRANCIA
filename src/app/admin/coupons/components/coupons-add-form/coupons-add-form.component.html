@@ -64,6 +64,11 @@
                                 [ngTemplateOutlet]="renderAmbassadorAlertInfo"
                                 [ngTemplateOutletContext]="{item: f['owner'].value}"
                             ></ng-container>
+                            <ng-container 
+                                *ngSwitchCase="'academy'"
+                                [ngTemplateOutlet]="renderAcademyAlertInfo"
+                                [ngTemplateOutletContext]="{item: f['owner'].value}"
+                            ></ng-container>
                         </ng-container>
 
                         <!-- <div class="alert alert-info" role="alert"  (click)="clearOwnerId()">
@@ -145,6 +150,23 @@
     </div>
 </div>
 
+<ng-template #renderAcademyAlertInfo let-item="item">
+    <div class="alert alert-info" role="alert"  (click)="clearOwnerId()">
+        <div class="d-flex justify-content-between mb-0">
+            <h4 class="alert-heading mb-0">
+                {{item.name_institution | uppercase}}
+            </h4>
+            
+            <button type="button" class="btn-close" aria-label="Close"></button>
+        </div>
+        <hr>
+        <p class="m-0">direction: <small class="text-muted">{{item.direction}}</small></p>
+        <p class="m-0">email_institution: <small class="text-muted">{{item.email_institution}}</small></p>
+        <p class="m-0">description: <small class="text-muted">{{item.description}}</small></p>
+        <p class="m-0">phoneNumber: <small class="text-muted">+{{item.phone_prefijo_institution.phonecode}} {{item.phone_contact}}</small></p>
+        <p class="m-0">institutionId: <small class="text-muted">{{item._id}}</small></p>
+    </div>
+</ng-template>
 
 <ng-template #renderAmbassadorAlertInfo let-item="item">
     <div class="alert alert-info" role="alert"  (click)="clearOwnerId()">
@@ -159,7 +181,7 @@
         <p class="m-0">Email: <small class="text-muted">{{item.email}}</small></p>
         <p class="m-0">identification: <small class="text-muted">{{item.identification}}</small></p>
         <p class="m-0">phoneNumber: <small class="text-muted">{{item.prefijo}} {{item.phone}}</small></p>
-        <p class="m-0">uid: <small class="text-muted">{{item.uid}}</small></p>
+        <p class="m-0">uid: <small class="text-muted">{{item._id}}</small></p>
     </div>
 </ng-template>
 
