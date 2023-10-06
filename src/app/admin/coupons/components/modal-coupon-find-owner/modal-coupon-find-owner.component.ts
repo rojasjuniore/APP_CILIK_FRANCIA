@@ -81,9 +81,11 @@ export class ModalCouponFindOwnerComponent implements OnInit, OnChanges, AfterVi
       console.log('collectionField', cf);
 
       if(this.ownerType === 'academy'){
-
-
-        
+        this.results$ = this.schoolSrv.getDynamic([], {
+          orderBy: [{field: cf}],
+          startAt: value,
+          endAt: value + '\uf8ff',
+        });
         return;
       }
 

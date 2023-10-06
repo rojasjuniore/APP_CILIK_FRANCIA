@@ -36,7 +36,7 @@ export class SchoolService {
 
         return query;
       }
-    ).valueChanges();
+    ).valueChanges([], { idField });
 
     // return this.afs.collection(this.collection,
     //   (ref) => {

@@ -91,13 +91,55 @@
 </ng-template> -->
 
 <ng-template #renderAcademyCard let-item="item">
-    <div class="card card-box p-3">
+    <div class="card card-box p-3" (click)="onSelectItem(item)">
         <div class="row g-2 d-flex align-items-center">
-            academy
-            <br>
-            <pre>
-                {{item | json}}
-            </pre>
+
+            <div class="col-12 px-3">
+                <h5 class="card-title fw-bolder text-rslt">
+                    <i class="bi bi-person-fill"></i>
+                    &nbsp;
+                    {{item?.name_institution | uppercase}}
+                </h5>
+            </div>
+
+            <div class="seprd2"></div>
+
+            <div class="col-12 px-3">
+                <p class="card-text m-0">
+                    direction:
+                    <small class="text-muted">
+                        {{item.direction}}
+                    </small>
+                </p>
+
+                <p class="card-text m-0">
+                    email:
+                    <small class="text-muted">
+                        {{item.email_institution}}
+                    </small>
+                </p>
+
+                <p class="card-text m-0">
+                    description:
+                    <small class="text-muted">
+                        {{item.description}}
+                    </small>
+                </p>
+
+                <p class="card-text m-0">
+                    phoneNumber:
+                    <small class="text-muted">
+                        +{{item.phone_prefijo_institution.phonecode}} {{item.phone_contact}}
+                    </small>
+                </p>
+
+                <p class="card-text m-0">
+                    institutionId:
+                    <small class="text-muted">
+                        {{item._id}}
+                    </small>
+                </p>
+            </div>
         </div>
     </div>
 </ng-template>
@@ -117,7 +159,6 @@
             <div class="seprd2"></div>
 
             <div class="col-12 px-3">
-
                 <p class="card-text m-0">
                     Email:
                     <small class="text-muted">
