@@ -94,6 +94,7 @@
     "dniStored": "Invalid identity document, it is already in use",
     "availableCouponCode": "The coupon code is not available",
     "couponAlreadyApplied": "Coupon already applied",
+    "couponOnlyOneOfThisType": "You can only apply one coupon of this type"
   },
   "alert": {
     "passwordUpdatedSuccessfully": "Password updated successfully",

@@ -93,7 +93,8 @@
     "onlyNumbersAndLetters": "El campo debe contener solo letras y números",
     "dniStored": "Documento de identidad no válido, ya se encuentra en uso",
     "availableCouponCode": "Código de cupón no válido",
-    "couponAlreadyApplied": "El cupón ya fue aplicado"
+    "couponAlreadyApplied": "El cupón ya fue aplicado",
+    "couponOnlyOneOfThisType": "Sólo puedes aplicar un cupón de este tipo"
   },
   "alert": {
     "passwordUpdatedSuccessfully": "Contraseña actualizada correctamente",

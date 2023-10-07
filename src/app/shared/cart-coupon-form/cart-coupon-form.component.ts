@@ -104,7 +104,9 @@ export class CartCouponFormComponent implements OnInit, OnChanges {
         : false;
       // console.log('typeRule', typeRule);
       if(typeRule){
-        this.sweetAlert2Srv.showError('You can only apply one coupon of this type');
+        this.sweetAlert2Srv.showError(
+          this.translatePipe.transform('formValidations.couponOnlyOneOfThisType')
+        );
         this.form.patchValue({code: ''});
         this.submitted = false;
         return;
