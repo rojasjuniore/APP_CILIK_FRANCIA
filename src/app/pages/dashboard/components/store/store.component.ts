@@ -185,8 +185,10 @@ export class StoreComponent implements OnInit {
 
       /** Almacenar articulos en el carrito */
       await this.cartSrv.addOnCart(environment.dataEvent.keyDb, uid, toCart);
-      const msj = this.translate.instant("general.artAddCart")
-      this.sweetAlert2Srv.showToast(msj, 'success');
+      this.sweetAlert2Srv.showToast(
+        this.translate.instant("alert.itemAddedToCart"),
+        'success'
+      );
       return;
       
     } catch (err) {
@@ -244,7 +246,10 @@ export class StoreComponent implements OnInit {
       /** Almacenar articulos en el carrito */
       await this.cartSrv.addOnCart(environment.dataEvent.keyDb, uid, toCart);
 
-      this.sweetAlert2Srv.showToast('Categoria agregada al carrito', 'success');
+      this.sweetAlert2Srv.showToast(
+        this.translate.instant("alert.itemAddedToCart"),
+        'success'
+      );
       return;
       
     } catch (err) {
@@ -284,8 +289,10 @@ export class StoreComponent implements OnInit {
 
       /** Almacenar articulos en el carrito */
       await this.cartSrv.addOnCart(environment.dataEvent.keyDb, uid, toCart);
-      const msj = this.translate.instant("general.artAddCart")
-      this.sweetAlert2Srv.showToast(msj, 'success');
+      this.sweetAlert2Srv.showToast(
+        this.translate.instant("alert.itemAddedToCart"),
+        'success'
+      );
       return;
       
     } catch (err) {

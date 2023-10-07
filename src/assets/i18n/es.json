@@ -88,7 +88,9 @@
     "dniStored": "Documento de identidad no válido, ya se encuentra en uso"
   },
   "alert": {
-    "passwordUpdatedSuccessfully": "Contraseña actualizada correctamente"
+    "passwordUpdatedSuccessfully": "Contraseña actualizada correctamente",
+    "itemAddedToCart": "Artículo agregado al carrito",
+    "itemRemovedFromCart": "Artículo eliminado del carrito"
   },
   "temporalToken": {
     "alertMessage": "Antes de continuar es necesario el código de <strong>({{tokenLong}})</strong> dígitos enviado a la dirección <strong>{{email}}</strong>, por favor ingréselo a continuación:",
