@@ -5,6 +5,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { TemporalTokenService } from 'src/app/services/temporal-token.service';
 import { Router } from '@angular/router';
 import { MustMatch } from 'src/app/helpers/must-match.validator';
+import { TranslatePipe } from '@ngx-translate/core';
 
 
 @Component({
@@ -54,7 +55,8 @@ export class SecurePasswordComponent implements OnInit {
     private authSrv: AuthenticationService,
     private fb: FormBuilder,
     private router: Router,
-    private sweetAlert2Srv: Sweetalert2Service
+    private sweetAlert2Srv: Sweetalert2Service,
+    private translatePipe: TranslatePipe,
   ) {
     this.buildForm();
   }
@@ -102,7 +104,11 @@ export class SecurePasswordComponent implements OnInit {
       this.formStatus = 1;
       this.submit = false;
       this.router.navigate(['sign-in']);
-      this.sweetAlert2Srv.showToast('Password updated successfully', 'success');
+
+      this.sweetAlert2Srv.showToast(
+        this.translatePipe.transform('alert.passwordUpdatedSuccessfully'),
+        'success'
+      );
       return;
 
     } catch (err) {
