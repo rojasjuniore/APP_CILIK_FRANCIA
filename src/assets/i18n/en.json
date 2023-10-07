@@ -73,7 +73,16 @@
     "checkOutDate": "Check-out date",
     "couponCode": "Coupon code",
     "apply": "Apply",
-    "noProductsAddedYet": "No products added yet"
+    "noProductsAddedYet": "No products added yet",
+    "chooseYourPaymentMethod": "Choose your payment method",
+    "creditOrDebitCard": "Credit or debit card",
+    "noFileSelec": "No file selected",
+    "selectFile": "Select a file",
+    "Clear": "Clear",
+    "Confirm": "Confirm",
+    "fileName": "File name",
+    "fileType": "File type",
+    "size": "Size"
   },
   "formValidations": {
     "required": "The field is required",

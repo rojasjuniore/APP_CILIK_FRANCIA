@@ -73,7 +73,16 @@
     "checkOutDate": "Fecha de salida",
     "couponCode": "Código de cupón",
     "apply": "Aplicar",
-    "noProductsAddedYet": "Aún no se han agregado productos"
+    "noProductsAddedYet": "Aún no se han agregado productos",
+    "chooseYourPaymentMethod": "Elige tu método de pago",
+    "creditOrDebitCard": "Tarjeta de crédito o débito",
+    "noFileSelec": "Ningún archivo seleccionado",
+    "selectFile": "Seleccione un archivo",
+    "Clear": "Limpiar",
+    "Confirm": "Confirmar",
+    "fileName": "Nombre del archivo",
+    "fileType": "Tipo de archivo",
+    "size": "Tamaño"
   },
   "formValidations": {
     "required": "El campo es obligatorio",
