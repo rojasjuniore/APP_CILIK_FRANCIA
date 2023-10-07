@@ -49,7 +49,8 @@
     "nroParticipants": "Number of participants",
     "add": "Add",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "total": "Total"
   },
   "formValidations": {
     "required": "The field is required",
