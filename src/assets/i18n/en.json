@@ -29,11 +29,40 @@
     "cedula": "Documen",
     "passport": "Passport",
     "identityCard": "Identity card",
-    "documentType": "Document type"
+    "documentType": "Document type",
+    "english": "English",
+    "spanish": "Spanish",
+    "hello": "Hello",
+    "goToDashboard": "Go to dashboard",
+    "plans": "Plans",
+    "purchases": "Purchases",
+    "iWantIt": "I want it",
+    "include": "Include",
+    "notInclude": "Not include",
+    "important": "Important",
+    "recommendedOption": "Recommended option",
+    "solo": "Soloist",
+    "nroSoloists": "Number of Soloists",
+    "couple": "Couple",
+    "nroCouples": "Number of couples",
+    "group": "Group",
+    "nroParticipants": "Number of participants",
+    "add": "Add",
+    "yes": "Yes",
+    "no": "No",
+    "total": "Total",
+    "selectDate": "Select a date",
+    "date": "Date",
+    "pending": "Pending",
+    "approved": "Approved",
+    "rejected": "Rejected",
+    "status": "Status"
   },
   "formValidations": {
     "required": "The field is required",
     "email": "Invalid email",
+    "min1": "The minimum amount is 1",
+    "min3": "The minimum amount is 3",
     "minlength6": "The field must have at least 6 characters",
     "minlength9": "The field must have at least 9 characters",
     "maxlength10": "The field must have a maximum of 10 characters",
@@ -69,5 +98,37 @@
     "informedConsentForMinorsLink": "https://firebasestorage.googleapis.com/v0/b/cilik-presale.appspot.com/o/informedConsentForMinorsEN.pdf?alt=media&token=49defaa2-a0a0-4d83-a75c-dd31a8e2bf70",
     "successfulRegistrationMessage": "You can now continue with the purchase process.",
     "termsAndConditionsLink": "https://firebasestorage.googleapis.com/v0/b/cilik-presale.appspot.com/o/termsAndConditionsEN.pdf?alt=media&token=492df31e-adf8-4bc9-bf32-f90aa039a9d7"
+  },
+  "dashboard": {
+    "title": "Start your purchase to live the WLDC experience",
+    "subTitle": "Select the option you wish to purchase"
+  },
+  "plan": {
+    "hotelAndEvent": {
+      "title": "Hotel and event",
+      "include": "Accommodation at the official WLDC hotel with access to all WLDC events on the day the hotel is purchased, buffet breakfast",
+      "notInclude": "Gala dinner on Friday, February 9, 2024, competition categories, lunches and dinners, airfare and transfers"
+    },
+    "fullPass": {
+      "title": "Full Pass",
+      "include": "Access to all activities from February 5 to 11 such as: concert, parties, workshops, conferences, competition, Grand Final, Ultimate Championship, Music Park Fest, Pool Parties, Beaches and Gym",
+      "notInclude": "VIP Pool parties, Gala Dinner, special Bootcamp with international teachers, competition categories",
+      "important": "All competitors must have a Full Pass to access the event"
+    },
+    "passPerDay": {
+      "title": "Pase por día",
+      "include": "All activities of the day",
+      "notInclude": "VIP Pool parties, Gala dinner, special Bootcamp with international teachers, categories to compete"
+    },
+    "weekendPass": {
+      "title": "Pase de fin de semana",
+      "include": "Access to all activities from February 9 to 11 such as: concert, parties, workshops, conferences, competition, Grand Final, Ultimate Championship, Music Park Fest, Pool Parties, Beaches and Gym",
+      "notInclude": "VIP Pool parties, Gala Dinner, special Bootcamp with international teachers, competition categories"
+    },
+    "categoryPass": {
+      "title": "Pases por categoría",
+      "include": "Right to compete in 1 (one) category",
+      "notInclude": "Access to the activities"
+    }
   }
 }

@@ -18,8 +18,8 @@ export class ModalOnlyInputNumberComponent implements OnInit {
   public form: FormGroup;
   public vm: any = {
     quantity: [
-      { type: 'required', message: 'Este campo es requerido' },
-      { type: 'min', message: 'La cantidad mínima es 1' },
+      { type: 'required', message: 'formValidations.required' },
+      { type: 'min', message: 'formValidations.min1' },
     ]
   };
   public submitted = false;

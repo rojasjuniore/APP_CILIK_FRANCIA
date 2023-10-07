@@ -2,14 +2,18 @@
     <div class="d-flex justify-content-center align-items-center flex-column">
         
         <div class="btn-navbar-languaje d-flex justify-content-center align-items-center align-items-center me-3 cmiasda" (click)="changeLanguage('en')">
-            <span class="dsaincsao">English</span>
+            <span class="dsaincsao">
+                {{ 'general.english' | translate }}
+            </span>
             <img src="assets/images/index/united-kingdom.png" alt="">
         </div>
     </div>
     <div class="d-flex justify-content-center align-items-center flex-column">
         
         <div class="btn-navbar-languaje d-flex justify-content-center align-items-center cmiasda" (click)="changeLanguage('es')">
-            <span class="dsaincsao">Español</span>
+            <span class="dsaincsao">
+                {{ 'general.spanish' | translate }}
+            </span>
             <img src="assets/images/index/spain.png" alt="">
         </div>
     </div>
