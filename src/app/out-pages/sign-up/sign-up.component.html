@@ -30,11 +30,19 @@
         <div class="form-floating form-camp mb-3">
           <select class="form-select" [ngClass]="{'is-invalid': submit && f.identificationType.errors}"
             formControlName="identificationType" id="floatingSelectDocumentType" aria-label="Document Type">
-            <option value="cedula">Cédula / ID / DNI</option>
-            <option value="passport">Pasaporte</option>
-            <option value="identityCard">Tarjeta de Identidad</option>
+            <option value="cedula">
+              {{"general.cedula" | translate}} / ID / DNI
+            </option>
+            <option value="passport">
+              {{"general.passport" | translate}}
+            </option>
+            <option value="identityCard">
+              {{"general.identityCard" | translate}}
+            </option>
           </select>
-          <label for="floatingSelectDocumentType">Identification Type</label>
+          <label for="floatingSelectDocumentType">
+            {{"general.documentType" | translate}}
+          </label>
 
           <ng-container *ngIf="submit" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'identificationType'}"></ng-container>
         </div>

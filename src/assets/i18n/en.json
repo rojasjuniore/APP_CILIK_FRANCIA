@@ -25,7 +25,11 @@
     "country": "Country",
     "phoneNumber": "Phone number",
     "signUp": "Sign Up",
-    "successfulRegistration": "Successful registration"
+    "successfulRegistration": "Successful registration",
+    "cedula": "Documen",
+    "passport": "Passport",
+    "identityCard": "Identity card",
+    "documentType": "Document type"
   },
   "formValidations": {
     "required": "The field is required",

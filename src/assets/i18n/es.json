@@ -25,7 +25,11 @@
     "country": "País",
     "phoneNumber": "Nro. Teléfono",
     "signUp": "Registrarse",
-    "successfulRegistration": "Registro exitoso"
+    "successfulRegistration": "Registro exitoso",
+    "cedula": "Cédula",
+    "passport": "Pasaporte",
+    "identityCard": "Tarjeta de Identidad",
+    "documentType": "Tipo de documento"
   },
   "formValidations": {
     "required": "El campo es obligatorio",
