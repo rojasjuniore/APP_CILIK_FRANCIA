@@ -51,21 +51,17 @@ export class CartComponent implements OnInit, OnDestroy {
 
   async onRemoveItem(item: any){
     try {
-
-      // await this.spinner.show();
-
       await this.cartSrv.removeOnCart(environment.dataEvent.keyDb, this.uid, item);
 
-      const msj = this.translate.instant('general.artRemove')
-      this.sweetAlert2Srv.showToast(msj, 'success');
+      this.sweetAlert2Srv.showToast(
+        this.translate.instant('alert.itemRemovedFromCart'),
+        'success'
+      );
       return;
       
     } catch (err) {
       console.log('Error on CartComponent.onRemoveItem', err);
       return;
-
-    } finally {
-      // this.spinner.hide();
     }
   }
 
