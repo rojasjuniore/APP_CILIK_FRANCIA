@@ -50,7 +50,8 @@
     "add": "Add",
     "yes": "Yes",
     "no": "No",
-    "total": "Total"
+    "total": "Total",
+    "selectDate": "Select a date"
   },
   "formValidations": {
     "required": "The field is required",

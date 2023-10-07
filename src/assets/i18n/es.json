@@ -50,7 +50,8 @@
     "add": "Añadir",
     "yes": "Si",
     "no": "No",
-    "total": "Total"
+    "total": "Total",
+    "selectDate": "Selecciona una fecha"
   },
   "formValidations": {
     "required": "El campo es obligatorio",
