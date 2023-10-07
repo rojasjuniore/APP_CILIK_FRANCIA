@@ -51,7 +51,12 @@
     "yes": "Si",
     "no": "No",
     "total": "Total",
-    "selectDate": "Selecciona una fecha"
+    "selectDate": "Selecciona una fecha",
+    "date": "Fecha",
+    "pending": "Pendiente",
+    "approved": "Aprobado",
+    "rejected": "Rechazado",
+    "status": "Estado"
   },
   "formValidations": {
     "required": "El campo es obligatorio",

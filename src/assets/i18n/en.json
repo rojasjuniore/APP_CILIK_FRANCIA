@@ -51,7 +51,12 @@
     "yes": "Yes",
     "no": "No",
     "total": "Total",
-    "selectDate": "Select a date"
+    "selectDate": "Select a date",
+    "date": "Date",
+    "pending": "Pending",
+    "approved": "Approved",
+    "rejected": "Rejected",
+    "status": "Status"
   },
   "formValidations": {
     "required": "The field is required",
