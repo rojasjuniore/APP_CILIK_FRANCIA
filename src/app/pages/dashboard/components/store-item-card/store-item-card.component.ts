@@ -9,10 +9,14 @@ export class StoreItemCardComponent implements OnInit {
 
   @Input() item: StoreItemCardParams = {
     isRecommended: true,
-    img: 'assets/images/icons/plan-icon-1.png',
+    img: 'assets/img/hotel.jpg',
     title: 'Card Title',
     include: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     headerColor: 'red',
+    icons: [
+      "assets/img/icon-bed.png",
+        "assets/img/icon-ticket.png"
+    ]
   }
 
   constructor() { }
@@ -30,4 +34,5 @@ export interface StoreItemCardParams {
   notInclude?: string;
   important?: string;
   headerColor: string;
+  icons: string[];
 }

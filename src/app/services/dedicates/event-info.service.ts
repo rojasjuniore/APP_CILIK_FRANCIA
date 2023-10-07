@@ -10,7 +10,7 @@ export class EventInfoService {
   public storeOptions: any[] = [
     {
       isRecommended: true,
-      img: 'assets/images/icons/plan-icon-1.png',
+      img: 'assets/img/hotel.jpg',
       key: "hotelAndEvent",
       title: 'plan.hotelAndEvent.title',
       slug: 'hotel-event',
@@ -18,10 +18,14 @@ export class EventInfoService {
       notInclude: 'plan.hotelAndEvent.notInclude',
       important: null,
       headerColor: 'red',
+      icons: [
+        "assets/img/icon-bed.png",
+        "assets/img/icon-ticket.png"
+      ]
     },
     {
       isRecommended: false,
-      img: 'assets/images/icons/plan-icon-2.png',
+      img: 'assets/img/full.jpg',
       key: "fullPass",
       title: 'plan.fullPass.title',
       slug: 'full-pass',
@@ -29,10 +33,13 @@ export class EventInfoService {
       notInclude: 'plan.fullPass.notInclude',
       important: 'plan.fullPass.important',
       headerColor: 'red',
+      icons: [
+        "assets/img/icon-full-pass.png",
+      ]
     },
     {
       isRecommended: false,
-      img: 'assets/images/icons/plan-icon-2.png',
+      img: 'assets/img/dia.jpg',
       key: "passPerDay",
       title: 'plan.passPerDay.title',
       slug: 'day-pass',
@@ -40,10 +47,13 @@ export class EventInfoService {
       notInclude: 'plan.passPerDay.notInclude',
       important: null,
       headerColor: 'red',
+      icons: [
+        "assets/img/icon-ticket.png"
+      ]
     },
     {
       isRecommended: false,
-      img: 'assets/images/icons/plan-icon-2.png',
+      img: 'assets/img/fiestas.jpg',
       key: "weekendPass",
       title: 'plan.weekendPass.title',
       slug: 'weekend-pass',
@@ -51,10 +61,13 @@ export class EventInfoService {
       notInclude: 'plan.weekendPass.notInclude',
       important: null,
       headerColor: 'red',
+      icons: [
+        "assets/img/icon-ticket.png"
+      ]
     },
     {
       isRecommended: false,
-      img: 'assets/images/icons/plan-icon-2.png',
+      img: 'assets/img/categorias.jpeg',
       key: "categoryPass",
       title: 'plan.categoryPass.title',
       slug: 'category-pass',
@@ -62,6 +75,9 @@ export class EventInfoService {
       notInclude: 'plan.categoryPass.notInclude',
       important: null,
       headerColor: 'red',
+      icons: [
+        "assets/img/icon-pass-category.png"
+      ]
     },
   ];
 
