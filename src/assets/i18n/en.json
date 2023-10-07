@@ -56,7 +56,11 @@
     "pending": "Pending",
     "approved": "Approved",
     "rejected": "Rejected",
-    "status": "Status"
+    "status": "Status",
+    "purchase": "Purchase",
+    "products": "Products",
+    "coupon": "Coupon",
+    "valueWithoutDiscount": "Value whithout discount"
   },
   "formValidations": {
     "required": "The field is required",

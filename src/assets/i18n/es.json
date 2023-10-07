@@ -56,7 +56,11 @@
     "pending": "Pendiente",
     "approved": "Aprobado",
     "rejected": "Rechazado",
-    "status": "Estado"
+    "status": "Estado",
+    "purchase": "Compra",
+    "products": "Productos",
+    "coupon": "Cupón",
+    "valueWithoutDiscount": "Valor sin descuento"
   },
   "formValidations": {
     "required": "El campo es obligatorio",
