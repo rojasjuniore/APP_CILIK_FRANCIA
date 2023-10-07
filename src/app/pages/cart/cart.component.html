@@ -4,7 +4,7 @@
 
     <div class="seprd2"></div>
 
-    <div class="col-12 mt-2 mb-2">
+    <div class="col-12 mt-2 mb-2" *ngIf="(cart?.product.length > 0)">
         <app-cart-coupon-form [cart]="cart"></app-cart-coupon-form>
     </div>
 
@@ -48,7 +48,7 @@
     <div class="col-12 mb-4">
         <div class="card-box card-box-b3 p-3 mb-3">
             <h5 class="text-center">
-                {{ "general.noproduct" | translate }}
+                {{ "general.noProductsAddedYet" | translate }}
             </h5>
         </div>
     </div>

@@ -72,7 +72,8 @@
     "checkInDate": "Check-in date",
     "checkOutDate": "Check-out date",
     "couponCode": "Coupon code",
-    "apply": "Apply"
+    "apply": "Apply",
+    "noProductsAddedYet": "No products added yet"
   },
   "formValidations": {
     "required": "The field is required",

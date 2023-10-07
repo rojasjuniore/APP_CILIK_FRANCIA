@@ -72,7 +72,8 @@
     "checkInDate": "Fecha de ingreso",
     "checkOutDate": "Fecha de salida",
     "couponCode": "Código de cupón",
-    "apply": "Aplicar"
+    "apply": "Aplicar",
+    "noProductsAddedYet": "Aún no se han agregado productos"
   },
   "formValidations": {
     "required": "El campo es obligatorio",
