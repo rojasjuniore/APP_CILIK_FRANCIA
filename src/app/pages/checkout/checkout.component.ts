@@ -161,8 +161,10 @@ export class CheckoutComponent implements OnInit {
       /** Eliminar carrito de compra */
       await this.cartSrv.deleteCart(environment.dataEvent.keyDb, this.uid);
 
-      const msjCS = this.translate.instant("general.compraSuccess")
-      this.sweetAlert2Srv.showToast(msjCS, 'success');
+      this.sweetAlert2Srv.showToast(
+        this.translate.instant("alert.purchaseMadeSatisfactorily"),
+        'success'
+      );
       return;
       
     } catch (err) {
