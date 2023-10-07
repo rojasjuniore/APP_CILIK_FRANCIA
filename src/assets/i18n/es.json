@@ -67,7 +67,8 @@
     "processedAt": "Fecha de procesamiento",
     "inProgress": "En progreso",
     "paypal": "Paypal",
-    "bankTransfer": "Transferencia bancaria"
+    "bankTransfer": "Transferencia bancaria",
+    "pay": "Pagar"
   },
   "formValidations": {
     "required": "El campo es obligatorio",

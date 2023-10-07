@@ -67,7 +67,8 @@
     "processedAt": "Processed at",
     "inProgress": "In progress",
     "paypal": "Paypal",
-    "bankTransfer": "Bank transfer"
+    "bankTransfer": "Bank transfer",
+    "pay": "Pay"
   },
   "formValidations": {
     "required": "The field is required",
