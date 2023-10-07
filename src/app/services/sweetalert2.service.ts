@@ -160,7 +160,7 @@ export class Sweetalert2Service {
   async askConfirm(message: string){
 
     const confirmButtonText = await this.customTranslateSrv.translate('general.yes');
-    const cancelButtonText = await this.customTranslateSrv.translate('general.not');
+    const cancelButtonText = await this.customTranslateSrv.translate('general.no');
 
     const { isConfirmed } = await Swal.fire({
       icon: 'info',
