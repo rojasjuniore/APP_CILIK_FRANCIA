@@ -32,6 +32,9 @@
                                         [maxDate]="item?.maxDate"
                                         [startDate]="item?.startDate"
                                         [endDate]="item?.endDate"
+                                        isCustomDate="selectCalendar"
+                                        cancelButtonClasses="btn btn-three"
+                                        applyButtonClasses="btn btn-one"
                                         (onUpdateDates)="onInputDatesChange($event)"
                                     ></app-input-range-calendar>
 
