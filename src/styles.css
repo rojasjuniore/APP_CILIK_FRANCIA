@@ -533,7 +533,8 @@ body{
 /* ESTILOS PARA DATEPICKER */
 
 .daterangepicker td.active, .daterangepicker td.active:hover {
-    background-color: #e7344c;
+    background-color: #bdbdbd;
+    color: #323232;
 }
 .daterangepicker .calendar-table table {
     border: 1px solid #cbcbcb !important;
@@ -546,9 +547,9 @@ body{
     background-color: transparent !important;
 }
 .daterangepicker td.in-range {
-    background-color: #e7344c;
+    background-color: #bdbdbd;
     border-color: transparent;
-    color: #fff;
+    color: #323232;
     border-radius: 0;
 }
 .daterangepicker .calendar-table th, .daterangepicker .calendar-table td{
@@ -560,8 +561,63 @@ body{
 .daterangepicker td.end-date {
     border-radius: 0px 4px 4px 0px !important;
 }
+.selectCalendar .input-group{
+    margin-bottom: 0 !important;
+}
 .selectCalendar .input-group .input-group-text{
-
+    background-color: #e7344c;
+    color: #fff;
+}
+.selectCalendar {
+    border: 0;
 }
 
 /* ESTILOS PARA DATEPICKER */
+
+
+.dats-c{
+    width: 50%;
+    margin: 0 auto;
+}
+.dats-c .nav-tabs{
+    border: 0;
+}
+.dats-c .nav-link{
+    background-color: #f2f2f2;
+    color: #c7c7c5;
+    border: 0;
+    border-radius: 10px;
+    padding: 10px 30px;
+    margin-bottom: 10px;
+    width: 49%;
+    border: 1px solid #cbcbcb;
+}
+.dats-c .nav-link.active{
+    background-color: #e7344c;
+    border: 1px solid #e7344c;
+    color: #ffffff;
+}
+.dats-c .nav-link img{
+    width: 25px;
+}
+.dats-c .tab-content{
+    background-color: #f2f2f2;
+    border: 1px solid #cbcbcb;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.input-cant{
+    border-radius: 10px;
+    border: 1px solid #868786;
+    width: 150px;
+    margin-left: 10px;
+}
+.input-cant .btn-cant{
+    background-color: transparent;
+    border: 0;
+    font-weight: bold;
+}
+.input-cant input{
+    border: 0;
+}

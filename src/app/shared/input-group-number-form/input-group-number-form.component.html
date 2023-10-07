@@ -1,9 +1,9 @@
-<div class="input-group mb-3">
-    <button class="btn btn-one" type="button" (click)="handlerQuantity('sub')" [disabled]="quantity == min">
+<div class="input-group input-cant">
+    <button class="btn btn-cant" type="button" (click)="handlerQuantity('sub')" [disabled]="quantity == min">
         <i class="bi bi-dash"></i>
     </button>
     <input type="text" class="form-control text-center" [placeholder]="placeholder" readonly [(ngModel)]="quantity">
-    <button class="btn btn-one" type="button" (click)="handlerQuantity('add')" [disabled]="quantity == max">
+    <button class="btn btn-cant" type="button" (click)="handlerQuantity('add')" [disabled]="quantity == max">
         <i class="bi bi-plus"></i>
     </button>
 </div>
