@@ -29,7 +29,9 @@
     "cedula": "Cédula",
     "passport": "Pasaporte",
     "identityCard": "Tarjeta de Identidad",
-    "documentType": "Tipo de documento"
+    "documentType": "Tipo de documento",
+    "english": "Inglés",
+    "spanish": "Español"
   },
   "formValidations": {
     "required": "El campo es obligatorio",

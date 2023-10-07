@@ -29,7 +29,9 @@
     "cedula": "Documen",
     "passport": "Passport",
     "identityCard": "Identity card",
-    "documentType": "Document type"
+    "documentType": "Document type",
+    "english": "English",
+    "spanish": "Spanish"
   },
   "formValidations": {
     "required": "The field is required",
