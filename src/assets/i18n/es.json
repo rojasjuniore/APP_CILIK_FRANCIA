@@ -16,16 +16,32 @@
     "verify": "Verificar",
     "cancel": "Cancelar",
     "repeatPassword": "Repetir Contraseña",
-    "update": "Actualizar"
+    "update": "Actualizar",
+    "name": "Nombre",
+    "lastName": "Apellido",
+    "dni": "Nro. Documento",
+    "confirmPassword": "Confirmar contraseña",
+    "seePoliciesHere": "Ver políticas aquí.",
+    "country": "País",
+    "phoneNumber": "Nro. Teléfono",
+    "signUp": "Registrarse",
+    "successfulRegistration": "Registro exitoso"
   },
   "formValidations": {
     "required": "El campo es obligatorio",
     "email": "El correo no es válido",
     "minlength6": "El campo debe tener al menos 6 caracteres",
+    "minlength9": "El campo debe tener al menos 9 caracteres",
+    "maxlength10": "El campo debe tener máximo 10 caracteres",
     "maxlength12": "El campo debe tener máximo 12 caracteres",
     "invalidLogIn": "Usuario o contraseña inválidos",
     "userDoesNotExist": "El usuario no existe",
-    "passwordsNotMatch": "Las contraseñas no coinciden"
+    "passwordsNotMatch": "Las contraseñas no coinciden",
+    "signUpPasswordLength": "La contraseña debe tener una longitud mínima de 6 y máxima de 12 caracteres",
+    "emailStored": "El correo electrónico ya encuentra registrado",
+    "onlyCharacters": "el campo debe contener solo letras",
+    "onlyNumbers": "el campo debe contener solo números",
+    "dniStored": "Documento de identidad no válido, ya se encuentra en uso"
   },
   "alert": {
     "passwordUpdatedSuccessfully": "Contraseña actualizada correctamente"
@@ -40,5 +56,14 @@
       "emptyToken": "El código no puede estar vacío",
       "tokenLength": "El código debe tener {{tokenLong}} dígitos"
     }
+  },
+  "signUp": {
+    "checkTermsAndConditions": "Al registrarte estás aceptando las políticas de tratamiento de datos personales.",
+    "imageUseAuthorization": "Autorización de uso de imagen",
+    "imageUseAuthorizationLink": "https://firebasestorage.googleapis.com/v0/b/cilik-presale.appspot.com/o/imageUseAuthorizationES.pdf?alt=media&token=4d4cf3da-b089-4e85-9f11-f8edfb6c0355",
+    "informedConsentForMinors": "Consentimiento informado para menores de edad",
+    "informedConsentForMinorsLink": "https://firebasestorage.googleapis.com/v0/b/cilik-presale.appspot.com/o/informedConsentForMinorsES.pdf?alt=media&token=0e85455d-ec28-4b6c-b046-3182159bfc65",
+    "successfulRegistrationMessage": "Ya puedes continuar con el proceso de compra.",
+    "termsAndConditionsLink": "https://firebasestorage.googleapis.com/v0/b/cilik-presale.appspot.com/o/termsAndConditionsES.pdf?alt=media&token=b105930a-921a-495b-8f63-2de9d4106857"
   }
 }

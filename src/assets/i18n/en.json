@@ -16,16 +16,32 @@
     "verify": "Verify",
     "cancel": "Cancel",
     "repeatPassword": "Repeat password",
-    "update": "Update"
+    "update": "Update",
+    "name": "Name",
+    "lastName": "Last name",
+    "dni": "Nro. Document",
+    "confirmPassword": "Confirm Password",
+    "seePoliciesHere": "See policies here",
+    "country": "Country",
+    "phoneNumber": "Phone number",
+    "signUp": "Sign Up",
+    "successfulRegistration": "Successful registration"
   },
   "formValidations": {
     "required": "The field is required",
     "email": "Invalid email",
     "minlength6": "The field must have at least 6 characters",
+    "minlength9": "The field must have at least 9 characters",
+    "maxlength10": "The field must have a maximum of 10 characters",
     "maxlength12": "The field must have a maximum of 12 characters",
     "invalidLogIn": "Invalid email or password",
     "userDoesNotExist": "The user does not exist",
-    "passwordsNotMatch": "Passwords do not match"
+    "passwordsNotMatch": "Passwords do not match",
+    "signUpPasswordLength": "The password must have a minimum length of 6 and a maximum of 12 characters",
+    "emailStored": "The email is already registered",
+    "onlyCharacters": "The field must contain only letters",
+    "onlyNumbers": "The field must contain only numbers",
+    "dniStored": "Invalid identity document, it is already in use"
   },
   "alert": {
     "passwordUpdatedSuccessfully": "Password updated successfully"
@@ -40,5 +56,14 @@
       "emptyToken": "Code cannot be empty",
       "tokenLength": "The code must have {{tokenLong}} digits"
     }
+  },
+  "signUp": {
+    "checkTermsAndConditions": "By registering you are accepting the personal data processing policies.",
+    "imageUseAuthorization": "Image Use Authorization",
+    "imageUseAuthorizationLink": "https://firebasestorage.googleapis.com/v0/b/cilik-presale.appspot.com/o/imageUseAuthorizationEN.pdf?alt=media&token=85420948-2b5e-43e9-8a68-0a8503c993de",
+    "informedConsentForMinors": "Informed consent for minors",
+    "informedConsentForMinorsLink": "https://firebasestorage.googleapis.com/v0/b/cilik-presale.appspot.com/o/informedConsentForMinorsEN.pdf?alt=media&token=49defaa2-a0a0-4d83-a75c-dd31a8e2bf70",
+    "successfulRegistrationMessage": "You can now continue with the purchase process.",
+    "termsAndConditionsLink": "https://firebasestorage.googleapis.com/v0/b/cilik-presale.appspot.com/o/termsAndConditionsEN.pdf?alt=media&token=492df31e-adf8-4bc9-bf32-f90aa039a9d7"
   }
 }

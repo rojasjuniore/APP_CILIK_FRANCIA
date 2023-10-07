@@ -318,7 +318,7 @@ export class SignUpComponent implements OnInit {
       /** Enviar mail de bienvenida */
       const names = `${data.name} ${data.surnames}`.toUpperCase();
       await this.quickNotificationSrv.sendEmailNotification({
-        type: "2FANotification",
+        type: "signUpNotification",
         email: data.email,
         subject: `Bienvenido a WLDC Cartagena 2024 ${names} - ` + moment().format("DD/MM/YYYY HH:mm:ss"),
         greeting: `¡Hola ${names}!`,
