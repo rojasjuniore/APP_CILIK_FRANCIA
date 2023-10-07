@@ -31,7 +31,11 @@
     "identityCard": "Identity card",
     "documentType": "Document type",
     "english": "English",
-    "spanish": "Spanish"
+    "spanish": "Spanish",
+    "hello": "Hello",
+    "goToDashboard": "Go to dashboard",
+    "plans": "Plans",
+    "purchases": "Purchases"
   },
   "formValidations": {
     "required": "The field is required",
@@ -71,5 +75,9 @@
     "informedConsentForMinorsLink": "https://firebasestorage.googleapis.com/v0/b/cilik-presale.appspot.com/o/informedConsentForMinorsEN.pdf?alt=media&token=49defaa2-a0a0-4d83-a75c-dd31a8e2bf70",
     "successfulRegistrationMessage": "You can now continue with the purchase process.",
     "termsAndConditionsLink": "https://firebasestorage.googleapis.com/v0/b/cilik-presale.appspot.com/o/termsAndConditionsEN.pdf?alt=media&token=492df31e-adf8-4bc9-bf32-f90aa039a9d7"
+  },
+  "dashboard": {
+    "title": "Start your purchase to live the WLDC experience",
+    "subTitle": "Select the option you wish to purchase"
   }
 }

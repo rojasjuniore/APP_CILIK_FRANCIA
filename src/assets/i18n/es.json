@@ -31,7 +31,11 @@
     "identityCard": "Tarjeta de Identidad",
     "documentType": "Tipo de documento",
     "english": "Inglés",
-    "spanish": "Español"
+    "spanish": "Español",
+    "hello": "Hola",
+    "goToDashboard": "Ir al Inicio",
+    "plans": "Planes",
+    "purchases": "Compras"
   },
   "formValidations": {
     "required": "El campo es obligatorio",
@@ -71,5 +75,9 @@
     "informedConsentForMinorsLink": "https://firebasestorage.googleapis.com/v0/b/cilik-presale.appspot.com/o/informedConsentForMinorsES.pdf?alt=media&token=0e85455d-ec28-4b6c-b046-3182159bfc65",
     "successfulRegistrationMessage": "Ya puedes continuar con el proceso de compra.",
     "termsAndConditionsLink": "https://firebasestorage.googleapis.com/v0/b/cilik-presale.appspot.com/o/termsAndConditionsES.pdf?alt=media&token=b105930a-921a-495b-8f63-2de9d4106857"
+  },
+  "dashboard": {
+    "title": "Inicia tu compra para vivir la experiencia WLDC",
+    "subTitle": "Selecciona la opción que deseas adquirir"
   }
 }
