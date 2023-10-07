@@ -8,10 +8,9 @@
             <div class="col-12 col-md-4 text-center">
                 <div class="img-plan"> 
                     <!-- <img [src]="item.img" class="img-fluid py-3" alt="" /> -->
-                    <img src="assets/img/hotel.jpg" alt="">
+                    <img [src]="item.img" alt="">
                     <div class="typeImg">
-                        <img src="assets/img/icon-bed.png" alt="">
-                        <img src="assets/img/icon-ticket.png" alt="">
+                        <img *ngFor="let item of item.icons" [src]="item" alt="">
                     </div>
                 </div>
                 
