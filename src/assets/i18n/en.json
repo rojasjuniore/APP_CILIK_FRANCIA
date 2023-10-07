@@ -13,6 +13,7 @@
     "enterYourRegisteredEmail": "Enter your registered email",
     "send": "Send",
     "loading": "Loading",
+    "orderNotFound": "Order not found",
     "verify": "Verify",
     "cancel": "Cancel",
     "repeatPassword": "Repeat password",
@@ -60,7 +61,13 @@
     "purchase": "Purchase",
     "products": "Products",
     "coupon": "Coupon",
-    "valueWithoutDiscount": "Value whithout discount"
+    "valueWithoutDiscount": "Value whithout discount",
+    "createdAt": "Created at",
+    "paymentMethod": "Payment method",
+    "processedAt": "Processed at",
+    "inProgress": "In progress",
+    "paypal": "Paypal",
+    "bankTransfer": "Bank transfer"
   },
   "formValidations": {
     "required": "The field is required",

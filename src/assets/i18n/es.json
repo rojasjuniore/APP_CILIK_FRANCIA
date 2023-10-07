@@ -13,6 +13,7 @@
     "enterYourRegisteredEmail": "Ingrese su correo electronico registrado",
     "send": "Enviar",
     "loading": "Cargando",
+    "orderNotFound": "No se encontro orden de compra",
     "verify": "Verificar",
     "cancel": "Cancelar",
     "repeatPassword": "Repetir Contraseña",
@@ -60,7 +61,13 @@
     "purchase": "Compra",
     "products": "Productos",
     "coupon": "Cupón",
-    "valueWithoutDiscount": "Valor sin descuento"
+    "valueWithoutDiscount": "Valor sin descuento",
+    "createdAt": "Fecha de creación",
+    "paymentMethod": "Método de pago",
+    "processedAt": "Fecha de procesamiento",
+    "inProgress": "En progreso",
+    "paypal": "Paypal",
+    "bankTransfer": "Transferencia bancaria"
   },
   "formValidations": {
     "required": "El campo es obligatorio",
