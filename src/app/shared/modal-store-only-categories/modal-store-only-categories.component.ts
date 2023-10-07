@@ -18,8 +18,8 @@ export class ModalStoreOnlyCategoriesComponent implements OnInit {
   public form: FormGroup;
   public vm: any = {
     quantity: [
-      { type: 'required', message: 'Este campo es requerido' },
-      { type: 'min', message: 'La cantidad mínima es 1' },
+      { type: 'required', message: 'formValidations.required' },
+      { type: 'min', message: 'formValidations.min1' },
 
     ]
   };
@@ -31,17 +31,17 @@ export class ModalStoreOnlyCategoriesComponent implements OnInit {
     {
       label: 'general.solo',
       value: 'solo',
-      description: 'general.cantSolista'
+      description: 'general.nroSoloists'
     },
     {
       label: 'general.couple',
       value: 'couple',
-      description: 'general.cantParejas'
+      description: 'general.nroCouples'
     },
     {
       label: 'general.group',
       value: 'group',
-      description: 'general.nrPartc'
+      description: 'general.nroParticipants'
     },
   ];
 
@@ -117,7 +117,7 @@ export class ModalStoreOnlyCategoriesComponent implements OnInit {
 
       /** Actualizar mensaje de validación */
       this.vm.quantity = this.vm.quantity.map((item: any) => {
-        return (item.type === 'min') ? { type: 'min', message: 'La cantidad mínima es 3' } : item;
+        return (item.type === 'min') ? { type: 'min', message: 'formValidations.min3' } : item;
       });
     }
 
@@ -169,6 +169,12 @@ export class ModalStoreOnlyCategoriesComponent implements OnInit {
     this.submitted = false;
     this.item = null;
     this.step = 'category';
+
+    /** Actualizar mensaje de validación */
+    this.vm.quantity = this.vm.quantity.map((item: any) => {
+      return (item.type === 'min') ? { type: 'min', message: 'formValidations.min1' } : item;
+    });
+
     this.mi.hide();
   }
 

@@ -42,8 +42,11 @@
     "important": "Important",
     "recommendedOption": "Recommended option",
     "solo": "Soloist",
+    "nroSoloists": "Number of Soloists",
     "couple": "Couple",
+    "nroCouples": "Number of couples",
     "group": "Group",
+    "nroParticipants": "Number of participants",
     "add": "Add",
     "yes": "Yes",
     "no": "No"
@@ -51,6 +54,8 @@
   "formValidations": {
     "required": "The field is required",
     "email": "Invalid email",
+    "min1": "The minimum amount is 1",
+    "min3": "The minimum amount is 3",
     "minlength6": "The field must have at least 6 characters",
     "minlength9": "The field must have at least 9 characters",
     "maxlength10": "The field must have a maximum of 10 characters",
