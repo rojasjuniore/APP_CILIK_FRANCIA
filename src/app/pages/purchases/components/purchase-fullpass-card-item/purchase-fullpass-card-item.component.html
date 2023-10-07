@@ -10,7 +10,7 @@
                 <span class="text-rslt fw-bold fs-5">
                     <i class="bi bi-ticket-perforated"></i>
                     &nbsp;
-                    {{item?.title}}
+                    {{item?.title | translate}}
                 </span>
 
                 <span class="d-none d-md-block">
@@ -30,15 +30,23 @@
             </p>
 
             <p class="card-text" *ngIf="item?.include">
-                Incluye:
+                {{"general.include" | translate}}:
                 <small class="text-muted">
-                    {{item.include}}
+                    {{item.include | translate}}
                 </small>
             </p>
-            <p class="card-text" *ngIf="item?.noInclude">
-                No Incluye:
+            
+            <p class="card-text" *ngIf="item?.notInclude">
+                {{"general.notInclude" | translate}}:
                 <span class="text-muted">
-                    {{item.noInclude}}
+                    {{item.notInclude | translate}}
+                </span>
+            </p>
+
+            <p class="card-text" *ngIf="item?.important">
+                {{"general.important" | translate}}:
+                <span class="text-muted">
+                    {{item.important | translate}}
                 </span>
             </p>
 
@@ -56,7 +64,9 @@
             <p class="m-0">Descuento: USD 0</p> -->
 
             <div class="d-flex justify-content-between">
-                <span class="fs-4 fw-bolder">Total: USD {{totales}}</span>
+                <span class="fs-4 fw-bolder">
+                    {{"general.total" | translate}}: USD {{totales}}
+                </span>
                 <div>
                     <!-- <button type="button" class="btn-icon btn-icon-one">
                         <i class="bi bi-pencil"></i>
@@ -78,7 +88,9 @@
 <ng-template #renderLoader>
     <button type="button" class="btn-icon btn-icon-two">
         <div class="spinner-border spinner-border-sm" role="status">
-            <span class="visually-hidden">Loading...</span>
+            <span class="visually-hidden">
+                {{"general.loading" | translate}}...
+            </span>
         </div>
     </button>
 </ng-template>
