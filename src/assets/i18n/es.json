@@ -40,7 +40,13 @@
     "include": "Incluye",
     "notInclude": "No incluye",
     "important": "Importante",
-    "recommendedOption": "Opción recomendada"
+    "recommendedOption": "Opción recomendada",
+    "solo": "Solista",
+    "couple": "Pareja",
+    "group": "Grupo",
+    "add": "Añadir",
+    "yes": "Si",
+    "no": "No"
   },
   "formValidations": {
     "required": "El campo es obligatorio",

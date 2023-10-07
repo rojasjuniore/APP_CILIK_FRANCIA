@@ -40,7 +40,13 @@
     "include": "Include",
     "notInclude": "Not include",
     "important": "Important",
-    "recommendedOption": "Recommended option"
+    "recommendedOption": "Recommended option",
+    "solo": "Soloist",
+    "couple": "Couple",
+    "group": "Group",
+    "add": "Add",
+    "yes": "Yes",
+    "no": "No"
   },
   "formValidations": {
     "required": "The field is required",
