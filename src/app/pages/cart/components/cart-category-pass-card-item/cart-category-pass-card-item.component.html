@@ -5,7 +5,7 @@
                 <span class="text-rslt fw-bold fs-5">
                     <i class="bi bi-ticket-perforated"></i>
                     &nbsp;
-                    {{item?.title}} - {{item?.categoryType | uppercase}}
+                    {{item?.title | translate}} - {{ ("general." + item?.categoryType) | translate | uppercase}}
                 </span>
 
                 <span class="d-none d-md-block">
@@ -20,6 +20,20 @@
         <div class="seprd2"></div>
 
         <div class="col-12 px-3">
+
+            <p class="card-text" *ngIf="item?.include">
+                {{"general.include" | translate}}:
+                <small class="text-muted">
+                    {{item.include | translate}}
+                </small>
+            </p>
+            <p class="card-text" *ngIf="item?.notInclude">
+                {{"general.notInclude" | translate}}:
+                <span class="text-muted">
+                    {{item.notInclude | translate}}
+                </span>
+            </p>
+
             <!-- <div class="seprd m-0 mb-2"></div>
             <p class="m-0">Monto: 0</p>
             <h5 class="pb-3 fw-bold">Total: USD 0</h5>
@@ -41,7 +55,9 @@
             
             <div class="d-flex justify-content-between">
                 <div class="d-flex justify-content-center align-items-md-center">
-                    <span class="fw-bold fs-4">Total: USD {{totales}}</span>
+                    <span class="fw-bold fs-4">
+                        {{"general.total" | translate}}: USD {{totales}}
+                    </span>
                 </div>
                 <div>
                     <!-- <button type="button" class="btn-icon btn-icon-one">
