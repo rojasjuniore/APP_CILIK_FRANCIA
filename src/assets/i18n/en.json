@@ -90,7 +90,8 @@
     "address": "Address",
     "payWith": "Pay with",
     "noRecordsFound": "No records found",
-    "noRoomsAddedYet": "No rooms added yet"
+    "noRoomsAddedYet": "No rooms added yet",
+    "continue": "Continue"
   },
   "formValidations": {
     "required": "The field is required",

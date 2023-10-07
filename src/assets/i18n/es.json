@@ -90,7 +90,8 @@
     "address": "Dirección",
     "payWith": "Pagar con",
     "noRecordsFound": "No se encontraron registros",
-    "noRoomsAddedYet": "Aún no se han añadido habitaciones"
+    "noRoomsAddedYet": "Aún no se han añadido habitaciones",
+    "continue": "Continuar"
   },
   "formValidations": {
     "required": "El campo es obligatorio",
