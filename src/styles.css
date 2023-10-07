@@ -146,6 +146,7 @@ body{
 }
 .btn.btn-three{
     border-color: #868786;
+    background-color: #ffffff;
     color: #60605f;
     box-shadow: 0 5px 5px #d4d4d4;
     transition: all 1s;
@@ -526,3 +527,41 @@ body{
 .modal-header{
     border: 0;
 }
+
+
+
+/* ESTILOS PARA DATEPICKER */
+
+.daterangepicker td.active, .daterangepicker td.active:hover {
+    background-color: #e7344c;
+}
+.daterangepicker .calendar-table table {
+    border: 1px solid #cbcbcb !important;
+    border-radius: 10px;
+    border-collapse: initial;
+    background-color: #f8f9fa;
+    padding: 5px;
+}
+.daterangepicker td.off, .daterangepicker td.off.in-range, .daterangepicker td.off.start-date, .daterangepicker td.off.end-date {
+    background-color: transparent !important;
+}
+.daterangepicker td.in-range {
+    background-color: #e7344c;
+    border-color: transparent;
+    color: #fff;
+    border-radius: 0;
+}
+.daterangepicker .calendar-table th, .daterangepicker .calendar-table td{
+    font-weight: bold;
+}
+.daterangepicker td.start-date{
+    border-radius: 4px 0px 0px 4px !important;
+}
+.daterangepicker td.end-date {
+    border-radius: 0px 4px 4px 0px !important;
+}
+.selectCalendar .input-group .input-group-text{
+
+}
+
+/* ESTILOS PARA DATEPICKER */
