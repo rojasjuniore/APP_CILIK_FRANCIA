@@ -27,6 +27,7 @@ export interface StoreItemCardParams {
   img: string;
   title: string;
   include: string;
-  noInclude?: string;
+  notInclude?: string;
+  important?: string;
   headerColor: string;
 }
