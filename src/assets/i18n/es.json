@@ -111,7 +111,9 @@
     "itemAddedToCart": "Artículo agregado al carrito",
     "itemRemovedFromCart": "Artículo eliminado del carrito",
     "couponApplied": "Cupón aplicado",
-    "couponRemoved": "Cupón eliminado"
+    "couponRemoved": "Cupón eliminado",
+    "confirmAction": "¿Está seguro de realizar esta acción?",
+    "purchaseMadeSatisfactorily": "Compra realizada satisfactoriamente"
   },
   "temporalToken": {
     "alertMessage": "Antes de continuar es necesario el código de <strong>({{tokenLong}})</strong> dígitos enviado a la dirección <strong>{{email}}</strong>, por favor ingréselo a continuación:",

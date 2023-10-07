@@ -111,7 +111,9 @@
     "itemAddedToCart": "Item added to cart",
     "itemRemovedFromCart": "Item removed from cart",
     "couponApplied": "Coupon applied",
-    "couponRemoved": "Coupon removed"
+    "couponRemoved": "Coupon removed",
+    "confirmAction": "Are you sure to perform this action?",
+    "purchaseMadeSatisfactorily": "Purchase made satisfactorily"
   },
   "temporalToken": {
     "alertMessage": "Before continuing, the code of <strong>({{tokenLong}})</strong> digits sent to the address <strong>{{email}}</strong> is necessary, please enter it below:",
