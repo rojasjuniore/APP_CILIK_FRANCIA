@@ -1,0 +1,15 @@
+.c-icon img{
+    width: 45px;
+    margin-left: 5px;
+}
+.img-card{
+    width: 100%;
+    height: 165px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.img-card img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
