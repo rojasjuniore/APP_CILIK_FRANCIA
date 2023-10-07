@@ -68,7 +68,9 @@
     "inProgress": "In progress",
     "paypal": "Paypal",
     "bankTransfer": "Bank transfer",
-    "pay": "Pay"
+    "pay": "Pay",
+    "checkInDate": "Check-in date",
+    "checkOutDate": "Check-out date"
   },
   "formValidations": {
     "required": "The field is required",

@@ -68,7 +68,9 @@
     "inProgress": "En progreso",
     "paypal": "Paypal",
     "bankTransfer": "Transferencia bancaria",
-    "pay": "Pagar"
+    "pay": "Pagar",
+    "checkInDate": "Fecha de ingreso",
+    "checkOutDate": "Fecha de salida"
   },
   "formValidations": {
     "required": "El campo es obligatorio",
