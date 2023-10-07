@@ -13,6 +13,7 @@
     "enterYourRegisteredEmail": "Enter your registered email",
     "send": "Send",
     "loading": "Loading",
+    "orderNotFound": "Order not found",
     "verify": "Verify",
     "cancel": "Cancel",
     "repeatPassword": "Repeat password",
@@ -60,7 +61,28 @@
     "purchase": "Purchase",
     "products": "Products",
     "coupon": "Coupon",
-    "valueWithoutDiscount": "Value whithout discount"
+    "valueWithoutDiscount": "Value whithout discount",
+    "createdAt": "Created at",
+    "paymentMethod": "Payment method",
+    "processedAt": "Processed at",
+    "inProgress": "In progress",
+    "paypal": "Paypal",
+    "bankTransfer": "Bank transfer",
+    "pay": "Pay",
+    "checkInDate": "Check-in date",
+    "checkOutDate": "Check-out date",
+    "couponCode": "Coupon code",
+    "apply": "Apply",
+    "noProductsAddedYet": "No products added yet",
+    "chooseYourPaymentMethod": "Choose your payment method",
+    "creditOrDebitCard": "Credit or debit card",
+    "noFileSelec": "No file selected",
+    "selectFile": "Select a file",
+    "Clear": "Clear",
+    "Confirm": "Confirm",
+    "fileName": "File name",
+    "fileType": "File type",
+    "size": "Size"
   },
   "formValidations": {
     "required": "The field is required",
@@ -78,10 +100,20 @@
     "emailStored": "The email is already registered",
     "onlyCharacters": "The field must contain only letters",
     "onlyNumbers": "The field must contain only numbers",
-    "dniStored": "Invalid identity document, it is already in use"
+    "onlyNumbersAndLetters": "The field must contain only numbers and letters",
+    "dniStored": "Invalid identity document, it is already in use",
+    "availableCouponCode": "The coupon code is not available",
+    "couponAlreadyApplied": "Coupon already applied",
+    "couponOnlyOneOfThisType": "You can only apply one coupon of this type"
   },
   "alert": {
-    "passwordUpdatedSuccessfully": "Password updated successfully"
+    "passwordUpdatedSuccessfully": "Password updated successfully",
+    "itemAddedToCart": "Item added to cart",
+    "itemRemovedFromCart": "Item removed from cart",
+    "couponApplied": "Coupon applied",
+    "couponRemoved": "Coupon removed",
+    "confirmAction": "Are you sure to perform this action?",
+    "purchaseMadeSatisfactorily": "Purchase made satisfactorily"
   },
   "temporalToken": {
     "alertMessage": "Before continuing, the code of <strong>({{tokenLong}})</strong> digits sent to the address <strong>{{email}}</strong> is necessary, please enter it below:",

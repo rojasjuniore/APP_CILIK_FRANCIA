@@ -46,7 +46,7 @@
                     <div class="row mb-1">
                         <div class="col-12 col-md-6">
                             <p class="card-text mb-0">
-                                CreatedAt:
+                                {{"general.createdAt" | translate | titlecase}}:
                                 <small class="text-muted">
                                     {{order.createdAt | date: 'medium'}}
                                 </small>
@@ -54,7 +54,7 @@
                         </div>
                         <div class="col-12 col-md-6">
                             <p class="card-text mb-0 text-md-end">
-                                Status:
+                                {{"general.status" | translate}}:
                                 <span class="badge bg-danger">
                                     {{order.status}}
                                 </span>
@@ -63,7 +63,7 @@
 
                         <div class="col-12 col-md-6">
                             <p class="card-text mb-0">
-                                PaymentMethod:
+                                {{"general.paymentMethod" | translate | titlecase}}:
                                 <small class="text-muted">
                                     {{order.paymentMethod}}
                                 </small>
@@ -71,10 +71,10 @@
                         </div>
                         <div class="col-12 col-md-6">
                             <p class="card-text mb-0 text-md-end">
-                                ProcessedAt:
+                                {{"general.processedAt" | translate | titlecase}}:
                                 <small class="text-muted">
                                     <ng-container *ngIf="order.status === 'pending'">
-                                        in process
+                                        {{"general.inProgress" | translate | titlecase}}
                                     </ng-container>
 
                                     <ng-container *ngIf="order.status === 'rejected'">
@@ -130,7 +130,7 @@
     <div class="col-12 mb-4">
         <div class="card-box card-box-b3 p-3 mb-3">
             <h5 class="text-center">
-                No se encontro orden de compra
+                {{"general.orderNotFound" | translate}}
             </h5>
         </div>
     </div>
@@ -140,7 +140,9 @@
     <div class="col-12 mb-4">
         <div class="card-box card-box-b3 p-3 mb-3">
             <div class="d-flex align-items-center">
-                <strong>Loading...</strong>
+                <strong>
+                    {{"general.loading" | translate}}...
+                </strong>
                 <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
             </div>
         </div>

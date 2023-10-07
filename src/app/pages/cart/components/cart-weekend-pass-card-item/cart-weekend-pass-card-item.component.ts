@@ -21,6 +21,16 @@ export class CartWeekendPassCardItemComponent implements OnInit {
     return Number(this.item.price) * Number(this.item.quantity);
   }
 
+  get checkInDate() {
+    if(!this.item) return '';
+    return this.item.dates[0];
+  }
+
+  get checkOutDate() {
+    if(!this.item) return '';
+    return this.item.dates[this.item.dates.length - 1];
+  }
+
   remove(): void{ this.onRemoveItem.next(this.item); }
 
 }
