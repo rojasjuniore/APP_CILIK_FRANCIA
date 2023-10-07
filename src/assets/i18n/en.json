@@ -89,7 +89,8 @@
     "nit": "Tax identification number",
     "address": "Address",
     "payWith": "Pay with",
-    "noRecordsFound": "No records found"
+    "noRecordsFound": "No records found",
+    "noRoomsAddedYet": "No rooms added yet"
   },
   "formValidations": {
     "required": "The field is required",

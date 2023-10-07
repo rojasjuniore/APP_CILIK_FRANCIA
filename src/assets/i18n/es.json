@@ -89,7 +89,8 @@
     "nit": "Número identificación tributaria",
     "address": "Dirección",
     "payWith": "Pagar con",
-    "noRecordsFound": "No se encontraron registros"
+    "noRecordsFound": "No se encontraron registros",
+    "noRoomsAddedYet": "Aún no se han añadido habitaciones"
   },
   "formValidations": {
     "required": "El campo es obligatorio",
