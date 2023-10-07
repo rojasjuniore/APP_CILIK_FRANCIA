@@ -82,7 +82,13 @@
     "Confirm": "Confirm",
     "fileName": "File name",
     "fileType": "File type",
-    "size": "Size"
+    "size": "Size",
+    "select": "Select",
+    "cc": "Citizenship card",
+    "ce": "Immigration ID",
+    "nit": "Tax identification number",
+    "address": "Address",
+    "payWith": "Pay with"
   },
   "formValidations": {
     "required": "The field is required",

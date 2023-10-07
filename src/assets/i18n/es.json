@@ -82,7 +82,13 @@
     "Confirm": "Confirmar",
     "fileName": "Nombre del archivo",
     "fileType": "Tipo de archivo",
-    "size": "Tamaño"
+    "size": "Tamaño",
+    "select": "Seleccionar",
+    "cc": "Cedula ciudadanía",
+    "ce": "Cedula extranjería",
+    "nit": "Número identificación tributaria",
+    "address": "Dirección",
+    "payWith": "Pagar con"
   },
   "formValidations": {
     "required": "El campo es obligatorio",

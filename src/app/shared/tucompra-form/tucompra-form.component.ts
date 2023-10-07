@@ -20,33 +20,33 @@ export class TucompraFormComponent implements OnInit, OnChanges {
   public form!: FormGroup;
   public vm: any = {
     documentoComprador: [
-      { type: 'required', message: 'Documento es requerido' },
-      { type: 'minlength', message: 'Documento debe tener mínimo 6 caracteres' },
-      { type: 'pattern', message: 'Documento debe ser numérico' },
+      { type: 'required', message: 'formValidations.required' },
+      { type: 'minlength', message: 'formValidations.minlength6' },
+      { type: 'pattern', message: 'formValidations.onlyNumbers' },
     ],
     tipoDocumento: [
-      { type: 'required', message: 'Tipo de documento es requerido' },
+      { type: 'required', message: 'formValidations.required' },
     ],
     nombreComprador: [
-      { type: 'required', message: 'Nombre es requerido' },
-      { type: 'pattern', message: 'Nombre debe ser alfabético'}
+      { type: 'required', message: 'formValidations.required' },
+      { type: 'pattern', message: 'formValidations.onlyCharacters' }
     ],
     apellidoComprador: [
-      { type: 'required', message: 'Apellido es requerido' },
-      { type: 'pattern', message: 'Nombre debe ser alfabético'}
+      { type: 'required', message: 'formValidations.required' },
+      { type: 'pattern', message: 'formValidations.onlyCharacters' }
     ],
     correoComprador: [
-      { type: 'required', message: 'Correo es requerido' },
-      { type: 'pattern', message: 'Correo debe ser válido' },
+      { type: 'required', message: 'formValidations.required' },
+      { type: 'pattern', message: 'formValidations.email' },
     ],
     celularComprador: [
-      { type: 'required', message: 'Celular es requerido' },
-      { type: 'pattern', message: 'Celular debe ser numérico' },
-      { type: 'minlength', message: 'Celular debe tener mínimo 9 caracteres' },
-      { type: 'maxlength', message: 'Celular debe tener máximo 10 caracteres' },
+      { type: 'required', message: 'formValidations.required' },
+      { type: 'pattern', message: 'formValidations.onlyNumbers' },
+      { type: 'minlength', message: 'formValidations.minlength9' },
+      { type: 'maxlength', message: 'formValidations.maxlength10' },
     ],
     direccionComprador: [
-      { type: 'required', message: 'Dirección es requerido' },
+      { type: 'required', message: 'formValidations.required' },
     ],
   };
   public submitted = false;
