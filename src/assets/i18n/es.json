@@ -70,7 +70,9 @@
     "bankTransfer": "Transferencia bancaria",
     "pay": "Pagar",
     "checkInDate": "Fecha de ingreso",
-    "checkOutDate": "Fecha de salida"
+    "checkOutDate": "Fecha de salida",
+    "couponCode": "Código de cupón",
+    "apply": "Aplicar"
   },
   "formValidations": {
     "required": "El campo es obligatorio",
@@ -86,14 +88,19 @@
     "passwordsNotMatch": "Las contraseñas no coinciden",
     "signUpPasswordLength": "La contraseña debe tener una longitud mínima de 6 y máxima de 12 caracteres",
     "emailStored": "El correo electrónico ya encuentra registrado",
-    "onlyCharacters": "el campo debe contener solo letras",
-    "onlyNumbers": "el campo debe contener solo números",
-    "dniStored": "Documento de identidad no válido, ya se encuentra en uso"
+    "onlyCharacters": "El campo debe contener solo letras",
+    "onlyNumbers": "El campo debe contener solo números",
+    "onlyNumbersAndLetters": "El campo debe contener solo letras y números",
+    "dniStored": "Documento de identidad no válido, ya se encuentra en uso",
+    "availableCouponCode": "Código de cupón no válido",
+    "couponAlreadyApplied": "El cupón ya fue aplicado"
   },
   "alert": {
     "passwordUpdatedSuccessfully": "Contraseña actualizada correctamente",
     "itemAddedToCart": "Artículo agregado al carrito",
-    "itemRemovedFromCart": "Artículo eliminado del carrito"
+    "itemRemovedFromCart": "Artículo eliminado del carrito",
+    "couponApplied": "Cupón aplicado",
+    "couponRemoved": "Cupón eliminado"
   },
   "temporalToken": {
     "alertMessage": "Antes de continuar es necesario el código de <strong>({{tokenLong}})</strong> dígitos enviado a la dirección <strong>{{email}}</strong>, por favor ingréselo a continuación:",

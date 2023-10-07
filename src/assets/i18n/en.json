@@ -70,7 +70,9 @@
     "bankTransfer": "Bank transfer",
     "pay": "Pay",
     "checkInDate": "Check-in date",
-    "checkOutDate": "Check-out date"
+    "checkOutDate": "Check-out date",
+    "couponCode": "Coupon code",
+    "apply": "Apply"
   },
   "formValidations": {
     "required": "The field is required",
@@ -88,12 +90,17 @@
     "emailStored": "The email is already registered",
     "onlyCharacters": "The field must contain only letters",
     "onlyNumbers": "The field must contain only numbers",
-    "dniStored": "Invalid identity document, it is already in use"
+    "onlyNumbersAndLetters": "The field must contain only numbers and letters",
+    "dniStored": "Invalid identity document, it is already in use",
+    "availableCouponCode": "The coupon code is not available",
+    "couponAlreadyApplied": "Coupon already applied",
   },
   "alert": {
     "passwordUpdatedSuccessfully": "Password updated successfully",
     "itemAddedToCart": "Item added to cart",
-    "itemRemovedFromCart": "Item removed from cart"
+    "itemRemovedFromCart": "Item removed from cart",
+    "couponApplied": "Coupon applied",
+    "couponRemoved": "Coupon removed"
   },
   "temporalToken": {
     "alertMessage": "Before continuing, the code of <strong>({{tokenLong}})</strong> digits sent to the address <strong>{{email}}</strong> is necessary, please enter it below:",

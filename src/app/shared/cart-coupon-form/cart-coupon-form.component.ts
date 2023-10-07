@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TranslatePipe } from '@ngx-translate/core';
 import { CartService } from 'src/app/services/cart.service';
 import { CouponService, checkAvailableCouponCodeExist } from 'src/app/services/coupon.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
@@ -18,9 +19,9 @@ export class CartCouponFormComponent implements OnInit, OnChanges {
   public form: FormGroup;
   public vm = {
     code: [
-      { type: 'required', message: 'is required' },
-      { type: 'pattern', message: 'only letters and numbers' },
-      { type: 'availableCouponCode', message: 'invalid coupon code' }
+      { type: 'required', message: 'formValidations.required' },
+      { type: 'pattern', message: 'formValidations.onlyNumbersAndLetters' },
+      { type: 'availableCouponCode', message: 'formValidations.availableCouponCode' }
     ]
   };
   public submitted = false;
@@ -30,6 +31,7 @@ export class CartCouponFormComponent implements OnInit, OnChanges {
     private couponSrv: CouponService,
     private cartSrv: CartService,
     private sweetAlert2Srv: Sweetalert2Service,
+    private translatePipe: TranslatePipe
   ) {
     this.form = this.fb.group({
       code: [
@@ -81,7 +83,9 @@ export class CartCouponFormComponent implements OnInit, OnChanges {
       /** Válidar si ya no se aplico al carrito */
       const find = cartCoupons.find((item: any) => item.code === couponCode);
       if(find){
-        this.sweetAlert2Srv.showInfo('Coupon already applied');
+        this.sweetAlert2Srv.showInfo(
+          this.translatePipe.transform('formValidations.couponAlreadyApplied')
+        );
         this.form.patchValue({code: ''});
         this.submitted = false;
         return;
@@ -115,7 +119,10 @@ export class CartCouponFormComponent implements OnInit, OnChanges {
       this.form.patchValue({code: ''});
       this.submitted = false;
       
-      this.sweetAlert2Srv.showToast('Coupon applied', 'success');
+      this.sweetAlert2Srv.showToast(
+        this.translatePipe.transform('alert.couponApplied'),
+        'success'
+      );
       return;
       
     } catch (err) {

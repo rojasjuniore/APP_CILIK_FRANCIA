@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CartService } from 'src/app/services/cart.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
@@ -17,6 +18,7 @@ export class CartTotalesComponent implements OnInit, OnChanges {
     private cartSrv: CartService,
     private spinner: NgxSpinnerService,
     private sweetAlert2Srv: Sweetalert2Service,
+    private translatePipe: TranslatePipe
   ) { }
 
   ngOnInit(): void {
@@ -62,7 +64,10 @@ export class CartTotalesComponent implements OnInit, OnChanges {
 
       await this.cartSrv.removeOnCart(environment.dataEvent.keyDb, this.cart.uid, coupon, 'coupons');
 
-      this.sweetAlert2Srv.showToast('Coupon removed', 'success');
+      this.sweetAlert2Srv.showToast(
+        this.translatePipe.transform('alert.couponRemoved'),
+        'success'
+      );
       return;
       
     } catch (err) {
