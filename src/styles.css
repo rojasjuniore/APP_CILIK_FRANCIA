@@ -101,7 +101,7 @@ body{
 .btn{
     border-radius: 30px;
     padding: 1rem;
-    width: 300px;
+    max-width: 300px;
     font-family: RobotoCondensed;
     font-weight: bold;
     border: 1px solid transparent;
@@ -477,9 +477,9 @@ body{
     .form-camp{
         width: 100%;
     }
-    .btn{
+    /* .btn{
         width: 100%;
-    }   
+    }    */
     .btn-medium-c{
         width: 150px;
     }

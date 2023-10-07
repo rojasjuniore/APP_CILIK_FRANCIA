@@ -3,10 +3,14 @@
     <div class="card-header {{item.headerColor}}">
 
         <div class="row g-0 align-items-center">
-            <div class="col-12 col-md-3 text-center">
+            <div class="col-12 col-md-4 text-center">
                 <div class="img-plan"> 
-                    <img [src]="item.img" class="img-fluid py-3" alt="" />
-                    <div class="text-uppercase" [innerHTML]="item.title | translate"></div>
+                    <!-- <img [src]="item.img" class="img-fluid py-3" alt="" /> -->
+                    <img src="assets/img/hotel.jpg" alt="">
+                    <div class="typeImg">
+                        <img src="assets/img/icon-bed.png" alt="">
+                        <img src="assets/img/icon-ticket.png" alt="">
+                    </div>
                 </div>
                 
                 
@@ -14,21 +18,25 @@
 
             <div class="col-12 col-md-6">
                 <div class="plan-selection-include">
-                    <span class="bold text-uppercase pe-2">{{'include' | translate}}:</span>
-                    <span>{{item.include | translate}}</span>
-
+                    <div class="text-uppercase text-rslt fw-bold fs-4 text-center text-lg-start" [innerHTML]="item.title | translate"></div>
+                    <div>
+                        <span class="fw-bold text-uppercase pe-2">{{'include' | translate}}:</span>
+                        <span>{{item.include | translate}}</span>
+                    </div>
                     <ng-container *ngIf="item.noInclude">
-                        <span class="bold text-uppercase">
-                            {{'plansCard.notInclude' | translate}}:
-                        </span>
-                        <span class="mt-3">
-                            {{item.noInclude | translate}}
-                        </span>
+                        <div>
+                            <span class="fw-bold text-uppercase">
+                                {{'plansCard.notInclude' | translate}}:
+                            </span>
+                            <span class="mt-3">
+                                {{item.noInclude | translate}}
+                            </span>
+                        </div>
                     </ng-container>
                 </div>
             </div>
-            <div class="col-12 col-md-3 d-flex alingn-items-center justify-content-end">
-                <button class="btn btn-one red mt-3 mt-md-0">
+            <div class="col-12 col-md-2 d-flex alingn-items-center justify-content-center justify-content-md-end">
+                <button class="btn btn-one btn-small red mt-3 mt-md-0">
                     {{'general.iWantIt' | translate}}
                 </button>
             </div>
