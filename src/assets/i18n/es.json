@@ -88,7 +88,8 @@
     "ce": "Cedula extranjería",
     "nit": "Número identificación tributaria",
     "address": "Dirección",
-    "payWith": "Pagar con"
+    "payWith": "Pagar con",
+    "noRecordsFound": "No se encontraron registros"
   },
   "formValidations": {
     "required": "El campo es obligatorio",

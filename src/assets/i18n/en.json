@@ -88,7 +88,8 @@
     "ce": "Immigration ID",
     "nit": "Tax identification number",
     "address": "Address",
-    "payWith": "Pay with"
+    "payWith": "Pay with",
+    "noRecordsFound": "No records found"
   },
   "formValidations": {
     "required": "The field is required",
