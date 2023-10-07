@@ -5,7 +5,7 @@
                 <span class="text-rslt fw-bold fs-5">
                     <i class="bi bi-ticket-perforated"></i>
                     &nbsp;
-                    {{item?.title}}
+                    {{item?.title | translate}}
                 </span>
 
                 <span class="d-none d-md-block">
@@ -25,15 +25,15 @@
             </p>
             
             <p class="card-text" *ngIf="item?.include">
-                Incluye:
+                {{"general.include" | translate}}:
                 <small class="text-muted">
-                    {{item.include}}
+                    {{item.include | translate}}
                 </small>
             </p>
-            <p class="card-text" *ngIf="item?.noInclude">
-                No Incluye:
+            <p class="card-text" *ngIf="item?.notInclude">
+                {{"general.notInclude" | translate}}:
                 <span class="text-muted">
-                    {{item.noInclude}}
+                    {{item.notInclude | translate}}
                 </span>
             </p>
 
@@ -59,7 +59,9 @@
 
             <div class="d-flex justify-content-between">
                 <div class="d-flex justify-content-center align-items-md-center">
-                    <span class="fw-bold fs-4">Total: USD {{totales}}</span>
+                    <span class="fw-bold fs-4">
+                        {{"general.total" | translate}}: USD {{totales}}
+                    </span>
                 </div>
                 <div class="text-sm-center">
                     <!-- <button type="button" class="btn-icon btn-icon-one">
@@ -82,7 +84,7 @@
 <ng-template #renderLoader>
     <button type="button" class="btn-icon btn-icon-two">
         <div class="spinner-border spinner-border-sm" role="status">
-            <span class="visually-hidden">Loading...</span>
+            <span class="visually-hidden">{{"general.loading" | translate}}...</span>
         </div>
     </button>
 </ng-template>
