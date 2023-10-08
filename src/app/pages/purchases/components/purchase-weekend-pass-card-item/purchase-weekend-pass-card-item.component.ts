@@ -18,4 +18,14 @@ export class PurchaseWeekendPassCardItemComponent implements OnInit {
     return Number(this.item.price) * Number(this.item.quantity);
   }
 
+  get checkIn() {
+    if(!this.item) return '';
+    return this.item.dates[0].date;
+  }
+
+  get checkOut() {
+    if(!this.item) return '';
+    return this.item.dates[this.item.dates.length - 1].date;
+  }
+
 }
