@@ -408,6 +408,7 @@ body{
 .card-box-number-body .input-group{
     flex-wrap: nowrap;
     padding: 0;
+    justify-content: center;
 }
 
 .card-box-number-body .input-group .form-control{
