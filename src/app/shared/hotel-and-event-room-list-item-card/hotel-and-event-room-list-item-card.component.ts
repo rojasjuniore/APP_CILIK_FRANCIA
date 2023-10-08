@@ -11,7 +11,6 @@ export class HotelAndEventRoomListItemCardComponent implements OnInit, OnChanges
 
   @Input() item: any = {}
   @Input() recomendation: boolean = false;
-  @Input() dates: any[] = [];
 
   @Output() onSelectRoom = new Subject();
 
@@ -26,36 +25,61 @@ export class HotelAndEventRoomListItemCardComponent implements OnInit, OnChanges
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { dates } = changes;
-    if(dates && dates.currentValue){
-      console.log('this.dates', this.dates);
-      // this.updateDates(this.dates);
-    }
+    // const { dates } = changes;
+    // if(dates && dates.currentValue){
+    //   // console.log('this.dates', this.dates);
+    //   this.updateDates(this.dates);
+    // }
   }
 
   get totales(){
-    if(this.dates.length == 0) { return 0;}
-    return this.dates.map((date: any) => date.price).reduce((a: any, b: any) => a + b);
+    // if(this.dates.length == 0) { return 0;}
+    // return this.dates.map((date: any) => date.price || 0).reduce((a: any, b: any) => a + b);
+
+    if(!this.item) { return 0; }
+    return this.item.totales;
   }
 
-  updateDates(dates: any){
-    this.loading = true;
-
-    /** Realizar calculo de montos */
-    const prices = dates.map((date: string) => this.hotelSrv.getRoomPriceByDate(this.item.subcode , date))
-    .sort((a: any, b: any) => a.order - b.order);
-
-    /** Actualizar variable de fechas */
-    this.dates = prices;
-
-    this.loading = false;
+  /**
+   * Fecha de ingreso
+   */
+  get checkIn(){
+    if(!this.item) { return null; }
+    return this.item.dates[0].date;
   }
+
+  /**
+   * Fecha de salida
+   */
+  get checkOut(){
+    if(!this.item) { return null; }
+    return this.item.dates[this.item.dates.length - 1].date;
+  }
+
+  get nroNights() {
+    if(!this.item) { return 0; }
+    return this.item.dates.length;
+  }
+
+  // updateDates(dates: any){
+  //   this.loading = true;
+
+  //   /** Realizar calculo de montos */
+  //   const prices = dates.map((date: string) => this.hotelSrv.getRoomPriceByDate(this.item.subcode , date))
+  //   .sort((a: any, b: any) => a.order - b.order);
+  //   // console.log('prices', prices);
+
+  //   /** Actualizar variable de fechas */
+  //   this.dates = prices;
+
+  //   this.loading = false;
+  // }
 
   selectRoom(){
     this.onSelectRoom.next({
       ...this.item, 
-      dates: this.dates,
-      totales: this.totales,
+      dates: this.item.dates,
+      totales: this.item.totales,
     });
   }
 
