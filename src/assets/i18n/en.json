@@ -175,5 +175,11 @@
       "include": "Right to compete in 1 (one) category",
       "notInclude": "Access to the activities"
     }
+  },
+  "rooms": {
+    "location": {
+      "beachHouse": "beach house",
+      "seaTower": "Sea tower"
+    }
   }
 }
