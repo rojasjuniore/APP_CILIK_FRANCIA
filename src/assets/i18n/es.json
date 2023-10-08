@@ -185,7 +185,9 @@
     "location": {
       "beachHouse": "Casa de playa",
       "seaTower": "Torre del mar"
-    }
+    },
+    "include": "Desayuno buffet, acceso a todos los eventos del día que adquirió el hotel. Por la compra de la noche del sábado se incluye el acceso al evento del día domingo",
+    "notInclude": "Cena de gala del día viernes 9 de Febrero 2024, categorías para competir, almuerzos ni cenas,  tiquetes aéreos ni traslados"
   },
   "hotelAndEvent": {
     "completeTheFieldsToSearchForRooms": "Completa los campos para buscar habitaciones",

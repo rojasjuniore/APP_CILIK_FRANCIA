@@ -42,29 +42,29 @@ export class HotelService {
       code: 'HAB1',
       label: 'HABITACION SUPERIOS SENCILLA EN CASA DE PLAYA',
       location: 1,
-      include: 'HABITACION SUPERIOS SENCILLA EN CASA DE PLAYA , DESAYUNO BUFFET, ACCESO TODOS LOS EVENTOS DEL WLDC EL DIA QUE ADQUIRIO EL HOTEL. - POR LA COMPRA DE LA NOCHE DEL SABADO SE INCLUIRA EL ACCESO AL EVENTO DEL DOMINGO',
-      notInclude: '- Cena de Gala el dia viernes 9 de Febrero - No incluye categorias para competir - No incluyen cenas -',
+      include: 'room.include',
+      notInclude: 'room.notInclude',
     },
     HAB2: {
       code: 'HAB2',
       label: 'HABITACION JUNIOR O DUPLEX EN CASA DE PLAYA',
       location: 1,
-      include: 'HABITACION JUNIOR O DUPLEX EN CASA DE PLAYA , DESAYUNO BUFFET, ACCESO TODOS LOS EVENTOS DEL WLDC EL DIA QUE ADQUIRIO EL HOTEL - POR LA COMPRA DE LA NOCHE DEL SABADO SE INCLUIRA EL ACCESO AL EVENTO DEL DOMINGO',
-      notInclude: '- Cena de Gala el dia viernes 9 de Febrero - No incluye categorias para competir - No incluyen cenas -'
+      include: 'room.include',
+      notInclude: 'room.notInclude'
     },
     HAB3: {
       code: 'HAB3',
       label: 'HABITACION SUPERIOS SENCILLA EN TORRE DEL MAR',
       location: 2,
-      include: 'HABITACION SUPERIOS SENCILLA  EN TORRE DEL MAR, DESAYUNO BUFFET, ACCESO TODOS LOS EVENTOS DEL WLDC EL DIA QUE ADQUIRIO EL HOTEL - POR LA COMPRA DE LA NOCHE DEL SABADO SE INCLUIRA EL ACCESO AL EVENTO DEL DOMINGO',
-      notInclude: '- Cena de Gala el dia viernes 9 de Febrero - No incluye categorias para competir - No incluyen cenas -'
+      include: 'room.include',
+      notInclude: 'room.notInclude'
     },
     HAB4: {
       code: 'HAB4',
       label: 'HABITACION JUNIOR SUITE EN TORRE DEL MAR',
       location: 2,
-      include: 'HABITACION JUNIOR SUITE EN TORRE DEL MAR, DESAYUNO BUFFET, ACCESO TODOS LOS EVENTOS DEL WLDC EL DIA QUE ADQUIRIO EL HOTEL - POR LA COMPRA DE LA NOCHE DEL SABADO SE INCLUIRA EL ACCESO AL EVENTO DEL DOMINGO',
-      notInclude: '- Cena de Gala el dia viernes 9 de Febrero - No incluye categorias para competir - No incluyen cenas -'
+      include: 'room.include',
+      notInclude: 'room.notInclude'
     },
   };
 

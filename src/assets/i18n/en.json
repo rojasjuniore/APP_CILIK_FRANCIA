@@ -185,7 +185,9 @@
     "location": {
       "beachHouse": "Beach House",
       "seaTower": "Sea Tower"
-    }
+    },
+    "include": "Breakfast buffet, access to all the events of the day purchased by the hotel. For the purchase of Saturday night, access to Sunday's event is included",
+    "notInclude": "Gala dinner on Friday, February 9, 2024, competition categories, lunches and dinners, tickets and transfers"
   },
   "hotelAndEvent": {
     "completeTheFieldsToSearchForRooms": "Complete the fields to search for rooms",
