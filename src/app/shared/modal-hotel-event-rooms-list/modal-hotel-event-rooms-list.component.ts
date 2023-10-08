@@ -24,12 +24,12 @@ export class ModalHotelEventRoomsListComponent implements OnInit, AfterViewInit 
   public form: FormGroup;
   public vm: any = {
     dates: [
-      { type: 'required', message: 'Este campo es requerido' },
-      { type: 'minlength', message: 'La cantidad mínima es 1' },
+      { type: 'required', message: 'formValidations.required' },
+      { type: 'minlength', message: 'formValidations.minlength1' },
     ],
     capacity: [
-      { type: 'required', message: 'Este campo es requerido' },
-      { type: 'minlength', message: 'La cantidad mínima es 1' },
+      { type: 'required', message: 'formValidations.required' },
+      { type: 'minlength', message: 'formValidations.minlength1' },
     ],
   };
   public submitted = false;
@@ -94,7 +94,7 @@ export class ModalHotelEventRoomsListComponent implements OnInit, AfterViewInit 
   searchRooms(){
     // console.log('searchRooms', this.form.value);
     const formData = this.form.value;
-    
+
     this.roomList = this.hotelSrv.getRoomsByDate(this.item.currentDate)
     .filter((item: any) => item.capacity == formData.capacity)
     /** Obtener precio de las fechas seleccionadas */

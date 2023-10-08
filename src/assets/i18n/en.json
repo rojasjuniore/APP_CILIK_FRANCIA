@@ -93,13 +93,16 @@
     "noRoomsAddedYet": "No rooms added yet",
     "continue": "Continue",
     "totalNights": "Total nights",
-    "mostEconomicalOption": "Most economical option"
+    "mostEconomicalOption": "Most economical option",
+    "search": "Search",
+    "availableRooms": "Available rooms"
   },
   "formValidations": {
     "required": "The field is required",
     "email": "Invalid email",
     "min1": "The minimum amount is 1",
     "min3": "The minimum amount is 3",
+    "minlength1": "The field must have at least 1 characters",
     "minlength6": "The field must have at least 6 characters",
     "minlength9": "The field must have at least 9 characters",
     "maxlength10": "The field must have a maximum of 10 characters",
@@ -183,5 +186,11 @@
       "beachHouse": "Beach House",
       "seaTower": "Sea Tower"
     }
+  },
+  "hotelAndEvent": {
+    "completeTheFieldsToSearchForRooms": "Complete the fields to search for rooms",
+    "chooseTheDatesOfYourStay": "Choose the dates of your stay",
+    "indicatesTheNumberOfPeopleInTheRoom": "Indicates the number of people in the room",
+    "availableRoomsWillBeShownHere": "Available rooms will be shown here"
   }
 }

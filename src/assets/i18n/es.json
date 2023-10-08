@@ -93,13 +93,16 @@
     "noRoomsAddedYet": "Aún no se han añadido habitaciones",
     "continue": "Continuar",
     "totalNights": "Total de noches",
-    "mostEconomicalOption": "Opción más económica"
+    "mostEconomicalOption": "Opción más económica",
+    "search": "Buscar",
+    "availableRooms": "Habitaciones disponibles"
   },
   "formValidations": {
     "required": "El campo es obligatorio",
     "email": "El correo no es válido",
     "min1": "La cantidad mínima es 1",
     "min3": "La cantidad mínima es 3",
+    "minlength1": "El campo debe tener al menos 1 caracter",
     "minlength6": "El campo debe tener al menos 6 caracteres",
     "minlength9": "El campo debe tener al menos 9 caracteres",
     "maxlength10": "El campo debe tener máximo 10 caracteres",
@@ -183,5 +186,11 @@
       "beachHouse": "Casa de playa",
       "seaTower": "Torre del mar"
     }
+  },
+  "hotelAndEvent": {
+    "completeTheFieldsToSearchForRooms": "Completa los campos para buscar habitaciones",
+    "chooseTheDatesOfYourStay": "Elige las fechas de tu estancia",
+    "indicatesTheNumberOfPeopleInTheRoom": "Indica el número de personas en la habitación",
+    "availableRoomsWillBeShownHere": "Aquí se mostrarán las habitaciones disponibles"
   }
 }
