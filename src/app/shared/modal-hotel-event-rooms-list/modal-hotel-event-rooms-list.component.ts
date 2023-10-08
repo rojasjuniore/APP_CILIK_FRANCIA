@@ -92,10 +92,23 @@ export class ModalHotelEventRoomsListComponent implements OnInit, AfterViewInit 
   }
 
   searchRooms(){
-    console.log('searchRooms', this.form.value);
+    // console.log('searchRooms', this.form.value);
     const formData = this.form.value;
+    
     this.roomList = this.hotelSrv.getRoomsByDate(this.item.currentDate)
     .filter((item: any) => item.capacity == formData.capacity)
+    /** Obtener precio de las fechas seleccionadas */
+    .map((item: any) => ({
+      ...item,
+      dates: formData.dates.map((date: string) => this.hotelSrv.getRoomPriceByDate(item.subcode , date))
+    }))
+    /** Calcular total de la habitación */
+    .map((item: any) => ({
+      ...item,
+      totales: item.dates.map((date: any) => date.price || 0).reduce((a: any, b: any) => a + b),
+    }))
+    /** Ordenar de menor a mayor precio */
+    .sort((a: any, b: any) => a.totales - b.totales);
   }
 
   /**
