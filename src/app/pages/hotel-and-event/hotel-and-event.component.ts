@@ -83,8 +83,10 @@ export class HotelAndEventComponent implements OnInit, OnDestroy {
       };
 
       await this.cartSrv.addOnCart(environment.dataEvent.keyDb, this.uid, [toCart]);
-      const msj = this.translate.instant("general.artAddCart")
-      this.sweetAlert2Srv.showToast(msj, 'success');
+      this.sweetAlert2Srv.showToast(
+        this.translate.instant("alert.itemAddedToCart"), 
+        'success'
+      );
       return;
       
     } catch (err) {
@@ -97,33 +99,6 @@ export class HotelAndEventComponent implements OnInit, OnDestroy {
 
   async onRemoveRoom(room: any){
     this.cartSrv.removeOnCart(environment.dataEvent.keyDb, this.uid, room);
-  }
-
-  async resetRooms(){
-    // console.log('resetRooms');
-    try {
-      const msj = this.translate.instant('general.msjAskHab')
-      const ask = await this.sweetAlert2Srv.askConfirm(msj);
-      if(!ask){ return; }
-
-      await this.spinner.show();
-
-      const snapshot = await Promise.all(
-        this.rooms.map((item: any) => this.cartSrv.removeOnCart(environment.dataEvent.keyDb, this.uid, item))
-      );
-      console.log('snapshot', snapshot);
-      
-
-      const msjOne = this.translate.instant('general.habRemoved')
-      this.sweetAlert2Srv.showToast(msjOne, 'success');
-      return;
-      
-    } catch (err) {
-      console.log('Error on HotelAndEventComponent.resetRooms', err);
-      return;
-    } finally {
-      this.spinner.hide();
-    }
   }
 
   ngOnDestroy(): void {
