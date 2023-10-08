@@ -9,6 +9,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 import moment from 'moment';
 import { CustomTranslateService } from './custom-translate.service';
 import { QuickNotificationService } from './quick-notification/quick-notification.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 
 const URL_ROOT: any = environment.API_URL;
@@ -20,7 +21,7 @@ export class TemporalTokenService {
 
   public tokenLong = 6;
   public expeditionTimeUnit = 'minute';
-  public expeditionTimeUnitLang = 'minutos';
+  public expeditionTimeUnitLang = 'minutes';
   public expeditionTimeValue = 5;
   public expireationTime = { [this.expeditionTimeUnit]: this.expeditionTimeValue };
 
@@ -28,7 +29,8 @@ export class TemporalTokenService {
     private http: HttpClient,
     private spinner: NgxSpinnerService,
     private customTranslateSrv: CustomTranslateService,
-    private quickNotificationSrv: QuickNotificationService
+    private quickNotificationSrv: QuickNotificationService,
+    private translatePipe: TranslatePipe
   ) { }
 
 
@@ -94,18 +96,46 @@ export class TemporalTokenService {
     try {
       await this.spinner.show();
 
+      // await this.quickNotificationSrv.sendEmailNotification({
+      //   type: "2FANotification",
+      //   email: data.email,
+      //   subject: "WLDC Cartagena 2024 - Token Temporal - " + moment().format("DD/MM/YYYY HH:mm:ss"),
+      //   greeting: `¡Hola!`,
+      //   messageBody: [
+      //     {type: "line", text: "El código necesario para continuar con tu operación es el siguiente:"},
+      //     {type: "html", html: `<h1 style='text-align: center;'><strong>${data.token}</strong></h1>`},
+      //     {type: 'line', text: `Este código a caducará en ${data.tokenTime.value} ${data.tokenTime.unit} o al cancelar la transacción.`},
+      //     {type: "line", text: "Si no solicitó este código, no se requiere ninguna acción adicional."}
+      //   ],
+      //   salutation: '¡Saludos!'
+      // });
       await this.quickNotificationSrv.sendEmailNotification({
         type: "2FANotification",
         email: data.email,
-        subject: "WLDC Cartagena 2024 - Token Temporal - " + moment().format("DD/MM/YYYY HH:mm:ss"),
-        greeting: `¡Hola!`,
+        subject: this.translatePipe.transform('notification.temporalToken.subject', {code: data.token})+ " - " + moment().format("DD/MM/YYYY HH:mm:ss"),
+        greeting: this.translatePipe.transform('notification.hello'),
         messageBody: [
-          {type: "line", text: "El código necesario para continuar con tu operación es el siguiente:"},
-          {type: "html", html: `<h1 style='text-align: center;'><strong>${data.token}</strong></h1>`},
-          {type: 'line', text: `Este código a caducará en ${data.tokenTime.value} ${data.tokenTime.unit} o al cancelar la transacción.`},
-          {type: "line", text: "Si no solicitó este código, no se requiere ninguna acción adicional."}
+          {
+            type: "line",
+            text: this.translatePipe.transform('notification.temporalToken.body.0')
+          },
+          {
+            type: "html",
+            html: `<h1 style='text-align: center;'><strong>${data.token}</strong></h1>`
+          },
+          {
+            type: 'line',
+            text: this.translatePipe.transform('notification.temporalToken.body.1', {
+              time: data.tokenTime.value,
+              unit: this.translatePipe.transform('general.' + data.tokenTime.unit)
+            })
+          },
+          {
+            type: "line",
+            text: this.translatePipe.transform('notification.noRequestCode')
+          }
         ],
-        salutation: '¡Saludos!'
+        salutation: this.translatePipe.transform('notification.greetings')
       });
       
     } catch (err) {

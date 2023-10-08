@@ -100,7 +100,8 @@
     "adults": "Adults",
     "amountOfPeople": "Amount of people",
     "remove": "Remove",
-    "here": "Here"
+    "here": "Here",
+    "minutes": "minutes"
   },
   "formValidations": {
     "required": "The field is required",
@@ -212,7 +213,15 @@
   "notification": {
     "hello": "Hi!",
     "greetings": "Greetings!",
-    "noRecognizeActivity": "If you do not recognize this activity, no further action is required",
+    "noRecognizeActivity": "If you do not recognize this activity, no further action is required.",
+    "noRequestCode": "If you did not request this code, no further action is required.",
+    "temporalToken": {
+      "subject": "Temporal Token {{code}} WLDC Cartagena 2024",
+      "body": [
+        "The code necessary to continue with your operation is the following:",
+        "This code will expire in {{time}} {{unit}} or upon canceling the transaction"
+      ]
+    },
     "purchaseInfo": {
       "subject": "Purchase {{orderId}} of WLDC Cartagena 2024",
       "body": [

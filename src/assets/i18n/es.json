@@ -100,7 +100,8 @@
     "adults": "Adultos",
     "amountOfPeople": "Cantidad de personas",
     "remove": "Eliminar",
-    "here": "Aquí"
+    "here": "Aquí",
+    "minutes": "minutos"
   },
   "formValidations": {
     "required": "El campo es obligatorio",
@@ -212,7 +213,15 @@
   "notification": {
     "hello": "¡Hola!",
     "greetings": "¡Saludos!",
-    "noRecognizeActivity": "Si no reconoce esta actividad, no se requiere ninguna acción adicional",
+    "noRecognizeActivity": "Si no reconoce esta actividad, no se requiere ninguna acción adicional.",
+    "noRequestCode": "Si no solicitó este código, no se requiere ninguna acción adicional.",
+    "temporalToken": {
+      "subject": "Código Temporal {{code}} WLDC Cartagena 2024",
+      "body": [
+        "El código necesario para continuar con tu operación es el siguiente:",
+        "Este código a caducará en {{time}} {{unit}} o al cancelar la transacción"
+      ]
+    },
     "purchaseInfo": {
       "subject": "Compra {{orderId}} de WLDC Cartagena 2024",
       "body": [
