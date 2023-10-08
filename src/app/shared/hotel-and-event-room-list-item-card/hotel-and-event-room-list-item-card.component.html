@@ -1,9 +1,21 @@
 <div class="card card-box mt-3 pt-3">
     <div class="card-body">
-        <h5 class="card-title fw-bolder text-rslt">
-            <ng-container [ngTemplateOutlet]="renderCapacityIcon"></ng-container>
-            | {{item.locationLabel}}
-        </h5>
+        
+
+
+        <div class="d-flex justify-content-between pb-2">
+            <div class="d-flex align-items-center text-rslt fw-bold fs-6">
+                <ng-container [ngTemplateOutlet]="renderCapacityIcon"></ng-container>
+                | {{item.locationLabel}}
+            </div>
+
+            <div class="c-icon d-flex align-items-center">
+                <img src="assets/img/icon-bed-gray.png" alt="">
+                <img src="assets/img/icon-ticket-gray.png" alt="">
+            </div>
+        </div>
+
+        
         <div class="seprd2"></div>
 
         <div class="card-plan">
