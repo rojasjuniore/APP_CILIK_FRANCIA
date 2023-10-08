@@ -98,7 +98,8 @@
     "availableRooms": "Available rooms",
     "adult": "Adult",
     "adults": "Adults",
-    "amountOfPeople": "Amount of people"
+    "amountOfPeople": "Amount of people",
+    "remove": "Remove"
   },
   "formValidations": {
     "required": "The field is required",

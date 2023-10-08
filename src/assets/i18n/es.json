@@ -98,7 +98,8 @@
     "availableRooms": "Habitaciones disponibles",
     "adult": "Adulto",
     "adults": "Adultos",
-    "amountOfPeople": "Cantidad de personas"
+    "amountOfPeople": "Cantidad de personas",
+    "remove": "Eliminar"
   },
   "formValidations": {
     "required": "El campo es obligatorio",
