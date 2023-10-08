@@ -2,12 +2,14 @@
     <div class="card-body">
         <h5 class="card-title fw-bolder text-rslt">
             <ng-container [ngTemplateOutlet]="renderCapacityIcon"></ng-container>
-            | {{item.locationLabel}}
+            | {{item.locationLabel | translate}}
         </h5>
         <div class="seprd2"></div>
 
         <div class="card-plan">
-            <div class="recomendation">OPCIÓN MÁS ECONÓMICA</div>
+            <div class="recomendation" *ngIf="recomendation">
+                OPCIÓN MÁS ECONÓMICA
+            </div>
             <div class="row align-items-center">
                 <div class="col-12 col-md-6 mt-3">
                     <div class="fs-3 mb-3 fw-bold lh-1">Habitación superior sencilla</div>
@@ -32,14 +34,14 @@
                 <div class="col-12">
                     <p class="card-text mb-0">
                         <!-- Incluye: -->
-                        {{ "plansCard.include" | translate | titlecase}}:
+                        {{ "general.include" | translate}}:
                         <small class="text-muted">
                             {{item.include}}
                         </small>
                     </p>
                     <p class="card-text">
                         <!-- No Incluye: -->
-                        {{ "plansCard.notInclude" | translate | titlecase}}:
+                        {{ "general.notInclude" | translate}}:
                         <span class="text-muted">
                             {{item.noInclude}}
                         </span>

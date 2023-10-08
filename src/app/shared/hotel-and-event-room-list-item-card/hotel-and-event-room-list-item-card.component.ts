@@ -10,6 +10,7 @@ import { HotelService } from 'src/app/services/hotel.service';
 export class HotelAndEventRoomListItemCardComponent implements OnInit, OnChanges {
 
   @Input() item: any = {}
+  @Input() recomendation: boolean = false;
   @Input() dates: any[] = [];
 
   @Output() onSelectRoom = new Subject();
@@ -21,13 +22,14 @@ export class HotelAndEventRoomListItemCardComponent implements OnInit, OnChanges
   ) { }
 
   ngOnInit(): void {
+    console.log('this.item', this.item);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     const { dates } = changes;
     if(dates && dates.currentValue){
-      // console.log('this.dates', this.dates);
-      this.updateDates(this.dates);
+      console.log('this.dates', this.dates);
+      // this.updateDates(this.dates);
     }
   }
 
