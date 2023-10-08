@@ -621,3 +621,53 @@ body{
 .input-cant input{
     border: 0;
 }
+
+
+/* CARDS PLANES */
+
+.c-icon img{
+    width: 45px;
+    margin-left: 5px;
+}
+.card-plan .img-card{
+    max-width: 250px;
+    height: 165px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.card-plan .img-card img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modal-fullscreen .modal-content{
+    padding: 0 15%;
+}
+
+.recomendation {
+    background-color: #ffef00;
+    position: absolute;
+    padding: 5px 15px;
+    top: -15px;
+    border-radius: 20px;
+    left: 25px;
+    color: #e7344c;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+@media (max-width: 767px) {
+    .modal-fullscreen .modal-content{
+        padding: 0%;
+    }
+    .card-plan .img-card{
+        max-width: 100%;
+    }
+    .recomendation{
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        width: fit-content;
+    }
+}

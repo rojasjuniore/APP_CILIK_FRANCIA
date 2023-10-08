@@ -1,16 +1,63 @@
-<div class="card card-box" >
+<div class="card card-box mt-3 pt-3">
     <div class="card-body">
         <h5 class="card-title fw-bolder text-rslt">
             <ng-container [ngTemplateOutlet]="renderCapacityIcon"></ng-container>
             | {{item.locationLabel}}
         </h5>
         <div class="seprd2"></div>
-        <p class="card-text">
+
+        <div class="card-plan">
+            <div class="recomendation">OPCIÓN MÁS ECONÓMICA</div>
+            <div class="row align-items-center">
+                <div class="col-12 col-md-6 mt-3">
+                    <div class="fs-3 mb-3 fw-bold lh-1">Habitación superior sencilla</div>
+                    <div class="fw-bold">
+                        <span class="fw-bold">Fecha de ingreso:</span>
+                        <span class="text-rslt">4 de octubre 2023</span>
+                    </div>
+                    <div class="fw-bold">
+                        <span class="fw-bold">Fecha de salida:</span>
+                        <span class="text-rslt">14 de octubre 2023</span>
+                    </div>
+                    <div>Total de noches: 10</div>
+                    <div>Cantidad de habitaciones: 1</div>
+                    <div>Cantidad de personas: 3 adultos</div>
+                    <div class="c-icon my-2">2 camas dobles <img src="assets/img/icon-bed-gray.png" alt=""></div>
+                </div>
+                <div class="col-12 col-md-6 d-flex justify-content-center  justify-content-md-end">
+                    <div class="img-card">
+                        <img src="assets/img/hotel.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <p class="card-text mb-0">
+                        <!-- Incluye: -->
+                        {{ "plansCard.include" | translate | titlecase}}:
+                        <small class="text-muted">
+                            {{item.include}}
+                        </small>
+                    </p>
+                    <p class="card-text">
+                        <!-- No Incluye: -->
+                        {{ "plansCard.notInclude" | translate | titlecase}}:
+                        <span class="text-muted">
+                            {{item.noInclude}}
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <!-- <p class="card-text"> -->
             <!-- {{ 'hotel.roomType.'+row.roomCode | translate | uppercase}} -->
             <!-- {{row.description}} -->
-            {{item.title}}
-        </p>
-        <p class="card-text">
+            <!-- {{item.title}}
+        </p> -->
+        <!-- <p class="card-text">
             {{"plansCard.include" | translate | titlecase}}:
             <small class="text-muted">
                 {{item.include}}
@@ -21,14 +68,14 @@
             <span class="text-muted">
                 {{item.noInclude}}
             </span>
-        </p>
+        </p> -->
         
         <div class="d-flex flex-column flex-md-row align-content-md-center justify-content-md-between">
             <div class="d-flex justify-content-center align-items-md-center">
                 <span class="fw-bold fs-4">{{"general.total" | translate }}: USD {{totales}}</span>
             </div>
 
-            <div class="text-sm-center">
+            <div class="d-flex justify-content-center">
                 <ng-container *ngIf="(!loading); then renderCartBtn; else renderLoaderBtn"></ng-container>
             </div>
         </div>

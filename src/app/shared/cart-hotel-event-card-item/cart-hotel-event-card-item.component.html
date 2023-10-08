@@ -25,46 +25,47 @@
 
         <div class="seprd2"></div>
 
-        <div class="row align-items-center">
-            <div class="col-12 col-md-6 mt-3">
-                <div class="fs-3 text-rslt fw-bold lh-1">Casa de Playa</div>
-                <div class="fs-3 mb-3 fw-bold lh-1">Habitación superior sencilla</div>
-                <div class="fw-bold">
-                    <span class="fw-bold">Fecha de ingreso:</span>
-                    <span class="text-rslt">4 de octubre 2023</span>
+        <div class="card-plan">
+            <div class="row align-items-center">
+                <div class="col-12 col-md-6 mt-3">
+                    <div class="fs-3 text-rslt fw-bold lh-1">Casa de Playa</div>
+                    <div class="fs-3 mb-3 fw-bold lh-1">Habitación superior sencilla</div>
+                    <div class="fw-bold">
+                        <span class="fw-bold">Fecha de ingreso:</span>
+                        <span class="text-rslt">4 de octubre 2023</span>
+                    </div>
+                    <div class="fw-bold">
+                        <span class="fw-bold">Fecha de salida:</span>
+                        <span class="text-rslt">14 de octubre 2023</span>
+                    </div>
+                    <div>Total de noches: 10</div>
+                    <div>Cantidad de habitaciones: 1</div>
+                    <div>Cantidad de personas: 3 adultos</div>
+                    <div class="c-icon my-2">2 camas dobles <img src="assets/img/icon-bed-gray.png" alt=""></div>
                 </div>
-                <div class="fw-bold">
-                    <span class="fw-bold">Fecha de salida:</span>
-                    <span class="text-rslt">14 de octubre 2023</span>
+                <div class="col-12 col-md-6 d-flex justify-content-center  justify-content-md-end">
+                    <div class="img-card">
+                        <img src="assets/img/hotel.jpg" alt="">
+                    </div>
                 </div>
-                <div>Total de noches: 10</div>
-                <div>Cantidad de habitaciones: 1</div>
-                <div>Cantidad de personas: 3 adultos</div>
-                <div class="c-icon my-2">2 camas dobles <img src="assets/img/icon-bed-gray.png" alt=""></div>
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="img-card">
-                    <img src="assets/img/hotel.jpg" alt="">
+                <div class="col-12">
+                    <p class="card-text mb-0">
+                        <!-- Incluye: -->
+                        {{ "plansCard.include" | translate | titlecase}}:
+                        <small class="text-muted">
+                            {{item.room.include}}
+                        </small>
+                    </p>
+                    <p class="card-text">
+                        <!-- No Incluye: -->
+                        {{ "plansCard.notInclude" | translate | titlecase}}:
+                        <span class="text-muted">
+                            {{item.room.noInclude}}
+                        </span>
+                    </p>
                 </div>
-            </div>
-            <div class="col-12">
-                <p class="card-text mb-0">
-                    <!-- Incluye: -->
-                    {{ "plansCard.include" | translate | titlecase}}:
-                    <small class="text-muted">
-                        {{item.room.include}}
-                    </small>
-                </p>
-                <p class="card-text">
-                    <!-- No Incluye: -->
-                    {{ "plansCard.notInclude" | translate | titlecase}}:
-                    <span class="text-muted">
-                        {{item.room.noInclude}}
-                    </span>
-                </p>
             </div>
         </div>
-
         <!-- <p class="card-text"> -->
             <!-- {{ 'hotel.roomType.'+row.roomCode | translate | uppercase}} -->
             <!-- {{row.description}} -->
