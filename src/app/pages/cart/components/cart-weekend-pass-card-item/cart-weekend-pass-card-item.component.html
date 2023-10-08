@@ -47,26 +47,30 @@
                 </small>
             </p>
 
-            <p class="card-text mb-0" *ngIf="item">
-                {{"general.checkInDate" | translate}}:
-                <small class="badge bg-danger">
+            <div class="fw-bold">
+                <span class="fw-bold">
+                    {{"general.checkInDate" | translate}}:
+                </span>
+                <span class="text-rslt">
                     <ng-container 
                         *ngIf="checkIn" 
                         [ngTemplateOutlet]="renderDateParsed" 
                         [ngTemplateOutletContext]="{date: checkIn}"
                     ></ng-container>
-                </small>
-            </p>
-            <p class="card-text mb-0" *ngIf="item">
-                {{"general.checkOutDate" | translate}}:
-                <small class="badge bg-danger">
+                </span>
+            </div>
+            <div class="fw-bold">
+                <span class="fw-bold">
+                    {{"general.checkOutDate" | translate}}:
+                </span>
+                <span class="text-rslt">
                     <ng-container 
                         *ngIf="checkIn" 
                         [ngTemplateOutlet]="renderDateParsed" 
                         [ngTemplateOutletContext]="{date: checkOut}"
                     ></ng-container>
-                </small>
-            </p>
+                </span>
+            </div>
 
             <!-- <p class="fw-bold m-0">Subtitulo:</p>
             <div class="seprd m-0 mb-2"></div>
