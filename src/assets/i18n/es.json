@@ -99,7 +99,8 @@
     "adult": "Adulto",
     "adults": "Adultos",
     "amountOfPeople": "Cantidad de personas",
-    "remove": "Eliminar"
+    "remove": "Eliminar",
+    "here": "Aquí"
   },
   "formValidations": {
     "required": "El campo es obligatorio",
@@ -207,5 +208,17 @@
     "chooseTheDatesOfYourStay": "Elige las fechas de tu estancia",
     "indicatesTheNumberOfPeopleInTheRoom": "Indica el número de personas en la habitación",
     "availableRoomsWillBeShownHere": "Aquí se mostrarán las habitaciones disponibles"
+  },
+  "notification": {
+    "hello": "¡Hola!",
+    "greetings": "¡Saludos!",
+    "noRecognizeActivity": "Si no reconoce esta actividad, no se requiere ninguna acción adicional",
+    "purchaseInfo": {
+      "subject": "Compra {{orderId}} de WLDC Cartagena 2024",
+      "body": [
+        "Estamos muy felices de contar con tu presencia en la edición WLDC 2024.",
+        "A continuación encontrarás los detalles de tu compra:"
+      ]
+    }
   }
 }
