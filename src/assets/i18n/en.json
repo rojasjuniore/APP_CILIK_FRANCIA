@@ -170,17 +170,17 @@
       "important": "All competitors must have a Full Pass to access the event"
     },
     "passPerDay": {
-      "title": "Pase por día",
+      "title": "Pass per day",
       "include": "All activities of the day",
       "notInclude": "VIP Pool parties, Gala dinner, special Bootcamp with international teachers, categories to compete"
     },
     "weekendPass": {
-      "title": "Pase de fin de semana",
+      "title": "Weekend Pass",
       "include": "Access to all activities from February 9 to 11 such as: concert, parties, workshops, conferences, competition, Grand Final, Ultimate Championship, Music Park Fest, Pool Parties, Beaches and Gym",
       "notInclude": "VIP Pool parties, Gala Dinner, special Bootcamp with international teachers, competition categories"
     },
     "categoryPass": {
-      "title": "Pases por categoría",
+      "title": "Category Pass",
       "include": "Right to compete in 1 (one) category",
       "notInclude": "Access to the activities"
     }
