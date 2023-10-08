@@ -140,19 +140,10 @@ export class CheckoutComponent implements OnInit {
       await this.purchaseSrv.storePurchase(environment.dataEvent.keyDb, purchase.orderId, purchase);
 
       /** Enviar notificación de compra realizada */
-      await this.quickNotificationSrv.sendEmailNotification({
-        type: "purchaseInfo",
-        email: userDoc.email,
-        subject: `Purchase ${purchase.orderId} a WLDC Cartagena 2024 - ` + moment().format("DD/MM/YYYY HH:mm:ss"),
-        greeting: `¡Hola!`,
-        messageBody: [
-          {type: "html", html: `<h1 style='text-align: center;'><strong>Compra #${purchase.orderId}</strong></h1>`},
-          {type: 'line', text: `Estamos muy felices de contar con tu presencia en la edición WLDC 2024.`},
-          {type: 'line', text: `A continuación encontrarás los detalles de tu compra:`},
-          {type: 'action', action: 'Aquí', url: environment.dataEvent.appURL + '/pages/purchases/' + purchase.orderId + '/details'},
-          {type: "line", text: "Si no reconoce esta actividad, no se requiere ninguna acción adicional."}
-      ],
-        salutation: '¡Saludos!'
+      await this.purchaseSrv.sendPurchaseInformationNotification({
+        email: userDoc.email, 
+        orderId: purchase.orderId,
+        uid: this.cart.uid
       });
 
       /** Redireccionar */
@@ -214,19 +205,10 @@ export class CheckoutComponent implements OnInit {
       await this.purchaseSrv.storePurchase(environment.dataEvent.keyDb, purchase.orderId, purchase);
 
       /** Enviar notificación de compra realizada */
-      await this.quickNotificationSrv.sendEmailNotification({
-        type: "purchaseInfo",
+      await this.purchaseSrv.sendPurchaseInformationNotification({
         email: userDoc.email,
-        subject: `Purchase ${purchase.orderId} a WLDC Cartagena 2024 - ` + moment().format("DD/MM/YYYY HH:mm:ss"),
-        greeting: `¡Hola!`,
-        messageBody: [
-          {type: "html", html: `<h1 style='text-align: center;'><strong>Compra #${purchase.orderId}</strong></h1>`},
-          {type: 'line', text: `Estamos muy felices de contar con tu presencia en la edición WLDC 2024.`},
-          {type: 'line', text: `A continuación encontrarás los detalles de tu compra:`},
-          {type: 'action', action: 'Aquí', url: environment.dataEvent.appURL + '/pages/purchases/' + purchase.orderId + '/details'},
-          {type: "line", text: "Si no reconoce esta actividad, no se requiere ninguna acción adicional."}
-      ],
-        salutation: '¡Saludos!'
+        orderId: purchase.orderId,
+        uid: this.cart.uid
       });
 
       /** Eliminar carrito de compra */
@@ -293,19 +275,10 @@ export class CheckoutComponent implements OnInit {
       await this.purchaseSrv.storePurchase(environment.dataEvent.keyDb, purchase.orderId, purchase);
 
       /** Enviar notificación de compra realizada */
-      await this.quickNotificationSrv.sendEmailNotification({
-        type: "purchaseInfo",
-        email: userDoc.email,
-        subject: `Purchase ${purchase.orderId} a WLDC Cartagena 2024 - ` + moment().format("DD/MM/YYYY HH:mm:ss"),
-        greeting: `¡Hola!`,
-        messageBody: [
-          {type: "html", html: `<h1 style='text-align: center;'><strong>Compra #${purchase.orderId}</strong></h1>`},
-          {type: 'line', text: `Estamos muy felices de contar con tu presencia en la edición WLDC 2024.`},
-          {type: 'line', text: `A continuación encontrarás los detalles de tu compra:`},
-          {type: 'action', action: 'Aquí', url: environment.dataEvent.appURL + '/pages/purchases/' + purchase.orderId + '/details'},
-          {type: "line", text: "Si no reconoce esta actividad, no se requiere ninguna acción adicional."}
-      ],
-        salutation: '¡Saludos!'
+      await this.purchaseSrv.sendPurchaseInformationNotification({
+        email: userDoc.email, 
+        orderId: purchase.orderId,
+        uid: this.cart.uid
       });
 
       /** Redireccionar */

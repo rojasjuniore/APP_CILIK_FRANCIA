@@ -7,6 +7,7 @@ import { lastValueFrom, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { handlerArrayResult, handlerObjectResult } from '../helpers/model.helper';
 import { ExcelService } from './excel.service';
+import { QuickNotificationService } from './quick-notification/quick-notification.service';
 
 const URL_ROOT: any = environment.API_URL;
 @Injectable({
@@ -20,6 +21,7 @@ export class PurchaseService {
     private afs: AngularFirestore,
     private http: HttpClient,
     private excelSrv: ExcelService,
+    private quickNotificationSrv: QuickNotificationService
   ) { }
 
   async storePurchase(eventId: string, docId: string, data: any) {
@@ -79,6 +81,39 @@ export class PurchaseService {
       .doc(eventId).collection('purchases').doc(docId).update({
         [field]: arrayRemove(data)
       });
+  }
+
+  /**
+   * Enviar email de notificación de compra realizada
+   * @param params 
+   * @returns 
+   */
+  async sendPurchaseInformationNotification(params: PurchaseInformationNotificationParams) {
+    try {
+      const { email, orderId } = params;
+
+      /** Enviar notificación de compra realizada */
+      await this.quickNotificationSrv.sendEmailNotification({
+        type: "purchaseInfo",
+        email: email,
+        subject: `Purchase ${orderId} a WLDC Cartagena 2024 - ` + moment().format("DD/MM/YYYY HH:mm:ss"),
+        greeting: `¡Hola!`,
+        messageBody: [
+          {type: "html", html: `<h1 style='text-align: center;'><strong>Compra #${orderId}</strong></h1>`},
+          {type: 'line', text: `Estamos muy felices de contar con tu presencia en la edición WLDC 2024.`},
+          {type: 'line', text: `A continuación encontrarás los detalles de tu compra:`},
+          {type: 'action', action: 'Aquí', url: environment.dataEvent.appURL + '/pages/purchases/' + orderId + '/details'},
+          {type: "line", text: "Si no reconoce esta actividad, no se requiere ninguna acción adicional."}
+      ],
+        salutation: '¡Saludos!'
+      });
+
+      return true;
+      
+    } catch (err) {
+      console.log('Error on PurchaseService.sendPurchaseInformationNotification', err);
+      return false;
+    }
   }
 
 
@@ -266,4 +301,11 @@ export class PurchaseService {
     }
   }
 
+}
+
+
+export interface PurchaseInformationNotificationParams {
+  email: string,
+  orderId: string,
+  uid?: string
 }
