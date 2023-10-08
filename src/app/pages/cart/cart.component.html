@@ -17,12 +17,12 @@
 
     <div class="col-12">
         <div class="d-flex justify-content-between">
-            <button class="btn btn-three btn-medium-c text-uppercase" type="button" routerLink="/pages/dashboard">
+            <button class="btn btn-three btn-medium text-uppercase" type="button" routerLink="/pages/dashboard">
                 <i class="bi bi-chevron-left"></i>
                 {{ "general.back" | translate }}
             </button>
 
-            <button class="btn btn-one btn-medium-c text-uppercase" [ngClass]="{'disabled': totales === 0}" type="button" routerLink="/pages/checkout">
+            <button class="btn btn-one btn-medium text-uppercase" [ngClass]="{'disabled': totales === 0}" type="button" routerLink="/pages/checkout">
                 {{ "general.pay" | translate }}
                 <i class="bi bi-chevron-right"></i>
             </button>
