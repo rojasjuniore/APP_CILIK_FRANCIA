@@ -1,84 +1,99 @@
 <div class="card card-box" >
     <div class="card-body">
-        <!-- <h5 class="card-title fw-bolder text-rslt">
-            <ng-container [ngTemplateOutlet]="renderCapacityIcon"></ng-container>
-            |
-            {{item.room.locationLabel}}
-        </h5> -->
 
-        <div class="d-flex justify-content-between">
-            <span class="text-rslt fw-bold fs-5">
-                <i class="bi bi-building"></i>
-                &nbsp;
-                <i class="bi bi-ticket-perforated"></i>
-                &nbsp;
-                {{item?.title}}
-            </span>
+        <div class="d-flex justify-content-between pb-2">
+            <div class="d-flex align-items-center text-rslt fw-bold fs-6">
+                <ng-container [ngTemplateOutlet]="renderCapacityIcon"></ng-container>
+                | {{item?.title | translate }}
+            </div>
 
-            <span class="d-none d-md-block">
-                <i class="bi bi-person-fill"></i>
-                {{item?.room.capacity}}
-            </span>
+            <div class="c-icon d-flex align-items-center">
+                <img src="assets/img/icon-bed-gray.png" alt="">
+                <img src="assets/img/icon-ticket-gray.png" alt="">
+            </div>
         </div>
 
         <div class="seprd2"></div>
 
-        <p class="card-text">
-            <!-- {{ 'hotel.roomType.'+row.roomCode | translate | uppercase}} -->
-            <!-- {{row.description}} -->
-            {{item.room.title}}
-        </p>
-
-        <p class="m-0 d-block d-sm-none">
-            <i class="bi bi-person-fill"></i>
-            {{item?.room.capacity}}
-        </p>
-
-        <p class="card-text">
-            Incluye:
-            <small class="text-muted">
-                {{item.room.include}}
-            </small>
-        </p>
-        <p class="card-text">
-            No Incluye:
-            <span class="text-muted">
-                {{item.room.noInclude}}
-            </span>
-        </p>
-
-        <p class="card-text" *ngIf="item">
-            Fechas:
-            <span class="badge bg-danger" [ngClass]="(!isLast) ? 'me-1': ''" *ngFor="let item of item.room.dates; last as isLast">
-                {{item.date}}
-            </span>
-        </p>
-        
-        <div class="d-flex flex-row align-content-center justify-content-between">
-            <div class="d-flex justify-content-center align-items-md-center">
-                <span class="fw-bold fs-4">Total: USD {{totales}}</span>
+        <div class="card-plan mb-1">
+            <div class="row align-items-center">
+                <div class="col-12 col-md-6 mt-3">
+                    <div class="fs-3 text-rslt fw-bold lh-1">
+                        {{item.room.locationLabel | translate}}
+                    </div>
+                    <div class="fs-3 mb-3 fw-bold lh-1">
+                        {{item.room.title | translate}}
+                    </div>
+                    <div class="fw-bold">
+                        <span class="fw-bold">
+                            {{"general.checkInDate" | translate}}:
+                        </span>
+                        <span class="text-rslt">
+                            <ng-container 
+                                *ngIf="checkIn" 
+                                [ngTemplateOutlet]="renderDateParsed" 
+                                [ngTemplateOutletContext]="{date: checkIn}"
+                            ></ng-container>
+                        </span>
+                    </div>
+                    <div class="fw-bold">
+                        <span class="fw-bold">
+                            {{"general.checkOutDate" | translate}}:
+                        </span>
+                        <span class="text-rslt">
+                            <ng-container 
+                                *ngIf="checkIn" 
+                                [ngTemplateOutlet]="renderDateParsed" 
+                                [ngTemplateOutletContext]="{date: checkOut}"
+                            ></ng-container>
+                        </span>
+                    </div>
+                    <div>
+                        {{"general.totalNights" | translate}}: {{nroNights}}
+                    </div>
+                    <!-- <div>Cantidad de habitaciones: 1</div> -->
+                    <div>
+                        {{"general.amountOfPeople" | translate}}:
+                        {{item.room.capacity}} {{"general." + ((item.room.capacity == 1) ? 'adult' : 'adults') | translate}}
+                    </div>
+                    <!-- TODO: habilitar cantidad de camas -->
+                    <!-- <div class="c-icon my-2">2 camas dobles <img src="assets/img/icon-bed-gray.png" alt=""></div> -->
+                </div>
+                <div class="col-12 col-md-6 d-flex justify-content-center  justify-content-md-end">
+                    <div class="img-card">
+                        <img src="assets/img/hotel.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <p class="card-text mb-0">
+                        {{ "general.include" | translate | titlecase}}:
+                        <small class="text-muted">
+                            {{item.room.include | translate}}
+                        </small>
+                    </p>
+                    <p class="card-text">
+                        {{ "general.notInclude" | translate | titlecase}}:
+                        <small class="text-muted">
+                            {{item.room.notInclude | translate}}
+                        </small>
+                    </p>
+                </div>
             </div>
+        </div>
 
-            <div class="text-sm-center">
-                <!-- <ng-container *ngIf="(!loader); then renderCartBtn; else renderLoaderBtn"></ng-container> -->
+        <div class="d-md-flex align-content-center justify-content-center justify-content-md-between">
+            <div class="d-flex justify-content-center align-items-md-center mb-2 mb-md-0">
+                <span class="fw-bold fs-4">
+                    {{ "general.total" | translate}}: USD {{totales}}
+                </span>
             </div>
         </div>
 
     </div>
 </div>
 
-<ng-template #renderCartBtn>
-    <button type="button" class="btn-icon btn-icon-two">
-        <i class="bi bi-trash3"></i>
-    </button>
-</ng-template>
-
-<ng-template #renderLoaderBtn>
-    <a href="javascript:void(0)" class="btn btn-one btn-small disabled">
-        <div class="spinner-border spinner-border-sm" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
-    </a>
+<ng-template #renderDateParsed let-date="date">
+    {{date | date: 'd MMM yyyy'}}
 </ng-template>
 
 <ng-template #renderCapacityIcon>

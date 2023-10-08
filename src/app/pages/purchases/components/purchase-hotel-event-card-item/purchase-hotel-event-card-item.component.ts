@@ -9,16 +9,35 @@ export class PurchaseHotelEventCardItemComponent implements OnInit {
 
   @Input() item: any;
 
-  public loader = false;
-
   constructor() { }
 
   ngOnInit(): void {
   }
 
   get totales(){
-    if(this.item.room.dates.length == 0) { return 0;}
-    return this.item.room.dates.map((date: any) => date.price).reduce((a: any, b: any) => a + b);
+    if(!this.item) { return 0;}
+    return this.item.totales;
+  }
+
+  /**
+   * Fecha de ingreso
+   */
+  get checkIn(){
+    if(!this.item) { return null; }
+    return this.item.room.dates[0].date;
+  }
+
+  /**
+   * Fecha de salida
+   */
+  get checkOut(){
+    if(!this.item) { return null; }
+    return this.item.room.dates[this.item.room.dates.length - 1].date;
+  }
+
+  get nroNights() {
+    if(!this.item) { return 0; }
+    return this.item.room.dates.length;
   }
 
 }
