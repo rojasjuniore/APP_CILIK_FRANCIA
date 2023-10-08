@@ -195,7 +195,11 @@
       "1": "una persona en la habitación",
       "2": "dos personas en la habitación",
       "3": "tres personas en la habitación"
-    }
+    },
+    "HAB1": "Habitación superios sencilla",
+    "HAB2": "Habitación junior o duplex",
+    "HAB3": "Habitación superios sencilla",
+    "HAB4": "Habitación junior suite"
   },
   "hotelAndEvent": {
     "completeTheFieldsToSearchForRooms": "Completa los campos para buscar habitaciones",

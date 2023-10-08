@@ -195,7 +195,11 @@
       "1": "una persona en la habitación",
       "2": "dos personas en la habitación",
       "3": "tres personas en la habitación"
-    }
+    },
+    "HAB1": "Superior single room",
+    "HAB2": "Junior or duplex room",
+    "HAB3": "Superior single room",
+    "HAB4": "Junior suite room"
   },
   "hotelAndEvent": {
     "completeTheFieldsToSearchForRooms": "Complete the fields to search for rooms",

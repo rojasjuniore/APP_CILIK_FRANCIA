@@ -40,28 +40,32 @@ export class HotelService {
   public roomTypes = {
     HAB1: {
       code: 'HAB1',
-      label: 'HABITACION SUPERIOS SENCILLA EN CASA DE PLAYA',
+      // label: 'HABITACION SUPERIOS SENCILLA EN CASA DE PLAYA',
+      label: 'room.HAB1',
       location: 1,
       include: 'room.include',
       notInclude: 'room.notInclude',
     },
     HAB2: {
       code: 'HAB2',
-      label: 'HABITACION JUNIOR O DUPLEX EN CASA DE PLAYA',
+      // label: 'HABITACION JUNIOR O DUPLEX EN CASA DE PLAYA',
+      label: 'room.HAB2',
       location: 1,
       include: 'room.include',
       notInclude: 'room.notInclude'
     },
     HAB3: {
       code: 'HAB3',
-      label: 'HABITACION SUPERIOS SENCILLA EN TORRE DEL MAR',
+      // label: 'HABITACION SUPERIOS SENCILLA EN TORRE DEL MAR',
+      label: 'room.HAB3',
       location: 2,
       include: 'room.include',
       notInclude: 'room.notInclude'
     },
     HAB4: {
       code: 'HAB4',
-      label: 'HABITACION JUNIOR SUITE EN TORRE DEL MAR',
+      // label: 'HABITACION JUNIOR SUITE EN TORRE DEL MAR',
+      label: 'room.HAB4',
       location: 2,
       include: 'room.include',
       notInclude: 'room.notInclude'
