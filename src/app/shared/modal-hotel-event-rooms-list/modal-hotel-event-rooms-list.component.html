@@ -103,10 +103,11 @@
 </div>
 
 <ng-template #renderRoomsList>
-    <div class="col-12" *ngFor="let item of roomList">
+    <div class="col-12" *ngFor="let item of roomList; first as isFirst">
         <app-hotel-and-event-room-list-item-card
             [item]="item" 
             [dates]="f['dates'].value"
+            [recomendation]="isFirst"
             (onSelectRoom)="onSelectRoom($event)"
         ></app-hotel-and-event-room-list-item-card>
     </div>
