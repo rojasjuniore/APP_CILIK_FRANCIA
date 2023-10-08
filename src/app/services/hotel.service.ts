@@ -30,8 +30,8 @@ export class HotelService {
    * Tipos de ubicación
    */
   public roomLocations: any = {
-    1: 'Casa de playa',
-    2: 'Torre del mar',
+    1: 'beachHouse',
+    2: 'seaTower',
   };
 
   /**
@@ -421,7 +421,7 @@ export class HotelService {
             code: value.code,
             title: value.label,
             location: value.location,
-            locationLabel: this.roomLocations[value.location],
+            locationLabel:  "room.location." + this.roomLocations[value.location],
             include: value.include,
             notInclude: value.notInclude,
             subcode: row.subcode,
