@@ -7,7 +7,7 @@
                 {{item?.title}}
             </h5> -->
             <div class="d-flex justify-content-between">
-                <span class="text-rslt fw-bold fs-5">
+                <!-- <span class="text-rslt fw-bold fs-5">
                     <i class="bi bi-ticket-perforated"></i>
                     &nbsp;
                     {{item?.title | translate}}
@@ -16,7 +16,18 @@
                 <span class="d-none d-md-block">
                     <i class="bi bi-person-fill"></i>
                     {{item?.capacity}}
+                </span> -->
+
+                <span class="text-rslt fw-bold fs-6">
+                    <i class="bi bi-person-fill"></i>
+                    {{item?.capacity}}
+                    |
+                    {{item?.title | translate}}
                 </span>
+
+                <div class="c-icon d-flex align-items-center">
+                    <img src="assets/img/icon-full-pass-gray.png" alt="">
+                </div>
             </div>
         </div>
 
@@ -29,50 +40,31 @@
                 {{item?.capacity}}
             </p>
 
-            <p class="card-text" *ngIf="item?.include">
+            <p class="card-text mb-0" *ngIf="item?.include">
                 {{"general.include" | translate}}:
                 <small class="text-muted">
                     {{item.include | translate}}
                 </small>
             </p>
             
-            <p class="card-text" *ngIf="item?.notInclude">
+            <p class="card-text mb-0" *ngIf="item?.notInclude">
                 {{"general.notInclude" | translate}}:
-                <span class="text-muted">
+                <small class="text-muted">
                     {{item.notInclude | translate}}
-                </span>
+                </small>
             </p>
 
-            <p class="card-text" *ngIf="item?.important">
+            <p class="card-text mb-0" *ngIf="item?.important">
                 {{"general.important" | translate}}:
-                <span class="text-muted">
+                <small class="text-muted">
                     {{item.important | translate}}
-                </span>
+                </small>
             </p>
-
-            <!-- <p class="fw-bold m-0">Subtitulo:</p>
-            <div class="seprd m-0 mb-2"></div>
-            <p class="m-0">Monto: 0</p>
-            <h5 class="pb-3 fw-bold">Total: USD 0</h5>
-
-            <div class="seprd2"></div>
-
-            <p class="m-0 mt-4">
-                Monto sin descuento:
-                <span class="text-decoration-line-through">USD 0</span>
-            </p>
-            <p class="m-0">Descuento: USD 0</p> -->
 
             <div class="d-flex justify-content-between">
                 <span class="fs-4 fw-bolder">
                     {{"general.total" | translate}}: USD {{totales}}
                 </span>
-                <div>
-                    <!-- <button type="button" class="btn-icon btn-icon-one">
-                        <i class="bi bi-pencil"></i>
-                    </button> -->
-                    <!-- <ng-container *ngIf="(!loader); then renderRemoveBtn; else renderLoader"></ng-container> -->
-                </div>
             </div>
 
         </div>
