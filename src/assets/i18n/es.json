@@ -95,7 +95,10 @@
     "totalNights": "Total de noches",
     "mostEconomicalOption": "Opción más económica",
     "search": "Buscar",
-    "availableRooms": "Habitaciones disponibles"
+    "availableRooms": "Habitaciones disponibles",
+    "adult": "Adulto",
+    "adults": "Adultos",
+    "amountOfPeople": "Cantidad de personas"
   },
   "formValidations": {
     "required": "El campo es obligatorio",
@@ -187,7 +190,12 @@
       "seaTower": "Torre del mar"
     },
     "include": "Desayuno buffet, acceso a todos los eventos del día que adquirió el hotel. Por la compra de la noche del sábado se incluye el acceso al evento del día domingo",
-    "notInclude": "Cena de gala del día viernes 9 de Febrero 2024, categorías para competir, almuerzos ni cenas,  tiquetes aéreos ni traslados"
+    "notInclude": "Cena de gala del día viernes 9 de Febrero 2024, categorías para competir, almuerzos ni cenas,  tiquetes aéreos ni traslados",
+    "capacityLabel": {
+      "1": "una persona en la habitación",
+      "2": "dos personas en la habitación",
+      "3": "tres personas en la habitación"
+    }
   },
   "hotelAndEvent": {
     "completeTheFieldsToSearchForRooms": "Completa los campos para buscar habitaciones",

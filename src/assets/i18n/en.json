@@ -95,7 +95,10 @@
     "totalNights": "Total nights",
     "mostEconomicalOption": "Most economical option",
     "search": "Search",
-    "availableRooms": "Available rooms"
+    "availableRooms": "Available rooms",
+    "adult": "Adult",
+    "adults": "Adults",
+    "amountOfPeople": "Amount of people"
   },
   "formValidations": {
     "required": "The field is required",
@@ -187,7 +190,12 @@
       "seaTower": "Sea Tower"
     },
     "include": "Breakfast buffet, access to all the events of the day purchased by the hotel. For the purchase of Saturday night, access to Sunday's event is included",
-    "notInclude": "Gala dinner on Friday, February 9, 2024, competition categories, lunches and dinners, tickets and transfers"
+    "notInclude": "Gala dinner on Friday, February 9, 2024, competition categories, lunches and dinners, tickets and transfers",
+    "capacityLabel": {
+      "1": "una persona en la habitación",
+      "2": "dos personas en la habitación",
+      "3": "tres personas en la habitación"
+    }
   },
   "hotelAndEvent": {
     "completeTheFieldsToSearchForRooms": "Complete the fields to search for rooms",

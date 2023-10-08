@@ -51,9 +51,11 @@
                     <div>
                         {{"general.totalNights" | translate}}: {{nroNights}}
                     </div>
-                    <div>Cantidad de habitaciones: 1</div>
-                    <div>{{item.locationLabel | translate}}</div>
-                    <div>Cantidad de personas: 3 adultos</div>
+                    <!-- <div>Cantidad de habitaciones: 1</div> -->
+                    <div>
+                        {{"general.amountOfPeople" | translate}}: 
+                        {{item.capacity}} {{"general." + ((item.capacity == 1) ? 'adult' : 'adults') | translate}}
+                    </div>
                     <div class="c-icon my-2">
                         2 camas dobles <img src="assets/img/icon-bed-gray.png" alt="">
                     </div>
