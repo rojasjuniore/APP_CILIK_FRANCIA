@@ -222,6 +222,15 @@
         "This code will expire in {{time}} {{unit}} or upon canceling the transaction"
       ]
     },
+    "signUp": {
+      "subject": "Welcome to WLDC Cartagena 2024 {{names}}",
+      "greeting": "Hi {{names}}!",
+      "body": [
+        "Welcome to the WLDC Cartagena 2024 application!",
+        "We are very happy to have your presence at the WLDC 2024 edition.",
+        "In the application you can purchase the packages to attend this great WLDC 2024 experience in Cartagena Colombia."
+      ]
+    },
     "purchaseInfo": {
       "subject": "Purchase {{orderId}} of WLDC Cartagena 2024",
       "body": [

@@ -316,23 +316,49 @@ export class SignUpComponent implements OnInit {
       });
 
       /** Enviar mail de bienvenida */
-      const names = `${data.name} ${data.surnames}`.toUpperCase();
+      const names = `${data.name} ${data.surnames}`.trim().toUpperCase();
+      // await this.quickNotificationSrv.sendEmailNotification({
+      //   type: "signUpNotification",
+      //   email: data.email,
+      //   subject: `Bienvenido a WLDC Cartagena 2024 ${names} - ` + moment().format("DD/MM/YYYY HH:mm:ss"),
+      //   greeting: `¡Hola ${names}!`,
+      //   messageBody: [
+      //     {type: "html", html: `<h1 style='text-align: center;'><strong>¡Bienvenido a la aplicación WLDC Cartagena 2024!</strong></h1>`},
+      //     {type: 'line', text: `Estamos muy felices de contar con tu presencia en la edición WLDC 2024.`},
+      //     {type: 'line', text: `En la aplicación podrás realizar la compra de los paquetes para asistir a esta gran experiencia WLDC 2024 en Cartagena Colombia.`},
+      //     {type: "line", text: "Si no reconoce esta actividad, no se requiere ninguna acción adicional."}
+      // ],
+      //   salutation: '¡Saludos!'
+      // });
       await this.quickNotificationSrv.sendEmailNotification({
         type: "signUpNotification",
         email: data.email,
-        subject: `Bienvenido a WLDC Cartagena 2024 ${names} - ` + moment().format("DD/MM/YYYY HH:mm:ss"),
-        greeting: `¡Hola ${names}!`,
+        subject: this.translatePipe.transform('notification.signUp.subject', {names: names}) + ` - ` + moment().format("DD/MM/YYYY HH:mm:ss"),
+        greeting: this.translatePipe.transform('notification.signUp.greeting', {names: names}),
         messageBody: [
-          {type: "html", html: `<h1 style='text-align: center;'><strong>¡Bienvenido a la aplicación WLDC Cartagena 2024!</strong></h1>`},
-          {type: 'line', text: `Estamos muy felices de contar con tu presencia en la edición WLDC 2024.`},
-          {type: 'line', text: `En la aplicación podrás realizar la compra de los paquetes para asistir a esta gran experiencia WLDC 2024 en Cartagena Colombia.`},
-          {type: "line", text: "Si no reconoce esta actividad, no se requiere ninguna acción adicional."}
+          {
+            type: "html",
+            html: `<h1 style='text-align: center;'><strong>${this.translatePipe.transform('notification.signUp.body.0')}</strong></h1>`
+          },
+          {
+            type: 'line', 
+            text: this.translatePipe.transform('notification.signUp.body.1')
+          },
+          {
+            type: 'line',
+            text: this.translatePipe.transform('notification.signUp.body.2')
+          },
+          {
+            type: "line",
+            text: this.translatePipe.transform('notification.noRecognizeActivity')
+          }
       ],
-        salutation: '¡Saludos!'
+        salutation: this.translatePipe.transform('notification.greetings')
       });
 
-      const message = this.translatePipe.transform('general.successfulRegistration');
-      this.sweetAlert2Srv.showSuccess(message, 2);
+      this.sweetAlert2Srv.showSuccess(
+        this.translatePipe.transform('general.successfulRegistration')
+      );
 
       this.router.navigate(['pages', 'dashboard']);
       return;

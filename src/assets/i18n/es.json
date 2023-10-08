@@ -222,6 +222,15 @@
         "Este código a caducará en {{time}} {{unit}} o al cancelar la transacción"
       ]
     },
+    "signUp": {
+      "subject": "Bienvenido a WLDC Cartagena 2024 {{names}}",
+      "greeting": "¡Hola {{names}}!",
+      "body": [
+        "¡Bienvenido a la aplicación WLDC Cartagena 2024!",
+        "Estamos muy felices de contar con tu presencia en la edición WLDC 2024.",
+        "En la aplicación podrás realizar la compra de los paquetes para asistir a esta gran experiencia WLDC 2024 en Cartagena Colombia."
+      ]
+    },
     "purchaseInfo": {
       "subject": "Compra {{orderId}} de WLDC Cartagena 2024",
       "body": [
