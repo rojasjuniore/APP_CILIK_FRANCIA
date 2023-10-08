@@ -91,7 +91,9 @@
     "payWith": "Pay with",
     "noRecordsFound": "No records found",
     "noRoomsAddedYet": "No rooms added yet",
-    "continue": "Continue"
+    "continue": "Continue",
+    "totalNights": "Total nights",
+    "mostEconomicalOption": "Most economical option"
   },
   "formValidations": {
     "required": "The field is required",
@@ -176,10 +178,10 @@
       "notInclude": "Access to the activities"
     }
   },
-  "rooms": {
+  "room": {
     "location": {
-      "beachHouse": "beach house",
-      "seaTower": "Sea tower"
+      "beachHouse": "Beach House",
+      "seaTower": "Sea Tower"
     }
   }
 }

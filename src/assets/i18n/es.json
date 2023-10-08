@@ -91,7 +91,9 @@
     "payWith": "Pagar con",
     "noRecordsFound": "No se encontraron registros",
     "noRoomsAddedYet": "Aún no se han añadido habitaciones",
-    "continue": "Continuar"
+    "continue": "Continuar",
+    "totalNights": "Total de noches",
+    "mostEconomicalOption": "Opción más económica"
   },
   "formValidations": {
     "required": "El campo es obligatorio",
