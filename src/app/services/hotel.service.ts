@@ -30,10 +30,8 @@ export class HotelService {
    * Tipos de ubicación
    */
   public roomLocations: any = {
-    // 1: 'Casa de playa',
-    // 2: 'Torre del mar',
-    1: 'type.one',
-    2: 'type.two',
+    1: 'Casa de playa',
+    2: 'Torre del mar',
   };
 
   /**
@@ -42,31 +40,31 @@ export class HotelService {
   public roomTypes = {
     HAB1: {
       code: 'HAB1',
-      label: 'hab1.label',
+      label: 'HABITACION SUPERIOS SENCILLA EN CASA DE PLAYA',
       location: 1,
-      include: 'hab1.include',
-      noInclude: 'hab1.noInclude',
+      include: 'HABITACION SUPERIOS SENCILLA EN CASA DE PLAYA , DESAYUNO BUFFET, ACCESO TODOS LOS EVENTOS DEL WLDC EL DIA QUE ADQUIRIO EL HOTEL. - POR LA COMPRA DE LA NOCHE DEL SABADO SE INCLUIRA EL ACCESO AL EVENTO DEL DOMINGO',
+      notInclude: '- Cena de Gala el dia viernes 9 de Febrero - No incluye categorias para competir - No incluyen cenas -',
     },
     HAB2: {
       code: 'HAB2',
-      label: 'hab2.label',
+      label: 'HABITACION JUNIOR O DUPLEX EN CASA DE PLAYA',
       location: 1,
-      include: 'hab2.include',
-      noInclude: 'hab1.noInclude'
+      include: 'HABITACION JUNIOR O DUPLEX EN CASA DE PLAYA , DESAYUNO BUFFET, ACCESO TODOS LOS EVENTOS DEL WLDC EL DIA QUE ADQUIRIO EL HOTEL - POR LA COMPRA DE LA NOCHE DEL SABADO SE INCLUIRA EL ACCESO AL EVENTO DEL DOMINGO',
+      notInclude: '- Cena de Gala el dia viernes 9 de Febrero - No incluye categorias para competir - No incluyen cenas -'
     },
     HAB3: {
       code: 'HAB3',
-      label: 'hab3.label',
+      label: 'HABITACION SUPERIOS SENCILLA EN TORRE DEL MAR',
       location: 2,
-      include: 'hab3.include',
-      noInclude: 'hab3.noInclude'
+      include: 'HABITACION SUPERIOS SENCILLA  EN TORRE DEL MAR, DESAYUNO BUFFET, ACCESO TODOS LOS EVENTOS DEL WLDC EL DIA QUE ADQUIRIO EL HOTEL - POR LA COMPRA DE LA NOCHE DEL SABADO SE INCLUIRA EL ACCESO AL EVENTO DEL DOMINGO',
+      notInclude: '- Cena de Gala el dia viernes 9 de Febrero - No incluye categorias para competir - No incluyen cenas -'
     },
     HAB4: {
       code: 'HAB4',
-      label: 'hab4.label',
+      label: 'HABITACION JUNIOR SUITE EN TORRE DEL MAR',
       location: 2,
-      include: 'hab4.include',
-      noInclude: 'hab4.noInclude'
+      include: 'HABITACION JUNIOR SUITE EN TORRE DEL MAR, DESAYUNO BUFFET, ACCESO TODOS LOS EVENTOS DEL WLDC EL DIA QUE ADQUIRIO EL HOTEL - POR LA COMPRA DE LA NOCHE DEL SABADO SE INCLUIRA EL ACCESO AL EVENTO DEL DOMINGO',
+      notInclude: '- Cena de Gala el dia viernes 9 de Febrero - No incluye categorias para competir - No incluyen cenas -'
     },
   };
 
@@ -420,12 +418,12 @@ export class HotelService {
           });
 
           return {
-            code: this.translate.instant(value.code),
-            title: this.translate.instant(value.label),
+            code: value.code,
+            title: value.label,
             location: value.location,
-            locationLabel: this.translate.instant(this.roomLocations[value.location]),
-            include: this.translate.instant(value.include),
-            noInclude: this.translate.instant(value.noInclude),
+            locationLabel: this.roomLocations[value.location],
+            include: value.include,
+            notInclude: value.notInclude,
             subcode: row.subcode,
             capacity: row.capacity,
             capacityLabel: row.label,
