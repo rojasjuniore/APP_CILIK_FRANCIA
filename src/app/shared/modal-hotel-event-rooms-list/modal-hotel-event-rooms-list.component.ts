@@ -145,11 +145,12 @@ export class ModalHotelEventRoomsListComponent implements OnInit, AfterViewInit 
 
     this.onCloseModal.next({status, data});
 
-    this.form.patchValue({ categoryTypes: '', quantity: 0});
+    this.form.patchValue({dates: '', capacity: 1});
     this.submitted = false;
     this.item = null;
     this.mi.hide();
     this.roomList = [];
+    this.form.updateValueAndValidity();
     this.inputGroupNumber.quantity = 1;
   }
 
