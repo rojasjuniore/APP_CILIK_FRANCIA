@@ -30,7 +30,6 @@
     </div>
 </div>
 
-
 <ng-template #renderCart>
     <div class="col-12 mb-4" *ngFor="let item of cart.product">
         <ng-container [ngSwitch]="item.slug">
@@ -42,7 +41,6 @@
         </ng-container>
     </div>
 </ng-template>
-
 
 <ng-template #renderEmptyCart>
     <div class="col-12 mb-4">
