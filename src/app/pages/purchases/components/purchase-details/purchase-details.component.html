@@ -56,7 +56,7 @@
                             <p class="card-text mb-0 text-md-end">
                                 {{"general.status" | translate}}:
                                 <span class="badge bg-danger">
-                                    {{order.status}}
+                                    {{('general.' + order.status) | translate | uppercase}}
                                 </span>
                             </p>
                         </div>
