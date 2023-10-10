@@ -15,10 +15,8 @@
 
     <div class="col-12">
         <div class="d-flex justify-content-between">
-            <button class="btn btn-three btn-medium-c text-uppercase" type="button" routerLink="/pages/cart">
-                <i class="bi bi-chevron-left"></i>
-                {{ "general.back" | translate }}
-            </button>
+
+            <ng-container *ngIf="paymentOptionSelected; then renderBackClearBtn; else renderBackBtn"></ng-container>
 
             <!-- <button class="btn btn-one btn-medium-c text-uppercase" [ngClass]="{'disabled': totales === 0}" type="button" routerLink="/pages/checkout">
                 Pagar
@@ -71,6 +69,21 @@
             </div>
         </div>
     </div>
+</ng-template>
+
+
+<ng-template #renderBackClearBtn>
+    <button class="btn btn-three btn-medium-c text-uppercase" type="button" (click)="onClearPaymentOptionSelected()">
+        <i class="bi bi-chevron-left"></i>
+        {{ "general.back" | translate }}
+    </button>
+</ng-template>
+
+<ng-template #renderBackBtn>
+    <button class="btn btn-three btn-medium-c text-uppercase" type="button" routerLink="/pages/cart">
+        <i class="bi bi-chevron-left"></i>
+        {{ "general.back" | translate }}
+    </button>
 </ng-template>
 
 <ng-template #renderLoader>

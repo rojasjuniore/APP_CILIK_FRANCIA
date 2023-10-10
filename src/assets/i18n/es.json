@@ -101,7 +101,8 @@
     "amountOfPeople": "Cantidad de personas",
     "remove": "Eliminar",
     "here": "Aquí",
-    "minutes": "minutos"
+    "minutes": "minutos",
+    "installmentsPayment": "Pago a cuotas"
   },
   "formValidations": {
     "required": "El campo es obligatorio",

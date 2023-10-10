@@ -101,7 +101,8 @@
     "amountOfPeople": "Amount of people",
     "remove": "Remove",
     "here": "Here",
-    "minutes": "minutes"
+    "minutes": "minutes",
+    "installmentsPayment": "Installments payment"
   },
   "formValidations": {
     "required": "The field is required",

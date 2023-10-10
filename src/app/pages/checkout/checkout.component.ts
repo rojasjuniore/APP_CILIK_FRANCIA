@@ -6,6 +6,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Subscription, distinctUntilChanged, switchMap } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CartService } from 'src/app/services/cart.service';
+import { InstallmentService } from 'src/app/services/dedicates/installment.service';
 import { UploadFileService } from 'src/app/services/dedicates/upload-file.service';
 import { PurchaseService } from 'src/app/services/purchase.service';
 import { QuickNotificationService } from 'src/app/services/quick-notification/quick-notification.service';
@@ -46,7 +47,7 @@ export class CheckoutComponent implements OnInit {
       available: true
     },
     {
-      label: 'paymentMethods.quota',
+      label: 'general.installmentsPayment',
       slug: 'installments',
       type: 'method',
       icon: 'bi bi-calendar-check',
@@ -67,7 +68,8 @@ export class CheckoutComponent implements OnInit {
     private tuCompraSrv: TucompraService,
     private quickNotificationSrv: QuickNotificationService,
     private uploadFileSrv: UploadFileService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private installmentSrv: InstallmentService,
     
   ) { }
 
@@ -99,11 +101,23 @@ export class CheckoutComponent implements OnInit {
     return product.map((item: any) => item.totales).reduce((a: number, b: number) => a + b, 0);
   }
 
+  onClearPaymentOptionSelected(){
+    this.paymentOptionSelected = null;
+  }
+
   onSelectPaymentOption(item: any){
     // console.log('onSelectPaymentOption', item);
     if(item.type === 'navigation'){
       this.paymentOptionSelected = item;
     }
+
+    if(item.type === 'method'){
+      // this.paymentOptionSelected = item;
+      console.log('this.cart', this.cart);
+      const snapshot = this.installmentSrv.getInstallmentByDate(moment().format('YYYY-MM-DD'));
+      // const snapshot = this.installmentSrv.getInstallmentByDate('2023-11-09');
+    }
+
   }
 
   async onPaypalCallback(event: any){
