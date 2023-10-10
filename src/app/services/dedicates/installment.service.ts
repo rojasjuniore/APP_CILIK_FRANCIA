@@ -41,6 +41,7 @@ export class InstallmentService {
 
   getInstallmentByDate(date: string){
     const installments: any[] = [{
+      quota: 1,
       date: date,
       paymentMethod: null,
       status: 'pending',
@@ -68,6 +69,7 @@ export class InstallmentService {
       }
 
       installments.push({
+        quota: index + 1,
         date: snapshotDate,
         paymentMethod: null,
         status: 'pending',
