@@ -9,8 +9,8 @@
     
 
     <h5 class="text-end" *ngFor="let item of coupons">
-        <span class="badge bg-danger" (click)="removeCoupon(item)">
-            <i class="bi bi-x-circle"></i>
+        <span class="badge bg-danger">
+            <i class="bi bi-x-circle" (click)="removeCoupon(item)"></i>
             &nbsp;
             {{"general.coupon" | translate}} 
             {{item.code | uppercase}} <i class="bi bi-ticket-perforated"></i>: 
