@@ -151,11 +151,11 @@
   "signUp": {
     "checkTermsAndConditions": "By registering you are accepting the personal data processing policies.",
     "imageUseAuthorization": "Image Use Authorization",
-    "imageUseAuthorizationLink": "https://firebasestorage.googleapis.com/v0/b/cilik-presale.appspot.com/o/imageUseAuthorizationEN.pdf?alt=media&token=85420948-2b5e-43e9-8a68-0a8503c993de",
+    "imageUseAuthorizationLink": "https://firebasestorage.googleapis.com/v0/b/wldc-app.appspot.com/o/2024%2Fwldc-cartagena-2024%2Fen_003%20USO%20DE%20IMAGEN%20%20ingles%20-IMAGE%20USAGE%20AUTHORIZATION%20DOCUMENT.pdf?alt=media&token=85101e07-f668-425c-9068-25bbd18ba47a",
     "informedConsentForMinors": "Informed consent for minors",
-    "informedConsentForMinorsLink": "https://firebasestorage.googleapis.com/v0/b/cilik-presale.appspot.com/o/informedConsentForMinorsEN.pdf?alt=media&token=49defaa2-a0a0-4d83-a75c-dd31a8e2bf70",
+    "informedConsentForMinorsLink": "https://firebasestorage.googleapis.com/v0/b/wldc-app.appspot.com/o/2024%2Fwldc-cartagena-2024%2Fen_008%20INFORMED%20CONSENT.pdf?alt=media&token=c6a6765c-b01d-43dd-be47-5ffc9c162f4d",
     "successfulRegistrationMessage": "You can now continue with the purchase process.",
-    "termsAndConditionsLink": "https://firebasestorage.googleapis.com/v0/b/cilik-presale.appspot.com/o/termsAndConditionsEN.pdf?alt=media&token=492df31e-adf8-4bc9-bf32-f90aa039a9d7"
+    "termsAndConditionsLink": "https://firebasestorage.googleapis.com/v0/b/wldc-app.appspot.com/o/2024%2Fwldc-cartagena-2024%2Fen_001%20TRATAMIENTO%20DE%20DATOS%20ingles%20-%20DATA%20TREATMENT%20POLICY.pdf?alt=media&token=3d2de2c3-1438-440a-8589-7db413d85b7e"
   },
   "dashboard": {
     "title": "Start your purchase to live the WLDC experience",
