@@ -461,6 +461,8 @@ export class HotelService {
             afterFull: (price?.after || 0) * row.capacity,
             ranges: price?.ranges || {},
             dayOfWeek: price?.dayOfWeek || [],
+            nroBeds: row.nroBeds,
+            bedsLabel: row.bedsLabel,
           }
         })
 
