@@ -203,7 +203,13 @@
     "HAB1": "Superior single room",
     "HAB2": "Junior or duplex room",
     "HAB3": "Superior single room",
-    "HAB4": "Junior suite room"
+    "HAB4": "Junior suite room",
+    "bed": {
+      "doubleBed": "Double bed",
+      "doubleBeds": "Double beds",
+      "kingBedPlusAdditional": "King bed plus additional bed",
+      "kingBed": "King bed"
+    }
   },
   "hotelAndEvent": {
     "completeTheFieldsToSearchForRooms": "Complete the fields to search for rooms",
