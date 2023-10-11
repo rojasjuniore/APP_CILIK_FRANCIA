@@ -56,10 +56,21 @@
                         {{"general.amountOfPeople" | translate}}: 
                         {{item.capacity}} {{"general." + ((item.capacity == 1) ? 'adult' : 'adults') | translate}}
                     </div>
-                    <!-- TODO: habilitar cantidad de camas -->
-                    <!-- <div class="c-icon my-2">
-                        2 camas dobles <img src="assets/img/icon-bed-gray.png" alt="">
-                    </div> -->
+                    
+                    <div class="c-icon my-2">
+                        {{item.nroBeds}} 
+
+                        <!-- camas dobles  -->
+                        <ng-container *ngFor="let item of item.bedsLabel; last as isLast">
+                            {{item | translate}}
+                            <ng-container *ngIf="(!isLast)">
+                                {{'general.or' | translate}}&nbsp;
+                            </ng-container>
+                        </ng-container>
+
+                        <img src="assets/img/icon-bed-gray.png" alt="">
+                    </div>
+
                 </div>
                 <div class="col-12 col-md-6 d-flex justify-content-center  justify-content-md-end">
                     <div class="img-card">

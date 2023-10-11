@@ -51,13 +51,27 @@
                     <div>
                         {{"general.totalNights" | translate}}: {{nroNights}}
                     </div>
+
                     <!-- <div>Cantidad de habitaciones: 1</div> -->
+                    
                     <div>
                         {{"general.amountOfPeople" | translate}}:
                         {{item.room.capacity}} {{"general." + ((item.room.capacity == 1) ? 'adult' : 'adults') | translate}}
                     </div>
-                    <!-- TODO: habilitar cantidad de camas -->
-                    <!-- <div class="c-icon my-2">2 camas dobles <img src="assets/img/icon-bed-gray.png" alt=""></div> -->
+                    
+                    <div class="c-icon my-2">
+                        {{item.room.nroBeds}} 
+
+                        <!-- camas dobles  -->
+                        <ng-container *ngFor="let item of item.room.bedsLabel; last as isLast">
+                            {{item | translate}}
+                            <ng-container *ngIf="(!isLast)">
+                                {{'general.or' | translate}}&nbsp;
+                            </ng-container>
+                        </ng-container>
+
+                        <img src="assets/img/icon-bed-gray.png" alt="">
+                    </div>
                 </div>
                 <div class="col-12 col-md-6 d-flex justify-content-center  justify-content-md-end">
                     <div class="img-card">

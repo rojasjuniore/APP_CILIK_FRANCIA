@@ -16,8 +16,7 @@ export class CartHotelEventCardItemComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   get totales(){
     if(!this.item) { return 0;}
