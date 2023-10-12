@@ -26,13 +26,6 @@ export class CheckoutComponent implements OnInit {
 
   public paymentOptions = [
     {
-      label: 'general.paypal',
-      slug: 'paypal',
-      type: 'navigation',
-      icon: 'bi bi-paypal',
-      available: true
-    },
-    {
       label: 'general.creditOrDebitCard',
       slug: 'tucompra',
       type: 'navigation',
@@ -52,6 +45,13 @@ export class CheckoutComponent implements OnInit {
       type: 'method',
       icon: 'bi bi-calendar-check',
       available: false
+    },
+    {
+      label: 'general.paypal',
+      slug: 'paypal',
+      type: 'navigation',
+      icon: 'bi bi-paypal',
+      available: true
     },
   ];
   public paymentOptionSelected: any;
