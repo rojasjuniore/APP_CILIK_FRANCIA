@@ -21,7 +21,8 @@ export class EventInfoService {
       icons: [
         "assets/img/icon-bed.png",
         "assets/img/icon-ticket.png"
-      ]
+      ],
+      available: true,
     },
     {
       isRecommended: false,
@@ -35,7 +36,8 @@ export class EventInfoService {
       headerColor: 'red',
       icons: [
         "assets/img/icon-full-pass.png",
-      ]
+      ],
+      available: true,
     },
     {
       isRecommended: false,
@@ -49,7 +51,8 @@ export class EventInfoService {
       headerColor: 'red',
       icons: [
         "assets/img/icon-ticket.png"
-      ]
+      ],
+      available: false,
     },
     {
       isRecommended: false,
@@ -63,7 +66,8 @@ export class EventInfoService {
       headerColor: 'red',
       icons: [
         "assets/img/icon-ticket.png"
-      ]
+      ],
+      available: true,
     },
     {
       isRecommended: false,
@@ -77,7 +81,8 @@ export class EventInfoService {
       headerColor: 'red',
       icons: [
         "assets/img/icon-pass-category.png"
-      ]
+      ],
+      available: true,
     },
   ];
 

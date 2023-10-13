@@ -24,7 +24,7 @@ export class StoreComponent implements OnInit {
   @ViewChild('modalOnlyCategories') modalOnlyCategories!: ModalStoreOnlyCategoriesComponent;
   @ViewChild('modalOnlyDayPass') modalOnlyDayPass!: ModalStoreOnlyDayPassComponent;
 
-  public storeOptions: any[] = this.eventInfoSrv.storeOptions;
+  public storeOptions: any[] = this.eventInfoSrv.storeOptions.filter((item: any) => item.available);
 
   constructor(
     private spinner: NgxSpinnerService,
