@@ -37,7 +37,7 @@ export class CheckoutComponent implements OnInit {
       slug: 'bankTransfer',
       type: 'navigation',
       icon: 'bi bi-bank',
-      available: true
+      available: false
     },
     {
       label: 'general.installmentsPayment',
