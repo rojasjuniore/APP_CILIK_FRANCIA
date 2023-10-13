@@ -41,7 +41,7 @@ export class CartHotelEventCardItemComponent implements OnInit {
 
   get nroNights() {
     if(!this.item) { return 0; }
-    return this.item.room.dates.length;
+    return this.item.room.dates.length - 1;
   }
 
   remove(){ 
