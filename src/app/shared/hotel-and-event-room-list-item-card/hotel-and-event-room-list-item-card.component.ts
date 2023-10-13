@@ -58,7 +58,7 @@ export class HotelAndEventRoomListItemCardComponent implements OnInit, OnChanges
 
   get nroNights() {
     if(!this.item) { return 0; }
-    return this.item.dates.length;
+    return this.item.dates.length - 1;
   }
 
   // updateDates(dates: any){

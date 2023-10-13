@@ -25,11 +25,11 @@ export class ModalHotelEventRoomsListComponent implements OnInit, AfterViewInit 
   public vm: any = {
     dates: [
       { type: 'required', message: 'formValidations.required' },
-      { type: 'minlength', message: 'formValidations.minlength1' },
+      { type: 'minlength', message: 'formValidations.minlength2Dates' },
     ],
     capacity: [
       { type: 'required', message: 'formValidations.required' },
-      { type: 'minlength', message: 'formValidations.minlength1' },
+      { type: 'min', message: 'formValidations.min1' },
     ],
   };
   public submitted = false;
@@ -45,8 +45,8 @@ export class ModalHotelEventRoomsListComponent implements OnInit, AfterViewInit 
     private hotelSrv: HotelService,
   ) {
     this.form = this.fb.group({
-      dates: ['', [Validators.required, Validators.minLength(1)]],
-      capacity: [1, [Validators.required, Validators.minLength(1)]],
+      dates: ['', [Validators.required, Validators.minLength(2)]],
+      capacity: [1, [Validators.required, Validators.min(1)]],
     });
   }
 
@@ -77,8 +77,9 @@ export class ModalHotelEventRoomsListComponent implements OnInit, AfterViewInit 
   get f() { return this.form.controls; }
 
   onInputDatesChange(value: string | string[]){
-    // console.log('onInputDatesChange', value);
+    console.log('onInputDatesChange', value);
     this.form.patchValue({dates: value});
+    this.roomList = [];
   }
 
   onInputNumberChange(value: number){
@@ -93,15 +94,30 @@ export class ModalHotelEventRoomsListComponent implements OnInit, AfterViewInit 
 
   searchRooms(){
     // console.log('searchRooms', this.form.value);
+    this.submitted = true;
     const formData = this.form.value;
+
+    if(!this.form.valid){
+      this.form.markAllAsTouched();
+      return;
+    }
 
     this.roomList = this.hotelSrv.getRoomsByDate(this.item.currentDate)
     .filter((item: any) => item.capacity == formData.capacity)
     /** Obtener precio de las fechas seleccionadas */
-    .map((item: any) => ({
-      ...item,
-      dates: formData.dates.map((date: string) => this.hotelSrv.getRoomPriceByDate(item.subcode , date))
-    }))
+    .map((item: any) => {
+
+      /** Obtener precio por cada día */
+      const dates = formData.dates.map((date: string) => this.hotelSrv.getRoomPriceByDate(item.subcode , date));
+
+      /** Setear CERO 0 a la ultima fecha - Reglas del negocio */
+      dates[dates.length - 1].price = 0;
+
+      return {
+        ...item,
+        dates: dates
+      }
+    })
     /** Calcular total de la habitación */
     .map((item: any) => ({
       ...item,

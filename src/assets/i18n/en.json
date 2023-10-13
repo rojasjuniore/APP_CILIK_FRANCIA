@@ -111,6 +111,7 @@
     "min1": "The minimum amount is 1",
     "min3": "The minimum amount is 3",
     "minlength1": "The field must have at least 1 characters",
+    "minlength2Dates": "You must enter a valid date period",
     "minlength6": "The field must have at least 6 characters",
     "minlength9": "The field must have at least 9 characters",
     "maxlength10": "The field must have a maximum of 10 characters",

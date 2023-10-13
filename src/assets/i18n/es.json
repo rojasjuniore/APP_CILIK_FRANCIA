@@ -111,6 +111,7 @@
     "min1": "La cantidad mínima es 1",
     "min3": "La cantidad mínima es 3",
     "minlength1": "El campo debe tener al menos 1 caracter",
+    "minlength2Dates": "Debe ingresar un periodo de fechas válido",
     "minlength6": "El campo debe tener al menos 6 caracteres",
     "minlength9": "El campo debe tener al menos 9 caracteres",
     "maxlength10": "El campo debe tener máximo 10 caracteres",
