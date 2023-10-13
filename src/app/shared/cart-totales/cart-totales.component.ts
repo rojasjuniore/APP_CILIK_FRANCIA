@@ -45,6 +45,11 @@ export class CartTotalesComponent implements OnInit, OnChanges {
     return total;
   }
 
+  get hastCoupons() {
+    if(!this.cart) return false;
+    return this.cart.coupons && this.cart.coupons.length > 0;
+  }
+
   get discount() {
     if(!this.cart) return 0;
 
