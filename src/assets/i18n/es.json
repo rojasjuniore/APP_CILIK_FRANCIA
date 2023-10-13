@@ -241,10 +241,10 @@
       ]
     },
     "purchaseInfo": {
-      "subject": "Compra {{orderId}} de WLDC Cartagena 2024",
+      "subject": "Orden {{orderId}} de WLDC Cartagena 2024",
       "body": [
         "Estamos muy felices de contar con tu presencia en la edición WLDC 2024.",
-        "A continuación encontrarás los detalles de tu compra:"
+        "A continuación encontrarás los detalles de tu orden:"
       ]
     }
   }
