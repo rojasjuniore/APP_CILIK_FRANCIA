@@ -37,7 +37,7 @@ export class CouponsAddFormComponent implements OnInit {
     ],
     value: [
       { type: 'required', message: 'is required' },
-      { type: 'min', message: 'min value is 1' },
+      { type: 'min', message: 'min value is 0' },
       { type: 'max', message: 'max value is 100' },
       { type: 'pattern', message: 'only integer values' },
     ],
@@ -55,11 +55,11 @@ export class CouponsAddFormComponent implements OnInit {
   ];
 
   private valueRules = {
-    percentage: [Validators.required, Validators.min(1), Validators.max(100)],
+    percentage: [Validators.required, Validators.min(0), Validators.max(100)],
     amount: [
       Validators.required,
       Validators.pattern(/^-?(0|[1-9]\d*)?$/),
-      Validators.min(1),
+      Validators.min(0),
     ]
   };
 
