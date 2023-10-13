@@ -103,7 +103,8 @@
     "here": "Aquí",
     "minutes": "minutos",
     "installmentsPayment": "Pago a cuotas",
-    "or": "o"
+    "or": "o",
+    "order": "Orden"
   },
   "formValidations": {
     "required": "El campo es obligatorio",

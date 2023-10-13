@@ -103,7 +103,8 @@
     "here": "Here",
     "minutes": "minutes",
     "installmentsPayment": "Installments payment",
-    "or": "or"
+    "or": "or",
+    "order": "Order"
   },
   "formValidations": {
     "required": "The field is required",

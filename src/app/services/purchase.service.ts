@@ -113,7 +113,7 @@ export class PurchaseService {
         messageBody: [
           {
             type: "html",
-            html: `<h1 style='text-align: center;'><strong>${this.translatePipe.transform('general.purchase')} #${orderId}</strong></h1>`
+            html: `<h1 style='text-align: center;'><strong>${this.translatePipe.transform('general.order')} #${orderId}</strong></h1>`
           },
           {
             type: 'line', 
