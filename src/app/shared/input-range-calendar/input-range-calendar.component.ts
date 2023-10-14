@@ -22,11 +22,11 @@ export class InputRangeCalendarComponent implements OnInit, AfterViewInit, OnCha
 
   @Input() autoUpdateInput =  true;
 
-  @Input() autoApply =  false;
+  @Input() autoApply =  true;
 
-  @Input() opens =  'right'; // left, right, center
+  @Input() opens =  'center'; // left, right, center
 
-  @Input() drops =  'auto'; // up, down, auto
+  @Input() drops =  'down'; // up, down, auto
 
 
   @Input() buttonClasses =  'btn btn-sm';
