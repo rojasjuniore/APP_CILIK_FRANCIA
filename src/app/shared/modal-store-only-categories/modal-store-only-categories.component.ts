@@ -41,7 +41,7 @@ export class ModalStoreOnlyCategoriesComponent implements OnInit {
     {
       label: 'general.group',
       value: 'group',
-      description: 'general.nroParticipants'
+      description: 'general.nroGroupMembers'
     },
   ];
 

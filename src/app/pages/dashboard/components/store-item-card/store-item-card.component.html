@@ -24,7 +24,9 @@
                         {{item.title | translate}}
                     </div>
                     <div>
-                        <span class="fw-bold text-uppercase pe-2">{{'include' | translate}}:</span>
+                        <span class="fw-bold text-uppercase pe-2">
+                            {{'general.include' | translate}}:
+                        </span>
                         <span>{{item.include | translate}}</span>
                     </div>
                     <div *ngIf="item.notInclude">
