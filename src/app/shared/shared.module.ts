@@ -35,6 +35,7 @@ import { InputGroupNumberFormComponent } from './input-group-number-form/input-g
 import { PurchaseTotalesComponent } from './purchase-totales/purchase-totales.component';
 import { CheckoutBanktransferSelectOptionComponent } from './checkout-banktransfer-select-option/checkout-banktransfer-select-option.component';
 import { PurchaseUploadVoucherFormComponent } from './purchase-upload-voucher-form/purchase-upload-voucher-form.component';
+import { PurchaseBankTransferInfoCardItemComponent } from './purchase-bank-transfer-info-card-item/purchase-bank-transfer-info-card-item.component';
 
 
 
@@ -67,6 +68,7 @@ import { PurchaseUploadVoucherFormComponent } from './purchase-upload-voucher-fo
     PurchaseTotalesComponent,
     CheckoutBanktransferSelectOptionComponent,
     PurchaseUploadVoucherFormComponent,
+    PurchaseBankTransferInfoCardItemComponent,
     
     ModalOnlyInputNumberComponent,
     ModalStoreOnlyCategoriesComponent,
@@ -116,6 +118,7 @@ import { PurchaseUploadVoucherFormComponent } from './purchase-upload-voucher-fo
     PurchaseTotalesComponent,
     CheckoutBanktransferSelectOptionComponent,
     PurchaseUploadVoucherFormComponent,
+    PurchaseBankTransferInfoCardItemComponent,
 
     ModalOnlyInputNumberComponent,
     ModalStoreOnlyCategoriesComponent,
