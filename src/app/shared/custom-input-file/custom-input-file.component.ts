@@ -25,11 +25,11 @@ export class CustomInputFileComponent implements OnInit {
 
   @Input() submitBtnText: string = "general.submit";
 
-  @Input() confirmBtnText: string = "general.Confirm";
+  @Input() confirmBtnText: string = "general.confirm";
 
-  @Input() cancelBtnText: string = "general.Cancel";
+  @Input() cancelBtnText: string = "general.cancel";
 
-  @Input() clearBtnText: string = "general.Clear";
+  @Input() clearBtnText: string = "general.clear";
 
   @Input() noSelectFileText: string = "general.noFileSelec";
 
