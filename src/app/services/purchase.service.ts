@@ -131,7 +131,7 @@ export class PurchaseService {
             type: "line", 
             text: `${this.translatePipe.transform('notification.noRecognizeActivity')}.`
           }
-      ],
+        ],
         salutation: `${this.translatePipe.transform('notification.greetings')}`
       });
 
@@ -142,6 +142,97 @@ export class PurchaseService {
       return false;
     }
   }
+
+  async sendPurchaseBankTransferInformationNotification(params: any) {
+    try {
+      const {
+        email, 
+        orderId,
+        bankOptionData
+      } = params;
+
+      /** Enviar notificación de datos para transferencia bancaria */
+      await this.quickNotificationSrv.sendEmailNotification({
+        type: "purchaseBankTransferInfo",
+        email: email,
+        subject: `Datos de Transferencia #${orderId} - WLDC Cartagena 2024 - ` + moment().format("DD/MM/YYYY HH:mm:ss"),
+        greeting: `¡Hola!`,
+        messageBody: [
+          {type: "html", html: `<h1 style='text-align: center;'><strong>Orden #${orderId}</strong></h1>`},
+          {type: 'line', text: `Estamos muy felices de contar con tu presencia en la edición WLDC 2024.`},
+
+          {type: "html", html: `<h4 style='text-align: center; margin: 0;'><strong>${bankOptionData.label}</strong></h4>`},
+          {type: 'html', html: `<p style='text-align: center; margin: 0;'><strong>Razon:</strong> ${bankOptionData.accountTitle}</p>`},
+          {type: 'html', html: `<p style='text-align: center; margin: 0;'><strong>Nro. Cuenta:</strong> ${bankOptionData.nrAccount}</p>`},
+          {type: 'html', html: `<p style='text-align: center; margin: 0;'><strong>Swift:</strong> ${bankOptionData.swift}</p>`},
+          {type: 'line', text: ``},
+          
+          {type: 'line', text: `A continuación encontrarás los detalles de tu orden:`},
+          {type: 'action', action: 'Aquí', url: environment.dataEvent.appURL + '/pages/purchases/' + orderId + '/details'},
+          {type: "line", text: "Si no reconoce esta actividad, no se requiere ninguna acción adicional."}
+      ],
+        salutation: '¡Saludos!'
+        // subject: this.translatePipe.transform('notification.purchaseInfo.subject', {orderId: orderId}) + ' - ' + moment().format("DD/MM/YYYY HH:mm:ss"),
+        // greeting: `${this.translatePipe.transform('notification.hello')}`,
+        // messageBody: [
+        //   {
+        //     type: "html",
+        //     html: `<h1 style='text-align: center;'><strong>${this.translatePipe.transform('general.order')} #${orderId}</strong></h1>`
+        //   },
+        //   {
+        //     type: 'line', 
+        //     text: this.translatePipe.transform('notification.purchaseInfo.body')[0]
+        //   },
+        //   {
+        //     type: 'line',
+        //     text: this.translatePipe.transform('notification.purchaseInfo.body')[1]
+        //   },
+        //   {
+        //     type: 'action', 
+        //     action: this.translatePipe.transform("general.here"), url: environment.dataEvent.appURL + '/pages/purchases/' + orderId + '/details'
+        //   },
+        //   {
+        //     type: "line", 
+        //     text: `${this.translatePipe.transform('notification.noRecognizeActivity')}.`
+        //   }
+        // ],
+        // salutation: `${this.translatePipe.transform('notification.greetings')}`
+      });
+
+      return true;
+      
+    } catch (err) {
+      console.log('Error on PurchaseService.sendPurchaseBankTransferInformationNotification', err);
+      return false;
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

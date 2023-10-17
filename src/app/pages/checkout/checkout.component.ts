@@ -365,7 +365,13 @@ export class CheckoutComponent implements OnInit {
         uid: this.cart.uid
       });
 
-      /** TODO: enviar datos de transferencia bancaria */
+      /** Enviar datos de transferencia bancaria */
+      await this.purchaseSrv.sendPurchaseBankTransferInformationNotification({
+        email: userDoc.email, 
+        orderId: purchase.orderId,
+        uid: this.cart.uid,
+        bankOptionData: purchase.bankOptionData
+      });
 
       /** Redireccionar */
       this.router.navigate(['/pages/dashboard']);
