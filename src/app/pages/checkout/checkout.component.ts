@@ -37,7 +37,7 @@ export class CheckoutComponent implements OnInit {
       slug: 'bankTransfer',
       type: 'navigation',
       icon: 'bi bi-bank',
-      available: false
+      available: true
     },
     {
       label: 'general.installmentsPayment',
@@ -240,11 +240,86 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
-  async onSelectBankTransferFile(file: any){
+  // async onSelectBankTransferFile(file: any){
+  //   try {
+
+  //     /** Si se limpia el archivo */
+  //     if(!file){ return; }
+
+
+  //     const ask = await this.sweetAlert2Srv.askConfirm(
+  //       this.translate.instant("alert.confirmAction")
+  //     );
+  //     if(!ask) { return; }
+
+  //     // console.log('onSelectBankTransferFile', file);
+
+  //     await this.spinner.show();
+
+  //     const orderId = this.cart.cartId;
+
+  //     const userDoc = await this.authSrv.getByUIDPromise(this.cart.uid);
+  //     // console.log('userDoc', userDoc);
+
+  //     const fileName = `${orderId}_${file.name}_${moment().valueOf()}`;
+
+  //     const urlToSaveFile = `purchases/${environment.dataEvent.keyDb}/${orderId}/${fileName}`;
+  //     const fileRef = await this.uploadFileSrv.uploadFileDocumentIntoRoute(urlToSaveFile, file);
+
+  //     const purchase = {
+  //       ...this.cart,
+  //       paymentMethod: 'bankTransfer',
+  //       voucher: {
+  //         name: file.name,
+  //         type: file.type,
+  //         size: file.size,
+  //         path: urlToSaveFile,
+  //         url: fileRef,
+  //         timeline: []
+  //       },
+  //       canEdit: false,
+  //       status: 'pending',
+  //       payedAt: null,
+  //       orderId: orderId,
+  //       totales: this.totales
+  //     };
+  //     // console.log('purchase', purchase);
+
+  //     /** Almacenar orden de compra */
+  //     await this.purchaseSrv.storePurchase(environment.dataEvent.keyDb, purchase.orderId, purchase);
+
+  //     /** Enviar notificación de compra realizada */
+  //     await this.purchaseSrv.sendPurchaseInformationNotification({
+  //       email: userDoc.email, 
+  //       orderId: purchase.orderId,
+  //       uid: this.cart.uid
+  //     });
+
+  //     /** Redireccionar */
+  //     this.router.navigate(['/pages/dashboard']);
+
+  //     /** Eliminar carrito de compra */
+  //     await this.cartSrv.deleteCart(environment.dataEvent.keyDb, this.uid);
+
+  //     this.sweetAlert2Srv.showToast(
+  //       this.translate.instant("alert.purchaseMadeSatisfactorily"),
+  //       'success'
+  //     );
+  //     return;
+      
+  //   } catch (err) {
+  //     console.log('Error on CheckoutComponent.onSelectBankTransferFile()', err);
+  //     return;
+  //   } finally {
+  //     this.spinner.hide();
+  //   }
+  // }
+
+  async onSelectBankTransferOption(bankOption: any){
     try {
 
-      /** Si se limpia el archivo */
-      if(!file){ return; }
+      /** Si no se recibe ninguna opción */
+      if(!bankOption){ return; }
 
 
       const ask = await this.sweetAlert2Srv.askConfirm(
@@ -252,7 +327,7 @@ export class CheckoutComponent implements OnInit {
       );
       if(!ask) { return; }
 
-      // console.log('onSelectBankTransferFile', file);
+      console.log('onSelectBankTransferOption', bankOption);
 
       await this.spinner.show();
 
@@ -261,29 +336,24 @@ export class CheckoutComponent implements OnInit {
       const userDoc = await this.authSrv.getByUIDPromise(this.cart.uid);
       // console.log('userDoc', userDoc);
 
-      const fileName = `${orderId}_${file.name}_${moment().valueOf()}`;
+      // const fileName = `${orderId}_${file.name}_${moment().valueOf()}`;
 
-      const urlToSaveFile = `purchases/${environment.dataEvent.keyDb}/${orderId}/${fileName}`;
-      const fileRef = await this.uploadFileSrv.uploadFileDocumentIntoRoute(urlToSaveFile, file);
+      // const urlToSaveFile = `purchases/${environment.dataEvent.keyDb}/${orderId}/${fileName}`;
+      // const fileRef = await this.uploadFileSrv.uploadFileDocumentIntoRoute(urlToSaveFile, file);
 
       const purchase = {
         ...this.cart,
         paymentMethod: 'bankTransfer',
-        voucher: {
-          name: file.name,
-          type: file.type,
-          size: file.size,
-          path: urlToSaveFile,
-          url: fileRef,
-          timeline: []
-        },
-        canEdit: false,
+        bankOption: bankOption.slug,
+        bankOptionData: bankOption,
+        voucher: null,
+        canEdit: true,
         status: 'pending',
         payedAt: null,
         orderId: orderId,
         totales: this.totales
       };
-      // console.log('purchase', purchase);
+      console.log('purchase', purchase);
 
       /** Almacenar orden de compra */
       await this.purchaseSrv.storePurchase(environment.dataEvent.keyDb, purchase.orderId, purchase);
@@ -294,6 +364,8 @@ export class CheckoutComponent implements OnInit {
         orderId: purchase.orderId,
         uid: this.cart.uid
       });
+
+      /** TODO: enviar datos de transferencia bancaria */
 
       /** Redireccionar */
       this.router.navigate(['/pages/dashboard']);

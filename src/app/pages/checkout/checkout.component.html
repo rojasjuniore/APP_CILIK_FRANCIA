@@ -42,7 +42,8 @@
         </div>
 
         <div class="col-12" *ngSwitchCase="'bankTransfer'">
-            <app-custom-input-file (onSelectFile)="onSelectBankTransferFile($event)"></app-custom-input-file>
+            <app-checkout-banktransfer-select-option (onSelectOption)="onSelectBankTransferOption($event)"></app-checkout-banktransfer-select-option>
+            <!-- <app-custom-input-file (onSelectFile)="onSelectBankTransferFile($event)"></app-custom-input-file> -->
         </div>
         
     </ng-container>
