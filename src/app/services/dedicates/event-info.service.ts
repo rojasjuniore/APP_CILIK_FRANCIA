@@ -126,6 +126,27 @@ export class EventInfoService {
     },
   ];
 
+  public bankTransferOptionList = [
+    {
+      label: 'Bancolombia',
+      value: 'Colombia',
+      accountTitle: 'Fundación Ballet Nacional El Firulete',
+      nrAccount: '10570863272 Ahorros',
+      swift: 'COLOCOBM',
+      status: true,
+      slug: 'bancolombia'
+    },
+    {
+      label: 'ADCB BANK',
+      value: 'Dubai',
+      accountTitle: 'BNF FZ LLC',
+      nrAccount: '957211920010',
+      swift: 'ADCBAEAA',
+      status: true,
+      slug: 'adcb-bank'
+    }
+  ];
+
   constructor(
     private translate: TranslateService
   ) { }
