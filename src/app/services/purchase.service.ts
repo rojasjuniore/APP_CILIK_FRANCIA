@@ -148,7 +148,8 @@ export class PurchaseService {
       const {
         email, 
         orderId,
-        bankOptionData
+        bankOptionData,
+        totales
       } = params;
 
       /** Enviar notificación de datos para transferencia bancaria */
@@ -165,6 +166,7 @@ export class PurchaseService {
           {type: 'html', html: `<p style='text-align: center; margin: 0;'><strong>Razon:</strong> ${bankOptionData.accountTitle}</p>`},
           {type: 'html', html: `<p style='text-align: center; margin: 0;'><strong>Nro. Cuenta:</strong> ${bankOptionData.nrAccount}</p>`},
           {type: 'html', html: `<p style='text-align: center; margin: 0;'><strong>Swift:</strong> ${bankOptionData.swift}</p>`},
+          {type: 'html', html: `<p style='text-align: center; margin: 0;'><strong>Total:</strong> ${totales} USD</p>`},
           {type: 'line', text: ``},
           
           {type: 'line', text: `A continuación encontrarás los detalles de tu orden:`},

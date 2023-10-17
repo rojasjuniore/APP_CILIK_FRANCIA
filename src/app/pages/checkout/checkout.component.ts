@@ -370,7 +370,8 @@ export class CheckoutComponent implements OnInit {
         email: userDoc.email, 
         orderId: purchase.orderId,
         uid: this.cart.uid,
-        bankOptionData: purchase.bankOptionData
+        bankOptionData: purchase.bankOptionData,
+        totales: purchase.totales
       });
 
       /** Redireccionar */
