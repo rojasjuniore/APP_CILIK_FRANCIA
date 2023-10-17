@@ -101,7 +101,15 @@
         </div>
     </div>
 
-    <div class="col text-center mb-3">
+    <!-- Transfer Segment -->
+    <ng-container 
+        *ngIf="(order.paymentMethod === 'bankTransfer')"
+        [ngTemplateOutlet]="renderBankTransferSegment"
+        [ngTemplateOutletContext]="{order: order}"
+    ></ng-container>
+
+
+    <div class="col-12 text-center mb-3">
         <div class="fs-4 fw-bold">
             {{"general.products" | translate | titlecase}}
         </div>
@@ -115,6 +123,25 @@
             <app-purchase-day-pass-card-item *ngSwitchCase="'day-pass'" [item]="item"></app-purchase-day-pass-card-item>
             <app-purchase-hotel-event-card-item *ngSwitchCase="'hotel-event'" [item]="item"></app-purchase-hotel-event-card-item>
         </ng-container>
+    </div>
+</ng-template>
+
+
+<ng-template #renderBankTransferSegment let-order="order">
+    <div class="col-12 text-center mb-3">
+        <div class="fs-4 fw-bold">
+            Voucher
+        </div>
+    </div>
+
+    <div class="col-12">
+        <app-purchase-bank-transfer-info-card-item [item]="order.bankOptionData"></app-purchase-bank-transfer-info-card-item>
+    </div>
+
+    <app-purchase-upload-voucher-form *ngIf="!order.voucher" (onCompleteForm)="onLoadVoucher($event)"></app-purchase-upload-voucher-form>
+
+    <div class="col-12" *ngIf="order.voucher">
+        <app-voucher-card-item [voucher]="order.voucher"></app-voucher-card-item>
     </div>
 </ng-template>
 
