@@ -59,7 +59,7 @@ export class CustomInputFileComponent implements OnInit {
   clearFile(){
     this.fileLoaded = false;
     this.formFile = null;
-    // this.onSelectFile.next(null);
+    this.onSelectFile.next(null);
     this.inputFileRef.nativeElement.value = "";
   }
 

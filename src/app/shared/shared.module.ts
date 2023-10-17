@@ -34,6 +34,7 @@ import { InputRangeCalendarComponent } from './input-range-calendar/input-range-
 import { InputGroupNumberFormComponent } from './input-group-number-form/input-group-number-form.component';
 import { PurchaseTotalesComponent } from './purchase-totales/purchase-totales.component';
 import { CheckoutBanktransferSelectOptionComponent } from './checkout-banktransfer-select-option/checkout-banktransfer-select-option.component';
+import { PurchaseUploadVoucherFormComponent } from './purchase-upload-voucher-form/purchase-upload-voucher-form.component';
 
 
 
@@ -65,6 +66,7 @@ import { CheckoutBanktransferSelectOptionComponent } from './checkout-banktransf
     CartTotalesComponent,
     PurchaseTotalesComponent,
     CheckoutBanktransferSelectOptionComponent,
+    PurchaseUploadVoucherFormComponent,
     
     ModalOnlyInputNumberComponent,
     ModalStoreOnlyCategoriesComponent,
@@ -113,6 +115,7 @@ import { CheckoutBanktransferSelectOptionComponent } from './checkout-banktransf
     CartTotalesComponent,
     PurchaseTotalesComponent,
     CheckoutBanktransferSelectOptionComponent,
+    PurchaseUploadVoucherFormComponent,
 
     ModalOnlyInputNumberComponent,
     ModalStoreOnlyCategoriesComponent,

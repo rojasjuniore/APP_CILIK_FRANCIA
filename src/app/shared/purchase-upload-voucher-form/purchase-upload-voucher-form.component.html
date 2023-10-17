@@ -1,0 +1,27 @@
+<div class="col-12 mb-4">
+    <form [formGroup]="form" novalidate>
+        <div class="card card-box p-3 mb-3">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" formControlName="reference">
+                <label>
+                    Número de Referencia <span class="text-danger">*</span>
+                </label>
+        
+                <ng-container *ngIf="submitted" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'reference'}"></ng-container>
+            </div>
+            <p class="form-text">
+                <strong>Importante:</strong> Para poder procesar tu pago, necesitamos que nos indiques el número de referencia de tu transferencia y adjuntes el comprobante de pago en formato PDF.
+            </p>
+        </div>
+    </form>
+</div>
+
+<app-custom-input-file (onSelectFile)="onSelectBankTransferFile($event)"></app-custom-input-file>
+
+<ng-template #renderFormVM let-field="field">
+    <ng-container *ngFor="let item of vm[field]">
+        <div class="form-text text-danger" *ngIf="f[field].hasError(item.type)">
+            {{ item.message | translate }}
+        </div>
+    </ng-container>
+</ng-template>
