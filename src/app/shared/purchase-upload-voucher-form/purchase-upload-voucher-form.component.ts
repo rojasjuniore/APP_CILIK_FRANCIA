@@ -61,8 +61,13 @@ export class PurchaseUploadVoucherFormComponent implements OnInit {
         return;
       }
 
-      console.log('Try to submit', formData);
-      this.onCompleteForm.next(formData);
+      const data = {
+        reference: `${formData.reference}`.trim(),
+        bankTransferFile: formData.bankTransferFile,
+      }
+
+      console.log('Try to submit', data);
+      this.onCompleteForm.next(data);
       return;
 
     } catch (err) {
