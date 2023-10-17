@@ -13,10 +13,21 @@ export class VoucherCardItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    // console.log(this.voucher);
   }
 
   get sizeParsed(): string | null {
     return (this.voucher && this.voucher) ? formatBytes(this.voucher.size) : null;
+  }
+
+  get observations(): string {
+    if(!this.voucher) {return '';}
+
+    const timeline: any[] = this.voucher.timeline;
+    if(!timeline || timeline.length === 0) {return '';}
+
+    const lastEvent = timeline[timeline.length - 1];
+    return lastEvent.observation;
   }
 
   openVoucherFileLink(){
