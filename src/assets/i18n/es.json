@@ -178,8 +178,9 @@
     },
     "passPerDay": {
       "title": "Pase por día",
-      "include": "Todas las actividades del día",
-      "notInclude": "VIP Pool parties, Cena de gala,  Bootcamp especiales con profesores internacionales, categorías para competir"
+      "include": "Todas las actividades del día.",
+      "notInclude": "VIP pool parties, cena de gala, bootcamps especiales con profesores internacionales, categorías para competir.",
+      "wantButton": "¡QUIERO EL PASE POR DÍA!"
     },
     "weekendPass": {
       "title": "Pase de fin de semana",

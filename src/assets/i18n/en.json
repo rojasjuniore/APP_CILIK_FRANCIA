@@ -178,8 +178,9 @@
     },
     "passPerDay": {
       "title": "Pass per day",
-      "include": "All activities of the day",
-      "notInclude": "VIP Pool parties, Gala dinner, special Bootcamp with international teachers, categories to compete"
+      "include": "All activities of the day. ",
+      "notInclude": "VIP pool parties, gala dinner, special bootcamps with international teachers, categories to compete.",
+      "wantButton": "I WANT A DAY PASS!"
     },
     "weekendPass": {
       "title": "Weekend Pass",
