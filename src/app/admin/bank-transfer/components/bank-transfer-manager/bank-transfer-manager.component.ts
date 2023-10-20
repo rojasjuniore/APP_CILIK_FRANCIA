@@ -81,6 +81,7 @@ export class BankTransferManagerComponent implements OnInit, OnDestroy {
         name: this.orderDoc.voucher.name,
         url: this.orderDoc.voucher.url,
         type: this.orderDoc.voucher.type,
+        reference: this.orderDoc.voucher.reference,
         updateBy: uid,
         updatedAt: moment().valueOf()
       };
