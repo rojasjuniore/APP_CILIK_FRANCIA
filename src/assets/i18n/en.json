@@ -190,8 +190,9 @@
     },
     "categoryPass": {
       "title": "Category Pass",
-      "include": "Right to compete in 1 (one) category",
-      "notInclude": "Access to the activities"
+      "include": "The right to compete in 1 (one) category.",
+      "notInclude": "Access to the activities.",
+      "wantButton": "I WANT THE CATEGORY PASS!"
     }
   },
   "room": {

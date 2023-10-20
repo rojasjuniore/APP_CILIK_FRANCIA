@@ -87,7 +87,7 @@ export class EventInfoService {
         "assets/img/icon-pass-category.png"
       ],
       available: true,
-      wantButton: "plan.hotelAndEvent.wantButton",
+      wantButton: "plan.categoryPass.wantButton",
     },
   ];
 
