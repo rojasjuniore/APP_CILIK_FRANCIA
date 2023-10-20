@@ -387,8 +387,8 @@ export class HotelService {
       },
       {
         ranges: {from: '2023-11-11', to: '2023-12-16'},
-        before: 169,
-        after: 169,
+        before: 168,
+        after: 168,
         dayOfWeek: [0, 202, 202, 202, 215, 227, 254]
       },
       {
