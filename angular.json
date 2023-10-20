@@ -47,6 +47,7 @@
               "raf",
               "rgbcolor",
               "html2canvas",
+              "jquery",
               "daterangepicker"
             ],
             "styles": [
