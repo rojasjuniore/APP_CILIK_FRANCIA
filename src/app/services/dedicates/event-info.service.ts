@@ -134,22 +134,30 @@ export class EventInfoService {
   public bankTransferOptionList = [
     {
       label: 'Bancolombia',
+      beneficiaryName: 'Fundación Ballet Nacional El Firulete',
+      nit: "811046272-7",
+      phone: '3117492395',
+      city: 'Medellín',
+      country: 'Colombia',
       value: 'Colombia',
-      accountTitle: 'Fundación Ballet Nacional El Firulete',
-      nrAccount: '10570863272 Ahorros',
-      swift: 'COLOCOBM',
+      accountNumber: '10570863272 Ahorros',
+      swiftCode: 'COLOCOBM',
+      bankBranch : 'Bancolmbia',
+      branchOffice: 'Zona Rosa 430',
+      bankAddress: 'Calle 10 # 34 - 26',
+      bankPhone: '6044449342',
       status: true,
       slug: 'bancolombia'
     },
-    {
-      label: 'ADCB BANK',
-      value: 'Dubai',
-      accountTitle: 'BNF FZ LLC',
-      nrAccount: '957211920010',
-      swift: 'ADCBAEAA',
-      status: true,
-      slug: 'adcb-bank'
-    }
+    // {
+    //   label: 'ADCB BANK',
+    //   value: 'Dubai',
+    //   accountTitle: 'BNF FZ LLC',
+    //   nrAccount: '957211920010',
+    //   swift: 'ADCBAEAA',
+    //   status: true,
+    //   slug: 'adcb-bank'
+    // }
   ];
 
   constructor(

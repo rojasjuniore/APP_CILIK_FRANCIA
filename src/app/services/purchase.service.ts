@@ -180,9 +180,10 @@ export class PurchaseService {
           {type: 'line', text: `Estamos muy felices de contar con tu presencia en la edición WLDC 2024.`},
 
           {type: "html", html: `<h4 style='text-align: center; margin: 0;'><strong>${bankOptionData.label}</strong></h4>`},
-          {type: 'html', html: `<p style='text-align: center; margin: 0;'><strong>Razon:</strong> ${bankOptionData.accountTitle}</p>`},
-          {type: 'html', html: `<p style='text-align: center; margin: 0;'><strong>Nro. Cuenta:</strong> ${bankOptionData.nrAccount}</p>`},
-          {type: 'html', html: `<p style='text-align: center; margin: 0;'><strong>Swift:</strong> ${bankOptionData.swift}</p>`},
+          {type: 'html', html: `<p style='text-align: center; margin: 0;'><strong>Nombre de Beneficiario:</strong> ${bankOptionData.beneficiaryName}</p>`},
+          {type: 'html', html: `<p style='text-align: center; margin: 0;'><strong>Nro. Cuenta:</strong> ${bankOptionData.accountNumber}</p>`},
+          {type: 'html', html: `<p style='text-align: center; margin: 0;'><strong>NIT:</strong> ${bankOptionData.nit}</p>`},
+          {type: 'html', html: `<p style='text-align: center; margin: 0;'><strong>Código Swift:</strong> ${bankOptionData.swiftCode}</p>`},
           {type: 'html', html: `<p style='text-align: center; margin: 0;'><strong>Total:</strong> ${totales} USD</p>`},
           {type: 'line', text: ``},
           
