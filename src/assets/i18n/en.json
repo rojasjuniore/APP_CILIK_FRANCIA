@@ -103,7 +103,9 @@
     "minutes": "minutes",
     "installmentsPayment": "Installments payment",
     "or": "or",
-    "order": "Order"
+    "order": "Order",
+    "reference": "Reference",
+    "observation": "Observation"
   },
   "formValidations": {
     "required": "The field is required",
