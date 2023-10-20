@@ -105,6 +105,10 @@ export class PurchaseDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
+  onRenderUpdateVoucher(event: any){
+    console.log('event', event);
+  }
+
   ngOnDestroy(): void {
     this.sub$.unsubscribe();
   }

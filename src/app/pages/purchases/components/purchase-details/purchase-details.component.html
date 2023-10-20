@@ -144,6 +144,7 @@
         <app-voucher-card-item
             [voucher]="order.voucher"
             [showUpdateButton]="order.voucher.canEdit"
+            (onClickUpdateVoucher)="onRenderUpdateVoucher($event)"
         ></app-voucher-card-item>
     </div>
 </ng-template>
