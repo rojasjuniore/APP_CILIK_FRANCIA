@@ -46,7 +46,7 @@
                     &nbsp;
                     Voucher
                 </button>
-                <button class="btn btn-danger" type="button" *ngIf="showUpdateButton">
+                <button class="btn btn-danger" type="button" *ngIf="showUpdateButton" (click)="updateVoucher()">
                     <i class="bi bi-cloud-upload"></i>
                     &nbsp;
                     {{"general.update" | translate}}

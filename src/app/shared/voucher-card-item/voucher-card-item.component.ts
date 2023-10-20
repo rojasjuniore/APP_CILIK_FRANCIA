@@ -1,4 +1,5 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Subject } from 'rxjs';
 import { formatBytes } from 'src/app/helpers/formatBytes.helper';
 
 @Component({
@@ -10,6 +11,8 @@ export class VoucherCardItemComponent implements OnInit, OnChanges {
 
   @Input() voucher!: any;
   @Input() showUpdateButton = false;
+
+  @Output() onClickUpdateVoucher = new Subject();
 
   constructor() { }
 
@@ -48,6 +51,10 @@ export class VoucherCardItemComponent implements OnInit, OnChanges {
 
   openVoucherFileLink(){
     window.open(this.voucher.url, '_blank');
+  }
+
+  updateVoucher(){
+    this.onClickUpdateVoucher.next(true);
   }
 
 }
