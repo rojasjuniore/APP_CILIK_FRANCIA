@@ -232,6 +232,7 @@
     "temporalToken": {
       "subject": "Código Temporal {{code}} WLDC Cartagena 2024",
       "body": [
+        "¡Hola de nuevo!",
         "El código necesario para continuar con tu operación es el siguiente:",
         "Este código a caducará en {{time}} {{unit}} o al cancelar la transacción"
       ]

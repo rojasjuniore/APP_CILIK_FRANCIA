@@ -96,28 +96,15 @@ export class TemporalTokenService {
     try {
       await this.spinner.show();
 
-      // await this.quickNotificationSrv.sendEmailNotification({
-      //   type: "2FANotification",
-      //   email: data.email,
-      //   subject: "WLDC Cartagena 2024 - Token Temporal - " + moment().format("DD/MM/YYYY HH:mm:ss"),
-      //   greeting: `¡Hola!`,
-      //   messageBody: [
-      //     {type: "line", text: "El código necesario para continuar con tu operación es el siguiente:"},
-      //     {type: "html", html: `<h1 style='text-align: center;'><strong>${data.token}</strong></h1>`},
-      //     {type: 'line', text: `Este código a caducará en ${data.tokenTime.value} ${data.tokenTime.unit} o al cancelar la transacción.`},
-      //     {type: "line", text: "Si no solicitó este código, no se requiere ninguna acción adicional."}
-      //   ],
-      //   salutation: '¡Saludos!'
-      // });
       await this.quickNotificationSrv.sendEmailNotification({
         type: "2FANotification",
         email: data.email,
-        subject: this.translatePipe.transform('notification.temporalToken.subject', {code: data.token})+ " - " + moment().format("DD/MM/YYYY HH:mm:ss"),
-        greeting: this.translatePipe.transform('notification.hello'),
+        subject: this.translatePipe.transform('notification.temporalToken.subject', {code: data.token}),
+        greeting: this.translatePipe.transform('notification.temporalToken.body.0'),
         messageBody: [
           {
             type: "line",
-            text: this.translatePipe.transform('notification.temporalToken.body.0')
+            text: this.translatePipe.transform('notification.temporalToken.body.1')
           },
           {
             type: "html",
@@ -125,7 +112,7 @@ export class TemporalTokenService {
           },
           {
             type: 'line',
-            text: this.translatePipe.transform('notification.temporalToken.body.1', {
+            text: this.translatePipe.transform('notification.temporalToken.body.2', {
               time: data.tokenTime.value,
               unit: this.translatePipe.transform('general.' + data.tokenTime.unit)
             })

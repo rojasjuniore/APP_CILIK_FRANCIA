@@ -232,7 +232,8 @@
     "temporalToken": {
       "subject": "Temporal Token {{code}} WLDC Cartagena 2024",
       "body": [
-        "The code necessary to continue with your operation is the following:",
+        "Hi again!",
+        "This code is necessary to continue with your operation:",
         "This code will expire in {{time}} {{unit}} or upon canceling the transaction"
       ]
     },
