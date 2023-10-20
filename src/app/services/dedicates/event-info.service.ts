@@ -71,7 +71,7 @@ export class EventInfoService {
         "assets/img/icon-ticket.png"
       ],
       available: true,
-      wantButton: "plan.hotelAndEvent.wantButton",
+      wantButton: "plan.weekendPass.wantButton",
     },
     {
       isRecommended: false,

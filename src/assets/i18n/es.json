@@ -184,8 +184,9 @@
     },
     "weekendPass": {
       "title": "Pase de fin de semana",
-      "include": "Acceso a todas las actividades del 9 al 11 de Febrero tales como: concierto, fiestas, talleres, conferencias, competencia, Gran Final, Ultimate Championship, Music Park Fest, Pool Parties, Playas y Gimnasio",
-      "notInclude": "VIP Pool parties, Cena de gala, Bootcamp especiales con profesores internacionales, categorías para competir"
+      "include": "Acceso a todas las actividades del 9 al 11 de febrero tales como: concierto, fiestas, talleres, conferencias, competencia, Gran Final, Ultimate Championship, Music Park Fest, pool parties, playas y gimnasio.",
+      "notInclude": "VIP pool parties, cena de gala, bootcamps especiales con profesores internacionales, categorías para competir.",
+      "wantButton": "¡QUIERO EL PASE DE FIN DE SEMANA!"
     },
     "categoryPass": {
       "title": "Pases por categoría",

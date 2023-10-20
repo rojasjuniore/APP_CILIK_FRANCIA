@@ -184,8 +184,9 @@
     },
     "weekendPass": {
       "title": "Weekend Pass",
-      "include": "Access to all activities from February 9 to 11 such as: concert, parties, workshops, conferences, competition, Grand Final, Ultimate Championship, Music Park Fest, Pool Parties, Beaches and Gym",
-      "notInclude": "VIP Pool parties, Gala Dinner, special Bootcamp with international teachers, competition categories"
+      "include": "Access to all activities from February 9th to 11th such as: concert, parties, workshops, conferences, competition, Grand Final, Ultimate Championship, Music Park Fest, pool parties, beaches and gym.",
+      "notInclude": "VIP pool parties, gala dinner, special bootcamps with international teachers, competition categories.",
+      "wantButton": "I WANT THE WEEKEND PASS!"
     },
     "categoryPass": {
       "title": "Category Pass",
