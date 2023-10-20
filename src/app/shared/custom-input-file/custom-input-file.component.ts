@@ -78,9 +78,11 @@ export class CustomInputFileComponent implements OnInit {
 
     const fileLength = files.length;
     const fileValidation = files[0].type;
-    const msj = this.translate.instant("general.onlyPDF")
+    
     if (fileValidation !== "application/pdf") {
-      this.sweetAlert2Srv.showError(msj);
+      this.sweetAlert2Srv.showError(
+        this.translate.instant("formValidations.onlyPDF")
+      );
       this.clearFile();
       return;
     }

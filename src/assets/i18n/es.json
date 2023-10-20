@@ -127,7 +127,8 @@
     "dniStored": "Documento de identidad no válido, ya se encuentra en uso",
     "availableCouponCode": "Código de cupón no válido",
     "couponAlreadyApplied": "El cupón ya fue aplicado",
-    "couponOnlyOneOfThisType": "Sólo puedes aplicar un cupón de este tipo"
+    "couponOnlyOneOfThisType": "Sólo puedes aplicar un cupón de este tipo",
+    "onlyPDF": "El archivo debe ser de tipo PDF"
   },
   "alert": {
     "passwordUpdatedSuccessfully": "Contraseña actualizada correctamente",
