@@ -53,4 +53,5 @@ export interface EmailNotification {
   salutation?: string;
   cc?: string | null;
   bcc?: string | null;
+  uid?: string;
 }

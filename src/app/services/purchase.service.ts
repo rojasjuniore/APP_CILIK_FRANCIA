@@ -92,47 +92,64 @@ export class PurchaseService {
    */
   async sendPurchaseInformationNotification(params: PurchaseInformationNotificationParams) {
     try {
-      const { email, orderId } = params;
+      const { email, orderId, name, uid } = params;
 
       /** Enviar notificación de compra realizada */
       await this.quickNotificationSrv.sendEmailNotification({
         type: "purchaseInfo",
         email: email,
-      //   subject: `Purchase ${orderId} a WLDC Cartagena 2024 - ` + moment().format("DD/MM/YYYY HH:mm:ss"),
-      //   greeting: `¡Hola!`,
-      //   messageBody: [
-      //     {type: "html", html: `<h1 style='text-align: center;'><strong>Compra #${orderId}</strong></h1>`},
-      //     {type: 'line', text: `Estamos muy felices de contar con tu presencia en la edición WLDC 2024.`},
-      //     {type: 'line', text: `A continuación encontrarás los detalles de tu compra:`},
-      //     {type: 'action', action: 'Aquí', url: environment.dataEvent.appURL + '/pages/purchases/' + orderId + '/details'},
-      //     {type: "line", text: "Si no reconoce esta actividad, no se requiere ninguna acción adicional."}
-      // ],
-      //   salutation: '¡Saludos!'
-        subject: this.translatePipe.transform('notification.purchaseInfo.subject', {orderId: orderId}) + ' - ' + moment().format("DD/MM/YYYY HH:mm:ss"),
-        greeting: `${this.translatePipe.transform('notification.hello')}`,
+        uid: uid,
+        subject: this.translatePipe.transform('notification.purchaseInfo.subject', {orderId: orderId}),
+        // greeting: `${this.translatePipe.transform('notification.hello')} ${name}`,
+        greeting: ' ',
         messageBody: [
           {
             type: "html",
-            html: `<h1 style='text-align: center;'><strong>${this.translatePipe.transform('general.order')} #${orderId}</strong></h1>`
+            html: `<h1 style='text-align: center;'><strong>${this.translatePipe.transform('notification.purchaseInfo.body.0')}</strong></h1>`
           },
           {
             type: 'line', 
-            text: this.translatePipe.transform('notification.purchaseInfo.body')[0]
+            text:  `${this.translatePipe.transform('notification.hello')} ${name}`
+          },
+          {
+            type: 'line', 
+            text: this.translatePipe.transform('notification.purchaseInfo.body.1')
           },
           {
             type: 'line',
-            text: this.translatePipe.transform('notification.purchaseInfo.body')[1]
+            text: this.translatePipe.transform('notification.purchaseInfo.body.2')
+          },
+          {
+            type: 'line',
+            text: this.translatePipe.transform('notification.purchaseInfo.body.3')
           },
           {
             type: 'action', 
-            action: this.translatePipe.transform("general.here"), url: environment.dataEvent.appURL + '/pages/purchases/' + orderId + '/details'
+            action: this.translatePipe.transform('notification.purchaseInfo.button'),
+            url: environment.dataEvent.appURL + '/pages/purchases/' + orderId + '/details'
           },
           {
-            type: "line", 
-            text: `${this.translatePipe.transform('notification.noRecognizeActivity')}.`
-          }
+            type: 'line',
+            text: this.translatePipe.transform('notification.purchaseInfo.body.4')
+          },
+          {
+            type: 'line',
+            text: this.translatePipe.transform('notification.purchaseInfo.body.5')
+          },
+          {
+            type: 'line',
+            text: 'WhatsApp: +57'
+          },
+          {
+            type: 'line',
+            text: 'Instagram: @worldlatindancecup'
+          },
+          {
+            type: 'line',
+            text: this.translatePipe.transform('notification.purchaseInfo.body.6')
+          },
         ],
-        salutation: `${this.translatePipe.transform('notification.greetings')}`
+        salutation: `${this.translatePipe.transform('notification.purchaseInfo.salutation')}`
       });
 
       return true;
@@ -427,5 +444,6 @@ export class PurchaseService {
 export interface PurchaseInformationNotificationParams {
   email: string,
   orderId: string,
-  uid?: string
+  uid?: string,
+  name?: string,
 }

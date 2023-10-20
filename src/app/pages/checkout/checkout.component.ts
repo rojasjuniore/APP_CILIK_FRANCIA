@@ -157,7 +157,8 @@ export class CheckoutComponent implements OnInit {
       await this.purchaseSrv.sendPurchaseInformationNotification({
         email: userDoc.email, 
         orderId: purchase.orderId,
-        uid: this.cart.uid
+        uid: this.cart.uid,
+        name: userDoc.name,
       });
 
       /** Redireccionar */

@@ -247,9 +247,16 @@
     },
     "purchaseInfo": {
       "subject": "Order {{orderId}} of WLDC Cartagena 2024",
+      "button": "Click to see the details of your order!",
+      "salutation": "See you soon!",
       "body": [
-        "We are very happy to have your presence at the WLDC 2024 edition.",
-        "Below you will find the details of your order:"
+        "Welcome to WLDC 2024!",
+        "We want to extend our official welcome to the World Latin Dance Cup 2024. We're getting closer to experiencing the most important Latin Dance event in the world!",
+        "It's a pleasure for us to have you as part of this great family.",
+        "First and foremost, we want to ensure you have all the information you need...",
+        "If you have any questions, please don't hesitate to ask. Our support team is here to assist you through our social medias.",
+        "Reach out to us at:",
+        "P.S. Get ready... WLDC 2024 is going to be amazing."
       ]
     }
   }
