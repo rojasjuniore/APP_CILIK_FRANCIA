@@ -171,9 +171,10 @@
     },
     "fullPass": {
       "title": "Full Pass",
-      "include": "Access to all activities from February 5 to 11 such as: concert, parties, workshops, conferences, competition, Grand Final, Ultimate Championship, Music Park Fest, Pool Parties, Beaches and Gym",
-      "notInclude": "VIP Pool parties, Gala Dinner, special Bootcamp with international teachers, competition categories",
-      "important": "All competitors must have a Full Pass to access the event"
+      "include": "Access to all activities from February 5th to 11th such as: concert, parties, workshops, conferences, competition, Grand Finale, Ultimate Championship, Music Park Fest, pool parties, beaches and gym.",
+      "notInclude": "VIP pool parties, gala dinner, special bootcamps with international teachers, competition categories.",
+      "important": "All competitors must have the Full Pass to access the event.",
+      "wantButton": "I WANT FULL PASS!"
     },
     "passPerDay": {
       "title": "Pass per day",

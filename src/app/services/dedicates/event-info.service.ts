@@ -39,7 +39,7 @@ export class EventInfoService {
         "assets/img/icon-full-pass.png",
       ],
       available: true,
-      wantButton: "plan.hotelAndEvent.wantButton",
+      wantButton: "plan.fullPass.wantButton",
     },
     {
       isRecommended: false,

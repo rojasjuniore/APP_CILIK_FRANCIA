@@ -171,9 +171,10 @@
     },
     "fullPass": {
       "title": "Full Pass",
-      "include": "Accesos a todas las actividades del 5 al 11 de febrero tales como: concierto, fiestas, talleres, conferencias, competencia, Gran Final, Ultimate Championship, Music Park Fest, Pool Parties, Playas y Gimnasio",
-      "notInclude": "VIP Pool parties, Cena de gala, Bootcamp especiales con profesores internacionales, categorías para competir",
-      "important": "Todos los competidores deberán tener un Full Pass para acceder al evento"
+      "include": "Accesos a todas las actividades del 5 al 11 de febrero tales como: concierto, fiestas, talleres, conferencias, competencia, Gran Final, Ultimate Championship, Music Park Fest, pool parties, playas y gimnasio.",
+      "notInclude": "VIP pool parties, cena de gala, bootcamps especiales con profesores internacionales, categorías para competir.",
+      "important": "Todos los competidores deberán tener el Full Pass para acceder al evento.",
+      "wantButton": "¡QUIERO EL FULL PASS!"
     },
     "passPerDay": {
       "title": "Pase por día",
