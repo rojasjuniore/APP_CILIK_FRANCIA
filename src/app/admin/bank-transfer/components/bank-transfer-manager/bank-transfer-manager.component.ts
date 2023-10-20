@@ -63,6 +63,9 @@ export class BankTransferManagerComponent implements OnInit, OnDestroy {
     console.log('onCloseModalUpdateVoucherStatus', event);
     if(!status){ return; }
 
+    // console.log('orderDoc', this.orderDoc);
+    // return;
+
     const ask = await this.sweetAlert2Srv.askConfirm(`¿Estás seguro de actualizar el estado del comprobante a "${data.status}"?`);
     if(!ask){ return; }
 
@@ -74,13 +77,22 @@ export class BankTransferManagerComponent implements OnInit, OnDestroy {
 
       const timelineSnap = {
         ...data,
+        path: this.orderDoc.voucher.path,
+        name: this.orderDoc.voucher.name,
+        url: this.orderDoc.voucher.url,
+        type: this.orderDoc.voucher.type,
         updateBy: uid,
         updatedAt: moment().valueOf()
       };
       // console.log('timelineSnap', timelineSnap);
 
       /** Actualizar lista de cambios del documento */
-      await this.purchaseSrv.addOnArray(environment.dataEvent.keyDb, this.orderId, [timelineSnap], 'voucher.timeline');
+      await this.purchaseSrv.addOnArray(
+        environment.dataEvent.keyDb,
+        this.orderId,
+        [timelineSnap],
+        'voucher.timeline'
+      );
 
       /** Actualizar estado de la orden de compra */
       await this.purchaseSrv.updatePurchase(
@@ -89,6 +101,7 @@ export class BankTransferManagerComponent implements OnInit, OnDestroy {
         {
           status: data.status,
           payedAt: (data.status === 'completed') ?  timelineSnap.updatedAt : null,
+          'voucher.canEdit': (data.status === 'rejected') ? true : false 
         }
       );
 
