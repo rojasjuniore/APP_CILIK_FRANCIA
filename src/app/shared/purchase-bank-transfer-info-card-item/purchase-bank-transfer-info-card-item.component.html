@@ -6,23 +6,30 @@
             </p>
 
             <p class="card-text text-center mb-0">
+                Nombre de Beneficiario:
+                <small class="text-muted">
+                    {{item?.beneficiaryName}}
+                </small>
+            </p>
+
+            <p class="card-text text-center mb-0">
                 Nro. Cuenta:
                 <small class="text-muted">
-                    {{item?.nrAccount}}
+                    {{item?.accountNumber}}
                 </small>
             </p>
 
             <p class="card-text text-center mb-0">
-                Razón:
+                NIT:
                 <small class="text-muted">
-                    {{item?.accountTitle}}
+                    {{item?.nit}}
                 </small>
             </p>
 
             <p class="card-text text-center mb-0">
-                Swift:
+                Código Swift:
                 <small class="text-muted">
-                    {{item?.swift}}
+                    {{item?.swiftCode}}
                 </small>
             </p>
         </div>
