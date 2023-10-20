@@ -3,35 +3,35 @@
         <div class="col-12 px-3">
 
             <p class="card-text text-center mb-0">
-                Reference:
+                {{"general.reference" | translate | titlecase}}:
                 <small class="text-muted">
                     {{voucher.reference}}
                 </small>
             </p>
 
             <p class="card-text text-center mb-0">
-                File name:
+                {{"general.fileName" | translate | titlecase}}:
                 <small class="text-muted">
                     {{voucher.name}}
                 </small>
             </p>
 
             <p class="card-text text-center mb-0">
-                File type:
+                {{"general.fileType" | translate}}:
                 <small class="text-muted">
                     {{voucher.type}}
                 </small>
             </p>
 
             <p class="card-text text-center mb-0">
-                Size:
+                {{"general.size" | translate}}:
                 <small class="text-muted">
                     {{sizeParsed}}
                 </small>
             </p>
 
             <p class="card-text text-center mb-0" *ngIf="observations.length > 0">
-                Observation:
+                {{"general.observation" | translate}} <span class="text-danger">*</span>:
                 <small class="text-muted">
                     {{observations}}
                 </small>
@@ -39,14 +39,19 @@
 
         </div>
 
-        <div class="col-12 text-center">
-            <button class="btn btn-danger" type="button" (click)="openVoucherFileLink()">
-                <i class="bi bi-filetype-pdf"></i>
-                &nbsp;
-                Voucher
-                <!-- &nbsp;
-                <i class="bi bi-link-45deg"></i> -->
-            </button>
+        <div class="col-12">
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <button class="btn btn-danger" type="button" (click)="openVoucherFileLink()">
+                    <i class="bi bi-filetype-pdf"></i>
+                    &nbsp;
+                    Voucher
+                </button>
+                <button class="btn btn-danger" type="button" *ngIf="showUpdateButton">
+                    <i class="bi bi-cloud-upload"></i>
+                    &nbsp;
+                    {{"general.update" | translate}}
+                </button>
+            </div>
         </div>
     </div>
 </div>

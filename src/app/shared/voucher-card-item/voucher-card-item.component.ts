@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { formatBytes } from 'src/app/helpers/formatBytes.helper';
 
 @Component({
@@ -6,14 +6,30 @@ import { formatBytes } from 'src/app/helpers/formatBytes.helper';
   templateUrl: './voucher-card-item.component.html',
   styleUrls: ['./voucher-card-item.component.css']
 })
-export class VoucherCardItemComponent implements OnInit {
+export class VoucherCardItemComponent implements OnInit, OnChanges {
 
   @Input() voucher!: any;
+  @Input() showUpdateButton = false;
 
   constructor() { }
 
   ngOnInit(): void {
-    // console.log(this.voucher);
+    // console.log('voucher', this.voucher);
+    // console.log('showUpdateButton', this.showUpdateButton);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const {voucher, showUpdateButton} = changes;
+    // console.log('changes', changes);
+
+    if(voucher && voucher.currentValue){
+      this.voucher = voucher.currentValue;
+    }
+
+    if(showUpdateButton){
+      // console.log('showUpdateButton', showUpdateButton.currentValue);
+      this.showUpdateButton = showUpdateButton.currentValue;
+    }
   }
 
   get sizeParsed(): string | null {
