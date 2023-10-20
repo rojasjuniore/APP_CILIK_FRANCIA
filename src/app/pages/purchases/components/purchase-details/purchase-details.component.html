@@ -141,7 +141,10 @@
     <app-purchase-upload-voucher-form *ngIf="!order.voucher" (onCompleteForm)="onLoadVoucher($event)"></app-purchase-upload-voucher-form>
 
     <div class="col-12" *ngIf="order.voucher">
-        <app-voucher-card-item [voucher]="order.voucher"></app-voucher-card-item>
+        <app-voucher-card-item
+            [voucher]="order.voucher"
+            [showUpdateButton]="order.voucher.canEdit"
+        ></app-voucher-card-item>
     </div>
 </ng-template>
 

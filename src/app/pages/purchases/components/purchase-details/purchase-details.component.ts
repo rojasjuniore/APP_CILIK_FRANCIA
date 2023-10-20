@@ -87,8 +87,8 @@ export class PurchaseDetailsComponent implements OnInit, OnDestroy {
           url: fileRef,
           timeline: [],
           uploadAt: uploadAt,
+          canEdit: false,
         },
-        canEdit: false,
       };
 
       /** Actualizar orden de compra */
