@@ -23,6 +23,7 @@ export class EventInfoService {
         "assets/img/icon-ticket.png"
       ],
       available: true,
+      wantButton: "plan.hotelAndEvent.wantButton",
     },
     {
       isRecommended: false,
@@ -38,6 +39,7 @@ export class EventInfoService {
         "assets/img/icon-full-pass.png",
       ],
       available: true,
+      wantButton: "plan.hotelAndEvent.wantButton",
     },
     {
       isRecommended: false,
@@ -53,6 +55,7 @@ export class EventInfoService {
         "assets/img/icon-ticket.png"
       ],
       available: false,
+      wantButton: "plan.hotelAndEvent.wantButton",
     },
     {
       isRecommended: false,
@@ -68,6 +71,7 @@ export class EventInfoService {
         "assets/img/icon-ticket.png"
       ],
       available: true,
+      wantButton: "plan.hotelAndEvent.wantButton",
     },
     {
       isRecommended: false,
@@ -83,6 +87,7 @@ export class EventInfoService {
         "assets/img/icon-pass-category.png"
       ],
       available: true,
+      wantButton: "plan.hotelAndEvent.wantButton",
     },
   ];
 

@@ -16,7 +16,8 @@ export class StoreItemCardComponent implements OnInit {
     icons: [
       "assets/img/icon-bed.png",
         "assets/img/icon-ticket.png"
-    ]
+    ],
+    wantButton: "i want",
   }
 
   constructor() { }
@@ -35,4 +36,6 @@ export interface StoreItemCardParams {
   important?: string;
   headerColor: string;
   icons: string[];
+  wantButton: string;
+  
 }

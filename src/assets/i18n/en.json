@@ -37,7 +37,6 @@
     "goToDashboard": "Go to dashboard",
     "plans": "Plans",
     "purchases": "Purchases",
-    "iWantIt": "I want it",
     "include": "Include",
     "notInclude": "Not include",
     "important": "Important",
@@ -166,8 +165,9 @@
   "plan": {
     "hotelAndEvent": {
       "title": "Hotel and event",
-      "include": "Accommodation at the official WLDC hotel with access to all WLDC events on the day the hotel is purchased, buffet breakfast",
-      "notInclude": "Gala dinner on Friday, February 9, 2024, competition categories, lunches and dinners, airfare and transfers"
+      "include": "Accommodation at the official WLDC hotel with access to all events on the day that the hotel was purchased + buffet breakfast.",
+      "notInclude": "Gala dinner on Friday, February 9th, 2024, competition categories, lunches and dinners, airfare and transfers.",
+      "wantButton": "I WANT THE HOTEL AND THE EVENT!"
     },
     "fullPass": {
       "title": "Full Pass",
