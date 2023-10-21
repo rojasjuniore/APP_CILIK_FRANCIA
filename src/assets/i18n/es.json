@@ -41,11 +41,11 @@
     "notInclude": "No incluye",
     "important": "Importante",
     "recommendedOption": "Opción recomendada",
-    "solo": "Solista",
+    "soloist": "Solistas",
     "nroSoloists": "Cantidad de Solistas",
-    "couple": "Pareja",
+    "couples": "Parejas",
     "nroCouples": "Cantidad de Parejas",
-    "group": "Grupo",
+    "groups": "Grupos",
     "nroGroupMembers": "Cantidad de integrantes del grupo",
     "add": "Añadir",
     "yes": "Si",
@@ -181,14 +181,14 @@
     },
     "passPerDay": {
       "title": "Pase por día",
-      "include": "Todas las actividades del día.",
-      "notInclude": "VIP pool parties, cena de gala, bootcamps especiales con profesores internacionales, categorías para competir.",
+      "include": "Todas las actividades de este día.",
+      "notInclude": "VIP pool parties, cena de gala, bootcamps especiales con profesores internacionales, no incluye categorías para competir.",
       "wantButton": "¡QUIERO EL PASE POR DÍA!"
     },
     "weekendPass": {
       "title": "Pase de fin de semana",
-      "include": "Acceso a todas las actividades del 9 al 11 de febrero tales como: concierto, fiestas, talleres, conferencias, competencia, Gran Final, Ultimate Championship, Music Park Fest, pool parties, playas y gimnasio.",
-      "notInclude": "VIP pool parties, cena de gala, bootcamps especiales con profesores internacionales, categorías para competir.",
+      "include": "Acceso a todas las actividades desde el 9 al 11 de febrero: concierto, fiestas, talleres, conferencias, competencia, Gran Final, Ultimate Championship, Music Park Fest, pool parties, playas, gimnasio.",
+      "notInclude": "VIP pool parties, cena de gala, bootcamps especiales con profesores internacionales, no incluye categorías para competir.",
       "wantButton": "¡QUIERO EL PASE DE FIN DE SEMANA!"
     },
     "categoryPass": {

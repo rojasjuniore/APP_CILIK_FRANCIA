@@ -41,11 +41,11 @@
     "notInclude": "Not include",
     "important": "Important",
     "recommendedOption": "Recommended option",
-    "solo": "Soloist",
+    "soloist": "Soloist",
     "nroSoloists": "Number of Soloists",
-    "couple": "Couple",
+    "couples": "Couple",
     "nroCouples": "Number of couples",
-    "group": "Group",
+    "groups": "Groups",
     "nroGroupMembers": "Number of group members",
     "add": "Add",
     "yes": "Yes",
@@ -181,13 +181,13 @@
     },
     "passPerDay": {
       "title": "Pass per day",
-      "include": "All activities of the day. ",
+      "include": "All activities of the day.",
       "notInclude": "VIP pool parties, gala dinner, special bootcamps with international teachers, categories to compete.",
       "wantButton": "I WANT A DAY PASS!"
     },
     "weekendPass": {
       "title": "Weekend Pass",
-      "include": "Access to all activities from February 9th to 11th such as: concert, parties, workshops, conferences, competition, Grand Final, Ultimate Championship, Music Park Fest, pool parties, beaches and gym.",
+      "include": "Access to all activities from February 9th to 11th such as: concerts, parties, workshops, conferences, competition, Grand Finale, Ultimate Championship, Music Park Fest, pool parties, beaches and gym.",
       "notInclude": "VIP pool parties, gala dinner, special bootcamps with international teachers, competition categories.",
       "wantButton": "I WANT THE WEEKEND PASS!"
     },
