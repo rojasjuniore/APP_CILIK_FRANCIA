@@ -105,7 +105,8 @@
     "or": "or",
     "order": "Order",
     "reference": "Reference",
-    "observation": "Observation"
+    "observation": "Observation",
+    "value": "Value"
   },
   "formValidations": {
     "required": "The field is required",

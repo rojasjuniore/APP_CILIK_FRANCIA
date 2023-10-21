@@ -84,6 +84,28 @@ export class ModalStoreOnlyCategoriesComponent implements OnInit {
     return this.categoryTypes.find((item: any) => item.value === this.form.value.categoryTypes)?.description;
   }
 
+
+  get price() {
+    if(!this.item) { return 0 ;}
+    if(!this.f['categoryTypes'].value) { return 0; }
+
+    const type = this.f['categoryTypes'].value;
+
+    if(type === 'solo'){
+      return Number(this.item.prices[type]);
+    }
+
+    if(type === 'couple'){
+      return Number(this.item.prices[type] * 2);
+    }
+
+    if(type === 'group'){
+      return Number(this.item.prices[type]);
+    }
+
+    return 0;
+  }
+
   get totales() {
     if(!this.item) { return 0 ;}
     if(!this.f['categoryTypes'].value) { return 0; }

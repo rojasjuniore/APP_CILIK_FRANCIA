@@ -105,7 +105,8 @@
     "or": "o",
     "order": "Orden",
     "reference": "Referencia",
-    "observation": "Observación"
+    "observation": "Observación",
+    "value": "Valor"
   },
   "formValidations": {
     "required": "El campo es obligatorio",

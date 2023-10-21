@@ -54,7 +54,11 @@
         (onUpdateQuantity)="onInputValueChange($event)"
     ></app-input-number-form>
 
-    <p class="text-center mt-4"> 
+    <p class="text-center mb-0 mt-4"> 
+        <span class="fw-bold fs-4">{{'general.value' | translate}}: USD {{price}}</span>
+    </p>
+
+    <p class="text-center"> 
         <span class="fw-bold fs-4">{{'general.total' | translate}}: USD {{totales}}</span>
     </p>
 
