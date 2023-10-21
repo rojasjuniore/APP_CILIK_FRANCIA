@@ -174,9 +174,9 @@
     },
     "fullPass": {
       "title": "Full Pass",
-      "include": "Accesos a todas las actividades del 5 al 11 de febrero tales como: concierto, fiestas, talleres, conferencias, competencia, Gran Final, Ultimate Championship, Music Park Fest, pool parties, playas y gimnasio.",
-      "notInclude": "VIP pool parties, cena de gala, bootcamps especiales con profesores internacionales, categorías para competir.",
-      "important": "Todos los competidores deberán tener el Full Pass para acceder al evento.",
+      "include": "Accesos a todas las actividades desde el 5 al 11 de febrero: concierto, fiestas, talleres, conferencias, competencia, Gran Final, Ultimate Championship, Music Park Fest, pool parties, playas, gimnasio.",
+      "notInclude": "VIP pool parties, cena de gala, bootcamps especiales con profesores internacionales, no incluye categorías para competir.",
+      "important": "Todos los competidores deberán contar con un full pass para acceder al evento",
       "wantButton": "¡QUIERO EL FULL PASS!"
     },
     "passPerDay": {
@@ -203,8 +203,8 @@
       "beachHouse": "Casa de playa",
       "seaTower": "Torre del mar"
     },
-    "include": "Desayuno buffet, acceso a todos los eventos del día que adquirió el hotel. Por la compra de la noche del sábado se incluye el acceso al evento del día domingo",
-    "notInclude": "Cena de gala del día viernes 9 de Febrero 2024, categorías para competir, almuerzos ni cenas,  tiquetes aéreos ni traslados",
+    "include": "Desayuno buffet, acceso a todos los eventos del wldc el día que adquirió el hotel - por la compra de la noche del sábado se incluirá el acceso al evento del domingo.",
+    "notInclude": "Cena de gala el viernes 9 de febrero, categorías para competir, cenas.",
     "capacityLabel": {
       "1": "una persona en la habitación",
       "2": "dos personas en la habitación",

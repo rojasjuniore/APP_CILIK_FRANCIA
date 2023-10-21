@@ -174,7 +174,7 @@
     },
     "fullPass": {
       "title": "Full Pass",
-      "include": "Access to all activities from February 5th to 11th such as: concert, parties, workshops, conferences, competition, Grand Finale, Ultimate Championship, Music Park Fest, pool parties, beaches and gym.",
+      "include": "Access to all activities from February 5th to 11th such as: concerts, parties, workshops, conferences, competition, Grand Finale, Ultimate Championship, Music Park Fest, pool parties, beaches and gym.",
       "notInclude": "VIP pool parties, gala dinner, special bootcamps with international teachers, competition categories.",
       "important": "All competitors must have the Full Pass to access the event.",
       "wantButton": "I WANT FULL PASS!"
@@ -203,8 +203,8 @@
       "beachHouse": "Beach House",
       "seaTower": "Sea Tower"
     },
-    "include": "Breakfast buffet, access to all the events of the day purchased by the hotel. For the purchase of Saturday night, access to Sunday's event is included",
-    "notInclude": "Gala dinner on Friday, February 9, 2024, competition categories, lunches and dinners, tickets and transfers",
+    "include": "Buffet breakfast, access to all wldc events on the day you purchased - with the purchase of saturday night, the access to the sunday event will be included.",
+    "notInclude": "The gala dinner on February 9th, competition categories, and dinners.",
     "capacityLabel": {
       "1": "una persona en la habitación",
       "2": "dos personas en la habitación",
