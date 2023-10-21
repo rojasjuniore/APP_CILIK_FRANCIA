@@ -263,6 +263,20 @@
         "Reach out to us at:",
         "P.S. Get ready... WLDC 2024 is going to be amazing."
       ]
+    },
+    "bankTransfer": {
+      "subject": "You are just one step away from the WLDC in Cartagena!",
+      "salutation": "See you in Cartagena!",
+      "body": [
+        "We are almost ready to experience the world's largest Latin dance event together. To secure your spot, please make the corresponding payment to:",
+        "Beneficiary Name",
+        "Account No.",
+        "NIT",
+        "Swift Code",
+        "Total",
+        "If you have any questions, please don't hesitate to ask. Our support team is here to assist you.",
+        "Reach out to us at:"
+      ]
     }
   }
 }

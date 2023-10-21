@@ -173,50 +173,63 @@ export class PurchaseService {
       await this.quickNotificationSrv.sendEmailNotification({
         type: "purchaseBankTransferInfo",
         email: email,
-        subject: `Datos de Transferencia #${orderId} - WLDC Cartagena 2024 - ` + moment().format("DD/MM/YYYY HH:mm:ss"),
-        greeting: `¡Hola!`,
+        subject: this.translatePipe.transform('notification.bankTransfer.subject'),
+        greeting: ` `,
         messageBody: [
-          {type: "html", html: `<h1 style='text-align: center;'><strong>Orden #${orderId}</strong></h1>`},
-          {type: 'line', text: `Estamos muy felices de contar con tu presencia en la edición WLDC 2024.`},
-
-          {type: "html", html: `<h4 style='text-align: center; margin: 0;'><strong>${bankOptionData.label}</strong></h4>`},
-          {type: 'html', html: `<p style='text-align: center; margin: 0;'><strong>Nombre de Beneficiario:</strong> ${bankOptionData.beneficiaryName}</p>`},
-          {type: 'html', html: `<p style='text-align: center; margin: 0;'><strong>Nro. Cuenta:</strong> ${bankOptionData.accountNumber}</p>`},
-          {type: 'html', html: `<p style='text-align: center; margin: 0;'><strong>NIT:</strong> ${bankOptionData.nit}</p>`},
-          {type: 'html', html: `<p style='text-align: center; margin: 0;'><strong>Código Swift:</strong> ${bankOptionData.swiftCode}</p>`},
-          {type: 'html', html: `<p style='text-align: center; margin: 0;'><strong>Total:</strong> ${totales} USD</p>`},
-          {type: 'line', text: ``},
-          
-          {type: 'line', text: `A continuación encontrarás los detalles de tu orden:`},
-          {type: 'action', action: 'Aquí', url: environment.dataEvent.appURL + '/pages/purchases/' + orderId + '/details'},
-          {type: "line", text: "Si no reconoce esta actividad, no se requiere ninguna acción adicional."}
+          {
+            type: 'line',
+            text: this.translatePipe.transform('notification.bankTransfer.body.0')
+          },
+          {
+            type: "html", 
+            html: `<h4 style='text-align: center; margin: 0;'><strong>${bankOptionData.label}</strong></h4>`
+          },
+          {
+            type: 'html',
+            html: `<p style='text-align: center; margin: 0;'><strong>${this.translatePipe.transform('notification.bankTransfer.body.1')}:</strong> ${bankOptionData.beneficiaryName}</p>`
+          },
+          {
+            type: 'html',
+            html: `<p style='text-align: center; margin: 0;'><strong>${this.translatePipe.transform('notification.bankTransfer.body.2')}:</strong> ${bankOptionData.accountNumber}</p>`
+          },
+          {
+            type: 'html',
+            html: `<p style='text-align: center; margin: 0;'><strong>${this.translatePipe.transform('notification.bankTransfer.body.3')}:</strong> ${bankOptionData.nit}</p>`
+          },
+          {
+            type: 'html',
+            html: `<p style='text-align: center; margin: 0;'><strong>${this.translatePipe.transform('notification.bankTransfer.body.4')}:</strong> ${bankOptionData.swiftCode}</p>`
+          },
+          {
+            type: 'html',
+            html: `<p style='text-align: center; margin: 0;'><strong>${this.translatePipe.transform('notification.bankTransfer.body.5')}:</strong> ${totales} USD</p>`
+          },
+          {
+            type: 'line',
+            text: ``
+          },
+          {
+            type: 'line',
+            text: this.translatePipe.transform('notification.bankTransfer.body.6')
+          },
+          {
+            type: 'html',
+            html: `<p style='margin: 0;'>${this.translatePipe.transform('notification.bankTransfer.body.7')}</p>`
+          },
+          {
+            type: 'html',
+            html: `<p style='margin: 0;'><strong>WhatsApp:</strong> +57 314 772 2450</p>`
+          },
+          {
+            type: 'html',
+            html: `<p style='margin: 0;'><strong>Instagram:</strong> @worldlatindancecup</p>`
+          },
+          {
+            type: 'line',
+            text: ``
+          },
       ],
-        salutation: '¡Saludos!'
-        // subject: this.translatePipe.transform('notification.purchaseInfo.subject', {orderId: orderId}) + ' - ' + moment().format("DD/MM/YYYY HH:mm:ss"),
-        // greeting: `${this.translatePipe.transform('notification.hello')}`,
-        // messageBody: [
-        //   {
-        //     type: "html",
-        //     html: `<h1 style='text-align: center;'><strong>${this.translatePipe.transform('general.order')} #${orderId}</strong></h1>`
-        //   },
-        //   {
-        //     type: 'line', 
-        //     text: this.translatePipe.transform('notification.purchaseInfo.body')[0]
-        //   },
-        //   {
-        //     type: 'line',
-        //     text: this.translatePipe.transform('notification.purchaseInfo.body')[1]
-        //   },
-        //   {
-        //     type: 'action', 
-        //     action: this.translatePipe.transform("general.here"), url: environment.dataEvent.appURL + '/pages/purchases/' + orderId + '/details'
-        //   },
-        //   {
-        //     type: "line", 
-        //     text: `${this.translatePipe.transform('notification.noRecognizeActivity')}.`
-        //   }
-        // ],
-        // salutation: `${this.translatePipe.transform('notification.greetings')}`
+        salutation: `${this.translatePipe.transform('notification.bankTransfer.salutation')}`
       });
 
       return true;

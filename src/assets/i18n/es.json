@@ -263,6 +263,20 @@
         "Escríbenos en:",
         "PD: Prepárate… El WLDC 2024 será increíble."
       ]
+    },
+    "bankTransfer": {
+      "subject": "¡Estás a un solo paso del WLDC en Cartagena!",
+      "salutation": "¡Nos vemos en Cartagena!",
+      "body": [
+        "Ya casi viviremos juntos el evento de baile latino más grande del mundo. Para separar tu cupo realiza la transferencia correspondiente:",
+        "Nombre de Beneficiario",
+        "Nro. Cuenta",
+        "NIT",
+        "Código Swift",
+        "Total",
+        "Si tienes alguna pregunta no dudes en hacerla, el equipo de soporte está para ayudarte.",
+        "Escríbenos en:"
+      ]
     }
   }
 }
