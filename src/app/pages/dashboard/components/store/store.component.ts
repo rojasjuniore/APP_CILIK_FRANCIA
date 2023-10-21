@@ -201,7 +201,7 @@ export class StoreComponent implements OnInit {
 
   async onModalCategoriesResponse(params: any){
     try {
-      // console.log('onModalCategoriesResponse', params);
+      console.log('onModalCategoriesResponse', params);
       const { status, form,  data } = params;
 
       /** Se cancelo la ejecución */
@@ -213,31 +213,31 @@ export class StoreComponent implements OnInit {
       const uid: any = this._cf.getUid();
       const allDays = this.eventInfoSrv.eventDates;
 
-      if(form.categoryTypes === 'solo'){
+      if(form.categoryTypes === 'soloist'){
         toCart = new Array(form.quantity).fill({...data, quantity: 1, categoryType: form.categoryTypes, capacity: 1})
         .map((item: any) => ({
           ...item, 
-          totales: Number(item.prices.solo),
+          totales: Number(item.prices.soloist),
           dates: allDays, 
           seed: this.cartSrv.generateId()
         }));
       }
 
-      if(form.categoryTypes === 'couple'){
+      if(form.categoryTypes === 'couples'){
         toCart = new Array(form.quantity).fill({...data, quantity: 1, categoryType: form.categoryTypes, capacity: 2})
         .map((item: any) => ({
           ...item, 
-          totales: Number(item.prices.couple * 2),
+          totales: Number(item.prices.couples * 2),
           dates: allDays, 
           seed: this.cartSrv.generateId()
         }));
       }
 
-      if(form.categoryTypes === 'group'){
+      if(form.categoryTypes === 'groups'){
         toCart = new Array(1).fill({...data, quantity: 1, categoryType: form.categoryTypes, capacity: form.quantity})
         .map((item: any) => ({
           ...item, 
-          totales: Number(item.prices.group * form.quantity),
+          totales: Number(item.prices.groups * form.quantity),
           dates: allDays, 
           seed: this.cartSrv.generateId()
         }));

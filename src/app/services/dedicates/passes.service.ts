@@ -38,21 +38,21 @@ export class PassesService {
     'category-pass': [
       {
         ranges: {from: '2023-08-01', to: '2023-11-10'},
-        solo: 50,
-        couple: 35,
-        group: 15
+        soloist: 50,
+        couples: 35,
+        groups: 15
       },
       {
         ranges: {from: '2023-11-11', to: '2023-12-16'},
-        solo: 60,
-        couple: 45,
-        group: 20
+        soloist: 60,
+        couples: 45,
+        groups: 20
       },
       {
         ranges: {from: '2023-12-17', to: '2024-01-20'},
-        solo: 75,
-        couple: 60,
-        group: 25
+        soloist: 75,
+        couples: 60,
+        groups: 25
       },
     ],
     'day-pass': [

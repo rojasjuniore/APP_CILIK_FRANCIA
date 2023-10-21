@@ -30,17 +30,17 @@ export class ModalStoreOnlyCategoriesComponent implements OnInit {
   public categoryTypes: any[] = [
     {
       label: 'general.soloist',
-      value: 'solo',
+      value: 'soloist',
       description: 'general.nroSoloists'
     },
     {
       label: 'general.couples',
-      value: 'couple',
+      value: 'couples',
       description: 'general.nroCouples'
     },
     {
       label: 'general.groups',
-      value: 'group',
+      value: 'groups',
       description: 'general.nroGroupMembers'
     },
   ];
@@ -75,6 +75,7 @@ export class ModalStoreOnlyCategoriesComponent implements OnInit {
 
   async showModal(item: any){
     this.item = item;
+    console.log('showModal', item);
     this.mi.show();
   }
 
@@ -84,22 +85,21 @@ export class ModalStoreOnlyCategoriesComponent implements OnInit {
     return this.categoryTypes.find((item: any) => item.value === this.form.value.categoryTypes)?.description;
   }
 
-
   get price() {
     if(!this.item) { return 0 ;}
     if(!this.f['categoryTypes'].value) { return 0; }
 
     const type = this.f['categoryTypes'].value;
 
-    if(type === 'solo'){
+    if(type === 'soloist'){
       return Number(this.item.prices[type]);
     }
 
-    if(type === 'couple'){
+    if(type === 'couples'){
       return Number(this.item.prices[type] * 2);
     }
 
-    if(type === 'group'){
+    if(type === 'groups'){
       return Number(this.item.prices[type]);
     }
 
@@ -112,15 +112,15 @@ export class ModalStoreOnlyCategoriesComponent implements OnInit {
 
     const type = this.f['categoryTypes'].value;
 
-    if(type === 'solo'){
+    if(type === 'soloist'){
       return Number(this.item.prices[type] * this.f['quantity'].value);
     }
 
-    if(type === 'couple'){
+    if(type === 'couples'){
       return Number(this.item.prices[type] * 2) * this.f['quantity'].value;
     }
 
-    if(type === 'group'){
+    if(type === 'groups'){
       return Number(this.item.prices[type] * this.f['quantity'].value);
     }
 
@@ -132,7 +132,7 @@ export class ModalStoreOnlyCategoriesComponent implements OnInit {
     this.form.patchValue({categoryTypes: item.value});
 
     /** Si es grupo */
-    if(item.value === 'group'){
+    if(item.value === 'groups'){
 
       /** Añadir regla de minimo 3 */
       this.form.controls['quantity'].setValidators([Validators.required, Validators.min(3)]);
