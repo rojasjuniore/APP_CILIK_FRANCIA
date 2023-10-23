@@ -138,7 +138,7 @@ export class PurchaseService {
           },
           {
             type: 'line',
-            text: 'WhatsApp: +57'
+            text: 'WhatsApp: +57 314 772 2450'
           },
           {
             type: 'line',
