@@ -104,7 +104,7 @@ export class CouponsComponent implements OnInit {
    * @param item 
    */
   copy(item) {
-    this._clipboardService.copy(environment.dataEvent.appURL + '?code=' + item.code);
+    this._clipboardService.copy(environment.dataEvent.appURL + '?code=' + item.slug);
     this.sweetAlert2Srv.showSuccess('Copied to clipboard');
     return 
   }
