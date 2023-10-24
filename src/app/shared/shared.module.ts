@@ -36,6 +36,7 @@ import { PurchaseTotalesComponent } from './purchase-totales/purchase-totales.co
 import { CheckoutBanktransferSelectOptionComponent } from './checkout-banktransfer-select-option/checkout-banktransfer-select-option.component';
 import { PurchaseUploadVoucherFormComponent } from './purchase-upload-voucher-form/purchase-upload-voucher-form.component';
 import { PurchaseBankTransferInfoCardItemComponent } from './purchase-bank-transfer-info-card-item/purchase-bank-transfer-info-card-item.component';
+import { InstallmentsComponent } from './installments/installments.component';
 
 
 
@@ -75,6 +76,7 @@ import { PurchaseBankTransferInfoCardItemComponent } from './purchase-bank-trans
     ModalStoreOnlyDayPassComponent,
     ModalHotelEventRoomsListComponent,
     ModalUpdateVoucherStatusFormComponent,
+    InstallmentsComponent,
   ],
   imports: [
     CommonModule,
@@ -125,6 +127,8 @@ import { PurchaseBankTransferInfoCardItemComponent } from './purchase-bank-trans
     ModalStoreOnlyDayPassComponent,
     ModalHotelEventRoomsListComponent,
     ModalUpdateVoucherStatusFormComponent,
+
+    InstallmentsComponent
   ]
 })
 export class SharedModule { }

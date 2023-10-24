@@ -42,7 +42,7 @@ export class CheckoutComponent implements OnInit {
     {
       label: 'general.installmentsPayment',
       slug: 'installments',
-      type: 'method',
+      type: 'installments',
       icon: 'bi bi-calendar-check',
       available: false
     },
@@ -70,62 +70,64 @@ export class CheckoutComponent implements OnInit {
     private uploadFileSrv: UploadFileService,
     private translate: TranslateService,
     private installmentSrv: InstallmentService,
-    
+
   ) { }
 
   ngOnInit(): void {
     this.sub$ = this.authSrv.uid$
-    .pipe(
-      distinctUntilChanged(),
-      switchMap((uid: string) => this.cartSrv.getCartObservable(environment.dataEvent.keyDb, uid)),
-      distinctUntilChanged((prev, next) => JSON.stringify(prev) === JSON.stringify(next)),
-    )
-    .subscribe(cart => {
-      // console.log('cart', cart);
+      .pipe(
+        distinctUntilChanged(),
+        switchMap((uid: string) => this.cartSrv.getCartObservable(environment.dataEvent.keyDb, uid)),
+        distinctUntilChanged((prev, next) => JSON.stringify(prev) === JSON.stringify(next)),
+      )
+      .subscribe(cart => {
+        // console.log('cart', cart);
 
-      if(!cart) {
-        this.router.navigate(['/pages/dashboard']);
-        return;
-      }
-      
-      this.cart = cart;
-      this.uid = this.cart.uid;
-    });
+        if (!cart) {
+          this.router.navigate(['/pages/dashboard']);
+          return;
+        }
+
+        this.cart = cart;
+        this.uid = this.cart.uid;
+      });
   }
 
   get totales() {
-    if(!this.cart) return 0;
-    if(!this.uid) return 0;
+    if (!this.cart) return 0;
+    if (!this.uid) return 0;
 
     const { product = [] } = this.cart;
     return product.map((item: any) => item.totales).reduce((a: number, b: number) => a + b, 0);
   }
 
-  onClearPaymentOptionSelected(){
+  onClearPaymentOptionSelected() {
     this.paymentOptionSelected = null;
   }
 
-  onSelectPaymentOption(item: any){
-    // console.log('onSelectPaymentOption', item);
-    if(item.type === 'navigation'){
+  onSelectPaymentOption(item: any) {
+    console.log('onSelectPaymentOption', item);
+    if (item.type === 'navigation') {
       this.paymentOptionSelected = item;
     }
 
-    if(item.type === 'method'){
+    if (item.type === 'installments') {
       // this.paymentOptionSelected = item;
       console.log('this.cart', this.cart);
       const snapshot = this.installmentSrv.getInstallmentByDate(moment().format('YYYY-MM-DD'));
+
+      console.log('snapshot', snapshot);
       // const snapshot = this.installmentSrv.getInstallmentByDate('2023-11-09');
     }
 
   }
 
-  async onPaypalCallback(event: any){
+  async onPaypalCallback(event: any) {
     try {
 
-      if(event.type === 'cancel'){ return; }
+      if (event.type === 'cancel') { return; }
 
-      if(event.type === 'error'){ return; }
+      if (event.type === 'error') { return; }
 
       // console.log('onPaypalCallback', {
       //   paypalResponse: event,
@@ -155,7 +157,7 @@ export class CheckoutComponent implements OnInit {
 
       /** Enviar notificación de compra realizada */
       await this.purchaseSrv.sendPurchaseInformationNotification({
-        email: userDoc.email, 
+        email: userDoc.email,
         orderId: purchase.orderId,
         uid: this.cart.uid,
         name: userDoc.name,
@@ -172,7 +174,7 @@ export class CheckoutComponent implements OnInit {
         'success'
       );
       return;
-      
+
     } catch (err) {
       console.log('Error on CheckoutComponent.onPaypalCallback()', err);
       return;
@@ -181,7 +183,7 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
-  async onTuCompraCallback(formData: any){
+  async onTuCompraCallback(formData: any) {
     try {
       // console.log('onTuCompraCallback', formData);
 
@@ -190,10 +192,10 @@ export class CheckoutComponent implements OnInit {
       const userDoc = await this.authSrv.getByUIDPromise(this.cart.uid);
       // console.log('userDoc', userDoc);
 
-      
+
       // const campoExtra1 = JSON.parse(formData.campoExtra1);
       /** Actualizar referencia del ID de la orden de compra */
-      const campoExtra1 = {...formData.campoExtra1, orderId: this.cart.cartId};
+      const campoExtra1 = { ...formData.campoExtra1, orderId: this.cart.cartId };
       // console.log('campoExtra1', campoExtra1);
 
       /** Actualizar referencia de redirección */
@@ -233,7 +235,7 @@ export class CheckoutComponent implements OnInit {
       /** Disparar formulario */
       this.tuCompraSrv.launchForm(purchase.metadata);
       return;
-      
+
     } catch (err) {
       console.log('Error on CheckoutComponent.onTuCompraCallback()', err);
       return;
@@ -308,7 +310,7 @@ export class CheckoutComponent implements OnInit {
   //       'success'
   //     );
   //     return;
-      
+
   //   } catch (err) {
   //     console.log('Error on CheckoutComponent.onSelectBankTransferFile()', err);
   //     return;
@@ -317,17 +319,17 @@ export class CheckoutComponent implements OnInit {
   //   }
   // }
 
-  async onSelectBankTransferOption(bankOption: any){
+  async onSelectBankTransferOption(bankOption: any) {
     try {
 
       /** Si no se recibe ninguna opción */
-      if(!bankOption){ return; }
+      if (!bankOption) { return; }
 
 
       const ask = await this.sweetAlert2Srv.askConfirm(
         this.translate.instant("alert.confirmAction")
       );
-      if(!ask) { return; }
+      if (!ask) { return; }
 
       console.log('onSelectBankTransferOption', bankOption);
 
@@ -362,7 +364,7 @@ export class CheckoutComponent implements OnInit {
 
       /** Enviar notificación de compra realizada */
       await this.purchaseSrv.sendPurchaseInformationNotification({
-        email: userDoc.email, 
+        email: userDoc.email,
         orderId: purchase.orderId,
         uid: this.cart.uid,
         name: userDoc.name,
@@ -370,7 +372,7 @@ export class CheckoutComponent implements OnInit {
 
       /** Enviar datos de transferencia bancaria */
       await this.purchaseSrv.sendPurchaseBankTransferInformationNotification({
-        email: userDoc.email, 
+        email: userDoc.email,
         orderId: purchase.orderId,
         uid: this.cart.uid,
         bankOptionData: purchase.bankOptionData,
@@ -388,13 +390,23 @@ export class CheckoutComponent implements OnInit {
         'success'
       );
       return;
-      
+
     } catch (err) {
       console.log('Error on CheckoutComponent.onSelectBankTransferFile()', err);
       return;
     } finally {
       this.spinner.hide();
     }
+  }
+
+
+
+  /**
+ * 
+ * @param installmentsOption 
+ */
+  async onSelectInstallmentsOption(installmentsOption: any) {
+    console.log(installmentsOption);
   }
 
   ngOnDestroy(): void {
