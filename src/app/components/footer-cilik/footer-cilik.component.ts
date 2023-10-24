@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/services/common.service';
+import { CustomizationfileService } from 'src/app/services/customizationfile/customizationfile.service';
 
 @Component({
   selector: 'app-footer-cilik',
@@ -9,12 +10,12 @@ import { CommonService } from 'src/app/services/common.service';
 export class FooterCilikComponent implements OnInit {
 
   constructor(
-    private commonSrv: CommonService,
+    private customFileSrv: CustomizationfileService,
   ) { }
 
   ngOnInit(): void {
   }
 
-  get currentVersion(){ return this.commonSrv.getCurrentVersion(); }
+  get currentVersion() { return this.customFileSrv.getVersion(); }
 
 }

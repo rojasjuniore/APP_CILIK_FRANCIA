@@ -9,7 +9,9 @@ export class CustomizationfileService {
 
   constructor() { }
 
-  version() { return "0.0.66" }
+  getVersion() {
+    return "0.0.2"
+  }
 
   getPROVISIONAKEY() {
     return this.getKeyDb()

@@ -44,8 +44,5 @@ export class CommonService {
     window.open(url, "_blank");
   }
 
-  getCurrentVersion(){
-    return '0.0.1';
-  }
 
 }
