@@ -1,7 +1,8 @@
 <div class="row mb-4">
     <div class="col-12 mb-4">
         <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis cum ratione veniam! Laborum, corporis pariatur.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis cum ratione veniam! Laborum, corporis
+            pariatur.
         </p>
     </div>
 
@@ -10,7 +11,9 @@
             <div class="col-12 col-sm-8 col-md-6 mb-4">
                 <div class="d-flex flex-column align-items-center justify-content-center">
                     <ng-container *ngFor="let item of bankOptions">
-                        <button class="btn btn-payment btn-lg mb-3" [ngClass]="{'active': optionSelected && item.slug == optionSelected.slug}" type="button" (click)="selectOption(item)">
+                        <button class="btn btn-payment btn-lg mb-3"
+                            [ngClass]="{'active': optionSelected && item.slug == optionSelected.slug}" type="button"
+                            (click)="selectOption(item)">
                             <span class="icon-payment"><i class="bi bi-bank"></i>&nbsp;</span>
                             <span class="label-payment">
                                 {{item.label}}
@@ -23,15 +26,11 @@
     </div>
 
     <div class="col-12 text-center">
-        <button type="button" class="btn" 
-            [ngClass]="{'btn-three': !optionSelected, 'btn-danger': optionSelected}" 
-            [attr.disabled]="(!optionSelected) ? true : null"
-            (click)="confirmOption()"
-        >
+        <button type="button" class="btn" [ngClass]="{'btn-three': !optionSelected, 'btn-danger': optionSelected}"
+            [attr.disabled]="(!optionSelected) ? true : null" (click)="confirmOption()">
             <i class="bi bi-check2-square"></i>
             &nbsp;
             {{"general.confirm" | translate | titlecase}}
         </button>
     </div>
 </div>
-

@@ -19,6 +19,13 @@
                 </small>
             </p>
 
+            <p *ngIf="item?.iban" class="card-text text-center mb-0">
+                Código IBAN y código BIC o SWIFT:
+                <small class="text-muted">
+                    {{item?.iban}}
+                </small>
+            </p>
+
             <p class="card-text text-center mb-0">
                 NIT:
                 <small class="text-muted">
