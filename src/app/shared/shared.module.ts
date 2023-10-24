@@ -37,6 +37,7 @@ import { CheckoutBanktransferSelectOptionComponent } from './checkout-banktransf
 import { PurchaseUploadVoucherFormComponent } from './purchase-upload-voucher-form/purchase-upload-voucher-form.component';
 import { PurchaseBankTransferInfoCardItemComponent } from './purchase-bank-transfer-info-card-item/purchase-bank-transfer-info-card-item.component';
 import { InstallmentsComponent } from './installments/installments.component';
+import { ClipboardModule } from 'ngx-clipboard';
 
 
 
@@ -70,7 +71,7 @@ import { InstallmentsComponent } from './installments/installments.component';
     CheckoutBanktransferSelectOptionComponent,
     PurchaseUploadVoucherFormComponent,
     PurchaseBankTransferInfoCardItemComponent,
-    
+
     ModalOnlyInputNumberComponent,
     ModalStoreOnlyCategoriesComponent,
     ModalStoreOnlyDayPassComponent,
@@ -81,6 +82,7 @@ import { InstallmentsComponent } from './installments/installments.component';
   imports: [
     CommonModule,
     FormsModule,
+    ClipboardModule,
     ReactiveFormsModule,
     TranslateModule,
     NgxPayPalModule,
@@ -105,7 +107,7 @@ import { InstallmentsComponent } from './installments/installments.component';
     PurchaseListComponent,
     PurchaseListItemCardComponent,
     AdminLayoutComponent,
-    
+
     InputNumberFormComponent,
     InputGroupNumberFormComponent,
     InputSigleCalendarComponent,
@@ -129,6 +131,8 @@ import { InstallmentsComponent } from './installments/installments.component';
     ModalUpdateVoucherStatusFormComponent,
 
     InstallmentsComponent
+
+
   ]
 })
 export class SharedModule { }

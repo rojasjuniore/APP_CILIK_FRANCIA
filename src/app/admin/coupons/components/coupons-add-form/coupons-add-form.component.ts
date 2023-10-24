@@ -238,7 +238,7 @@ export class CouponsAddFormComponent implements OnInit {
       const uid = await this.authSrv.getUIDPromise();
 
       const data = {
-        code: `${formData.code}`.trim().toUpperCase(),
+        code: `${formData.code}`.trim().toLowerCase(),
         slug: slugify(`${formData.code}`.trim().toLowerCase()),
         ownerType: formData.ownerType,
         ownerId: formData.ownerId,

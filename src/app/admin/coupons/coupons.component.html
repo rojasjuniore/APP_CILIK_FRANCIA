@@ -23,11 +23,8 @@
     </div>
 
 
-    <ng-container 
-        *ngIf="(coupons$ | async) as list; else renderLoaderList"
-        [ngTemplateOutlet]="renderCheckList"
-        [ngTemplateOutletContext]="{list: list}"
-    ></ng-container>
+    <ng-container *ngIf="(coupons$ | async) as list; else renderLoaderList" [ngTemplateOutlet]="renderCheckList"
+        [ngTemplateOutletContext]="{list: list}"></ng-container>
 
 </div>
 
@@ -36,7 +33,7 @@
         <div class="card card-box p-3 mb-3">
             <div class="row g-2 d-flex align-items-center">
                 <div class="col-12 px-3">
-                    <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-between" (click)="copy(item)">
                         <span class="text-rslt fw-bold fs-5">
                             <i class="bi bi-ticket-perforated"></i>
                             &nbsp;
@@ -44,9 +41,9 @@
                         </span>
                     </div>
                 </div>
-        
+
                 <div class="seprd2"></div>
-        
+
                 <div class="col-12 px-3">
                     <div class="row m-0 mb-1">
                         <div class="col-12 col-md-4 m-0 p-0">
@@ -72,7 +69,8 @@
                         <div class="col-12 col-md-4 m-0 p-0">
                             <p class="card-text text-md-end">
                                 {{'general.status' | translate | titlecase}}:
-                                <span class="badge bg-danger" >{{((item.status === true) ? 'general.available' : 'general.unavailable') | translate | uppercase}}</span>
+                                <span class="badge bg-danger">{{((item.status === true) ? 'general.available' :
+                                    'general.unavailable') | translate | uppercase}}</span>
                             </p>
                         </div>
                     </div>
@@ -93,7 +91,7 @@
                             </button>
                         </div>
                     </div>
-        
+
                 </div>
             </div>
         </div>
@@ -102,11 +100,8 @@
 
 
 <ng-template #renderCheckList let-list="list">
-    <ng-container 
-        *ngIf="list.length > 0; else renderNoRecords"
-        [ngTemplateOutlet]="renderList"
-        [ngTemplateOutletContext]="{list: list}"
-    ></ng-container>
+    <ng-container *ngIf="list.length > 0; else renderNoRecords" [ngTemplateOutlet]="renderList"
+        [ngTemplateOutletContext]="{list: list}"></ng-container>
 </ng-template>
 
 
@@ -130,9 +125,9 @@
                         <span class="placeholder placeholder-lg col-12"></span>
                     </h5>
                 </div>
-        
+
                 <div class="seprd2"></div>
-        
+
                 <div class="col-12 px-3">
 
                     <p class="card-text placeholder-glow">
@@ -142,18 +137,20 @@
                     <p class="card-text placeholder-glow">
                         <span class="placeholder col-12"></span>
                     </p>
-        
+
                     <div class="d-flex justify-content-between">
                         <div class="fs-4 fw-bolder placeholder-glow">
                             <span class="placeholder col-12" style="width: 10rem; height: 32px;"></span>
                         </div>
                         <div>
-                            <a href="#" tabindex="-1" class="btn-icon btn-icon-two disabled placeholder col-4" aria-hidden="true"></a>
+                            <a href="#" tabindex="-1" class="btn-icon btn-icon-two disabled placeholder col-4"
+                                aria-hidden="true"></a>
                             &nbsp;
-                            <a href="#" tabindex="-1" class="btn-icon btn-icon-two disabled placeholder col-4" aria-hidden="true"></a>
+                            <a href="#" tabindex="-1" class="btn-icon btn-icon-two disabled placeholder col-4"
+                                aria-hidden="true"></a>
                         </div>
                     </div>
-        
+
                 </div>
             </div>
         </div>
