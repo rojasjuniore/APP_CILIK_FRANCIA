@@ -12,10 +12,8 @@
         <div class="seprd2"></div>
     </div>
 
-    <ng-container *ngIf="(couponDoc); else renderLoaderview"
-    [ngTemplateOutlet]="renderCheckCouponDoc"
-    [ngTemplateOutletContext]="{item: couponDoc}"
-></ng-container>
+    <ng-container *ngIf="(couponDoc); else renderLoaderview" [ngTemplateOutlet]="renderCheckCouponDoc"
+        [ngTemplateOutletContext]="{item: couponDoc}"></ng-container>
 
 
     <div class="col-12">
@@ -25,7 +23,8 @@
                 &nbsp;
                 {{ "general.back" | translate }}
             </button>
-            <button class="btn btn-one btn-medium-c text-uppercase" type="button" [disabled]="!couponDoc" (click)="onSubmit()">
+            <button class="btn btn-one btn-medium-c text-uppercase" type="button" [disabled]="!couponDoc"
+                (click)="onSubmit()">
                 {{ "general.update" | translate }}
                 &nbsp;
                 <i class="bi bi-cloud-upload"></i>
@@ -42,7 +41,8 @@
                 <form [formGroup]="form" #userForm novalidate>
                     <div class="mb-3">
                         <label for="couponCodeInput" class="form-label fw-bold">Coupon Code</label>
-                        <input type="text" class="form-control-plaintext" id="couponCodeInput" [value]="item.code" placeholder="" readonly>
+                        <input type="text" class="form-control-plaintext" id="couponCodeInput" [value]="item.code"
+                            placeholder="" readonly>
                     </div>
 
                     <div class="mb-3">
@@ -50,11 +50,6 @@
                         <input type="text" class="form-control-plaintext" formControlName="ownerId" readonly>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="ownerIdInput" class="form-label fw-bold">type</label>
-                        <input type="text" class="form-control-plaintext" formControlName="type" readonly>
-                    </div>
-    
                     <div class="col-12 mb-3">
                         <label for="ownerType" class="form-label fw-bold">
                             {{"general.status" | translate}}
@@ -64,23 +59,69 @@
                             <option [value]="false">{{"general.unavailable" | translate}}</option>
                         </select>
 
-                        <ng-container 
-                            *ngIf="submitted" 
-                            [ngTemplateOutlet]="renderFormVM" 
-                            [ngTemplateOutletContext]="{ field: 'status' }"
-                        ></ng-container>
+                        <ng-container *ngIf="submitted" [ngTemplateOutlet]="renderFormVM"
+                            [ngTemplateOutletContext]="{ field: 'status' }"></ng-container>
                     </div>
+
+
+
+                    <div class="12">
+                        <div formArrayName="items" *ngFor="let item of items.controls; let i = index;">
+                            <div [formGroupName]="i" class="row mb-3">
+                                <div class="col-3">
+                                    <label for="concept" class="form-label">
+                                        Concept
+                                    </label>
+                                    <select class="form-select" formControlName="concept">
+                                        <option value="" selected>{{ "general.selec" | translate }}...</option>
+                                        <option *ngFor="let item of listConcept" [value]="item.slug">
+                                            {{ item.label| translate }}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-3">
+                                    <label for="type" class="form-label">
+                                        Type
+                                    </label>
+                                    <select class="form-select" formControlName="type">
+                                        <option value="" selected>{{ "general.selec" | translate }}...</option>
+                                        <option *ngFor="let item of couponTypes" [value]="item.value">
+                                            {{ item.label| translate }}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-3">
+                                    <label for="value" class="form-label">
+                                        Value
+                                        <ng-container
+                                            *ngIf="item.get('type')?.value === 'percentage'">(%)</ng-container>
+                                        <ng-container *ngIf="item.get('type')?.value === 'amount'">(USD)</ng-container>
+                                    </label>
+                                    <input type="number" class="form-control" formControlName="value">
+                                </div>
+                                <div class="col-3">
+                                    <button class="btn btn-danger" (click)="removeItem(i)">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-warning" (click)="addItem()">Add Another Item</button>
+                    </div>
+
+
+                    <!-- <div class="mb-3">
+                        <label for="ownerIdInput" class="form-label fw-bold">type</label>
+                        <input type="text" class="form-control-plaintext" formControlName="type" readonly>
+                    </div>
+
+               
 
                     <div class="mb-2">
                         <label class="form-label fw-bold">Value</label>
                         <input type="text" class="form-control" formControlName="value" placeholder="">
 
-                        <ng-container 
-                            *ngIf="submitted" 
-                            [ngTemplateOutlet]="renderFormVM" 
-                            [ngTemplateOutletContext]="{ field: 'value' }"
-                        ></ng-container>
-                    </div>
+                        <ng-container *ngIf="submitted" [ngTemplateOutlet]="renderFormVM"
+                            [ngTemplateOutletContext]="{ field: 'value' }"></ng-container>
+                    </div> -->
                 </form>
 
             </div>
@@ -90,11 +131,8 @@
 </ng-template>
 
 <ng-template #renderCheckCouponDoc let-item="item">
-    <ng-container 
-        *ngIf="(item.exist); else renderNotFoundCouponDoc"
-        [ngTemplateOutlet]="renderCoupinDoc"
-        [ngTemplateOutletContext]="{item: item}"
-    ></ng-container>
+    <ng-container *ngIf="(item.exist); else renderNotFoundCouponDoc" [ngTemplateOutlet]="renderCoupinDoc"
+        [ngTemplateOutletContext]="{item: item}"></ng-container>
 </ng-template>
 
 <ng-template #renderNotFoundCouponDoc>

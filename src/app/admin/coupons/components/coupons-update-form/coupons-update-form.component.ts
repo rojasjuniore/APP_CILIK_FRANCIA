@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import moment from 'moment';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -30,6 +30,55 @@ export class CouponsUpdateFormComponent implements OnInit, OnDestroy {
   };
   public submitted = false;
 
+  public couponTypes = [
+    { label: 'Percentage', value: 'percentage' },
+    { label: 'Amount', value: 'amount' },
+  ];
+
+
+  public listConcept = [
+    {
+      value: 0,
+      slug: 'compras-de-hotel',
+      label: 'Compras de Hotel',
+    },
+    {
+      value: 1,
+      slug: 'compras-de-merchandising',
+      label: 'Compras de Merchandising',
+    },
+    {
+      value: 2,
+      slug: 'fotografia-y-video',
+      label: 'Fotografía y Video',
+    },
+    {
+      value: 4,
+      slug: 'programa-bootcamp-talleres-internacionales',
+      label: 'Programa bootcamp/Talleres Internacionales',
+    },
+    {
+      value: 5,
+      slug: 'planes-turisticos-cartagena',
+      label: 'Planes Turísticos Cartagena',
+    },
+    {
+      slug: 'compras-de-full-pass',
+      value: 6,
+      label: 'Compras de Full pass',
+    },
+    {
+      slug: 'compras-de-categorias',
+      value: 7,
+      label: 'Compras de Categorias',
+    },
+    {
+      slug: 'compras-de-week-pass',
+      value: 8,
+      label: 'Compras de week pass',
+    }
+  ]
+
   private valueRules = {
     percentage: [Validators.required, Validators.min(0), Validators.max(100)],
     amount: [
@@ -52,9 +101,8 @@ export class CouponsUpdateFormComponent implements OnInit, OnDestroy {
   ) {
     this.form = this.fb.group({
       ownerId: '',
-      value: ['', this.valueRules.amount],
-      type: '',
       status: true,
+      items: this.fb.array([]),
     });
 
     const couponId = this.route.snapshot.paramMap.get('id');
@@ -66,45 +114,81 @@ export class CouponsUpdateFormComponent implements OnInit, OnDestroy {
     console.log('this.couponId', this.couponId);
 
     this.sub$ = this.authSrv.uid$
-    .pipe(
-      switchMap((uid) => this.couponSrv.getByEventAndId(environment.dataEvent.keyDb, this.couponId)),
-      map((doc) => {
-        return (doc) ? {exist: true, ...doc} : {exist: false};
-      }),
-      catchError((err) => of({exist: false}))
-    )
-    .subscribe((coupon) => {
-      console.log('coupon', coupon);
-      this.couponDoc = coupon;
+      .pipe(
+        switchMap((uid) => this.couponSrv.getByEventAndId(environment.dataEvent.keyDb, this.couponId)),
+        map((doc) => {
+          return (doc) ? { exist: true, ...doc } : { exist: false };
+        }),
+        catchError((err) => of({ exist: false }))
+      )
+      .subscribe((coupon: any) => {
+        // console.log('coupon', coupon);
+        this.couponDoc = coupon;
 
-      if(this.couponDoc.exist){
-        /** Actualizar valores del formulario */
-        this.form.patchValue({
-          ownerId: this.couponDoc.ownerId,
-          value: this.couponDoc.value,
-          status: this.couponDoc.status,
-          type: this.couponDoc.type,
-        });
+        if (this.couponDoc.exist) {
+          /** Actualizar valores del formulario */
+          this.form.patchValue({
+            ownerId: this.couponDoc.ownerId,
+            status: this.couponDoc.status,
+          });
 
-        /** Establecer reglas al campo según tipo de campo */
-        this.form.get('value')?.setValidators(this.valueRules[this.couponDoc.type]);
-      }
+          this.initializeForm(coupon.coupons)
 
-    });
+          /** Establecer reglas al campo según tipo de campo */
+          // this.form.get('value')?.setValidators(this.valueRules[this.couponDoc.type]);
+        }
+
+      });
+  }
+
+  initializeForm(dataArray) {
+    for (let item of dataArray) { // dataArray es el array que has proporcionado
+      this.items.push(this.fb.group({
+        type: [item.type, [Validators.required]],
+        concept: [item.concept, [Validators.required]],
+        value: [item.value, [Validators.required]],
+      }));
+    }
+  }
+
+  get items(): FormArray {
+    return this.form.get('items') as FormArray;
   }
 
   get f() { return this.form.controls; }
+
+
+
+
+  addItem(): void {
+    this.items.push(this.createItem());
+  }
+
+  removeItem(index: number): void {
+    this.items.removeAt(index);
+  }
+
+
+
+  createItem(): FormGroup {
+    return this.fb.group({
+      type: ['amount', [Validators.required]],
+      value: ['', [Validators.required]],
+      concept: ['', [Validators.required]],
+    });
+  }
 
   async onSubmit() {
     try {
       this.submitted = true;
 
-      if(!this.form.valid) {
+      console.log('this.form', this.form);
+      if (!this.form.valid) {
         return;
       }
 
       const ask = await this.sweetAlert2Srv.askConfirm(`Are you sure to update this coupon?`);
-      if(!ask) { return; }
+      if (!ask) { return; }
 
       await this.spinner.show();
 
@@ -112,12 +196,12 @@ export class CouponsUpdateFormComponent implements OnInit, OnDestroy {
       const uid = await this.authSrv.getUIDPromise();
 
       const data = {
-        value: formData.value,
         status: formData.status === 'false' ? false : true,
         updatedAt: moment().valueOf(),
         updatedBy: uid,
+        coupons: formData.items,
       };
-      // console.log('Try to update coupon', data);
+      console.log('Try to update coupon', data);
 
       await this.couponSrv.update(environment.dataEvent.keyDb, this.couponId, data);
 

@@ -11,122 +11,108 @@
         <div class="card card-box p-3">
             <div class="row g-2 d-flex align-items-center">
                 <form [formGroup]="form" #userForm novalidate>
-            
+
                     <div class="col-12 mb-3">
                         <label for="code" class="form-label">Coupon Code</label>
                         <input type="text" class="form-control" formControlName="code" aria-describedby="codeHelp">
-                        <ng-container 
-                            *ngIf="submitted" 
-                            [ngTemplateOutlet]="renderFormVM" 
-                            [ngTemplateOutletContext]="{ field: 'code' }"
-                        ></ng-container>
+                        <ng-container *ngIf="submitted" [ngTemplateOutlet]="renderFormVM"
+                            [ngTemplateOutletContext]="{ field: 'code' }"></ng-container>
                     </div>
-            
+
                     <div class="col-12 mb-3">
                         <label for="ownerType" class="form-label">
                             Owner Type
                         </label>
                         <select class="form-select" formControlName="ownerType">
                             <option value="" selected>{{ "general.selec" | translate }}...</option>
-                            <option *ngFor="let item of ownerTypes" [value]="item.value">{{ item.label| translate }}</option>
+                            <option *ngFor="let item of ownerTypes" [value]="item.value">{{ item.label| translate }}
+                            </option>
                         </select>
-                        <ng-container 
-                            *ngIf="submitted" 
-                            [ngTemplateOutlet]="renderFormVM" 
-                            [ngTemplateOutletContext]="{ field: 'ownerType' }"
-                        ></ng-container>
+                        <ng-container *ngIf="submitted" [ngTemplateOutlet]="renderFormVM"
+                            [ngTemplateOutletContext]="{ field: 'ownerType' }"></ng-container>
                     </div>
 
                     <div class="col-12 mb-3" *ngIf="!f['owner'].value">
                         <label for="ownerId" class="form-label">Owner</label>
                         <div class="d-grid gap-2 col-6 mx-auto">
-                            <button class="btn btn-danger" type="button" (click)="launchFindOwnerModal()" [disabled]="!f['ownerType'].value">
+                            <button class="btn btn-danger" type="button" (click)="launchFindOwnerModal()"
+                                [disabled]="!f['ownerType'].value">
                                 <i class="bi bi-search"></i>
                                 &nbsp;
                                 Find Owner
                             </button>
                         </div>
-                    
-                        <ng-container 
-                            *ngIf="submitted" 
-                            [ngTemplateOutlet]="renderFormVM"
-                            [ngTemplateOutletContext]="{ field: 'ownerId' }"
-                        ></ng-container>
+
+                        <ng-container *ngIf="submitted" [ngTemplateOutlet]="renderFormVM"
+                            [ngTemplateOutletContext]="{ field: 'ownerId' }"></ng-container>
                     </div>
-            
+
                     <div class="col-12 mb-3" *ngIf="f['owner'].value">
                         <label for="ownerId" class="form-label">Owner</label>
 
 
                         <ng-container [ngSwitch]="f['ownerType'].value">
-                            <ng-container 
-                                *ngSwitchCase="'ambassador'"
-                                [ngTemplateOutlet]="renderAmbassadorAlertInfo"
-                                [ngTemplateOutletContext]="{item: f['owner'].value}"
-                            ></ng-container>
-                            <ng-container 
-                                *ngSwitchCase="'academy'"
-                                [ngTemplateOutlet]="renderAcademyAlertInfo"
-                                [ngTemplateOutletContext]="{item: f['owner'].value}"
-                            ></ng-container>
+                            <ng-container *ngSwitchCase="'ambassador'" [ngTemplateOutlet]="renderAmbassadorAlertInfo"
+                                [ngTemplateOutletContext]="{item: f['owner'].value}"></ng-container>
+                            <ng-container *ngSwitchCase="'academy'" [ngTemplateOutlet]="renderAcademyAlertInfo"
+                                [ngTemplateOutletContext]="{item: f['owner'].value}"></ng-container>
                         </ng-container>
 
-                        <!-- <div class="alert alert-info" role="alert"  (click)="clearOwnerId()">
-                            <pre>
-                                {{ f['owner'].value | json }}
-                            </pre>
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <label for="ownerType" class="form-label">
+                            limite de uso
+                        </label>
+                        <input type="text" class="form-control" formControlName="useLimit" aria-describedby="codeHelp">
+                        <ng-container *ngIf="submitted" [ngTemplateOutlet]="renderFormVM"
+                            [ngTemplateOutletContext]="{ field: 'useLimit' }"></ng-container>
+                    </div>
 
 
-
-                            <ng-container *ngIf="f['ownerType'].value === 'ambassador'">
-                                <div class="d-flex justify-content-between mb-0">
-                                    <h4 class="alert-heading mb-0">
-                                        {{f['owner'].value.name | uppercase}}
-                                    </h4>
-                                    
-                                    <button type="button" class="btn-close" aria-label="Close"></button>
+                    <div class="12">
+                        <div formArrayName="items" *ngFor="let item of items.controls; let i = index;">
+                            <div [formGroupName]="i" class="row mb-3">
+                                <div class="col-3">
+                                    <label for="concept" class="form-label">
+                                        Concept
+                                    </label>
+                                    <select class="form-select" formControlName="concept">
+                                        <option value="" selected>{{ "general.selec" | translate }}...</option>
+                                        <option *ngFor="let item of listConcept" [value]="item.slug">
+                                            {{ item.label| translate }}
+                                        </option>
+                                    </select>
                                 </div>
-                                <hr>
-                                <p class="m-0">Email: <small class="text-muted">{{f['owner'].value.email}}</small></p>
-                                <p class="m-0">identification: <small class="text-muted">{{f['owner'].value.identification}}</small></p>
-                                <p class="m-0">phoneNumber: <small class="text-muted">{{f['owner'].value.prefijo}} {{f['owner'].value.phone}}</small></p>
-                                <p class="m-0">uid: <small class="text-muted">{{f['owner'].value.uid}}</small></p>
-                            </ng-container>
-                        </div> -->
+                                <div class="col-3">
+                                    <label for="type" class="form-label">
+                                        Type
+                                    </label>
+                                    <select class="form-select" formControlName="type">
+                                        <option value="" selected>{{ "general.selec" | translate }}...</option>
+                                        <option *ngFor="let item of couponTypes" [value]="item.value">
+                                            {{ item.label| translate }}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-3">
+                                    <label for="value" class="form-label">
+                                        Value
+                                        <ng-container
+                                            *ngIf="item.get('type')?.value === 'percentage'">(%)</ng-container>
+                                        <ng-container *ngIf="item.get('type')?.value === 'amount'">(USD)</ng-container>
+                                    </label>
+                                    <input type="number" class="form-control" formControlName="value">
+                                </div>
+                                <div class="col-3">
+                                    <button class="btn btn-danger" (click)="removeItem(i)">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-warning" (click)="addItem()">Add Another Item</button>
                     </div>
-            
-                    <div class="col-12 mb-3">
-                        <label for="owner" class="form-label">
-                            Type
-                        </label>
-                        <select class="form-select" formControlName="type">
-                            <option value="" selected>{{ "general.selec" | translate }}...</option>
-                            <option *ngFor="let item of couponTypes" [value]="item.value">{{ item.label| translate }}</option>
-                        </select>
-                        <ng-container 
-                            *ngIf="submitted" 
-                            [ngTemplateOutlet]="renderFormVM" 
-                            [ngTemplateOutletContext]="{ field: 'type' }"
-                        ></ng-container>
-                    </div>
-            
-                    <div class="col-12 mb-3">
-                        <label for="value" class="form-label">
-                            Value
-            
-                            <ng-container *ngIf="(f['type'].value === 'percentage')">(%)</ng-container>
-                            <ng-container *ngIf="(f['type'].value === 'amount')">(USD)</ng-container>
-            
-                        </label>
-                        <input type="text" class="form-control" formControlName="value" aria-describedby="valueHelp">
-                        <ng-container 
-                            *ngIf="submitted" 
-                            [ngTemplateOutlet]="renderFormVM" 
-                            [ngTemplateOutletContext]="{ field: 'value' }"
-                        ></ng-container>
-                    </div>
-            
-            
+
+
                 </form>
             </div>
         </div>
@@ -151,30 +137,31 @@
 </div>
 
 <ng-template #renderAcademyAlertInfo let-item="item">
-    <div class="alert alert-info" role="alert"  (click)="clearOwnerId()">
+    <div class="alert alert-info" role="alert" (click)="clearOwnerId()">
         <div class="d-flex justify-content-between mb-0">
             <h4 class="alert-heading mb-0">
                 {{item.name_institution | uppercase}}
             </h4>
-            
+
             <button type="button" class="btn-close" aria-label="Close"></button>
         </div>
         <hr>
         <p class="m-0">direction: <small class="text-muted">{{item.direction}}</small></p>
         <p class="m-0">email_institution: <small class="text-muted">{{item.email_institution}}</small></p>
         <p class="m-0">description: <small class="text-muted">{{item.description}}</small></p>
-        <p class="m-0">phoneNumber: <small class="text-muted">+{{item.phone_prefijo_institution.phonecode}} {{item.phone_contact}}</small></p>
+        <p class="m-0">phoneNumber: <small class="text-muted">+{{item.phone_prefijo_institution.phonecode}}
+                {{item.phone_contact}}</small></p>
         <p class="m-0">institutionId: <small class="text-muted">{{item._id}}</small></p>
     </div>
 </ng-template>
 
 <ng-template #renderAmbassadorAlertInfo let-item="item">
-    <div class="alert alert-info" role="alert"  (click)="clearOwnerId()">
+    <div class="alert alert-info" role="alert" (click)="clearOwnerId()">
         <div class="d-flex justify-content-between mb-0">
             <h4 class="alert-heading mb-0">
                 {{item.name | uppercase}}
             </h4>
-            
+
             <button type="button" class="btn-close" aria-label="Close"></button>
         </div>
         <hr>
@@ -193,8 +180,5 @@
     </ng-container>
 </ng-template>
 
-<app-modal-coupon-find-owner 
-    #modalFindOwner 
-    [ownerType]="f['ownerType'].value"
-    (onCloseModal)="onSelectOwner($event)"
-></app-modal-coupon-find-owner>
+<app-modal-coupon-find-owner #modalFindOwner [ownerType]="f['ownerType'].value"
+    (onCloseModal)="onSelectOwner($event)"></app-modal-coupon-find-owner>

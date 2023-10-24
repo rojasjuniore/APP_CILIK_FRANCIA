@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import moment from 'moment';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -18,8 +18,7 @@ import { ModalCouponFindOwnerComponent } from '../modal-coupon-find-owner/modal-
 export class CouponsAddFormComponent implements OnInit {
 
   @ViewChild('modalFindOwner') modalFindOwner!: ModalCouponFindOwnerComponent;
-
-  public form: FormGroup;
+  public form!: FormGroup;
   public vm = {
     code: [
       { type: 'required', message: 'is required' },
@@ -33,6 +32,9 @@ export class CouponsAddFormComponent implements OnInit {
       { type: 'required', message: 'is required' },
     ],
     type: [
+      { type: 'required', message: 'is required' },
+    ],
+    useLimit: [
       { type: 'required', message: 'is required' },
     ],
     value: [
@@ -54,6 +56,50 @@ export class CouponsAddFormComponent implements OnInit {
     { label: 'Amount', value: 'amount' },
   ];
 
+
+  public listConcept = [
+    {
+      value: 0,
+      slug: 'compras-de-hotel',
+      label: 'Compras de Hotel',
+    },
+    {
+      value: 1,
+      slug: 'compras-de-merchandising',
+      label: 'Compras de Merchandising',
+    },
+    {
+      value: 2,
+      slug: 'fotografia-y-video',
+      label: 'Fotografía y Video',
+    },
+    {
+      value: 4,
+      slug: 'programa-bootcamp-talleres-internacionales',
+      label: 'Programa bootcamp/Talleres Internacionales',
+    },
+    {
+      value: 5,
+      slug: 'planes-turisticos-cartagena',
+      label: 'Planes Turísticos Cartagena',
+    },
+    {
+      slug: 'compras-de-full-pass',
+      value: 6,
+      label: 'Compras de Full pass',
+    },
+    {
+      slug: 'compras-de-categorias',
+      value: 7,
+      label: 'Compras de Categorias',
+    },
+    {
+      slug: 'compras-de-week-pass',
+      value: 8,
+      label: 'Compras de week pass',
+    }
+  ]
+
   private valueRules = {
     percentage: [Validators.required, Validators.min(0), Validators.max(100)],
     amount: [
@@ -63,6 +109,8 @@ export class CouponsAddFormComponent implements OnInit {
     ]
   };
 
+  
+
   constructor(
     private fb: FormBuilder,
     private couponSrv: CouponService,
@@ -71,6 +119,12 @@ export class CouponsAddFormComponent implements OnInit {
     private sweetAlert2Srv: Sweetalert2Service,
     private router: Router
   ) {
+    this.buildForm();
+  }
+
+
+
+  buildForm() {
     this.form = this.fb.group({
       code: [
         '',
@@ -84,45 +138,80 @@ export class CouponsAddFormComponent implements OnInit {
       ownerType: ['', [Validators.required]],
       owner: [''],
       ownerId: ['', [Validators.required]],
-      type: ['amount', [Validators.required]],
-      value: ['', this.valueRules.amount],
+      useLimit: [100, [Validators.required]],
+
+
+      items: this.fb.array([
+        this.createItem()
+      ])
     });
   }
+
 
   ngOnInit(): void {
-    this.form.get('type')?.valueChanges.subscribe((value) => {
-      this.form.patchValue({ value: 0 });
+    // this.items.get('type')?.valueChanges.subscribe((value) => {
+    //   this.form.patchValue({ value: 0 });
 
-      if(value === 'percentage') {
-        this.form.get('value')?.setValidators(this.valueRules.percentage);
-      } else {
-        this.form.get('value')?.setValidators(this.valueRules.amount);
-      }
+    //   console.log('value', value);
+    //   if (value === 'percentage') {
+    //     this.items.get('value')?.setValidators(this.valueRules.percentage);
+    //   } else {
+    //     this.items.get('value')?.setValidators(this.valueRules.amount);
+    //   }
 
-      this.form.get('value')?.updateValueAndValidity();
-    });
+    //   this.items.get('value')?.updateValueAndValidity();
+    // });
 
-    this.form.get('ownerType')?.valueChanges.subscribe((value) => {
-      this.form.patchValue({ ownerId: '' });
+    // this.form.controls.forEach((group: FormGroup, index: number) => {
+    //   group.get('type')?.valueChanges.subscribe(value => {
+    //     //... your logic here
+    //   });
+    // });
+
+    // this.items.get('ownerType')?.valueChanges.subscribe((value) => {
+    //   this.form.patchValue({ ownerId: '' });
+    // });
+  }
+
+
+  get f() { return this.form.controls; }
+
+  get items(): FormArray {
+    return this.form.get('items') as FormArray;
+  }
+
+
+  createItem(): FormGroup {
+    return this.fb.group({
+      type: ['amount', [Validators.required]],
+      value: ['', [Validators.required]],
+      concept: ['', [Validators.required]],
     });
   }
 
-  get f() { return this.form.controls; }
+  addItem(): void {
+    this.items.push(this.createItem());
+  }
+
+  removeItem(index: number): void {
+    this.items.removeAt(index);
+  }
+
 
   launchFindOwnerModal() {
     this.modalFindOwner.showModal({});
   }
 
 
-  clearOwnerId(){
-    this.form.patchValue({ownerId: '', owner: ''});
+  clearOwnerId() {
+    this.form.patchValue({ ownerId: '', owner: '' });
   }
 
   onSelectOwner(res: any) {
     console.log('res', res);
-    const {status, data } = res;
+    const { status, data } = res;
 
-    if(!status) { return; }
+    if (!status) { return; }
 
     this.form.patchValue({
       owner: data,
@@ -134,13 +223,14 @@ export class CouponsAddFormComponent implements OnInit {
     try {
       this.submitted = true;
 
-      if(!this.form.valid) {
+      console.log('this.form', this.form);
+      if (!this.form.valid) {
         this.form.markAllAsTouched();
         return;
       }
 
       const ask = await this.sweetAlert2Srv.askConfirm(`Are you sure to create this coupon?`);
-      if(!ask) { return; }
+      if (!ask) { return; }
 
       await this.spinner.show();
 
@@ -152,20 +242,21 @@ export class CouponsAddFormComponent implements OnInit {
         slug: slugify(`${formData.code}`.trim().toLowerCase()),
         ownerType: formData.ownerType,
         ownerId: formData.ownerId,
-        type: formData.type,
-        value: formData.value,
-        status: true, 
+        coupons: formData.items,
+        status: true,
         createdAt: moment().valueOf(),
         createdBy: uid,
       }
-      // console.log('formData', data);
+
+
+      console.log('formData', data);
 
       await this.couponSrv.store(environment.dataEvent.keyDb, data.slug, data);
 
       this.sweetAlert2Srv.showSuccess('Coupon created successfully');
       this.router.navigate(['/admin/coupons']);
       return;
-      
+
     } catch (err) {
       console.log('Error on CouponsAddFormComponent.onSubmit', err);
       return;
