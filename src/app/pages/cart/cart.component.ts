@@ -20,7 +20,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
   private sub$!: Subscription;
   couponObj: unknown;
-
+  totales: any = 0
   constructor(
     private codeStorageSrv: CodeStorageService,
     private authSrv: AuthenticationService,
@@ -67,11 +67,20 @@ export class CartComponent implements OnInit, OnDestroy {
     this.couponObj = await this.codeStorageSrv.checkCode();
   }
 
-  get totales() {
-    if (!this.cart) return 0;
-    const total = this.cart.product.map((item: any) => item.totales)
-      .reduce((prev: any, next: any) => prev + next, 0);
-    return total;
+  // get totales() {
+  //   if (!this.cart) return 0;
+  //   const total = this.cart.product.map((item: any) => item.totales)
+  //     .reduce((prev: any, next: any) => prev + next, 0);
+  //   return total;
+  // }
+
+  /**
+   * @dev Get total
+   * @param item 
+   */
+  onCartTotal(item) {
+    console.log('item', item);
+    this.totales = item.globalTotalToPay || 0;
   }
 
 

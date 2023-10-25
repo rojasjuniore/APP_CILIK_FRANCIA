@@ -1,6 +1,7 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Subject } from 'rxjs';
 import { CartService } from 'src/app/services/cart.service';
 import { CommonService } from 'src/app/services/common.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
@@ -15,6 +16,7 @@ export class CartTotalesComponent implements OnInit, OnChanges {
 
   @Input() cart: any;
   @Input() couponObj: any;
+  @Output() onCartTotal = new Subject<any>();
 
   couponSrv: any;
   globalTotal = {
@@ -37,22 +39,40 @@ export class CartTotalesComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     const { cart, couponObj } = changes;
+    // console.log('cart', cart);
+    // console.log('couponObj', couponObj);
+
     // @dev
-    if (cart && cart.currentValue) {
+    if ((cart && cart.currentValue) || this.cart && couponObj.currentValue) {
 
+      /// @dec code coupon
       const couponSrv = couponObj.currentValue.coupons || [];
-      this.cart = cart.currentValue;
-
-      const groupedData = this.groupByAndCalculateTotals(this.cart.product, 'key');
+      /// @dev cart data
+      // console.log('cart.currentValue', cart);
+      const __cart = cart ? cart.currentValue : this.cart
+      // console.log('__cart', __cart);
+      const groupedData = this.groupByAndCalculateTotals(__cart.product, 'key');
       const updatedGroupedData = this.applyDiscounts(groupedData, couponSrv);
       this.globalTotal = this.calculateGlobalTotals(updatedGroupedData);
-
+      this.onCartTotal.next(this.globalTotal);
       // console.log('groupedData', groupedData);
       // console.log('updatedGroupedData', updatedGroupedData);
       // console.log('updatedGroupedData', this.globalTotal);
       // console.log('this.couponSrv', this.couponSrv);
       // console.log('this.cart', this.cart);
+    } else if (!cart && !couponObj.currentValue) {
+      // console.log('couponObj.currentValue', couponObj);
+      // console.log('cart.currentValue', this.cart);
+
+      const couponSrv = [];
+      const groupedData = this.groupByAndCalculateTotals(this.cart.product, 'key');
+      const updatedGroupedData = this.applyDiscounts(groupedData, couponSrv);
+      this.globalTotal = this.calculateGlobalTotals(updatedGroupedData);
+
+      this.onCartTotal.next(this.globalTotal);
+      return
     }
+
 
     // else if (cart && cart.currentValue) {
     //   // console.log('CartTotalesComponent', cart.currentValue);
