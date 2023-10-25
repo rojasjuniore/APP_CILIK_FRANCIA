@@ -59,8 +59,28 @@ export class CouponsAddFormComponent implements OnInit {
 
   public listConcept = [
     {
+      slug: "discount",
       value: 0,
-      slug: 'compras-de-hotel',
+      label: 'Descuento',
+    },
+    {
+      slug: 'fullPass',
+      value: 6,
+      label: 'Compras de Full pass',
+    },
+    {
+      slug: 'categoryPass',
+      value: 7,
+      label: 'Compras de Categorias',
+    },
+    {
+      slug: 'weekendPass',
+      value: 8,
+      label: 'Compras de week pass',
+    },
+    {
+      value: 0,
+      slug: 'hotelAndEvent',
       label: 'Compras de Hotel',
     },
     {
@@ -83,21 +103,7 @@ export class CouponsAddFormComponent implements OnInit {
       slug: 'planes-turisticos-cartagena',
       label: 'Planes Turísticos Cartagena',
     },
-    {
-      slug: 'compras-de-full-pass',
-      value: 6,
-      label: 'Compras de Full pass',
-    },
-    {
-      slug: 'compras-de-categorias',
-      value: 7,
-      label: 'Compras de Categorias',
-    },
-    {
-      slug: 'compras-de-week-pass',
-      value: 8,
-      label: 'Compras de week pass',
-    }
+
   ]
 
   private valueRules = {
@@ -109,7 +115,7 @@ export class CouponsAddFormComponent implements OnInit {
     ]
   };
 
-  
+
 
   constructor(
     private fb: FormBuilder,

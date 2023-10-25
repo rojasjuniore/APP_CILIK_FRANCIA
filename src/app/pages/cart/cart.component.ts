@@ -4,6 +4,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Subscription, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CartService } from 'src/app/services/cart.service';
+import { CodeStorageService } from 'src/app/services/code-storage.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 import { environment } from 'src/environments/environment';
 
@@ -18,8 +19,10 @@ export class CartComponent implements OnInit, OnDestroy {
   public cart: any;
 
   private sub$!: Subscription;
+  couponObj: unknown;
 
   constructor(
+    private codeStorageSrv: CodeStorageService,
     private authSrv: AuthenticationService,
     private cartSrv: CartService,
     private spinner: NgxSpinnerService,
@@ -27,29 +30,33 @@ export class CartComponent implements OnInit, OnDestroy {
     private translate: TranslateService
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.sub$ = this.authSrv.uid$
-    .pipe(
-      distinctUntilChanged(),
-      switchMap((uid: string) => this.cartSrv.getCartObservable(environment.dataEvent.keyDb, uid)),
-      distinctUntilChanged((prev, next) => JSON.stringify(prev) === JSON.stringify(next)),
-    )
-    .subscribe(cart => {
-      // console.log('cart', cart);
-      this.cart = cart;
-      this.uid = this.cart.uid;
-    });
+      .pipe(
+        distinctUntilChanged(),
+        switchMap((uid: string) => this.cartSrv.getCartObservable(environment.dataEvent.keyDb, uid)),
+        distinctUntilChanged((prev, next) => JSON.stringify(prev) === JSON.stringify(next)),
+      )
+      .subscribe(cart => {
+        console.log('cart', cart);
+        this.cart = cart;
+        this.uid = this.cart.uid;
+      });
+
+    this.couponObj = await this.codeStorageSrv.checkCode();
+    console.log('code', this.couponObj);
+
   }
 
-  get totales(){
-    if(!this.cart) return 0;
+  get totales() {
+    if (!this.cart) return 0;
     const total = this.cart.product.map((item: any) => item.totales)
-    .reduce((prev: any, next: any) => prev + next, 0);
+      .reduce((prev: any, next: any) => prev + next, 0);
     return total;
   }
 
 
-  async onRemoveItem(item: any){
+  async onRemoveItem(item: any) {
     try {
       await this.cartSrv.removeOnCart(environment.dataEvent.keyDb, this.uid, item);
 
@@ -58,7 +65,7 @@ export class CartComponent implements OnInit, OnDestroy {
         'success'
       );
       return;
-      
+
     } catch (err) {
       console.log('Error on CartComponent.onRemoveItem', err);
       return;

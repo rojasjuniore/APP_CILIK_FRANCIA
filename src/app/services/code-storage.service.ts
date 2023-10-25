@@ -11,23 +11,32 @@ export class CodeStorageService {
 
   constructor(private couponSrv: CouponService) { }
 
+
+  /**
+   * 
+   * @returns 
+   */
+  async checkCode() {
+    return new Promise((resolve) => {
+      const code: any = this.getCode();
+      this.couponSrv.getByEventAndId(environment.dataEvent.keyDb, code)
+        .subscribe((coupon: any) => {
+          if (!coupon || !coupon.status) return resolve(false);
+          return resolve(coupon);
+        })
+    });
+
+  }
+
   /**
    * 
    * @param code 
    */
   setCode(code: string) {
     if (!code) return
-    this.couponSrv
-      .getByEventAndId(environment.dataEvent.keyDb, code)
-      .subscribe((res: any) => {
-        if (!res || !res.status) {
-          console.log('getInfoCode', res);
-          return
-        }
-        console.log('getInfoCode', res);
-        localStorage.setItem(this.storageKey, JSON.stringify(res));
-      });
+    return localStorage.setItem(this.storageKey, code);
   }
+
 
 
 
@@ -36,8 +45,7 @@ export class CodeStorageService {
    * @returns 
    */
   getCode() {
-    const codeObj: any = localStorage.getItem(this.storageKey);
-    return JSON.parse(codeObj);
+    return localStorage.getItem(this.storageKey)
   }
 
   /**
