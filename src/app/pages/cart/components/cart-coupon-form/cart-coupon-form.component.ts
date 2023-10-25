@@ -1,6 +1,7 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslatePipe } from '@ngx-translate/core';
+import { Subject } from 'rxjs';
 import { CartService } from 'src/app/services/cart.service';
 import { CouponService, checkAvailableCouponCodeExist } from 'src/app/services/coupon.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
@@ -12,11 +13,14 @@ import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 })
 export class CartCouponFormComponent implements OnInit, OnChanges {
 
+  @Output() onRemoveCupon = new Subject<any>();
+
+
   @Input() cart: any = null;
-  
+  @Input() couponObj: any;
   public showLoadingBtn: boolean = true;
 
-  public form: FormGroup;
+  public form!: FormGroup;
   public vm = {
     code: [
       { type: 'required', message: 'formValidations.required' },
@@ -25,6 +29,7 @@ export class CartCouponFormComponent implements OnInit, OnChanges {
     ]
   };
   public submitted = false;
+  public isButtonDisabled = false;
 
   constructor(
     private fb: FormBuilder,
@@ -33,9 +38,14 @@ export class CartCouponFormComponent implements OnInit, OnChanges {
     private sweetAlert2Srv: Sweetalert2Service,
     private translatePipe: TranslatePipe
   ) {
+
+    this.buildForm();
+  }
+
+  buildForm() {
     this.form = this.fb.group({
       code: [
-        '', 
+        '',
         [
           Validators.required,
           Validators.pattern('^[a-zA-Z0-9]*$')
@@ -47,30 +57,55 @@ export class CartCouponFormComponent implements OnInit, OnChanges {
     });
   }
 
-  ngOnInit(): void { }
 
   ngOnChanges(changes: SimpleChanges): void {
     const { cart } = changes;
 
-    if(cart && cart.currentValue){
+    if (cart && cart.currentValue) {
       this.cart = cart.currentValue;
       this.showLoadingBtn = false;
     }
 
   }
 
+  ngOnInit(): void {
+    if (this.couponObj && this.couponObj.status) {
+      this.couponSrv = this.couponObj.slug
+      this.form.setValue({ code: this.couponObj.slug });
+
+      this.isButtonDisabled = true;
+      this.form.get('code')?.disable();
+
+    }
+  }
+
+
+  async removeCupon() {
+    const ask = await this.sweetAlert2Srv.askConfirm("¿Estás seguro de eliminar el cupón?");
+    if (!ask) return;
+
+    this.isButtonDisabled = false;
+    this.form.get('code')?.enable();
+
+    this.onRemoveCupon.next(null);
+  }
+
+
   get f() { return this.form.controls; }
 
 
-  async onSubmit(){
+  async onSubmit() {
     try {
       this.submitted = true;
-      
+
       const formData = this.form.value;
       const couponCode = `${formData.code}`.trim().toUpperCase();
       const slugCouponCode = `${formData.code}`.trim().toLowerCase();
-      
-      if(!this.form.valid){
+
+
+      console.log('couponCode', this.form);
+
+      if (!this.form.valid) {
         console.log('Form is invalid');
         return;
       }
@@ -82,11 +117,11 @@ export class CartCouponFormComponent implements OnInit, OnChanges {
 
       /** Válidar si ya no se aplico al carrito */
       const find = cartCoupons.find((item: any) => item.code === couponCode);
-      if(find){
+      if (find) {
         this.sweetAlert2Srv.showInfo(
           this.translatePipe.transform('formValidations.couponAlreadyApplied')
         );
-        this.form.patchValue({code: ''});
+        this.form.patchValue({ code: '' });
         this.submitted = false;
         return;
       }
@@ -103,11 +138,11 @@ export class CartCouponFormComponent implements OnInit, OnChanges {
         ? cartCoupons.some((item: any) => item.ownerType === couponDoc.ownerType)
         : false;
       // console.log('typeRule', typeRule);
-      if(typeRule){
+      if (typeRule) {
         this.sweetAlert2Srv.showError(
           this.translatePipe.transform('formValidations.couponOnlyOneOfThisType')
         );
-        this.form.patchValue({code: ''});
+        this.form.patchValue({ code: '' });
         this.submitted = false;
         return;
       }
@@ -118,15 +153,15 @@ export class CartCouponFormComponent implements OnInit, OnChanges {
       /** Añadir cupon a configuración del carrito */
       await this.cartSrv.addOnCart(this.cart.eventId, this.cart.uid, [couponDoc], 'coupons');
 
-      this.form.patchValue({code: ''});
+      this.form.patchValue({ code: '' });
       this.submitted = false;
-      
+
       this.sweetAlert2Srv.showToast(
         this.translatePipe.transform('alert.couponApplied'),
         'success'
       );
       return;
-      
+
     } catch (err) {
       console.log('Error on CartCouponFormComponent.onSubmit', err);
       return;

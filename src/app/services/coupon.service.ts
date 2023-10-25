@@ -30,7 +30,7 @@ export class CouponService {
   async remove(eventId: string, docId: string) {
     return await this.afs.collection(this.collection).doc(eventId).collection(this.subCollection).doc(docId).delete();
   }
-  
+
   getByEventAndId(eventId: string, docId: string) {
     return this.afs.collection(this.collection).doc(eventId).collection(this.subCollection).doc(docId).valueChanges();
   }
@@ -41,7 +41,7 @@ export class CouponService {
         this.afs.collection(this.collection).doc(eventId).collection(this.subCollection).doc(docId).get()
       );
       return await handlerObjectResult(snapshot);
-      
+
     } catch (err) {
       console.log('Error on CouponService.getByEventAndIdPromise', err);
       return null;
@@ -97,12 +97,19 @@ export function checkCouponCodeExist(service: CouponService): AsyncValidatorFn {
         map((data) => {
           return (data.empty) ? null : { couponCodeExist: true };
         })
-      );  
+      );
   }
 }
 
-export function checkAvailableCouponCodeExist(service: CouponService): AsyncValidatorFn {
+
+/**
+ * TODO: ORIGINAL
+ * @param service 
+ * @returns 
+ */
+export function checkAvailableCouponCodeExist2(service: CouponService): AsyncValidatorFn {
   return (control: AbstractControl): Observable<ValidationErrors | null> => {
+    console.log('control', control.value, service.collection, environment.dataEvent.keyDb);
     return service.afs.collection(service.collection)
       .doc(environment.dataEvent.keyDb)
       .collection(
@@ -111,10 +118,36 @@ export function checkAvailableCouponCodeExist(service: CouponService): AsyncVali
       )
       .get()
       .pipe(
-        // tap((result) => console.log(result) ),
+        tap((result) => console.log(result)),
         map((data) => {
-          return (data.empty) ? {availableCouponCode: true} : ((data.docs[0].data().status) ? null : {availableCouponCode: true});
+          // console.log('data', data);
+          return (data.empty) ? { availableCouponCode: true } : ((data.docs[0].data().status) ? null : { availableCouponCode: true });
         })
-      );  
+      );
+  }
+}
+
+
+/***
+ * TODO: CUPONES JUNIOR
+ */
+export function checkAvailableCouponCodeExist(service: CouponService): AsyncValidatorFn {
+  return (control: AbstractControl): Observable<ValidationErrors | null> => {
+    // console.log('control', service.collection, environment.dataEvent.keyDb, service.subCollection, control.value);
+
+    return service.afs.collection(service.collection)
+      .doc(environment.dataEvent.keyDb)
+      .collection(
+        service.subCollection,
+        (ref) => ref.where('code', '==', `${control.value}`.trim().toLowerCase()).limit(1)
+      )
+      .get()
+      .pipe(
+        // tap((result) => console.log(result.empty, result.docs[0].data())),
+        map((data) => {
+          // console.log('data', data);
+          return (data.empty) ? { availableCouponCode: true } : ((data.docs[0].data().status) ? null : { availableCouponCode: true });
+        })
+      );
   }
 }

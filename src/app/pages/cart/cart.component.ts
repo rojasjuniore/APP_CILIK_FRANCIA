@@ -30,22 +30,34 @@ export class CartComponent implements OnInit, OnDestroy {
     private translate: TranslateService
   ) { }
 
-  async ngOnInit(): Promise<void> {
+  ngOnInit() {
     this.sub$ = this.authSrv.uid$
       .pipe(
         distinctUntilChanged(),
         switchMap((uid: string) => this.cartSrv.getCartObservable(environment.dataEvent.keyDb, uid)),
         distinctUntilChanged((prev, next) => JSON.stringify(prev) === JSON.stringify(next)),
       )
-      .subscribe(cart => {
-        console.log('cart', cart);
+      .subscribe(async cart => {
+
+
+        /// @dev check code coupon
+        this.couponObj = await this.codeStorageSrv.checkCode();
+
+        // console.log('cart', cart);
         this.cart = cart;
         this.uid = this.cart.uid;
+        console.log('code', this.couponObj);
       });
+  }
 
-    this.couponObj = await this.codeStorageSrv.checkCode();
-    console.log('code', this.couponObj);
 
+  /**
+   * @dev Remove coupon
+   * @param item 
+   */
+  onRemoveCupon(item: any) {
+    console.log('removeCupon', item);
+    this.couponObj = null;
   }
 
   get totales() {

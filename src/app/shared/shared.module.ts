@@ -18,7 +18,7 @@ import { InputSigleCalendarComponent } from './input-sigle-calendar/input-sigle-
 import { ModalStoreOnlyDayPassComponent } from './modal-store-only-day-pass/modal-store-only-day-pass.component';
 import { ModalHotelEventRoomsListComponent } from './modal-hotel-event-rooms-list/modal-hotel-event-rooms-list.component';
 import { HotelAndEventRoomListItemCardComponent } from './hotel-and-event-room-list-item-card/hotel-and-event-room-list-item-card.component';
-import { CartHotelEventCardItemComponent } from './cart-hotel-event-card-item/cart-hotel-event-card-item.component';
+import { CartHotelEventCardItemComponent } from '../pages/cart/components/cart-hotel-event-card-item/cart-hotel-event-card-item.component';
 import { PaypalButtonComponent } from './paypal-button/paypal-button.component';
 import { TucompraFormComponent } from './tucompra-form/tucompra-form.component';
 import { PurchaseListComponent } from './purchase-list/purchase-list.component';
@@ -28,7 +28,7 @@ import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { VoucherCardItemComponent } from './voucher-card-item/voucher-card-item.component';
 import { VoucherTimelineCardComponent } from './voucher-timeline-card/voucher-timeline-card.component';
 import { ModalUpdateVoucherStatusFormComponent } from './modal-update-voucher-status-form/modal-update-voucher-status-form.component';
-import { CartCouponFormComponent } from './cart-coupon-form/cart-coupon-form.component';
+import { CartCouponFormComponent } from '../pages/cart/components/cart-coupon-form/cart-coupon-form.component';
 import { CartTotalesComponent } from './cart-totales/cart-totales.component';
 import { InputRangeCalendarComponent } from './input-range-calendar/input-range-calendar.component';
 import { InputGroupNumberFormComponent } from './input-group-number-form/input-group-number-form.component';

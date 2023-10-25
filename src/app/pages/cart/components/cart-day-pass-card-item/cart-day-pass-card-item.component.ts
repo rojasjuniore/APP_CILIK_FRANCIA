@@ -9,7 +9,7 @@ import { Subject } from 'rxjs';
 export class CartDayPassCardItemComponent implements OnInit {
 
   @Input() item: any;
-
+  @Input() couponObj: any;
   @Output() onRemoveItem = new Subject<any>();
 
   public loader = false;

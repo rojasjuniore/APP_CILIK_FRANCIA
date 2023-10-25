@@ -14,6 +14,16 @@ export class CodeStorageService {
 
   /**
    * 
+   * @param array 
+   * @param conceptToFind 
+   * @returns 
+   */
+  findByConcept(array: any, conceptToFind: string) {
+    return array.find(item => item.concept === conceptToFind) || null;
+  }
+
+  /**
+   * 
    * @returns 
    */
   async checkCode() {

@@ -50,8 +50,10 @@ export class AppComponent {
     // this.storeRooms();
     // this.storeCategoriesPasses();
 
+    /**
+     * TODO: obtenemos el code del referido
+     */
     const codeCoupon: any = this.commonSrv.getParameterByName('code');
-    console.log('codeCoupon', codeCoupon);
     this.codeStorageSrv.setCode(codeCoupon);
   }
 

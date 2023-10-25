@@ -4,16 +4,16 @@
 
     <div class="seprd2"></div>
 
-    <!-- TODO: deshabilitado temporalmente -->
-    <!-- <div class="col-12 mt-2 mb-2" *ngIf="(cart?.product.length > 0)">
-        <app-cart-coupon-form [cart]="cart"></app-cart-coupon-form>
-    </div> -->
+    <div class="col-12 mt-2 mb-2" *ngIf="(cart?.product.length > 0)">
+        <app-cart-coupon-form (onRemoveCupon)="onRemoveCupon($event)" [cart]="cart"
+            [couponObj]="couponObj"></app-cart-coupon-form>
+    </div>
 
     <div class="col-12 mb-5">
         <app-cart-totales [cart]="cart"></app-cart-totales>
-        <!-- <h5 class="fw-bold fs-3 text-end">
+        <h5 class="fw-bold fs-3 text-end">
             {{ "general.total" | translate }}: USD {{totales}}
-        </h5> -->
+        </h5>
     </div>
 
     <div class="col-12">
@@ -35,15 +35,15 @@
 <ng-template #renderCart>
     <div class="col-12 mb-4" *ngFor="let item of cart.product">
         <ng-container [ngSwitch]="item.slug">
-            <app-cart-fullpass-card-item *ngSwitchCase="'full-pass'" [item]="item"
+            <app-cart-fullpass-card-item *ngSwitchCase="'full-pass'" [item]="item" [couponObj]="couponObj"
                 (onRemoveItem)="onRemoveItem($event)"></app-cart-fullpass-card-item>
-            <app-cart-category-pass-card-item *ngSwitchCase="'category-pass'" [item]="item"
+            <app-cart-category-pass-card-item *ngSwitchCase="'category-pass'" [item]="item" [couponObj]="couponObj"
                 (onRemoveItem)="onRemoveItem($event)"></app-cart-category-pass-card-item>
-            <app-cart-weekend-pass-card-item *ngSwitchCase="'weekend-pass'" [item]="item"
+            <app-cart-weekend-pass-card-item *ngSwitchCase="'weekend-pass'" [item]="item" [couponObj]="couponObj"
                 (onRemoveItem)="onRemoveItem($event)"></app-cart-weekend-pass-card-item>
-            <app-cart-day-pass-card-item *ngSwitchCase="'day-pass'" [item]="item"
+            <app-cart-day-pass-card-item *ngSwitchCase="'day-pass'" [item]="item" [couponObj]="couponObj"
                 (onRemoveItem)="onRemoveItem($event)"></app-cart-day-pass-card-item>
-            <app-cart-hotel-event-card-item *ngSwitchCase="'hotel-event'" [item]="item"
+            <app-cart-hotel-event-card-item *ngSwitchCase="'hotel-event'" [item]="item" [couponObj]="couponObj"
                 (onRemoveItem)="onRemoveItem($event)"></app-cart-hotel-event-card-item>
         </ng-container>
     </div>

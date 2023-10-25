@@ -54,12 +54,39 @@
                 </small>
             </p>
 
+
+            <ng-container *ngIf="descuento > 0">
+                <div class="d-md-flex align-content-center justify-content-center justify-content-md-between">
+
+                    <div class="d-flex justify-content-center align-items-md-center mb-2 mb-md-0">
+                        <span class="fs-4 fw-bolder">
+                            {{"general.subtotal" | translate}}: USD {{total}}
+                        </span>
+                    </div>
+                </div>
+
+
+                <div class="d-md-flex align-content-center justify-content-center justify-content-md-between">
+                    <div class="d-flex justify-content-center align-items-md-center mb-2 mb-md-0">
+                        <span class="fs-4 fw-bolder">
+                            {{"general.discount" | translate}}: USD {{descuento}}
+                        </span>
+                    </div>
+                </div>
+            </ng-container>
+
+
+
+
             <div class="d-md-flex align-content-center justify-content-center justify-content-md-between">
+
+
                 <div class="d-flex justify-content-center align-items-md-center mb-2 mb-md-0">
                     <span class="fs-4 fw-bolder">
                         {{"general.total" | translate}}: USD {{totales}}
                     </span>
                 </div>
+
                 <div class="d-flex justify-content-center">
                     <ng-container *ngIf="(!loader); then renderRemoveBtn; else renderLoader"></ng-container>
                 </div>

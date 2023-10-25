@@ -3,20 +3,27 @@ import { Subject } from 'rxjs';
 import { CodeStorageService } from 'src/app/services/code-storage.service';
 
 @Component({
-  selector: 'app-cart-category-pass-card-item',
-  templateUrl: './cart-category-pass-card-item.component.html',
-  styleUrls: ['./cart-category-pass-card-item.component.css']
+  selector: 'app-cart-hotel-event-card-item',
+  templateUrl: './cart-hotel-event-card-item.component.html',
+  styleUrls: ['./cart-hotel-event-card-item.component.css']
 })
-export class CartCategoryPassCardItemComponent implements OnInit, OnChanges {
+export class CartHotelEventCardItemComponent implements OnInit, OnChanges {
 
   @Input() item: any;
   @Input() couponObj: any;
   @Output() onRemoveItem = new Subject<any>();
+
+  public loader = false;
   cupon: any;
 
   constructor(
     private codeStorageSrv: CodeStorageService
   ) { }
+
+  ngOnInit(): void {
+    // this.cupon = this.codeStorageSrv.findByConcept(this.couponObj.coupons, 'hotelAndEvent');
+
+  }
 
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -27,19 +34,25 @@ export class CartCategoryPassCardItemComponent implements OnInit, OnChanges {
     }
   }
 
-  ngOnInit(): void { }
+
+
+  // get totales() {
+  //   if (!this.item) { return 0; }
+  //   return this.item.totales;
+  // }
+
 
   get total() {
     if (!this.item) return 0;
-    return Number(this.item.totales);
+    return this.item.totales;;
   }
 
   get totales() {
     if (!this.item) return 0;
-    const total = Number(this.item.totales);
+    const total = this.item.totales;;
 
     if (this.cupon && this.cupon.type === 'percentage') {
-      return total - (total * (this.cupon.value / 100))
+      return total - (total * (this.cupon.value / 100));
     } else if (this.cupon && this.cupon.type === 'amount') {
       return total - this.cupon.value;
     } else {
@@ -50,7 +63,7 @@ export class CartCategoryPassCardItemComponent implements OnInit, OnChanges {
 
   get descuento() {
     if (!this.item || !this.cupon) return 0;
-    const total = Number(this.item.totales);
+    const total = this.item.totales;;
 
     if (this.cupon.type === 'percentage') {
       return total * (this.cupon.value / 100);
@@ -61,6 +74,32 @@ export class CartCategoryPassCardItemComponent implements OnInit, OnChanges {
     }
   }
 
-  remove(): void { this.onRemoveItem.next(this.item); }
+
+
+  /**
+   * Fecha de ingreso
+   */
+  get checkIn() {
+    if (!this.item) { return null; }
+    return this.item.room.dates[0].date;
+  }
+
+  /**
+   * Fecha de salida
+   */
+  get checkOut() {
+    if (!this.item) { return null; }
+    return this.item.room.dates[this.item.room.dates.length - 1].date;
+  }
+
+  get nroNights() {
+    if (!this.item) { return 0; }
+    return this.item.room.dates.length - 1;
+  }
+
+  remove() {
+    this.loader = true;
+    this.onRemoveItem.next(this.item);
+  }
 
 }
