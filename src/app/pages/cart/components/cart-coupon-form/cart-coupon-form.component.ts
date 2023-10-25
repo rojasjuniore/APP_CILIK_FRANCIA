@@ -14,6 +14,7 @@ import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 export class CartCouponFormComponent implements OnInit, OnChanges {
 
   @Output() onRemoveCupon = new Subject<any>();
+  @Output() onSetCupon = new Subject<any>();
 
 
   @Input() cart: any = null;
@@ -59,24 +60,36 @@ export class CartCouponFormComponent implements OnInit, OnChanges {
 
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { cart } = changes;
+    const { cart, couponObj } = changes;
 
     if (cart && cart.currentValue) {
       this.cart = cart.currentValue;
       this.showLoadingBtn = false;
     }
 
-  }
-
-  ngOnInit(): void {
+    /// @dev check code coupon
+    this.couponSrv = changes.couponObj.currentValue
     if (this.couponObj && this.couponObj.status) {
-      this.couponSrv = this.couponObj.slug
       this.form.setValue({ code: this.couponObj.slug });
 
       this.isButtonDisabled = true;
       this.form.get('code')?.disable();
-
+    } else {
+      this.isButtonDisabled = false;
+      this.form.get('code')?.enable();
+      this.form.setValue({ code: '' });
     }
+  }
+
+  ngOnInit(): void {
+    // if (this.couponObj && this.couponObj.status) {
+    //   this.couponSrv = this.couponObj.slug
+    //   this.form.setValue({ code: this.couponObj.slug });
+
+    //   this.isButtonDisabled = true;
+    //   this.form.get('code')?.disable();
+
+    // }
   }
 
 
@@ -99,7 +112,6 @@ export class CartCouponFormComponent implements OnInit, OnChanges {
       this.submitted = true;
 
       const formData = this.form.value;
-      const couponCode = `${formData.code}`.trim().toUpperCase();
       const slugCouponCode = `${formData.code}`.trim().toLowerCase();
 
 
@@ -110,51 +122,53 @@ export class CartCouponFormComponent implements OnInit, OnChanges {
         return;
       }
 
-      /** Cambiar a cargando para bloquear interacción */
-      this.showLoadingBtn = true;
+      this.onSetCupon.next(slugCouponCode);
 
-      const cartCoupons = this.cart.coupons || [];
+      // /** Cambiar a cargando para bloquear interacción */
+      // this.showLoadingBtn = true;
 
-      /** Válidar si ya no se aplico al carrito */
-      const find = cartCoupons.find((item: any) => item.code === couponCode);
-      if (find) {
-        this.sweetAlert2Srv.showInfo(
-          this.translatePipe.transform('formValidations.couponAlreadyApplied')
-        );
-        this.form.patchValue({ code: '' });
-        this.submitted = false;
-        return;
-      }
+      // const cartCoupons = this.cart.coupons || [];
 
-      // console.log('cart', this.cart);
-      // console.log('Form is valid', formData);
+      // /** Válidar si ya no se aplico al carrito */
+      // const find = cartCoupons.find((item: any) => item.code === couponCode);
+      // if (find) {
+      //   this.sweetAlert2Srv.showInfo(
+      //     this.translatePipe.transform('formValidations.couponAlreadyApplied')
+      //   );
+      //   this.form.patchValue({ code: '' });
+      //   this.submitted = false;
+      //   return;
+      // }
 
-      /** Obtener documento del cupon */
-      const couponDoc = await this.couponSrv.getByEventAndIdPromise(this.cart.eventId, slugCouponCode);
-      // console.log('couponDoc', couponDoc);
+      // // console.log('cart', this.cart);
+      // // console.log('Form is valid', formData);
 
-      /** Válidar el tipo de cupon */
-      const typeRule = (['academy', 'ambassador'].includes(couponDoc.ownerType))
-        ? cartCoupons.some((item: any) => item.ownerType === couponDoc.ownerType)
-        : false;
-      // console.log('typeRule', typeRule);
-      if (typeRule) {
-        this.sweetAlert2Srv.showError(
-          this.translatePipe.transform('formValidations.couponOnlyOneOfThisType')
-        );
-        this.form.patchValue({ code: '' });
-        this.submitted = false;
-        return;
-      }
+      // /** Obtener documento del cupon */
+      // const couponDoc = await this.couponSrv.getByEventAndIdPromise(this.cart.eventId, slugCouponCode);
+      // // console.log('couponDoc', couponDoc);
 
-      /** Añadir semilla al cupon */
-      couponDoc.seed = this.cartSrv.generateId();
+      // /** Válidar el tipo de cupon */
+      // const typeRule = (['academy', 'ambassador'].includes(couponDoc.ownerType))
+      //   ? cartCoupons.some((item: any) => item.ownerType === couponDoc.ownerType)
+      //   : false;
+      // // console.log('typeRule', typeRule);
+      // if (typeRule) {
+      //   this.sweetAlert2Srv.showError(
+      //     this.translatePipe.transform('formValidations.couponOnlyOneOfThisType')
+      //   );
+      //   this.form.patchValue({ code: '' });
+      //   this.submitted = false;
+      //   return;
+      // }
 
-      /** Añadir cupon a configuración del carrito */
-      await this.cartSrv.addOnCart(this.cart.eventId, this.cart.uid, [couponDoc], 'coupons');
+      // /** Añadir semilla al cupon */
+      // couponDoc.seed = this.cartSrv.generateId();
 
-      this.form.patchValue({ code: '' });
-      this.submitted = false;
+      // /** Añadir cupon a configuración del carrito */
+      // await this.cartSrv.addOnCart(this.cart.eventId, this.cart.uid, [couponDoc], 'coupons');
+
+      // this.form.patchValue({ code: '' });
+      // this.submitted = false;
 
       this.sweetAlert2Srv.showToast(
         this.translatePipe.transform('alert.couponApplied'),

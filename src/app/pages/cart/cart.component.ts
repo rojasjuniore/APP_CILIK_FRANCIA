@@ -60,6 +60,13 @@ export class CartComponent implements OnInit, OnDestroy {
     this.couponObj = null;
   }
 
+
+  async onSetCupon(item: any) {
+    /// @dev check code coupon
+    console.log('setCupon', item);
+    this.couponObj = await this.codeStorageSrv.checkCode();
+  }
+
   get totales() {
     if (!this.cart) return 0;
     const total = this.cart.product.map((item: any) => item.totales)
