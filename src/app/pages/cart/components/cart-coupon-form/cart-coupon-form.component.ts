@@ -60,7 +60,7 @@ export class CartCouponFormComponent implements OnInit, OnChanges {
 
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { cart, couponObj } = changes;
+    const { cart } = changes;
 
     if (cart && cart.currentValue) {
       this.cart = cart.currentValue;

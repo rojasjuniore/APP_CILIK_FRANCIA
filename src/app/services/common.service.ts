@@ -9,6 +9,19 @@ export class CommonService {
   constructor() { }
 
 
+  /**
+   * @dve group by
+   * @param data 
+   * @param key 
+   * @returns 
+   */
+  groupBy(data, key) {
+    return data.reduce((result, currentValue) => {
+      (result[currentValue[key]] = result[currentValue[key]] || []).push(currentValue);
+      return result;
+    }, {});
+  }
+
   // @dev  get Parameter By Name
   getParameterByName(name, url?) {
     if (!url) url = window.location.href;

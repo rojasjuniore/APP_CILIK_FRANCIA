@@ -46,7 +46,7 @@ export class CartComponent implements OnInit, OnDestroy {
         // console.log('cart', cart);
         this.cart = cart;
         this.uid = this.cart.uid;
-        console.log('code', this.couponObj);
+        // console.log('code', this.couponObj);
       });
   }
 
@@ -56,14 +56,14 @@ export class CartComponent implements OnInit, OnDestroy {
    * @param item 
    */
   onRemoveCupon(item: any) {
-    console.log('removeCupon', item);
+    // console.log('removeCupon', item);
     this.couponObj = null;
   }
 
 
   async onSetCupon(item: any) {
     /// @dev check code coupon
-    console.log('setCupon', item);
+    // console.log('setCupon', item);
     this.couponObj = await this.codeStorageSrv.checkCode();
   }
 

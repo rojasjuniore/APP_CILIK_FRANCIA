@@ -1,0 +1,67 @@
+<!-- <ng-container *ngIf="false">
+
+    Full Price
+    <h6 class="text-end">
+        {{ "general.valueWithoutDiscount" | translate }}:
+        <span class="text-decoration-line-through">USD {{globalTotal.globalDiscount}}</span>
+    </h6>
+    <h6 class="text-end">
+        {{ "general.discount" | translate }}:
+        <span class="text-decoration-line-through">USD {{globalTotal.globalSubtotal}}</span>
+    </h6>
+
+
+    <h5 class="text-end" *ngFor="let item of coupons">
+        <span class="badge bg-danger">
+            <i class="bi bi-x-circle" (click)="removeCoupon(item)"></i>
+            &nbsp;
+            {{"general.coupon" | translate}}
+            {{item.code | uppercase}} <i class="bi bi-ticket-perforated"></i>:
+            &nbsp;
+            -USD {{discount}}
+        </span>
+    </h5>
+
+    <h6 class="text-end" *ngIf="false">
+        <span class="badge rounded-pill bg-danger">
+            <i class="bi bi-info-circle"></i>
+        </span>
+        &nbsp;
+        {{ "general.discount" | translate }}:
+        <span>USD {{discount}}</span>
+    </h6>
+</ng-container>
+
+
+<ng-container *ngIf="hastCoupons">
+    <h5 class="text-end" *ngFor="let item of coupons">
+        <span class="badge bg-danger">
+            <i class="bi bi-x-circle" (click)="removeCoupon(item)"></i>
+            &nbsp;
+            {{"general.coupon" | translate}}
+            {{item.code | uppercase}} <i class="bi bi-ticket-perforated"></i>
+            &nbsp;
+            -USD {{discount}}
+        </span>
+    </h5>
+</ng-container> -->
+
+
+<h6 class="text-end">
+    {{ "general.valueWithoutDiscount" | translate }}:
+    <span class="text-decoration-line-through">USD {{globalTotal.globalSubtotal | currency}}</span>
+</h6>
+
+<h6 class="text-end">
+    <span class="badge rounded-pill bg-danger">
+        <i class="bi bi-info-circle"></i>
+    </span>
+    &nbsp;
+    {{ "general.discount" | translate }}:
+    <span>USD {{globalTotal.globalDiscount | currency}}</span>
+</h6>
+
+
+<h5 class="fw-bold fs-3 text-end">
+    {{ "general.total" | translate }}: USD {{globalTotal.globalTotalToPay | currency}}
+</h5>

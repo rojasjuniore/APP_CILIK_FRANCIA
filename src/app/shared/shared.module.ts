@@ -29,7 +29,7 @@ import { VoucherCardItemComponent } from './voucher-card-item/voucher-card-item.
 import { VoucherTimelineCardComponent } from './voucher-timeline-card/voucher-timeline-card.component';
 import { ModalUpdateVoucherStatusFormComponent } from './modal-update-voucher-status-form/modal-update-voucher-status-form.component';
 import { CartCouponFormComponent } from '../pages/cart/components/cart-coupon-form/cart-coupon-form.component';
-import { CartTotalesComponent } from './cart-totales/cart-totales.component';
+import { CartTotalesComponent } from '../pages/cart/components/cart-totales/cart-totales.component';
 import { InputRangeCalendarComponent } from './input-range-calendar/input-range-calendar.component';
 import { InputGroupNumberFormComponent } from './input-group-number-form/input-group-number-form.component';
 import { PurchaseTotalesComponent } from './purchase-totales/purchase-totales.component';
