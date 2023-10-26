@@ -31,6 +31,15 @@ export class AdminDashboardComponent implements OnInit {
       profiles: ['manager-hotel-event-coupons'],
       available: true
     },
+    {
+      label: 'Manager My Sales',
+      icon: 'fa fa-money',
+      description: 'Manager My Sales',
+      type: 'navigation',
+      url: '/admin/my-sales',
+      profiles: ['manager-my-sales'],
+      available: true
+    },
   ];
 
   public userRoles$!: Observable<any>;
@@ -48,31 +57,31 @@ export class AdminDashboardComponent implements OnInit {
       // tap((uid) => console.log({ uid })),
       switchMap((uid) => (uid)
         ? this.permissionSrv.getUserEventFullRolesObservable(environment.dataEvent.keyDb, uid)
-        : of({superAdmin: false, roles: []})
+        : of({ superAdmin: false, roles: [] })
       ),
       // tap((user) => console.log({ user })),
       map((user: any) => {
         return this.adminOptions.filter((item) => item.available)
-        .filter((item) => {
-          if(user.superAdmin) { return true; }
-          if(user.roles.length > 0){
-            if(user.roles.some((role: any) => item.profiles.includes(role))){
-              return true;
+          .filter((item) => {
+            if (user.superAdmin) { return true; }
+            if (user.roles.length > 0) {
+              if (user.roles.some((role: any) => item.profiles.includes(role))) {
+                return true;
+              }
             }
-          }
 
-          return false;
-        })
+            return false;
+          })
       }),
     );
   }
 
-  launch(item: any){
+  launch(item: any) {
     switch (item.type) {
       case 'navigation':
         this.router.navigate([item.url]);
         break;
-    
+
       default:
         console.log('default', item);
         break;

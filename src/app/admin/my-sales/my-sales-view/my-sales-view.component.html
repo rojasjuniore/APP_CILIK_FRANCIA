@@ -1,0 +1,83 @@
+<div class="modal fade modalTCcategoriasAdd" id="mySaleView" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="modalTCcategoriasALabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+            </div>
+
+            <div *ngIf="item" class="modal-body">
+                <div class="container">
+                    <h2 class="mb-4">Detalles del Objeto</h2>
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h5 class="card-title">Datos Bancarios:</h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Nombre del Banco: {{item?.bankOptionData.slug}}</li>
+                                <li class="list-group-item">Beneficiario: {{item?.bankOptionData.beneficiaryName}}</li>
+                                <li class="list-group-item">Dirección del Banco: {{item?.bankOptionData.bankAddress}}
+                                </li>
+                                <li class="list-group-item">Ciudad: {{item?.bankOptionData.city}}</li>
+                                <li class="list-group-item">Teléfono: {{item?.bankOptionData.phone}}</li>
+                                <li class="list-group-item">NIT: {{item?.bankOptionData.nit}}</li>
+                                <li class="list-group-item">País: {{item?.bankOptionData.country}}</li>
+                                <li class="list-group-item">Sucursal: {{item?.bankOptionData.bankBranch}}</li>
+                                <!-- ... y todos los demás campos de "bankOptionData" ... -->
+                            </ul>
+
+                            <h5 class="mt-4 card-title">Información de Orden:</h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">ID de Orden: {{item.orderId}}</li>
+                                <li class="list-group-item">Estado: {{item.status}}</li>
+                                <li class="list-group-item">ID del Carrito: {{item.cartId}}</li>
+                                <!-- ... y así sucesivamente para los otros campos ... -->
+                            </ul>
+
+                            <h5 class="mt-4 card-title">Cupones:</h5>
+
+                            <ul *ngFor="let c of item.coupons" class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    Tipo: {{c.type}}, Concepto: {{c.concept}}, Valor: {{c.value}}
+                                </li>
+
+                            </ul>
+
+                            <h5 class="mt-4 card-title">Producto:</h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Título: {{item.title}}, Precio: {{item.price}}, Cantidad:
+                                    {{item.quantity}}</li>
+                            </ul>
+
+                            <h5 class="mt-4 card-title">Voucher:</h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Referencia: {{item.voucher.reference}}</li>
+                                <li class="list-group-item">URL: >
+                                    <button (click)="goTolink(item.voucher.url)" type="button">
+                                        ver
+                                    </button>
+                                </li>
+                                <!-- ... y todos los demás campos de "voucher" ... -->
+                            </ul>
+
+                            <h5 class="mt-4 card-title">Descuento con Cupón:</h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Descuento Global:
+                                    {{item.discount_with_coupon.globalDiscount}}
+                                </li>
+                                <li class="list-group-item">Subtotal Global:
+                                    {{item.discount_with_coupon.globalSubtotal}}
+                                </li>
+                                <li class="list-group-item">Total a Pagar Global:
+                                    {{item.discount_with_coupon.globalTotalToPay}}</li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

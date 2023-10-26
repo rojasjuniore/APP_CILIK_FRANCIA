@@ -20,7 +20,6 @@ import { ModalCouponFindOwnerComponent } from './components/modal-coupon-find-ow
     CommonModule,
     SharedModule,
     CouponsRoutingModule,
-    
   ]
 })
 export class CouponsModule { }

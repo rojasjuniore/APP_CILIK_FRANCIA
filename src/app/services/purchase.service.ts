@@ -41,13 +41,15 @@ export class PurchaseService {
     return this.afs.collection(this.purchaseCollection).doc(eventId).collection('purchases').doc(docId).valueChanges();
   }
 
+
+
   async getByEventAndIdPromise(eventId: string, docId: string) {
     try {
       const snapshot = await lastValueFrom(
         this.afs.collection(this.purchaseCollection).doc(eventId).collection('purchases').doc(docId).get()
       );
       return await handlerObjectResult(snapshot);
-      
+
     } catch (err) {
       console.log('Error on PurchaseService.getByEventAndIdPromise', err);
       return null;
@@ -62,10 +64,10 @@ export class PurchaseService {
    * @param field             Campo aplicar la operación
    * @returns 
    */
-  async addOnArray(eventId: string, docId: string, data: any[], field: string = 'timeline'){
+  async addOnArray(eventId: string, docId: string, data: any[], field: string = 'timeline') {
     await Promise.all(
-      data.map(async (item: any) => 
-        this.afs.collection(this.purchaseCollection).doc(eventId).collection('purchases').doc(docId).update({[field]: arrayUnion(item)})
+      data.map(async (item: any) =>
+        this.afs.collection(this.purchaseCollection).doc(eventId).collection('purchases').doc(docId).update({ [field]: arrayUnion(item) })
       )
     );
     return true;
@@ -79,7 +81,7 @@ export class PurchaseService {
    * @param field             Campo aplicar la operación
    * @returns 
    */
-  async removeOnArray(eventId: string, docId: string, data: any, field: string = 'timeline'){
+  async removeOnArray(eventId: string, docId: string, data: any, field: string = 'timeline') {
     return await this.afs.collection(this.purchaseCollection)
       .doc(eventId).collection('purchases').doc(docId).update({
         [field]: arrayRemove(data)
@@ -100,7 +102,7 @@ export class PurchaseService {
         type: "purchaseInfo",
         email: email,
         uid: uid,
-        subject: this.translatePipe.transform('notification.purchaseInfo.subject', {orderId: orderId}),
+        subject: this.translatePipe.transform('notification.purchaseInfo.subject', { orderId: orderId }),
         // greeting: `${this.translatePipe.transform('notification.hello')} ${name}`,
         greeting: ' ',
         messageBody: [
@@ -109,11 +111,11 @@ export class PurchaseService {
             html: `<h1 style='text-align: center;'><strong>${this.translatePipe.transform('notification.purchaseInfo.body.0')}</strong></h1>`
           },
           {
-            type: 'line', 
-            text:  `${this.translatePipe.transform('notification.hello')} ${name}`
+            type: 'line',
+            text: `${this.translatePipe.transform('notification.hello')} ${name}`
           },
           {
-            type: 'line', 
+            type: 'line',
             text: this.translatePipe.transform('notification.purchaseInfo.body.1')
           },
           {
@@ -125,7 +127,7 @@ export class PurchaseService {
             text: this.translatePipe.transform('notification.purchaseInfo.body.3')
           },
           {
-            type: 'action', 
+            type: 'action',
             action: this.translatePipe.transform('notification.purchaseInfo.button'),
             url: environment.dataEvent.appURL + '/pages/purchases/' + orderId + '/details'
           },
@@ -154,7 +156,7 @@ export class PurchaseService {
       });
 
       return true;
-      
+
     } catch (err) {
       console.log('Error on PurchaseService.sendPurchaseInformationNotification', err);
       return false;
@@ -164,7 +166,7 @@ export class PurchaseService {
   async sendPurchaseBankTransferInformationNotification(params: any) {
     try {
       const {
-        email, 
+        email,
         orderId,
         bankOptionData,
         totales
@@ -182,7 +184,7 @@ export class PurchaseService {
             text: this.translatePipe.transform('notification.bankTransfer.body.0')
           },
           {
-            type: "html", 
+            type: "html",
             html: `<h4 style='text-align: center; margin: 0;'><strong>${bankOptionData.label}</strong></h4>`
           },
           {
@@ -229,46 +231,17 @@ export class PurchaseService {
             type: 'line',
             text: ``
           },
-      ],
+        ],
         salutation: `${this.translatePipe.transform('notification.bankTransfer.salutation')}`
       });
 
       return true;
-      
+
     } catch (err) {
       console.log('Error on PurchaseService.sendPurchaseBankTransferInformationNotification', err);
       return false;
     }
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   async updatePurchaseInstallmentCouta(docId: string, index: number, data: any) {
@@ -380,6 +353,18 @@ export class PurchaseService {
   }
 
 
+  /**
+   * 
+   * @param uid 
+   * @returns 
+   */
+  mySalesPurchaseList(uid: any) {
+    return this.getDynamic(environment.dataEvent.keyDb, [
+      { field: "referred_by", condition: "==", value: uid }
+    ], { orderBy: [{ field: "createdAt", order: "desc" }] })
+  }
+
+
   userPurchaseListPending(uid: string) {
     // return this.getDynamic([
     //   { field: "uid", condition: "==", value: uid },
@@ -406,15 +391,13 @@ export class PurchaseService {
   getDynamic(eventId: string, where: any[] = [], opts: any = {}): Observable<any[]> {
     const { idField = "_id", orderBy = [] } = opts;
 
-    return this.afs.collection(this.purchaseCollection).doc(eventId).collection(
-      'purchases',
-      (ref) => {
-        let query: any = ref;
-        for (const row of where) { query = query.where(row.field, row.condition, row.value); }
+    return this.afs.collection(this.purchaseCollection).doc(eventId).collection('purchases', (ref) => {
+      let query: any = ref;
+      for (const row of where) { query = query.where(row.field, row.condition, row.value); }
 
-        for (const order of orderBy) { query = query.orderBy(order.field, order.order); }
-        return query;
-      }
+      for (const order of orderBy) { query = query.orderBy(order.field, order.order); }
+      return query;
+    }
     ).valueChanges({ idField });
   }
 
