@@ -32,31 +32,28 @@ export class MySalesDashboardComponent implements OnInit {
    * @param data 
    */
   buildDashboard(data) {
+    if (!data) return
+
+    /// @dev obtiene los totales
     const mapData = data.map(item => {
       return {
         discount_with_coupon: item.discount_with_coupon,
         product: item.product
       }
     });
-
     this.totals = this.getTotal(mapData);
 
 
+    /// @dev obtiene los totales por producto
     const mapDataProduct = data.map(item => {
       return item.product
     });
-
-    console.log(mapDataProduct)
-
     this.totalForItemList = this.totalForItem(mapDataProduct);
-    console.log("totalForItem", this.totalForItemList)
-
-
   }
 
 
   /**
-   * 
+   * @dev obtiene los totales
    * @param dataArray 
    * @returns 
    */
@@ -76,7 +73,7 @@ export class MySalesDashboardComponent implements OnInit {
   }
 
   /**
-   * 
+   * @dev agrupa los totales por producto
    * @param dataArray 
    * @returns 
    */
