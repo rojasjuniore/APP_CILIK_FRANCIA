@@ -59,9 +59,23 @@
                         <div class="col-12 col-md-4 m-0 p-0">
                             <p class="card-text text-md-center">
                                 Type:
-                                <ng-container [ngSwitch]="item.type">
+                                <br>
+                                <!-- <ng-container [ngSwitch]="item.type">
                                     <small class="text-muted" *ngSwitchCase="'percentage'">Percentage</small>
                                     <small class="text-muted" *ngSwitchCase="'amount'">Amount</small>
+                                </ng-container> -->
+                                <ng-container *ngFor="let x of item.coupons">
+                                    <small class="text-muted">{{x.concept}}:
+                                        <ng-container [ngSwitch]="x.type">
+                                            <span class="fs-4 fw-bolder" *ngSwitchCase="'percentage'">
+                                                {{x.value}}%
+                                            </span>
+                                            <span class="fs-4 fw-bolder" *ngSwitchCase="'amount'">
+                                                {{x.value}} USD
+                                            </span>
+                                        </ng-container> 
+                                    </small><br>
+
                                 </ng-container>
                             </p>
                         </div>
