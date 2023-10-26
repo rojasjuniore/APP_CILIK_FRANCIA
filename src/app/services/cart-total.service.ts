@@ -42,10 +42,7 @@ export class CartTotalService {
     };
 
     localStorage.setItem(this.storageKeyPrefix + this.key, JSON.stringify(data));
-
-
-    this._cartTotal.next(value);
-
+    return this._cartTotal.next(value);
   }
 
 
@@ -78,6 +75,10 @@ export class CartTotalService {
   }
 
 
+  /**
+   * TODO: Calcular totales
+   */
+
 
   /**
  * @dev group by
@@ -96,6 +97,7 @@ export class CartTotalService {
     return grouped;
   }
 
+
   /**
    * @dev apply discounts
    * @param groupedData 
@@ -103,7 +105,6 @@ export class CartTotalService {
    * @returns 
    */
   applyDiscounts(groupedData, discounts) {
-    console.log('groupedData', discounts);
     for (let key in groupedData) {
       // Establecer valores predeterminados
       groupedData[key].subtotal = groupedData[key].total;
@@ -171,8 +172,8 @@ export class CartTotalService {
     return {
       globalDiscountGlobalPercentage,
       globalSubtotal,
-      globalDiscount: globalDiscount || globalDiscountGlobalPercentage,
-      globalTotalToPay: globalDiscountGlobalPercentage > 0 ? globalTotalToPay - globalDiscountGlobalPercentage : globalTotalToPay
+      globalDiscount: globalDiscount,
+      globalTotalToPay: (globalTotalToPay - globalDiscountGlobalPercentage)
     };
   }
 }

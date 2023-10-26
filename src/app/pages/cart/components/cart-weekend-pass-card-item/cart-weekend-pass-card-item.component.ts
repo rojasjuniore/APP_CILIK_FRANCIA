@@ -25,7 +25,7 @@ export class CartWeekendPassCardItemComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.couponObj.currentValue) {
-      this.cupon = this.codeStorageSrv.findByConcept(this.couponObj.coupons, 'categoryPass');
+      this.cupon = this.codeStorageSrv.findByConcept(this.couponObj.coupons, 'weekendPass');
     } else {
       this.cupon = null;
     }

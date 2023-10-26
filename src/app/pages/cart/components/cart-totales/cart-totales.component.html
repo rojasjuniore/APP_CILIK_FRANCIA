@@ -61,6 +61,15 @@
         <span>USD {{globalTotal.globalDiscount | currency}}</span>
     </h6>
 
+    <h6 class="text-end">
+        <span class="badge rounded-pill bg-danger">
+            <i class="bi bi-info-circle"></i>
+        </span>
+        &nbsp;
+        {{ "general.globalDiscountGlobalPercentage" | translate }}:
+        <span>USD {{globalTotal.globalDiscountGlobalPercentage | currency}}</span>
+    </h6>
+
 </ng-container>
 
 

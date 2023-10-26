@@ -19,8 +19,8 @@ export class CartComponent implements OnInit, OnDestroy {
   public cart: any;
 
   private sub$!: Subscription;
-  couponObj: unknown;
-  totales: any = 0
+  public couponObj: unknown;
+  public totales: any = 0
   constructor(
     private codeStorageSrv: CodeStorageService,
     private authSrv: AuthenticationService,
