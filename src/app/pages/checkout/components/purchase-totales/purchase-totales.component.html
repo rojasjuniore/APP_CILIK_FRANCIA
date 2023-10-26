@@ -1,0 +1,22 @@
+<!-- Full Price -->
+<ng-container *ngIf="globalTotal.globalDiscount>0">
+    <h6 class="text-end">
+        {{ "general.valueWithoutDiscount" | translate }}:
+        <span class="text-decoration-line-through">USD {{globalTotal.globalSubtotal | currency}}</span>
+    </h6>
+
+
+    <h6 class="text-end">
+        <span class="badge rounded-pill bg-danger">
+            <i class="bi bi-info-circle"></i>
+        </span>
+        &nbsp;
+        {{ "general.discount" | translate }}:
+        <span>USD {{globalTotal.globalDiscount | currency}}</span>
+    </h6>
+
+</ng-container>
+
+<h5 class="fw-bold fs-3 text-end">
+    {{ "general.total" | translate }}: USD {{globalTotal.globalTotalToPay | currency}}
+</h5>

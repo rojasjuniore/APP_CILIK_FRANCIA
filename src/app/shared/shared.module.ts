@@ -19,8 +19,8 @@ import { ModalStoreOnlyDayPassComponent } from './modal-store-only-day-pass/moda
 import { ModalHotelEventRoomsListComponent } from './modal-hotel-event-rooms-list/modal-hotel-event-rooms-list.component';
 import { HotelAndEventRoomListItemCardComponent } from './hotel-and-event-room-list-item-card/hotel-and-event-room-list-item-card.component';
 import { CartHotelEventCardItemComponent } from '../pages/cart/components/cart-hotel-event-card-item/cart-hotel-event-card-item.component';
-import { PaypalButtonComponent } from './paypal-button/paypal-button.component';
-import { TucompraFormComponent } from './tucompra-form/tucompra-form.component';
+import { PaypalButtonComponent } from '../pages/checkout/components/paypal-button/paypal-button.component';
+import { TucompraFormComponent } from '../pages/checkout/components/tucompra-form/tucompra-form.component';
 import { PurchaseListComponent } from './purchase-list/purchase-list.component';
 import { PurchaseListItemCardComponent } from './purchase-list-item-card/purchase-list-item-card.component';
 import { CustomInputFileComponent } from './custom-input-file/custom-input-file.component';
@@ -32,11 +32,11 @@ import { CartCouponFormComponent } from '../pages/cart/components/cart-coupon-fo
 import { CartTotalesComponent } from '../pages/cart/components/cart-totales/cart-totales.component';
 import { InputRangeCalendarComponent } from './input-range-calendar/input-range-calendar.component';
 import { InputGroupNumberFormComponent } from './input-group-number-form/input-group-number-form.component';
-import { PurchaseTotalesComponent } from './purchase-totales/purchase-totales.component';
-import { CheckoutBanktransferSelectOptionComponent } from './checkout-banktransfer-select-option/checkout-banktransfer-select-option.component';
+import { PurchaseTotalesComponent } from '../pages/checkout/components/purchase-totales/purchase-totales.component';
+import { CheckoutBanktransferSelectOptionComponent } from '../pages/checkout/components/checkout-banktransfer-select-option/checkout-banktransfer-select-option.component';
 import { PurchaseUploadVoucherFormComponent } from './purchase-upload-voucher-form/purchase-upload-voucher-form.component';
 import { PurchaseBankTransferInfoCardItemComponent } from './purchase-bank-transfer-info-card-item/purchase-bank-transfer-info-card-item.component';
-import { InstallmentsComponent } from './installments/installments.component';
+import { InstallmentsComponent } from '../pages/checkout/components/installments/installments.component';
 import { ClipboardModule } from 'ngx-clipboard';
 
 

@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, OnInit, Output, SimpleChanges } from '@ang
 import { TranslatePipe } from '@ngx-translate/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Subject } from 'rxjs';
+import { CartTotalService } from 'src/app/services/cart-total.service';
 import { CartService } from 'src/app/services/cart.service';
 import { CommonService } from 'src/app/services/common.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
@@ -26,11 +27,7 @@ export class CartTotalesComponent implements OnInit, OnChanges {
   }
 
   constructor(
-    private cartSrv: CartService,
-    private spinner: NgxSpinnerService,
-    private sweetAlert2Srv: Sweetalert2Service,
-    private translatePipe: TranslatePipe,
-    private commonSrv: CommonService
+    private cartTotalSrv: CartTotalService
   ) { }
 
   ngOnInit(): void {
@@ -43,6 +40,7 @@ export class CartTotalesComponent implements OnInit, OnChanges {
     // console.log('couponObj', couponObj);
 
     // @dev
+
     if ((cart && cart.currentValue) || this.cart && couponObj.currentValue) {
 
       /// @dec code coupon
@@ -51,108 +49,27 @@ export class CartTotalesComponent implements OnInit, OnChanges {
       // console.log('cart.currentValue', cart);
       const __cart = cart ? cart.currentValue : this.cart
       // console.log('__cart', __cart);
-      const groupedData = this.groupByAndCalculateTotals(__cart.product, 'key');
-      const updatedGroupedData = this.applyDiscounts(groupedData, couponSrv);
-      this.globalTotal = this.calculateGlobalTotals(updatedGroupedData);
-      this.onCartTotal.next(this.globalTotal);
-      // console.log('groupedData', groupedData);
-      // console.log('updatedGroupedData', updatedGroupedData);
-      // console.log('updatedGroupedData', this.globalTotal);
-      // console.log('this.couponSrv', this.couponSrv);
-      // console.log('this.cart', this.cart);
+      const groupedData = this.cartTotalSrv.groupByAndCalculateTotals(__cart.product, 'key');
+      const updatedGroupedData = this.cartTotalSrv.applyDiscounts(groupedData, couponSrv);
+      this.globalTotal = this.cartTotalSrv.calculateGlobalTotals(updatedGroupedData);
+
     } else if (!cart && !couponObj.currentValue) {
-      // console.log('couponObj.currentValue', couponObj);
-      // console.log('cart.currentValue', this.cart);
-
       const couponSrv = [];
-      const groupedData = this.groupByAndCalculateTotals(this.cart.product, 'key');
-      const updatedGroupedData = this.applyDiscounts(groupedData, couponSrv);
-      this.globalTotal = this.calculateGlobalTotals(updatedGroupedData);
-
-      this.onCartTotal.next(this.globalTotal);
-      return
+      const groupedData = this.cartTotalSrv.groupByAndCalculateTotals(this.cart.product, 'key');
+      const updatedGroupedData = this.cartTotalSrv.applyDiscounts(groupedData, couponSrv);
+      this.globalTotal = this.cartTotalSrv.calculateGlobalTotals(updatedGroupedData);
     }
 
+    /// @dev send data to parent
+    this.onCartTotal.next(this.globalTotal);
 
-    // else if (cart && cart.currentValue) {
-    //   // console.log('CartTotalesComponent', cart.currentValue);
-    //   this.cart = cart.currentValue;
-    // }
-  }
+    /// @dev save in localstorage
+    this.cartTotalSrv.setItem(this.globalTotal);
 
-
-  /**
-   * @dev group by
-   * @param data 
-   * @param key 
-   * @returns 
-   */
-  groupByAndCalculateTotals(data, key) {
-    const grouped = this.commonSrv.groupBy(data, key);
-
-    for (let groupKey in grouped) {
-      grouped[groupKey].name = groupKey;
-      grouped[groupKey].total = grouped[groupKey].reduce((sum, item) => sum + item.totales, 0);
-    }
-
-    return grouped;
-  }
-
-  /**
-   * @dev apply discounts
-   * @param groupedData 
-   * @param discounts 
-   * @returns 
-   */
-  applyDiscounts(groupedData, discounts) {
-    for (let key in groupedData) {
-      // Establecer valores predeterminados
-      groupedData[key].subtotal = groupedData[key].total;
-      groupedData[key].totalDiscount = 0;
-      groupedData[key].totalToPay = groupedData[key].subtotal;
-    }
-
-    // Si discounts es null, simplemente regresa groupedData con los valores predeterminados establecidos
-    if (!discounts) return groupedData;
-
-    for (let discount of discounts) {
-      if (discount.concept && groupedData[discount.concept]) {
-        let discountAmount = 0;
-
-        if (discount.type === "percentage") {
-          discountAmount = groupedData[discount.concept].total * (discount.value / 100);
-        } else if (discount.type === "amount") {
-          discountAmount = discount.value;
-        }
-
-        groupedData[discount.concept].totalDiscount = discountAmount;
-        groupedData[discount.concept].totalToPay = groupedData[discount.concept].subtotal - discountAmount;
-      }
-    }
-    return groupedData;
   }
 
 
 
-
-
-  calculateGlobalTotals(groupedData) {
-    let globalSubtotal = 0;
-    let globalDiscount = 0;
-    let globalTotalToPay = 0;
-
-    for (let key in groupedData) {
-      globalSubtotal += groupedData[key].subtotal;
-      globalDiscount += groupedData[key].totalDiscount;
-      globalTotalToPay += groupedData[key].totalToPay;
-    }
-
-    return {
-      globalSubtotal,
-      globalDiscount,
-      globalTotalToPay
-    };
-  }
 
 
   // get coupons() {

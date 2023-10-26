@@ -5,6 +5,8 @@ import { Subject } from 'rxjs';
 import { CartService } from 'src/app/services/cart.service';
 import { CouponService, checkAvailableCouponCodeExist } from 'src/app/services/coupon.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
+import CryptoJS from 'crypto-js';
+import { CodeStorageService } from 'src/app/services/code-storage.service';
 
 @Component({
   selector: 'app-cart-coupon-form',
@@ -37,6 +39,7 @@ export class CartCouponFormComponent implements OnInit, OnChanges {
     private couponSrv: CouponService,
     private cartSrv: CartService,
     private sweetAlert2Srv: Sweetalert2Service,
+    private codeStorageSrv: CodeStorageService,
     private translatePipe: TranslatePipe
   ) {
 
@@ -71,7 +74,6 @@ export class CartCouponFormComponent implements OnInit, OnChanges {
     this.couponSrv = changes.couponObj.currentValue
     if (this.couponObj && this.couponObj.status) {
       this.form.setValue({ code: this.couponObj.slug });
-
       this.isButtonDisabled = true;
       this.form.get('code')?.disable();
     } else {
@@ -101,6 +103,9 @@ export class CartCouponFormComponent implements OnInit, OnChanges {
     this.form.get('code')?.enable();
 
     this.onRemoveCupon.next(null);
+
+
+    this.codeStorageSrv.removeItem();
   }
 
 
@@ -121,6 +126,9 @@ export class CartCouponFormComponent implements OnInit, OnChanges {
         console.log('Form is invalid');
         return;
       }
+
+
+      this.codeStorageSrv.setItem(slugCouponCode);
 
       this.onSetCupon.next(slugCouponCode);
 

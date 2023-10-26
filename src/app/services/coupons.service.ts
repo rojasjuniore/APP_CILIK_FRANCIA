@@ -5,6 +5,8 @@ import { increment } from 'firebase/firestore';
 import { map, Observable } from 'rxjs';
 import { handlerArrayResult, handlerObjectResult } from '../helpers/model.helper';
 import { environment } from 'src/environments/environment';
+import CryptoJS from 'crypto-js';
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +18,10 @@ export class CouponsService {
   constructor(
     public afs: AngularFirestore,
   ) { }
+
+ 
+
+
 
   async store(docId: string, data: any) {
     return this.afs.collection(this.collection).doc(docId).set(data);

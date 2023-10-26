@@ -7,6 +7,7 @@ import { pick, omit } from 'underscore';
 import { NavigationEnd, Router } from '@angular/router';
 import { CommonService } from './services/common.service';
 import { CodeStorageService } from './services/code-storage.service';
+import { CouponsService } from './services/coupons.service';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ export class AppComponent {
   public currentLanguage: string;
 
   constructor(
+    private couponsSrv: CouponsService,
     private codeStorageSrv: CodeStorageService,
     private commonSrv: CommonService,
     public translateSrv: CustomTranslateService,
@@ -54,7 +56,9 @@ export class AppComponent {
      * TODO: obtenemos el code del referido
      */
     const codeCoupon: any = this.commonSrv.getParameterByName('code');
-    this.codeStorageSrv.setCode(codeCoupon);
+    if (codeCoupon) {
+      this.codeStorageSrv.setItem(codeCoupon);
+    }
   }
 
   changeLanguage(language: string) {

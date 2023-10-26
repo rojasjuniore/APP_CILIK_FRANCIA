@@ -12,6 +12,9 @@ export const environment = {
     subject: "WORLD LATIN DANCE CUP Cartagena 2024",
     description: "",
   },
+  localStorage: {
+    SECRET_KEY: "wldc2024",
+  },
   // DEV
   seedKey: 'nftixProject-dev-inTECH',
   API_URL: 'https://cilik-presale.uc.r.appspot.com/',
