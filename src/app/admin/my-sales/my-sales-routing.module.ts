@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MySalesComponent } from './my-sales.component';
+import { MySalesBenefitsModalComponent } from './components/my-sales-benefits-modal/my-sales-benefits-modal.component';
 
 const routes: Routes = [
   {
     path: '',
     component: MySalesComponent
   },
-  // {
-  //   path: 'store',
-  //   component: CouponsAddFormComponent,
-  // },
+  {
+    path: 'mySalesBenefits/:id/:ownerType',
+    component: MySalesBenefitsModalComponent,
+  },
   // {
   //   path: ':id/edit',
   //   component: CouponsUpdateFormComponent,

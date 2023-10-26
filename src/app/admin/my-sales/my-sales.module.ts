@@ -7,6 +7,8 @@ import { MySalesViewComponent } from './components/my-sales-view/my-sales-view.c
 import { MySalesListComponent } from './components/my-sales-list/my-sales-list.component';
 import { MySalesComponent } from './my-sales.component';
 import { PipesModule } from 'src/app/pipes/pipes.module';
+import { MySalesBenefitsComponent } from './components/my-sales-benefits/my-sales-benefits.component';
+import { MySalesBenefitsModalComponent } from './components/my-sales-benefits-modal/my-sales-benefits-modal.component';
 
 
 
@@ -15,7 +17,9 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
     MySalesComponent,
     MySalesDashboardComponent,
     MySalesViewComponent,
-    MySalesListComponent
+    MySalesListComponent,
+    MySalesBenefitsComponent,
+    MySalesBenefitsModalComponent
   ],
   imports: [
     CommonModule,

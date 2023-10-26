@@ -1,0 +1,36 @@
+<div class="container mt-5">
+    <h1>Beneficios</h1>
+    <hr>
+
+    <div class="row">
+        <div class="col-md-6">
+            <p><strong>ID:</strong> {{benefits.id}}</p>
+            <p><strong>Nombre:</strong> {{benefits.name}}</p>
+            <p><strong>Mínimo de asistentes:</strong> {{benefits.min_assistant}}</p>
+            <p><strong>Máximo de asistentes:</strong> {{benefits.max_assistant}}</p>
+        </div>
+    </div>
+
+    <h2>Beneficios</h2>
+    <ul class="list-group">
+        <li *ngFor="let b of benefits.benefits" class="list-group-item">
+            <p><strong>ID:</strong> {{b.id}}</p>
+            <p><strong>Porcentaje:</strong> {{b.percentages}}%</p>
+            <p><strong>Nombre:</strong> {{b.name}}</p>
+            <p><strong>Descripción:</strong>{{b.description}}</p>
+        </li>
+    </ul>
+
+    <h2 class="mt-4">Otros Beneficios</h2>
+    <ul class="list-group">
+        <li *ngFor="let ob of benefits.other_benefits" class="list-group-item">
+            <p><strong>Nombre:</strong> {{ob.name}}</p>
+            <p><strong>Aplica:</strong>
+                <ng-container *ngIf="ob.apply">YES</ng-container>
+                <ng-container *ngIf="!ob.apply">NO</ng-container>
+
+            </p>
+            <p><strong>Nota:</strong> {{ob.note}}</p>
+        </li>
+    </ul>
+</div>

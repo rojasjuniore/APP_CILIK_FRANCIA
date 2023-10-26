@@ -22,7 +22,6 @@ export class MySalesComponent implements OnInit {
     this.uid = this.customizationfileSrv.getUid();
     this.couponsSrv.myCuposPurchaseList(this.uid)
       .subscribe((data: any) => {
-        console.log(data)
         this.couponsList = data;
       });
 

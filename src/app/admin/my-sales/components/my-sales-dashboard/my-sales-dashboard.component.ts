@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonService } from 'src/app/services/common.service';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { CustomizationfileService } from 'src/app/services/customizationfile/customizationfile.service';
 import { PurchaseService } from 'src/app/services/purchase.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
+import { MySalesBenefitsModalComponent } from '../my-sales-benefits-modal/my-sales-benefits-modal.component';
 
 @Component({
   selector: 'app-my-sales-dashboard',
@@ -11,7 +11,9 @@ import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 })
 export class MySalesDashboardComponent implements OnInit {
   public totals: any;
-  totalForItemList: any;
+  public totalForItemList: any;
+  @Input() couponsList: any;
+
 
   constructor(
     private customizationfileSrv: CustomizationfileService,

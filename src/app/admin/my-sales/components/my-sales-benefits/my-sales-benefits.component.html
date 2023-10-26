@@ -1,0 +1,11 @@
+<div *ngIf="nivel;else templateNivel" class="card">
+    <div class="card-body">
+        <h5 class="card-title">NIVEL: {{nivel.name | uppercase}}</h5>
+        <a [routerLink]="['/admin/my-sales/mySalesBenefits', nivel.id, ownerType]" class="btn btn-primary">Beneficios</a>
+    </div>
+</div>
+<ng-template #templateNivel>
+    <div class="card">
+        <h1>No pertenece a ningún nivel</h1>
+    </div>
+</ng-template>
