@@ -33,12 +33,14 @@
     <ng-container [ngSwitch]="paymentOptionSelected.slug">
 
         <div class="col-12" *ngSwitchCase="'paypal'">
-            <app-paypal-button [amount]="totales" (onCallback)="onPaypalCallback($event)"></app-paypal-button>
+            <app-paypal-button [amount]="totales.globalTotalToPay || 0"
+                (onCallback)="onPaypalCallback($event)"></app-paypal-button>
         </div>
 
         <div class="col-12 mb-4" *ngSwitchCase="'tucompra'">
             <div class="card-box card-box-b3 p-3">
-                <app-tucompra-form [amount]="totales" (onSendForm)="onTuCompraCallback($event)"></app-tucompra-form>
+                <app-tucompra-form [amount]="totales.globalTotalToPay || 0"
+                    (onSendForm)="onTuCompraCallback($event)"></app-tucompra-form>
             </div>
         </div>
 

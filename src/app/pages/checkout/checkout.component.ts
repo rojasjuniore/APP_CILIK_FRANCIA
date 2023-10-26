@@ -7,10 +7,9 @@ import { Subscription, distinctUntilChanged, switchMap } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CartTotalService } from 'src/app/services/cart-total.service';
 import { CartService } from 'src/app/services/cart.service';
+import { CodeStorageService } from 'src/app/services/code-storage.service';
 import { InstallmentService } from 'src/app/services/dedicates/installment.service';
-import { UploadFileService } from 'src/app/services/dedicates/upload-file.service';
 import { PurchaseService } from 'src/app/services/purchase.service';
-import { QuickNotificationService } from 'src/app/services/quick-notification/quick-notification.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 import { TucompraService } from 'src/app/services/tucompra/tucompra.service';
 import { environment } from 'src/environments/environment';
@@ -59,8 +58,11 @@ export class CheckoutComponent implements OnInit {
 
   private sub$!: Subscription;
   totales: any;
+  purchaseDetailsWithCoupon: any
+  couponObj: any;
 
   constructor(
+    private codeStorageSrv: CodeStorageService,
     private authSrv: AuthenticationService,
     private cartSrv: CartService,
     private spinner: NgxSpinnerService,
@@ -94,9 +96,15 @@ export class CheckoutComponent implements OnInit {
       });
 
 
-    this.cartTotalSrv.myCartTotal$.subscribe((total: any) => {
-      this.totales = total.globalTotalToPay;
+    this.cartTotalSrv.myCartTotal$.subscribe(async (gTotal: any) => {
+      // console.log('gTotal', gTotal);
+      this.totales = gTotal.globalTotal;
       console.log('this.totales', this.totales);
+      // this.purchaseDetailsWithCoupon = gTotal.updatedGroupedData;
+      // console.log('this.totales', this.purchaseDetailsWithCoupon);
+
+      this.couponObj = await this.codeStorageSrv.checkCode();
+      console.log('code', this.couponObj);
     });
   }
 
@@ -157,13 +165,16 @@ export class CheckoutComponent implements OnInit {
 
       const purchase = {
         ...this.cart,
+        coupons: this.couponObj ? this.couponObj.coupons : [],
+        referred_by: this.couponObj.ownerId ? this.couponObj.ownerId : null,
+        discount_with_coupon: this.totales ? this.totales : 0,
         paymentMethod: 'paypal',
         payload: event.data,
         status: 'completed',
         payedAt: moment().valueOf(),
         // orderId: this.cartSrv.generateId(),
         orderId: this.cart.cartId,
-        totales: this.totales
+        totales: this.totales.globalTotalToPay
       };
       console.log('purchase', purchase);
 
@@ -226,6 +237,9 @@ export class CheckoutComponent implements OnInit {
       const purchase = {
         ...this.cart,
         paymentMethod: 'tucompra',
+        coupons: this.couponObj ? this.couponObj.coupons : [],
+        referred_by: this.couponObj.ownerId ? this.couponObj.ownerId : null,
+        discount_with_coupon: this.totales ? this.totales : 0,
         metadata: {
           ...formData,
           campoExtra1: JSON.stringify(campoExtra1),
@@ -234,7 +248,7 @@ export class CheckoutComponent implements OnInit {
         status: 'pending',
         payedAt: null,
         orderId: campoExtra1.orderId,
-        totales: this.totales
+        totales: this.totales.globalTotalToPay
       };
       // console.log('purchase', purchase);
 
@@ -298,6 +312,9 @@ export class CheckoutComponent implements OnInit {
 
       const purchase = {
         ...this.cart,
+        coupons: this.couponObj ? this.couponObj.coupons : [],
+        referred_by: this.couponObj.ownerId ? this.couponObj.ownerId : null,
+        discount_with_coupon: this.totales ? this.totales : 0,
         paymentMethod: 'bankTransfer',
         bankOption: bankOption.slug,
         bankOptionData: bankOption,
@@ -306,7 +323,7 @@ export class CheckoutComponent implements OnInit {
         status: 'pending',
         payedAt: null,
         orderId: orderId,
-        totales: this.totales
+        totales: this.totales.globalTotalToPay
       };
       console.log('purchase', purchase);
 

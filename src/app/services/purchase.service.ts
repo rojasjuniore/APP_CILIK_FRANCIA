@@ -28,6 +28,7 @@ export class PurchaseService {
 
   async storePurchase(eventId: string, docId: string, data: any) {
     // return this.afs.collection(this.purchaseCollection).doc(docId).set(data);
+    console.log('storePurchase', eventId, docId, data);
     return await this.afs.collection(this.purchaseCollection).doc(eventId).collection('purchases').doc(docId).set(data);
   }
 

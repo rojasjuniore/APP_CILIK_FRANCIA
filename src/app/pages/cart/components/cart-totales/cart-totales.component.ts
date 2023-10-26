@@ -23,7 +23,7 @@ export class CartTotalesComponent implements OnInit, OnChanges {
   globalTotal = {
     globalDiscount: 0,
     globalSubtotal: 0,
-    globalTotalToPay: 0
+    globalTotalToPay: 0,
   }
 
   constructor(
@@ -40,31 +40,45 @@ export class CartTotalesComponent implements OnInit, OnChanges {
     // console.log('couponObj', couponObj);
 
     // @dev
-
+    let groupedData: any;
+    let updatedGroupedData: any
     if ((cart && cart.currentValue) || this.cart && couponObj.currentValue) {
 
       /// @dec code coupon
-      const couponSrv = couponObj.currentValue.coupons || [];
+      const couponSrv = couponObj.currentValue.coupons;
       /// @dev cart data
       // console.log('cart.currentValue', cart);
       const __cart = cart ? cart.currentValue : this.cart
       // console.log('__cart', __cart);
-      const groupedData = this.cartTotalSrv.groupByAndCalculateTotals(__cart.product, 'key');
-      const updatedGroupedData = this.cartTotalSrv.applyDiscounts(groupedData, couponSrv);
+      groupedData = this.cartTotalSrv.groupByAndCalculateTotals(__cart.product, 'key');
+      updatedGroupedData = this.cartTotalSrv.applyDiscounts(groupedData, couponSrv);
       this.globalTotal = this.cartTotalSrv.calculateGlobalTotals(updatedGroupedData);
 
-    } else if (!cart && !couponObj.currentValue) {
+    } else if (!cart) {
       const couponSrv = [];
-      const groupedData = this.cartTotalSrv.groupByAndCalculateTotals(this.cart.product, 'key');
-      const updatedGroupedData = this.cartTotalSrv.applyDiscounts(groupedData, couponSrv);
+      groupedData = this.cartTotalSrv.groupByAndCalculateTotals(this.cart.product, 'key');
+      updatedGroupedData = this.cartTotalSrv.applyDiscounts(groupedData, couponSrv);
       this.globalTotal = this.cartTotalSrv.calculateGlobalTotals(updatedGroupedData);
     }
 
+
+    const obj = {
+      globalTotal: this.globalTotal,
+      updatedGroupedData: updatedGroupedData
+    }
+
     /// @dev send data to parent
-    this.onCartTotal.next(this.globalTotal);
+    this.onCartTotal.next(obj);
+
 
     /// @dev save in localstorage
-    this.cartTotalSrv.setItem(this.globalTotal);
+    this.cartTotalSrv.setItem(obj);
+
+    console.log('groupedData', groupedData);
+    console.log('updatedGroupedData', updatedGroupedData);
+    console.log('this.globalTotal', this.globalTotal);
+
+
 
   }
 

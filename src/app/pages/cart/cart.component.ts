@@ -65,7 +65,7 @@ export class CartComponent implements OnInit, OnDestroy {
     /// @dev check code coupon
     // console.log('setCupon', item);
     this.couponObj = await this.codeStorageSrv.checkCode();
-    
+
   }
 
   // get totales() {
@@ -80,8 +80,8 @@ export class CartComponent implements OnInit, OnDestroy {
    * @param item 
    */
   onCartTotal(item) {
-    // console.log('item', item);
-    this.totales = item.globalTotalToPay || 0;
+    console.log('item', item);
+    this.totales = item.globalTotal.globalTotalToPay || 0;
   }
 
 
