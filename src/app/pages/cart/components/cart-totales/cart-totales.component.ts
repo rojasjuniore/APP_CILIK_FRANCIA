@@ -20,7 +20,7 @@ export class CartTotalesComponent implements OnInit, OnChanges {
   @Output() onCartTotal = new Subject<any>();
 
   couponSrv: any;
-  globalTotal = {
+  globalTotal: any = {
     globalDiscount: 0,
     globalSubtotal: 0,
     globalTotalToPay: 0,
