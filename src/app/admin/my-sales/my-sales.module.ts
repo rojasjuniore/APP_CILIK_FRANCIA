@@ -6,6 +6,7 @@ import { MySalesDashboardComponent } from './my-sales-dashboard/my-sales-dashboa
 import { MySalesViewComponent } from './my-sales-view/my-sales-view.component';
 import { MySalesListComponent } from './my-sales-list/my-sales-list.component';
 import { MySalesComponent } from './my-sales.component';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 
 
@@ -19,6 +20,7 @@ import { MySalesComponent } from './my-sales.component';
   imports: [
     CommonModule,
     SharedModule,
+    PipesModule,
     MySalesRoutingModule,
   ]
 })

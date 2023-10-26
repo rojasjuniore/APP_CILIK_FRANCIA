@@ -1,11 +1,8 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { Observable, map, pipe } from 'rxjs';
-import { CouponService } from 'src/app/services/coupon.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Observable, map } from 'rxjs';
 import { CustomizationfileService } from 'src/app/services/customizationfile/customizationfile.service';
 import { PurchaseService } from 'src/app/services/purchase.service';
 import { MySalesViewComponent } from '../my-sales-view/my-sales-view.component';
-import { BsModalRef } from 'ngx-bootstrap/modal';
-import { BsModalService } from 'src/app/services/bs-modal.service';
 
 @Component({
   selector: 'app-my-sales-list',
@@ -21,8 +18,6 @@ export class MySalesListComponent implements OnInit {
   constructor(
     private customizationfileSrv: CustomizationfileService,
     private purchaseSrv: PurchaseService,
-    private couponSrv: CouponService,
-    private modalService: BsModalService,
   ) { }
 
   ngOnInit(): void {
@@ -33,8 +28,7 @@ export class MySalesListComponent implements OnInit {
         // console.log(data)
         const counter = data.length + 1;
         return data.map((row, index) => Object.assign({}, row, { index: counter - (index + 1) }))
-      })
-      );
+      }));
   }
 
 
@@ -46,7 +40,7 @@ export class MySalesListComponent implements OnInit {
    * @param item 
    */
   openSales(item) {
-    console.log(item)
+    // console.log(item)
     this.modalMySalesView.showModal(item);
   }
 
