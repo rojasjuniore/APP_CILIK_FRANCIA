@@ -15,15 +15,15 @@
 
                             <h5 class="card-title">Datos Bancarios:</h5>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Nombre del Banco: {{item?.bankOptionData.slug}}</li>
-                                <li class="list-group-item">Beneficiario: {{item?.bankOptionData.beneficiaryName}}</li>
-                                <li class="list-group-item">Dirección del Banco: {{item?.bankOptionData.bankAddress}}
+                                <li class="list-group-item">Nombre del Banco: {{item?.codeCoupon}}</li>
+                                <li class="list-group-item">Beneficiario: {{item?.bankOptionData?.beneficiaryName}}</li>
+                                <li class="list-group-item">Dirección del Banco: {{item?.bankOptionData?.bankAddress}}
                                 </li>
-                                <li class="list-group-item">Ciudad: {{item?.bankOptionData.city}}</li>
-                                <li class="list-group-item">Teléfono: {{item?.bankOptionData.phone}}</li>
-                                <li class="list-group-item">NIT: {{item?.bankOptionData.nit}}</li>
-                                <li class="list-group-item">País: {{item?.bankOptionData.country}}</li>
-                                <li class="list-group-item">Sucursal: {{item?.bankOptionData.bankBranch}}</li>
+                                <li class="list-group-item">Ciudad: {{item?.bankOptionData?.city}}</li>
+                                <li class="list-group-item">Teléfono: {{item?.bankOptionData?.phone}}</li>
+                                <li class="list-group-item">NIT: {{item?.bankOptionData?.nit}}</li>
+                                <li class="list-group-item">País: {{item?.bankOptionData?.country}}</li>
+                                <li class="list-group-item">Sucursal: {{item?.bankOptionData?.bankBranch}}</li>
                                 <!-- ... y todos los demás campos de "bankOptionData" ... -->
                             </ul>
 
@@ -52,9 +52,9 @@
 
                             <h5 class="mt-4 card-title">Voucher:</h5>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Referencia: {{item.voucher.reference}}</li>
+                                <li class="list-group-item">Referencia: {{item.voucher?.reference}}</li>
                                 <li class="list-group-item">URL: >
-                                    <button (click)="goTolink(item.voucher.url)" type="button">
+                                    <button (click)="goTolink(item.voucher?.url)" type="button">
                                         ver
                                     </button>
                                 </li>
