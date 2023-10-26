@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/services/common.service';
 import { CustomizationfileService } from 'src/app/services/customizationfile/customizationfile.service';
 import { PurchaseService } from 'src/app/services/purchase.service';
+import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 
 @Component({
   selector: 'app-my-sales-dashboard',
@@ -15,7 +16,7 @@ export class MySalesDashboardComponent implements OnInit {
   constructor(
     private customizationfileSrv: CustomizationfileService,
     private purchaseSrv: PurchaseService,
-    private commonSrv: CommonService,
+    private sweetalert2Srv: Sweetalert2Service,
   ) { }
 
   ngOnInit(): void {
@@ -24,6 +25,15 @@ export class MySalesDashboardComponent implements OnInit {
       .subscribe(data => {
         this.buildDashboard(data);
       });
+  }
+
+
+  /**
+   * @dev withdraw
+   * @returns 
+   */
+  withdraw() {
+    return this.sweetalert2Srv.showInfo("coming soo");
   }
 
 
