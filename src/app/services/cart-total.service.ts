@@ -103,6 +103,7 @@ export class CartTotalService {
    * @returns 
    */
   applyDiscounts(groupedData, discounts) {
+    console.log('groupedData', discounts);
     for (let key in groupedData) {
       // Establecer valores predeterminados
       groupedData[key].subtotal = groupedData[key].total;
@@ -137,10 +138,11 @@ export class CartTotalService {
    * @param groupedData 
    * @returns 
    */
-  calculateGlobalTotals(groupedData) {
+  calculateGlobalTotals(groupedData, couponList) {
     let globalSubtotal = 0;
     let globalDiscount = 0;
     let globalTotalToPay = 0;
+    let globalDiscountGlobalPercentage = 0;
 
     for (let key in groupedData) {
       globalSubtotal += groupedData[key].subtotal;
@@ -148,10 +150,27 @@ export class CartTotalService {
       globalTotalToPay += groupedData[key].totalToPay;
     }
 
+
+    // @dev apply discounts
+    /**
+     * TODO: hay un tipo de descuento que se aplica a todo el carrito, no a un producto en particular
+     * por lo que no se puede aplicar en el método applyDiscounts
+     */
+    const discount = couponList.find((item: any) => item.concept === 'discount');
+    if (discount) {
+      if (discount.type === "percentage") {
+        globalDiscountGlobalPercentage = globalSubtotal * (discount.value / 100);
+      } else if (discount.type === "amount") {
+        globalDiscountGlobalPercentage = discount.value;
+      }
+    }
+
+
     return {
+      globalDiscountGlobalPercentage,
       globalSubtotal,
-      globalDiscount,
-      globalTotalToPay
+      globalDiscount: globalDiscount || globalDiscountGlobalPercentage,
+      globalTotalToPay: globalDiscountGlobalPercentage > 0 ? globalTotalToPay - globalDiscountGlobalPercentage : globalTotalToPay
     };
   }
 }

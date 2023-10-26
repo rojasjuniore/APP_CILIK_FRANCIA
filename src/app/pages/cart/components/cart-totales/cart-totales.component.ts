@@ -52,13 +52,13 @@ export class CartTotalesComponent implements OnInit, OnChanges {
       // console.log('__cart', __cart);
       groupedData = this.cartTotalSrv.groupByAndCalculateTotals(__cart.product, 'key');
       updatedGroupedData = this.cartTotalSrv.applyDiscounts(groupedData, couponSrv);
-      this.globalTotal = this.cartTotalSrv.calculateGlobalTotals(updatedGroupedData);
+      this.globalTotal = this.cartTotalSrv.calculateGlobalTotals(updatedGroupedData, couponSrv);
 
     } else if (!cart) {
       const couponSrv = [];
       groupedData = this.cartTotalSrv.groupByAndCalculateTotals(this.cart.product, 'key');
       updatedGroupedData = this.cartTotalSrv.applyDiscounts(groupedData, couponSrv);
-      this.globalTotal = this.cartTotalSrv.calculateGlobalTotals(updatedGroupedData);
+      this.globalTotal = this.cartTotalSrv.calculateGlobalTotals(updatedGroupedData, couponSrv);
     }
 
 
@@ -74,12 +74,9 @@ export class CartTotalesComponent implements OnInit, OnChanges {
     /// @dev save in localstorage
     this.cartTotalSrv.setItem(obj);
 
-    console.log('groupedData', groupedData);
-    console.log('updatedGroupedData', updatedGroupedData);
-    console.log('this.globalTotal', this.globalTotal);
-
-
-
+    // console.log('groupedData', groupedData);
+    // console.log('updatedGroupedData', updatedGroupedData);
+    // console.log('this.globalTotal', this.globalTotal);
   }
 
 

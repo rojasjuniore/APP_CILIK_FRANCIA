@@ -42,9 +42,8 @@ export class CartComponent implements OnInit, OnDestroy {
 
         /// @dev check code coupon
         this.couponObj = await this.codeStorageSrv.checkCode();
-        console.log('code', this.couponObj);
-
-        console.log('cart', cart);
+        // console.log('code', this.couponObj);
+        // console.log('cart', cart);
         this.cart = cart;
         this.uid = this.cart.uid;
       });
@@ -80,7 +79,6 @@ export class CartComponent implements OnInit, OnDestroy {
    * @param item 
    */
   onCartTotal(item) {
-    console.log('item', item);
     this.totales = item.globalTotal.globalTotalToPay || 0;
   }
 

@@ -23,7 +23,6 @@ export class CodeStorageService {
   async checkCode() {
     return new Promise((resolve) => {
       const code: any = this.getItem();
-      console.log('code', code);
       if (!code) return resolve(false);
       this.couponSrv.getByEventAndId(environment.dataEvent.keyDb, code)
         .subscribe((coupon: any) => {
@@ -51,7 +50,6 @@ export class CodeStorageService {
   // Recupera un valor, lo desencripta y verifica su tiempo de vida.
   getItem(): any {
     const rawData = localStorage.getItem(this.storageKeyPrefix + this.key);
-    console.log('rawData', rawData);
     if (!rawData) {
       return null;
     }
