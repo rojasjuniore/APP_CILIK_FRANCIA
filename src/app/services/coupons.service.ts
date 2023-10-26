@@ -5,7 +5,6 @@ import { increment } from 'firebase/firestore';
 import { map, Observable } from 'rxjs';
 import { handlerArrayResult, handlerObjectResult } from '../helpers/model.helper';
 import { environment } from 'src/environments/environment';
-import CryptoJS from 'crypto-js';
 
 
 @Injectable({
@@ -18,9 +17,6 @@ export class CouponsService {
   constructor(
     public afs: AngularFirestore,
   ) { }
-
- 
-
 
 
   async store(docId: string, data: any) {
@@ -44,6 +40,8 @@ export class CouponsService {
     const ref = this.afs.collection(this.collection).doc(docId);
     await ref.update({ [field]: increment(value) });
   }
+
+
 
   getDynamic(where: any[] = [], opts: any = {}): Observable<any[]> {
     const { idField = "_id", orderBy = [] } = opts;

@@ -6,6 +6,7 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
+                            <th scope="col">code</th>
                             <th scope="col">name</th>
                             <th scope="col">payedAt</th>
                             <th scope="col">globalSubtotal</th>
@@ -18,6 +19,7 @@
                     <tbody>
                         <tr *ngFor="let item of purchasesListP;">
                             <th scope="row">{{item.index}}</th>
+                            <td>{{item?.codeCoupon || '-' }}</td>
                             <td>{{item.uid | profile | async | titlecase}}</td>
                             <td>{{item.payedAt | date:'medium'}}</td>
                             <td>{{item.discount_with_coupon.globalSubtotal | currency}}</td>

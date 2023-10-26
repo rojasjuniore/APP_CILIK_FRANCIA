@@ -23,7 +23,7 @@ export class MySalesListComponent implements OnInit {
   ngOnInit(): void {
     const uid = this.customizationfileSrv.getUid();
     console.log(uid)
-    this.purchasesListC$ = this.purchaseSrv.mySalesPurchaseList(uid)
+    this.purchasesListC$ = this.purchaseSrv.mySalesPurchaseList(uid, 'completed')
       .pipe(map((data: any) => {
         // console.log(data)
         const counter = data.length + 1;

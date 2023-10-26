@@ -166,6 +166,7 @@ export class CheckoutComponent implements OnInit {
       const purchase = {
         ...this.cart,
         coupons: this.couponObj ? this.couponObj.coupons : [],
+        codeCoupon: this.couponObj.code ? this.couponObj.code : null,
         referred_by: this.couponObj.ownerId ? this.couponObj.ownerId : null,
         discount_with_coupon: this.totales ? this.totales : 0,
         paymentMethod: 'paypal',
@@ -238,6 +239,7 @@ export class CheckoutComponent implements OnInit {
         ...this.cart,
         paymentMethod: 'tucompra',
         coupons: this.couponObj ? this.couponObj.coupons : [],
+        codeCoupon: this.couponObj.code ? this.couponObj.code : null,
         referred_by: this.couponObj.ownerId ? this.couponObj.ownerId : null,
         discount_with_coupon: this.totales ? this.totales : 0,
         metadata: {
@@ -312,6 +314,7 @@ export class CheckoutComponent implements OnInit {
 
       const purchase = {
         ...this.cart,
+        codeCoupon: this.couponObj.code ? this.couponObj.code : null,
         coupons: this.couponObj ? this.couponObj.coupons : [],
         referred_by: this.couponObj.ownerId ? this.couponObj.ownerId : null,
         discount_with_coupon: this.totales ? this.totales : 0,

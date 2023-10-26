@@ -151,19 +151,21 @@ export class CartTotalService {
     }
 
 
-    // @dev apply discounts
     /**
      * TODO: hay un tipo de descuento que se aplica a todo el carrito, no a un producto en particular
      * por lo que no se puede aplicar en el método applyDiscounts
      */
-    const discount = couponList.find((item: any) => item.concept === 'discount');
-    if (discount) {
-      if (discount.type === "percentage") {
-        globalDiscountGlobalPercentage = globalSubtotal * (discount.value / 100);
-      } else if (discount.type === "amount") {
-        globalDiscountGlobalPercentage = discount.value;
+    if (couponList) {
+      const discount = couponList.find((item: any) => item.concept === 'discount');
+      if (discount) {
+        if (discount.type === "percentage") {
+          globalDiscountGlobalPercentage = globalSubtotal * (discount.value / 100);
+        } else if (discount.type === "amount") {
+          globalDiscountGlobalPercentage = discount.value;
+        }
       }
     }
+
 
 
     return {

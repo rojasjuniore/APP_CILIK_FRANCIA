@@ -358,9 +358,10 @@ export class PurchaseService {
    * @param uid 
    * @returns 
    */
-  mySalesPurchaseList(uid: any) {
+  mySalesPurchaseList(uid: any, status) {
     return this.getDynamic(environment.dataEvent.keyDb, [
-      { field: "referred_by", condition: "==", value: uid }
+      { field: "referred_by", condition: "==", value: uid },
+      { field: "status", condition: "==", value: status }
     ], { orderBy: [{ field: "createdAt", order: "desc" }] })
   }
 

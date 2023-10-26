@@ -48,6 +48,17 @@ export class CouponService {
     }
   }
 
+  /**
+   * 
+   * @param uid 
+   * @returns 
+   */
+  myCuposPurchaseList(uid: any) {
+    return this.getDynamic(environment.dataEvent.keyDb, [
+      { field: "ownerId", condition: "==", value: uid }
+    ], { orderBy: [{ field: "createdAt", order: "desc" }] })
+  }
+
   getDynamic(eventId: string, where: any[] = [], opts: any = {}): Observable<any[]> {
     const { idField = "_id", orderBy = [] } = opts;
 

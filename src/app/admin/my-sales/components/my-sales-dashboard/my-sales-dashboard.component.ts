@@ -21,7 +21,7 @@ export class MySalesDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     const uid = this.customizationfileSrv.getUid();
-    this.purchaseSrv.mySalesPurchaseList(uid)
+    this.purchaseSrv.mySalesPurchaseList(uid, 'completed')
       .subscribe(data => {
         this.buildDashboard(data);
       });

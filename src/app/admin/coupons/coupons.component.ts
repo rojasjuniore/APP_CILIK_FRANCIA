@@ -21,10 +21,10 @@ export class CouponsComponent implements OnInit {
 
   constructor(
     private _clipboardService: ClipboardService,
+    private sweetAlert2Srv: Sweetalert2Service,
     private fb: FormBuilder,
     private router: Router,
     private couponSrv: CouponService,
-    private sweetAlert2Srv: Sweetalert2Service,
     private spinner: NgxSpinnerService
   ) { }
 
