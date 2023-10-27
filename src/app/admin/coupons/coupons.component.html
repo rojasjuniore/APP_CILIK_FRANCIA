@@ -48,22 +48,19 @@
                     <div class="row m-0 mb-1">
                         <div class="col-12 col-md-4 m-0 p-0">
                             <p class="card-text">
-                                Owner:
-                                <ng-container [ngSwitch]="item.ownerType">
+                                Owner: {{item.ownerId | profile | async | titlecase}}
+                                (<ng-container [ngSwitch]="item.ownerType">
                                     <small class="text-muted" *ngSwitchCase="'academy'">Academy</small>
-                                    <small class="text-muted" *ngSwitchCase="'ambassador'">Academy</small>
-                                </ng-container>
+                                    <small class="text-muted" *ngSwitchCase="'ambassador'">ambassador</small>
+                                </ng-container>)
                             </p>
+                            <p>{{'registered by' | titlecase }}: {{item.createdBy | profile | async | titlecase}} </p>
                         </div>
 
                         <div class="col-12 col-md-4 m-0 p-0">
                             <p class="card-text text-md-center">
-                                Type:
+                                {{'Coupons' | titlecase }}:
                                 <br>
-                                <!-- <ng-container [ngSwitch]="item.type">
-                                    <small class="text-muted" *ngSwitchCase="'percentage'">Percentage</small>
-                                    <small class="text-muted" *ngSwitchCase="'amount'">Amount</small>
-                                </ng-container> -->
                                 <ng-container *ngFor="let x of item.coupons">
                                     <small class="text-muted">{{x.concept}}:
                                         <ng-container [ngSwitch]="x.type">
@@ -73,7 +70,7 @@
                                             <span class="fs-4 fw-bolder" *ngSwitchCase="'amount'">
                                                 {{x.value}} USD
                                             </span>
-                                        </ng-container> 
+                                        </ng-container>
                                     </small><br>
 
                                 </ng-container>
@@ -102,6 +99,10 @@
                             &nbsp;
                             <button type="button" class="btn-icon btn-icon-two" (click)="goToEdit(item)">
                                 <i class="bi bi-pencil"></i>
+                            </button>
+                            &nbsp;
+                            <button type="button" class="btn-icon btn-icon-two" (click)="gotToLogs(item)">
+                                <i class="bi bi-list-columns"></i>
                             </button>
                         </div>
                     </div>

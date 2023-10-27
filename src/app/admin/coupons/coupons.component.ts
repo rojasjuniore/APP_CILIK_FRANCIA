@@ -78,11 +78,22 @@ export class CouponsComponent implements OnInit {
     this.router.navigate(['/admin/coupons', coupon._id, 'edit']);
   }
 
+  gotToLogs(coupon: any) {
+    console.log('gotToLogs', coupon);
+  }
+
   async removeCoupon(coupon: any) {
     try {
+
+      if (environment.production) {
+        return this.sweetAlert2Srv.showBasicAlert('This action is not allowed in production', 'Please contact the administrator');
+      }
+
       console.log('removeCoupon', coupon);
       const ask = await this.sweetAlert2Srv.askConfirm('Are you sure you want to remove this coupon?');
       if (!ask) { return; }
+
+
 
       await this.spinner.show();
 
@@ -106,7 +117,7 @@ export class CouponsComponent implements OnInit {
   copy(item) {
     this._clipboardService.copy(environment.dataEvent.appURL + '?code=' + item.slug);
     this.sweetAlert2Srv.showSuccess('Copied to clipboard');
-    return 
+    return
   }
 
 }

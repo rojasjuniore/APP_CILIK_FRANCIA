@@ -562,9 +562,9 @@ export class AuthenticationService {
       orderBy = [],
     } = opts;
 
-    console.log({where});
+    console.log({ where });
 
-    const snapshot =  await this.afs.collection(collection,
+    const snapshot = await this.afs.collection(collection,
       (ref) => {
         let query: Query = ref;
         for (const row of where) { query = query.where(row.field, row.condition, row.value); }
@@ -590,6 +590,15 @@ export class AuthenticationService {
     return (result.length > 0) ? result.pop() : null;
   }
 
+
+  /**
+   * 
+   * @param uid 
+   * @returns 
+   */
+  getUserPromise(uid) {
+    return this.afs.collection('users', ref => ref.where('uid', '==', uid)).valueChanges()
+  }
 
 
   getUserAuth(email) {

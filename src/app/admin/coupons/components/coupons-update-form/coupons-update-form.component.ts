@@ -95,6 +95,8 @@ export class CouponsUpdateFormComponent implements OnInit, OnDestroy {
   };
 
   private sub$!: Subscription;
+  user: any;
+  userCoupon: any;
 
   constructor(
     private fb: FormBuilder,
@@ -107,6 +109,7 @@ export class CouponsUpdateFormComponent implements OnInit, OnDestroy {
   ) {
     this.form = this.fb.group({
       ownerId: '',
+      ownerType: '',
       status: true,
       items: this.fb.array([]),
     });
@@ -128,7 +131,7 @@ export class CouponsUpdateFormComponent implements OnInit, OnDestroy {
         catchError((err) => of({ exist: false }))
       )
       .subscribe((coupon: any) => {
-        // console.log('coupon', coupon);
+        console.log('coupon', coupon);
         this.couponDoc = coupon;
 
         if (this.couponDoc.exist) {
@@ -136,15 +139,24 @@ export class CouponsUpdateFormComponent implements OnInit, OnDestroy {
           this.form.patchValue({
             ownerId: this.couponDoc.ownerId,
             status: this.couponDoc.status,
+            ownerType: this.couponDoc.ownerType,
           });
 
           this.initializeForm(coupon.coupons)
 
+
+          this.getProfile(this.couponDoc.ownerId);
           /** Establecer reglas al campo según tipo de campo */
           // this.form.get('value')?.setValidators(this.valueRules[this.couponDoc.type]);
         }
 
       });
+  }
+
+  async getProfile(uid){
+    const userDoc = await this.authSrv.getByUIDPromise(uid);
+    this.userCoupon = userDoc;
+    console.log('userDoc', userDoc);
   }
 
   initializeForm(dataArray) {
