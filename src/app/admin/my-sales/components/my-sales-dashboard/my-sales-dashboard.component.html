@@ -1,19 +1,26 @@
 <div class="row">
-    <div class="col-4">
+    <div class="col-12 col-md-6">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Total Ventas: {{totals?.globalTotalToPay | currency}}</h5>
+                <h5 class="card-title">
+                    <span class="fw-bold me-2">Total Ventas:</span>
+                    <span class="fw-bold text-rslt">{{totals?.globalTotalToPay | currency}}</span>                     
+                </h5>
             </div>
         </div>
     </div>
-    <div class="col-4">
+    <div class="col-12 col-md-6">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Total Descuentos: {{totals?.globalDiscount | currency}} </h5>
+                <h5 class="card-title">
+                    <span class="fw-bold me-2">Total Descuentos:</span>
+                    <span class="fw-bold text-rslt">{{totals?.globalDiscount | currency}} </span>    
+                     
+                </h5>
             </div>
         </div>
     </div>
-    <div class="col-4" *ngIf="totalForItemList">
+    <div class="col-12 col-md-6" *ngIf="totalForItemList">
         <!-- <div class="card">
             <div class="card-body">
                 <a class="btn btn-primary btn-sm" (click)="withdraw()">Ganacias: 0</a>

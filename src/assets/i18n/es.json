@@ -109,7 +109,8 @@
     "value": "Valor",
     "subtotal": "Subtotal",
     "discount": "Descuento",
-    "globalDiscountGlobalPercentage": "Porcentaje global"
+    "globalDiscountGlobalPercentage": "Porcentaje global",
+    "view": "Ver"
   },
   "formValidations": {
     "required": "El campo es obligatorio",
