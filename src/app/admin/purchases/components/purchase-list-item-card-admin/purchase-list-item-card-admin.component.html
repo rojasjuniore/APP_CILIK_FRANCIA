@@ -1,0 +1,72 @@
+<div class="card card-box p-3 mb-3">
+    <div class="row g-2 d-flex align-items-center">
+        <div class="col-12 px-3">
+            <span class="text-rslt fw-bold fs-5">
+                <i class="bi bi-cart3"></i>
+                &nbsp;
+                {{item.uid | profile | async | titlecase}}
+            </span>
+            <!-- <h5 class="card-title fw-bolder text-rslt">
+                <span class="placeholder col-12"></span>
+            </h5> -->
+        </div>
+
+        <div class="seprd2"></div>
+
+        <div class="col-12 px-3">
+            <div class="row mb-1">
+                <div class="col-12 col-md-6">
+                    <p class="card-text mb-0">
+                        {{ "general.date" | translate }}:
+                        <small class="text-muted">
+                            {{item.createdAt | date: 'medium'}}
+                        </small>
+                    </p>
+                </div>
+                <div class="col-12 col-md-6">
+                    <p class="card-text mb-0 text-md-end">
+                        {{ "general.status" | translate }}:
+                        <span class="badge bg-danger">
+                            {{ ('general.'+ ((item.status === 'completed') ? 'approved' : item.status)) | translate |
+                            uppercase}}
+                        </span>
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="d-flex flex-row align-content-center justify-content-between">
+                <div class="d-flex justify-content-center align-items-center">
+                    <span class="fs-4 fw-bolder">{{ "general.valueWithoutDiscount" | translate }}: USD
+                        {{item.totalResumen.globalSubtotal}}</span>
+                </div>
+            </div>
+            <div class="d-flex flex-row align-content-center justify-content-between">
+                <div class="d-flex justify-content-center align-items-center">
+                    <span class="fs-4 fw-bolder">{{ "general.discount"  | translate }}: USD
+                        {{item.totalResumen.globalTotalToPay}}</span>
+                </div>
+            </div>
+
+            <div class="d-flex flex-row align-content-center justify-content-between">
+                <div class="d-flex justify-content-center align-items-center">
+                    <span class="fs-4 fw-bolder">{{ "general.globalDiscountGlobalPercentage" | translate }}: USD
+                        {{item.totalResumen.globalDiscount}}</span>
+                </div>
+            </div>
+            <div class="d-flex flex-row align-content-center justify-content-between">
+                <div class="d-flex justify-content-center align-items-center">
+                    <span class="fs-4 fw-bolder">{{ "general.total" | translate }}: USD
+                        {{item.totalResumen.globalTotalToPay}}</span>
+                </div>
+
+                <div>
+                    <button type="button" class="btn-icon btn-icon-two" (click)="goToDetails()">
+                        <i class="bi bi-info-circle"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

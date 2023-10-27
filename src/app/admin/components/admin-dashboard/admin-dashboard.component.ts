@@ -24,6 +24,15 @@ export class AdminDashboardComponent implements OnInit {
       available: true
     },
     {
+      label: 'Manager Purchase Orders',
+      icon: 'fa fa-money',
+      description: 'Manager Purchase Orders',
+      type: 'navigation',
+      url: '/admin/purchases-admin/dashboard/',
+      profiles: ['manager-purchases-admin'],
+      available: true
+    },
+    {
       label: 'Manager Coupon',
       icon: 'fa fa-money',
       description: 'Manager Coupons',

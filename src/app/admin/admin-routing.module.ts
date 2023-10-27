@@ -30,35 +30,12 @@ const routes: Routes = [
     canActivate: [AuthProfileGuard],
     loadChildren: () => import("./my-sales/my-sales.module").then((m) => m.MySalesModule),
   },
-  // {
-  //   path: '',
-  //   component: AdminLayoutComponent,
-  //   children: [
-  //     {
-  //       path: 'permission',
-  //       data: { profiles: ['admin-permission'] },
-  //       canActivate: [AuthProfileGuard],
-  //       component: PermissionComponent,
-  //     },
-  //     {
-  //       path: 'orderList',
-  //       data: { profiles: ['admin-payments'] },
-  //       canActivate: [AuthProfileGuard, AuthRoleGuard],
-  //       component: ListOrderComponent,
-  //     },
-  //     {
-  //       path: 'coupons',
-  //       data: { profiles: ['admin-coupons'] },        
-  //       canActivate: [AuthProfileGuard],
-  //       loadChildren: () => import("./admin-coupons/admin-coupons.module").then((m) => m.AdminCouponsModule),
-  //     },
-  //     {
-  //       path: '**',
-  //       pathMatch: 'full',
-  //       redirectTo: '/admin/dashboard'
-  //     },
-  //   ]
-  // },
+  {
+    path: 'purchases-admin',
+    data: { profiles: ['manager-purchases-admin'] },
+    canActivate: [AuthProfileGuard],
+    loadChildren: () => import("./purchases/purchases.module").then((m) => m.PurchasesModule),
+  },
   {
     path: '**',
     pathMatch: 'full',
