@@ -5,7 +5,7 @@ import { MySalesBenefitsModalComponent } from './components/my-sales-benefits-mo
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'dashboard/:id',
     component: MySalesComponent
   },
   {

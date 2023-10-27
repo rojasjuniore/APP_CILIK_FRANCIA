@@ -9,6 +9,7 @@ import { MySalesBenefitsService } from 'src/app/services/my-sales-benefits.servi
 export class MySalesBenefitsComponent implements OnInit {
   @Input() totalForItemList: any;
   @Input() couponsList: any;
+  @Input() uid: any;
   public nivel: any;
   public ownerType = ""
 

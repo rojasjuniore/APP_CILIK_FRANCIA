@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ClipboardService } from 'ngx-clipboard';
 import { CouponService } from 'src/app/services/coupon.service';
 import { CustomizationfileService } from 'src/app/services/customizationfile/customizationfile.service';
@@ -14,25 +15,19 @@ export class MySalesComponent implements OnInit {
   uid: string | null;
   couponsList: any[] = [];
   constructor(
-    private customizationfileSrv: CustomizationfileService,
+    private route: ActivatedRoute,
     private _clipboardService: ClipboardService,
     private sweetAlert2Srv: Sweetalert2Service,
     private couponsSrv: CouponService,
   ) {
-    this.uid = this.customizationfileSrv.getUid();
+    this.uid = this.route.snapshot.paramMap.get('id');
     this.couponsSrv.myCuposPurchaseList(this.uid)
       .subscribe((data: any) => {
         this.couponsList = data;
       });
-
   }
 
-  ngOnInit(): void {
-
-
-  }
-
-
+  ngOnInit(): void { }
 
   /**
  * 

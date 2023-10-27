@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { CustomizationfileService } from 'src/app/services/customizationfile/customizationfile.service';
 import { PurchaseService } from 'src/app/services/purchase.service';
@@ -11,7 +11,7 @@ import { MySalesViewComponent } from '../my-sales-view/my-sales-view.component';
 })
 export class MySalesListComponent implements OnInit {
   public purchasesListC$!: Observable<any[]>;
-
+  @Input() uid: any;
   @ViewChild('modalMySalesView') modalMySalesView!: MySalesViewComponent;
 
 
@@ -21,9 +21,7 @@ export class MySalesListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const uid = this.customizationfileSrv.getUid();
-    console.log(uid)
-    this.purchasesListC$ = this.purchaseSrv.mySalesPurchaseList(uid, 'completed')
+    this.purchasesListC$ = this.purchaseSrv.mySalesPurchaseList(this.uid, 'completed')
       .pipe(map((data: any) => {
         // console.log(data)
         const counter = data.length + 1;

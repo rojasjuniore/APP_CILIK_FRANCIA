@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, map, of, switchMap, tap } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { CustomizationfileService } from 'src/app/services/customizationfile/customizationfile.service';
 import { PermissionService } from 'src/app/services/permission.service';
 import { environment } from 'src/environments/environment';
 
@@ -35,8 +36,8 @@ export class AdminDashboardComponent implements OnInit {
       label: 'Manager My Sales',
       icon: 'fa fa-money',
       description: 'Manager My Sales',
-      type: 'navigation',
-      url: '/admin/my-sales',
+      type: 'my-sales',
+      url: '/admin/my-sales/dashboard/',
       profiles: ['manager-my-sales'],
       available: true
     },
@@ -45,6 +46,7 @@ export class AdminDashboardComponent implements OnInit {
   public userRoles$!: Observable<any>;
 
   constructor(
+    private customizationfileSrv: CustomizationfileService,
     private router: Router,
     private authSrv: AuthenticationService,
     private permissionSrv: PermissionService,
@@ -80,6 +82,10 @@ export class AdminDashboardComponent implements OnInit {
     switch (item.type) {
       case 'navigation':
         this.router.navigate([item.url]);
+        break;
+      case 'my-sales':
+        const uid = this.customizationfileSrv.getUid();
+        this.router.navigate([item.url, uid]);
         break;
 
       default:

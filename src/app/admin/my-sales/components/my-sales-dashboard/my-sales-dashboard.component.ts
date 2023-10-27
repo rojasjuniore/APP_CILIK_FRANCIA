@@ -13,6 +13,7 @@ export class MySalesDashboardComponent implements OnInit {
   public totals: any;
   public totalForItemList: any;
   @Input() couponsList: any;
+  @Input() uid: any;
 
 
   constructor(
@@ -22,8 +23,7 @@ export class MySalesDashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const uid = this.customizationfileSrv.getUid();
-    this.purchaseSrv.mySalesPurchaseList(uid, 'completed')
+    this.purchaseSrv.mySalesPurchaseList(this.uid, 'completed')
       .subscribe(data => {
         this.buildDashboard(data);
       });
