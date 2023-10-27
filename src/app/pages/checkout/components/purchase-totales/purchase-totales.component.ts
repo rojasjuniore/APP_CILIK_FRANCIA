@@ -32,15 +32,8 @@ export class PurchaseTotalesComponent implements OnInit {
     // console.log('CartTotalesComponent', this.cart);
     this.cartTotalSrv.myCartTotal$.subscribe((gTotal: any) => {
       console.log('gTotal', gTotal);
-      if (gTotal) {
-        this.globalTotal = gTotal.globalTotal;
-      } else {
-        this.globalTotal = {
-          globalDiscount: 0,
-          globalSubtotal: 0,
-          globalTotalToPay: this.cart.totales
-        }
-      }
+      if (!gTotal) return
+      this.globalTotal = gTotal.globalTotal;
       // console.log('this.globalTotal', this.globalTotal);
     });
   }
