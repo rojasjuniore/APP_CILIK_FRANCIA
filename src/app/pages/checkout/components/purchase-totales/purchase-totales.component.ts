@@ -31,7 +31,6 @@ export class PurchaseTotalesComponent implements OnInit {
   ngOnInit(): void {
     // console.log('CartTotalesComponent', this.cart);
     this.cartTotalSrv.myCartTotal$.subscribe((gTotal: any) => {
-      console.log('gTotal', gTotal);
       if (!gTotal) return
       this.globalTotal = gTotal.globalTotal;
       // console.log('this.globalTotal', this.globalTotal);

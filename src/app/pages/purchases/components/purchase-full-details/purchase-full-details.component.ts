@@ -27,19 +27,6 @@ export class PurchaseFullDetailsComponent implements OnInit {
   ngOnInit(): void {
     console.log('app-purchase-full-details', this.cart);
     this.globalTotal = this.cart.totalResumen
-    // this.cartTotalSrv.myCartTotal$.subscribe((gTotal: any) => {
-    //   console.log('gTotal', gTotal);
-    //   if (gTotal) {
-    //     this.globalTotal = gTotal.globalTotal;
-    //   } else {
-    //     this.globalTotal = {
-    //       globalDiscount: 0,
-    //       globalSubtotal: 0,
-    //       globalTotalToPay: this.cart.totales
-    //     }
-    //   }
-    // console.log('this.globalTotal', this.globalTotal);
-    // });
   }
 
 

@@ -98,6 +98,7 @@ export class CheckoutComponent implements OnInit {
 
     this.cartTotalSrv.myCartTotal$.subscribe(async (gTotal: any) => {
       console.log('gTotal', gTotal);
+      if (!gTotal) return
       this.totales = gTotal.globalTotal;
       console.log('this.totales', this.totales);
       // this.purchaseDetailsWithCoupon = gTotal.updatedGroupedData;
