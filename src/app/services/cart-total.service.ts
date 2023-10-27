@@ -91,7 +91,7 @@ export class CartTotalService {
 
     for (let groupKey in grouped) {
       grouped[groupKey].name = groupKey;
-      grouped[groupKey].total = grouped[groupKey].reduce((sum, item) => sum + item.totales, 0);
+      grouped[groupKey].total = Math.ceil(grouped[groupKey].reduce((sum, item) => sum + item.totales, 0));
     }
 
     return grouped;
@@ -107,9 +107,9 @@ export class CartTotalService {
   applyDiscounts(groupedData, discounts) {
     for (let key in groupedData) {
       // Establecer valores predeterminados
-      groupedData[key].subtotal = groupedData[key].total;
+      groupedData[key].subtotal = Math.ceil(groupedData[key].total);
       groupedData[key].totalDiscount = 0;
-      groupedData[key].totalToPay = groupedData[key].subtotal;
+      groupedData[key].totalToPay = Math.ceil(groupedData[key].subtotal);
     }
 
     // Si discounts es null, simplemente regresa groupedData con los valores predeterminados establecidos
@@ -125,8 +125,8 @@ export class CartTotalService {
           discountAmount = discount.value;
         }
 
-        groupedData[discount.concept].totalDiscount = discountAmount;
-        groupedData[discount.concept].totalToPay = groupedData[discount.concept].subtotal - discountAmount;
+        groupedData[discount.concept].totalDiscount = Math.ceil(discountAmount);
+        groupedData[discount.concept].totalToPay = Math.ceil(groupedData[discount.concept].subtotal - discountAmount);
       }
     }
     return groupedData;
@@ -160,9 +160,9 @@ export class CartTotalService {
       const discount = couponList.find((item: any) => item.concept === 'discount');
       if (discount) {
         if (discount.type === "percentage") {
-          globalDiscountGlobalPercentage = globalSubtotal * (discount.value / 100);
+          globalDiscountGlobalPercentage = Math.ceil(globalSubtotal * (discount.value / 100));
         } else if (discount.type === "amount") {
-          globalDiscountGlobalPercentage = discount.value;
+          globalDiscountGlobalPercentage = Math.ceil(discount.value);
         }
       }
     }
@@ -170,10 +170,10 @@ export class CartTotalService {
 
 
     return {
-      globalDiscountGlobalPercentage,
-      globalSubtotal,
-      globalDiscount: globalDiscount,
-      globalTotalToPay: (globalTotalToPay - globalDiscountGlobalPercentage)
+      globalDiscountGlobalPercentage: Math.ceil(globalDiscountGlobalPercentage),
+      globalSubtotal: Math.ceil(globalSubtotal),
+      globalDiscount: Math.ceil(globalDiscount),
+      globalTotalToPay: Math.ceil((globalTotalToPay - globalDiscountGlobalPercentage))
     };
   }
 }

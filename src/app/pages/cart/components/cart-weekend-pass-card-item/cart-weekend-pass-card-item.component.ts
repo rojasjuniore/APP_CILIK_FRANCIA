@@ -47,9 +47,9 @@ export class CartWeekendPassCardItemComponent implements OnInit, OnChanges {
     const total = Number(this.item.price) * Number(this.item.quantity);
 
     if (this.cupon && this.cupon.type === 'percentage') {
-      return total - (total * (this.cupon.value / 100));
+      return Math.ceil(total - (total * (this.cupon.value / 100)));
     } else if (this.cupon && this.cupon.type === 'amount') {
-      return total - this.cupon.value;
+      return Math.ceil(total - this.cupon.value);
     } else {
       return total;  // Return the original total if the discount type is not recognized
     }
@@ -59,11 +59,10 @@ export class CartWeekendPassCardItemComponent implements OnInit, OnChanges {
   get descuento() {
     if (!this.item || !this.cupon) return 0;
     const total = Number(this.item.price) * Number(this.item.quantity);
-
     if (this.cupon && this.cupon.type === 'percentage') {
-      return total * (this.cupon.value / 100);
+      return Math.ceil(total * (this.cupon.value / 100));
     } else if (this.cupon && this.cupon.type === 'amount') {
-      return this.cupon.value;
+      return Math.ceil(this.cupon.value);
     } else {
       return 0;  // Return 0 if the discount type is not recognized
     }

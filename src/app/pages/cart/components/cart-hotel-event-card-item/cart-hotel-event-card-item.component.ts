@@ -27,7 +27,7 @@ export class CartHotelEventCardItemComponent implements OnInit, OnChanges {
 
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.couponObj.currentValue) {
+    if (changes.couponObj && changes.couponObj.currentValue) {
       console.log('changes.couponObj.currentValue', this.couponObj.coupons);
       this.cupon = this.codeStorageSrv.findByConcept(this.couponObj.coupons, 'hotelAndEvent');
     } else {
@@ -45,17 +45,17 @@ export class CartHotelEventCardItemComponent implements OnInit, OnChanges {
 
   get total() {
     if (!this.item) return 0;
-    return this.item.totales;;
+    return Math.ceil(this.item.totales);
   }
 
   get totales() {
     if (!this.item) return 0;
-    const total = this.item.totales;;
+    const total = Number(this.item.totales);
 
     if (this.cupon && this.cupon.type === 'percentage') {
-      return total - (total * (this.cupon.value / 100));
+      return Math.ceil(total - (total * (this.cupon.value / 100)));
     } else if (this.cupon && this.cupon.type === 'amount') {
-      return total - this.cupon.value;
+      return Math.ceil(total - this.cupon.value);
     } else {
       return total;  // Return the original total if the discount type is not recognized
     }
@@ -64,12 +64,12 @@ export class CartHotelEventCardItemComponent implements OnInit, OnChanges {
 
   get descuento() {
     if (!this.item || !this.cupon) return 0;
-    const total = this.item.totales;;
+    const total = Number(this.item.totales);
 
     if (this.cupon.type === 'percentage') {
-      return total * (this.cupon.value / 100);
+      return Math.ceil(total * (this.cupon.value / 100));
     } else if (this.cupon.type === 'amount') {
-      return this.cupon.value;
+      return Math.ceil(this.cupon.value);
     } else {
       return 0;  // Return 0 if the discount type is not recognized
     }
