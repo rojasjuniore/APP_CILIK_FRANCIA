@@ -18,14 +18,14 @@ export class PurchaseTotalesComponent implements OnInit {
     globalTotalToPay: 0
   }
 
-  
+
   constructor(
     // private cartSrv: CartService,
     // private spinner: NgxSpinnerService,
     // private sweetAlert2Srv: Sweetalert2Service,
     private cartTotalSrv: CartTotalService,
     // private cartSrv: CartService,
-  ) { 
+  ) {
   }
 
   ngOnInit(): void {
@@ -34,11 +34,11 @@ export class PurchaseTotalesComponent implements OnInit {
       console.log('gTotal', gTotal);
       if (gTotal) {
         this.globalTotal = gTotal.globalTotal;
-      }else{
+      } else {
         this.globalTotal = {
           globalDiscount: 0,
           globalSubtotal: 0,
-          globalTotalToPay:  this.cart.totales
+          globalTotalToPay: this.cart.totales
         }
       }
       // console.log('this.globalTotal', this.globalTotal);
