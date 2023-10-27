@@ -201,6 +201,9 @@ export class CheckoutComponent implements OnInit {
         this.translate.instant("alert.purchaseMadeSatisfactorily"),
         'success'
       );
+
+      /// @dev eliminar carrito de compra
+      this.cartTotalSrv.removeItem()
       return;
 
     } catch (err) {
@@ -272,6 +275,9 @@ export class CheckoutComponent implements OnInit {
 
       /** Disparar formulario */
       this.tuCompraSrv.launchForm(purchase.metadata);
+
+      /// @dev eliminar carrito de compra
+      this.cartTotalSrv.removeItem()
       return;
 
     } catch (err) {
@@ -363,6 +369,10 @@ export class CheckoutComponent implements OnInit {
         this.translate.instant("alert.purchaseMadeSatisfactorily"),
         'success'
       );
+
+
+      /// @dev eliminar carrito de compra
+      this.cartTotalSrv.removeItem()
       return;
 
     } catch (err) {

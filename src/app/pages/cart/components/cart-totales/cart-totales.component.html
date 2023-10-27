@@ -61,7 +61,7 @@
         <span>USD {{globalTotal.globalDiscount | currency}}</span>
     </h6>
 
-    <h6 class="text-end">
+    <h6 *ngIf="globalTotal.globalDiscountGlobalPercentage > 0" class="text-end">
         <span class="badge rounded-pill bg-danger">
             <i class="bi bi-info-circle"></i>
         </span>

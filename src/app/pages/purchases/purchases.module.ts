@@ -9,6 +9,7 @@ import { PurchaseDayPassCardItemComponent } from './components/purchase-day-pass
 import { PurchaseFullpassCardItemComponent } from './components/purchase-fullpass-card-item/purchase-fullpass-card-item.component';
 import { PurchaseWeekendPassCardItemComponent } from './components/purchase-weekend-pass-card-item/purchase-weekend-pass-card-item.component';
 import { PurchaseHotelEventCardItemComponent } from './components/purchase-hotel-event-card-item/purchase-hotel-event-card-item.component';
+import { PurchaseFullDetailsComponent } from './components/purchase-full-details/purchase-full-details.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { PurchaseHotelEventCardItemComponent } from './components/purchase-hotel
     PurchaseDayPassCardItemComponent,
     PurchaseFullpassCardItemComponent,
     PurchaseWeekendPassCardItemComponent,
-    PurchaseHotelEventCardItemComponent
+    PurchaseHotelEventCardItemComponent,
+    PurchaseFullDetailsComponent
   ],
   imports: [
     CommonModule,
