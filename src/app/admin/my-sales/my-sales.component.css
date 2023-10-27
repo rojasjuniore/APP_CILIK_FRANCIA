@@ -1,0 +1,8 @@
+.btn-link{
+    border: 1px solid #e7344c;
+    color: #e7344c;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 5px 5px #d4d4d4;
+    text-decoration: none;
+}

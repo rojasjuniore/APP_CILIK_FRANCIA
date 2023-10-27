@@ -672,3 +672,18 @@ body{
         width: fit-content;
     }
 }
+
+
+.table-responsive{
+    border: 1px solid #e7344c;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 5px 5px #d4d4d4;
+    text-decoration: none;
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 14px;
+}
+.table-responsive .btn{
+    font-size: 14px;
+}

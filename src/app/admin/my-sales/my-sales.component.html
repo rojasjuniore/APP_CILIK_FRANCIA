@@ -1,35 +1,34 @@
 <div class="row">
-
-    <div class="row">
-        <div class="col text-center mb-3">
-            <div class="fs-4 fw-bold">
-                My Sales Dashboard <br>
-                <br>
-                <ng-container *ngIf="userCoupon">
-                    {{userCoupon.name | titlecase}} -  {{userCoupon.email}}
-                </ng-container>
-                <br>
-                <small>Copy the link and send it to your customers</small>
-                <ng-container *ngFor="let item of couponsList">
-                    <button (click)="copy(item)" type="button" class="btn btn-primary btn-sm">Copy link: {{item.code}}</button> <br>
-                </ng-container>
-            </div>
+    <div class="col-12 d-flex justify-content-between mb-3">
+        <div class="fs-4 fw-bold">
+            My Sales Dashboard
+        </div>
+        <div>
+            <ng-container *ngFor="let item of couponsList">
+                <button (click)="copy(item)" type="button" class="btn-link p-2">Copy link: {{item.code}}</button> <br>
+            </ng-container>
         </div>
     </div>
+    <div *ngIf="userCoupon" class="col-12 d-flex justify-content-between mb-3">
+        <div class="fs-4 fw-bold">
+            User: {{userCoupon.name | titlecase}} | {{userCoupon.email }}
+        </div>
+    </div>
+</div>
+<div class="row">
     <div class="col-12">
         <app-my-sales-dashboard [couponsList]="couponsList" [uid]="uid"></app-my-sales-dashboard>
     </div>
-
-    <div class="row">
-        <div class="col text-center mb-3">
-            <div class="fs-4 fw-bold">
-                My Sales
-            </div>
+</div>
+<div class="row">
+    <div class="col mt-3 mb-3">
+        <div class="fs-4 fw-bold">
+            My Sales
         </div>
     </div>
+</div>
+<div class="row">
     <div class="col-12">
         <app-my-sales-list [uid]="uid"></app-my-sales-list>
     </div>
 </div>
-
-
