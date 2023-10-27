@@ -106,7 +106,10 @@
     "order": "Orden",
     "reference": "Referencia",
     "observation": "Observación",
-    "value": "Valor"
+    "value": "Valor",
+    "subtotal": "Subtotal",
+    "discount": "Descuento",
+    "globalDiscountGlobalPercentage": "Porcentaje global"
   },
   "formValidations": {
     "required": "El campo es obligatorio",

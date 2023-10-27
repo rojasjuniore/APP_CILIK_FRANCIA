@@ -106,7 +106,10 @@
     "order": "Order",
     "reference": "Reference",
     "observation": "Observation",
-    "value": "Value"
+    "value": "Value",
+    "subtotal": "Subtotal",
+    "discount": "Discount",
+    "globalDiscountGlobalPercentage": "Global percentage"
   },
   "formValidations": {
     "required": "The field is required",
