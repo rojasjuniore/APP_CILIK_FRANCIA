@@ -17,6 +17,9 @@ export const environment = {
     currency: 'USD',
     clientId: "AWNtZh591VSoWmuGlTUz_LjHwbRXPBoJ-pSkT7LnoFF_GVKQTSkQ9NtppzY4P1FdULUbM23gSpLuScK8",
   },
+  localStorage: {
+    SECRET_KEY: "wldc2024",
+  },
   tuCompra: {
     url: "https://gateway2.tucompra.com.co/tc3/app/inputs/compra.jsp",
     Nombre: "FUNDACION BALLET NACIONAL EL FIRULETE",

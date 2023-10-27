@@ -60,7 +60,7 @@ export class CheckoutComponent implements OnInit {
   totales: any;
   purchaseDetailsWithCoupon: any
   couponObj: any;
-
+  globalTotal: any
   constructor(
     private codeStorageSrv: CodeStorageService,
     private authSrv: AuthenticationService,
@@ -97,7 +97,7 @@ export class CheckoutComponent implements OnInit {
 
 
     this.cartTotalSrv.myCartTotal$.subscribe(async (gTotal: any) => {
-      // console.log('gTotal', gTotal);
+      console.log('gTotal', gTotal);
       this.totales = gTotal.globalTotal;
       console.log('this.totales', this.totales);
       // this.purchaseDetailsWithCoupon = gTotal.updatedGroupedData;
@@ -175,6 +175,7 @@ export class CheckoutComponent implements OnInit {
         payedAt: moment().valueOf(),
         // orderId: this.cartSrv.generateId(),
         orderId: this.cart.cartId,
+        totalResumen: this.totales,
         totales: this.totales.globalTotalToPay
       };
       console.log('purchase', purchase);
@@ -250,7 +251,8 @@ export class CheckoutComponent implements OnInit {
         status: 'pending',
         payedAt: null,
         orderId: campoExtra1.orderId,
-        totales: this.totales.globalTotalToPay
+        totales: this.totales.globalTotalToPay,
+        totalResumen: this.totales,
       };
       // console.log('purchase', purchase);
 
@@ -326,7 +328,8 @@ export class CheckoutComponent implements OnInit {
         status: 'pending',
         payedAt: null,
         orderId: orderId,
-        totales: this.totales.globalTotalToPay
+        totales: this.totales.globalTotalToPay,
+        totalResumen: this.totales,
       };
       console.log('purchase', purchase);
 
