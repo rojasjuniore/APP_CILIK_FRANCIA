@@ -70,16 +70,17 @@ export class CouponsComponent implements OnInit {
 
   async launchAddCouponForm() {
     console.log('launchAddCouponForm');
-    this.router.navigate(['/admin/coupons/store']);
+    return this.router.navigate(['/admin/coupons/store']);
   }
 
   goToEdit(coupon: any) {
     console.log('goToEdit', coupon);
-    this.router.navigate(['/admin/coupons', coupon._id, 'edit']);
+    return this.router.navigate(['/admin/coupons', coupon._id, 'edit']);
   }
 
   gotToLogs(coupon: any) {
     console.log('gotToLogs', coupon);
+    return this.router.navigate(['/admin/my-sales/dashboard/', coupon.ownerId]);
   }
 
   async removeCoupon(coupon: any) {
