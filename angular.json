@@ -48,7 +48,8 @@
               "rgbcolor",
               "html2canvas",
               "jquery",
-              "daterangepicker"
+              "daterangepicker",
+              "crypto-js"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
