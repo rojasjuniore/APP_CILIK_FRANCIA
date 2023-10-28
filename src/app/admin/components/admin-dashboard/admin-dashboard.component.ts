@@ -59,6 +59,15 @@ export class AdminDashboardComponent implements OnInit {
       profiles: ['manager-merchant'],
       available: true
     },
+    {
+      label: 'Manager  installments',
+      icon: 'fa fa-tome',
+      description: 'Manager installments',
+      type: 'navigation',
+      url: '/admin/installments-admin/dashboard',
+      profiles: ['manager-installments-admin'],
+      available: true
+    },
   ];
 
   public userRoles$!: Observable<any>;
@@ -97,6 +106,7 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   launch(item: any) {
+    console.log('launch', item);
     switch (item.type) {
       case 'navigation':
         this.router.navigate([item.url]);

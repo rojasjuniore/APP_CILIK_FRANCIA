@@ -9,7 +9,7 @@ import { BankTransferManagerComponent } from './components/bank-transfer-manager
 @NgModule({
   declarations: [
     BankTransferComponent,
-    BankTransferManagerComponent
+    BankTransferManagerComponent,
   ],
   imports: [
     CommonModule,

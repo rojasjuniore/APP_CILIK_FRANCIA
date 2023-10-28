@@ -43,6 +43,12 @@ const routes: Routes = [
     loadChildren: () => import("./merchant/merchant.module").then((m) => m.MerchantModule),
   },
   {
+    path: 'installments-admin',
+    data: { profiles: ['manager-installments-admin'] },
+    canActivate: [AuthProfileGuard],
+    loadChildren: () => import("./installments/installments.module").then((m) => m.InstallmentsModule),
+  },
+  {
     path: '**',
     pathMatch: 'full',
     redirectTo: '/admin/dashboard'
