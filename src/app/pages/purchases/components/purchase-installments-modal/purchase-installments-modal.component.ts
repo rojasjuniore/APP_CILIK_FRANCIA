@@ -89,7 +89,7 @@ export class PurchaseInstallmentsModalComponent implements OnInit {
         orderId: this.orderDoc.orderId,
         uid: this.orderDoc.uid,
         name: user.name,
-        index: this.item.index,
+        index: Number(this.item.index) + 1,
         installments: installments,
       });
 
