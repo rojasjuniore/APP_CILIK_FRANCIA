@@ -114,15 +114,64 @@ export class PurchaseInstallmentsModalComponent implements OnInit {
   }
 
 
+  /**
+   * @dev callback de tucompra
+   * @param $formData 
+   * @returns 
+   */
+  async onTuCompraCallback(formData: any) {
+    console.log('onTuCompraCallback', formData);
+    try {
+      // console.log('onTuCompraCallback', formData);
+
+      await this.spinner.show();
+
+      const userDoc = await this.authSrv.getByUIDPromise(this.orderDoc.uid);
+
+
+
+      // const campoExtra1 = JSON.parse(formData.campoExtra1);
+      /** Actualizar referencia del ID de la orden de compra */
+      const campoExtra1 = { ...formData.campoExtra1, orderId: this.orderDoc.orderId, cuota: this.item.index };
+      // console.log('campoExtra1', campoExtra1);
+
+      /** Actualizar referencia de redirección */
+      const campoExtra2 = formData.campoExtra2;
+      campoExtra2[2] = this.orderDoc.orderId;
+      // console.log('campoExtra2', campoExtra2);
+
+      const purchase = {
+        metadata: {
+          ...formData,
+          campoExtra1: JSON.stringify(campoExtra1),
+          campoExtra2: campoExtra2.join(''),
+        }
+      };
+      console.log('purchase', purchase);
+
+
+
+      /** Disparar formulario */
+      this.tuCompraSrv.launchForm(purchase.metadata);
+
+
+      return;
+
+    } catch (err) {
+      console.log('Error on CheckoutComponent.onTuCompraCallback()', err);
+      return;
+    } finally {
+      this.spinner.hide();
+    }
+  }
+
+
 
   onSelectBankTransferOption($event) {
     console.log('onSelectBankTransferOption', $event);
   }
 
 
-  onTuCompraCallback($event) {
-    console.log('onTuCompraCallback', $event);
-  }
 
 
   async showModal(item: any) {

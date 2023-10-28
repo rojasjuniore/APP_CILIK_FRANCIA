@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
 export class TucompraFormComponent implements OnInit, OnChanges {
 
   @Input() amount: number = 0;
-
+  @Input() type: string = '';
   @Output() onSendForm = new Subject<any>();
 
   public form!: FormGroup;
@@ -149,7 +149,7 @@ export class TucompraFormComponent implements OnInit, OnChanges {
       const orderId = this.cartSrv.generateId();
 
       const extraField = {
-        type: 'presale',
+        type: this.type,
         uid: uid,
         keyDB: environment.dataEvent.keyDb,
         orderId: orderId,

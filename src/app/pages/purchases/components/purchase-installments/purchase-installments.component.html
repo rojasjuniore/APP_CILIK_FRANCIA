@@ -32,7 +32,8 @@
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">Fecha de pago: {{item.date }}</h5>
                         <small>
-                            {{item.status | translate | titlecase}}: {{item.quota}}
+                            {{item.status | translate | titlecase}}: {{item.quota}} <ng-container
+                                *ngIf="item.paymentMethod"> | {{item.paymentMethod}}</ng-container>
                         </small>
                     </div>
                     <p class="mb-1">
@@ -45,5 +46,5 @@
 </div>
 
 
-<app-purchase-installments-modal *ngIf="installmentObj" [item]="installmentObj" [orderDoc]="orderDoc" #modalInstallmentsView
-    (onCloseModal)="onModalInstallmentsView($event)"></app-purchase-installments-modal>
+<app-purchase-installments-modal *ngIf="installmentObj" [item]="installmentObj" [orderDoc]="orderDoc"
+    #modalInstallmentsView (onCloseModal)="onModalInstallmentsView($event)"></app-purchase-installments-modal>

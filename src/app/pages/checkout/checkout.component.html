@@ -30,7 +30,7 @@
 
         <div class="col-12 mb-4" *ngSwitchCase="'tucompra'">
             <div class="card-box card-box-b3 p-3">
-                <app-tucompra-form [amount]="totales.globalTotalToPay || 0"
+                <app-tucompra-form [amount]="totales.globalTotalToPay || 0" [type]="'presale'"
                     (onSendForm)="onTuCompraCallback($event)"></app-tucompra-form>
             </div>
         </div>
