@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    
+
     <ng-container *ngIf="(profile$ | async) as profile; then renderFullHeader; else renderOnlyLanguage">
 
     </ng-container>
@@ -19,30 +19,32 @@
             <div class="logo" routerLink="/dashboard">
                 <img src="assets/img/cilik/logo.png" alt="">
             </div>
+           
         </div>
         <div class="col d-flex align-items-center justify-content-between justify-content-md-end header-cilik">
-            
+
             <app-language-bar></app-language-bar>
-            
+
             <div class="d-flex align-items-center">
 
                 <ng-container *ngIf="(cart$ | async) as cart">
-                    <div class="btn-navbar-c d-flex justify-content-center align-items-center ms-3" routerLink="/pages/cart">
+                    <div class="btn-navbar-c d-flex justify-content-center align-items-center ms-3"
+                        routerLink="/pages/cart">
                         <span class="icon-header active-cart  text-whi fs-4">
                             <i class="bi bi-cart3"></i>
                             <div class="ntf-cart" *ngIf="cart.product.length > 0">
                                 {{cart.product.length}}
                             </div>
-                        </span> 
+                        </span>
                     </div>
                 </ng-container>
 
                 <div class="seprd-h"></div>
                 <div class="btn-logout d-flex align-items-center" (click)="logout()">
-                    
+
                     <div class="icon-header">
-                        <span class="text-ps fw-bold">  
-                            {{ "general.logOut" | translate }} 
+                        <span class="text-ps fw-bold">
+                            {{ "general.logOut" | translate }}
                         </span>
                         <img src="assets/img/cilik/icon-28.png" alt="">
                     </div>
