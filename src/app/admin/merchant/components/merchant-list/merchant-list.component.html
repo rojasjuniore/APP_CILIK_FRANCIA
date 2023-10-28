@@ -1,0 +1,79 @@
+<ng-container *ngIf="(purchasesListC$ | async) as purchasesListP; else loading">
+    <ng-container *ngIf="purchasesListP.length > 0; else noPurchases">
+        <div class="col-12 mb-4">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">code</th>
+                            <th scope="col">name</th>
+                            <th scope="col">payedAt</th>
+                            <th scope="col">globalSubtotal</th>
+                            <th scope="col">globalDiscount</th>
+                            <th scope="col">globalTotalToPay</th>
+                            <th scope="col">status</th>
+                            <th scope="col">option</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of purchasesListP;">
+                            <th scope="row">{{item.index}}</th>
+                            <td>{{item?.codeCoupon || '-' }}</td>
+                            <td>{{item.uid | profile | async | titlecase}}</td>
+                            <td>{{item.payedAt | date:'medium'}}</td>
+                            <td>{{item.discount_with_coupon.globalSubtotal | currency}}</td>
+                            <td>{{item.discount_with_coupon.globalDiscount | currency}}</td>
+                            <td>{{item.discount_with_coupon.globalTotalToPay | currency}}</td>
+                            <td>{{item.status}}</td>
+                            <td>
+                                <a tabindex="-1" class="btn btn-one p-2" (click)="openSales(item)">
+                                    {{'general.view' | translate}}
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </ng-container>
+</ng-container>
+
+
+<ng-template #noPurchases>
+    <div class="col-12 mb-4">
+        <div class="card card-box p-3 mb-3">
+            <div class="row g-2 d-flex align-items-center">
+                <div class="col-12 px-3">
+                    <p class="m-0 text-center">
+                        {{'general.noPurchases' | translate}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+
+<ng-template #loading>
+    <div class="col-12 mb-4" *ngFor="let item of [1,1,1]">
+        <div class="card card-box p-3 mb-3">
+            <div class="row g-2 d-flex align-items-center">
+                <div class="col-12 px-3 d-flex justify-content-between placeholder-glow">
+                    <span class="placeholder bg-danger col-5" style="height: 36px;"></span>
+                    <span class="placeholder col-5" style="height: 36px;"></span>
+                </div>
+                <div class="seprd2"></div>
+                <div class="col-12 px-3">
+                    <p class="m-0 placeholder-glow">
+                        <span class="placeholder col-6"></span>
+                    </p>
+                    <div class="d-flex justify-content-end">
+                        <a href="#" tabindex="-1" class="btn btn-one disabled placeholder col-6"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

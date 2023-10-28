@@ -1,0 +1,55 @@
+<div class="row">
+    <div class="col-12 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <span class="fw-bold me-2">Total Ventas:</span>
+                    <span class="fw-bold text-rslt">{{totals?.globalTotalToPay | currency}}</span>
+                </h5>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <span class="fw-bold me-2">Total Descuentos:</span>
+                    <span class="fw-bold text-rslt">{{totals?.globalDiscount | currency}} </span>
+
+                </h5>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6" *ngIf="totalForItemList">
+        <!-- <div class="card">
+            <div class="card-body">
+                <a class="btn btn-primary btn-sm" (click)="withdraw()">Ganacias: 0</a>
+            </div>
+        </div> -->
+
+        <!-- <app-my-sales-benefits [totalForItemList]="totalForItemList" [couponsList]="couponsList"
+            [uid]="uid"></app-my-sales-benefits> -->
+    </div>
+
+
+    <div class="col-12">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Item</th>
+                        <th scope="col">count</th>
+                        <th scope="col">total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of totalForItemList">
+                        <th scope="row">{{item.key}}</th>
+                        <th>{{item.count}}</th>
+                        <th>{{item.total}}</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

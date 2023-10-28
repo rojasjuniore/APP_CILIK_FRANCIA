@@ -444,6 +444,8 @@ export class AuthenticationService {
     });
   }
 
+
+
   async logout() {
     this.afAuth.signOut();
     this.authenticationState.next(false);

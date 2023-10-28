@@ -366,6 +366,20 @@ export class PurchaseService {
   }
 
 
+  /**
+   * 
+   * @param uid 
+   * @param status 
+   * @returns 
+   */
+  myMerchantPurchaseList(uid: any, status) {
+    return this.getDynamic(environment.dataEvent.keyDb, [
+      { field: "merchantIdentification", condition: "==", value: uid },
+      { field: "status", condition: "==", value: status }
+    ], { orderBy: [{ field: "createdAt", order: "desc" }] })
+  }
+
+
   userPurchaseListPending(uid: string) {
     // return this.getDynamic([
     //   { field: "uid", condition: "==", value: uid },

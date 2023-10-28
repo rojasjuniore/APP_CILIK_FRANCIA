@@ -45,9 +45,18 @@ export class AdminDashboardComponent implements OnInit {
       label: 'Manager My Sales',
       icon: 'fa fa-money',
       description: 'Manager My Sales',
-      type: 'my-sales',
+      type: 'uid',
       url: '/admin/my-sales/dashboard/',
       profiles: ['manager-my-sales'],
+      available: true
+    },
+    {
+      label: 'Manager  Merchant',
+      icon: 'fa fa-money',
+      description: 'Manager Merchant',
+      type: 'uid',
+      url: '/admin/merchant-admin/dashboard/',
+      profiles: ['manager-merchant'],
       available: true
     },
   ];
@@ -92,7 +101,7 @@ export class AdminDashboardComponent implements OnInit {
       case 'navigation':
         this.router.navigate([item.url]);
         break;
-      case 'my-sales':
+      case 'uid':
         const uid = this.customizationfileSrv.getUid();
         this.router.navigate([item.url, uid]);
         break;
