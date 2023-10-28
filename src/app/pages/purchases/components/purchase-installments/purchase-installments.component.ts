@@ -41,6 +41,9 @@ export class PurchaseInstallmentsComponent implements OnInit, OnChanges {
    * @returns 
    */
   toPay(installment) {
+    if (installment.status == 'completed') {
+      return this.sweetalert2Srv.showInfo('La cuota ya ha sido pagada');
+    }
     if (!installment.isActiveToPay) {
       return this.sweetalert2Srv.showInfo('No se puede pagar esta cuota');
     }
