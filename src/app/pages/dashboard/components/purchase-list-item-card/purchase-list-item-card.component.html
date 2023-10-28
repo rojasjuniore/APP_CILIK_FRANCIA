@@ -2,9 +2,37 @@
     <div class="row g-2 d-flex align-items-center">
         <div class="col-12 px-3">
             <span class="text-rslt fw-bold fs-5">
-                <i class="bi bi-cart3"></i>
+
+
+                <ng-container [ngSwitch]="item.paymentMethod">
+
+                    <ng-container *ngSwitchCase="'installments'">
+                        <i class="bi bi-alarm"></i>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'bankTransfer'">
+                        <i class="bi bi-bank"></i>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'tucompra'">
+
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="'tucompra'">
+                        <i class="bi bi-card-heading"></i>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="'paypal'">
+                        <i class="bi bi-paypal"></i>
+                    </ng-container>
+
+                    <ng-container *ngSwitchDefault>
+                        <i class="bi bi-cart3"></i>
+                    </ng-container>
+
+
+                </ng-container>
+
                 &nbsp;
-                {{item._id}}
+               {{item.paymentMethod | translate | titlecase}} | {{item.createdAt | date: 'medium'}}
             </span>
             <!-- <h5 class="card-title fw-bolder text-rslt">
                 <span class="placeholder col-12"></span>
@@ -17,9 +45,10 @@
             <div class="row mb-1">
                 <div class="col-12 col-md-6">
                     <p class="card-text mb-0">
-                       {{ "general.date" | translate }}:
+                        {{'orden id' | translate | titlecase}}:
+                        &nbsp;
                         <small class="text-muted">
-                            {{item.createdAt | date: 'medium'}}
+                            {{item._id}}
                         </small>
                     </p>
                 </div>
@@ -27,7 +56,8 @@
                     <p class="card-text mb-0 text-md-end">
                         {{ "general.status" | translate }}:
                         <span class="badge bg-danger">
-                            {{ ('general.'+ ((item.status === 'completed') ? 'approved' : item.status)) | translate | uppercase}}
+                            {{ ('general.'+ ((item.status === 'completed') ? 'approved' : item.status)) | translate |
+                            uppercase}}
                         </span>
                     </p>
                 </div>

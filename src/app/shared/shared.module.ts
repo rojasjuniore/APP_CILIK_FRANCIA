@@ -21,8 +21,8 @@ import { HotelAndEventRoomListItemCardComponent } from './hotel-and-event-room-l
 import { CartHotelEventCardItemComponent } from '../pages/cart/components/cart-hotel-event-card-item/cart-hotel-event-card-item.component';
 import { PaypalButtonComponent } from '../pages/checkout/components/paypal-button/paypal-button.component';
 import { TucompraFormComponent } from '../pages/checkout/components/tucompra-form/tucompra-form.component';
-import { PurchaseListComponent } from './purchase-list/purchase-list.component';
-import { PurchaseListItemCardComponent } from './purchase-list-item-card/purchase-list-item-card.component';
+import { PurchaseListComponent } from '../pages/dashboard/components/purchase-list/purchase-list.component';
+import { PurchaseListItemCardComponent } from '../pages/dashboard/components/purchase-list-item-card/purchase-list-item-card.component';
 import { CustomInputFileComponent } from './custom-input-file/custom-input-file.component';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { VoucherCardItemComponent } from './voucher-card-item/voucher-card-item.component';
