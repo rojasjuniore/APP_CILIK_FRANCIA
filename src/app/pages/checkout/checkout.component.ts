@@ -26,6 +26,13 @@ export class CheckoutComponent implements OnInit {
 
   public paymentOptions = [
     {
+      label: 'general.installmentsPayment',
+      slug: 'installments',
+      type: 'installments',
+      icon: 'bi bi-calendar-check',
+      available: true
+    },
+    {
       label: 'general.creditOrDebitCard',
       slug: 'tucompra',
       type: 'navigation',
@@ -39,13 +46,7 @@ export class CheckoutComponent implements OnInit {
       icon: 'bi bi-bank',
       available: true
     },
-    {
-      label: 'general.installmentsPayment',
-      slug: 'installments',
-      type: 'installments',
-      icon: 'bi bi-calendar-check',
-      available: false
-    },
+
     {
       label: 'general.paypal',
       slug: 'paypal',
@@ -57,10 +58,12 @@ export class CheckoutComponent implements OnInit {
   public paymentOptionSelected: any;
 
   private sub$!: Subscription;
-  totales: any;
-  purchaseDetailsWithCoupon: any
-  couponObj: any;
-  globalTotal: any
+  public totales: any;
+  public purchaseDetailsWithCoupon: any
+  public couponObj: any;
+  public globalTotal: any
+  public installments: any
+
   constructor(
     private codeStorageSrv: CodeStorageService,
     private authSrv: AuthenticationService,
@@ -79,7 +82,7 @@ export class CheckoutComponent implements OnInit {
   async ngOnInit(): Promise<void> {
 
     this.couponObj = await this.codeStorageSrv.checkCode();
-    console.log('couponObj', this.couponObj);
+    // console.log('couponObj', this.couponObj);
 
     this.sub$ = this.authSrv.uid$
       .pipe(
@@ -101,10 +104,10 @@ export class CheckoutComponent implements OnInit {
 
 
     this.cartTotalSrv.myCartTotal$.subscribe(async (gTotal: any) => {
-      console.log('gTotal', gTotal);
+      // console.log('gTotal', gTotal);
       if (!gTotal) return
       this.totales = gTotal.globalTotal;
-      console.log('this.totales', this.totales);
+      // console.log('this.totales', this.totales);
       // this.purchaseDetailsWithCoupon = gTotal.updatedGroupedData;
       // console.log('this.totales', this.purchaseDetailsWithCoupon);
 
@@ -116,33 +119,37 @@ export class CheckoutComponent implements OnInit {
 
   }
 
-  // get totales() {
-  //   if (!this.cart) return 0;
-  //   if (!this.uid) return 0;
-
-  //   const { product = [] } = this.cart;
-  //   return product.map((item: any) => item.totales).reduce((a: number, b: number) => a + b, 0);
-  // }
-
-
 
   onClearPaymentOptionSelected() {
     this.paymentOptionSelected = null;
   }
 
+
+  /**
+   * @dev callback de paymentOptionSelected
+   * @param item 
+   */
   onSelectPaymentOption(item: any) {
-    console.log('onSelectPaymentOption', item);
+    console.log('onSelectPaymentOption');
     if (item.type === 'navigation') {
       this.paymentOptionSelected = item;
     }
 
     if (item.type === 'installments') {
-      // this.paymentOptionSelected = item;
-      console.log('this.cart', this.cart);
-      const snapshot = this.installmentSrv.getInstallmentByDate(moment().format('YYYY-MM-DD'));
+      this.paymentOptionSelected = item;
+      const installments = this.installmentSrv.getInstallmentByDate(moment().format('YYYY-MM-DD'));
+      const installmentAmount = (this.totales.globalTotalToPay / installments.length);
+      /// @dev agregar monto a cada cuota
+      this.installments = installments.map((item: any) => {
+        return {
+          ...item,
+          amount: installmentAmount,
+        }
+      });
 
-      console.log('snapshot', snapshot);
-      // const snapshot = this.installmentSrv.getInstallmentByDate('2023-11-09');
+
+      console.log('totales', this.totales);
+      console.log('installments', this.installments);
     }
 
   }
@@ -180,6 +187,7 @@ export class CheckoutComponent implements OnInit {
         discount_with_coupon: this.totales ? this.totales : 0,
         paymentMethod: 'paypal',
         payload: event.data,
+        installments: null,
         status: 'completed',
         payedAt: moment().valueOf(),
         // orderId: this.cartSrv.generateId(),
@@ -200,8 +208,6 @@ export class CheckoutComponent implements OnInit {
         name: userDoc.name,
       });
 
-      /** Redireccionar */
-      this.router.navigate(['/pages/dashboard']);
 
       /** Eliminar carrito de compra */
       await this.cartSrv.deleteCart(environment.dataEvent.keyDb, this.uid);
@@ -213,6 +219,10 @@ export class CheckoutComponent implements OnInit {
 
       /// @dev eliminar carrito de compra
       this.cartTotalSrv.removeItem()
+
+
+      /** Redireccionar */
+      this.router.navigate([`/pages/purchases/${purchase.orderId}/details`]);
       return;
 
     } catch (err) {
@@ -263,6 +273,7 @@ export class CheckoutComponent implements OnInit {
         },
         status: 'pending',
         payedAt: null,
+        installments: null,
         orderId: campoExtra1.orderId,
         totales: this.totales.globalTotalToPay,
         totalResumen: this.totales,
@@ -344,6 +355,7 @@ export class CheckoutComponent implements OnInit {
         canEdit: true,
         status: 'pending',
         payedAt: null,
+        installments: null,
         orderId: orderId,
         totales: this.totales.globalTotalToPay,
         totalResumen: this.totales,
@@ -370,8 +382,7 @@ export class CheckoutComponent implements OnInit {
         totales: purchase.totales
       });
 
-      /** Redireccionar */
-      this.router.navigate(['/pages/dashboard']);
+
 
       /** Eliminar carrito de compra */
       await this.cartSrv.deleteCart(environment.dataEvent.keyDb, this.uid);
@@ -381,9 +392,11 @@ export class CheckoutComponent implements OnInit {
         'success'
       );
 
-
       /// @dev eliminar carrito de compra
       this.cartTotalSrv.removeItem()
+
+      /** Redireccionar */
+      this.router.navigate([`/pages/purchases/${orderId}/details`]);
       return;
 
     } catch (err) {
@@ -400,87 +413,85 @@ export class CheckoutComponent implements OnInit {
   * @param installmentsOption 
   */
   async onSelectInstallmentsOption(installmentsOption: any) {
-    console.log(installmentsOption);
+    console.log("installmentsOption", installmentsOption);
+    try {
+
+      /** Si no se recibe ninguna opción */
+      if (!installmentsOption) { return; }
+
+
+      const ask = await this.sweetAlert2Srv.askConfirm(
+        this.translate.instant("alert.confirmAction")
+      );
+      if (!ask) { return; }
+
+      console.log('onSelectBankTransferOption', installmentsOption);
+
+      await this.spinner.show();
+
+      const orderId = this.cart.cartId;
+
+      const userDoc = await this.authSrv.getByUIDPromise(this.cart.uid);
+
+
+      const purchase = {
+        ...this.cart,
+        merchantIdentification: this.couponObj ? this.couponObj.createdBy : null,
+        codeCoupon: this.couponObj.code ? this.couponObj.code : null,
+        coupons: this.couponObj ? this.couponObj.coupons : [],
+        referred_by: this.couponObj.ownerId ? this.couponObj.ownerId : null,
+        discount_with_coupon: this.totales ? this.totales : 0,
+        voucher: null,
+        canEdit: true,
+        status: 'pending',
+        payedAt: null,
+        paymentMethod: 'installments',
+        installments: installmentsOption,
+        orderId: orderId,
+        totales: this.totales.globalTotalToPay,
+        totalResumen: this.totales,
+      };
+      console.log('purchase', purchase);
+
+      /** Almacenar orden de compra */
+      await this.purchaseSrv.storePurchase(environment.dataEvent.keyDb, purchase.orderId, purchase);
+
+      /** Enviar notificación de compra realizada */
+      await this.purchaseSrv.sendPurchaseInstallmentNotification({
+        email: userDoc.email,
+        orderId: purchase.orderId,
+        uid: this.cart.uid,
+        installments: purchase.installments,
+        name: userDoc.name,
+      });
+
+
+
+      /** Eliminar carrito de compra */
+      await this.cartSrv.deleteCart(environment.dataEvent.keyDb, this.uid);
+
+      this.sweetAlert2Srv.showToast(
+        this.translate.instant("alert.purchaseMadeSatisfactorily"),
+        'success'
+      );
+
+
+      /// @dev eliminar carrito de compra
+      this.cartTotalSrv.removeItem()
+
+
+      /** Redireccionar */
+      this.router.navigate([`/pages/purchases/${orderId}/details`]);
+
+      return;
+
+    } catch (err) {
+      console.log('Error on CheckoutComponent.onSelectBankTransferFile()', err);
+      return;
+    } finally {
+      this.spinner.hide();
+    }
   }
-
-  // async onSelectBankTransferFile(file: any){
-  //   try {
-
-  //     /** Si se limpia el archivo */
-  //     if(!file){ return; }
-
-
-  //     const ask = await this.sweetAlert2Srv.askConfirm(
-  //       this.translate.instant("alert.confirmAction")
-  //     );
-  //     if(!ask) { return; }
-
-  //     // console.log('onSelectBankTransferFile', file);
-
-  //     await this.spinner.show();
-
-  //     const orderId = this.cart.cartId;
-
-  //     const userDoc = await this.authSrv.getByUIDPromise(this.cart.uid);
-  //     // console.log('userDoc', userDoc);
-
-  //     const fileName = `${orderId}_${file.name}_${moment().valueOf()}`;
-
-  //     const urlToSaveFile = `purchases/${environment.dataEvent.keyDb}/${orderId}/${fileName}`;
-  //     const fileRef = await this.uploadFileSrv.uploadFileDocumentIntoRoute(urlToSaveFile, file);
-
-  //     const purchase = {
-  //       ...this.cart,
-  //       paymentMethod: 'bankTransfer',
-  //       voucher: {
-  //         name: file.name,
-  //         type: file.type,
-  //         size: file.size,
-  //         path: urlToSaveFile,
-  //         url: fileRef,
-  //         timeline: []
-  //       },
-  //       canEdit: false,
-  //       status: 'pending',
-  //       payedAt: null,
-  //       orderId: orderId,
-  //       totales: this.totales
-  //     };
-  //     // console.log('purchase', purchase);
-
-  //     /** Almacenar orden de compra */
-  //     await this.purchaseSrv.storePurchase(environment.dataEvent.keyDb, purchase.orderId, purchase);
-
-  //     /** Enviar notificación de compra realizada */
-  //     await this.purchaseSrv.sendPurchaseInformationNotification({
-  //       email: userDoc.email, 
-  //       orderId: purchase.orderId,
-  //       uid: this.cart.uid
-  //     });
-
-  //     /** Redireccionar */
-  //     this.router.navigate(['/pages/dashboard']);
-
-  //     /** Eliminar carrito de compra */
-  //     await this.cartSrv.deleteCart(environment.dataEvent.keyDb, this.uid);
-
-  //     this.sweetAlert2Srv.showToast(
-  //       this.translate.instant("alert.purchaseMadeSatisfactorily"),
-  //       'success'
-  //     );
-  //     return;
-
-  //   } catch (err) {
-  //     console.log('Error on CheckoutComponent.onSelectBankTransferFile()', err);
-  //     return;
-  //   } finally {
-  //     this.spinner.hide();
-  //   }
-  // }
-
-
-
-
 
 
 

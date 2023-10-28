@@ -56,13 +56,13 @@ export class HeaderWelcomeComponent implements OnInit, OnDestroy {
     const uid: any = localStorage.getItem('uid');
     this.permissionSrv.getUserEventFullRolesObservable(environment.dataEvent.keyDb, uid)
       .subscribe((data: any) => {
-        console.log('data', data);
+        // console.log('data', data);
         if (!data) return
         if (data.superAdmin) {
           this._isAdmin = true;
         } else {
           this._isAdmin = data.roles.length > 0 ? true : false;
-          console.log('this._isAdmin', this._isAdmin);
+          // console.log('this._isAdmin', this._isAdmin);
         }
       });
   }

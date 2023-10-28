@@ -244,38 +244,108 @@ export class PurchaseService {
   }
 
 
-  async updatePurchaseInstallmentCouta(docId: string, index: number, data: any) {
-    // try {
-    //   // console.log({
-    //   //   docId,
-    //   //   index,
-    //   //   data
-    //   // });
-    //   const snapshot = await lastValueFrom(
-    //     this.afs.collection(this.purchaseCollection).doc(docId).get()
-    //   );
+  /**
+   * @dev Enviar notificación de datos para cuota de pago
+   * @param params 
+   * @returns 
+   */
 
-    //   const result = await handlerObjectResult(snapshot);
+  /**
+    *TODO: HAY
+   */
+  async sendPurchaseInstallmentNotification(params: any) {
+    try {
+      const {
+        email,
+        orderId,
+        installments,
+        totales
+      } = params;
+      console.log('params', params);
+      console.log('installments', installments);
 
-    //   const { installments } = result;
-    //   const newInstallments = installments.map((item: any, i: number) => {
-    //     if (i === index) {
-    //       return {
-    //         ...item,
-    //         ...data
-    //       }
-    //     }
-    //     return item;
-    //   });
 
-    //   await this.updatePurchase(environment.dataEvent.keyDb, docId, { installments: newInstallments });
+      const cuotasHtml = installments.map(cuota => {
+        return {
+          type: 'html',
+          html: `<p style='text-align: center; margin: 0;'>Cuota ${cuota.quota}: $${cuota.amount} (Fecha de pago: ${cuota.date})</p>`
+        };
+      });
 
-    //   return true;
+      /** Enviar notificación de datos para transferencia bancaria */
+      await this.quickNotificationSrv.sendEmailNotification({
+        type: "purchaseInstallmentInfo",
+        email: email,
+        subject: "Información de pago de cuota",
+        greeting: ` `,
+        messageBody: [
+          {
+            type: 'line',
+            text: "Has seleccionado la opción de pago en cuotas. A continuación, encontrarás el desglose de tus pagos."
+          },
+          {
+            type: 'line',
+            text: "Entendemos la importancia de la planificación financiera. Por eso, te ofrecemos esta flexibilidad."
+          },
+          {
+            type: "html",
+            html: `<h4 style='text-align: center; margin: 0;'><strong>Opciones de Pago: En Cuotas</strong></h4>`
+          },
+          {
+            type: 'html',
+            html: `<p style='text-align: center; margin: 0;'>Disfruta de una tasa fija y un plazo definido desde el inicio.</p>`
+          },
+          ...cuotasHtml,
+          {
+            type: 'html',
+            html: `<p style='text-align: center; margin: 0;'>Es importante resaltar que el pago de la primera cuota debe realizarse dentro de las 48 horas siguientes a tu compra.</p>`
+          },
+          {
+            type: 'html',
+            html: `<p style='text-align: center; margin: 0;'>De no hacerlo, lamentablemente tu orden quedará cancelada.</p>`
+          },
+          {
+            type: 'line',
+            text: ``
+          },
+          {
+            type: 'line',
+            text: `Sigue las instrucciones para completar tu transacción. Si tienes dudas o inquietudes sobre el proceso de pago en cuotas, estamos aquí para ayudarte.`
+          },
+          {
+            type: 'line',
+            text: `*Aplican términos y condiciones.*`
+          },
+          {
+            type: 'line',
+            text: this.translatePipe.transform('notification.bankTransfer.body.6')
+          },
+          {
+            type: 'html',
+            html: `<p style='margin: 0;'>${this.translatePipe.transform('notification.bankTransfer.body.7')}</p>`
+          },
+          {
+            type: 'html',
+            html: `<p style='margin: 0;'><strong>WhatsApp:</strong> +57 314 772 2450</p>`
+          },
+          {
+            type: 'html',
+            html: `<p style='margin: 0;'><strong>Instagram:</strong> @worldlatindancecup</p>`
+          },
+          {
+            type: 'line',
+            text: ``
+          },
+        ],
+        salutation: `${this.translatePipe.transform('notification.bankTransfer.salutation')}`
+      });
 
-    // } catch (err) {
-    //   console.log('Error on PurchaseService.updatePurchaseInstallmentCouta', err);
-    //   return false;
-    // }
+      return true;
+
+    } catch (err) {
+      console.log('Error on PurchaseService.updatePurchaseInstallmentCouta', err);
+      return false;
+    }
   }
 
   async updatePurchaseCounter(docId: string, field: any, data = 1) {

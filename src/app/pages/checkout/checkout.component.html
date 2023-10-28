@@ -9,20 +9,11 @@
 
     <div class="col-12 mt-4">
         <app-purchase-totales [cart]="cart"></app-purchase-totales>
-        <!-- <h5 class="fw-bold fs-3 text-end">
-            {{ "general.total" | translate }}: USD {{totales}}
-        </h5> -->
     </div>
 
     <div class="col-12">
         <div class="d-flex justify-content-between">
-
             <ng-container *ngIf="paymentOptionSelected; then renderBackClearBtn; else renderBackBtn"></ng-container>
-
-            <!-- <button class="btn btn-one btn-medium-c text-uppercase" [ngClass]="{'disabled': totales === 0}" type="button" routerLink="/pages/checkout">
-                Pagar
-                <i class="bi bi-chevron-right"></i>
-            </button> -->
         </div>
     </div>
 
@@ -47,15 +38,12 @@
         <div class="col-12" *ngSwitchCase="'bankTransfer'">
             <app-checkout-banktransfer-select-option
                 (onSelectOption)="onSelectBankTransferOption($event)"></app-checkout-banktransfer-select-option>
-            <!-- <app-custom-input-file (onSelectFile)="onSelectBankTransferFile($event)"></app-custom-input-file> -->
         </div>
 
         <div class="col-12" *ngSwitchCase="'installments'">
-            <app-installments (onSelectOption)="onSelectInstallmentsOption($event)"></app-installments>
+            <app-installments [installments]="installments" [totales]="totales"
+                (onSelectOption)="onSelectInstallmentsOption($event)"></app-installments>
         </div>
-
-
-
 
 
     </ng-container>

@@ -62,6 +62,9 @@ export class TucompraFormComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
+    if (!environment.production) {
+      this.setFormValue();
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -72,40 +75,53 @@ export class TucompraFormComponent implements OnInit, OnChanges {
     }
   }
 
+  setFormValue() {
+    this.form.patchValue({
+      documentoComprador: "123456",
+      tipoDocumento: "PAS",
+      nombreComprador: "Pedro",
+      apellidoComprador: "Lars",
+      correoComprador: "plars@gmail.com",
+      celularComprador: "1234567890",
+      direccionComprador: "Calle 123"
+
+    });
+  }
+
   buildForm() {
     this.form = this.fb.group({
       documentoComprador: [
-        '123456',
+        '',
         [
           Validators.required,
           Validators.minLength(6),
           Validators.pattern(/^[0-9]+$/)
         ]
       ],
-      tipoDocumento: ['PAS', [Validators.required]],
+      tipoDocumento: ['', [Validators.required]],
       nombreComprador: [
-        'Pedro',
+        '',
         [
           Validators.required,
           Validators.pattern(/^[a-zA-Z ]+$/)
         ]
       ],
       apellidoComprador: [
-        'Lars',
+        '',
         [
           Validators.required,
           Validators.pattern(/^[a-zA-Z ]+$/)
         ]
       ],
       correoComprador: [
-        'plars@gmail.com',
+        '',
         [
           Validators.required,
           Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
         ]
       ],
       celularComprador: [
-        '1234567890',
+        '',
         [
           Validators.required,
           Validators.pattern(/^[0-9]+$/),
@@ -113,11 +129,11 @@ export class TucompraFormComponent implements OnInit, OnChanges {
           Validators.maxLength(10)
         ]
       ],
-      direccionComprador: ['lorem', [Validators.required]],
+      direccionComprador: ['', [Validators.required]],
     });
   }
 
-  async onSubmit(){
+  async onSubmit() {
     try {
       this.submitted = true;
       const formData = this.form.value;
@@ -145,7 +161,7 @@ export class TucompraFormComponent implements OnInit, OnChanges {
         valor: this.amount,
         // campoExtra1: JSON.stringify(extraField),
         campoExtra1: extraField,
-        campoExtra2: [environment.dataEvent.appURL, '/pages/purchases/', orderId, '/details'], 
+        campoExtra2: [environment.dataEvent.appURL, '/pages/purchases/', orderId, '/details'],
         telefonoComprador: formData.celularComprador,
         paisComprador: 'COLOMBIA',
         ciudadComprador: 'Cartagena'
@@ -160,7 +176,7 @@ export class TucompraFormComponent implements OnInit, OnChanges {
       // console.log('Try to submit form', newFormData);
       this.onSendForm.next(newFormData);
       return;
-      
+
     } catch (err) {
       console.log('Error on TuompraFormComponent.onSubmit', err);
       return;

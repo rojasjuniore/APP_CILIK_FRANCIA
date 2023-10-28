@@ -1,3 +1,14 @@
+<div class="row mb-4">
+    <div class="col-12 mb-4">
+        <p>
+            Para brindarte flexibilidad y confianza al realizar tus transacciones en línea, te ofrecemos la opción de
+            pagar a través de TuCompra, una plataforma líder en soluciones de pagos electrónicos:
+
+        </p>
+    </div>
+</div>
+
+
 <form class="mb-5" [formGroup]="form" (ngSubmit)="onSubmit()" #userForm novalidate>
 
     <div class="row">
@@ -12,83 +23,68 @@
                 <option value="NIT">{{ "general.nit" | translate }}</option>
                 <option value="PAS">{{ "general.passport" | translate }}</option>
             </select>
-            <ng-container 
-                *ngIf="submitted" 
-                [ngTemplateOutlet]="renderFormVM" 
-                [ngTemplateOutletContext]="{ field: 'tipoDocumento' }"
-            ></ng-container>
+            <ng-container *ngIf="submitted" [ngTemplateOutlet]="renderFormVM"
+                [ngTemplateOutletContext]="{ field: 'tipoDocumento' }"></ng-container>
         </div>
 
         <div class="col-12 mb-3">
             <label for="documentoComprador" class="form-label">
                 {{ "general.cedula" | translate }}
             </label>
-            <input type="text" class="form-control" formControlName="documentoComprador" aria-describedby="documentoCompradorHelp">
-            <ng-container 
-                *ngIf="submitted" 
-                [ngTemplateOutlet]="renderFormVM" 
-                [ngTemplateOutletContext]="{ field: 'documentoComprador' }"
-            ></ng-container>
+            <input type="text" class="form-control" formControlName="documentoComprador"
+                aria-describedby="documentoCompradorHelp">
+            <ng-container *ngIf="submitted" [ngTemplateOutlet]="renderFormVM"
+                [ngTemplateOutletContext]="{ field: 'documentoComprador' }"></ng-container>
         </div>
-      
+
         <div class="col-12 mb-3">
             <label for="nombreComprador" class="form-label">
                 {{ "general.name" | translate }}
             </label>
-            <input type="text" class="form-control" formControlName="nombreComprador" aria-describedby="nombreCompradorHelp">
-            <ng-container 
-                *ngIf="submitted" 
-                [ngTemplateOutlet]="renderFormVM" 
-                [ngTemplateOutletContext]="{ field: 'nombreComprador' }"
-            ></ng-container>
+            <input type="text" class="form-control" formControlName="nombreComprador"
+                aria-describedby="nombreCompradorHelp">
+            <ng-container *ngIf="submitted" [ngTemplateOutlet]="renderFormVM"
+                [ngTemplateOutletContext]="{ field: 'nombreComprador' }"></ng-container>
         </div>
-      
+
         <div class="col-12 mb-3">
             <label for="apellidoComprador" class="form-label">
                 {{ "general.lastName" | translate }}
             </label>
-            <input type="text" class="form-control" formControlName="apellidoComprador" aria-describedby="apellidoCompradorHelp">
-            <ng-container 
-                *ngIf="submitted" 
-                [ngTemplateOutlet]="renderFormVM" 
-                [ngTemplateOutletContext]="{ field: 'apellidoComprador' }"
-            ></ng-container>
+            <input type="text" class="form-control" formControlName="apellidoComprador"
+                aria-describedby="apellidoCompradorHelp">
+            <ng-container *ngIf="submitted" [ngTemplateOutlet]="renderFormVM"
+                [ngTemplateOutletContext]="{ field: 'apellidoComprador' }"></ng-container>
         </div>
-      
+
         <div class="col-12 mb-3">
             <label for="correoComprador" class="form-label">
                 {{ "general.email" | translate }}
             </label>
-            <input type="text" class="form-control" formControlName="correoComprador" aria-describedby="correoCompradorHelp">
-            <ng-container 
-                *ngIf="submitted" 
-                [ngTemplateOutlet]="renderFormVM" 
-                [ngTemplateOutletContext]="{ field: 'correoComprador' }"
-            ></ng-container>
+            <input type="text" class="form-control" formControlName="correoComprador"
+                aria-describedby="correoCompradorHelp">
+            <ng-container *ngIf="submitted" [ngTemplateOutlet]="renderFormVM"
+                [ngTemplateOutletContext]="{ field: 'correoComprador' }"></ng-container>
         </div>
-      
+
         <div class="col-12 mb-3">
             <label for="celularComprador" class="form-label">
                 {{ "general.phoneNumber" | translate }}
             </label>
-            <input type="text" class="form-control" formControlName="celularComprador" aria-describedby="celularCompradorHelp">
-            <ng-container 
-                *ngIf="submitted" 
-                [ngTemplateOutlet]="renderFormVM" 
-                [ngTemplateOutletContext]="{ field: 'celularComprador' }"
-            ></ng-container>
+            <input type="text" class="form-control" formControlName="celularComprador"
+                aria-describedby="celularCompradorHelp">
+            <ng-container *ngIf="submitted" [ngTemplateOutlet]="renderFormVM"
+                [ngTemplateOutletContext]="{ field: 'celularComprador' }"></ng-container>
         </div>
-      
+
         <div class="col-12 mb-3">
             <label for="direccionComprador" class="form-label">
                 {{ "general.address" | translate }}
             </label>
-            <input type="text" class="form-control" formControlName="direccionComprador" aria-describedby="direccionCompradorHelp">
-            <ng-container 
-                *ngIf="submitted" 
-                [ngTemplateOutlet]="renderFormVM" 
-                [ngTemplateOutletContext]="{ field: 'direccionComprador' }"
-            ></ng-container>
+            <input type="text" class="form-control" formControlName="direccionComprador"
+                aria-describedby="direccionCompradorHelp">
+            <ng-container *ngIf="submitted" [ngTemplateOutlet]="renderFormVM"
+                [ngTemplateOutletContext]="{ field: 'direccionComprador' }"></ng-container>
         </div>
 
         <div class="col-12 text-center">
@@ -115,9 +111,9 @@
 </ng-template>
 
 <ng-template #renderFormVM let-field="field">
-  <ng-container *ngFor="let val of vm[field]">
-      <div id="{{field}}Help" class="form-text text-danger" *ngIf="f[field].hasError(val.type)">
-          {{ val.message | translate | titlecase }}
-      </div>
-  </ng-container>
+    <ng-container *ngFor="let val of vm[field]">
+        <div id="{{field}}Help" class="form-text text-danger" *ngIf="f[field].hasError(val.type)">
+            {{ val.message | translate | titlecase }}
+        </div>
+    </ng-container>
 </ng-template>
