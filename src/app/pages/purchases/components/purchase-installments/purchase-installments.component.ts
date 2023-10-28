@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import moment from 'moment';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 import { PurchaseInstallmentsModalComponent } from '../purchase-installments-modal/purchase-installments-modal.component';
@@ -21,7 +21,7 @@ export class PurchaseInstallmentsComponent implements OnInit, OnChanges {
 
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('changes', changes);
+    // console.log('changes', changes);
     if (changes.orderDoc && changes.orderDoc.currentValue) {
       this.isValidOrder = this.isValidPaymentDate(this.orderDoc.installments[0]);
       this.installments = this.installmentsList(this.orderDoc.installments);
@@ -55,8 +55,6 @@ export class PurchaseInstallmentsComponent implements OnInit, OnChanges {
     }, 300);
     return
   }
-
-
 
 
   onModalInstallmentsView($event) {

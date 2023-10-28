@@ -12,6 +12,7 @@ import { PurchaseHotelEventCardItemComponent } from './components/purchase-hotel
 import { PurchaseFullDetailsComponent } from './components/purchase-full-details/purchase-full-details.component';
 import { PurchaseInstallmentsComponent } from './components/purchase-installments/purchase-installments.component';
 import { PurchaseInstallmentsModalComponent } from './components/purchase-installments-modal/purchase-installments-modal.component';
+import { PurchaseInstallmentsVoucherComponent } from './components/purchase-installments-voucher/purchase-installments-voucher.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { PurchaseInstallmentsModalComponent } from './components/purchase-instal
     PurchaseHotelEventCardItemComponent,
     PurchaseFullDetailsComponent,
     PurchaseInstallmentsComponent,
-    PurchaseInstallmentsModalComponent
+    PurchaseInstallmentsModalComponent,
+    PurchaseInstallmentsVoucherComponent
   ],
   imports: [
     CommonModule,

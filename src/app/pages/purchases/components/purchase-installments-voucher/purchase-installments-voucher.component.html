@@ -1,0 +1,88 @@
+<div class="row mb-4">
+    <div class="col-12 mb-4">
+        <p>
+            Para tu comodidad, te ofrecemos las siguientes opciones bancarias para realizar transferencias:
+        </p>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">{{'seleccione banco'| translate |
+                titlecase}}:</label>
+            <select class="form-select" aria-label="Default select example" [(ngModel)]="optionSelected">
+                <option *ngFor="let item of bankOptions" [ngValue]="item">
+                    {{item.label | titlecase}}
+                </option>
+            </select>
+        </div>
+
+        <div class="pt-1"></div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">{{'beneficiaryName'| translate | titlecase }}</span>
+            <input class="form-control" name="beneficiaryName" [(ngModel)]="optionSelected.beneficiaryName" readonly>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">{{'accountNumber'| translate | titlecase }}</span>
+            <input class="form-control" name="accountNumber" [(ngModel)]="optionSelected.accountNumber" readonly>
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">{{'swiftCode'| translate | titlecase }}</span>
+            <input class="form-control" name="swiftCode" [(ngModel)]="optionSelected.swiftCode" readonly>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">{{'nit'| translate | titlecase }}</span>
+            <input class="form-control" name="nit" [(ngModel)]="optionSelected.nit" readonly>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">{{'phone'| translate | titlecase }}</span>
+            <input class="form-control" name="phone" [(ngModel)]="optionSelected.phone" readonly>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">{{'country'| translate | titlecase }}</span>
+            <input class="form-control" name="country" [(ngModel)]="optionSelected.country" readonly>
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">{{'iban'| translate | titlecase }}</span>
+            <input class="form-control" name="iban" [(ngModel)]="optionSelected.iban" readonly>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">{{'bankBranch'| translate | titlecase }}</span>
+            <input class="form-control" name="bankBranch" [(ngModel)]="optionSelected.bankBranch" readonly>
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">{{'bankAddress'| translate | titlecase }}</span>
+            <input class="form-control" name="bankAddress" [(ngModel)]="optionSelected.bankAddress" readonly>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">{{'branchOffice'| translate | titlecase }}</span>
+            <input class="form-control" name="branchOffice" [(ngModel)]="optionSelected.branchOffice" readonly>
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">{{'bankPhone'| translate | titlecase }}</span>
+            <input class="form-control" name="bankPhone" [(ngModel)]="optionSelected.bankPhone" readonly>
+        </div>
+
+
+        <p>
+            Elige la entidad que se ajuste mejor a tus necesidades y sigue las instrucciones para completar
+            tu transferencia. Si tienes alguna duda o inquietud, no dudes en contactarnos.
+        </p>
+
+
+
+        <div class="col-12 text-center mb-3">
+            <div class="fs-4 fw-bold">
+                Voucher
+            </div>
+        </div>
+
+
+        <app-purchase-upload-voucher-form (onCompleteForm)="onLoadVoucher($event)"></app-purchase-upload-voucher-form>
+
+
+
+
+    </div>
+</div>

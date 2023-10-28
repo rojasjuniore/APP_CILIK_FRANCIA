@@ -12,6 +12,7 @@ import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 import { TucompraService } from 'src/app/services/tucompra/tucompra.service';
 import { environment } from 'src/environments/environment';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { UploadFileService } from 'src/app/services/dedicates/upload-file.service';
 
 @Component({
   selector: 'app-purchase-installments-modal',
@@ -36,12 +37,15 @@ export class PurchaseInstallmentsModalComponent implements OnInit {
     private translate: TranslateService,
     private commonSrv: CommonService,
     private router: Router,
-    private bsModalSrv: BsModalService,) { }
+    private bsModalSrv: BsModalService,
+    private uploadFileSrv: UploadFileService,
+
+  ) { }
 
   ngOnInit(): void {
     this.buildModal();
-    console.log('this.item', this.item);
-    console.log('this.orderDoc', this.orderDoc);
+    console.log('app-purchase-installments-modal', this.item);
+    console.log('app-purchase-installments-modal', this.orderDoc);
     this.amount = this.item.amount;
 
   }
@@ -166,10 +170,83 @@ export class PurchaseInstallmentsModalComponent implements OnInit {
   }
 
 
+  /**
+   * 
+   * @param event 
+   */
+  async onVoucherCallback(event) {
+    console.log('onVoucherCallback', event);
+    try {
+      const ask = await this.sweetAlert2Srv.askConfirm(
+        this.translate.instant("alert.confirmAction")
+      );
+      if (!ask) { return; }
 
-  onSelectBankTransferOption($event) {
-    console.log('onSelectBankTransferOption', $event);
+      await this.spinner.show();
+
+
+      const { formData, optionSelected } = event;
+
+      console.log('formData', formData);
+      console.log('order', this.orderDoc);
+
+      const { bankTransferFile: file, reference } = formData;
+
+      const uploadAt = moment().valueOf();
+
+      /** Construir nombre del archivo */
+      const fileName = `${this.orderDoc.orderId}_${file.name}_${uploadAt}`;
+
+      /** Crear Referencia al documento */
+      const urlToSaveFile = `purchases/${environment.dataEvent.keyDb}/${this.orderDoc.orderId}/${fileName}`;
+
+      /** Cargar archivo ene l bucket */
+      const fileRef = await this.uploadFileSrv.uploadFileDocumentIntoRoute(urlToSaveFile, file);
+
+      /** Construir objeto con valores a actualizar */
+      const purchase = {
+        voucher: {
+          reference: reference,
+          name: file.name,
+          type: file.type,
+          size: file.size,
+          path: urlToSaveFile,
+          url: fileRef,
+          timeline: [],
+          uploadAt: uploadAt,
+          canEdit: false,
+        },
+      };
+
+
+      const installments = this.orderDoc.installments
+      installments[this.item.index].status = 'pending';
+      installments[this.item.index].paymentMethod = 'bankTransfer';
+      installments[this.item.index].payload = {
+        purchase: purchase,
+        optionSelected: optionSelected
+      };
+      installments[this.item.index].totales = this.amount;
+
+
+      await this.purchaseSrv.updatedPurchaseInstallment(environment.dataEvent.keyDb, this.orderDoc.orderId, installments);
+
+      this.closeModal()
+
+      /** Redireccionar */
+      this.router.navigate([`/pages/purchases/${this.orderDoc.orderId}/details`]);
+      return;
+
+    } catch (err) {
+      console.log('Error on PurchaseDetailsComponent.onLoadVoucher', err);
+      return;
+
+    } finally {
+      this.spinner.hide();
+    }
   }
+
+
 
 
 

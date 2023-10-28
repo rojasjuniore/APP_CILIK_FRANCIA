@@ -33,8 +33,10 @@
                         </h2>
                         <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                <!-- <app-checkout-banktransfer-select-option
-                                    (onSelectOption)="onSelectBankTransferOption($event)"></app-checkout-banktransfer-select-option> -->
+
+                                <app-purchase-installments-voucher [amount]="amount" [orderDoc]="orderDoc" [item]="item"
+                                    (onSendForm)="onVoucherCallback($event)"></app-purchase-installments-voucher>
+
                             </div>
                         </div>
                     </div>
