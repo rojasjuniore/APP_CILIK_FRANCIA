@@ -76,7 +76,11 @@ export class CheckoutComponent implements OnInit {
 
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+
+    this.couponObj = await this.codeStorageSrv.checkCode();
+    console.log('couponObj', this.couponObj);
+
     this.sub$ = this.authSrv.uid$
       .pipe(
         distinctUntilChanged(),
@@ -104,9 +108,12 @@ export class CheckoutComponent implements OnInit {
       // this.purchaseDetailsWithCoupon = gTotal.updatedGroupedData;
       // console.log('this.totales', this.purchaseDetailsWithCoupon);
 
-      this.couponObj = await this.codeStorageSrv.checkCode();
-      console.log('code', this.couponObj);
+
     });
+
+
+
+
   }
 
   // get totales() {
@@ -166,6 +173,7 @@ export class CheckoutComponent implements OnInit {
 
       const purchase = {
         ...this.cart,
+        merchantIdentification: this.couponObj ? this.couponObj.createdBy : null,
         coupons: this.couponObj ? this.couponObj.coupons : [],
         codeCoupon: this.couponObj.code ? this.couponObj.code : null,
         referred_by: this.couponObj.ownerId ? this.couponObj.ownerId : null,
@@ -243,6 +251,7 @@ export class CheckoutComponent implements OnInit {
       const purchase = {
         ...this.cart,
         paymentMethod: 'tucompra',
+        merchantIdentification: this.couponObj ? this.couponObj.createdBy : null,
         coupons: this.couponObj ? this.couponObj.coupons : [],
         codeCoupon: this.couponObj.code ? this.couponObj.code : null,
         referred_by: this.couponObj.ownerId ? this.couponObj.ownerId : null,
@@ -323,6 +332,7 @@ export class CheckoutComponent implements OnInit {
 
       const purchase = {
         ...this.cart,
+        merchantIdentification: this.couponObj ? this.couponObj.createdBy : null,
         codeCoupon: this.couponObj.code ? this.couponObj.code : null,
         coupons: this.couponObj ? this.couponObj.coupons : [],
         referred_by: this.couponObj.ownerId ? this.couponObj.ownerId : null,
