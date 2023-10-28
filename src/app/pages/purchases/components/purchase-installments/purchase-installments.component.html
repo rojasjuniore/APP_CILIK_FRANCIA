@@ -1,0 +1,49 @@
+<div class="card card-box p-3 mb-3">
+    <div class="col-12 text-center mb-3">
+        <div class="fs-4 fw-bold">
+            {{"general.installments" | translate | titlecase}}
+        </div>
+        <div class="instruction-alert">
+            <i class="fa fa-info-circle" aria-hidden="true"></i>
+            <!-- Ícono de información (asegúrate de tener FontAwesome si usas este ícono) -->
+            Por favor, haz clic en la opción marcada en <span class="highlight">azul</span> y elige tu método de pago
+            preferido.
+        </div>
+    </div>
+
+
+    <ng-container *ngIf="isValidOrder;else templateInstaments">
+        <div class="col-12 text-center">
+            <div class="alert alert-danger" role="alert">
+                <div class="fs-4 fw-bold">
+                    {{"general.error" | translate | titlecase}}
+                </div>
+                <div class="fs-6 fw-bold">
+                    {{"general.errorInstallments" | translate | titlecase}}
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <ng-template #templateInstaments>
+        <div class="list-group">
+            <ng-container *ngFor="let item of installments; let i=index">
+                <a (click)="toPay(item)" class="list-group-item list-group-item-action"
+                    [ngClass]="{'active': item.isActiveToPay}" aria-current="true">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Fecha de pago: {{item.date }}</h5>
+                        <small>
+                            {{item.status | translate | titlecase}}: {{item.quota}}
+                        </small>
+                    </div>
+                    <p class="mb-1">
+                        Monto: {{item.amount | currency:'USD':'symbol':'1.2-2'}}
+                    </p>
+                </a>
+            </ng-container>
+        </div>
+    </ng-template>
+</div>
+
+
+<app-purchase-installments-modal *ngIf="installmentObj" [item]="installmentObj" [orderDoc]="orderDoc" #modalInstallmentsView
+    (onCloseModal)="onModalInstallmentsView($event)"></app-purchase-installments-modal>

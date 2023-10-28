@@ -34,26 +34,27 @@ export class PurchaseDetailsComponent implements OnInit, OnDestroy {
     private spinner: NgxSpinnerService,
   ) {
     const orderId = this.router.snapshot.paramMap.get('orderId');
-    // console.log('orderId', orderId);
+    console.log('orderId', orderId);
     this.orderId = orderId || '';
   }
 
   ngOnInit(): void {
 
     this.sub$ = this.authSrv.uid$
-    .pipe(
-      switchMap((uid) => this.purchaseSrv.getByEventAndId(environment.dataEvent.keyDb, this.orderId)),
-      map((order) => {
-        return (order) ? {exist: true, ...order} : {exist: false};
-      }),
-      catchError((err) => of({exist: false}))
-    )
-    .subscribe((order) => {
-      this.orderDoc = order;
-    });
+      .pipe(
+        switchMap((uid) => this.purchaseSrv.getByEventAndId(environment.dataEvent.keyDb, this.orderId)),
+        map((order) => {
+          return (order) ? { exist: true, ...order } : { exist: false };
+        }),
+        catchError((err) => of({ exist: false }))
+      )
+      .subscribe((order) => {
+        this.orderDoc = order;
+        console.log('order', order);
+      });
   }
 
-  async onLoadVoucher(formData: any){
+  async onLoadVoucher(formData: any) {
     try {
       const ask = await this.sweetAlert2Srv.askConfirm(
         this.translate.instant("alert.confirmAction")
@@ -96,7 +97,7 @@ export class PurchaseDetailsComponent implements OnInit, OnDestroy {
       /** Actualizar orden de compra */
       await this.purchaseSrv.updatePurchase(environment.dataEvent.keyDb, this.orderDoc.orderId, purchase);
       return;
-      
+
     } catch (err) {
       console.log('Error on PurchaseDetailsComponent.onLoadVoucher', err);
       return;
@@ -106,12 +107,12 @@ export class PurchaseDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
-  onRenderUpdateVoucher(event: any){
+  onRenderUpdateVoucher(event: any) {
     console.log('event', event);
     this.showUpdateVoucherForm = true;
   }
 
-  async onUpdateVoucher(formData: any){
+  async onUpdateVoucher(formData: any) {
     try {
       const ask = await this.sweetAlert2Srv.askConfirm(
         this.translate.instant("alert.confirmAction")
@@ -155,7 +156,7 @@ export class PurchaseDetailsComponent implements OnInit, OnDestroy {
       this.showUpdateVoucherForm = false;
       console.log('voucher updated');
       return;
-      
+
     } catch (err) {
       console.log('Error on PurchaseDetailsComponent.onUpdateVoucher', err);
       return;

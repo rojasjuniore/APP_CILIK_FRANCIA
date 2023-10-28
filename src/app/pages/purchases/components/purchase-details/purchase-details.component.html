@@ -10,10 +10,8 @@
         </div>
     </div>
 
-    <ng-container *ngIf="(orderDoc); else renderLoaderview"
-        [ngTemplateOutlet]="renderCheckOrderDoc"
-        [ngTemplateOutletContext]="{item: orderDoc}"
-    ></ng-container>
+    <ng-container *ngIf="(orderDoc); else renderLoaderview" [ngTemplateOutlet]="renderCheckOrderDoc"
+        [ngTemplateOutletContext]="{item: orderDoc}"></ng-container>
 
     <div class="col-12">
         <div class="d-flex justify-content-between">
@@ -41,7 +39,7 @@
                 </div>
         
                 <div class="seprd2"></div> -->
-        
+
                 <div class="col-12 px-3">
                     <div class="row mb-1">
                         <div class="col-12 col-md-6">
@@ -56,7 +54,8 @@
                             <p class="card-text mb-0 text-md-end">
                                 {{"general.status" | translate}}:
                                 <span class="badge bg-danger">
-                                    {{ ('general.'+ ((order.status === 'completed') ? 'approved' : order.status)) | translate | uppercase}}
+                                    {{ ('general.'+ ((order.status === 'completed') ? 'approved' : order.status)) |
+                                    translate | uppercase}}
                                 </span>
                             </p>
                         </div>
@@ -94,7 +93,7 @@
 
                 <div class="col-12 text-center text-md-end">
                     <!-- <app-purchase-totales></app-purchase-totales> -->
-                    <app-purchase-full-details  [cart]="order"></app-purchase-full-details>
+                    <app-purchase-full-details [cart]="order"></app-purchase-full-details>
                     <!-- <span class="fs-4 fw-bolder">Total: USD {{order.totales}}</span> -->
                 </div>
 
@@ -102,12 +101,12 @@
         </div>
     </div>
 
+    <!-- Payment instaments -->
+    <app-purchase-installments *ngIf="(order.paymentMethod === 'installments')" [orderDoc]="orderDoc"></app-purchase-installments>
+
     <!-- Transfer Segment -->
-    <ng-container 
-        *ngIf="(order.paymentMethod === 'bankTransfer')"
-        [ngTemplateOutlet]="renderBankTransferSegment"
-        [ngTemplateOutletContext]="{order: order}"
-    ></ng-container>
+    <ng-container *ngIf="(order.paymentMethod === 'bankTransfer')" [ngTemplateOutlet]="renderBankTransferSegment"
+        [ngTemplateOutletContext]="{order: order}"></ng-container>
 
 
     <div class="col-12 text-center mb-3">
@@ -118,11 +117,15 @@
 
     <div class="col-12 mb-4" *ngFor="let item of order.product">
         <ng-container [ngSwitch]="item.slug">
-            <app-purchase-fullpass-card-item *ngSwitchCase="'full-pass'" [item]="item"></app-purchase-fullpass-card-item>
-            <app-purchase-category-pass-card-item *ngSwitchCase="'category-pass'" [item]="item"></app-purchase-category-pass-card-item>
-            <app-purchase-weekend-pass-card-item *ngSwitchCase="'weekend-pass'" [item]="item"></app-purchase-weekend-pass-card-item>
+            <app-purchase-fullpass-card-item *ngSwitchCase="'full-pass'"
+                [item]="item"></app-purchase-fullpass-card-item>
+            <app-purchase-category-pass-card-item *ngSwitchCase="'category-pass'"
+                [item]="item"></app-purchase-category-pass-card-item>
+            <app-purchase-weekend-pass-card-item *ngSwitchCase="'weekend-pass'"
+                [item]="item"></app-purchase-weekend-pass-card-item>
             <app-purchase-day-pass-card-item *ngSwitchCase="'day-pass'" [item]="item"></app-purchase-day-pass-card-item>
-            <app-purchase-hotel-event-card-item *ngSwitchCase="'hotel-event'" [item]="item"></app-purchase-hotel-event-card-item>
+            <app-purchase-hotel-event-card-item *ngSwitchCase="'hotel-event'"
+                [item]="item"></app-purchase-hotel-event-card-item>
         </ng-container>
     </div>
 </ng-template>
@@ -136,33 +139,31 @@
     </div>
 
     <div class="col-12">
-        <app-purchase-bank-transfer-info-card-item [item]="order.bankOptionData"></app-purchase-bank-transfer-info-card-item>
+        <app-purchase-bank-transfer-info-card-item
+            [item]="order.bankOptionData"></app-purchase-bank-transfer-info-card-item>
     </div>
 
-    <app-purchase-upload-voucher-form *ngIf="!order.voucher" (onCompleteForm)="onLoadVoucher($event)"></app-purchase-upload-voucher-form>
+    <app-purchase-upload-voucher-form *ngIf="!order.voucher"
+        (onCompleteForm)="onLoadVoucher($event)"></app-purchase-upload-voucher-form>
 
     <ng-container *ngIf="order.voucher">
-        <ng-container *ngIf="(!showUpdateVoucherForm)" [ngTemplateOutlet]="renderVoucherDetails" [ngTemplateOutletContext]="{order: order}"></ng-container>
-        <app-purchase-upload-voucher-form *ngIf="(showUpdateVoucherForm)" (onCompleteForm)="onUpdateVoucher($event)"></app-purchase-upload-voucher-form>
+        <ng-container *ngIf="(!showUpdateVoucherForm)" [ngTemplateOutlet]="renderVoucherDetails"
+            [ngTemplateOutletContext]="{order: order}"></ng-container>
+        <app-purchase-upload-voucher-form *ngIf="(showUpdateVoucherForm)"
+            (onCompleteForm)="onUpdateVoucher($event)"></app-purchase-upload-voucher-form>
     </ng-container>
 </ng-template>
 
 <ng-template #renderVoucherDetails let-order="order">
     <div class="col-12">
-        <app-voucher-card-item
-            [voucher]="order.voucher"
-            [showUpdateButton]="order.voucher.canEdit"
-            (onClickUpdateVoucher)="onRenderUpdateVoucher($event)"
-        ></app-voucher-card-item>
+        <app-voucher-card-item [voucher]="order.voucher" [showUpdateButton]="order.voucher.canEdit"
+            (onClickUpdateVoucher)="onRenderUpdateVoucher($event)"></app-voucher-card-item>
     </div>
 </ng-template>
 
 <ng-template #renderCheckOrderDoc let-item="item">
-    <ng-container 
-        *ngIf="(item.exist); else renderNotFoundOrderDoc"
-        [ngTemplateOutlet]="renderOrderDoc"
-        [ngTemplateOutletContext]="{order: item}"
-    ></ng-container>
+    <ng-container *ngIf="(item.exist); else renderNotFoundOrderDoc" [ngTemplateOutlet]="renderOrderDoc"
+        [ngTemplateOutletContext]="{order: item}"></ng-container>
 </ng-template>
 
 <ng-template #renderNotFoundOrderDoc>
