@@ -369,7 +369,11 @@ export class PurchaseService {
     }
   }
 
-
+  /**
+   * @dve Enviar notificación de datos para cuota de pago
+   * @param params 
+   * @returns 
+   */
   async sendPurchaseInstallmentCuotaNotification(params: any) {
     try {
       const {
@@ -377,7 +381,8 @@ export class PurchaseService {
         orderId,
         installments,
         totales,
-        index
+        index,
+        status
       } = params;
       console.log('params', params);
       console.log('installments', installments);
@@ -394,7 +399,7 @@ export class PurchaseService {
       await this.quickNotificationSrv.sendEmailNotification({
         type: "purchaseInstallmentInfo",
         email: email,
-        subject: "Información de pago de cuota",
+        subject: `Información de pago de cuota" - ${status}`,
         greeting: ` `,
         messageBody: [
           {

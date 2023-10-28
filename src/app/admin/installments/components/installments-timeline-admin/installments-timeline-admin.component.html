@@ -1,0 +1,44 @@
+<div class="pb-2">
+    <div class="list-group">
+        <ng-container *ngFor="let item of installments; let i=index">
+            <a class="list-group-item list-group-item-action" [ngClass]="{'active': item.isActiveToPay}"
+                aria-current="true">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Fecha de pago: {{item.date }}</h5>
+                    <small>
+                        {{item.status | translate | titlecase}}: {{item.quota}} <ng-container
+                            *ngIf="item.paymentMethod"> |
+                            {{item.paymentMethod}}</ng-container>
+                    </small>
+                    <button *ngIf="item.paymentMethod =='bankTransfer'" type="button" class="btn btn-warning btn-sm"
+                        (click)="validatePayment(item)">
+                        {{'validar pago' | titlecase | translate}}
+                    </button>
+                </div>
+
+                <div *ngIf="item.paymentMethod =='bankTransfer'">
+
+                    <ul>
+                        <li>{{item.payload.optionSelected.label }}</li>
+                        <li>{{item.payload.optionSelected.accountNumber }}</li>
+                        <li>{{item.payload.optionSelected.iban }}</li>
+                    </ul>
+
+
+                    <button (click)="gotoLink(item)" type="button" class="btn btn-warning  btn-sm">
+                        ver Vaucher
+                    </button>
+
+                </div>
+                <p class="mb-1">
+                    Monto: {{item.amount | currency:'USD':'symbol':'1.2-2'}}
+                </p>
+            </a>
+        </ng-container>
+    </div>
+</div>
+
+
+
+<app-modal-update-voucher-status-form #modalUpdateVoucherStatus
+    (onCloseModal)="onCloseModalUpdateVoucherStatus($event)"></app-modal-update-voucher-status-form>

@@ -62,7 +62,6 @@ export class InstallmentsListAdminComponent implements OnInit {
   }
 
   onItemDetails(item: any): void {
-    console.log('item', item);
     this.router.navigate([`/admin/installments-admin/${item.orderId}/manager`]);
   }
 }

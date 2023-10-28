@@ -47,6 +47,7 @@ export class InstallmentsViewAdminComponent implements OnInit {
       )
       .subscribe((order) => {
         this.orderDoc = order;
+        console.log('orderDoc', this.orderDoc);
       });
   }
 
