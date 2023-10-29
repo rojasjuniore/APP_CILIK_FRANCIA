@@ -23,7 +23,7 @@ export class InstallmentsViewAdminComponent implements OnInit {
 
   private sub$!: Subscription;
   userObj: any;
-
+  installments: any;
   constructor(
     private router: ActivatedRoute,
     private authSrv: AuthenticationService,
@@ -79,36 +79,55 @@ export class InstallmentsViewAdminComponent implements OnInit {
 
       await this.spinner.show();
 
+
+
+
+
       const uid = await this.authSrv.getUIDPromise();
 
-      const timelineSnap = {
-        ...data,
-        path: this.orderDoc.voucher.path,
-        name: this.orderDoc.voucher.name,
-        url: this.orderDoc.voucher.url,
-        type: this.orderDoc.voucher.type,
-        reference: this.orderDoc.voucher.reference,
-        updateBy: uid,
-        updatedAt: moment().valueOf()
-      };
-      // console.log('timelineSnap', timelineSnap);
+      // const timelineSnap = {
+      //   ...data,
+      //   // path: this.orderDoc.voucher.path,
+      //   // name: this.orderDoc.voucher.name,
+      //   // url: this.orderDoc.voucher.url,
+      //   // type: this.orderDoc.voucher.type,
+      //   // reference: this.orderDoc.voucher.reference,
+      //   updateBy: uid,
+      //   updatedAt: moment().valueOf()
+      // };
+      // // console.log('timelineSnap', timelineSnap);
 
-      /** Actualizar lista de cambios del documento */
-      await this.purchaseSrv.addOnArray(
-        environment.dataEvent.keyDb,
-        this.orderId,
-        [timelineSnap],
-        'voucher.timeline'
-      );
+      // /** Actualizar lista de cambios del documento */
+      // await this.purchaseSrv.addOnArray(
+      //   environment.dataEvent.keyDb,
+      //   this.orderId,
+      //   [timelineSnap],
+      //   'voucher.timeline'
+      // );
+
+      let status = data.status;
+      let payedAt: any = null;
+      let rejectedAt: any = null;
+
+      const allCompleted = this.orderDoc.installments.every(transaccion => transaccion.status === "completed");
+      if (status == 'completed' && allCompleted) {
+        status = 'completed';
+        payedAt = moment().valueOf();
+      } else {
+        this.sweetAlert2Srv.showError('No se puede completar la orden de compra, aún hay cuotas pendientes de pago');
+        status = 'pending';
+        rejectedAt = moment().valueOf();
+      }
+
 
       /** Actualizar estado de la orden de compra */
       await this.purchaseSrv.updatePurchase(
         environment.dataEvent.keyDb,
         this.orderId,
         {
-          status: data.status,
-          payedAt: (data.status === 'completed') ? timelineSnap.updatedAt : null,
-          'voucher.canEdit': (data.status === 'rejected') ? true : false
+          status,
+          payedAt,
+          rejectedAt
         }
       );
 

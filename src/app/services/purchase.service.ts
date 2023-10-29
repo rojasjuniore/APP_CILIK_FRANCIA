@@ -404,7 +404,7 @@ export class PurchaseService {
         messageBody: [
           {
             "type": "line",
-            "text": `Nos complace informarte que hasta la fecha has completado el pago de las siguientes cuotas: ${index}`
+            "text": `Nos complace informarte que hasta la fecha has completado el pago de las siguiente cuota: #${index}`
           },
           ...cuotasHtml,
           {
