@@ -22,7 +22,8 @@ export class BankTransferManagerComponent implements OnInit, OnDestroy {
   public orderDoc: any;
 
   private sub$!: Subscription;
-  
+  userObj: any;
+
   constructor(
     private router: ActivatedRoute,
     private authSrv: AuthenticationService,
@@ -38,36 +39,40 @@ export class BankTransferManagerComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     this.sub$ = this.authSrv.uid$
-    .pipe(
-      switchMap((uid) => this.purchaseSrv.getByEventAndId(environment.dataEvent.keyDb, this.orderId)),
-      map((order) => {
-        return (order) ? {exist: true, ...order} : {exist: false};
-      }),
-      catchError((err) => of({exist: false}))
-    )
-    .subscribe((order) => {
-      this.orderDoc = order;
-    });
+      .pipe(
+        switchMap((uid) => this.purchaseSrv.getByEventAndId(environment.dataEvent.keyDb, this.orderId)),
+        map((order) => {
+          return (order) ? { exist: true, ...order } : { exist: false };
+        }),
+        catchError((err) => of({ exist: false }))
+      )
+      .subscribe(async (order) => {
+        this.orderDoc = order;
+
+        if (this.userObj) return
+        this.userObj = await this.authSrv.getByUIDPromise(this.orderDoc.uid);
+        console.log('userDoc', this.userObj);
+      });
   }
 
-  openVoucherFileLink(){
+  openVoucherFileLink() {
     window.open(this.orderDoc.voucher.url, '_blank');
   }
 
-  openModalUpdateVoucherStatus(){
+  openModalUpdateVoucherStatus() {
     this.modalUpdateVoucherStatus.showModal();
   }
 
-  async onCloseModalUpdateVoucherStatus(event: any){
-    const {status, data} = event;
+  async onCloseModalUpdateVoucherStatus(event: any) {
+    const { status, data } = event;
     console.log('onCloseModalUpdateVoucherStatus', event);
-    if(!status){ return; }
+    if (!status) { return; }
 
     // console.log('orderDoc', this.orderDoc);
     // return;
 
     const ask = await this.sweetAlert2Srv.askConfirm(`¿Estás seguro de actualizar el estado del comprobante a "${data.status}"?`);
-    if(!ask){ return; }
+    if (!ask) { return; }
 
     try {
 
@@ -101,14 +106,14 @@ export class BankTransferManagerComponent implements OnInit, OnDestroy {
         this.orderId,
         {
           status: data.status,
-          payedAt: (data.status === 'completed') ?  timelineSnap.updatedAt : null,
-          'voucher.canEdit': (data.status === 'rejected') ? true : false 
+          payedAt: (data.status === 'completed') ? timelineSnap.updatedAt : null,
+          'voucher.canEdit': (data.status === 'rejected') ? true : false
         }
       );
 
       this.sweetAlert2Srv.showSuccess('Comprobante actualizado correctamente');
       return;
-      
+
     } catch (err) {
       console.log('Error on onCloseModalUpdateVoucherStatus', err);
       return;

@@ -22,6 +22,7 @@ export class InstallmentsViewAdminComponent implements OnInit {
   public orderDoc: any;
 
   private sub$!: Subscription;
+  userObj: any;
 
   constructor(
     private router: ActivatedRoute,
@@ -45,9 +46,13 @@ export class InstallmentsViewAdminComponent implements OnInit {
         }),
         catchError((err) => of({ exist: false }))
       )
-      .subscribe((order) => {
+      .subscribe(async (order) => {
         this.orderDoc = order;
         console.log('orderDoc', this.orderDoc);
+
+        if (this.userObj) return
+        this.userObj = await this.authSrv.getByUIDPromise(this.orderDoc.uid);
+        console.log('userDoc', this.userObj);
       });
   }
 

@@ -6,14 +6,18 @@
         <div class="text-rslt fw-bold fs-5">
             <i class="bi bi-cart3"></i>
             &nbsp;
-            {{orderId}}
+            {{userObj?.name}} | {{userObj?.identification}} | {{userObj?.phone}} | {{userObj?.email}}
+        </div>
+        <div>
+            <span class="badge bg-danger">
+                {{orderDoc?.id}}
+            </span>
+
         </div>
     </div>
 
-    <ng-container *ngIf="(orderDoc); else renderLoaderview"
-        [ngTemplateOutlet]="renderCheckOrderDoc"
-        [ngTemplateOutletContext]="{item: orderDoc}"
-    ></ng-container>
+    <ng-container *ngIf="(orderDoc); else renderLoaderview" [ngTemplateOutlet]="renderCheckOrderDoc"
+        [ngTemplateOutletContext]="{item: orderDoc}"></ng-container>
 
 
     <div class="col-12">
@@ -23,7 +27,8 @@
                 {{ "general.back" | translate }}
             </button>
 
-            <button class="btn btn-one btn-medium-c text-uppercase" type="button" [disabled]="!orderDoc || orderDoc.status !== 'pending' " (click)="openModalUpdateVoucherStatus()">
+            <button class="btn btn-one btn-medium-c text-uppercase" type="button"
+                [disabled]="!orderDoc || orderDoc.status !== 'pending' " (click)="openModalUpdateVoucherStatus()">
                 Actualizar
                 <i class="bi bi-cloud-arrow-up"></i>
             </button>
@@ -31,10 +36,8 @@
     </div>
 </div>
 
-<app-modal-update-voucher-status-form 
-    #modalUpdateVoucherStatus 
-    (onCloseModal)="onCloseModalUpdateVoucherStatus($event)"
-></app-modal-update-voucher-status-form>
+<app-modal-update-voucher-status-form #modalUpdateVoucherStatus
+    (onCloseModal)="onCloseModalUpdateVoucherStatus($event)"></app-modal-update-voucher-status-form>
 
 <ng-template #renderOrderDoc let-order="order">
 
@@ -51,7 +54,7 @@
                 </div>
         
                 <div class="seprd2"></div> -->
-        
+
                 <div class="col-12 px-3">
                     <div class="row mb-1">
                         <div class="col-12 col-md-6">
@@ -117,7 +120,8 @@
     </div>
 
     <div class="col-12">
-        <app-purchase-bank-transfer-info-card-item [item]="order.bankOptionData"></app-purchase-bank-transfer-info-card-item>
+        <app-purchase-bank-transfer-info-card-item
+            [item]="order.bankOptionData"></app-purchase-bank-transfer-info-card-item>
     </div>
 
     <div class="col-12 mb-4" *ngIf="order?.voucher; else renderNoVoucher">
@@ -135,11 +139,8 @@
 </ng-template>
 
 <ng-template #renderCheckOrderDoc let-item="item">
-    <ng-container 
-        *ngIf="(item.exist); else renderNotFoundOrderDoc"
-        [ngTemplateOutlet]="renderOrderDoc"
-        [ngTemplateOutletContext]="{order: item}"
-    ></ng-container>
+    <ng-container *ngIf="(item.exist); else renderNotFoundOrderDoc" [ngTemplateOutlet]="renderOrderDoc"
+        [ngTemplateOutletContext]="{order: item}"></ng-container>
 </ng-template>
 
 <ng-template #renderNotFoundOrderDoc>
