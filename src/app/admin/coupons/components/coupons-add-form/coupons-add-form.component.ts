@@ -34,7 +34,7 @@ export class CouponsAddFormComponent implements OnInit {
     type: [
       { type: 'required', message: 'is required' },
     ],
-    useLimit: [
+    userLimit: [
       { type: 'required', message: 'is required' },
     ],
     value: [
@@ -144,7 +144,7 @@ export class CouponsAddFormComponent implements OnInit {
       ownerType: ['', [Validators.required]],
       owner: [''],
       ownerId: ['', [Validators.required]],
-      useLimit: [100, [Validators.required]],
+      userLimit: [100, [Validators.required]],
 
 
       items: this.fb.array([
@@ -250,6 +250,7 @@ export class CouponsAddFormComponent implements OnInit {
         ownerId: formData.ownerId,
         coupons: formData.items,
         status: true,
+        userLimit: formData.userLimit,
         createdAt: moment().valueOf(),
         createdBy: uid,
       }

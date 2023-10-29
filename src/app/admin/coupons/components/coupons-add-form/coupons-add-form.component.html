@@ -61,12 +61,12 @@
                     </div>
 
                     <div class="col-12 mb-3">
-                        <label for="ownerType" class="form-label">
+                        <label for="userLimit" class="form-label">
                             limite de uso
                         </label>
-                        <input type="text" class="form-control" formControlName="useLimit" aria-describedby="codeHelp">
+                        <input type="text" class="form-control" formControlName="userLimit" aria-describedby="userLimitHelp">
                         <ng-container *ngIf="submitted" [ngTemplateOutlet]="renderFormVM"
-                            [ngTemplateOutletContext]="{ field: 'useLimit' }"></ng-container>
+                            [ngTemplateOutletContext]="{ field: 'userLimit' }"></ng-container>
                     </div>
 
 

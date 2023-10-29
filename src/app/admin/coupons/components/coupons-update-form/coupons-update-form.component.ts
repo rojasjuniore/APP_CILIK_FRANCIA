@@ -111,6 +111,7 @@ export class CouponsUpdateFormComponent implements OnInit, OnDestroy {
       ownerId: '',
       ownerType: '',
       status: true,
+      userLimit: 0,
       items: this.fb.array([]),
     });
 
@@ -140,6 +141,7 @@ export class CouponsUpdateFormComponent implements OnInit, OnDestroy {
             ownerId: this.couponDoc.ownerId,
             status: this.couponDoc.status,
             ownerType: this.couponDoc.ownerType,
+            userLimit: this.couponDoc.userLimit,
           });
 
           this.initializeForm(coupon.coupons)
@@ -217,6 +219,7 @@ export class CouponsUpdateFormComponent implements OnInit, OnDestroy {
         status: formData.status === 'false' ? false : true,
         updatedAt: moment().valueOf(),
         updatedBy: uid,
+        userLimit: formData.userLimil,
         coupons: formData.items,
       };
       console.log('Try to update coupon', data);
