@@ -8,6 +8,8 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CartTotalService } from 'src/app/services/cart-total.service';
 import { CartService } from 'src/app/services/cart.service';
 import { CodeStorageService } from 'src/app/services/code-storage.service';
+import { CouponService } from 'src/app/services/coupon.service';
+import { CouponsService } from 'src/app/services/coupons.service';
 import { InstallmentService } from 'src/app/services/dedicates/installment.service';
 import { PurchaseService } from 'src/app/services/purchase.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
@@ -65,6 +67,7 @@ export class CheckoutComponent implements OnInit {
   public installments: any
 
   constructor(
+    private couponsSrv: CouponService,
     private codeStorageSrv: CodeStorageService,
     private authSrv: AuthenticationService,
     private cartSrv: CartService,
@@ -82,7 +85,7 @@ export class CheckoutComponent implements OnInit {
   async ngOnInit(): Promise<void> {
 
     this.couponObj = await this.codeStorageSrv.checkCode();
-    // console.log('couponObj', this.couponObj);
+    console.log('couponObj', this.couponObj);
 
     this.sub$ = this.authSrv.uid$
       .pipe(
@@ -213,6 +216,11 @@ export class CheckoutComponent implements OnInit {
       /** Eliminar carrito de compra */
       await this.cartSrv.deleteCart(environment.dataEvent.keyDb, this.uid);
 
+
+
+      /**  Resta un valor a un contador */
+      await this.couponsSrv.subtractCounter(environment.dataEvent.keyDb, this.couponObj.code, 'userLimit', 1);
+
       this.sweetAlert2Srv.showToast(
         this.translate.instant("alert.purchaseMadeSatisfactorily"),
         'success'
@@ -220,6 +228,7 @@ export class CheckoutComponent implements OnInit {
 
       /// @dev eliminar carrito de compra
       this.cartTotalSrv.removeItem()
+
 
 
       /** Redireccionar */
@@ -294,6 +303,10 @@ export class CheckoutComponent implements OnInit {
 
       /** Eliminar carrito de compra */
       await this.cartSrv.deleteCart(environment.dataEvent.keyDb, this.uid);
+
+      /**  Resta un valor a un contador */
+      await this.couponsSrv.subtractCounter(environment.dataEvent.keyDb, this.couponObj.code, 'userLimit', 1);
+
 
       /** Disparar formulario */
       this.tuCompraSrv.launchForm(purchase.metadata);
@@ -388,6 +401,9 @@ export class CheckoutComponent implements OnInit {
       /** Eliminar carrito de compra */
       await this.cartSrv.deleteCart(environment.dataEvent.keyDb, this.uid);
 
+      /**  Resta un valor a un contador */
+      await this.couponsSrv.subtractCounter(environment.dataEvent.keyDb, this.couponObj.code, 'userLimit', 1);
+
       this.sweetAlert2Srv.showToast(
         this.translate.instant("alert.purchaseMadeSatisfactorily"),
         'success'
@@ -470,6 +486,9 @@ export class CheckoutComponent implements OnInit {
 
       /** Eliminar carrito de compra */
       await this.cartSrv.deleteCart(environment.dataEvent.keyDb, this.uid);
+
+      /**  Resta un valor a un contador */
+      await this.couponsSrv.subtractCounter(environment.dataEvent.keyDb, this.couponObj.code, 'userLimit', 1);
 
       this.sweetAlert2Srv.showToast(
         this.translate.instant("alert.purchaseMadeSatisfactorily"),

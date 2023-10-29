@@ -42,7 +42,6 @@ export class CouponsService {
   }
 
 
-
   getDynamic(where: any[] = [], opts: any = {}): Observable<any[]> {
     const { idField = "_id", orderBy = [] } = opts;
 

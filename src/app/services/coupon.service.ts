@@ -5,7 +5,7 @@ import { Observable, lastValueFrom, map, tap } from 'rxjs';
 import { handlerArrayResult, handlerObjectResult } from '../helpers/model.helper';
 import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
 import { environment } from 'src/environments/environment';
-import { ref } from 'firebase/storage';
+import { increment } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +46,19 @@ export class CouponService {
       console.log('Error on CouponService.getByEventAndIdPromise', err);
       return null;
     }
+  }
+
+
+
+  /**
+   * @dev Resta un valor a un contador
+   * @param docId 
+   * @param field 
+   * @param value 
+   */
+  async subtractCounter(eventId: string, docId: string, field = "userLimit", value = 1) {
+    const ref = this.afs.collection(this.collection).doc(eventId).collection(this.subCollection).doc(docId);
+    await ref.update({ [field]: increment(-value) });
   }
 
   /**
