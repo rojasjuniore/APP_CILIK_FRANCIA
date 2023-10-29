@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { PurchaseService } from 'src/app/services/purchase.service';
 import { environment } from 'src/environments/environment';
 
+
 @Component({
   selector: 'app-purchase-list',
   templateUrl: './purchase-list.component.html',
