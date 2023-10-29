@@ -1,5 +1,11 @@
 {
+
+  "installments":"Pago a cuotas",
+  "bankTransfer":"Transferencia bancaria",
+  "tucompra": "Tarjeta de crédito o débito",
+
   "general": {
+    "orden_id": "Orden ID",
     "email": "Correo",
     "logIn": "Iniciar Sesión",
     "logOut": "Salir",

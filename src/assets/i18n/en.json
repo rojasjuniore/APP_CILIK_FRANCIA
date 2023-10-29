@@ -1,5 +1,9 @@
 {
+  "installments": "installments",
+  "bankTransfer": "Bank transfer",
+  "tucompra": "credit Or Debit Card",
   "general": {
+    "orden_id": "Order ID",
     "email": "Email",
     "logIn": "Log In",
     "logOut": "Log Out",
