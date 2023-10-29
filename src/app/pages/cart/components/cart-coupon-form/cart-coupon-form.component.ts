@@ -72,7 +72,8 @@ export class CartCouponFormComponent implements OnInit, OnChanges {
 
     /// @dev check code coupon
     this.couponSrv = changes.couponObj.currentValue
-    if (this.couponObj && this.couponObj.status) {
+    console.log('couponObj', this.couponObj);
+    if (this.couponObj && this.couponObj.status && this.couponObj.userLimit > 0) {
       this.form.setValue({ code: this.couponObj.slug });
       this.isButtonDisabled = true;
       this.form.get('code')?.disable();
@@ -124,7 +125,7 @@ export class CartCouponFormComponent implements OnInit, OnChanges {
 
       if (!this.form.valid) {
         console.log('Form is invalid');
-     
+
         return;
       }
 
