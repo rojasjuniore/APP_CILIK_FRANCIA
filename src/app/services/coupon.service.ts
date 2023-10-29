@@ -156,8 +156,22 @@ export function checkAvailableCouponCodeExist(service: CouponService): AsyncVali
       .pipe(
         // tap((result) => console.log(result.empty, result.docs[0].data())),
         map((data) => {
-          // console.log('data', data);
-          return (data.empty) ? { availableCouponCode: true } : ((data.docs[0].data().status) ? null : { availableCouponCode: true });
+
+          if (data.empty) {
+            return { availableCouponCode: true };
+          }
+
+          const dataCurrent = data.docs[0].data();
+          console.log('dataCurrent', dataCurrent.status && dataCurrent.userLimit > 0);
+          if (dataCurrent.status && dataCurrent.userLimit > 0) {
+            return null
+          } else {
+            return { availableCouponCode: true };
+          }
+
+          // return (data.empty) ? { availableCouponCode: true } :
+          //   ((data.docs[0].data().status && data.docs[0].data().userLimit <= 0) ? null :
+          //     { availableCouponCode: true });
         })
       );
   }

@@ -124,6 +124,7 @@ export class CartCouponFormComponent implements OnInit, OnChanges {
 
       if (!this.form.valid) {
         console.log('Form is invalid');
+     
         return;
       }
 
