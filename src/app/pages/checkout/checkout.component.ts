@@ -137,8 +137,9 @@ export class CheckoutComponent implements OnInit {
 
     if (item.type === 'installments') {
       this.paymentOptionSelected = item;
-      const installments = this.installmentSrv.getInstallmentByDate(moment().format('YYYY-MM-DD'));
-      const installmentAmount = (this.totales.globalTotalToPay / installments.length);
+      const installments = this.installmentSrv.calculateQuotas(moment().format('YYYY-MM-DD'));
+      console.log('installments', installments);
+      const installmentAmount = (this.totales.globalTotalToPay / installments.length).toFixed(3);
       /// @dev agregar monto a cada cuota
       this.installments = installments.map((item: any) => {
         return {
