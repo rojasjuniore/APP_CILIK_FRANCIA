@@ -313,6 +313,7 @@ export class CheckoutComponent implements OnInit {
 
       /// @dev eliminar carrito de compra
       this.cartTotalSrv.removeItem()
+      
       return;
 
     } catch (err) {
@@ -412,8 +413,10 @@ export class CheckoutComponent implements OnInit {
       /// @dev eliminar carrito de compra
       this.cartTotalSrv.removeItem()
 
+
       /** Redireccionar */
       this.router.navigate([`/pages/purchases/${orderId}/details`]);
+
       return;
 
     } catch (err) {
