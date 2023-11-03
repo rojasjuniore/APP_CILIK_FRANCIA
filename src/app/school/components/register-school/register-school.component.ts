@@ -1,4 +1,4 @@
-import { approve } from './../../../../helpers/abi';
+import { approve } from '../../../helpers/abi';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';

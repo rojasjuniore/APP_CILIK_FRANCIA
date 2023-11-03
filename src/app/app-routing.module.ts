@@ -6,7 +6,8 @@ import { OutPagesLayoutComponent } from './out-pages/out-pages-layout/out-pages-
 import { AdminLayoutComponent } from './shared/admin-layout/admin-layout.component';
 import { AnonymouslyGuard } from './guards/anonymously.guard';
 import { NoAnonGuard } from './guards/no-anon.guard';
-import { SchoolComponent } from './pages/school/school.component';
+import { SchoolComponent } from './school/school.component';
+import { AnonGuard } from './guards/anon.guard';
 
 const routes: Routes = [
   {
@@ -14,6 +15,12 @@ const routes: Routes = [
     canActivate: [AnonymouslyGuard],
     component: PagesLayoutComponent,
     loadChildren: () => import("./pages/pages.module").then((m) => m.PagesModule),
+  },
+  {
+    path: 'school',
+    canActivate: [AnonGuard],
+    component: SchoolComponent,
+    loadChildren: () => import("./school/school.module").then((m) => m.SchoolModule)
   },
   {
     path: 'admin',
@@ -27,12 +34,7 @@ const routes: Routes = [
     component: OutPagesLayoutComponent,
     loadChildren: () => import("./out-pages/out-pages.module").then((m) => m.OutPagesModule)
   },
-  {
-    path: 'school',
-    // canActivate: [NoAnonGuard],
-    component: SchoolComponent,
-    loadChildren: () => import("./pages/school/school.module").then((m) => m.SchoolModule)
-  },
+
   {
     path: '',
     pathMatch: 'full',

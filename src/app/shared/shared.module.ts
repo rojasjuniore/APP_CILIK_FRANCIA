@@ -39,7 +39,7 @@ import { PurchaseBankTransferInfoCardItemComponent } from './purchase-bank-trans
 import { InstallmentsComponent } from '../pages/checkout/components/installments/installments.component';
 import { ClipboardModule } from 'ngx-clipboard';
 import { HeaderAuthComponent } from './header-auth/header-auth.component';
-import { SchoolComponent } from '../pages/school/school.component';
+import { SchoolComponent } from '../school/school.component';
 
 
 

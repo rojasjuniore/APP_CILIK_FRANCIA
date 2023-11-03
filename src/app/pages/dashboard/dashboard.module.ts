@@ -7,6 +7,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { StoreComponent } from './components/store/store.component';
 import { StoreItemCardComponent } from './components/store-item-card/store-item-card.component';
 import { MyPurchasesComponent } from './components/my-purchases/my-purchases.component';
+import { AnotherOptionComponent } from './components/another-option/another-option.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { MyPurchasesComponent } from './components/my-purchases/my-purchases.com
     DashboardComponent,
     StoreComponent,
     StoreItemCardComponent,
-    MyPurchasesComponent
+    MyPurchasesComponent,
+    AnotherOptionComponent
   ],
   imports: [
     CommonModule,

@@ -26,11 +26,13 @@
     <div class="fs-4 fw-bold ps-3 d-flex jsutify-content-center flex-column">
 
         {{ "general.hello" | translate }} {{ profile?.name | titlecase }}
-
+        <div *ngIf="_isAdmin">
+            <a routerLink="/admin">Admin</a>
+        </div>
 
         <ng-container *ngIf="isAnonymous$ | async as isAnonymous">
 
-            <pre>11{{isAnonymous}}</pre>
+            <!-- <pre>11{{isAnonymous}}</pre> -->
 
             <div *ngIf="isAnonymous">
                 <br>
@@ -42,9 +44,7 @@
             </div>
         </ng-container>
 
-        <div *ngIf="_isAdmin">
-            <a routerLink="/admin">Admin</a>
-        </div>
+
 
         <a [routerLink]="backTo" class="text-rslt fs-6" *ngIf="showDashboardBtn">
             {{'general.goToDashboard' | translate}}
