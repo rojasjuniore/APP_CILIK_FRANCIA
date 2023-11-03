@@ -57,6 +57,7 @@ export class CouponsComponent implements OnInit {
     if (isValid && query.length > 0) {
       console.log('valid query', query);
       this.coupons$ = this.couponSrv.getDynamic(environment.dataEvent.keyDb, [
+        { field: 'status', condition: '==', value: true },
         { field: 'slug', condition: '>=', value: query },
         { field: 'slug', condition: '<=', value: query + '\uf8ff' },
       ], {
@@ -64,7 +65,9 @@ export class CouponsComponent implements OnInit {
       });
     } else {
       console.log('no query');
-      this.coupons$ = this.couponSrv.getDynamic(environment.dataEvent.keyDb, [], { orderBy: [{ field: 'slug', order: 'asc' }] });
+      this.coupons$ = this.couponSrv.getDynamic(environment.dataEvent.keyDb,
+        [{ field: 'status', condition: '==', value: true }],
+        { orderBy: [{ field: 'slug', order: 'asc' }] });
     }
   }
 
