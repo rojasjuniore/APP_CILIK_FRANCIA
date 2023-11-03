@@ -11,7 +11,7 @@ export class AnotherOptionComponent implements OnInit {
     {
       imagenUrl: "/assets/img/fiestas.jpg",
       title: "Registro de escuela",
-      description: "Bienvenidos al proceso de pre registro del World Latin Dance Cup. ¡Tu escuela ha sido pre-registrada!",
+      description: "Inicio  del Pre-registro para Escuelas - World Latin Dance Cup",
       router: "/school/registerSchool"
     }
   ]
