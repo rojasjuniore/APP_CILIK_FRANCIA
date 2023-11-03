@@ -22,13 +22,25 @@
 
 <ng-template #renderInfo let-profile="profile">
     <div class="fs-4 fw-bold ps-3 d-flex jsutify-content-center flex-column">
-        <div>{{ "general.hello" | translate }} {{ profile?.name | titlecase }}</div>
+        <div *ngIf="isAnonymous$ | async as isAnonymous">
+
+            <div *ngIf="isAnonymous">
+                {{ "general.hello" | translate }} {{ profile?.name | titlecase }}
+                <br>
+                <a [routerLink]="['/auth/sign-in']" routerLinkActive="router-link-active">Inicia Sesion </a>
+            </div>
+
+            <div *ngIf="!isAnonymous">{{ "general.hello" | translate }} {{ profile?.name | titlecase }}</div>
+
+        </div>
         <div *ngIf="_isAdmin">
             <a routerLink="/admin">Admin</a>
         </div>
         <a [routerLink]="backTo" class="text-rslt fs-6" *ngIf="showDashboardBtn">
             {{'general.goToDashboard' | translate}}
         </a>
+
+
     </div>
 </ng-template>
 

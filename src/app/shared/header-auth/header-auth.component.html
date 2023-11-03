@@ -1,0 +1,46 @@
+<div class="container-fluid">
+
+    <ng-container *ngIf="(profile$ | async) as profile; then renderFullHeader; else renderOnlyLanguage">
+
+    </ng-container>
+
+</div>
+
+<ng-template #renderFullHeader>
+    <div class="row align-items-center">
+
+        <div class="col d-flex align-items-center justify-content-between justify-content-md-end header-cilik">
+
+            <app-language-bar></app-language-bar>
+
+            <ng-container *ngIf="isAnonymous$ | async as isAnonymous">
+                <div *ngIf="isAnonymous" class="d-flex align-items-center">
+
+
+
+                    <div class="seprd-h"></div>
+                    <div class="btn-logout d-flex align-items-center" routerLink="/pages/dashboard">
+
+                        <div class="icon-header">
+                            <span class="text-ps fw-bold">
+                                {{'general.goToDashboard' | translate}}
+                            </span>
+                            <img src="assets/img/cilik/icon-28.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+
+
+
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #renderOnlyLanguage>
+    <div class="row">
+        <div class="col d-flex justify-content-between header-cilik">
+            <app-language-bar></app-language-bar>
+        </div>
+    </div>
+</ng-template>

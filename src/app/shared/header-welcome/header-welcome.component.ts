@@ -16,9 +16,10 @@ export class HeaderWelcomeComponent implements OnInit, OnDestroy {
 
   public profile$!: Observable<any>;
   public showDashboardBtn = false;
-
   private sub$!: Subscription;
-  _isAdmin = false;
+  public _isAdmin = false;
+  public isAnonymous$!: Observable<boolean>;
+
   constructor(
     private permissionSrv: PermissionService,
     private authSrv: AuthenticationService,
@@ -45,6 +46,8 @@ export class HeaderWelcomeComponent implements OnInit, OnDestroy {
         // console.log('event', event);
       }
     });
+
+    this.isAnonymous$ = this.authSrv.isAnonymous$;
 
     this.isAdmin()
   }

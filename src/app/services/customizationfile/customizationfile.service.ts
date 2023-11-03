@@ -10,7 +10,7 @@ export class CustomizationfileService {
   constructor() { }
 
   getVersion() {
-    return "0.0.24"
+    return "0.0.25"
   }
 
   getPROVISIONAKEY() {

@@ -38,6 +38,7 @@ import { PurchaseUploadVoucherFormComponent } from './purchase-upload-voucher-fo
 import { PurchaseBankTransferInfoCardItemComponent } from './purchase-bank-transfer-info-card-item/purchase-bank-transfer-info-card-item.component';
 import { InstallmentsComponent } from '../pages/checkout/components/installments/installments.component';
 import { ClipboardModule } from 'ngx-clipboard';
+import { HeaderAuthComponent } from './header-auth/header-auth.component';
 
 
 
@@ -78,6 +79,7 @@ import { ClipboardModule } from 'ngx-clipboard';
     ModalHotelEventRoomsListComponent,
     ModalUpdateVoucherStatusFormComponent,
     InstallmentsComponent,
+    HeaderAuthComponent,
   ],
   imports: [
     CommonModule,
@@ -130,7 +132,8 @@ import { ClipboardModule } from 'ngx-clipboard';
     ModalHotelEventRoomsListComponent,
     ModalUpdateVoucherStatusFormComponent,
 
-    InstallmentsComponent
+    InstallmentsComponent,
+    HeaderAuthComponent
 
 
   ]

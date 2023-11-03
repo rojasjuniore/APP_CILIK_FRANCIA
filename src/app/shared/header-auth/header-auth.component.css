@@ -1,0 +1,52 @@
+
+.header-cilik{
+    padding: 0.5rem;
+    border-radius: 20px;
+    
+}
+.logo img{
+    width: 200px;
+}
+.icon-header{
+    background-color: #cecece;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    color: #aeaeae;
+}
+.active-cart{
+    position: relative;
+}
+.ntf-cart{
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    width: 15px;
+    height: 15px;
+    background-color: #e7344c;
+    border-radius: 50%;
+    font-size: 10px;
+    color: #ffffff;
+    text-align: center;
+    font-weight: bold;
+}
+.text-ps{
+    position: absolute;
+    bottom: -20px;
+    font-size: 0.8rem;
+}
+@media (max-width: 575px) {
+    .logo{
+        margin: 0 auto;
+        text-align: center;
+    }
+    .header-cilik{
+        background-color: #f7f7f7;
+        padding-bottom: 20px;
+    }
+}
+

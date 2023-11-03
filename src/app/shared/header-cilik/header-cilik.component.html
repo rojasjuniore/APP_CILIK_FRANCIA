@@ -19,7 +19,7 @@
             <div class="logo" routerLink="/dashboard">
                 <img src="assets/img/cilik/logo.png" alt="">
             </div>
-           
+
         </div>
         <div class="col d-flex align-items-center justify-content-between justify-content-md-end header-cilik">
 
@@ -40,15 +40,19 @@
                 </ng-container>
 
                 <div class="seprd-h"></div>
-                <div class="btn-logout d-flex align-items-center" (click)="logout()">
 
-                    <div class="icon-header">
-                        <span class="text-ps fw-bold">
-                            {{ "general.logOut" | translate }}
-                        </span>
-                        <img src="assets/img/cilik/icon-28.png" alt="">
+                <ng-container *ngIf="isAnonymous$ | async as isAnonymous">
+                    <div *ngIf="!isAnonymous" class="btn-logout d-flex align-items-center" (click)="logout()">
+
+                        <div class="icon-header">
+                            <span class="text-ps fw-bold">
+                                {{ "general.logOut" | translate }}
+                            </span>
+                            <img src="assets/img/cilik/icon-28.png" alt="">
+                        </div>
                     </div>
-                </div>
+                </ng-container>
+
             </div>
         </div>
     </div>

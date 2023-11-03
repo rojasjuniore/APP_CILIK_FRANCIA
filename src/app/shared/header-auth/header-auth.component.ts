@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, catchError, map, of, switchMap, tap } from 'rxjs';
+import { Router, NavigationEnd } from '@angular/router';
+import { Observable, switchMap, of, catchError, filter } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CartService } from 'src/app/services/cart.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 import { environment } from 'src/environments/environment';
-import { Router, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-header-cilik',
-  templateUrl: './header-cilik.component.html',
-  styleUrls: ['./header-cilik.component.css']
+  selector: 'app-header-auth',
+  templateUrl: './header-auth.component.html',
+  styleUrls: ['./header-auth.component.css']
 })
-export class HeaderCilikComponent implements OnInit {
-
+export class HeaderAuthComponent implements OnInit {
   public profile$!: Observable<any>;
   public cart$!: Observable<any>;
   public isAnonymous$!: Observable<boolean>;
+  public isAuth = false;
+
   constructor(
     private sweetAlert2Srv: Sweetalert2Service,
     private authSrv: AuthenticationService,
@@ -41,6 +41,19 @@ export class HeaderCilikComponent implements OnInit {
 
     this.isAnonymous$ = this.authService.isAnonymous$;
 
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: any) => {
+      console.log('event.url', event.url);
+      if (event.url == '/auth/sign-in') {
+        this.isAuth = true;
+      } else {
+        this.isAuth = false;
+      }
+    });
+
+
+
   }
 
   public async logout() {
@@ -48,5 +61,4 @@ export class HeaderCilikComponent implements OnInit {
     if (!ask) { return; }
     this.authSrv.logout();
   }
-
 }
