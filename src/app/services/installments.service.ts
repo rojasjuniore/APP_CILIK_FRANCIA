@@ -21,7 +21,7 @@ export class InstallmentsService {
       const fechaCuota = moment(cuota.date);
       const isOverdue = moment().isAfter(fechaCuota) && cuota.status === "pending";
 
-      if (!activeQuotaFound && (isOverdue || cuota.status === "pending")) {
+      if (!activeQuotaFound && (isOverdue || cuota.status === "pending" || cuota.status === "rejected")) {
         activeQuotaFound = true;
         return {
           ...cuota,
