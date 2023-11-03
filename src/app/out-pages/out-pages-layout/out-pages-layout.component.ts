@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-out-pages-layout',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./out-pages-layout.component.css']
 })
 export class OutPagesLayoutComponent implements OnInit {
+  public isAnonymous$!: Observable<boolean>;
 
-  constructor() { }
+  constructor(private authSrv: AuthenticationService,) { }
 
   ngOnInit(): void {
+
+    this.isAnonymous$ = this.authSrv.isAnonymous$;
   }
 
 }

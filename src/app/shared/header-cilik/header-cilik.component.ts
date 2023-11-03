@@ -17,14 +17,12 @@ export class HeaderCilikComponent implements OnInit {
 
   public profile$!: Observable<any>;
   public cart$!: Observable<any>;
-  // public preSaleOrder$!: Observable<any>;
+  public isAnonymous$!: Observable<boolean>;
 
   constructor(
     private sweetAlert2Srv: Sweetalert2Service,
     private authSrv: AuthenticationService,
-    private preSaleSrv: PreSaleService,
-    private router: Router,
-    private translatePipe: TranslatePipe,
+    private authService: AuthenticationService,
     private cartSrv: CartService
   ) { }
 
@@ -34,18 +32,21 @@ export class HeaderCilikComponent implements OnInit {
     /** Váidar si existe carrito */
     this.cart$ = this.authSrv.uid$.pipe(
       // tap(console.log),
-      switchMap((uid: any) => (uid) 
+      switchMap((uid: any) => (uid)
         ? this.cartSrv.getCartObservable(environment.dataEvent.keyDb, uid)
         : of(null)
       ),
       catchError((err) => of(null))
     );
     // this.preSaleOrder$ = this.preSaleSrv.getDocumentLocalStorageObservable();
+
+    this.isAnonymous$ = this.authService.isAnonymous$;
+
   }
 
   public async logout() {
     const ask = await this.sweetAlert2Srv.askConfirm('¿Está seguro que desea cerrar sesión?');
-    if (!ask) { return ;}
+    if (!ask) { return; }
     this.authSrv.logout();
   }
 

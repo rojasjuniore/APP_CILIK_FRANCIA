@@ -9,7 +9,7 @@ import { LogoutComponent } from './logout/logout.component';
 const routes: Routes = [
   {
     path: 'sign-in',
-    canActivate: [AlreadyAuthGuard],
+    // canActivate: [AlreadyAuthGuard],
     component: SignInComponent
   },
   {

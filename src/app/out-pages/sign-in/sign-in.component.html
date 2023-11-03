@@ -1,108 +1,20 @@
-<!-- <div class="container">
-  <div class="row">
-    <div class="col-12 col-sm-12 col-md-10 col-lg-6 mx-auto">
-      <div class="card border-0 p-5 my-5">
-        <app-language-bar></app-language-bar>
-        <app-header-cilik></app-header-cilik>
-
-        <div class="px-4 px-sm-5">
-
-          <form [formGroup]="form" (ngSubmit)="onSubmit()">
-
-            <div class="form-floating form-camp mb-3">
-              <input type="email" [ngClass]="{ valid: submit && f.email.errors }" formControlName="email"
-                class="form-control" id="floatingInputEmail" placeholder="name@example.com" />
-
-              <label for="floatingInputEmail">
-                {{ "general.email" | translate }}</label>
-
-              <ng-container *ngIf="submit">
-                <ng-container *ngFor="let item of vm.email">
-                  <span class="badge bg-danger" *ngIf="f.email.hasError(item.type)">
-                    {{ item.message | translate }}
-                  </span>
-                </ng-container>
-              </ng-container>
-            </div>
-
-            <div class="form-floating form-camp mb-3">
-
-              <input [type]="typeInput" class="form-control" [ngClass]="{ valid: submit && f.email.errors }"
-                formControlName="password" id="floatingPassword" [placeholder]="'general.password' | translate" />
-
-              <label for="floatingPassword">
-                {{ "general.password" | translate }}
-              </label>
-              <div (click)="changeTypeInput()" class="pass-ico">
-                <i *ngIf="typeInput == 'password'" class="bi bi-eye-slash"></i>
-                <i *ngIf="typeInput == 'text'" class="bi bi-eye-fill"></i>
-              </div>
-              <ng-container *ngIf="submit">
-                <ng-container *ngFor="let item of vm.password">
-                  <span class="badge bg-danger" *ngIf="f.password.hasError(item.type)">
-                    {{ item.message | translate }}
-                  </span>
-                </ng-container>
-              </ng-container>
-            </div>
-
-            <div class="d-flex justify-content-center">
-              <ng-container *ngIf="submit && loading; else renderCanSubmitBtn">
-                <button class="btn btn-one btn-large text-uppercase fw-bold" type="button" disabled>
-                  <div class="text-center">
-                    <div class="spinner-border spinner-border-sm" role="status">
-                      <span class="visually-hidden">{{ "general.loading" | translate }}...</span>
-                    </div>
-                  </div>
-                </button>
-              </ng-container>
-
-              <ng-template #renderCanSubmitBtn>
-                <button class="btn btn-one btn-large text-uppercase fw-bold" type="submit">
-                  {{ "general.logIn" | translate | uppercase }}
-                </button>
-              </ng-template>
-            </div>
-            <div class="d-flex justify-content-center">
-              <div class="mt-3">
-                <a routerLink="/recovery">
-                  {{ "general.forgotPassword" | translate }}
-                </a>
-              </div>
-            </div>
-            <div class="seprd"></div>
-            <div class="d-flex justify-content-center flex-column align-items-center mb-2">
-              <div class="pb-2">
-                {{ "general.notRegistered" | translate }}
-              </div>
-              <a class="btn btn-two btn-large" routerLink="/sign-up">
-                {{ "general.signUpHere" | translate | uppercase }}
-              </a>
-            </div>
-          </form>
-        </div>
-        <app-footer-cilik></app-footer-cilik>
-      </div>
-    </div>
-  </div>
-</div> -->
-
 <div>
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
     <div class="form-floating form-camp mb-3">
-      <input type="email"[ngClass]="{valid: submit && f.email.errors}" 
-        formControlName="email" class="form-control" id="floatingInputEmail" placeholder="name@example.com"/>
+      <input type="email" [ngClass]="{valid: submit && f.email.errors}" formControlName="email" class="form-control"
+        id="floatingInputEmail" placeholder="name@example.com" />
 
       <label for="floatingInputEmail">{{ "general.email" | translate }}</label>
 
-      <ng-container *ngIf="submit" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'email'}"></ng-container>
+      <ng-container *ngIf="submit" [ngTemplateOutlet]="renderFormVM"
+        [ngTemplateOutletContext]="{field: 'email'}"></ng-container>
     </div>
 
     <div class="form-floating form-camp mb-3">
       <input [type]="typeInput" class="form-control" [ngClass]="{valid: submit && f.password.errors}"
-        formControlName="password" id="floatingPassword" [placeholder]="'general.password' | translate"/>
+        formControlName="password" id="floatingPassword" [placeholder]="'general.password' | translate" />
 
       <label for="floatingPassword">{{ "general.password" | translate }}</label>
 
@@ -111,7 +23,8 @@
         <i *ngIf="typeInput == 'text'" class="bi bi-eye-fill"></i>
       </div>
 
-      <ng-container *ngIf="submit" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'password'}"></ng-container>
+      <ng-container *ngIf="submit" [ngTemplateOutlet]="renderFormVM"
+        [ngTemplateOutletContext]="{field: 'password'}"></ng-container>
     </div>
 
     <div class="d-flex justify-content-center">
@@ -128,7 +41,7 @@
 
     <div class="d-flex justify-content-center flex-column align-items-center mb-2">
       <div class="pb-2">{{ "general.notRegistered" | translate }}</div>
-      <a class="btn btn-two btn-large" routerLink="/sign-up">
+      <a class="btn btn-two btn-large" routerLink="/auth/sign-up">
         {{ "general.signUpHere" | translate | uppercase }}
       </a>
     </div>
@@ -153,9 +66,9 @@
 </ng-template>
 
 <ng-template #renderFormVM let-field="field">
-    <ng-container *ngFor="let item of vm[field]">
-      <span class="badge bg-danger" *ngIf="f[field].hasError(item.type)">
-        {{ item.message | translate }}
-      </span>
-    </ng-container>
+  <ng-container *ngFor="let item of vm[field]">
+    <span class="badge bg-danger" *ngIf="f[field].hasError(item.type)">
+      {{ item.message | translate }}
+    </span>
+  </ng-container>
 </ng-template>

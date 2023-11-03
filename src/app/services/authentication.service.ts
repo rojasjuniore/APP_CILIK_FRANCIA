@@ -6,13 +6,13 @@ import { CommonService } from 'src/app/services/common.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFirestore, Query } from '@angular/fire/compat/firestore';
-import { bool, string } from 'prop-types';
 import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
 import { handlerArrayResult, handlerObjectResult } from '../helpers/model.helper';
-
 import moment from 'moment';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { CartService } from './cart.service';
+import { pick } from 'underscore';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +37,9 @@ export class AuthenticationService {
 
   public collection = 'users';
 
+  // Creamos un observable para saber si el usuario es anónimo o no
+  public isAnonymous$: Observable<boolean>;
+
   constructor(
     public commonService: CommonService,
     public db: AngularFireDatabase,
@@ -44,6 +47,7 @@ export class AuthenticationService {
     public afAuth: AngularFireAuth,
     public router: Router,
     private _http: HttpClient,
+    private cartSrv: CartService
   ) {
 
     // @dev use Device Language
@@ -64,9 +68,148 @@ export class AuthenticationService {
             : of(null);
         })
       );
+
+    this.isAnonymous$ = this.afAuth.authState.pipe(
+      map(user => {
+        // Si user es null, no hay usuario logueado, por lo tanto, no es anónimo.
+        // Si user existe, verificamos la propiedad isAnonymous.
+        return !!user && user.isAnonymous;
+      })
+    );
   }
 
 
+  /** 
+   * @dev Iniciar sesión anónima || Crear usuario anónimo
+   * @returns 
+   */
+  async loginAnonymously(): Promise<boolean> {
+    try {
+      const result = await this.afAuth.signInAnonymously();
+      // Puedes guardar los datos que necesitas en Firestore usando el UID anónimo
+      const uid = result.user?.uid;
+      console.log('UID anónimo:', uid);
+      if (!uid) {
+        return false;
+      }
+
+      console.log('UID anónimo:', uid);
+
+      // Asumiendo que quieres guardar algún dato por defecto para sesiones anónimas
+      this.setLocalUID(uid);
+
+      const userDocAnonymous = {
+        "identification": "invitado",
+        "email": "invitado",
+        "_language": "en",
+        "language": "es",
+        "birthdate": "0000-00-00",
+        "name": "invitado",
+        "roles": [],
+        "avatar": "",
+        "status": true,
+        "uid": uid,
+        "rol": "invitado",
+        "stageName": null,
+        "_id": uid
+      }
+
+      // console.log('userDocAnonymous', userDocAnonymous);
+      await this.afs.collection('users').doc(uid).set(userDocAnonymous);
+      localStorage.setItem("profile", JSON.stringify(userDocAnonymous));
+      localStorage.setItem('email', userDocAnonymous.email)
+      localStorage.setItem('auth', 'user')
+      localStorage.setItem('lang', 'es')
+      return true;
+    } catch (error) {
+      console.error('Error en la autenticación anónima:', error);
+      throw error;
+    }
+  }
+
+  // Migrar datos de un usuario anónimo a un usuario autenticado
+  async migrateData(oldUid: any, newUid: any): Promise<void> {
+    // const oldCartRef = this.afs.collection('carts').doc(oldUid);
+    // const newCartRef = this.afs.collection('carts').doc(newUid);
+
+    // Obtener los datos del carrito del usuario anónimo
+    const cartSnapshot: any = await this.cartSrv.getCartAllToPromise(environment.dataEvent.keyDb, oldUid);
+    console.log('cartSnapshot', cartSnapshot);
+    if (cartSnapshot) {
+
+      const cartData = cartSnapshot.data();
+      // @dev Actualizar el identificador del carrito
+      cartData.uid = newUid;
+
+      // Migrar los datos del carrito
+      await this.cartSrv.store(environment.dataEvent.keyDb, newUid, cartData);
+      // Opcional: eliminar el carrito antiguo si ya no es necesario
+      await this.cartSrv.remove(environment.dataEvent.keyDb, oldUid);
+
+      await this.afs.collection('users').doc(oldUid).delete();
+    }
+
+    return Promise.resolve();
+  }
+
+
+
+
+  /**
+   * @dev Crear usuario con email y contraseña
+   * @param email 
+   * @param password 
+   * @returns 
+   */
+  createUserWithEmailAndPassword(
+    email: string,
+    password: string
+  ): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.afAuth
+        .createUserWithEmailAndPassword(email, password)
+        .then((user) => {
+          resolve(user);
+        }).catch((error) => { reject(error); });
+    });
+  }
+
+  /**
+   * @dev Iniciar sesión con email y contraseña
+   * @param credentials 
+   * @returns 
+   */
+  signInWithEmail(credentials) {
+    return this.afAuth.signInWithEmailAndPassword(
+      credentials.email,
+      credentials.password
+    );
+  }
+
+
+  async logout() {
+    await this.afAuth.signOut();
+
+    this.authenticationState.next(false);
+
+    // this.router.navigate(["/sign-in"]);
+
+    window.localStorage.clear();
+
+    ///  window.location.reload();
+
+    await this.loginAnonymously();
+
+    return this.router.navigate(["/pages/dashboard"]);
+  }
+
+
+
+
+  /**
+  * @dev Iniciar sesión
+  * @returns 
+  */
   login() {
     return new Promise<void>(async (resolve) => {
       this.afAuth.authState.subscribe(async (user) => {
@@ -358,12 +501,7 @@ export class AuthenticationService {
     return this.afAuth.signInAnonymously();
   }
 
-  signInWithEmail(credentials) {
-    return this.afAuth.signInWithEmailAndPassword(
-      credentials.email,
-      credentials.password
-    );
-  }
+
 
 
   /**
@@ -408,18 +546,6 @@ export class AuthenticationService {
   }
 
 
-  createUserWithEmailAndPassword(
-    email: string,
-    password: string
-  ): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.afAuth
-        .createUserWithEmailAndPassword(email, password)
-        .then((user) => {
-          resolve(user);
-        }).catch((error) => { reject(error); });
-    });
-  }
 
   sendPasswordResetEmail(emailAddress: string) {
     return this.afAuth.sendPasswordResetEmail(emailAddress);
@@ -446,12 +572,6 @@ export class AuthenticationService {
 
 
 
-  async logout() {
-    this.afAuth.signOut();
-    this.authenticationState.next(false);
-    this.router.navigate(["/sign-in"]);
-    window.localStorage.clear();
-  }
 
 
   getByUID(uid: any, opts = {}): Observable<any> {

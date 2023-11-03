@@ -29,6 +29,7 @@ export class AppComponent {
     private router: Router
   ) {
     this.currentLanguage = window.localStorage.getItem('lang') || this.translateSrv.currentLanguage;
+
   }
 
   ngOnInit(): void {
@@ -44,14 +45,6 @@ export class AppComponent {
       }, 0);
     });
 
-    // this.contractService.connectAccount()
-    // this.contractService.reInitializating()
-    // this.storeRoomStock();
-    // this.storeRoomTypes();
-    // this.storeRoomAdditionals();
-    // this.storeRooms();
-    // this.storeCategoriesPasses();
-
     /**
      * TODO: obtenemos el code del referido
      */
@@ -66,12 +59,6 @@ export class AppComponent {
     this.currentLanguage = language;
   }
 
-  /**
-   * @description Prueba de contadores
-   */
-  // async test(){
-  //   await this.hotelSrv.updateRoomStockSupplyCounter('HAB10000', -1)
-  // }
 
   /**
    * @description Registrar stock de habitaciones

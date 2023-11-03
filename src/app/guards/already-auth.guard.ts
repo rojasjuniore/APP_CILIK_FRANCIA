@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable, map, of, switchMap, tap } from 'rxjs';
-import { AuthenticationService } from '../services/authentication.service';
+import { CanActivate, Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { map, take } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,42 +10,27 @@ import { AuthenticationService } from '../services/authentication.service';
 export class AlreadyAuthGuard implements CanActivate {
 
   constructor(
-    private authSrv: AuthenticationService,
+    private afAuth: AngularFireAuth,
     private router: Router
   ) { }
 
-  // canActivate(
-  //   next: ActivatedRouteSnapshot,
-  //   state: RouterStateSnapshot
-  // ): 
-  //   Observable<boolean> 
-  // {
-  //   return this.authSrv.afAuth.authState.pipe(
-  //     map(user => user ? user.uid : null),
-  //     tap((uid) => console.log('AlreadyAuthGuard', { uid })),
-  //     map((uid) => {
-  //       if (!uid) { return true; }
-  //       this.router.navigate(["/pages"]);
-  //       return false;
-  //     })
-  //   );
-  // }
-
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Promise<boolean> {
-    return new Promise((resolve, reject) => {
-      this.authSrv.afAuth
-      .onAuthStateChanged((user: any) => {
-        console.log('AlreadyAuthGuard', { user })
-
-        if (!user) { return resolve(true); }
-        
-        this.router.navigate(["/pages/dashboard"]);
-        return resolve(false);
-        
-      });
-    });
+  canActivate(): Observable<boolean> {
+    return this.afAuth.authState.pipe(
+      take(1),
+      map(user => {
+        if (user) {
+          // Si es un usuario anónimo, permitir el paso.
+          if (user.isAnonymous) {
+            return true;
+          } else {
+            // Si es un usuario autenticado y no es anónimo, redirigir y no permitir el paso.
+            this.router.navigate(['/pages/dashboard']);
+            return false;
+          }
+        }
+        // Si no hay usuario, permitir el paso.
+        return true;
+      })
+    );
   }
 }

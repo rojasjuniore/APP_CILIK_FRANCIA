@@ -166,7 +166,7 @@ export class SignUpComponent implements OnInit {
         ]
       ],
       identificationType: ['cedula', Validators.required],
-      identification: ['', 
+      identification: ['',
         [
           Validators.required,
           Validators.minLength(6),
@@ -254,12 +254,12 @@ export class SignUpComponent implements OnInit {
     // console.log("profileDocReal", profileDocReal);
     await this.authenticationSrv.db.object(`users/${uid}`).update(profileDocReal),
 
-    /**
-     * - Almacenar identificador del usuario en el localStorage
-     * - Almacenar documento del perfil en el localStorage
-     * - Almacenar imagen de avatar en localStorage
-     */
-    localStorage.setItem("uid", uid);
+      /**
+       * - Almacenar identificador del usuario en el localStorage
+       * - Almacenar documento del perfil en el localStorage
+       * - Almacenar imagen de avatar en localStorage
+       */
+      localStorage.setItem("uid", uid);
     localStorage.setItem("profile", JSON.stringify(profileDoc));
     localStorage.setItem("avatar", avatar);
 
@@ -298,8 +298,19 @@ export class SignUpComponent implements OnInit {
 
       const password = `${formData.password}`.trim();
 
+
+      const currentUser: any = await this.authenticationSrv.afAuth.currentUser;
+      const isAnonymous: any = currentUser?.isAnonymous;
+
+
       /** Crear usuario en sistema de autenticación */
       const afsUser = await this.authenticationSrv.createUserWithEmailAndPassword(data.email, password);
+
+      // Si el usuario actual es anónimo, migra los datos al nuevo UID
+      if (isAnonymous && currentUser) {
+        await this.authenticationSrv.migrateData(currentUser.uid, afsUser.user.uid);
+      }
+
       // console.log('afsUser', afsUser);
       const uid = afsUser.user.uid;
       console.log('uid', uid);
@@ -317,31 +328,18 @@ export class SignUpComponent implements OnInit {
 
       /** Enviar mail de bienvenida */
       const names = `${data.name} ${data.surnames}`.trim().toUpperCase();
-      // await this.quickNotificationSrv.sendEmailNotification({
-      //   type: "signUpNotification",
-      //   email: data.email,
-      //   subject: `Bienvenido a WLDC Cartagena 2024 ${names} - ` + moment().format("DD/MM/YYYY HH:mm:ss"),
-      //   greeting: `¡Hola ${names}!`,
-      //   messageBody: [
-      //     {type: "html", html: `<h1 style='text-align: center;'><strong>¡Bienvenido a la aplicación WLDC Cartagena 2024!</strong></h1>`},
-      //     {type: 'line', text: `Estamos muy felices de contar con tu presencia en la edición WLDC 2024.`},
-      //     {type: 'line', text: `En la aplicación podrás realizar la compra de los paquetes para asistir a esta gran experiencia WLDC 2024 en Cartagena Colombia.`},
-      //     {type: "line", text: "Si no reconoce esta actividad, no se requiere ninguna acción adicional."}
-      // ],
-      //   salutation: '¡Saludos!'
-      // });
       await this.quickNotificationSrv.sendEmailNotification({
         type: "signUpNotification",
         email: data.email,
-        subject: this.translatePipe.transform('notification.signUp.subject', {names: names}) + ` - ` + moment().format("DD/MM/YYYY HH:mm:ss"),
-        greeting: this.translatePipe.transform('notification.signUp.greeting', {names: names}),
+        subject: this.translatePipe.transform('notification.signUp.subject', { names: names }) + ` - ` + moment().format("DD/MM/YYYY HH:mm:ss"),
+        greeting: this.translatePipe.transform('notification.signUp.greeting', { names: names }),
         messageBody: [
           {
             type: "html",
             html: `<h1 style='text-align: center;'><strong>${this.translatePipe.transform('notification.signUp.body.0')}</strong></h1>`
           },
           {
-            type: 'line', 
+            type: 'line',
             text: this.translatePipe.transform('notification.signUp.body.1')
           },
           {
@@ -352,7 +350,7 @@ export class SignUpComponent implements OnInit {
             type: "line",
             text: this.translatePipe.transform('notification.noRecognizeActivity')
           }
-      ],
+        ],
         salutation: this.translatePipe.transform('notification.greetings')
       });
 
@@ -360,7 +358,9 @@ export class SignUpComponent implements OnInit {
         this.translatePipe.transform('general.successfulRegistration')
       );
 
-      this.router.navigate(['pages', 'dashboard']);
+      const returnUrl = localStorage.getItem('returnUrl') || '/pages/dashboard';
+      localStorage.removeItem('returnUrl'); // Limpia la URL de retorno una vez que se usa
+      this.router.navigateByUrl(returnUrl);
       return;
 
     } catch (err) {

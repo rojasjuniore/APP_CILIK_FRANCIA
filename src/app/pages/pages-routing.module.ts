@@ -1,10 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CheckHasCartGuard } from '../guards/check-has-cart.guard';
-// import { DashboardComponent } from './dashboard/dashboard.component';
-// import { LandingFormComponent } from './landing/components/landing-form/landing-form.component';
-// import { LandingSection7Component } from './landing/components/landing-section7/landing-section7.component';
-// import { HomePageComponent } from './pre-sale/components/home-page/home-page.component';
+import { AnonGuard } from '../guards/anon.guard';
 
 const routes: Routes = [
     {
@@ -17,41 +14,19 @@ const routes: Routes = [
     },
     {
         path: "cart",
-        canActivate: [ CheckHasCartGuard ],
+        canActivate: [CheckHasCartGuard],
         loadChildren: () => import("./cart/cart.module").then((m) => m.CartModule),
     },
     {
         path: "checkout",
-        canActivate: [ CheckHasCartGuard ],
+        canActivate: [AnonGuard, CheckHasCartGuard],
         loadChildren: () => import("./checkout/checkout.module").then((m) => m.CheckoutModule),
     },
     {
         path: "purchases",
+        canActivate: [AnonGuard],
         loadChildren: () => import("./purchases/purchases.module").then((m) => m.PurchasesModule),
     },
-    // {
-    //     path: "dashboard",
-    //     component: DashboardComponent,
-    // },
-    // {
-    //     path: "buy",
-    //     component: LandingFormComponent,
-    //     data: { state: 'buy' }
-    // },
-    // { 
-    //     path: '/home',
-    //     component: HomePageComponent,
-    //   },
-    // {
-    //     path: "reserve",
-    //     component: LandingSection7Component,
-    //     data: { state: 'reserve' }
-    // },
-    // {
-    //     path: "checkout",
-    //     component: LandingSection7Component,
-    //     data: { state: 'checkout' }
-    // }
     {
         path: "",
         pathMatch: "full",

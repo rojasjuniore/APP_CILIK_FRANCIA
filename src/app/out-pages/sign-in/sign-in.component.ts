@@ -71,27 +71,45 @@ export class SignInComponent implements OnInit {
   }
   get f() { return this.form.controls; }
 
+
+
   async onSubmit() {
     try {
 
       this.submit = true;
       this.loading = true;
-      
+
       if (this.form.invalid) {
         this.form.markAllAsTouched();
         return;
       }
-      
+
       this.form.disable();
-      
+
       const formData = this.form.value;
       const data = {
         email: `${formData.email}`.trim().toLowerCase(),
         password: `${formData.password}`.trim()
       }
+
+
+      const currentUser: any = await this.authSrv.afAuth.currentUser;
+      const isAnonymous: any = currentUser?.isAnonymous;
+
+
       // console.log('try to submit', data);
 
       const result: any = await this.authSrv.signInWithEmail(data);
+
+      console.log('isAnonymous', isAnonymous);
+      console.log('currentUser', currentUser.uid);
+      console.log('result', result.user.uid);
+
+      // Si el usuario actual es anónimo, migra los datos al nuevo UID
+      if (isAnonymous && currentUser) {
+        await this.authSrv.migrateData(currentUser.uid, result.user.uid);
+      }
+
 
       /** Guardar identificador del usuario en el localStorage */
       const uid = result.user.uid;
@@ -124,8 +142,11 @@ export class SignInComponent implements OnInit {
       this.translateSrv.changeLanguage(userLanguage);
 
       /** Redirect To */
-      return this.router.navigate(['/pages']);
 
+      const returnUrl = localStorage.getItem('returnUrl') || '/pages/dashboard';
+      localStorage.removeItem('returnUrl'); // Limpia la URL de retorno una vez que se usa
+      this.router.navigateByUrl(returnUrl);
+      return;
     } catch (err: any) {
       // console.log('Error on SignInComponent.onSubmit', err.message);
 

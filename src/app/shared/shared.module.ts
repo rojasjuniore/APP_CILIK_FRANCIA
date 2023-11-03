@@ -9,7 +9,7 @@ import { RegistroExitosoComponent } from '../components/registro-exitoso/registr
 import { HeaderCilikComponent } from './header-cilik/header-cilik.component';
 import { RouterModule } from '@angular/router';
 import { FooterCilikComponent } from '../components/footer-cilik/footer-cilik.component';
-import { OutPagesLayoutComponent } from './out-pages-layout/out-pages-layout.component';
+import { OutPagesLayoutComponent } from '../out-pages/out-pages-layout/out-pages-layout.component';
 import { HeaderWelcomeComponent } from './header-welcome/header-welcome.component';
 import { ModalOnlyInputNumberComponent } from './modal-only-input-number/modal-only-input-number.component';
 import { InputNumberFormComponent } from './input-number-form/input-number-form.component';
