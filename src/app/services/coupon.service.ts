@@ -61,6 +61,75 @@ export class CouponService {
     await ref.update({ [field]: increment(-value) });
   }
 
+
+
+  // 
+  /**
+   * Función para decrementar userLimit de un cupón específico de forma atómica
+   * @param documentId 
+   * @param couponConcept 
+   * @returns 
+   */
+  async decrementUserLimit(eventId: string, docId: string, couponConcept: string) {
+    // const docRef = this.afs.firestore.collection('tuColeccion').doc(documentId);
+
+    const docRef = this.afs.firestore.collection(this.collection).doc(eventId).collection(this.subCollection).doc(docId);
+
+
+    return this.afs.firestore.runTransaction(transaction => {
+
+      return transaction.get(docRef).then(doc => {
+        if (!doc.exists) {
+          throw "Document does not exist!";
+        }
+
+        const data = doc.data();
+        if (data && Array.isArray(data.coupons)) {
+          const couponIndex = data.coupons.findIndex((coupon: any) => coupon.concept === couponConcept);
+
+          // Si no se encuentra el cupón o userLimit ya es 0, lanzar un error.
+          if (couponIndex === -1 || data.coupons[couponIndex].userLimit <= 0) {
+            throw "Cupón no encontrado o userLimit no se puede decrementar más.";
+          }
+
+          // Decrementar el userLimit
+          data.coupons[couponIndex].userLimit--;
+
+          // Se prepara la actualización del documento
+          transaction.update(docRef, { coupons: data.coupons });
+        } else {
+          throw "El documento no tiene la estructura esperada";
+        }
+      });
+    })
+      .then(() => console.log("Transaction successfully committed!"))
+      .catch(error => console.log("Transaction failed: ", error));
+  }
+
+
+  /**
+     * porque firebase solo me permite actualiza un documento 1 vexz cada segundo  
+     * Ejecuta decrementos de userLimit en secuencia con un retraso
+     * @param cart 
+     * @param purchase 
+     */
+  async decrementUserLimitsSequentially(products: any, codeCoupon): Promise<void> {
+    let delay = 0; // retraso inicial
+    const delayIncrement = 1000; // incremento del retraso en milisegundos
+
+    for (const product of products) {
+      // Crea una promesa que se resuelve con un retraso
+      await new Promise(resolve => setTimeout(resolve, delay));
+
+      // Llama a la función para decrementar el userLimit
+      await this.decrementUserLimit(environment.dataEvent.keyDb, codeCoupon, product.key)
+        .catch(error => console.error('Error decrementing user limit:', error));
+
+      delay += delayIncrement; // Incrementa el retraso para la siguiente iteración
+    }
+  }
+
+
   /**
    * 
    * @param uid 

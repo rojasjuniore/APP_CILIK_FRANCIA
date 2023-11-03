@@ -213,26 +213,27 @@ export class CheckoutComponent implements OnInit {
       });
 
 
+      /**  Resta un valor a un contador */
+      await this.couponsSrv.subtractCounter(environment.dataEvent.keyDb, this.couponObj.code, 'userLimit', 1);
+
+
+      /** decrement User Limit for producto */
+      await this.couponsSrv.decrementUserLimitsSequentially(this.cart.product, purchase.codeCoupon)
+
+
       /** Eliminar carrito de compra */
       await this.cartSrv.deleteCart(environment.dataEvent.keyDb, this.uid);
 
+      /// @dev eliminar carrito de compra
+      this.cartTotalSrv.removeItem()
 
-
-      /**  Resta un valor a un contador */
-      await this.couponsSrv.subtractCounter(environment.dataEvent.keyDb, this.couponObj.code, 'userLimit', 1);
+      /** Redireccionar */
+      this.router.navigate([`/pages/purchases/${purchase.orderId}/details`]);
 
       this.sweetAlert2Srv.showToast(
         this.translate.instant("alert.purchaseMadeSatisfactorily"),
         'success'
       );
-
-      /// @dev eliminar carrito de compra
-      this.cartTotalSrv.removeItem()
-
-
-
-      /** Redireccionar */
-      this.router.navigate([`/pages/purchases/${purchase.orderId}/details`]);
       return;
 
     } catch (err) {
@@ -242,6 +243,9 @@ export class CheckoutComponent implements OnInit {
       this.spinner.hide();
     }
   }
+
+
+
 
   /**
    * @dev callback de tucompra
@@ -308,12 +312,16 @@ export class CheckoutComponent implements OnInit {
       await this.couponsSrv.subtractCounter(environment.dataEvent.keyDb, this.couponObj.code, 'userLimit', 1);
 
 
+      /** decrement User Limit for producto */
+      await this.couponsSrv.decrementUserLimitsSequentially(this.cart.product, purchase.codeCoupon)
+
+
       /** Disparar formulario */
       this.tuCompraSrv.launchForm(purchase.metadata);
 
       /// @dev eliminar carrito de compra
       this.cartTotalSrv.removeItem()
-      
+
       return;
 
     } catch (err) {
@@ -350,11 +358,6 @@ export class CheckoutComponent implements OnInit {
 
       const userDoc = await this.authSrv.getByUIDPromise(this.cart.uid);
       // console.log('userDoc', userDoc);
-
-      // const fileName = `${orderId}_${file.name}_${moment().valueOf()}`;
-
-      // const urlToSaveFile = `purchases/${environment.dataEvent.keyDb}/${orderId}/${fileName}`;
-      // const fileRef = await this.uploadFileSrv.uploadFileDocumentIntoRoute(urlToSaveFile, file);
 
       const purchase = {
         ...this.cart,
@@ -398,21 +401,25 @@ export class CheckoutComponent implements OnInit {
       });
 
 
+      /**  Resta un valor a un contador */
+      await this.couponsSrv.subtractCounter(environment.dataEvent.keyDb, this.couponObj.code, 'userLimit', 1);
+
+
+      /** decrement User Limit for producto */
+      await this.couponsSrv.decrementUserLimitsSequentially(this.cart.product, purchase.codeCoupon)
+
 
       /** Eliminar carrito de compra */
       await this.cartSrv.deleteCart(environment.dataEvent.keyDb, this.uid);
 
-      /**  Resta un valor a un contador */
-      await this.couponsSrv.subtractCounter(environment.dataEvent.keyDb, this.couponObj.code, 'userLimit', 1);
+      /// @dev eliminar carrito de compra
+      this.cartTotalSrv.removeItem()
+
 
       this.sweetAlert2Srv.showToast(
         this.translate.instant("alert.purchaseMadeSatisfactorily"),
         'success'
       );
-
-      /// @dev eliminar carrito de compra
-      this.cartTotalSrv.removeItem()
-
 
       /** Redireccionar */
       this.router.navigate([`/pages/purchases/${orderId}/details`]);
@@ -493,18 +500,26 @@ export class CheckoutComponent implements OnInit {
       /**  Resta un valor a un contador */
       await this.couponsSrv.subtractCounter(environment.dataEvent.keyDb, this.couponObj.code, 'userLimit', 1);
 
-      this.sweetAlert2Srv.showToast(
-        this.translate.instant("alert.purchaseMadeSatisfactorily"),
-        'success'
-      );
+
+
+      /** decrement User Limit for producto */
+      await this.couponsSrv.decrementUserLimitsSequentially(this.cart.product, purchase.codeCoupon)
+
 
 
       /// @dev eliminar carrito de compra
       this.cartTotalSrv.removeItem()
 
 
+      this.sweetAlert2Srv.showToast(
+        this.translate.instant("alert.purchaseMadeSatisfactorily"),
+        'success'
+      );
+
       /** Redireccionar */
       this.router.navigate([`/pages/purchases/${orderId}/details`]);
+
+
 
       return;
 
