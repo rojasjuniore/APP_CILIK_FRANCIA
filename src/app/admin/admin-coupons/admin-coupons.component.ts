@@ -8,12 +8,13 @@ import { CouponService } from 'src/app/services/coupon.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 import { environment } from 'src/environments/environment';
 
+
 @Component({
-  selector: 'app-coupons',
-  templateUrl: './coupons.component.html',
-  styleUrls: ['./coupons.component.css']
+  selector: 'app-admin-coupons',
+  templateUrl: './admin-coupons.component.html',
+  styleUrls: ['./admin-coupons.component.css']
 })
-export class CouponsComponent implements OnInit {
+export class AdminCouponsComponent implements OnInit {
 
   public coupons$!: Observable<any[]>;
 
@@ -45,6 +46,11 @@ export class CouponsComponent implements OnInit {
       });
   }
 
+
+  /**
+   * 
+   * @param query 
+   */
   loadData(query = '') {
 
     // regex only works with strings and numbers
@@ -54,13 +60,11 @@ export class CouponsComponent implements OnInit {
     const isValid = regex.test(query);
     console.log('isValid', isValid);
 
-    const uid = localStorage.getItem("uid");
 
     if (isValid && query.length > 0) {
       console.log('valid query', query);
       this.coupons$ = this.couponSrv.getDynamic(environment.dataEvent.keyDb, [
-        { field: 'status', condition: '==', value: true },
-        { field: 'createdBy', condition: '==', value: uid },
+        { field: 'status', condition: '==', value: false },
         { field: 'slug', condition: '>=', value: query },
         { field: 'slug', condition: '<=', value: query + '\uf8ff' },
       ], {
@@ -70,28 +74,47 @@ export class CouponsComponent implements OnInit {
       console.log('no query');
       this.coupons$ = this.couponSrv.getDynamic(environment.dataEvent.keyDb,
         [
-          { field: 'status', condition: '==', value: true },
-          { field: 'createdBy', condition: '==', value: uid }
+          { field: 'status', condition: '==', value: false },
         ],
         { orderBy: [{ field: 'slug', order: 'asc' }] });
     }
   }
 
+  /**
+   * @dev launchAddCouponForm
+   * @returns 
+   */
   async launchAddCouponForm() {
     console.log('launchAddCouponForm');
     return this.router.navigate(['/admin/coupons/store']);
   }
 
+
+  /**
+   * @dev goToEdit
+   * @param coupon 
+   * @returns 
+   */
   goToEdit(coupon: any) {
     console.log('goToEdit', coupon);
-    return this.router.navigate(['/admin/coupons', coupon._id, 'edit']);
+    return this.router.navigate(['/admin/coupons-admin', coupon._id, 'edit']);
   }
 
+  /**
+   * @dev gotToLogs
+   * @param coupon 
+   * @returns 
+   */
   gotToLogs(coupon: any) {
     console.log('gotToLogs', coupon);
     return this.router.navigate(['/admin/my-sales/dashboard/', coupon.ownerId]);
   }
 
+  /**
+   * @dev removeCoupon
+   * @param coupon 
+   * @returns 
+   */
   async removeCoupon(coupon: any) {
     try {
 

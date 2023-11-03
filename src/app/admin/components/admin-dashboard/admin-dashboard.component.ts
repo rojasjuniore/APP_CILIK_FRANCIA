@@ -42,6 +42,15 @@ export class AdminDashboardComponent implements OnInit {
       available: true
     },
     {
+      label: 'Manager Admin Coupon',
+      icon: 'fa fa-money',
+      description: 'Manager Admin Coupons',
+      type: 'navigation',
+      url: '/admin/coupons-admin',
+      profiles: ['manager-coupons-admin'],
+      available: true
+    },
+    {
       label: 'Manager My Sales',
       icon: 'fa fa-money',
       description: 'Manager My Sales',

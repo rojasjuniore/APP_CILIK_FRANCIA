@@ -1,23 +1,21 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { NgModule } from '@angular/core';
+import { PipesModule } from 'src/app/pipes/pipes.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { AdminCouponsRoutingModule } from './admin-coupons-routing.module';
-import { AdminCouponsComponent } from './components/admin-coupons/admin-coupons.component';
-import { AddCouponModalComponent } from './components/add-coupon-modal/add-coupon-modal.component';
-import { UpdateCouponModalComponent } from './components/update-coupon-modal/update-coupon-modal.component';
-import { ComponentsModule } from 'src/app/components/components.module';
-
+import { AdminCouponsComponent } from './admin-coupons.component';
+import { AdminCouponsUpdatedComponent } from './components/admin-coupons-updated/admin-coupons-updated.component';
 
 @NgModule({
   declarations: [
     AdminCouponsComponent,
-    AddCouponModalComponent,
-    UpdateCouponModalComponent
+    AdminCouponsUpdatedComponent
   ],
   imports: [
     CommonModule,
-    ComponentsModule,
+    SharedModule,
+    PipesModule,
     AdminCouponsRoutingModule
-  ]
+    ]
 })
 export class AdminCouponsModule { }

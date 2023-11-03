@@ -3,6 +3,8 @@
   "bankTransfer": "Bank transfer",
   "tucompra": "credit Or Debit Card",
   "general": {
+    "available": "Available",
+    "unavailable": "Unavailable",
     "orden_id": "Order ID",
     "email": "Email",
     "logIn": "Log In",

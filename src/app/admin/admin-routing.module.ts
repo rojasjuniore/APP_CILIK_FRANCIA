@@ -25,6 +25,12 @@ const routes: Routes = [
     loadChildren: () => import("./coupons/coupons.module").then((m) => m.CouponsModule),
   },
   {
+    path: 'coupons-admin',
+    data: { profiles: ['manager-coupons-admin'] },
+    canActivate: [AuthProfileGuard],
+    loadChildren: () => import("./admin-coupons/admin-coupons.module").then((m) => m.AdminCouponsModule),
+  },
+  {
     path: 'my-sales',
     data: { profiles: ['manager-my-sales'] },
     canActivate: [AuthProfileGuard],
