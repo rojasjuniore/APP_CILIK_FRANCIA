@@ -162,6 +162,7 @@ export class CouponsUpdateFormComponent implements OnInit, OnDestroy {
   }
 
   initializeForm(dataArray) {
+    console.log('dataArray', dataArray);
     for (let item of dataArray) { // dataArray es el array que has proporcionado
       this.items.push(this.fb.group({
         type: [item.type, [Validators.required]],

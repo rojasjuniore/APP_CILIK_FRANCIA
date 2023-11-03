@@ -81,32 +81,4 @@ export class CodeStorageService {
     return array.find(item => item.concept === conceptToFind) || null;
   }
 
-
-
-  // /**
-  //  * 
-  //  * @param code 
-  //  */
-  // setCode(code: string) {
-  //   if (!code) return
-  //   return localStorage.setItem(this.storageKey, code);
-  // }
-
-
-
-
-  // /**
-  //  * 
-  //  * @returns 
-  //  */
-  // getCode() {
-  //   return localStorage.getItem(this.storageKey)
-  // }
-
-  // /**
-  //  * 
-  //  */
-  // clearCode(): void {
-  //   localStorage.removeItem(this.storageKey);
-  // }
 }

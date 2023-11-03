@@ -240,6 +240,7 @@ export class CheckoutComponent implements OnInit {
 
     } catch (err) {
       console.log('Error on CheckoutComponent.onPaypalCallback()', err);
+      this.sweetAlert2Srv.showError("Ocurrió un error al procesar la compra")
       return;
     } finally {
       this.spinner.hide();
@@ -332,6 +333,7 @@ export class CheckoutComponent implements OnInit {
 
     } catch (err) {
       console.log('Error on CheckoutComponent.onTuCompraCallback()', err);
+      this.sweetAlert2Srv.showError("Ocurrió un error al procesar la compra")
       return;
     } finally {
       this.spinner.hide();
@@ -437,6 +439,7 @@ export class CheckoutComponent implements OnInit {
 
     } catch (err) {
       console.log('Error on CheckoutComponent.onSelectBankTransferFile()', err);
+      this.sweetAlert2Srv.showError("Ocurrió un error al procesar la compra")
       return;
     } finally {
       this.spinner.hide();
@@ -533,6 +536,7 @@ export class CheckoutComponent implements OnInit {
 
     } catch (err) {
       console.log('Error on CheckoutComponent.onSelectBankTransferFile()', err);
+      this.sweetAlert2Srv.showError("Ocurrió un error al procesar la compra")
       return;
     } finally {
       this.spinner.hide();

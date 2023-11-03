@@ -62,15 +62,20 @@
                             <p class="card-text text-md-center">
                                 {{'Coupons' | titlecase }}:
                                 <br>
+
                                 <ng-container *ngFor="let x of item.coupons">
-                                    <small class="text-muted">{{x.concept}}:
+                                    <small class="text-muted">{{x.concept | uppercase}}:
                                         <ng-container [ngSwitch]="x.type">
                                             <span class="fs-4 fw-bolder" *ngSwitchCase="'percentage'">
-                                                {{x.value}}%
+                                               | {{x.value}}%
                                             </span>
                                             <span class="fs-4 fw-bolder" *ngSwitchCase="'amount'">
-                                                {{x.value}} USD
+                                                | {{x.value}} USD
                                             </span>
+                                            <span class="fs-4 fw-bolder">
+                                                | {{x.userLimit }} used
+                                            </span>
+
                                         </ng-container>
                                     </small><br>
 
