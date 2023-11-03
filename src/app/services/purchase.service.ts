@@ -399,7 +399,7 @@ export class PurchaseService {
       await this.quickNotificationSrv.sendEmailNotification({
         type: "purchaseInstallmentInfo",
         email: email,
-        subject: `Información de pago de cuota" - ${status}`,
+        subject: `Información de pago de cuota`,
         greeting: ` `,
         messageBody: [
           {
