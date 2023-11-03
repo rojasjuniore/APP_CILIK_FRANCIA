@@ -42,11 +42,15 @@ export class CartComponent implements OnInit, OnDestroy {
 
         /// @dev check code coupon
         this.couponObj = await this.codeStorageSrv.checkCode();
-        // console.log('code', this.couponObj);
+        console.log('code', this.couponObj);
         // console.log('cart', cart);
+
+
         this.cart = cart;
         this.uid = this.cart.uid;
       });
+
+
   }
 
 
@@ -67,12 +71,6 @@ export class CartComponent implements OnInit, OnDestroy {
 
   }
 
-  // get totales() {
-  //   if (!this.cart) return 0;
-  //   const total = this.cart.product.map((item: any) => item.totales)
-  //     .reduce((prev: any, next: any) => prev + next, 0);
-  //   return total;
-  // }
 
   /**
    * @dev Get total

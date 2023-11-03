@@ -25,12 +25,18 @@ export class CodeStorageService {
       const code: any = this.getItem();
       if (!code) return resolve(false);
       this.couponSrv.getByEventAndId(environment.dataEvent.keyDb, code)
-        .subscribe((coupon: any) => {
-          if (!coupon || !coupon.status) return resolve(false);
-          return resolve(coupon);
+        .subscribe((obj: any) => {
+          if (!obj || !obj.status) return resolve(false);
+          obj.coupons = obj.coupons.filter(coupon => coupon.userLimit > 0);
+          return resolve(obj);
         })
     });
+  }
 
+
+  checkCodeSubscription() {
+    const code: any = this.getItem();
+    return this.couponSrv.getByEventAndId(environment.dataEvent.keyDb, code)
   }
 
 

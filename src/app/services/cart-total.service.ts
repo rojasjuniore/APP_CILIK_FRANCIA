@@ -116,7 +116,10 @@ export class CartTotalService {
     if (!discounts) return groupedData;
 
     for (let discount of discounts) {
-      if (discount.concept && groupedData[discount.concept]) {
+
+      // console.log('discount', discount.concept, discount.userLimit);
+
+      if (discount.concept && groupedData[discount.concept] && discount.userLimit <= 0) {
         let discountAmount = 0;
 
         if (discount.type === "percentage") {
@@ -127,6 +130,8 @@ export class CartTotalService {
 
         groupedData[discount.concept].totalDiscount = Math.ceil(discountAmount);
         groupedData[discount.concept].totalToPay = Math.ceil(groupedData[discount.concept].subtotal - discountAmount);
+      } else {
+        // console.log('no se puede aplicar el descuento', discount);
       }
     }
     return groupedData;

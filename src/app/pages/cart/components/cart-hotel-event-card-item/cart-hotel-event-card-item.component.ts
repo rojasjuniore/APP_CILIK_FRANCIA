@@ -28,7 +28,6 @@ export class CartHotelEventCardItemComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.couponObj && changes.couponObj.currentValue) {
-      console.log('changes.couponObj.currentValue', this.couponObj.coupons);
       this.cupon = this.codeStorageSrv.findByConcept(this.couponObj.coupons, 'hotelAndEvent');
     } else {
       this.cupon = null;

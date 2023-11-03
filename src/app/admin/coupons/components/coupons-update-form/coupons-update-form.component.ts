@@ -220,7 +220,7 @@ export class CouponsUpdateFormComponent implements OnInit, OnDestroy {
         status: formData.status === 'false' ? false : true,
         updatedAt: moment().valueOf(),
         updatedBy: uid,
-        userLimit: formData.userLimil,
+        userLimit: formData.userLimit,
         coupons: formData.items,
       };
       console.log('Try to update coupon', data);
