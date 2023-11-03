@@ -8,7 +8,8 @@
             <div>
 
                 <ng-container *ngIf="(profile$ | async) as profile; else renderLoader" [ngTemplateOutlet]="renderInfo"
-                    [ngTemplateOutletContext]="{profile}"></ng-container>
+                    [ngTemplateOutletContext]="{profile}">
+                </ng-container>
 
             </div>
             <br>
@@ -21,21 +22,30 @@
 </div>
 
 <ng-template #renderInfo let-profile="profile">
+
     <div class="fs-4 fw-bold ps-3 d-flex jsutify-content-center flex-column">
-        <div *ngIf="isAnonymous$ | async as isAnonymous">
+
+        {{ "general.hello" | translate }} {{ profile?.name | titlecase }}
+
+
+        <ng-container *ngIf="isAnonymous$ | async as isAnonymous">
+
+            <pre>11{{isAnonymous}}</pre>
 
             <div *ngIf="isAnonymous">
-                {{ "general.hello" | translate }} {{ profile?.name | titlecase }}
                 <br>
                 <a [routerLink]="['/auth/sign-in']" routerLinkActive="router-link-active">Inicia Sesion </a>
             </div>
 
-            <div *ngIf="!isAnonymous">{{ "general.hello" | translate }} {{ profile?.name | titlecase }}</div>
+            <div *ngIf="!isAnonymous">
 
-        </div>
+            </div>
+        </ng-container>
+
         <div *ngIf="_isAdmin">
             <a routerLink="/admin">Admin</a>
         </div>
+
         <a [routerLink]="backTo" class="text-rslt fs-6" *ngIf="showDashboardBtn">
             {{'general.goToDashboard' | translate}}
         </a>

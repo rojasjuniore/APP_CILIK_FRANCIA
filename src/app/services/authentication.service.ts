@@ -135,7 +135,7 @@ export class AuthenticationService {
     // Obtener los datos del carrito del usuario anónimo
     const cartSnapshot: any = await this.cartSrv.getCartAllToPromise(environment.dataEvent.keyDb, oldUid);
     console.log('cartSnapshot', cartSnapshot);
-    if (cartSnapshot) {
+    if (cartSnapshot.exists) {
 
       const cartData = cartSnapshot.data();
       // @dev Actualizar el identificador del carrito

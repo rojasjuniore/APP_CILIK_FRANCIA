@@ -13,6 +13,23 @@ export class Sweetalert2Service {
     private customTranslateSrv: CustomTranslateService,
   ) { }
 
+  /**
+   * 
+   * @param message 
+   * @returns 
+   */
+  showLoading(message: string = 'Cargando...') {
+    return Swal.showLoading()
+  }
+
+  /**
+   * 
+   * @returns 
+   */
+  closeLoading() {
+    return Swal.close()
+  }
+
   showError(err: any, type = 0) {
     try {
       let mess
@@ -137,7 +154,7 @@ export class Sweetalert2Service {
     }
   }
 
-  public showToast(message: string, type: any = 'success'){
+  public showToast(message: string, type: any = 'success') {
     const Toast = Swal.mixin({
       toast: true,
       position: 'top-end',
@@ -153,11 +170,11 @@ export class Sweetalert2Service {
         icon: 'sw2FixIcon',
       }
     });
-    
+
     return Toast.fire({ icon: 'success', title: message })
   }
 
-  async askConfirm(message: string){
+  async askConfirm(message: string) {
 
     const confirmButtonText = await this.customTranslateSrv.translate('general.yes');
     const cancelButtonText = await this.customTranslateSrv.translate('general.no');
@@ -181,7 +198,7 @@ export class Sweetalert2Service {
   }
 
 
-  async askConfirmCategorieExtra(message: string){
+  async askConfirmCategorieExtra(message: string) {
 
     const confirmButtonText = await this.customTranslateSrv.translate('formValidations.ConfirmCategorieExtra1');
     const cancelButtonText = await this.customTranslateSrv.translate('formValidations.ConfirmCategorieExtra2');
@@ -204,7 +221,7 @@ export class Sweetalert2Service {
     return isConfirmed;
   }
 
-  async askEdit(message: string){
+  async askEdit(message: string) {
     const { isConfirmed } = await Swal.fire({
       icon: 'info',
       title: 'Editar',
@@ -223,7 +240,7 @@ export class Sweetalert2Service {
     return isConfirmed;
   }
 
-  async askRegistroExitoso(message: string){
+  async askRegistroExitoso(message: string) {
     const { isConfirmed } = await Swal.fire({
       icon: 'success',
       title: 'Registro Exitoso',
@@ -241,7 +258,7 @@ export class Sweetalert2Service {
     return isConfirmed;
   }
 
-  async askLoginExitoso(message: string){
+  async askLoginExitoso(message: string) {
     const { isConfirmed } = await Swal.fire({
       icon: 'success',
       title: 'Login Exitoso',
@@ -265,12 +282,12 @@ export class Sweetalert2Service {
    * @param type 
    * @returns 
    */
-   async showBasicAlert(title: string, message: string, type: any = 'success') {
+  async showBasicAlert(title: string, message: string, type: any = 'success') {
     return await Swal.fire(title, message, type);
   }
 
 
-  async showCustomNumberCard(params: any){
+  async showCustomNumberCard(params: any) {
     const {
 
     } = params;
@@ -295,7 +312,7 @@ export class Sweetalert2Service {
       }
     });
 
-    console.log({formValues});
+    console.log({ formValues });
     return null;
   }
 

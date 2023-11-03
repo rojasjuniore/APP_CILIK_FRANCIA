@@ -1,0 +1,222 @@
+<h2>{{'Formulario de Escuela' | translate | titlecase}} </h2>
+<form [formGroup]="registerForm" (ngSubmit)="request()">
+
+    <!-- Información de la Escuela -->
+    <div>
+        <h3>{{'Información de la Escuela' | translate | titlecase}} </h3>
+    </div>
+
+    <div formGroupName="SchoolInformation" class="form-group">
+        <label for="nombreEscuela">{{' Nombre de la Escuela' | translate | titlecase}} </label>
+        <input type="text" id="nombreEscuela" class="form-control" formControlName="schoolName">
+        <div *ngIf="registerForm.get('SchoolInformation.schoolName')?.invalid && registerForm.get('SchoolInformation.schoolName')?.touched"
+            class="text-danger">
+            {{'Nombre de la escuela es requerido' | translate | titlecase}} .
+        </div>
+
+        <label for="schoolId">{{'schoolId' | translate | titlecase}}</label>
+        <input type="text" id="schoolId" class="form-control" formControlName="schoolId">
+        <div *ngIf="registerForm.get('SchoolInformation.schoolId')?.invalid && registerForm.get('SchoolInformation.schoolId')?.touched"
+            class="text-danger">
+            schoolId es requerido.
+        </div>
+
+        <label for="schoolAddress">{{'schoolAddress' | translate | titlecase}}</label>
+        <input type="text" id="schoolAddress" class="form-control" formControlName="schoolAddress">
+        <div *ngIf="registerForm.get('SchoolInformation.schoolAddress')?.invalid && registerForm.get('SchoolInformation.schoolAddress')?.touched"
+            class="text-danger">
+            schoolAddress es requerido.
+        </div>
+
+
+        <label for="schoolNeighborhood">{{'schoolNeighborhood' | translate | titlecase}}</label>
+        <input type="text" id="schoolNeighborhood" class="form-control" formControlName="schoolNeighborhood">
+        <div *ngIf="registerForm.get('SchoolInformation.schoolNeighborhood')?.invalid && registerForm.get('SchoolInformation.schoolNeighborhood')?.touched"
+            class="text-danger">
+            schoolNeighborhood es requerido.
+        </div>
+
+        <label for="schoolCountry">{{'schoolCountry' | translate | titlecase}}</label>
+        <input type="text" id="schoolCity" class="form-control" formControlName="schoolCity">
+        <div *ngIf="registerForm.get('SchoolInformation.schoolCity')?.invalid && registerForm.get('SchoolInformation.schoolCity')?.touched"
+            class="text-danger">
+            schoolCity es requerido.
+        </div>
+
+
+        <label for="schoolCountry">schoolCountry</label>
+        <input type="text" id="schoolCountry" class="form-control" formControlName="schoolCountry">
+        <div *ngIf="registerForm.get('SchoolInformation.schoolCountry')?.invalid && registerForm.get('SchoolInformation.schoolCountry')?.touched"
+            class="text-danger">
+            schoolCountry es requerido.
+        </div>
+    </div>
+
+    <div>
+        <h3>{{'Contactos de La escuela' | translate | titlecase}}</h3>
+    </div>
+
+    <div formGroupName="SchoolContacts" class="form-group">
+
+        <label for="schoolEmail">{{'schoolEmail' | translate | titlecase}}</label>
+        <input type="text" id="schoolEmail" class="form-control" formControlName="schoolEmail">
+        <div *ngIf="registerForm.get('SchoolContacts.schoolEmail')?.invalid && registerForm.get('SchoolContacts.schoolEmail')?.touched"
+            class="text-danger">
+            schoolEmail es requerido.
+        </div>
+
+        <label for="schoolFacebook">{{'schoolFacebook' | translate | titlecase}}</label>
+        <input type="text" id="schoolFacebook" class="form-control" formControlName="schoolFacebook">
+        <div *ngIf="registerForm.get('SchoolContacts.schoolFacebook')?.invalid && registerForm.get('SchoolContacts.schoolFacebook')?.touched"
+            class="text-danger">
+            schoolFacebook es requerido.
+        </div>
+
+
+        <label for="schoolInstagram">{{'schoolInstagram' | translate | titlecase}}</label>
+        <input type="text" id="schoolInstagram" class="form-control" formControlName="schoolInstagram">
+        <div *ngIf="registerForm.get('SchoolContacts.schoolInstagram')?.invalid && registerForm.get('SchoolContacts.schoolInstagram')?.touched"
+            class="text-danger">
+            schoolInstagram es requerido.
+        </div>
+
+        <label for="schoolTikTok">{{'schoolTikTok' | translate | titlecase}}</label>
+        <input type="text" id="schoolTikTok" class="form-control" formControlName="schoolTikTok">
+        <div *ngIf="registerForm.get('SchoolContacts.schoolTikTok')?.invalid && registerForm.get('SchoolContacts.schoolTikTok')?.touched"
+            class="text-danger">
+            schoolTikTok es requerido.
+        </div>
+
+
+        <label for="schoolTwitter">{{'schoolTwitter' | translate | titlecase}}</label>
+        <input type="text" id="schoolTwitter" class="form-control" formControlName="schoolTwitter">
+        <div *ngIf="registerForm.get('SchoolContacts.schoolTwitter')?.invalid && registerForm.get('SchoolContacts.schoolTwitter')?.touched"
+            class="text-danger">
+            schoolTwitter es requerido.
+        </div>
+
+        <label for="schoolPhone">{{'schoolPhone' | translate | titlecase}}</label>
+        <input type="text" id="schoolPhone" class="form-control" formControlName="schoolPhone">
+        <div *ngIf="registerForm.get('SchoolContacts.schoolPhone')?.invalid && registerForm.get('SchoolContacts.schoolPhone')?.touched"
+            class="text-danger">
+            schoolPhone es requerido.
+        </div>
+
+        <label for="schoolReview">{{'schoolReview' | translate | titlecase}}</label>
+        <input type="text" id="schoolReview" class="form-control" formControlName="schoolReview">
+        <div *ngIf="registerForm.get('SchoolContacts.schoolReview')?.invalid && registerForm.get('SchoolContacts.schoolReview')?.touched"
+            class="text-danger">
+            schoolReview es requerido.
+        </div>
+
+    </div>
+
+
+
+
+    <div>
+        <h3>{{'Adjunte documentos de la escuela que acrediten su existencia' | translate | titlecase}}</h3>
+    </div>
+
+    <div formGroupName="docs" class="form-group">
+
+        <!-- School Photos -->
+        <h3>{{'Photos of the Headquarters' | translate | titlecase}}</h3>
+        <div class="mb-3">
+            <label for="schoolPhotos" class="form-label">Upload Photos</label>
+            <input type="file" class="form-control" id="schoolPhotos" (change)="onFileChange($event, 'schoolPhotos')">
+        </div>
+        <div *ngIf="registerForm.get('docs.schoolPhotos')?.invalid && registerForm.get('docs.schoolPhotos')?.touched"
+            class="text-danger">
+            schoolPhotos es requerido.
+        </div>
+
+        <!-- Legal Representation, License, Chamber of Commerce -->
+        <h3>{{'Legal Documentation' | translate | titlecase}}</h3>
+        <div class="mb-3">
+            <label for="legalDocs" class="form-label">Upload Legal Documents</label>
+            <input type="file" class="form-control" id="legalDocs" (change)="onFileChange($event, 'legalDocs')">
+        </div>
+        <div *ngIf="registerForm.get('docs.legalDocs')?.invalid && registerForm.get('docs.legalDocs')?.touched"
+            class="text-danger">
+            legalDocs es requerido.
+        </div>
+
+        <!-- Certificates and Recommendations -->
+        <h3>{{'Certificates and Recommendations' | translate | titlecase}}</h3>
+        <div class="mb-3">
+            <label for="certificates" class="form-label">Upload Certificates and Recommendations</label>
+            <input type="file" class="form-control" id="certificates" (change)="onFileChange($event, 'certificates')">
+        </div>
+        <div *ngIf="registerForm.get('docs.certificates')?.invalid && registerForm.get('docs.certificates')?.touched"
+            class="text-danger">
+            certificates es requerido.
+        </div>
+
+        <h3>{{'schoolReview' | translate | titlecase}}</h3>
+        <input type="text" id="schoolReview" class="form-control" formControlName="schoolReview">
+        <div *ngIf="registerForm.get('docs.schoolReview')?.invalid && registerForm.get('docs.schoolReview')?.touched"
+            class="text-danger">
+            schoolReview es requerido.
+        </div>
+
+    </div>
+
+
+    <div>
+        <h3>{{'Adjunte documentos de la escuela que acrediten su existencia' | translate | titlecase}}</h3>
+    </div>
+
+    <div formArrayName="legalRepresentatives">
+        <h3>{{'Representantes Legales' | translate | titlecase}}</h3>
+
+        <div *ngFor="let legalRep of legalRepresentatives.controls; let i = index" [formGroupName]="i">
+            <h4>Representante {{ i + 1 }}
+                <button type="button" class="btn btn-danger btn-sm"
+                    (click)="removeLegalRepresentative(i)">Eliminar</button>
+            </h4>
+            <div class="mb-3">
+                <label for="representativeName{{i}}">Nombre del Representante</label>
+                <input type="text" id="representativeName{{i}}" class="form-control"
+                    formControlName="representativeName">
+                <div *ngIf="legalRep.get('representativeName')?.invalid && legalRep.get('representativeName')?.touched"
+                    class="text-danger">
+                    Nombre es requerido.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="representativeId{{i}}">representativeId</label>
+                <input type="text" id="representativeId{{i}}" class="form-control" formControlName="representativeId">
+                <div *ngIf="legalRep.get('representativeId')?.invalid && legalRep.get('representativeId')?.touched"
+                    class="text-danger">
+                    ID es requerido.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="representativePhone{{i}}">representativePhone</label>
+                <input type="text" id="representativePhone{{i}}" class="form-control"
+                    formControlName="representativePhone">
+                <div *ngIf="legalRep.get('representativePhone')?.invalid && legalRep.get('representativePhone')?.touched"
+                    class="text-danger">
+                    Número de teléfono es requerido y debe ser válido.
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <button type="button" class="btn btn-secondary" (click)="addLegalRepresentative()">
+            {{'Agregar otro representante' | translate | titlecase}}
+        </button>
+    </div>
+
+
+
+
+    <button type="submit" class="btn btn-primary">
+        {{'ENVIAR PETICIÓN' | translate | titlecase}}
+    </button>
+</form>

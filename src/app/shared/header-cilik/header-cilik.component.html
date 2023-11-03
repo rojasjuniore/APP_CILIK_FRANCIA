@@ -40,7 +40,7 @@
                 </ng-container>
 
                 <div class="seprd-h"></div>
-
+                <!-- 
                 <ng-container *ngIf="isAnonymous$ | async as isAnonymous">
                     <div *ngIf="!isAnonymous" class="btn-logout d-flex align-items-center" (click)="logout()">
 
@@ -51,7 +51,17 @@
                             <img src="assets/img/cilik/icon-28.png" alt="">
                         </div>
                     </div>
-                </ng-container>
+
+                </ng-container> -->
+                <div class="btn-logout d-flex align-items-center" (click)="logout()">
+                    <div class="icon-header">
+                        <span class="text-ps fw-bold">
+                            {{ "general.logOut" | translate }}
+                        </span>
+                        <img src="assets/img/cilik/icon-28.png" alt="">
+                    </div>
+                </div>
+
 
             </div>
         </div>

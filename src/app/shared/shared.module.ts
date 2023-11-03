@@ -39,6 +39,7 @@ import { PurchaseBankTransferInfoCardItemComponent } from './purchase-bank-trans
 import { InstallmentsComponent } from '../pages/checkout/components/installments/installments.component';
 import { ClipboardModule } from 'ngx-clipboard';
 import { HeaderAuthComponent } from './header-auth/header-auth.component';
+import { SchoolComponent } from '../pages/school/school.component';
 
 
 
@@ -80,6 +81,8 @@ import { HeaderAuthComponent } from './header-auth/header-auth.component';
     ModalUpdateVoucherStatusFormComponent,
     InstallmentsComponent,
     HeaderAuthComponent,
+
+    SchoolComponent,
   ],
   imports: [
     CommonModule,
@@ -133,7 +136,9 @@ import { HeaderAuthComponent } from './header-auth/header-auth.component';
     ModalUpdateVoucherStatusFormComponent,
 
     InstallmentsComponent,
-    HeaderAuthComponent
+    HeaderAuthComponent,
+
+    SchoolComponent
 
 
   ]

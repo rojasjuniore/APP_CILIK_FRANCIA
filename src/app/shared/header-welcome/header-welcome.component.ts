@@ -30,7 +30,7 @@ export class HeaderWelcomeComponent implements OnInit, OnDestroy {
 
 
     this.profile$ = this.authSrv.userDoc$.pipe(
-      // tap((data) => console.log('data', data)),
+      tap((data) => console.log('data', data)),
     );
 
     this.sub$ = this.router.events.subscribe((event: any) => {

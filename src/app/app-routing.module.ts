@@ -3,9 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { CheckAdminRoleGuard } from './guards/check-admin-role.guard';
 import { PagesLayoutComponent } from './shared/pages-layout/pages-layout.component';
 import { OutPagesLayoutComponent } from './out-pages/out-pages-layout/out-pages-layout.component';
-import { IsAuthGuard } from './guards/is-auth.guard';
 import { AdminLayoutComponent } from './shared/admin-layout/admin-layout.component';
 import { AnonymouslyGuard } from './guards/anonymously.guard';
+import { NoAnonGuard } from './guards/no-anon.guard';
+import { SchoolComponent } from './pages/school/school.component';
 
 const routes: Routes = [
   {
@@ -22,8 +23,15 @@ const routes: Routes = [
   },
   {
     path: 'auth',
+    canActivate: [NoAnonGuard],
     component: OutPagesLayoutComponent,
     loadChildren: () => import("./out-pages/out-pages.module").then((m) => m.OutPagesModule)
+  },
+  {
+    path: 'school',
+    // canActivate: [NoAnonGuard],
+    component: SchoolComponent,
+    loadChildren: () => import("./pages/school/school.module").then((m) => m.SchoolModule)
   },
   {
     path: '',
