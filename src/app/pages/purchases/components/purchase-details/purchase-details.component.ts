@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import moment from 'moment';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -26,6 +26,7 @@ export class PurchaseDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: ActivatedRoute,
+    private route: Router,
     private authSrv: AuthenticationService,
     private purchaseSrv: PurchaseService,
     private sweetAlert2Srv: Sweetalert2Service,
@@ -34,7 +35,7 @@ export class PurchaseDetailsComponent implements OnInit, OnDestroy {
     private spinner: NgxSpinnerService,
   ) {
     const orderId = this.router.snapshot.paramMap.get('orderId');
-    console.log('orderId', orderId);
+    console.log('app-purchase-details', orderId);
     this.orderId = orderId || '';
   }
 
@@ -48,9 +49,15 @@ export class PurchaseDetailsComponent implements OnInit, OnDestroy {
         }),
         catchError((err) => of({ exist: false }))
       )
-      .subscribe((order) => {
+      .subscribe(async (order: any) => {
+        const uid = await this.authSrv.getUIDPromise();
+        console.log('order.uid', order.uid);
+        console.log('uid', uid);
+        if (uid != order.uid) {
+          return this.route.navigate([`/pages/dashboard`]);
+        }
         this.orderDoc = order;
-        console.log('order', order);
+        return
       });
   }
 
