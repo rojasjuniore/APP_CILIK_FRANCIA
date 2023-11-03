@@ -106,14 +106,14 @@ export class CouponsAddFormComponent implements OnInit {
 
   ]
 
-  private valueRules = {
-    percentage: [Validators.required, Validators.min(0), Validators.max(100)],
-    amount: [
-      Validators.required,
-      Validators.pattern(/^-?(0|[1-9]\d*)?$/),
-      Validators.min(0),
-    ]
-  };
+  // private valueRules = {
+  //   percentage: [Validators.required, Validators.min(0), Validators.max(100)],
+  //   amount: [
+  //     Validators.required,
+  //     Validators.pattern(/^-?(0|[1-9]\d*)?$/),
+  //     Validators.min(0),
+  //   ]
+  // };
 
 
 
@@ -154,30 +154,7 @@ export class CouponsAddFormComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
-    // this.items.get('type')?.valueChanges.subscribe((value) => {
-    //   this.form.patchValue({ value: 0 });
-
-    //   console.log('value', value);
-    //   if (value === 'percentage') {
-    //     this.items.get('value')?.setValidators(this.valueRules.percentage);
-    //   } else {
-    //     this.items.get('value')?.setValidators(this.valueRules.amount);
-    //   }
-
-    //   this.items.get('value')?.updateValueAndValidity();
-    // });
-
-    // this.form.controls.forEach((group: FormGroup, index: number) => {
-    //   group.get('type')?.valueChanges.subscribe(value => {
-    //     //... your logic here
-    //   });
-    // });
-
-    // this.items.get('ownerType')?.valueChanges.subscribe((value) => {
-    //   this.form.patchValue({ ownerId: '' });
-    // });
-  }
+  ngOnInit(): void { }
 
 
   get f() { return this.form.controls; }
@@ -189,8 +166,9 @@ export class CouponsAddFormComponent implements OnInit {
 
   createItem(): FormGroup {
     return this.fb.group({
-      type: ['amount', [Validators.required]],
+      type: ['percentage', [Validators.required]],
       value: ['', [Validators.required]],
+      userLimit: [100, [Validators.required]],
       concept: ['', [Validators.required]],
     });
   }

@@ -64,7 +64,8 @@
                         <label for="userLimit" class="form-label">
                             limite de uso
                         </label>
-                        <input type="text" class="form-control" formControlName="userLimit" aria-describedby="userLimitHelp">
+                        <input type="text" class="form-control" formControlName="userLimit"
+                            aria-describedby="userLimitHelp">
                         <ng-container *ngIf="submitted" [ngTemplateOutlet]="renderFormVM"
                             [ngTemplateOutletContext]="{ field: 'userLimit' }"></ng-container>
                     </div>
@@ -84,7 +85,7 @@
                                         </option>
                                     </select>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-2">
                                     <label for="type" class="form-label">
                                         Type
                                     </label>
@@ -95,7 +96,7 @@
                                         </option>
                                     </select>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-2">
                                     <label for="value" class="form-label">
                                         Value
                                         <ng-container
@@ -103,6 +104,12 @@
                                         <ng-container *ngIf="item.get('type')?.value === 'amount'">(USD)</ng-container>
                                     </label>
                                     <input type="number" class="form-control" formControlName="value">
+                                </div>
+                                <div class="col-2">
+                                    <label for="value" class="form-label">
+                                        User Limit
+                                    </label>
+                                    <input type="number" class="form-control" formControlName="userLimit">
                                 </div>
                                 <div class="col-3">
                                     <button class="btn btn-danger" (click)="removeItem(i)">Remove</button>

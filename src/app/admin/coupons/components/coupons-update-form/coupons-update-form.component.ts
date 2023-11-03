@@ -85,14 +85,14 @@ export class CouponsUpdateFormComponent implements OnInit, OnDestroy {
 
   ]
 
-  private valueRules = {
-    percentage: [Validators.required, Validators.min(0), Validators.max(100)],
-    amount: [
-      Validators.required,
-      Validators.pattern(/^-?(0|[1-9]\d*)?$/),
-      Validators.min(0),
-    ]
-  };
+  // private valueRules = {
+  //   percentage: [Validators.required, Validators.min(0), Validators.max(100)],
+  //   amount: [
+  //     Validators.required,
+  //     Validators.pattern(/^-?(0|[1-9]\d*)?$/),
+  //     Validators.min(0),
+  //   ]
+  // };
 
   private sub$!: Subscription;
   user: any;
@@ -155,7 +155,7 @@ export class CouponsUpdateFormComponent implements OnInit, OnDestroy {
       });
   }
 
-  async getProfile(uid){
+  async getProfile(uid) {
     const userDoc = await this.authSrv.getByUIDPromise(uid);
     this.userCoupon = userDoc;
     console.log('userDoc', userDoc);
@@ -167,6 +167,7 @@ export class CouponsUpdateFormComponent implements OnInit, OnDestroy {
         type: [item.type, [Validators.required]],
         concept: [item.concept, [Validators.required]],
         value: [item.value, [Validators.required]],
+        userLimit: [item.userLimit || 100, [Validators.required]],
       }));
     }
   }

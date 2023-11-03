@@ -93,7 +93,7 @@
                                         </option>
                                     </select>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-2">
                                     <label for="type" class="form-label">
                                         Type
                                     </label>
@@ -104,7 +104,7 @@
                                         </option>
                                     </select>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-2">
                                     <label for="value" class="form-label">
                                         Value
                                         <ng-container
@@ -112,6 +112,12 @@
                                         <ng-container *ngIf="item.get('type')?.value === 'amount'">(USD)</ng-container>
                                     </label>
                                     <input type="number" class="form-control" formControlName="value">
+                                </div>
+                                <div class="col-2">
+                                    <label for="value" class="form-label">
+                                        userLimit
+                                    </label>
+                                    <input type="number" class="form-control" formControlName="userLimit">
                                 </div>
                                 <div class="col-3">
                                     <button class="btn btn-danger" (click)="removeItem(i)">Remove</button>
