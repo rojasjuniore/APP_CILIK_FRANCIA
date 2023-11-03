@@ -36,8 +36,8 @@ export class InstallmentsTimelineAdminComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.installments = this.installmentsSrv.installmentsList(this.orderDoc.installments);
-    console.log('app-installments-timeline-admin', this.orderDoc);
-    console.log('app-installments-timeline-admin', this.installments);
+    // console.log('app-installments-timeline-admin', this.orderDoc);
+    // console.log('app-installments-timeline-admin', this.installments);
   }
 
   /**
@@ -50,9 +50,9 @@ export class InstallmentsTimelineAdminComponent implements OnInit, OnChanges {
     console.log('onCloseModalUpdateVoucherStatus', event);
     if (!status) { return; }
 
-    console.log('indexPayment', this.indexPayment);
-    console.log('orderDoc', this.orderDoc);
-    console.log('data', data);
+    // console.log('indexPayment', this.indexPayment);
+    // console.log('orderDoc', this.orderDoc);
+    // console.log('data', data);
 
 
     const installments = this.orderDoc.installments
@@ -75,7 +75,7 @@ export class InstallmentsTimelineAdminComponent implements OnInit, OnChanges {
 
 
 
-    
+
     // /** Enviar notificación de compra realizada */
     await this.purchaseSrv.sendPurchaseInstallmentCuotaNotification({
       status: data.status,

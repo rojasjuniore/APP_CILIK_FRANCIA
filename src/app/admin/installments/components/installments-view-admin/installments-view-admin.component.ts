@@ -69,8 +69,6 @@ export class InstallmentsViewAdminComponent implements OnInit {
     console.log('onCloseModalUpdateVoucherStatus', event);
     if (!status) { return; }
 
-    // console.log('orderDoc', this.orderDoc);
-    // return;
 
     const ask = await this.sweetAlert2Srv.askConfirm(`¿Estás seguro de actualizar el estado del comprobante a "${data.status}"?`);
     if (!ask) { return; }
@@ -79,31 +77,7 @@ export class InstallmentsViewAdminComponent implements OnInit {
 
       await this.spinner.show();
 
-
-
-
-
       const uid = await this.authSrv.getUIDPromise();
-
-      // const timelineSnap = {
-      //   ...data,
-      //   // path: this.orderDoc.voucher.path,
-      //   // name: this.orderDoc.voucher.name,
-      //   // url: this.orderDoc.voucher.url,
-      //   // type: this.orderDoc.voucher.type,
-      //   // reference: this.orderDoc.voucher.reference,
-      //   updateBy: uid,
-      //   updatedAt: moment().valueOf()
-      // };
-      // // console.log('timelineSnap', timelineSnap);
-
-      // /** Actualizar lista de cambios del documento */
-      // await this.purchaseSrv.addOnArray(
-      //   environment.dataEvent.keyDb,
-      //   this.orderId,
-      //   [timelineSnap],
-      //   'voucher.timeline'
-      // );
 
       let status = data.status;
       let payedAt: any = null;
@@ -125,10 +99,11 @@ export class InstallmentsViewAdminComponent implements OnInit {
         environment.dataEvent.keyDb,
         this.orderId,
         {
+          admin: uid,
           status,
           payedAt,
           rejectedAt
-        }
+        },
       );
 
       this.sweetAlert2Srv.showSuccess('Comprobante actualizado correctamente');

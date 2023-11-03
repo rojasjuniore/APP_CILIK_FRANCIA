@@ -22,7 +22,7 @@
 
     <div class="col-12">
         <div class="d-flex justify-content-between">
-            <button class="btn btn-three btn-medium-c text-uppercase" type="button" routerLink="/admin/bank-transfer">
+            <button class="btn btn-three btn-medium-c text-uppercase" type="button" routerLink="/admin/installments-admin/dashboard">
                 <i class="bi bi-chevron-left"></i>
                 {{ "general.back" | translate }}
             </button>
@@ -44,16 +44,6 @@
     <div class="col-12 mb-4">
         <div class="card card-box p-3 mb-3">
             <div class="row g-2 d-flex align-items-center">
-
-                <!-- <div class="col-12 px-3">
-                    <span class="text-rslt fw-bold fs-5">
-                        <i class="bi bi-cart3"></i>
-                        &nbsp;
-                        _id
-                    </span>
-                </div>
-        
-                <div class="seprd2"></div> -->
 
                 <div class="col-12 px-3">
                     <div class="row mb-1">
@@ -123,22 +113,6 @@
         <app-installments-timeline-admin [orderDoc]="orderDoc"></app-installments-timeline-admin>
     </div>
 
-    <!--   <div class="col-12">
-        <app-purchase-bank-transfer-info-card-item
-            [item]="order.bankOptionData"></app-purchase-bank-transfer-info-card-item>
-    </div>
-
-    <div class="col-12 mb-4" *ngIf="order?.voucher; else renderNoVoucher">
-        <app-voucher-card-item [voucher]="order?.voucher"></app-voucher-card-item>
-    </div>
-
-    <div class="col-12 text-center mb-3">
-        <div class="fs-4 fw-bold">
-            Timeline
-        </div>
-    </div>
-
-    <app-voucher-timeline-card [voucher]="order?.voucher"></app-voucher-timeline-card> -->
 
 </ng-template>
 
