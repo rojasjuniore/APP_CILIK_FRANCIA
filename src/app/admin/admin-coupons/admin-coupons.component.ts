@@ -17,6 +17,7 @@ import { environment } from 'src/environments/environment';
 export class AdminCouponsComponent implements OnInit {
 
   public coupons$!: Observable<any[]>;
+  public couponsAll$!: Observable<any[]>;
 
   public form: FormGroup = this.fb.group({ query: '' });
 
@@ -70,6 +71,9 @@ export class AdminCouponsComponent implements OnInit {
       ], {
         orderBy: [{ field: 'slug', order: 'asc' }]
       });
+
+
+
     } else {
       console.log('no query');
       this.coupons$ = this.couponSrv.getDynamic(environment.dataEvent.keyDb,
@@ -78,6 +82,13 @@ export class AdminCouponsComponent implements OnInit {
         ],
         { orderBy: [{ field: 'slug', order: 'asc' }] });
     }
+
+
+    this.couponsAll$ = this.couponSrv.getDynamic(environment.dataEvent.keyDb,
+      [{ field: 'status', condition: '==', value: true },
+      ],
+      { orderBy: [{ field: 'slug', order: 'asc' }] });
+
   }
 
   /**
