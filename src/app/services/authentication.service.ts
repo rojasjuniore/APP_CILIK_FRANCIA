@@ -78,6 +78,8 @@ export class AuthenticationService {
     );
   }
 
+  
+
 
   /** 
    * @dev Iniciar sesión anónima || Crear usuario anónimo

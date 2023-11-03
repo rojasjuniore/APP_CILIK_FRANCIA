@@ -26,26 +26,22 @@
     <div class="fs-4 fw-bold ps-3 d-flex jsutify-content-center flex-column">
 
         {{ "general.hello" | translate }} {{ profile?.name | titlecase }}
-        <div *ngIf="_isAdmin">
-            <a routerLink="/admin">Admin</a>
-        </div>
+
 
         <ng-container *ngIf="isAnonymous$ | async as isAnonymous">
-
-            <!-- <pre>11{{isAnonymous}}</pre> -->
-
-            <div *ngIf="isAnonymous">
+            <ng-container *ngIf="isAnonymous">
                 <br>
                 <a [routerLink]="['/auth/sign-in']" routerLinkActive="router-link-active">Inicia Sesion </a>
-            </div>
+            </ng-container>
 
-            <div *ngIf="!isAnonymous">
 
-            </div>
         </ng-container>
 
 
 
+        <ng-container *ngIf="_isAdmin">
+            <a routerLink="/admin">Admin</a>
+        </ng-container>
         <a [routerLink]="backTo" class="text-rslt fs-6" *ngIf="showDashboardBtn">
             {{'general.goToDashboard' | translate}}
         </a>
