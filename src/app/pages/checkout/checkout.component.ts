@@ -9,7 +9,6 @@ import { CartTotalService } from 'src/app/services/cart-total.service';
 import { CartService } from 'src/app/services/cart.service';
 import { CodeStorageService } from 'src/app/services/code-storage.service';
 import { CouponService } from 'src/app/services/coupon.service';
-import { CouponsService } from 'src/app/services/coupons.service';
 import { InstallmentService } from 'src/app/services/dedicates/installment.service';
 import { PurchaseService } from 'src/app/services/purchase.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
@@ -213,12 +212,15 @@ export class CheckoutComponent implements OnInit {
       });
 
 
-      /**  Resta un valor a un contador */
-      await this.couponsSrv.subtractCounter(environment.dataEvent.keyDb, this.couponObj.code, 'userLimit', 1);
+      if (this.couponObj) {
+        /**  Resta un valor a un contador */
+        await this.couponsSrv.subtractCounter(environment.dataEvent.keyDb, this.couponObj.code, 'userLimit', 1);
+
+        /** decrement User Limit for producto */
+        await this.couponsSrv.decrementUserLimitsSequentially(this.cart.product, purchase.codeCoupon)
+      }
 
 
-      /** decrement User Limit for producto */
-      await this.couponsSrv.decrementUserLimitsSequentially(this.cart.product, purchase.codeCoupon)
 
 
       /** Eliminar carrito de compra */
@@ -308,12 +310,16 @@ export class CheckoutComponent implements OnInit {
       /** Eliminar carrito de compra */
       await this.cartSrv.deleteCart(environment.dataEvent.keyDb, this.uid);
 
-      /**  Resta un valor a un contador */
-      await this.couponsSrv.subtractCounter(environment.dataEvent.keyDb, this.couponObj.code, 'userLimit', 1);
+
+      if (this.couponObj) {
+        /**  Resta un valor a un contador */
+        await this.couponsSrv.subtractCounter(environment.dataEvent.keyDb, this.couponObj.code, 'userLimit', 1);
 
 
-      /** decrement User Limit for producto */
-      await this.couponsSrv.decrementUserLimitsSequentially(this.cart.product, purchase.codeCoupon)
+        /** decrement User Limit for producto */
+        await this.couponsSrv.decrementUserLimitsSequentially(this.cart.product, purchase.codeCoupon)
+
+      }
 
 
       /** Disparar formulario */
@@ -401,12 +407,15 @@ export class CheckoutComponent implements OnInit {
       });
 
 
-      /**  Resta un valor a un contador */
-      await this.couponsSrv.subtractCounter(environment.dataEvent.keyDb, this.couponObj.code, 'userLimit', 1);
+
+      if (this.couponObj) {
+        /**  Resta un valor a un contador */
+        await this.couponsSrv.subtractCounter(environment.dataEvent.keyDb, this.couponObj.code, 'userLimit', 1);
 
 
-      /** decrement User Limit for producto */
-      await this.couponsSrv.decrementUserLimitsSequentially(this.cart.product, purchase.codeCoupon)
+        /** decrement User Limit for producto */
+        await this.couponsSrv.decrementUserLimitsSequentially(this.cart.product, purchase.codeCoupon)
+      }
 
 
       /** Eliminar carrito de compra */
@@ -497,14 +506,13 @@ export class CheckoutComponent implements OnInit {
       /** Eliminar carrito de compra */
       await this.cartSrv.deleteCart(environment.dataEvent.keyDb, this.uid);
 
-      /**  Resta un valor a un contador */
-      await this.couponsSrv.subtractCounter(environment.dataEvent.keyDb, this.couponObj.code, 'userLimit', 1);
+      if (this.couponObj) {
+        /**  Resta un valor a un contador */
+        await this.couponsSrv.subtractCounter(environment.dataEvent.keyDb, this.couponObj.code, 'userLimit', 1);
 
-
-
-      /** decrement User Limit for producto */
-      await this.couponsSrv.decrementUserLimitsSequentially(this.cart.product, purchase.codeCoupon)
-
+        /** decrement User Limit for producto */
+        await this.couponsSrv.decrementUserLimitsSequentially(this.cart.product, purchase.codeCoupon)
+      }
 
 
       /// @dev eliminar carrito de compra
