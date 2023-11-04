@@ -71,7 +71,9 @@ export class CouponService {
    * @param value 
    */
   async decrementUserLimitDoc(eventId: string, docId: string, field = "userLimit", value = 1): Promise<void> {
-    const docRef: any = this.afs.collection(this.collection).doc(eventId).collection(this.subCollection).doc(docId);
+    console.log('decrementUserLimitDoc', eventId, docId, field, value);
+
+    const docRef = this.afs.firestore.collection(this.collection).doc(eventId).collection(this.subCollection).doc(docId);
 
     try {
       await this.afs.firestore.runTransaction(async (transaction) => {
@@ -81,8 +83,8 @@ export class CouponService {
           throw new Error("Documento no existe");
         }
 
-        const newValue = (docSnapshot.data()[field] || 0) - value;
-        transaction.update(docRef, { [field]: newValue });
+        const newValue = (Number(docSnapshot.data()[field]) || 0) - value;
+        transaction.update(docRef, { [field]: Number(newValue) });
       });
 
       console.log('Transacción completada!');
