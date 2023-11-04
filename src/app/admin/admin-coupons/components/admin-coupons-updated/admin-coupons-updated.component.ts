@@ -173,13 +173,17 @@ export class AdminCouponsUpdatedComponent implements OnInit {
 
   get f() { return this.form.controls; }
 
-
-
-
+  /**
+   * @dev Agrega un nuevo item al formulario
+   */
   addItem(): void {
     this.items.push(this.createItem());
   }
 
+  /**
+   * @dev Elimina un item del formulario
+   * @param index 
+   */
   removeItem(index: number): void {
     this.items.removeAt(index);
   }

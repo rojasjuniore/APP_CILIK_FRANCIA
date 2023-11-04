@@ -84,7 +84,7 @@
                                 </ng-container>)
                             </p>
                             <p>{{'registered by' | titlecase }}: {{item.createdBy | profile | async | titlecase}} </p>
-                            <p>{{'Limit de uso' | titlecase }}: {{item.userLimit }}</p>
+                            <p>{{'available' | titlecase }}: {{item.userLimit }}</p>
                         </div>
 
                         <div class="col-12 col-md-4 m-0 p-0">
@@ -102,7 +102,7 @@
                                                 | {{x.value}} USD
                                             </span>
                                             <span class="fs-4 fw-bolder">
-                                                | {{x.userLimit }} used
+                                                | {{x.userLimit }} available
                                             </span>
 
                                         </ng-container>
