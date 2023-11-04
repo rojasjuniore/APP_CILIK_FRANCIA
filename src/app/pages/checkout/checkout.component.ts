@@ -214,7 +214,7 @@ export class CheckoutComponent implements OnInit {
 
       if (this.couponObj) {
         /**  Resta un valor a un contador */
-        await this.couponsSrv.subtractCounter(environment.dataEvent.keyDb, this.couponObj.code, 'userLimit', 1);
+        await this.couponsSrv.decrementUserLimitDoc(environment.dataEvent.keyDb, this.couponObj.code, 'userLimit', 1);
 
         /** decrement User Limit for producto */
         await this.couponsSrv.decrementUserLimitsSequentially(this.cart.product, purchase.codeCoupon)
@@ -314,7 +314,7 @@ export class CheckoutComponent implements OnInit {
 
       if (this.couponObj) {
         /**  Resta un valor a un contador */
-        await this.couponsSrv.subtractCounter(environment.dataEvent.keyDb, this.couponObj.code, 'userLimit', 1);
+        await this.couponsSrv.decrementUserLimitDoc(environment.dataEvent.keyDb, this.couponObj.code, 'userLimit', 1);
 
 
         /** decrement User Limit for producto */
@@ -412,7 +412,7 @@ export class CheckoutComponent implements OnInit {
 
       if (this.couponObj) {
         /**  Resta un valor a un contador */
-        await this.couponsSrv.subtractCounter(environment.dataEvent.keyDb, this.couponObj.code, 'userLimit', 1);
+        await this.couponsSrv.decrementUserLimitDoc(environment.dataEvent.keyDb, this.couponObj.code, 'userLimit', 1);
 
 
         /** decrement User Limit for producto */
@@ -511,7 +511,7 @@ export class CheckoutComponent implements OnInit {
 
       if (this.couponObj) {
         /**  Resta un valor a un contador */
-        await this.couponsSrv.subtractCounter(environment.dataEvent.keyDb, this.couponObj.code, 'userLimit', 1);
+        await this.couponsSrv.decrementUserLimitDoc(environment.dataEvent.keyDb, this.couponObj.code, 'userLimit', 1);
 
         /** decrement User Limit for producto */
         await this.couponsSrv.decrementUserLimitsSequentially(this.cart.product, purchase.codeCoupon)

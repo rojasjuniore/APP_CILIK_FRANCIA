@@ -50,17 +50,46 @@ export class CouponService {
 
 
 
+  // /**
+  //  * @dev Resta un valor a un contador
+  //  * @param docId 
+  //  * @param field 
+  //  * @param value 
+  //  */
+  // async subtractCounter(eventId: string, docId: string, field = "userLimit", value = 1) {
+  //   const ref = this.afs.collection(this.collection).doc(eventId).collection(this.subCollection).doc(docId);
+  //   await ref.update({ [field]: increment(-value) });
+  // }
+
+
+
   /**
-   * @dev Resta un valor a un contador
+   * @dev Resta un valor a un contador de un documento específico
+   * @param eventId 
    * @param docId 
    * @param field 
    * @param value 
    */
-  async subtractCounter(eventId: string, docId: string, field = "userLimit", value = 1) {
-    const ref = this.afs.collection(this.collection).doc(eventId).collection(this.subCollection).doc(docId);
-    await ref.update({ [field]: increment(-value) });
-  }
+  async decrementUserLimitDoc(eventId: string, docId: string, field = "userLimit", value = 1): Promise<void> {
+    const docRef: any = this.afs.collection(this.collection).doc(eventId).collection(this.subCollection).doc(docId);
 
+    try {
+      await this.afs.firestore.runTransaction(async (transaction) => {
+        const docSnapshot: any = await transaction.get(docRef);
+
+        if (!docSnapshot.exists) {
+          throw new Error("Documento no existe");
+        }
+
+        const newValue = (docSnapshot.data()[field] || 0) - value;
+        transaction.update(docRef, { [field]: newValue });
+      });
+
+      console.log('Transacción completada!');
+    } catch (error) {
+      console.error('Transacción fallida: ', error);
+    }
+  }
 
 
   // 
@@ -127,6 +156,7 @@ export class CouponService {
 
       delay += delayIncrement; // Incrementa el retraso para la siguiente iteración
     }
+
   }
 
 
