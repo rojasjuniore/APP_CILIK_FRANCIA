@@ -162,7 +162,7 @@ export class AdminCouponsUpdatedComponent implements OnInit {
         type: [item.type, [Validators.required]],
         concept: [item.concept, [Validators.required]],
         value: [item.value, [Validators.required]],
-        userLimit: [item.userLimit || 100, [Validators.required]],
+        userLimit: [item.userLimit, [Validators.required]],
       }));
     }
   }
