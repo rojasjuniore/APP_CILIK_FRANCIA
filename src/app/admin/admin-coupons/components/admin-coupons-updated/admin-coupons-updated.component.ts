@@ -127,6 +127,8 @@ export class AdminCouponsUpdatedComponent implements OnInit {
         console.log('coupon', coupon);
         this.couponDoc = coupon;
 
+        console.log('this.couponDoc', this.couponDoc);
+
         if (this.couponDoc.exist) {
           /** Actualizar valores del formulario */
           this.form.patchValue({
