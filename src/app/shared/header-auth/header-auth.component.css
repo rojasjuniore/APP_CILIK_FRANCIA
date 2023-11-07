@@ -16,7 +16,8 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    color: #aeaeae;
+    color: #6a6a6a;
+    font-size: 20px;
 }
 .active-cart{
     position: relative;
@@ -36,8 +37,11 @@
 }
 .text-ps{
     position: absolute;
-    bottom: -20px;
+    bottom: -29px;
     font-size: 0.8rem;
+    text-align: center;
+    line-height: 1;
+    white-space: nowrap;
 }
 @media (max-width: 575px) {
     .logo{
