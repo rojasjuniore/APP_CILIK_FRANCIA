@@ -7,7 +7,8 @@ import { pick, omit } from 'underscore';
 import { NavigationEnd, Router } from '@angular/router';
 import { CommonService } from './services/common.service';
 import { CodeStorageService } from './services/code-storage.service';
-import { CouponsService } from './services/coupons.service';
+import { VersionService } from './services/version.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -20,19 +21,24 @@ export class AppComponent {
   public currentLanguage: string;
 
   constructor(
-    private couponsSrv: CouponsService,
     private codeStorageSrv: CodeStorageService,
     private commonSrv: CommonService,
     public translateSrv: CustomTranslateService,
     private dataSrv: DataService,
     private hotelSrv: HotelService,
-    private router: Router
+    private router: Router,
+    private versionSrv: VersionService,
   ) {
     this.currentLanguage = window.localStorage.getItem('lang') || this.translateSrv.currentLanguage;
 
   }
 
   ngOnInit(): void {
+
+    // Suponiendo que guardas la versión en tu archivo de entorno
+    this.versionSrv.checkForUpdates(environment.version);
+
+
     this.translateSrv.changeLanguage(this.currentLanguage);
 
     this.router.events.subscribe((event) => {

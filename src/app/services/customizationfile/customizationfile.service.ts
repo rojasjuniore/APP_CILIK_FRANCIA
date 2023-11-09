@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { environment } from "src/environments/environment";
 @Injectable({
   providedIn: "root",
 })
@@ -7,7 +8,7 @@ export class CustomizationfileService {
   constructor() { }
 
   getVersion() {
-    return "0.0.39"
+    return environment.version
   }
 
   getPROVISIONAKEY() {

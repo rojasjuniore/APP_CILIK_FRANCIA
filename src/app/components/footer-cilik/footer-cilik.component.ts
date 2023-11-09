@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/services/common.service';
 import { CustomizationfileService } from 'src/app/services/customizationfile/customizationfile.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-footer-cilik',
@@ -16,6 +17,6 @@ export class FooterCilikComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  get currentVersion() { return this.customFileSrv.getVersion(); }
+  get currentVersion() { return environment.version }
 
 }

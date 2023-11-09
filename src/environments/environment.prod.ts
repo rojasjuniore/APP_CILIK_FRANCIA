@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  version: '0.0.41',
   dataEvent: {
     keyDb: "QwksBFqsPZT9itRwkpUB",
     appURL: "https://wldc.cilik.io",
