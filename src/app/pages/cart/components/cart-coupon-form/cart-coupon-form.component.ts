@@ -82,16 +82,7 @@ export class CartCouponFormComponent implements OnInit, OnChanges {
     }
   }
 
-  ngOnInit(): void {
-    // if (this.couponObj && this.couponObj.status) {
-    //   this.couponSrv = this.couponObj.slug
-    //   this.form.setValue({ code: this.couponObj.slug });
-
-    //   this.isButtonDisabled = true;
-    //   this.form.get('code')?.disable();
-
-    // }
-  }
+  ngOnInit(): void { }
 
 
   async removeCupon() {

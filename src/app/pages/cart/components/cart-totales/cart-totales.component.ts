@@ -67,6 +67,8 @@ export class CartTotalesComponent implements OnInit, OnChanges {
       updatedGroupedData: updatedGroupedData
     }
 
+    console.log('obj', obj);
+
     /// @dev send data to parent
     this.onCartTotal.next(obj);
 
