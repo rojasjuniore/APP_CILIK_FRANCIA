@@ -27,7 +27,8 @@
 
 
                 </ng-container>
-                {{item.uid | profile | async | titlecase}}
+                {{item.uid | profile | async | titlecase}} |&nbsp;
+                {{item.paymentMethod | translate | titlecase }} | {{item.createdAt | date: 'medium'}} | 
                 &nbsp;
                 {{item.paymentMethod | translate | titlecase }} | {{item.createdAt | date: 'medium'}}
             </span>

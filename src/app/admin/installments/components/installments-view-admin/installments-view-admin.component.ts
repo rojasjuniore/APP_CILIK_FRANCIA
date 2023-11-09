@@ -80,6 +80,7 @@ export class InstallmentsViewAdminComponent implements OnInit {
       const uid = await this.authSrv.getUIDPromise();
 
       let status = data.status;
+      console.log('status', status);
       let payedAt: any = null;
       let rejectedAt: any = null;
 
@@ -87,7 +88,7 @@ export class InstallmentsViewAdminComponent implements OnInit {
       if (status == 'completed' && allCompleted) {
         status = 'completed';
         payedAt = moment().valueOf();
-      } else {
+      } else if (status == 'completed' && !allCompleted) {
         this.sweetAlert2Srv.showError('No se puede completar la orden de compra, aún hay cuotas pendientes de pago');
         status = 'pending';
         rejectedAt = moment().valueOf();
