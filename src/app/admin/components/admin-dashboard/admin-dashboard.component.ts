@@ -65,7 +65,7 @@ export class AdminDashboardComponent implements OnInit {
       description: 'Manager Merchant',
       type: 'uid',
       url: '/admin/merchant-admin/dashboard/',
-      profiles: ['manager-merchant'],
+      profiles: ['manager-merchant-admin'],
       available: true
     },
     {

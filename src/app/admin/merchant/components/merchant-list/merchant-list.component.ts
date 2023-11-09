@@ -22,9 +22,10 @@ export class MerchantListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log("uid", this.uid)
     this.purchasesListC$ = this.purchaseSrv.myMerchantPurchaseList(this.uid, 'completed')
       .pipe(map((data: any) => {
-        // console.log(data)
+        console.log("purchases", data)
         const counter = data.length + 1;
         return data.map((row, index) => Object.assign({}, row, { index: counter - (index + 1) }))
       }));
