@@ -41,10 +41,23 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { HeaderAuthComponent } from './header-auth/header-auth.component';
 import { SchoolComponent } from '../school/school.component';
 import { PipesModule } from '../pipes/pipes.module';
+import { PurchaseDetailsComponent } from '../pages/purchases/components/purchase-details/purchase-details.component';
 
 
 
 @NgModule({
+
+  imports: [
+    CommonModule,
+    FormsModule,
+    ClipboardModule,
+    ReactiveFormsModule,
+    TranslateModule,
+    NgxPayPalModule,
+    PipesModule,
+    RouterModule,
+  ],
+
   declarations: [
     HeaderCilikComponent,
     HeaderWelcomeComponent,
@@ -84,17 +97,9 @@ import { PipesModule } from '../pipes/pipes.module';
     HeaderAuthComponent,
 
     SchoolComponent,
+
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ClipboardModule,
-    ReactiveFormsModule,
-    TranslateModule,
-    NgxPayPalModule,
-    PipesModule,
-    RouterModule,
-  ],
+
   exports: [
     FormsModule,
     ReactiveFormsModule,
@@ -140,9 +145,7 @@ import { PipesModule } from '../pipes/pipes.module';
     InstallmentsComponent,
     HeaderAuthComponent,
 
-    SchoolComponent
-
-
+    SchoolComponent,
 
 
   ]

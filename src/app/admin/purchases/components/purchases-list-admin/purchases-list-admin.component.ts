@@ -63,11 +63,7 @@ export class PurchasesListAdminComponent implements OnInit {
    * @param item 
    */
   onItemDetails(item: any): void {
-    const id = item[this.fieldToRedirect];
-    const url = this.redirectTo.replace('$', id);
-    // console.log('url', url);
-    this.router.navigate([url]);
-    // this.router.navigate([`/pages/purchases/${this.item._id}/details`]);
+    this.router.navigate([`/admin/purchases-admin/${item._id}/details`]);
   }
 
 
