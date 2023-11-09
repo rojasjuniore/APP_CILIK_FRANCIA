@@ -16,7 +16,8 @@ export class MySalesBenefitsComponent implements OnInit {
   constructor(private mySalesBenefitsSrv: MySalesBenefitsService) { }
 
   ngOnInit(): void {
-    if (!this.couponsList) return;
+    if (!this.couponsList || this.couponsList.length == 0) return;
+    console.log("couponsList", this.couponsList);
     this.ownerType = this.couponsList[0]['ownerType']
     if (this.ownerType == "ambassador") {
       this.nivel = this.mySalesBenefitsSrv.getNivelAmbassador(this.totalForItemList);

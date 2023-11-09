@@ -6,9 +6,9 @@
                 &nbsp;
                 {{item.uid | profile | async | titlecase}}
             </span>
-            <!-- <h5 class="card-title fw-bolder text-rslt">
-                <span class="placeholder col-12"></span>
-            </h5> -->
+            <h5 class="card-title fw-bolder text-rslt">
+                referred_by: {{item.referred_by | profile | async | titlecase}}
+            </h5>
         </div>
 
         <div class="seprd2"></div>
@@ -38,26 +38,26 @@
             <div class="d-flex flex-row align-content-center justify-content-between">
                 <div class="d-flex justify-content-center align-items-center">
                     <span class="fs-4 fw-bolder">{{ "general.valueWithoutDiscount" | translate }}: USD
-                        {{item.totalResumen.globalSubtotal}}</span>
+                        {{item.totalResumen?.globalSubtotal}}</span>
                 </div>
             </div>
             <div class="d-flex flex-row align-content-center justify-content-between">
                 <div class="d-flex justify-content-center align-items-center">
-                    <span class="fs-4 fw-bolder">{{ "general.discount"  | translate }}: USD
-                        {{item.totalResumen.globalTotalToPay}}</span>
+                    <span class="fs-4 fw-bolder">{{ "general.discount" | translate }}: USD
+                        {{item.totalResumen?.globalTotalToPay}}</span>
                 </div>
             </div>
 
             <div class="d-flex flex-row align-content-center justify-content-between">
                 <div class="d-flex justify-content-center align-items-center">
                     <span class="fs-4 fw-bolder">{{ "general.globalDiscountGlobalPercentage" | translate }}: USD
-                        {{item.totalResumen.globalDiscount}}</span>
+                        {{item.totalResumen?.globalDiscount}}</span>
                 </div>
             </div>
             <div class="d-flex flex-row align-content-center justify-content-between">
                 <div class="d-flex justify-content-center align-items-center">
                     <span class="fs-4 fw-bolder">{{ "general.total" | translate }}: USD
-                        {{item.totalResumen.globalTotalToPay}}</span>
+                        {{item.totalResumen?.globalTotalToPay}}</span>
                 </div>
 
                 <div>

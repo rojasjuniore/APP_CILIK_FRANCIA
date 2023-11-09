@@ -8,11 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class PurchaseFullDetailsComponent implements OnInit {
 
   @Input() cart: any;
-  globalTotal = {
-    globalDiscount: 0,
-    globalSubtotal: 0,
-    globalTotalToPay: 0
-  }
+  globalTotal: any
 
   constructor() {
   }
