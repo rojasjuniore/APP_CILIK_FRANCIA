@@ -20,6 +20,7 @@ export class CartWeekendPassCardItemComponent implements OnInit, OnChanges {
 
 
   ngOnInit(): void {
+    console.log('item', this.item);
   }
 
 

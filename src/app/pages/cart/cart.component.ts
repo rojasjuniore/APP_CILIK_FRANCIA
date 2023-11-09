@@ -42,7 +42,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
         /// @dev check code coupon
         this.couponObj = await this.codeStorageSrv.checkCode();
-        console.log('code', this.couponObj);
+        // console.log('code', this.couponObj);
         // console.log('cart', cart);
 
 

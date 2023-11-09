@@ -119,7 +119,7 @@ export class EventInfoService {
     },
     {
       date: '2024-02-09',
-      weekend: false,
+      weekend: true,
     },
     {
       date: '2024-02-10',
