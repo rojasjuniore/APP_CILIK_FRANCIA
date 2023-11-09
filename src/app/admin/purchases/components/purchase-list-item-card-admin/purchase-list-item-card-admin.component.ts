@@ -23,7 +23,6 @@ export class PurchaseListItemCardAdminComponent implements OnInit {
 
     if(item && item.currentValue) {
       this.item = item.currentValue;
-      console.log('item', this.item);
     }
   }
 
