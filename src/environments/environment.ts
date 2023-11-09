@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   dataEvent: {
-    keyDb: "iS30s4eNrRfG3dbeUV18",
+    keyDb: "QwksBFqsPZT9itRwkpUB",
     appURL: "https://dev-wldc.web.app",
     name: "WORLD LATIN DANCE CUP Cartagena 2024",
     termsAndConditions: "",

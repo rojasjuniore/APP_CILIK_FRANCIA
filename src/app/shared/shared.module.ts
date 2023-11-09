@@ -40,6 +40,7 @@ import { InstallmentsComponent } from '../pages/checkout/components/installments
 import { ClipboardModule } from 'ngx-clipboard';
 import { HeaderAuthComponent } from './header-auth/header-auth.component';
 import { SchoolComponent } from '../school/school.component';
+import { PipesModule } from '../pipes/pipes.module';
 
 
 
@@ -91,6 +92,7 @@ import { SchoolComponent } from '../school/school.component';
     ReactiveFormsModule,
     TranslateModule,
     NgxPayPalModule,
+    PipesModule,
     RouterModule,
   ],
   exports: [
@@ -139,6 +141,8 @@ import { SchoolComponent } from '../school/school.component';
     HeaderAuthComponent,
 
     SchoolComponent
+
+
 
 
   ]

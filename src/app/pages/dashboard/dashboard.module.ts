@@ -8,6 +8,7 @@ import { StoreComponent } from './components/store/store.component';
 import { StoreItemCardComponent } from './components/store-item-card/store-item-card.component';
 import { MyPurchasesComponent } from './components/my-purchases/my-purchases.component';
 import { AnotherOptionComponent } from './components/another-option/another-option.component';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 
 @NgModule({
@@ -16,11 +17,12 @@ import { AnotherOptionComponent } from './components/another-option/another-opti
     StoreComponent,
     StoreItemCardComponent,
     MyPurchasesComponent,
-    AnotherOptionComponent
+    AnotherOptionComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
+    PipesModule,
     DashboardRoutingModule
   ]
 })
