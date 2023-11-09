@@ -36,7 +36,7 @@ export class HotelAndEventComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.sub$ = this.authSrv.uid$.pipe(
       // tap(console.log),
-      switchMap((uid: any) => (uid) 
+      switchMap((uid: any) => (uid)
         ? this.cartSrv.getCartObservable(environment.dataEvent.keyDb, uid)
         : of(null)
       ),
@@ -44,7 +44,7 @@ export class HotelAndEventComponent implements OnInit, OnDestroy {
       distinctUntilChanged((prev, next) => JSON.stringify(prev) === JSON.stringify(next)),
     ).subscribe((cart: any) => {
       console.log('cart', cart);
-      if(!cart) { return; }
+      if (!cart) { return; }
 
       const { product = [] } = cart;
       const filter = product.filter((item: any) => item.slug === 'hotel-event');
@@ -54,7 +54,7 @@ export class HotelAndEventComponent implements OnInit, OnDestroy {
     });
   }
 
-  openModalRoomsList(): void{
+  openModalRoomsList(): void {
     this.modalRoomsList.showModal({
       currentDate: moment().format('YYYY-MM-DD'),
       multidate: true,
@@ -65,11 +65,11 @@ export class HotelAndEventComponent implements OnInit, OnDestroy {
     });
   }
 
-  async onAddRoom(room: any){
+  async onAddRoom(room: any) {
     // console.log('onAddRoom', room);
     try {
 
-      if(!room.status){ return; }
+      if (!room.status) { return; }
 
       await this.spinner.show();
 
@@ -84,20 +84,30 @@ export class HotelAndEventComponent implements OnInit, OnDestroy {
 
       await this.cartSrv.addOnCart(environment.dataEvent.keyDb, this.uid, [toCart]);
       this.sweetAlert2Srv.showToast(
-        this.translate.instant("alert.itemAddedToCart"), 
+        this.translate.instant("alert.itemAddedToCart"),
         'success'
       );
       return;
-      
+
     } catch (err) {
       console.log('Error on HotelAndEventComponent.onAddRoom', err);
+
+      /**
+       * TODO: Mostrar error
+       */
+
+      this.sweetAlert2Srv.showToast("Ocurrió un error", "error ")
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
+
       return;
     } finally {
       this.spinner.hide();
     }
   }
 
-  async onRemoveRoom(room: any){
+  async onRemoveRoom(room: any) {
     this.cartSrv.removeOnCart(environment.dataEvent.keyDb, this.uid, room);
   }
 
