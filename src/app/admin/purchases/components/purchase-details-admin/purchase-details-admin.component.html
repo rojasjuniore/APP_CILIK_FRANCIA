@@ -31,15 +31,6 @@
         <div class="card card-box p-3 mb-3">
             <div class="row g-2 d-flex align-items-center">
 
-                <!-- <div class="col-12 px-3">
-                    <span class="text-rslt fw-bold fs-5">
-                        <i class="bi bi-cart3"></i>
-                        &nbsp;
-                        _id
-                    </span>
-                </div>
-        
-                <div class="seprd2"></div> -->
 
                 <div class="col-12 px-3">
                     <div class="row mb-1">
@@ -93,7 +84,7 @@
                 <div class="seprd2"></div>
 
                 <div class="col-12 text-center text-md-end">
-                    <!-- <app-purchase-full-details [cart]="order"></app-purchase-full-details> -->
+                    <app-purchase-full-details [cart]="order"></app-purchase-full-details>
                 </div>
 
             </div>
@@ -101,8 +92,8 @@
     </div>
 
     <!-- Payment instaments -->
-    <!-- <app-purchase-installments *ngIf="(order.paymentMethod === 'installments')"
-        [orderDoc]="orderDoc"></app-purchase-installments> -->
+    <app-purchase-installments *ngIf="(order.paymentMethod === 'installments')"
+        [orderDoc]="orderDoc"></app-purchase-installments>
 
     <!-- Transfer Segment -->
     <ng-container *ngIf="(order.paymentMethod === 'bankTransfer')" [ngTemplateOutlet]="renderBankTransferSegment"
@@ -117,7 +108,7 @@
 
     <div class="col-12 mb-4" *ngFor="let item of order.product">
         <ng-container [ngSwitch]="item.slug">
-            <!-- <app-purchase-fullpass-card-item *ngSwitchCase="'full-pass'"
+            <app-purchase-fullpass-card-item *ngSwitchCase="'full-pass'"
                 [item]="item"></app-purchase-fullpass-card-item>
             <app-purchase-category-pass-card-item *ngSwitchCase="'category-pass'"
                 [item]="item"></app-purchase-category-pass-card-item>
@@ -125,7 +116,7 @@
                 [item]="item"></app-purchase-weekend-pass-card-item>
             <app-purchase-day-pass-card-item *ngSwitchCase="'day-pass'" [item]="item"></app-purchase-day-pass-card-item>
             <app-purchase-hotel-event-card-item *ngSwitchCase="'hotel-event'"
-                [item]="item"></app-purchase-hotel-event-card-item> -->
+                [item]="item"></app-purchase-hotel-event-card-item>
         </ng-container>
     </div>
 </ng-template>

@@ -9,7 +9,7 @@ import { PurchaseDayPassCardItemComponent } from './components/purchase-day-pass
 import { PurchaseFullpassCardItemComponent } from './components/purchase-fullpass-card-item/purchase-fullpass-card-item.component';
 import { PurchaseWeekendPassCardItemComponent } from './components/purchase-weekend-pass-card-item/purchase-weekend-pass-card-item.component';
 import { PurchaseHotelEventCardItemComponent } from './components/purchase-hotel-event-card-item/purchase-hotel-event-card-item.component';
-import { PurchaseFullDetailsComponent } from './components/purchase-full-details/purchase-full-details.component';
+// import { PurchaseFullDetailsComponent } from './components/purchase-full-details/purchase-full-details.component';
 import { PurchaseInstallmentsComponent } from './components/purchase-installments/purchase-installments.component';
 import { PurchaseInstallmentsModalComponent } from './components/purchase-installments-modal/purchase-installments-modal.component';
 import { PurchaseInstallmentsVoucherComponent } from './components/purchase-installments-voucher/purchase-installments-voucher.component';
@@ -18,15 +18,7 @@ import { PurchaseInstallmentsVoucherComponent } from './components/purchase-inst
 @NgModule({
   declarations: [
     PurchaseDetailsComponent,
-    PurchaseCategoryPassCardItemComponent,
-    PurchaseDayPassCardItemComponent,
-    PurchaseFullpassCardItemComponent,
-    PurchaseWeekendPassCardItemComponent,
-    PurchaseHotelEventCardItemComponent,
-    PurchaseFullDetailsComponent,
-    PurchaseInstallmentsComponent,
-    PurchaseInstallmentsModalComponent,
-    PurchaseInstallmentsVoucherComponent
+
   ],
   imports: [
     CommonModule,

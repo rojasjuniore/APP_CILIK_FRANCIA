@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { PipesModule } from '../pipes/pipes.module';
 import { PagesLayoutComponent } from './pages-layout/pages-layout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
@@ -40,8 +41,19 @@ import { InstallmentsComponent } from '../pages/checkout/components/installments
 import { ClipboardModule } from 'ngx-clipboard';
 import { HeaderAuthComponent } from './header-auth/header-auth.component';
 import { SchoolComponent } from '../school/school.component';
-import { PipesModule } from '../pipes/pipes.module';
-import { PurchaseDetailsComponent } from '../pages/purchases/components/purchase-details/purchase-details.component';
+
+
+import { PurchaseFullDetailsComponent } from '../pages/purchases/components/purchase-full-details/purchase-full-details.component';
+import { PurchaseCategoryPassCardItemComponent } from '../pages/purchases/components/purchase-category-pass-card-item/purchase-category-pass-card-item.component';
+import { PurchaseDayPassCardItemComponent } from '../pages/purchases/components/purchase-day-pass-card-item/purchase-day-pass-card-item.component';
+import { PurchaseFullpassCardItemComponent } from '../pages/purchases/components/purchase-fullpass-card-item/purchase-fullpass-card-item.component';
+import { PurchaseHotelEventCardItemComponent } from '../pages/purchases/components/purchase-hotel-event-card-item/purchase-hotel-event-card-item.component';
+import { PurchaseInstallmentsModalComponent } from '../pages/purchases/components/purchase-installments-modal/purchase-installments-modal.component';
+import { PurchaseInstallmentsVoucherComponent } from '../pages/purchases/components/purchase-installments-voucher/purchase-installments-voucher.component';
+import { PurchaseInstallmentsComponent } from '../pages/purchases/components/purchase-installments/purchase-installments.component';
+import { PurchaseWeekendPassCardItemComponent } from '../pages/purchases/components/purchase-weekend-pass-card-item/purchase-weekend-pass-card-item.component';
+
+
 
 
 
@@ -98,6 +110,16 @@ import { PurchaseDetailsComponent } from '../pages/purchases/components/purchase
 
     SchoolComponent,
 
+    PurchaseFullDetailsComponent,
+    PurchaseCategoryPassCardItemComponent,
+    PurchaseDayPassCardItemComponent,
+    PurchaseFullpassCardItemComponent,
+    PurchaseWeekendPassCardItemComponent,
+    PurchaseHotelEventCardItemComponent,
+    PurchaseInstallmentsComponent,
+    PurchaseInstallmentsModalComponent,
+    PurchaseInstallmentsVoucherComponent
+
   ],
 
   exports: [
@@ -146,6 +168,16 @@ import { PurchaseDetailsComponent } from '../pages/purchases/components/purchase
     HeaderAuthComponent,
 
     SchoolComponent,
+
+    PurchaseFullDetailsComponent,
+    PurchaseCategoryPassCardItemComponent,
+    PurchaseDayPassCardItemComponent,
+    PurchaseFullpassCardItemComponent,
+    PurchaseWeekendPassCardItemComponent,
+    PurchaseHotelEventCardItemComponent,
+    PurchaseInstallmentsComponent,
+    PurchaseInstallmentsModalComponent,
+    PurchaseInstallmentsVoucherComponent
 
 
   ]
