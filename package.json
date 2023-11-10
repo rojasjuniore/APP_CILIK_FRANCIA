@@ -9,8 +9,6 @@
     "deploy:prod": "ng build --configuration production && firebase deploy --project=wldc-app --only hosting:prod-wldc",
     "deploy:staging": "ng build --configuration staging && firebase deploy --project=wldc-app --only hosting:dev-wldc",
     "deploy:dev": "ng build --configuration development && firebase deploy --project=wldc-app --only hosting:dev-wldc",
-
-
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
