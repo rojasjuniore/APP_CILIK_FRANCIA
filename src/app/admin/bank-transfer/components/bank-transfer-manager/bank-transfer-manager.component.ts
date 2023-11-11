@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import moment from 'moment';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -16,11 +16,19 @@ import { environment } from 'src/environments/environment';
 })
 export class BankTransferManagerComponent implements OnInit, OnDestroy {
 
+
+  @Input() title: string = 'Title';
+  @Input() query: any[] = [];
+  @Input() opts: any = {};
+  @Input() sort: string = '';
+  @Input() redirectTo: string = `/pages/purchases/$/details`;
+  @Input() fieldToRedirect: string = '_id';
+
+
   @ViewChild('modalUpdateVoucherStatus') modalUpdateVoucherStatus!: ModalUpdateVoucherStatusFormComponent;
 
   public orderId!: string;
   public orderDoc: any;
-
   private sub$!: Subscription;
   userObj: any;
 

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  version: '0.0.44',
+  version: '0.0.45',
   dataEvent: {
     keyDb: "QwksBFqsPZT9itRwkpUB",
     appURL: "https://dev-wldc.web.app",
