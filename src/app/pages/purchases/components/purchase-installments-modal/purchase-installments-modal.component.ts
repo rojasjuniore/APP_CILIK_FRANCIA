@@ -98,6 +98,15 @@ export class PurchaseInstallmentsModalComponent implements OnInit {
         installments: installments,
       });
 
+      /** Actualizar estado de la orden de compra */
+      await this.purchaseSrv.updatePurchase(environment.dataEvent.keyDb, this.orderDoc.orderId,
+        {
+          status: "paymentProcess",
+          updatedAt: moment().valueOf(),
+          rejectedAt: null
+        },
+      );
+
       this.sweetAlert2Srv.showToast(
         this.translate.instant("alert.purchaseMadeSatisfactorily"),
         'success'
