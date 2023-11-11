@@ -143,8 +143,8 @@
             [item]="order.bankOptionData"></app-purchase-bank-transfer-info-card-item>
     </div>
 
-    <app-purchase-upload-voucher-form *ngIf="!order.voucher"
-        (onCompleteForm)="onLoadVoucher($event)"></app-purchase-upload-voucher-form>
+    <!-- <app-purchase-upload-voucher-form *ngIf="!order.voucher"
+        (onCompleteForm)="onLoadVoucher($event)"></app-purchase-upload-voucher-form> -->
 
     <ng-container *ngIf="order.voucher">
         <ng-container *ngIf="(!showUpdateVoucherForm)" [ngTemplateOutlet]="renderVoucherDetails"

@@ -92,9 +92,10 @@ export class PurchaseInstallmentsModalComponent implements OnInit {
         orderId: this.orderDoc.orderId,
         uid: this.orderDoc.uid,
         name: user.name,
+        status: "paymentProcess",
+        updatedAt: moment().valueOf(),
         index: Number(this.item.index) + 1,
         installments: installments,
-        updatedAt: moment().valueOf(),
       });
 
       this.sweetAlert2Srv.showToast(
@@ -217,6 +218,7 @@ export class PurchaseInstallmentsModalComponent implements OnInit {
           canEdit: false,
         },
       };
+
 
 
       const installments = this.orderDoc.installments
