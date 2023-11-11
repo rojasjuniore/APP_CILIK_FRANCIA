@@ -180,19 +180,19 @@ export class HotelService {
   public roomPrices = {
     HAB101: [
       {
-        ranges: {from: '2023-08-01', to: '2023-11-10'},
+        ranges: { from: '2023-08-01', to: '2023-11-16' },
         before: 124,
         after: 124,
         dayOfWeek: [0, 175, 175, 175, 187, 199, 224]
       },
       {
-        ranges: {from: '2023-11-11', to: '2023-12-16'},
+        ranges: { from: '2023-11-17', to: '2023-12-16' },
         before: 149,
         after: 149,
         dayOfWeek: [0, 184, 184, 184, 200, 210, 236]
       },
       {
-        ranges: {from: '2023-12-17', to: '2024-01-20'},
+        ranges: { from: '2023-12-17', to: '2024-01-20' },
         before: 172,
         after: 172,
         dayOfWeek: [0, 193, 193, 193, 209, 221, 248]
@@ -200,19 +200,19 @@ export class HotelService {
     ],
     HAB102: [
       {
-        ranges: {from: '2023-08-01', to: '2023-11-10'},
+        ranges: { from: '2023-08-01', to: '2023-11-16' },
         before: 70,
         after: 70,
         dayOfWeek: [0, 115, 115, 115, 127, 139, 164]
       },
       {
-        ranges: {from: '2023-11-11', to: '2023-12-16'},
+        ranges: { from: '2023-11-17', to: '2023-12-16' },
         before: 84,
         after: 84,
         dayOfWeek: [0, 121, 121, 121, 137, 147, 173]
       },
       {
-        ranges: {from: '2023-12-17', to: '2024-01-20'},
+        ranges: { from: '2023-12-17', to: '2024-01-20' },
         before: 97,
         after: 97,
         dayOfWeek: [0, 127, 127, 127, 143, 154, 182]
@@ -220,19 +220,19 @@ export class HotelService {
     ],
     HAB103: [
       {
-        ranges: {from: '2023-08-01', to: '2023-11-10'},
+        ranges: { from: '2023-08-01', to: '2023-11-16' },
         before: 60,
         after: 60,
         dayOfWeek: [0, 103, 103, 103, 115, 128, 152]
       },
       {
-        ranges: {from: '2023-11-11', to: '2023-12-16'},
+        ranges: { from: '2023-11-17', to: '2023-12-16' },
         before: 72,
         after: 72,
         dayOfWeek: [0, 110, 110, 110, 121, 137, 163]
       },
       {
-        ranges: {from: '2023-12-17', to: '2024-01-20'},
+        ranges: { from: '2023-12-17', to: '2024-01-20' },
         before: 82,
         after: 82,
         dayOfWeek: [0, 116, 116, 116, 127, 143, 171]
@@ -240,19 +240,19 @@ export class HotelService {
     ],
     HAB201: [
       {
-        ranges: {from: '2023-08-01', to: '2023-11-10'},
+        ranges: { from: '2023-08-01', to: '2023-11-16' },
         before: 190,
         after: 190,
         dayOfWeek: [0, 248, 248, 248, 260, 273, 297]
       },
       {
-        ranges: {from: '2023-11-11', to: '2023-12-16'},
+        ranges: { from: '2023-11-17', to: '2023-12-16' },
         before: 228,
         after: 228,
         dayOfWeek: [0, 263, 263, 263, 273, 289, 315]
       },
       {
-        ranges: {from: '2023-12-17', to: '2024-01-20'},
+        ranges: { from: '2023-12-17', to: '2024-01-20' },
         before: 263,
         after: 263,
         dayOfWeek: [0, 276, 276, 276, 287, 303, 331]
@@ -260,19 +260,19 @@ export class HotelService {
     ],
     HAB202: [
       {
-        ranges: {from: '2023-08-01', to: '2023-11-10'},
+        ranges: { from: '2023-08-01', to: '2023-11-16' },
         before: 102,
         after: 102,
         dayOfWeek: [0, 150, 150, 150, 163, 175, 199]
       },
       {
-        ranges: {from: '2023-11-11', to: '2023-12-16'},
+        ranges: { from: '2023-11-17', to: '2023-12-16' },
         before: 123,
         after: 123,
         dayOfWeek: [0, 158, 158, 158, 173, 184, 210]
       },
       {
-        ranges: {from: '2023-12-17', to: '2024-01-20'},
+        ranges: { from: '2023-12-17', to: '2024-01-20' },
         before: 141,
         after: 141,
         dayOfWeek: [0, 165, 165, 165, 182, 193, 221]
@@ -280,19 +280,19 @@ export class HotelService {
     ],
     HAB203: [
       {
-        ranges: {from: '2023-08-01', to: '2023-11-10'},
+        ranges: { from: '2023-08-01', to: '2023-11-16' },
         before: 81,
         after: 81,
         dayOfWeek: [0, 127, 127, 127, 139, 152, 176]
       },
       {
-        ranges: {from: '2023-11-11', to: '2023-12-16'},
+        ranges: { from: '2023-11-17', to: '2023-12-16' },
         before: 98,
         after: 98,
         dayOfWeek: [0, 133, 133, 133, 147, 161, 185]
       },
       {
-        ranges: {from: '2023-12-17', to: '2024-01-20'},
+        ranges: { from: '2023-12-17', to: '2024-01-20' },
         before: 112,
         after: 112,
         dayOfWeek: [0, 140, 140, 140, 154, 169, 194]
@@ -300,19 +300,19 @@ export class HotelService {
     ],
     HAB301: [
       {
-        ranges: {from: '2023-08-01', to: '2023-11-10'},
+        ranges: { from: '2023-08-01', to: '2023-11-16' },
         before: 142,
         after: 142,
         dayOfWeek: [0, 194, 194, 194, 206, 219, 243]
       },
       {
-        ranges: {from: '2023-11-11', to: '2023-12-16'},
+        ranges: { from: '2023-11-17', to: '2023-12-16' },
         before: 170,
         after: 170,
         dayOfWeek: [0, 205, 205, 205, 216, 231, 257]
       },
       {
-        ranges: {from: '2023-12-17', to: '2024-01-20'},
+        ranges: { from: '2023-12-17', to: '2024-01-20' },
         before: 196,
         after: 196,
         dayOfWeek: [0, 215, 215, 215, 227, 243, 270]
@@ -320,19 +320,19 @@ export class HotelService {
     ],
     HAB302: [
       {
-        ranges: {from: '2023-08-01', to: '2023-11-10'},
+        ranges: { from: '2023-08-01', to: '2023-11-16' },
         before: 78,
         after: 78,
         dayOfWeek: [0, 124, 124, 124, 135, 148, 173]
       },
       {
-        ranges: {from: '2023-11-11', to: '2023-12-16'},
+        ranges: { from: '2023-11-17', to: '2023-12-16' },
         before: 94,
         after: 94,
         dayOfWeek: [0, 131, 131, 131, 142, 158, 184]
       },
       {
-        ranges: {from: '2023-12-17', to: '2024-01-20'},
+        ranges: { from: '2023-12-17', to: '2024-01-20' },
         before: 108,
         after: 108,
         dayOfWeek: [0, 138, 138, 138, 149, 165, 193]
@@ -340,19 +340,19 @@ export class HotelService {
     ],
     HAB303: [
       {
-        ranges: {from: '2023-08-01', to: '2023-11-10'},
+        ranges: { from: '2023-08-01', to: '2023-11-16' },
         before: 65,
         after: 65,
         dayOfWeek: [0, 109, 109, 109, 121, 134, 158]
       },
       {
-        ranges: {from: '2023-11-11', to: '2023-12-16'},
+        ranges: { from: '2023-11-17', to: '2023-12-16' },
         before: 78,
         after: 78,
         dayOfWeek: [0, 116, 116, 116, 127, 142, 168]
       },
       {
-        ranges: {from: '2023-12-17', to: '2024-01-20'},
+        ranges: { from: '2023-12-17', to: '2024-01-20' },
         before: 90,
         after: 90,
         dayOfWeek: [0, 121, 121, 121, 133, 149, 176]
@@ -360,19 +360,19 @@ export class HotelService {
     ],
     HAB401: [
       {
-        ranges: {from: '2023-08-01', to: '2023-11-10'},
+        ranges: { from: '2023-08-01', to: '2023-11-16' },
         before: 266,
         after: 266,
         dayOfWeek: [0, 332, 332, 332, 344, 357, 380]
       },
       {
-        ranges: {from: '2023-11-11', to: '2023-12-16'},
+        ranges: { from: '2023-11-17', to: '2023-12-16' },
         before: 319,
         after: 319,
         dayOfWeek: [0, 349, 349, 349, 362, 378, 399]
       },
       {
-        ranges: {from: '2023-12-17', to: '2024-01-20'},
+        ranges: { from: '2023-12-17', to: '2024-01-20' },
         before: 367,
         after: 367,
         dayOfWeek: [0, 366, 366, 366, 380, 397, 419]
@@ -380,19 +380,19 @@ export class HotelService {
     ],
     HAB402: [
       {
-        ranges: {from: '2023-08-01', to: '2023-11-10'},
+        ranges: { from: '2023-08-01', to: '2023-11-16' },
         before: 140,
         after: 140,
         dayOfWeek: [0, 192, 192, 192, 204, 216, 241]
       },
       {
-        ranges: {from: '2023-11-11', to: '2023-12-16'},
+        ranges: { from: '2023-11-17', to: '2023-12-16' },
         before: 168,
         after: 168,
         dayOfWeek: [0, 202, 202, 202, 215, 227, 254]
       },
       {
-        ranges: {from: '2023-12-17', to: '2024-01-20'},
+        ranges: { from: '2023-12-17', to: '2024-01-20' },
         before: 194,
         after: 194,
         dayOfWeek: [0, 212, 212, 212, 226, 238, 267]
@@ -400,19 +400,19 @@ export class HotelService {
     ],
     HAB403: [
       {
-        ranges: {from: '2023-08-01', to: '2023-11-10'},
+        ranges: { from: '2023-08-01', to: '2023-11-16' },
         before: 107,
         after: 107,
         dayOfWeek: [0, 155, 155, 155, 167, 180, 204]
       },
       {
-        ranges: {from: '2023-11-11', to: '2023-12-16'},
+        ranges: { from: '2023-11-17', to: '2023-12-16' },
         before: 128,
         after: 128,
         dayOfWeek: [0, 163, 163, 163, 175, 190, 215]
       },
       {
-        ranges: {from: '2023-12-17', to: '2024-01-20'},
+        ranges: { from: '2023-12-17', to: '2024-01-20' },
         before: 147,
         after: 147,
         dayOfWeek: [0, 171, 171, 171, 184, 200, 226]
@@ -449,7 +449,7 @@ export class HotelService {
             code: value.code,
             title: value.label,
             location: value.location,
-            locationLabel:  "room.location." + this.roomLocations[value.location],
+            locationLabel: "room.location." + this.roomLocations[value.location],
             include: value.include,
             notInclude: value.notInclude,
             subcode: row.subcode,
@@ -468,7 +468,7 @@ export class HotelService {
 
       return subRoomsTypes;
     })
-    .flat();
+      .flat();
   }
 
   /**
@@ -476,7 +476,7 @@ export class HotelService {
    * @param date 
    * @returns 
    */
-  isBeforeEventDate(date: string){
+  isBeforeEventDate(date: string) {
     return moment(date).isBefore(this.eventInfoSrv.getStartEventDate().date);
   }
 
@@ -485,7 +485,7 @@ export class HotelService {
    * @param date 
    * @returns 
    */
-  isAfterEventDate(date: string){
+  isAfterEventDate(date: string) {
     return moment(date).isAfter(this.eventInfoSrv.getEndEventDate().date);
   }
 
@@ -494,7 +494,7 @@ export class HotelService {
    * @param date 
    * @returns 
    */
-  isEventDate(date: string){
+  isEventDate(date: string) {
     return moment(date).isBetween(
       this.eventInfoSrv.getStartEventDate().date,
       this.eventInfoSrv.getEndEventDate().date,
@@ -504,7 +504,7 @@ export class HotelService {
   }
 
 
-  getRoomPriceByDate(code: string, date: string){
+  getRoomPriceByDate(code: string, date: string) {
 
     const subRoom = this.subRoomTypes[code];
     const roomPrices = this.roomPrices[code];
@@ -529,7 +529,7 @@ export class HotelService {
     };
 
     /** Si la fecha de agendar es para días antes o despues del evento */
-    if(snapshot.isBefore || snapshot.isAfter){
+    if (snapshot.isBefore || snapshot.isAfter) {
       // console.log('priceList', priceList);
       const field = snapshot.isBefore ? 'before' : 'after';
       const roomPrice = Number(priceList[field] * snapshot.capacity)
@@ -544,25 +544,6 @@ export class HotelService {
 
     return snapshot;
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   /**
    * TODO: revisar todo de aqui hacia abajo para eliminar
