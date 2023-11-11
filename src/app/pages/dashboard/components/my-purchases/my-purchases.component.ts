@@ -19,6 +19,15 @@ export class MyPurchasesComponent implements OnInit, OnDestroy {
       ],
       opts: { orderBy: [{ field: "createdAt", order: "desc" }] }
     },
+    paymentProcess: {
+      available: true,
+      sort: "paymentProcess",
+      query: [
+        { field: 'status', condition: '==', value: 'paymentProcess' },
+        {field: 'uid', condition: '==', value: null},
+      ],
+      opts: { orderBy: [{ field: "createdAt", order: "desc" }] }
+    },
     completed: {
       available: false,
       query: [

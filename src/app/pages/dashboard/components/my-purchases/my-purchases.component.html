@@ -7,6 +7,12 @@
             </button>
         </li>
         <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-paymentProcess-tab" data-bs-toggle="pill" data-bs-target="#pills-paymentProcess"
+                type="button" role="tab" aria-controls="pills-paymentProcess" aria-selected="false">
+                {{ "general.paymentProcess" | translate | titlecase }}
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
             <button class="nav-link" id="pills-approved-tab" data-bs-toggle="pill" data-bs-target="#pills-approved"
                 type="button" role="tab" aria-controls="pills-approved" aria-selected="false">
                 {{ "general.approved" | translate | titlecase }}
@@ -27,6 +33,12 @@
             <app-purchase-list 
                 [query]="(queries.pending.available) ? queries.pending.query : []"
                 [opts]="(queries.pending.available) ? queries.pending.opts : {}"
+            ></app-purchase-list>
+        </div>
+        <div class="tab-pane fade" id="pills-paymentProcess" role="tabpanel" aria-labelledby="pills-paymentProcess-tab">
+            <app-purchase-list 
+                [query]="(queries.paymentProcess.available) ? queries.paymentProcess.query : []"
+                [opts]="(queries.paymentProcess.available) ? queries.paymentProcess.opts : {}"
             ></app-purchase-list>
         </div>
         <div class="tab-pane fade" id="pills-approved" role="tabpanel" aria-labelledby="pills-approved-tab">
