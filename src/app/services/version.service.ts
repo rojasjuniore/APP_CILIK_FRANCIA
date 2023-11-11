@@ -16,19 +16,21 @@ export class VersionService {
 
   checkForUpdates(localVersion: string) {
     // La URL de tu función desplegada de Firebase Functions
-    this.db.object('version-wldc' + environment.dataEvent.keyDb).valueChanges().subscribe(async (data: any) => {
-      console.log('version', data['version']);
-      if (data['version'] !== localVersion) {
+    this.db.object('version-wldc' + environment.dataEvent.keyDb)
+      .valueChanges().subscribe(async (data: any) => {
+        if (!data) { return }
+        console.log('version', data['version']);
+        if (data['version'] !== localVersion) {
 
-        const ask = await this.sweetalert2Srv.askConfirm('Hay una nueva versión disponible, ¿deseas actualizar?');
-        if (!ask) { return; }
+          const ask = await this.sweetalert2Srv.askConfirm('Hay una nueva versión disponible, ¿deseas actualizar?');
+          if (!ask) { return; }
 
-        // Si la versión es diferente, forzar una actualización
-        window.location.reload();
+          // Si la versión es diferente, forzar una actualización
+          window.location.reload();
 
-        sessionStorage.clear();
-        sessionStorage.removeItem('clave');
-      }
-    });
+          sessionStorage.clear();
+          sessionStorage.removeItem('clave');
+        }
+      });
   }
 }

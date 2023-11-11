@@ -54,25 +54,35 @@ export class InstallmentsTimelineAdminComponent implements OnInit, OnChanges {
     // console.log('orderDoc', this.orderDoc);
     // console.log('data', data);
 
+    const uid = localStorage.getItem('uid');
 
     const installments = this.orderDoc.installments
     installments[this.indexPayment.index].status = data.status;
     installments[this.indexPayment.index].paymentMethod = 'bankTransfer';
     installments[this.indexPayment.index].payload = {
-      ...this.indexPayment.payload,
-      ...data,
-      uid: localStorage.getItem('uid'),
+      ...this.indexPayment.payload, ...data,
+      admin: uid
     };
     installments[this.indexPayment.index].payedAt = moment().valueOf();
-
     console.log('installments', installments);
-
     const user = await this.authSrv.getByUIDPromise(this.orderDoc.uid);
     console.log('userDoc', user);
 
     // /** Almacenar orden de compra */
-    await this.purchaseSrv.updatedPurchaseInstallment(environment.dataEvent.keyDb, this.orderDoc.orderId, installments);
 
+    await this.purchaseSrv
+      .updatedPurchaseInstallment(environment.dataEvent.keyDb, this.orderDoc.orderId, installments);
+
+
+    /** Actualizar estado de la orden de compra */
+    await this.purchaseSrv.updatePurchase(environment.dataEvent.keyDb, this.orderDoc.orderId,
+      {
+        admin: uid,
+        status: "paymentProcess",
+        updatedAt: moment().valueOf(),
+        rejectedAt: null
+      },
+    );
 
 
 
@@ -87,13 +97,10 @@ export class InstallmentsTimelineAdminComponent implements OnInit, OnChanges {
       installments: installments,
     });
 
-
-
     this.sweetAlert2Srv.showToast(
       this.translate.instant("alert.purchaseMadeSatisfactorily"),
       'success'
     );
-
   }
 
   /**

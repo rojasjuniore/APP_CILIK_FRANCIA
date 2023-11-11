@@ -3,6 +3,8 @@
   "bankTransfer": "Bank transfer",
   "tucompra": "credit Or Debit Card",
   "general": {
+    "completed": "Completed",
+    "paymentProcess": "Payment process",
     "available": "Available",
     "unavailable": "Unavailable",
     "orden_id": "Order ID",
@@ -288,5 +290,8 @@
         "Reach out to us at:"
       ]
     }
-  }
+  },
+  "Por favor, haz clic en la opción marcada en": "Please click on the option marked in",
+  "azul": "blue",
+  "y elige tu método de pago preferido": "and choose your preferred payment method"
 }

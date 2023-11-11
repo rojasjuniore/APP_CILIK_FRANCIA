@@ -149,15 +149,15 @@
     <ng-container *ngIf="order.voucher">
         <ng-container *ngIf="(!showUpdateVoucherForm)" [ngTemplateOutlet]="renderVoucherDetails"
             [ngTemplateOutletContext]="{order: order}"></ng-container>
-        <app-purchase-upload-voucher-form *ngIf="(showUpdateVoucherForm)"
-            (onCompleteForm)="onUpdateVoucher($event)"></app-purchase-upload-voucher-form>
+        <!-- <app-purchase-upload-voucher-form *ngIf="(showUpdateVoucherForm)"
+            (onCompleteForm)="onUpdateVoucher($event)"></app-purchase-upload-voucher-form> -->
     </ng-container>
 </ng-template>
 
 <ng-template #renderVoucherDetails let-order="order">
     <div class="col-12">
-        <app-voucher-card-item [voucher]="order.voucher" [showUpdateButton]="order.voucher.canEdit"
-            (onClickUpdateVoucher)="onRenderUpdateVoucher($event)"></app-voucher-card-item>
+        <!-- <app-voucher-card-item [voucher]="order.voucher" [showUpdateButton]="order.voucher.canEdit"
+            (onClickUpdateVoucher)="onRenderUpdateVoucher($event)"></app-voucher-card-item> -->
     </div>
 </ng-template>
 

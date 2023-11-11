@@ -3,6 +3,8 @@
   "bankTransfer": "Transferencia bancaria",
   "tucompra": "Tarjeta de crédito o débito",
   "general": {
+    "completed": "Completado",
+    "paymentProcess": "Proceso de pago",
     "available": "Disponible",
     "unavailable": "No disponible",
     "orden_id": "Orden ID",

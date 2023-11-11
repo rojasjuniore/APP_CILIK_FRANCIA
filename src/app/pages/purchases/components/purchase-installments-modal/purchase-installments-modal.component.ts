@@ -35,7 +35,6 @@ export class PurchaseInstallmentsModalComponent implements OnInit {
     private tuCompraSrv: TucompraService,
     private authSrv: AuthenticationService,
     private translate: TranslateService,
-    private commonSrv: CommonService,
     private router: Router,
     private bsModalSrv: BsModalService,
     private uploadFileSrv: UploadFileService,
@@ -44,8 +43,8 @@ export class PurchaseInstallmentsModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.buildModal();
-    console.log('app-purchase-installments-modal', this.item);
-    console.log('app-purchase-installments-modal', this.orderDoc);
+    // console.log('app-purchase-installments-modal', this.item);
+    // console.log('app-purchase-installments-modal', this.orderDoc);
     this.amount = this.item.amount;
 
   }
@@ -95,6 +94,7 @@ export class PurchaseInstallmentsModalComponent implements OnInit {
         name: user.name,
         index: Number(this.item.index) + 1,
         installments: installments,
+        updatedAt: moment().valueOf(),
       });
 
       this.sweetAlert2Srv.showToast(

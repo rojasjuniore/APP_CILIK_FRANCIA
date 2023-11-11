@@ -15,15 +15,6 @@ export class AdminDashboardComponent implements OnInit {
 
   public adminOptions = [
     {
-      label: 'Manager Transfer Payments',
-      icon: 'fa fa-money',
-      description: 'Manager Transfer Payments',
-      type: 'navigation',
-      url: '/admin/bank-transfer',
-      profiles: ['manager-hotel-event-bank-transfer-payment'],
-      available: true
-    },
-    {
       label: 'Manager Purchase Orders',
       icon: 'fa fa-money',
       description: 'Manager Purchase Orders',
@@ -32,6 +23,25 @@ export class AdminDashboardComponent implements OnInit {
       profiles: ['manager-purchases-admin'],
       available: true
     },
+    {
+      label: 'Manager  installments',
+      icon: 'fa fa-tome',
+      description: 'Manager installments',
+      type: 'navigation',
+      url: '/admin/installments-admin/dashboard',
+      profiles: ['manager-installments-admin'],
+      available: true
+    },
+    {
+      label: 'Manager Transfer Payments',
+      icon: 'fa fa-money',
+      description: 'Manager Transfer Payments',
+      type: 'navigation',
+      url: '/admin/bank-transfer',
+      profiles: ['manager-hotel-event-bank-transfer-payment'],
+      available: true
+    },
+
     {
       label: 'Manager Coupon',
       icon: 'fa fa-money',
@@ -68,15 +78,7 @@ export class AdminDashboardComponent implements OnInit {
       profiles: ['manager-merchant-admin'],
       available: true
     },
-    {
-      label: 'Manager  installments',
-      icon: 'fa fa-tome',
-      description: 'Manager installments',
-      type: 'navigation',
-      url: '/admin/installments-admin/dashboard',
-      profiles: ['manager-installments-admin'],
-      available: true
-    },
+
   ];
 
   public userRoles$!: Observable<any>;

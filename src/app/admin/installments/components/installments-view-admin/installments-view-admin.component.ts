@@ -64,6 +64,12 @@ export class InstallmentsViewAdminComponent implements OnInit {
     this.modalUpdateVoucherStatus.showModal();
   }
 
+
+  /**
+   * @dev callback del modal para actualizar el estado del comprobante
+   * @param event 
+   * @returns 
+   */
   async onCloseModalUpdateVoucherStatus(event: any) {
     const { status, data } = event;
     console.log('onCloseModalUpdateVoucherStatus', event);
@@ -90,8 +96,9 @@ export class InstallmentsViewAdminComponent implements OnInit {
         payedAt = moment().valueOf();
       } else if (status == 'completed' && !allCompleted) {
         this.sweetAlert2Srv.showError('No se puede completar la orden de compra, aún hay cuotas pendientes de pago');
-        status = 'pending';
-        rejectedAt = moment().valueOf();
+        // status = 'pending';
+        // rejectedAt = moment().valueOf();
+        return
       }
 
 
@@ -102,6 +109,7 @@ export class InstallmentsViewAdminComponent implements OnInit {
         {
           admin: uid,
           status,
+          updatedAt: moment().valueOf(),
           payedAt,
           rejectedAt
         },
