@@ -78,7 +78,7 @@ export class AuthenticationService {
     );
   }
 
-  
+
 
 
   /** 
@@ -203,6 +203,22 @@ export class AuthenticationService {
     await this.loginAnonymously();
 
     return this.router.navigate(["/pages/dashboard"]);
+  }
+
+  async logoutSingin() {
+    await this.afAuth.signOut();
+
+    this.authenticationState.next(false);
+
+    // this.router.navigate(["/sign-in"]);
+
+    window.localStorage.clear();
+
+    ///  window.location.reload();
+
+    await this.loginAnonymously();
+
+    return this.router.navigate(["/auth/sign-in"]);
   }
 
 
@@ -527,6 +543,10 @@ export class AuthenticationService {
     return await this.afs.collection('users').doc(uid).update(data);
   }
 
+  async setUser(uid: string, data: any) {
+    return await this.afs.collection('users').doc(uid).set(data);
+  }
+
   /**
    * Actualizar contraseña de usuario
    * @param uid 
@@ -583,6 +603,22 @@ export class AuthenticationService {
   async getByUIDPromise(uid: any, opts = {}): Promise<any | null> {
     const snapshot = await lastValueFrom(this.afs.collection('users').doc(uid).get());
     return await handlerObjectResult(snapshot, opts);
+  }
+
+
+  async getByUIDPromiseDb(uid: any, opts = {}): Promise<any | null> {
+    return new Promise((resolve) => {
+      console.log('getByUIDPromiseDb', uid);
+      this.db.object(`users/${uid}`).valueChanges()
+        .subscribe(res => {
+          console.log('res', res);
+          resolve(res)
+        })
+    })
+
+
+    // const snapshot = await lastValueFrom(this.afs.collection('users').doc(uid).get());
+    // return await handlerObjectResult(snapshot, opts);
   }
 
   async getByEmailAddress(email: any, opts = {}): Promise<any | null> {

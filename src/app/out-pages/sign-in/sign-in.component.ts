@@ -6,6 +6,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { pick } from 'underscore';
 import { TranslatePipe } from '@ngx-translate/core';
 import { CustomTranslateService } from 'src/app/services/custom-translate.service';
+import { CommonService } from 'src/app/services/common.service';
 
 
 @Component({
@@ -32,6 +33,7 @@ export class SignInComponent implements OnInit {
   public typeInput = 'password';
 
   constructor(
+    private commonService: CommonService,
     private fb: FormBuilder,
     private router: Router,
     private sweetAlert2Srv: Sweetalert2Service,
@@ -119,8 +121,28 @@ export class SignInComponent implements OnInit {
        */
       this.authSrv.setLocalUID(uid);
 
-      const userDoc = await this.authSrv.getByUIDPromise(uid);
+      let userDoc = await this.authSrv.getByUIDPromise(uid);
+      if (!userDoc) {
+        userDoc = await this.authSrv.getByUIDPromiseDb(uid);
+        userDoc.language = 'en';
+
+        const data = {
+          name: this.commonService.noSpecialCharacters(userDoc.profile.name),
+          surnames: this.commonService.noSpecialCharacters(userDoc.profile.surnames),
+          identificationType: 'cedula',
+          identification: userDoc.identification,
+          prefijo: "+57",
+          phone: userDoc.profile.phone,
+          email: `${userDoc.profile.email}`.trim().toLowerCase(),
+        };
+
+        await this.authSrv.setUser(uid, data);
+
+      }
+
+
       console.log('userDoc', userDoc);
+
       const toParse = pick(
         userDoc,
         [
@@ -131,6 +153,8 @@ export class SignInComponent implements OnInit {
           'phoneNumber'
         ]
       );
+
+      console.log('toParse', toParse);
 
       const userLanguage = userDoc.language || 'en';
 
@@ -148,18 +172,23 @@ export class SignInComponent implements OnInit {
       this.router.navigateByUrl(returnUrl);
       return;
     } catch (err: any) {
-      // console.log('Error on SignInComponent.onSubmit', err.message);
+      console.log('Error on SignInComponent.onSubmit', err.message);
 
       if (err.code === "auth/wrong-password") {
         const message = this.translatePipe.transform('formValidations.invalidLogIn');
-        await this.sweetAlert2Srv.showError(message);
+        return await this.sweetAlert2Srv.showError(message);
       }
 
       if (err.code === "auth/user-not-found") {
         const message = this.translatePipe.transform('formValidations.userDoesNotExist');
-        await this.sweetAlert2Srv.showError(message);
+        return await this.sweetAlert2Srv.showError(message);
       }
-      return;
+
+
+
+      await this.authSrv.logoutSingin();
+
+      return await this.sweetAlert2Srv.showError("Ocurrió un error inesperado, por favor intenta nuevamente.");
 
     } finally {
       this.form.enable();
