@@ -63,6 +63,7 @@ export class BankTransferManagerComponent implements OnInit, OnDestroy {
     this.modalUpdateVoucherStatus.showModal();
   }
 
+
   async onCloseModalUpdateVoucherStatus(event: any) {
     const { status, data } = event;
     console.log('onCloseModalUpdateVoucherStatus', event);
@@ -80,33 +81,34 @@ export class BankTransferManagerComponent implements OnInit, OnDestroy {
 
       const uid = await this.authSrv.getUIDPromise();
 
-      const timelineSnap = {
-        ...data,
-        path: this.orderDoc.voucher.path,
-        name: this.orderDoc.voucher.name,
-        url: this.orderDoc.voucher.url,
-        type: this.orderDoc.voucher.type,
-        reference: this.orderDoc.voucher.reference,
-        updateBy: uid,
-        updatedAt: moment().valueOf()
-      };
+      // const timelineSnap = {
+      //   ...data,
+      //   path: this.orderDoc.voucher.path,
+      //   name: this.orderDoc.voucher.name,
+      //   url: this.orderDoc.voucher.url,
+      //   type: this.orderDoc.voucher.type,
+      //   reference: this.orderDoc.voucher.reference,
+      //   updateBy: uid,
+      //   updatedAt: moment().valueOf()
+      // };
       // console.log('timelineSnap', timelineSnap);
 
       /** Actualizar lista de cambios del documento */
-      await this.purchaseSrv.addOnArray(
-        environment.dataEvent.keyDb,
-        this.orderId,
-        [timelineSnap],
-        'voucher.timeline'
-      );
+      // await this.purchaseSrv.addOnArray(
+      //   environment.dataEvent.keyDb,
+      //   this.orderId,
+      //   [timelineSnap],
+      //   'voucher.timeline'
+      // );
 
       /** Actualizar estado de la orden de compra */
       await this.purchaseSrv.updatePurchase(
         environment.dataEvent.keyDb,
         this.orderId,
         {
+          admin: uid,
           status: data.status,
-          payedAt: (data.status === 'completed') ? timelineSnap.updatedAt : null,
+          payedAt: (data.status === 'completed') ? moment().valueOf() : null,
           'voucher.canEdit': (data.status === 'rejected') ? true : false
         }
       );
