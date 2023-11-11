@@ -24,7 +24,6 @@ export class PurchaseListItemCardComponent implements OnInit, OnChanges {
 
     if(item && item.currentValue) {
       this.item = item.currentValue;
-      console.log('item', this.item);
     }
   }
 

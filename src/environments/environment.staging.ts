@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   version: '0.0.42',
   dataEvent: {
-    keyDb: "QwksBFqsPZT9itRwkpUB",
+    keyDb: "iS30s4eNrRfG3dbeUV18",
     appURL: "https://dev-wldc.web.app",
     name: "WORLD LATIN DANCE CUP Cartagena 2024",
     termsAndConditions: "",
@@ -19,8 +19,8 @@ export const environment = {
   // DEV
   seedKey: 'nftixProject-dev-inTECH',
   API_URL: 'https://cilik-presale.uc.r.appspot.com/',
-  // urlrootFunctions: "https://wldc-app.uc.r.appspot.com",
-  urlrootFunctions: "https://2-dot-wldc-app.uc.r.appspot.com",
+  urlrootFunctions: "https://wldc-app.uc.r.appspot.com",
+  // urlrootFunctions: "https://2-dot-wldc-app.uc.r.appspot.com",
   urlWeb: 'https://dev-wldc.web.app/',
   paypal: {
     currency: 'USD',
