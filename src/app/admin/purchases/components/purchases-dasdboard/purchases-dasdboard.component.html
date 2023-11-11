@@ -10,6 +10,14 @@
         </li>
 
         <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-paymentProcess-tab" data-bs-toggle="pill" data-bs-target="#pills-paymentProcess"
+                type="button" role="tab" aria-controls="pills-paymentProcess" aria-selected="true">
+                {{ "general.paymentProcess" | translate | titlecase }}
+            </button>
+        </li>
+
+
+        <li class="nav-item" role="presentation">
             <button class="nav-link" id="pills-pending-tab" data-bs-toggle="pill" data-bs-target="#pills-pending"
                 type="button" role="tab" aria-controls="pills-pending" aria-selected="true">
                 {{ "general.pending" | translate | titlecase }}
@@ -27,11 +35,16 @@
 
 <div class="col-12">
     <div class="tab-content" id="pills-tabContent">
-        <div class="tab-pane fade show active" id="pills-approved" role="tabpanel"
-            aria-labelledby="pills-approved-tab">
+        <div class="tab-pane fade show active" id="pills-approved" role="tabpanel" aria-labelledby="pills-approved-tab">
             <app-purchases-list-admin [query]="(queries.completed.available) ? queries.completed.query : []"
                 [opts]="(queries.completed.available) ? queries.completed.opts : {}"></app-purchases-list-admin>
         </div>
+
+        <div class="tab-pane fade show active" id="pills-approved" role="tabpanel" aria-labelledby="pills-approved-tab">
+            <app-purchases-list-admin [query]="(queries.paymentProcess.available) ? queries.paymentProcess.query : []"
+                [opts]="(queries.paymentProcess.available) ? queries.paymentProcess.opts : {}"></app-purchases-list-admin>
+        </div>
+
         <div class="tab-pane fade" id="pills-pending" role="tabpanel" aria-labelledby="pills-pending-tab">
             <app-purchases-list-admin [query]="(queries.pending.available) ? queries.pending.query : []"
                 [opts]="(queries.pending.available) ? queries.pending.opts : {}"></app-purchases-list-admin>

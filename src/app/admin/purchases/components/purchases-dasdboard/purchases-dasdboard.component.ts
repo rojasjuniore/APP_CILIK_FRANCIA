@@ -13,15 +13,26 @@ export class PurchasesDasdboardComponent implements OnInit {
     pending: {
       available: false,
       query: [
-        {field: 'status', condition: '==', value: 'pending'},
+        { field: 'status', condition: '==', value: 'pending' },
         // {field: 'uid', condition: '==', value: null},
       ],
       opts: { orderBy: [{ field: "createdAt", order: "desc" }] }
     },
+
+    paymentProcess: {
+      available: false,
+      query: [
+        { field: 'status', condition: '==', value: 'paymentProcess' },
+        // {field: 'uid', condition: '==', value: null},
+      ],
+      opts: { orderBy: [{ field: "createdAt", order: "desc" }] }
+    },
+
+
     completed: {
       available: false,
       query: [
-        {field: 'status', condition: '==', value: 'completed'},
+        { field: 'status', condition: '==', value: 'completed' },
         // {field: 'uid', condition: '==', value: null},
       ],
       opts: { orderBy: [{ field: "createdAt", order: "desc" }] }
@@ -29,7 +40,7 @@ export class PurchasesDasdboardComponent implements OnInit {
     rejected: {
       available: false,
       query: [
-        {field: 'status', condition: '==', value: 'rejected'},
+        { field: 'status', condition: '==', value: 'rejected' },
         // {field: 'uid', condition: '==', value: null},
       ],
       opts: { orderBy: [{ field: "createdAt", order: "desc" }] }
@@ -46,7 +57,7 @@ export class PurchasesDasdboardComponent implements OnInit {
 
     this.sub$ = this.authSrv.uid$.subscribe((uid) => {
       // console.log('uid', uid);
-      if(!uid) { return; }
+      if (!uid) { return; }
       this.uid = uid;
       this.updateValues();
     });
@@ -56,16 +67,16 @@ export class PurchasesDasdboardComponent implements OnInit {
   /**
    * Habilitar las consultas que requieren el uid del usuario
    */
-  updateValues(){
+  updateValues() {
     const snapshot = Object.entries(this.queries).map(([key, value]) => {
       const available = (this.uid) ? true : false;
-      const query = value.query.map((query) =>  query.field === 'uid' ? {...query, value: this.uid } : query);
+      const query = value.query.map((query) => query.field === 'uid' ? { ...query, value: this.uid } : query);
       const opts = value.opts;
-      return { [key]: {available, query, opts} };
+      return { [key]: { available, query, opts } };
     })
-    .reduce((acc, cur) => ({...acc, ...cur}), {});
+      .reduce((acc, cur) => ({ ...acc, ...cur }), {});
     // console.log('snapshot', snapshot);
-    this.queries = {...this.queries, ...snapshot};
+    this.queries = { ...this.queries, ...snapshot };
   }
 
   ngOnDestroy(): void {
