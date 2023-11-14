@@ -47,7 +47,7 @@ export class CouponsAddFormComponent implements OnInit {
   public submitted = false;
 
   public ownerTypes = [
-    { label: 'Academy', value: 'academy' },
+    // { label: 'Academy', value: 'academy' },
     { label: 'Ambassador', value: 'ambassador' },
   ];
 
