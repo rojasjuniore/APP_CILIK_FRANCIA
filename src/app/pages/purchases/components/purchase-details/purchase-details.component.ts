@@ -35,7 +35,7 @@ export class PurchaseDetailsComponent implements OnInit, OnDestroy {
     private spinner: NgxSpinnerService,
   ) {
     const orderId = this.router.snapshot.paramMap.get('orderId');
-    console.log('app-purchase-details', orderId);
+    console.log('PurchaseDetailsComponent', orderId);
     this.orderId = orderId || '';
   }
 
@@ -51,127 +51,129 @@ export class PurchaseDetailsComponent implements OnInit, OnDestroy {
       )
       .subscribe(async (order: any) => {
         const uid = await this.authSrv.getUIDPromise();
-        console.log('order.uid', order.uid);
-        console.log('uid', uid);
         if (uid != order.uid) {
           return this.route.navigate([`/pages/dashboard`]);
         }
         this.orderDoc = order;
+        console.log('order', this.orderDoc);
         return
       });
   }
 
-  // async onLoadVoucher(formData: any) {
-  //   try {
-  //     const ask = await this.sweetAlert2Srv.askConfirm(
-  //       this.translate.instant("alert.confirmAction")
-  //     );
-  //     if (!ask) { return; }
-
-  //     await this.spinner.show();
-
-  //     console.log('formData', formData);
-  //     console.log('order', this.orderDoc);
-
-  //     const { bankTransferFile: file, reference } = formData;
-
-  //     const uploadAt = moment().valueOf();
-
-  //     /** Construir nombre del archivo */
-  //     const fileName = `${this.orderDoc.orderId}_${file.name}_${uploadAt}`;
-
-  //     /** Crear Referencia al documento */
-  //     const urlToSaveFile = `purchases/${environment.dataEvent.keyDb}/${this.orderDoc.orderId}/${fileName}`;
-
-  //     /** Cargar archivo ene l bucket */
-  //     const fileRef = await this.uploadFileSrv.uploadFileDocumentIntoRoute(urlToSaveFile, file);
-
-  //     /** Construir objeto con valores a actualizar */
-  //     const purchase = {
-  //       voucher: {
-  //         reference: reference,
-  //         name: file.name,
-  //         type: file.type,
-  //         size: file.size,
-  //         path: urlToSaveFile,
-  //         url: fileRef,
-  //         timeline: [],
-  //         uploadAt: uploadAt,
-  //         canEdit: false,
-  //       },
-  //     };
-
-  //     /** Actualizar orden de compra */
-  //     await this.purchaseSrv.updatePurchase(environment.dataEvent.keyDb, this.orderDoc.orderId, purchase);
-  //     return;
-
-  //   } catch (err) {
-  //     console.log('Error on PurchaseDetailsComponent.onLoadVoucher', err);
-  //     return;
-
-  //   } finally {
-  //     this.spinner.hide();
-  //   }
-  // }
 
   onRenderUpdateVoucher(event: any) {
-    console.log('event', event);
+    // console.log('event', event);
     this.showUpdateVoucherForm = true;
   }
 
-  // async onUpdateVoucher(formData: any) {
-  //   try {
-  //     const ask = await this.sweetAlert2Srv.askConfirm(
-  //       this.translate.instant("alert.confirmAction")
-  //     );
-  //     if (!ask) { return; }
 
-  //     await this.spinner.show();
+  async onLoadVoucher(formData: any) {
+    try {
+      const ask = await this.sweetAlert2Srv.askConfirm(
+        this.translate.instant("alert.confirmAction")
+      );
+      if (!ask) { return; }
 
-  //     console.log('formData', formData);
-  //     console.log('order', this.orderDoc);
+      await this.spinner.show();
 
-  //     const { bankTransferFile: file, reference } = formData;
+      console.log('formData', formData);
+      console.log('order', this.orderDoc);
 
-  //     const uploadAt = moment().valueOf();
+      const { bankTransferFile: file, reference } = formData;
 
-  //     /** Construir nombre del archivo */
-  //     const fileName = `${this.orderDoc.orderId}_${file.name}_${uploadAt}`;
+      const uploadAt = moment().valueOf();
 
-  //     /** Crear Referencia al documento */
-  //     const urlToSaveFile = `purchases/${environment.dataEvent.keyDb}/${this.orderDoc.orderId}/${fileName}`;
+      /** Construir nombre del archivo */
+      const fileName = `${this.orderDoc.orderId}_${file.name}_${uploadAt}`;
 
-  //     /** Cargar archivo ene l bucket */
-  //     const fileRef = await this.uploadFileSrv.uploadFileDocumentIntoRoute(urlToSaveFile, file);
+      /** Crear Referencia al documento */
+      const urlToSaveFile = `purchases/${environment.dataEvent.keyDb}/${this.orderDoc.orderId}/${fileName}`;
 
-  //     /** Construir objeto con valores a actualizar */
-  //     const purchase = {
-  //       "voucher.reference": reference,
-  //       "voucher.name": file.name,
-  //       "voucher.type": file.type,
-  //       "voucher.size": file.size,
-  //       "voucher.path": urlToSaveFile,
-  //       "voucher.url": fileRef,
-  //       "voucher.uploadAt": uploadAt,
-  //       "voucher.canEdit": false,
-  //       status: 'pending'
-  //     };
+      /** Cargar archivo ene l bucket */
+      const fileRef = await this.uploadFileSrv.uploadFileDocumentIntoRoute(urlToSaveFile, file);
 
-  //     /** Actualizar orden de compra */
-  //     await this.purchaseSrv.updatePurchase(environment.dataEvent.keyDb, this.orderDoc.orderId, purchase);
+      /** Construir objeto con valores a actualizar */
+      const purchase = {
+        voucher: {
+          reference: reference,
+          name: file.name,
+          type: file.type,
+          size: file.size,
+          path: urlToSaveFile,
+          url: fileRef,
+          timeline: [],
+          uploadAt: uploadAt,
+          canEdit: false,
+        },
+      };
 
-  //     this.showUpdateVoucherForm = false;
-  //     console.log('voucher updated');
-  //     return;
+      /** Actualizar orden de compra */
+      await this.purchaseSrv.updatePurchase(environment.dataEvent.keyDb, this.orderDoc.orderId, purchase);
+      return;
 
-  //   } catch (err) {
-  //     console.log('Error on PurchaseDetailsComponent.onUpdateVoucher', err);
-  //     return;
+    } catch (err) {
+      console.log('Error on PurchaseDetailsComponent.onLoadVoucher', err);
+      return;
 
-  //   } finally {
-  //     this.spinner.hide();
-  //   }
-  // }
+    } finally {
+      this.spinner.hide();
+    }
+  }
+
+
+  async onUpdateVoucher(formData: any) {
+    try {
+      const ask = await this.sweetAlert2Srv.askConfirm(
+        this.translate.instant("alert.confirmAction")
+      );
+      if (!ask) { return; }
+
+      await this.spinner.show();
+
+      console.log('formData', formData);
+      console.log('order', this.orderDoc);
+
+      const { bankTransferFile: file, reference } = formData;
+
+      const uploadAt = moment().valueOf();
+
+      /** Construir nombre del archivo */
+      const fileName = `${this.orderDoc.orderId}_${file.name}_${uploadAt}`;
+
+      /** Crear Referencia al documento */
+      const urlToSaveFile = `purchases/${environment.dataEvent.keyDb}/${this.orderDoc.orderId}/${fileName}`;
+
+      /** Cargar archivo ene l bucket */
+      const fileRef = await this.uploadFileSrv.uploadFileDocumentIntoRoute(urlToSaveFile, file);
+
+      /** Construir objeto con valores a actualizar */
+      const purchase = {
+        "voucher.reference": reference,
+        "voucher.name": file.name,
+        "voucher.type": file.type,
+        "voucher.size": file.size,
+        "voucher.path": urlToSaveFile,
+        "voucher.url": fileRef,
+        "voucher.uploadAt": uploadAt,
+        "voucher.canEdit": false,
+        status: 'pending'
+      };
+
+      /** Actualizar orden de compra */
+      await this.purchaseSrv.updatePurchase(environment.dataEvent.keyDb, this.orderDoc.orderId, purchase);
+
+      this.showUpdateVoucherForm = false;
+      console.log('voucher updated');
+      return;
+
+    } catch (err) {
+      console.log('Error on PurchaseDetailsComponent.onUpdateVoucher', err);
+      return;
+
+    } finally {
+      this.spinner.hide();
+    }
+  }
 
   ngOnDestroy(): void {
     this.sub$.unsubscribe();
