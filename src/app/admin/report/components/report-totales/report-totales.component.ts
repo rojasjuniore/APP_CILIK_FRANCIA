@@ -1,5 +1,8 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ProfilePipe } from 'src/app/pipes/profile.pipe';
+import { ExcelService } from 'src/app/services/excel.service';
 import { PurchaseService } from 'src/app/services/purchase.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-report-totales',
@@ -11,7 +14,10 @@ export class ReportTotalesComponent implements OnChanges {
   totals: any;
   totalForItemList: any;
 
-  constructor(private purchaseSrv: PurchaseService) { }
+  constructor(
+    private userSrv: UserService,
+    private excelSrv: ExcelService,
+    private purchaseSrv: PurchaseService) { }
 
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -53,5 +59,47 @@ export class ReportTotalesComponent implements OnChanges {
   }
 
 
+  async downloadExcel() {
+
+
+    const dataPromises = this.list.map(item =>
+      Promise.all([
+        this.userSrv.getName(item.uid),
+        this.userSrv.getName(item.merchantIdentification),
+        this.userSrv.getName(item.referred_by),
+        this.userSrv.getProfileAfs(item.uid) as any,
+      ]).then(([name, merchantIdentification, referred_by, profile]) => {
+        return {
+          createdAt: item.createdAt,
+          name,
+          email: profile.email,
+          phone: `${profile.prefijo}${profile.phone}`,
+          identification: profile.identification,
+          _language: profile._language,
+          uid: item.uid,
+          paymentMethod: item.paymentMethod,
+          total: item.totalResumen.globalTotalToPay,
+          codeCoupon: item.codeCoupon || 'no aplica',
+          referred_by,
+          merchantIdentification,
+        };
+      }).catch(error => {
+        // Manejo de errores aquí - decide cómo quieres manejar los errores.
+        console.error('Error fetching data', error);
+        return null; // O podrías retornar un objeto de error específico
+      })
+    );
+
+    // Espera a que todas las promesas se resuelvan
+    const resolvedData = await Promise.all(dataPromises);
+
+    resolvedData.filter(item => item !== null);
+
+    console.log('resolvedData', resolvedData);
+
+    return
+
+    this.excelSrv.exportAsExcelFile(this.list, `reporte`);
+  }
 
 }

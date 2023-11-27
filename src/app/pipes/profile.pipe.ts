@@ -1,7 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { collect } from 'underscore';
 
 @Pipe({
   name: 'profile'

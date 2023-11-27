@@ -9,8 +9,8 @@
                 <th scope="col">{{'globalTotalToPay' | translate}} </th>
                 <th scope="col">{{'other' | translate}} </th>
                 <th scope="col">{{'referred_by' | translate}} </th>
-                <th scope="col">{{'merchantIdentification' | translate}} </th>
-    
+                <th scope="col">{{'orderId' | translate}} </th>
+
             </tr>
         </thead>
         <tbody>
@@ -28,7 +28,7 @@
                         </li>
                     </ul>
                 </td>
-                <td>{{item.merchantIdentification | profile | async}}</td>
+                <td>{{item.merchantIdentification | profile | async }}</td>
                 <td>{{item.referred_by | profile | async}}</td>
             </tr>
         </tbody>

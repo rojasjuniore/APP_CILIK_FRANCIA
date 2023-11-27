@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFirestore, Query } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 import { handlerArrayResult } from 'src/app/helpers/model.helper';
@@ -11,8 +12,53 @@ export class UserService {
   public collection: string = 'users';
 
   constructor(
+    private db: AngularFireDatabase,
     public afs: AngularFirestore,
   ) { }
+
+
+
+
+  async getName(value): Promise<any> {
+    if (!value) return "No validado";
+    let name = await this.getUserNameDB(value);
+    if (!name) {
+      const profile: any = await this.getProfileAfs(value);
+      if (profile) {
+        name = profile.name;
+      }
+    }
+    return name;
+  }
+
+
+  getProfileAfs(uid) {
+    return new Promise((resolve) => {
+      return this.afs
+        .collection('users').
+        doc(uid)
+        .valueChanges()
+        .subscribe((data: any) => {
+          resolve(data);
+        });
+    })
+  }
+
+
+  /**
+   * 
+   * @param uid 
+   * @returns 
+   */
+  getUserNameDB(uid) {
+    return new Promise((resolve) => {
+      return this.db.object(`/users/${uid}/name`)
+        .valueChanges()
+        .subscribe((data: any) => {
+          resolve(data);
+        });
+    })
+  }
 
 
   /**
@@ -63,9 +109,9 @@ export class UserService {
       orderBy = [],
     } = opts;
 
-    console.log({where});
+    console.log({ where });
 
-    const snapshot =  await this.afs.collection(this.collection,
+    const snapshot = await this.afs.collection(this.collection,
       (ref) => {
         let query: Query = ref;
         for (const row of where) { query = query.where(row.field, row.condition, row.value); }

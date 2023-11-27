@@ -1,5 +1,5 @@
 <div class="row">
-    <div *ngFor="let item of totalForItemList" class="col-3">
+    <div *ngFor="let item of totalForItemList" class="col-3 m-1">
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">
@@ -11,4 +11,13 @@
             </div>
         </div>
     </div>
+    <div class="col-2">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{'report'}}</h5>
+                <a class="btn btn-primary" (click)="downloadExcel()">downloadExcel</a>
+            </div>
+        </div>
+    </div>
+
 </div>
