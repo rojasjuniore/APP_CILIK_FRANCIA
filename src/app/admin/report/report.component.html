@@ -1,1 +1,48 @@
-<p>report works!</p>
+<div class="row">
+    <div class="col-12">
+        <ul class="nav nav-tabs nav-tabs-dash" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button (click)="loadData('completed')" class="nav-link active" id="completed-tab" data-bs-toggle="tab"
+                    data-bs-target="#completed" type="button" role="tab" aria-controls="completed" aria-selected="true">
+                    {{"completed" | translate}}
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button (click)="loadData('paymentProcess')" class="nav-link" id="paymentProcess-tab"
+                    data-bs-toggle="tab" data-bs-target="#paymentProcess" type="button" role="tab"
+                    aria-controls="paymentProcess" aria-selected="false">
+                    {{"paymentProcess" | translate}}</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button (click)="loadData('pending')" class="nav-link" id="pending-tab" data-bs-toggle="tab"
+                    data-bs-target="#pending" type="button" role="tab" aria-controls="pending" aria-selected="false">
+                    {{"pending" | translate}}</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button (click)="loadData('rejected')" class="nav-link" id="rejected-tab" data-bs-toggle="tab"
+                    data-bs-target="#rejected" type="button" role="tab" aria-controls="rejected" aria-selected="false">
+                    {{"rejected" | translate}}</button>
+            </li>
+        </ul>
+    </div>
+
+    <div class="pt-5"></div>
+    <ng-container *ngIf="report$ | async as list; else loading">
+        <div class="col-12">
+            <app-report-totales [list]="list"></app-report-totales>
+        </div>
+        <div class="pt-5"></div>
+        <div class="col-12">
+            <app-report-list [list]="list"></app-report-list>
+        </div>
+    </ng-container>
+
+    <ng-template #loading>
+        <div *ngIf="isLoading" class="loading-indicator">
+            Cargando...
+        </div>
+    </ng-template>
+
+
+
+</div>

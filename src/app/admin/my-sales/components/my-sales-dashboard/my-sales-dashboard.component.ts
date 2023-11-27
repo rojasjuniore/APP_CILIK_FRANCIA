@@ -17,7 +17,6 @@ export class MySalesDashboardComponent implements OnInit {
 
 
   constructor(
-    private customizationfileSrv: CustomizationfileService,
     private purchaseSrv: PurchaseService,
     private sweetalert2Srv: Sweetalert2Service,
   ) { }
@@ -53,56 +52,18 @@ export class MySalesDashboardComponent implements OnInit {
         product: item.product
       }
     });
-    this.totals = this.getTotal(mapData);
+    this.totals = this.purchaseSrv.getTotal(mapData);
 
 
     /// @dev obtiene los totales por producto
     const mapDataProduct = data.map(item => {
       return item.product
     });
-    this.totalForItemList = this.totalForItem(mapDataProduct);
+    this.totalForItemList = this.purchaseSrv.totalForItem(mapDataProduct);
   }
 
 
-  /**
-   * @dev obtiene los totales
-   * @param dataArray 
-   * @returns 
-   */
-  getTotal(dataArray: any[]) {
-    const totals = dataArray.reduce((acc, data) => {
-      acc.globalDiscount += data.discount_with_coupon.globalDiscount;
-      acc.globalSubtotal += data.discount_with_coupon.globalSubtotal;
-      acc.globalTotalToPay += data.discount_with_coupon.globalTotalToPay;
-      return acc;
-    }, {
-      globalDiscount: 0,
-      globalSubtotal: 0,
-      globalTotalToPay: 0
-    });
 
-    return totals
-  }
-
-  /**
-   * @dev agrupa los totales por producto
-   * @param dataArray 
-   * @returns 
-   */
-  totalForItem(dataArray: any[]) {
-    const flatArray = dataArray.flat();
-    const groupedData = flatArray.reduce((acc, item) => {
-      const keyEntry = acc.find(entry => entry.key === item.key);
-      if (!keyEntry) {
-        acc.push({ key: item.key, total: item.totales, count: 1 });
-      } else {
-        keyEntry.total += item.totales;
-        keyEntry.count += 1;
-      }
-      return acc;
-    }, []);
-    return groupedData;
-  }
 
 
 

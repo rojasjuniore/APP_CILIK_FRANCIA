@@ -43,6 +43,12 @@ export class PurchaseService {
 
 
 
+  getAllPurchases(eventId: string) {
+    return this.afs.collection(this.purchaseCollection).doc(eventId).collection('purchases').valueChanges();
+  }
+
+
+
   async getByEventAndIdPromise(eventId: string, docId: string) {
     try {
       const snapshot = await lastValueFrom(
@@ -580,6 +586,10 @@ export class PurchaseService {
   getDynamic(eventId: string, where: any[] = [], opts: any = {}): Observable<any[]> {
     const { idField = "_id", orderBy = [] } = opts;
 
+    console.log('getDynamic',this.purchaseCollection);
+    console.log('getDynamic',eventId);
+    console.log('getDynamic',where);
+
     return this.afs.collection(this.purchaseCollection).doc(eventId).collection('purchases', (ref) => {
       let query: any = ref;
       for (const row of where) { query = query.where(row.field, row.condition, row.value); }
@@ -589,6 +599,7 @@ export class PurchaseService {
     }
     ).valueChanges({ idField });
   }
+
 
   async getDynamicPromise(eventId: string, where: any[] = [], opts: any = {}): Promise<any[]> {
     const { idField = "_id", orderBy = [] } = opts;
@@ -625,6 +636,51 @@ export class PurchaseService {
     }
   }
 
+
+
+
+  /**
+   * @dev obtiene los totales
+   * @param dataArray 
+   * @returns 
+   */
+  getTotal(dataArray: any[]) {
+    const totals = dataArray.reduce((acc, data) => {
+      acc.globalDiscount += data.discount_with_coupon.globalDiscount;
+      acc.globalSubtotal += data.discount_with_coupon.globalSubtotal;
+      acc.globalTotalToPay += data.discount_with_coupon.globalTotalToPay;
+      return acc;
+    }, {
+      globalDiscount: 0,
+      globalSubtotal: 0,
+      globalTotalToPay: 0
+    });
+
+    return totals
+  }
+
+  /**
+   * @dev agrupa los totales por producto
+   * @param dataArray 
+   * @returns 
+   */
+  totalForItem(dataArray: any[]) {
+    const flatArray = dataArray.flat();
+    const groupedData = flatArray.reduce((acc, item) => {
+      const keyEntry = acc.find(entry => entry.key === item.key);
+      if (!keyEntry) {
+        acc.push({ key: item.key, total: item.totales, count: 1 });
+      } else {
+        keyEntry.total += item.totales;
+        keyEntry.count += 1;
+      }
+      return acc;
+    }, []);
+    return groupedData;
+  }
+
+
+  
 }
 
 
