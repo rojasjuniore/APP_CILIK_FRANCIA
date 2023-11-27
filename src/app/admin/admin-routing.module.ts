@@ -55,6 +55,12 @@ const routes: Routes = [
     loadChildren: () => import("./installments/installments.module").then((m) => m.InstallmentsModule),
   },
   {
+    path: 'report-admin',
+    data: { profiles: ['report-admin'] },
+    canActivate: [AuthProfileGuard],
+    loadChildren: () => import("./report/report.module").then((m) => m.ReportModule),
+  },
+  {
     path: '**',
     pathMatch: 'full',
     redirectTo: '/admin/dashboard'

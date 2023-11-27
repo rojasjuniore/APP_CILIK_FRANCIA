@@ -15,6 +15,15 @@ export class AdminDashboardComponent implements OnInit {
 
   public adminOptions = [
     {
+      label: 'Report',
+      icon: 'fa fa-money',
+      description: 'Report',
+      type: 'navigation',
+      url: '/admin/report-admin/dashboard/',
+      profiles: ['report-admin'],
+      available: true
+    },
+    {
       label: 'Manager Purchase Orders',
       icon: 'fa fa-money',
       description: 'Manager Purchase Orders',
