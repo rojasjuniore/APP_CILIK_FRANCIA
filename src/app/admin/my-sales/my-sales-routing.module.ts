@@ -12,10 +12,6 @@ const routes: Routes = [
     path: 'mySalesBenefits/:id/:ownerType',
     component: MySalesBenefitsModalComponent,
   },
-  // {
-  //   path: ':id/edit',
-  //   component: CouponsUpdateFormComponent,
-  // },
   {
     path: '**',
     pathMatch: 'full',

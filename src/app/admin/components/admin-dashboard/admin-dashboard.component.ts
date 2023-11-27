@@ -15,6 +15,15 @@ export class AdminDashboardComponent implements OnInit {
 
   public adminOptions = [
     {
+      label: 'Merchant Purchases',
+      icon: 'fa fa-money',
+      description: 'MerchantPurchases',
+      type: 'navigation',
+      url: '/admin/merchant-purchases/dashboard/',
+      profiles: ['report-admin'],
+      available: true
+    },
+    {
       label: 'Report',
       icon: 'fa fa-money',
       description: 'Report',
