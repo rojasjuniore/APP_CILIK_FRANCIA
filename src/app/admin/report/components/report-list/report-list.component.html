@@ -17,7 +17,7 @@
             <tr *ngFor="let item of list; let i = index">
                 <th scope="row">{{i+1}}</th>
                 <td>{{item.createdAt | date:'medium'}}</td>
-                <td>{{item.uid | profile | async }}</td>
+                <td>{{item.uid | profile | async | titlecase }}</td>
                 <td>{{item.paymentMethod}}</td>
                 <td>{{item.totalResumen.globalTotalToPay | currency}}</td>
                 <td>
@@ -28,8 +28,9 @@
                         </li>
                     </ul>
                 </td>
-                <td>{{item.merchantIdentification | profile | async }}</td>
-                <td>{{item.referred_by | profile | async}}</td>
+                <td>{{item.codeCoupon | profile | async | titlecase}}</td>
+                <td>{{item.merchantIdentification | profile | async | titlecase}}</td>
+                <td>{{item.referred_by | profile | async | titlecase}}</td>
             </tr>
         </tbody>
     </table>

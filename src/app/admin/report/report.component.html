@@ -29,11 +29,11 @@
     <div class="pt-5"></div>
     <ng-container *ngIf="report$ | async as list; else loading">
         <div class="col-12">
-            <app-report-totales [list]="list"></app-report-totales>
+            <app-report-totales [namefile]="namefile" [list]="list"></app-report-totales>
         </div>
         <div class="pt-5"></div>
         <div class="col-12">
-            <app-report-list [list]="list"></app-report-list>
+            <app-report-list [namefile]="namefile" [list]="list"></app-report-list>
         </div>
     </ng-container>
 

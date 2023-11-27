@@ -11,6 +11,7 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class ReportTotalesComponent implements OnChanges {
   @Input() list: any[] = [];
+  @Input() namefile = '';
   totals: any;
   totalForItemList: any;
 
@@ -21,9 +22,11 @@ export class ReportTotalesComponent implements OnChanges {
 
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { list } = changes;
+    const { list, namefile } = changes;
     if (list && list.currentValue) {
       this.list = list.currentValue;
+      this.namefile = namefile.currentValue; 
+
       this.buildDashboard(this.list);
     }
   }
@@ -69,14 +72,16 @@ export class ReportTotalesComponent implements OnChanges {
         this.userSrv.getName(item.referred_by),
         this.userSrv.getProfileAfs(item.uid) as any,
       ]).then(([name, merchantIdentification, referred_by, profile]) => {
+
+        const date = new Date(item.createdAt);
         return {
-          createdAt: item.createdAt,
+          uid: item.uid,
+          createdAt: date.toUTCString(),
           name,
           email: profile.email,
           phone: `${profile.prefijo}${profile.phone}`,
           identification: profile.identification,
           _language: profile._language,
-          uid: item.uid,
           paymentMethod: item.paymentMethod,
           total: item.totalResumen.globalTotalToPay,
           codeCoupon: item.codeCoupon || 'no aplica',
@@ -97,9 +102,7 @@ export class ReportTotalesComponent implements OnChanges {
 
     console.log('resolvedData', resolvedData);
 
-    return
-
-    this.excelSrv.exportAsExcelFile(this.list, `reporte`);
+    this.excelSrv.exportAsExcelFile(resolvedData, `${this.namefile}-reporte`);
   }
 
 }

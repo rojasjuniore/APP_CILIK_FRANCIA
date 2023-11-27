@@ -10,15 +10,18 @@ import { environment } from 'src/environments/environment';
 })
 export class ReportListComponent implements OnInit, OnChanges {
   @Input() list: any[] = [];
+  @Input() namefile = '';
+  totals: any;
   constructor() { }
 
   ngOnInit(): void {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { list } = changes;
+    const { list, namefile } = changes;
     if (list && list.currentValue) {
       this.list = list.currentValue;
+      this.namefile = namefile.currentValue; 
     }
   }
 

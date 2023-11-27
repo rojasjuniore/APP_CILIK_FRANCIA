@@ -70,7 +70,7 @@ export class ExcelService {
    */
   private saveAsExcelFile(buffer: any, fileName: string): void {
 
-    const _date = new Date().toLocaleDateString();
+    const _date = new Date().toUTCString();
     const data: Blob = new Blob([buffer], {
       type: EXCEL_TYPE
     });
