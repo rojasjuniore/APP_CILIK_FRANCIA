@@ -98,11 +98,11 @@ export class ReportTotalesComponent implements OnChanges {
     // Espera a que todas las promesas se resuelvan
     const resolvedData = await Promise.all(dataPromises);
 
-    resolvedData.filter(item => item !== null);
+    const  final = resolvedData.filter(item => item !== null);
 
-    console.log('resolvedData', resolvedData);
+    console.log('resolvedData', final);
 
-    this.excelSrv.exportAsExcelFile(resolvedData, `${this.namefile}-reporte`);
+    this.excelSrv.exportAsExcelFile(final, `${this.namefile}-reporte`);
   }
 
 }

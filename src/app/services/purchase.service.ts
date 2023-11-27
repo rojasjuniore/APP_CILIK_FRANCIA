@@ -646,6 +646,13 @@ export class PurchaseService {
    */
   getTotal(dataArray: any[]) {
     const totals = dataArray.reduce((acc, data) => {
+      if(!data || !data.discount_with_coupon){
+        return {
+          globalDiscount: 0,
+          globalSubtotal: 0,
+          globalTotalToPay: 0
+        }
+      }
       acc.globalDiscount += data.discount_with_coupon.globalDiscount;
       acc.globalSubtotal += data.discount_with_coupon.globalSubtotal;
       acc.globalTotalToPay += data.discount_with_coupon.globalTotalToPay;

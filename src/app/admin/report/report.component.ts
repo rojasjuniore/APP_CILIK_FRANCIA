@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 export class ReportComponent implements OnInit {
   public report$!: Observable<any[]>;
   isLoading: boolean = true;
-  namefile = 'reporte';
+  namefile = 'completed';
   constructor(private purchaseSrv: PurchaseService) { }
 
   ngOnInit(): void {
