@@ -20,7 +20,7 @@ export class AdminDashboardComponent implements OnInit {
       description: 'MerchantPurchases',
       type: 'navigation',
       url: '/admin/merchant-purchases/dashboard/',
-      profiles: ['report-admin'],
+      profiles: ['merchant-purchasesn-admin'],
       available: true
     },
     {
