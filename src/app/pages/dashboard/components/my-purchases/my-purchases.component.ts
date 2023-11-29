@@ -44,6 +44,17 @@ export class MyPurchasesComponent implements OnInit, OnDestroy {
       ],
       opts: { orderBy: [{ field: "createdAt", order: "desc" }] }
     },
+
+    /// 
+    pendingApproval: {
+      available: false,
+      query: [
+        { field: 'status', condition: '==', value: 'pendingApproval' },
+        { field: 'uid', condition: '==', value: null },
+      ],
+      opts: { orderBy: [{ field: "createdAt", order: "desc" }] }
+    },
+
     preApproved: {
       available: false,
       query: [
