@@ -7,8 +7,9 @@
             </button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-paymentProcess-tab" data-bs-toggle="pill" data-bs-target="#pills-paymentProcess"
-                type="button" role="tab" aria-controls="pills-paymentProcess" aria-selected="false">
+            <button class="nav-link" id="pills-paymentProcess-tab" data-bs-toggle="pill"
+                data-bs-target="#pills-paymentProcess" type="button" role="tab" aria-controls="pills-paymentProcess"
+                aria-selected="false">
                 {{ "general.paymentProcess" | translate | titlecase }}
             </button>
         </li>
@@ -16,6 +17,13 @@
             <button class="nav-link" id="pills-approved-tab" data-bs-toggle="pill" data-bs-target="#pills-approved"
                 type="button" role="tab" aria-controls="pills-approved" aria-selected="false">
                 {{ "general.approved" | translate | titlecase }}
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-preApproved-tab" data-bs-toggle="pill"
+                data-bs-target="#pills-preApproved" type="button" role="tab" aria-controls="pills-preApproved"
+                aria-selected="false">
+                {{ "general.preApproved" | translate | titlecase }}
             </button>
         </li>
         <li class="nav-item" role="presentation">
@@ -30,28 +38,25 @@
 <div class="col-12">
     <div class="tab-content" id="pills-tabContent">
         <div class="tab-pane fade show active" id="pills-pending" role="tabpanel" aria-labelledby="pills-pending-tab">
-            <app-purchase-list 
-                [query]="(queries.pending.available) ? queries.pending.query : []"
-                [opts]="(queries.pending.available) ? queries.pending.opts : {}"
-            ></app-purchase-list>
+            <app-purchase-list [query]="(queries.pending.available) ? queries.pending.query : []"
+                [opts]="(queries.pending.available) ? queries.pending.opts : {}"></app-purchase-list>
         </div>
         <div class="tab-pane fade" id="pills-paymentProcess" role="tabpanel" aria-labelledby="pills-paymentProcess-tab">
-            <app-purchase-list 
-                [query]="(queries.paymentProcess.available) ? queries.paymentProcess.query : []"
-                [opts]="(queries.paymentProcess.available) ? queries.paymentProcess.opts : {}"
-            ></app-purchase-list>
+            <app-purchase-list [query]="(queries.paymentProcess.available) ? queries.paymentProcess.query : []"
+                [opts]="(queries.paymentProcess.available) ? queries.paymentProcess.opts : {}"></app-purchase-list>
         </div>
         <div class="tab-pane fade" id="pills-approved" role="tabpanel" aria-labelledby="pills-approved-tab">
-            <app-purchase-list 
-                [query]="(queries.completed.available) ? queries.completed.query : []"
-                [opts]="(queries.completed.available) ? queries.completed.opts : {}"
-            ></app-purchase-list>
+            <app-purchase-list [query]="(queries.completed.available) ? queries.completed.query : []"
+                [opts]="(queries.completed.available) ? queries.completed.opts : {}"></app-purchase-list>
         </div>
         <div class="tab-pane fade" id="pills-rejected" role="tabpanel" aria-labelledby="pills-rejected-tab">
-            <app-purchase-list 
-                [query]="(queries.rejected.available) ? queries.rejected.query : []"
-                [opts]="(queries.rejected.available) ? queries.rejected.opts : {}"
-            ></app-purchase-list>
+            <app-purchase-list [query]="(queries.rejected.available) ? queries.rejected.query : []"
+                [opts]="(queries.rejected.available) ? queries.rejected.opts : {}"></app-purchase-list>
+        </div>
+
+        <div class="tab-pane fade" id="pills-preApproved" role="tabpanel" aria-labelledby="pills-preApproved-tab">
+            <app-purchase-list [query]="(queries.preApproved.available) ? queries.preApproved.query : []"
+                [opts]="(queries.preApproved.available) ? queries.preApproved.opts : {}"></app-purchase-list>
         </div>
     </div>
 </div>

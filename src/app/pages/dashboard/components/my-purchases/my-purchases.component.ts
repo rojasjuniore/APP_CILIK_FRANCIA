@@ -14,8 +14,8 @@ export class MyPurchasesComponent implements OnInit, OnDestroy {
     pending: {
       available: false,
       query: [
-        {field: 'status', condition: '==', value: 'pending'},
-        {field: 'uid', condition: '==', value: null},
+        { field: 'status', condition: '==', value: 'pending' },
+        { field: 'uid', condition: '==', value: null },
       ],
       opts: { orderBy: [{ field: "createdAt", order: "desc" }] }
     },
@@ -24,23 +24,31 @@ export class MyPurchasesComponent implements OnInit, OnDestroy {
       sort: "paymentProcess",
       query: [
         { field: 'status', condition: '==', value: 'paymentProcess' },
-        {field: 'uid', condition: '==', value: null},
+        { field: 'uid', condition: '==', value: null },
       ],
       opts: { orderBy: [{ field: "createdAt", order: "desc" }] }
     },
     completed: {
       available: false,
       query: [
-        {field: 'status', condition: '==', value: 'completed'},
-        {field: 'uid', condition: '==', value: null},
+        { field: 'status', condition: '==', value: 'completed' },
+        { field: 'uid', condition: '==', value: null },
       ],
       opts: { orderBy: [{ field: "createdAt", order: "desc" }] }
     },
     rejected: {
       available: false,
       query: [
-        {field: 'status', condition: '==', value: 'rejected'},
-        {field: 'uid', condition: '==', value: null},
+        { field: 'status', condition: '==', value: 'rejected' },
+        { field: 'uid', condition: '==', value: null },
+      ],
+      opts: { orderBy: [{ field: "createdAt", order: "desc" }] }
+    },
+    preApproved: {
+      available: false,
+      query: [
+        { field: 'status', condition: '==', value: 'preApproved' },
+        { field: 'uid', condition: '==', value: null },
       ],
       opts: { orderBy: [{ field: "createdAt", order: "desc" }] }
     },
@@ -56,7 +64,7 @@ export class MyPurchasesComponent implements OnInit, OnDestroy {
 
     this.sub$ = this.authSrv.uid$.subscribe((uid) => {
       // console.log('uid', uid);
-      if(!uid) { return; }
+      if (!uid) { return; }
       this.uid = uid;
       this.updateValues();
     });
@@ -66,16 +74,16 @@ export class MyPurchasesComponent implements OnInit, OnDestroy {
   /**
    * Habilitar las consultas que requieren el uid del usuario
    */
-  updateValues(){
+  updateValues() {
     const snapshot = Object.entries(this.queries).map(([key, value]) => {
       const available = (this.uid) ? true : false;
-      const query = value.query.map((query) =>  query.field === 'uid' ? {...query, value: this.uid } : query);
+      const query = value.query.map((query) => query.field === 'uid' ? { ...query, value: this.uid } : query);
       const opts = value.opts;
-      return { [key]: {available, query, opts} };
+      return { [key]: { available, query, opts } };
     })
-    .reduce((acc, cur) => ({...acc, ...cur}), {});
+      .reduce((acc, cur) => ({ ...acc, ...cur }), {});
     // console.log('snapshot', snapshot);
-    this.queries = {...this.queries, ...snapshot};
+    this.queries = { ...this.queries, ...snapshot };
   }
 
   ngOnDestroy(): void {
