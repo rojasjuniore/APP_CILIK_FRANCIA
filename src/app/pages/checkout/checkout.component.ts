@@ -27,6 +27,13 @@ export class CheckoutComponent implements OnInit {
 
   public paymentOptions = [
     {
+      label: 'general.adviser',
+      slug: 'adviser',
+      type: 'navigation',
+      icon: 'bi bi-person-badge',
+      available: true
+    },
+    {
       label: 'general.installmentsPayment',
       slug: 'installments',
       type: 'installments',
@@ -47,7 +54,6 @@ export class CheckoutComponent implements OnInit {
       icon: 'bi bi-bank',
       available: true
     },
-
     {
       label: 'general.paypal',
       slug: 'paypal',
@@ -55,6 +61,7 @@ export class CheckoutComponent implements OnInit {
       icon: 'bi bi-paypal',
       available: true
     },
+
   ];
   public paymentOptionSelected: any;
 
@@ -81,8 +88,10 @@ export class CheckoutComponent implements OnInit {
 
   ) { }
 
-  async ngOnInit(): Promise<void> {
 
+
+
+  async ngOnInit(): Promise<void> {
     this.couponObj = await this.codeStorageSrv.checkCode();
     console.log('couponObj', this.couponObj);
 
@@ -106,20 +115,12 @@ export class CheckoutComponent implements OnInit {
 
 
     this.cartTotalSrv.myCartTotal$.subscribe(async (gTotal: any) => {
-      // console.log('gTotal', gTotal);
       if (!gTotal) return
       this.totales = gTotal.globalTotal;
-      // console.log('this.totales', this.totales);
-      // this.purchaseDetailsWithCoupon = gTotal.updatedGroupedData;
-      // console.log('this.totales', this.purchaseDetailsWithCoupon);
-
-
     });
-
-
-
-
   }
+
+
 
 
   onClearPaymentOptionSelected() {
@@ -240,6 +241,99 @@ export class CheckoutComponent implements OnInit {
 
     } catch (err) {
       console.log('Error on CheckoutComponent.onPaypalCallback()', err);
+      this.sweetAlert2Srv.showError("Ocurrió un error al procesar la compra")
+      return;
+    } finally {
+      this.spinner.hide();
+    }
+  }
+
+
+
+  async onAdviserCallback(event: any) {
+    console.log('onAdviserCallback', event);
+    try {
+
+      /** Si no se recibe ninguna opción */
+      if (!event) { return; }
+
+
+      const ask = await this.sweetAlert2Srv.askConfirm(
+        this.translate.instant("alert.confirmAction")
+      );
+      if (!ask) { return; }
+
+
+      await this.spinner.show();
+
+      const orderId = this.cart.cartId;
+
+      const userDoc = await this.authSrv.getByUIDPromise(this.cart.uid);
+
+
+      const purchase = {
+        ...this.cart,
+        merchantIdentification: this.couponObj ? this.couponObj.createdBy : null,
+        codeCoupon: this.couponObj.code ? this.couponObj.code : null,
+        coupons: this.couponObj ? this.couponObj.coupons : [],
+        referred_by: this.couponObj.ownerId ? this.couponObj.ownerId : null,
+        discount_with_coupon: this.totales ? this.totales : 0,
+        voucher: null,
+        canEdit: true,
+        status: 'pending',
+        payedAt: null,
+        paymentMethod: 'adviser',
+        installments: [],
+        orderId: orderId,
+        totales: this.totales.globalTotalToPay,
+        totalResumen: this.totales,
+      };
+      console.log('purchase', purchase);
+
+      /** Almacenar orden de compra */
+      await this.purchaseSrv.storePurchase(environment.dataEvent.keyDb, purchase.orderId, purchase);
+
+      /** Enviar notificación de compra realizada */
+      await this.purchaseSrv.sendPurchaseAdviserNotification({
+        email: userDoc.email,
+        orderId: purchase.orderId,
+        uid: this.cart.uid,
+        installments: purchase.installments,
+        name: userDoc.name,
+      });
+
+
+
+      /** Eliminar carrito de compra */
+      await this.cartSrv.deleteCart(environment.dataEvent.keyDb, this.uid);
+
+      if (this.couponObj) {
+        /**  Resta un valor a un contador */
+        await this.couponsSrv.decrementUserLimitDoc(environment.dataEvent.keyDb, this.couponObj.code, 'userLimit', 1);
+
+        /** decrement User Limit for producto */
+        await this.couponsSrv.decrementUserLimitsSequentially(this.cart.product, purchase.codeCoupon)
+      }
+
+
+      /// @dev eliminar carrito de compra
+      this.cartTotalSrv.removeItem()
+
+
+      this.sweetAlert2Srv.showToast(
+        this.translate.instant("alert.purchaseMadeSatisfactorily"),
+        'success'
+      );
+
+      /** Redireccionar */
+      this.router.navigate([`/pages/purchases/${orderId}/details`]);
+
+
+
+      return;
+
+    } catch (err) {
+      console.log('Error on CheckoutComponent.onSelectBankTransferFile()', err);
       this.sweetAlert2Srv.showError("Ocurrió un error al procesar la compra")
       return;
     } finally {

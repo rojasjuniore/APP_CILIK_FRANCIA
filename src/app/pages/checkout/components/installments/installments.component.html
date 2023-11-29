@@ -1,14 +1,14 @@
 <div class="row mb-4">
     <div class="col-12 mb-4">
         <p>
-            Entendemos la importancia de la planificación financiera. Por eso, ofrecemos la opción de pagar en cuotas
+            {{'Entendemos la importancia de la planificación financiera. Por eso, ofrecemos la opción de pagar en cuotas
             fijas, permitiéndote distribuir el costo de tu compra con un monto exacto a pagar mes a mes, sin sorpresas.
-            Disfruta de una tasa fija y un plazo definido desde el inicio.
-
+            Disfruta de una tasa fija y un plazo definido desde el inicio.'
+            | translate }}
         </p>
 
         <p>
-            Tus cuotas quedarán de la siguiente manera:
+            {{'Tus cuotas quedarán de la siguiente manera'| translate }}:
         </p>
 
     </div>
@@ -19,11 +19,11 @@
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">Fecha de pago: {{item.date }}</h5>
                     <small>
-                        Pendiente: {{item.quota}}
+                        {{'Pendiente'| translate }}: {{item.quota}}
                     </small>
                 </div>
                 <p class="mb-1">
-                    Monto: {{item.amount | currency:'USD':'symbol':'1.2-2'}}
+                    {{'Monto'| translate }}: {{item.amount | currency:'USD':'symbol':'1.2-2'}}
                 </p>
             </a>
         </ng-container>
@@ -31,21 +31,19 @@
 
     <div class="col-12 mb-4 pt-3">
         <p>
-            Es importante resaltar que
-            el pago de la primera cuota debe realizarse dentro de las 48 horas siguientes a tu compra. De no hacerlo,
-            lamentablemente tu orden quedará cancelada.
+            {{'Es importante resaltar que el pago de la primera cuota debe realizarse dentro de las 48 horas siguientes
+            a tu compra. De no hacerlo, lamentablemente tu orden quedará cancelada.'| translate }}
         </p>
 
         <p>
-            Sigue las instrucciones para completar tu transacción. Si tienes dudas o inquietudes sobre el proceso de
-            pago en
-            cuotas, estamos aquí para ayudarte.
+            {{'Sigue las instrucciones para completar tu transacción. Si tienes dudas o inquietudes sobre el proceso de
+            pago en cuotas, estamos aquí para ayudarte.'| translate }}:
 
         </p>
 
         <p>
             <strong>
-                Aplican términos y condiciones.
+                {{'Aplican términos y condiciones.'| translate }}
             </strong>
         </p>
     </div>

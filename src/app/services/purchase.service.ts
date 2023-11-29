@@ -375,6 +375,70 @@ export class PurchaseService {
     }
   }
 
+
+  async sendPurchaseAdviserNotification(params: any) {
+    try {
+      const {
+        email,
+        orderId,
+        installments,
+        totales
+      } = params;
+
+      await this.quickNotificationSrv.sendEmailNotification({
+        type: "purchaseAdviserNotification",
+        email: email,
+        subject: "Procesando tu compra",
+        greeting: ` `,
+        messageBody: [
+          {
+            type: 'line',
+            text: "Nos complace informarle que su compra será procesada próximamente. En breve, su asesor seleccionado verificará y confirmará todos los detalles de su pedido. Este paso es fundamental para asegurarnos de que su experiencia con nosotros sea excepcional."
+          },
+          {
+            type: 'line',
+            text: "Agradecemos su confianza en nosotros y esperamos que disfrute de su adquisición. Si tiene alguna pregunta o necesita asistencia adicional, no dude en ponerse en contacto con su asesor o con nuestro equipo."
+          },
+          {
+            type: 'line',
+            text: "Agradecemos su confianza en nosotros y esperamos que disfrute de su adquisición. Si tiene alguna pregunta o necesita asistencia adicional, no dude en ponerse en contacto con su asesor o con nuestro equipo."
+          },
+          {
+            type: 'line',
+            text: `*Aplican términos y condiciones.*`
+          },
+          {
+            type: 'line',
+            text: this.translatePipe.transform('notification.bankTransfer.body.6')
+          },
+          {
+            type: 'html',
+            html: `<p style='margin: 0;'>${this.translatePipe.transform('notification.bankTransfer.body.7')}</p>`
+          },
+          {
+            type: 'html',
+            html: `<p style='margin: 0;'><strong>WhatsApp:</strong> +57 314 772 2450</p>`
+          },
+          {
+            type: 'html',
+            html: `<p style='margin: 0;'><strong>Instagram:</strong> @worldlatindancecup</p>`
+          },
+          {
+            type: 'line',
+            text: ``
+          },
+        ],
+        salutation: `${this.translatePipe.transform('notification.bankTransfer.salutation')}`
+      });
+
+      return true;
+
+    } catch (err) {
+      console.log('Error on PurchaseService.updatePurchaseInstallmentCouta', err);
+      return false;
+    }
+  }
+
   /**
    * @dve Enviar notificación de datos para cuota de pago
    * @param params 
@@ -586,9 +650,9 @@ export class PurchaseService {
   getDynamic(eventId: string, where: any[] = [], opts: any = {}): Observable<any[]> {
     const { idField = "_id", orderBy = [] } = opts;
 
-    console.log('getDynamic',this.purchaseCollection);
-    console.log('getDynamic',eventId);
-    console.log('getDynamic',where);
+    console.log('getDynamic', this.purchaseCollection);
+    console.log('getDynamic', eventId);
+    console.log('getDynamic', where);
 
     return this.afs.collection(this.purchaseCollection).doc(eventId).collection('purchases', (ref) => {
       let query: any = ref;
@@ -646,7 +710,7 @@ export class PurchaseService {
    */
   getTotal(dataArray: any[]) {
     const totals = dataArray.reduce((acc, data) => {
-      if(!data || !data.discount_with_coupon){
+      if (!data || !data.discount_with_coupon) {
         return {
           globalDiscount: 0,
           globalSubtotal: 0,
@@ -687,7 +751,7 @@ export class PurchaseService {
   }
 
 
-  
+
 }
 
 

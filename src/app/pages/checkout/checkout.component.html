@@ -23,6 +23,7 @@
 <ng-template #renderPaymentOption>
     <ng-container [ngSwitch]="paymentOptionSelected.slug">
 
+
         <div class="col-12" *ngSwitchCase="'paypal'">
             <app-paypal-button [amount]="totales.globalTotalToPay || 0"
                 (onCallback)="onPaypalCallback($event)"></app-paypal-button>
@@ -43,6 +44,10 @@
         <div class="col-12" *ngSwitchCase="'installments'">
             <app-installments [installments]="installments" [totales]="totales"
                 (onSelectOption)="onSelectInstallmentsOption($event)"></app-installments>
+        </div>
+
+        <div class="col-12" *ngSwitchCase="'adviser'">
+            <app-adviser-checkout (onSelectOption)="onAdviserCallback($event)"></app-adviser-checkout>
         </div>
 
 

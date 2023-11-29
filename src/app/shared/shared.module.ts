@@ -52,6 +52,7 @@ import { PurchaseInstallmentsModalComponent } from '../pages/purchases/component
 import { PurchaseInstallmentsVoucherComponent } from '../pages/purchases/components/purchase-installments-voucher/purchase-installments-voucher.component';
 import { PurchaseInstallmentsComponent } from '../pages/purchases/components/purchase-installments/purchase-installments.component';
 import { PurchaseWeekendPassCardItemComponent } from '../pages/purchases/components/purchase-weekend-pass-card-item/purchase-weekend-pass-card-item.component';
+import { AdviserCheckoutComponent } from '../pages/checkout/components/adviser-checkout/adviser-checkout.component';
 
 
 
@@ -118,7 +119,9 @@ import { PurchaseWeekendPassCardItemComponent } from '../pages/purchases/compone
     PurchaseHotelEventCardItemComponent,
     PurchaseInstallmentsComponent,
     PurchaseInstallmentsModalComponent,
-    PurchaseInstallmentsVoucherComponent
+    PurchaseInstallmentsVoucherComponent,
+
+    AdviserCheckoutComponent
 
   ],
 
@@ -177,7 +180,9 @@ import { PurchaseWeekendPassCardItemComponent } from '../pages/purchases/compone
     PurchaseHotelEventCardItemComponent,
     PurchaseInstallmentsComponent,
     PurchaseInstallmentsModalComponent,
-    PurchaseInstallmentsVoucherComponent
+    PurchaseInstallmentsVoucherComponent,
+
+    AdviserCheckoutComponent
 
 
   ]

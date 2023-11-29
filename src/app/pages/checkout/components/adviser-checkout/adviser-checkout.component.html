@@ -1,0 +1,27 @@
+<div class="row mb-4">
+    <div class="col-12 mb-4">
+        <p>{{'Estimado cliente' | translate}},</p>
+        <p>{{'Nos complace informarle que su compra será procesada próximamente. En breve, su asesor seleccionado verificará y confirmará todos los detalles de su pedido. Este paso es fundamental para asegurarnos de que su experiencia con nosotros sea excepcional.
+            ' |
+            translate}}</p>
+        <p>
+            {{'Agradecemos su confianza en nosotros y esperamos que disfrute de su adquisición. Si tiene alguna pregunta
+            o necesita asistencia adicional, no dude en ponerse en contacto con su asesor o con nuestro equipo.' |
+            translate}}</p>
+        <p>{{'Saludos cordiales' | translate}},</p>
+
+        <p>
+            <strong>
+                {{'Aplican términos y condiciones.'| translate }}
+            </strong>
+        </p>
+        <p>{{'El equipo de World Latin Dance Cup' | translate}}</p>
+    </div>
+    <div class="col-12">
+        <button type="button" class="btn btn-primary" (click)="confirmOption()">
+            <i class="bi bi-check2-square"></i>
+            &nbsp;
+            {{"general.confirm" | translate | titlecase}}
+        </button>
+    </div>
+</div>
