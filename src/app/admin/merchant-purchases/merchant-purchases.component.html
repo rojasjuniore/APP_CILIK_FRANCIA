@@ -2,8 +2,8 @@
     <div class="col-12">
         <form [formGroup]="form" novalidate>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" formControlName="query" placeholder="Coupon Code">
-                <label for="couponCodeInput">Search by Coupon Code</label>
+                <input type="text" class="form-control" formControlName="query" placeholder="by Orden ID">
+                <label for="couponCodeInput">{{'Search by Orden ID' | translate}}</label>
             </div>
         </form>
     </div>
@@ -16,5 +16,86 @@
     </div>
 
 
+    <ng-container *ngIf="(adviser$ | async) as list; else renderLoaderList" [ngTemplateOutlet]="renderCheckList"
+        [ngTemplateOutletContext]="{list: list}"></ng-container>
 
+</div>
+
+<ng-template #renderList let-list="list">
+    <div class="col-12" *ngFor="let item of list">
+
+        <app-purchase-list-item-card [item]="item"
+            (onItemDetails)="onItemDetails($event)"></app-purchase-list-item-card>
+
+    </div>
+</ng-template>
+
+
+<ng-template #renderCheckList let-list="list">
+    <ng-container *ngIf="list.length > 0; else renderNoRecords" [ngTemplateOutlet]="renderList"
+        [ngTemplateOutletContext]="{list: list}"></ng-container>
+</ng-template>
+
+
+
+<ng-template #renderNoRecords>
+    <div class="col-12 mb-4">
+        <div class="card-box card-box-b3 p-3 mb-3">
+            <h5 class="text-center">
+                No records found
+            </h5>
+        </div>
+    </div>
+</ng-template>
+
+
+<ng-template #renderLoaderList>
+    <div class="col-12" *ngFor="let item of [1,1,1,1]">
+        <div class="card card-box p-3 mb-3">
+            <div class="row g-2 d-flex align-items-center">
+                <div class="col-12 px-3">
+                    <h5 class="card-title fw-bolder text-rslt placeholder-glow">
+                        <span class="placeholder placeholder-lg col-12"></span>
+                    </h5>
+                </div>
+
+                <div class="seprd2"></div>
+
+                <div class="col-12 px-3">
+
+                    <p class="card-text placeholder-glow">
+                        <span class="placeholder col-12"></span>
+                    </p>
+
+                    <p class="card-text placeholder-glow">
+                        <span class="placeholder col-12"></span>
+                    </p>
+
+                    <div class="d-flex justify-content-between">
+                        <div class="fs-4 fw-bolder placeholder-glow">
+                            <span class="placeholder col-12" style="width: 10rem; height: 32px;"></span>
+                        </div>
+                        <div>
+                            <a href="#" tabindex="-1" class="btn-icon btn-icon-two disabled placeholder col-4"
+                                aria-hidden="true"></a>
+                            &nbsp;
+                            <a href="#" tabindex="-1" class="btn-icon btn-icon-two disabled placeholder col-4"
+                                aria-hidden="true"></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+
+<div class="col-12">
+    <div class="d-flex justify-content-between">
+        <button class="btn btn-three btn-medium-c text-uppercase" type="button" routerLink="/admin/dashboard">
+            <i class="bi bi-chevron-left"></i>
+            {{ "general.back" | translate }}
+        </button>
+    </div>
 </div>

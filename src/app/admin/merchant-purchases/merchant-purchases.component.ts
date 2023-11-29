@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./merchant-purchases.component.css']
 })
 export class MerchantPurchasesComponent implements OnInit {
-  public coupons$!: Observable<any[]>;
+  public adviser$!: Observable<any[]>;
 
   public form: FormGroup = this.fb.group({ query: '' });
 
@@ -48,34 +48,34 @@ export class MerchantPurchasesComponent implements OnInit {
 
 
   loadData(query = '') {
-
-    // regex only works with strings and numbers
-    const regex = new RegExp(query, 'i');
-
+    // // regex only works with strings and numbers
+    // const regex = new RegExp(query, 'i');
     // run regex validation
-    const isValid = regex.test(query);
-    console.log('isValid', isValid);
+    // const isValid = regex.test(query);
+    // console.log('isValid', isValid);
+
+    console.log('query', query);
 
     const uid = localStorage.getItem("uid");
 
-    if (isValid && query.length > 0) {
+    if (query.length > 0) {
       console.log('valid query', query);
-      this.coupons$ = this.purchaseSrv.getDynamic(environment.dataEvent.keyDb, [
-        { field: 'status', condition: '==', value: true },
-        { field: 'createdBy', condition: '==', value: uid },
-        { field: 'slug', condition: '>=', value: query },
-        { field: 'slug', condition: '<=', value: query + '\uf8ff' },
+      this.adviser$ = this.purchaseSrv.getDynamic(environment.dataEvent.keyDb, [
+        // { field: 'status', condition: '==', value: "pendingApproval" },
+        { field: 'paymentMethod', condition: '==', value: "adviser" },
+        { field: 'orderId', condition: '==', value: query },
       ], {
         orderBy: [{ field: 'slug', order: 'asc' }]
       });
     } else {
       console.log('no query');
-      this.coupons$ = this.purchaseSrv.getDynamic(environment.dataEvent.keyDb,
+      this.adviser$ = this.purchaseSrv.getDynamic(environment.dataEvent.keyDb,
         [
-          { field: 'status', condition: '==', value: true },
-          { field: 'createdBy', condition: '==', value: uid }
+          { field: 'status', condition: '==', value: "pendingApproval" },
+          { field: 'paymentMethod', condition: '==', value: "adviser" },
+          // { field: 'createdBy', condition: '==', value: uid }
         ],
-        { orderBy: [{ field: 'slug', order: 'asc' }] });
+        { orderBy: [{ field: 'createdAt', order: 'asc' }] });
     }
   }
 
@@ -95,6 +95,18 @@ export class MerchantPurchasesComponent implements OnInit {
     return this.router.navigate(['/admin/my-sales/dashboard/', coupon.ownerId]);
   }
 
+
+  onItemDetails(item: any): void {
+    // const id = item[this.fieldToRedirect];
+    // const url = this.redirectTo.replace('$', id);
+    // // console.log('url', url);
+    // this.router.navigate([url]);
+    // this.router.navigate([`/pages/purchases/${this.item._id}/details`]);
+
+    this.router.navigate([`/admin/purchases/${item._id}/details`]);
+
+    console.log('onItemDetails', item);
+  }
 
 
 
