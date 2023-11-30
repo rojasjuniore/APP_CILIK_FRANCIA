@@ -6,6 +6,7 @@ import { MerchantPurchasesRoutingModule } from './merchant-purchases-routing.mod
 import { MerchantPurchasesComponent } from './merchant-purchases.component';
 import { MerchantPurchaseDetailsComponent } from './components/merchant-purchase-details/merchant-purchase-details.component';
 import { MerchantModalEditAmountComponent } from './components/merchant-modal-edit-amount/merchant-modal-edit-amount.component';
+import { MerchantPaymentListComponent } from './components/merchant-payment-list/merchant-payment-list.component';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { MerchantModalEditAmountComponent } from './components/merchant-modal-ed
     MerchantPurchasesComponent,
     MerchantPurchaseDetailsComponent,
     MerchantModalEditAmountComponent,
+    MerchantPaymentListComponent,
   ],
   imports: [
     CommonModule,
