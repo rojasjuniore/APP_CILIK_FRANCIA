@@ -27,14 +27,15 @@
                         <th scope="col">{{'paymentMethod' | translate}}</th>
                         <th scope="col">{{'status' | translate}}</th>
                         <th scope="col">{{'totales' | translate}}</th>
+                        <th scope="col">{{'other' | translate}}</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let x of orderDoc.adviserPaymentList; let i =  index">
                         <th scope="row">{{i+1}}</th>
                         <td>{{x.payedAt | date}}</td>
-                        <td>{{x.paymentMethod | translate}}</td>
-                        <td>{{x.status | translate}}</td>
+                        <td>{{x.paymentMethod | translate | titlecase}}</td>
+                        <td>{{x.status | translate | titlecase}}</td>
                         <td>{{x.totales | currency}}</td>
                     </tr>
                 </tbody>
