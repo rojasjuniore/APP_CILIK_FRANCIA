@@ -84,7 +84,6 @@ export class PurchaseAdviserModalComponent implements OnInit, OnChanges {
         status: 'completed',
         paymentMethod: 'paypal',
         payload: event.data,
-        amount: this.amount,
         payedAt: moment().valueOf(),
         updatedAt: moment().valueOf(),
         totales: this.amount,
@@ -213,7 +212,6 @@ export class PurchaseAdviserModalComponent implements OnInit, OnChanges {
     }
   }
 
-
   /**
    * @dev callback de tucompra
    * @param $formData 
@@ -229,10 +227,17 @@ export class PurchaseAdviserModalComponent implements OnInit, OnChanges {
       const userDoc = await this.authSrv.getByUIDPromise(this.orderDoc.uid);
 
 
+      const adviserPaymentList = this.orderDoc.adviserPaymentList || [];
+      const adviserPaymentListlength = adviserPaymentList.length;
+
 
       // const campoExtra1 = JSON.parse(formData.campoExtra1);
       /** Actualizar referencia del ID de la orden de compra */
-      const campoExtra1 = { ...formData.campoExtra1, orderId: this.orderDoc.orderId, cuota: this.item.index };
+      const campoExtra1 = {
+        ...formData.campoExtra1,
+        orderId: this.orderDoc.orderId,
+        cuota: adviserPaymentListlength
+      };
       // console.log('campoExtra1', campoExtra1);
 
       /** Actualizar referencia de redirección */
