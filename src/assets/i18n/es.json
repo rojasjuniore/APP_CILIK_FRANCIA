@@ -2,6 +2,10 @@
   "installments": "Pago a cuotas",
   "bankTransfer": "Transferencia bancaria",
   "tucompra": "Tarjeta de crédito o débito",
+  "globalSubtotal": "Subtotal global",
+  "globalDiscount": "Descuento global",
+  "globalDiscountPercentage": "Porcentaje global",
+  "globalTotalToPay": "Total a pagar global",
   "general": {
     "completed": "Completado",
     "paymentProcess": "Proceso de pago",

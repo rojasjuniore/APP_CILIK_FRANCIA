@@ -2,6 +2,10 @@
   "installments": "installments",
   "bankTransfer": "Bank transfer",
   "tucompra": "credit Or Debit Card",
+  "globalSubtotal": "Global subtotal",
+  "globalDiscount": "Global discount",
+  "globalDiscountPercentage": "Global discount percentage",
+  "globalTotalToPay": "Global total to pay",
   "general": {
     "completed": "Completed",
     "paymentProcess": "Payment process",
