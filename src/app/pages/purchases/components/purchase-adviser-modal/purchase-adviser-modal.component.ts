@@ -141,6 +141,79 @@ export class PurchaseAdviserModalComponent implements OnInit, OnChanges {
   }
 
 
+  /// @dev callback de voucher 
+  async onVoucherCallback(event) {
+    console.log('onVoucherCallback', event);
+    try {
+      const ask = await this.sweetAlert2Srv
+        .askConfirm(this.translate.instant("alert.confirmAction"));
+      if (!ask) { return; }
+
+      await this.spinner.show();
+      const { formData, optionSelected } = event;
+      console.log('formData', formData);
+      console.log('order', this.orderDoc);
+      const { bankTransferFile: file, reference } = formData;
+      const uploadAt = moment().valueOf();
+
+      /** Construir nombre del archivo */
+      const fileName = `${this.orderDoc.orderId}_${file.name}_${uploadAt}`;
+
+      /** Crear Referencia al documento */
+      const urlToSaveFile = `purchases/${environment.dataEvent.keyDb}/${this.orderDoc.orderId}/${fileName}`;
+
+      /** Cargar archivo ene l bucket */
+      const fileRef = await this.uploadFileSrv.uploadFileDocumentIntoRoute(urlToSaveFile, file);
+
+      /** Construir objeto con valores a actualizar */
+      const purchase = {
+        voucher: {
+          reference: reference,
+          name: file.name,
+          type: file.type,
+          size: file.size,
+          path: urlToSaveFile,
+          url: fileRef,
+          timeline: [],
+          uploadAt: uploadAt,
+          canEdit: false,
+        },
+      };
+
+
+      let adviserPaymentList = this.orderDoc.adviserPaymentList || [];
+      adviserPaymentList.push({
+        status: 'pending',
+        paymentMethod: 'bankTransfer',
+        payload: {
+          purchase: purchase,
+          optionSelected: optionSelected
+        },
+        amount: this.amount,
+        payedAt: moment().valueOf(),
+        updatedAt: moment().valueOf(),
+        totales: this.amount,
+      });
+
+
+
+      await this.purchaseSrv
+        .updatedPurchaseAdviser(environment.dataEvent.keyDb, this.orderDoc.orderId, adviserPaymentList);
+
+      this.closeModal()
+
+      /** Redireccionar */
+      // this.router.navigate([`/pages/purchases/${this.orderDoc.orderId}/details`]);
+      return;
+    } catch (err) {
+      console.log('Error on PurchaseDetailsComponent.onLoadVoucher', err);
+      return;
+    } finally {
+      this.spinner.hide();
+    }
+  }
+
+
   /**
    * @dev callback de tucompra
    * @param $formData 
@@ -193,82 +266,8 @@ export class PurchaseAdviserModalComponent implements OnInit, OnChanges {
   }
 
 
-  /**
-   * 
-   * @param event 
-   */
-  async onVoucherCallback(event) {
-    console.log('onVoucherCallback', event);
-    try {
-      const ask = await this.sweetAlert2Srv.askConfirm(
-        this.translate.instant("alert.confirmAction")
-      );
-      if (!ask) { return; }
-
-      await this.spinner.show();
 
 
-      const { formData, optionSelected } = event;
-
-      console.log('formData', formData);
-      console.log('order', this.orderDoc);
-
-      const { bankTransferFile: file, reference } = formData;
-
-      const uploadAt = moment().valueOf();
-
-      /** Construir nombre del archivo */
-      const fileName = `${this.orderDoc.orderId}_${file.name}_${uploadAt}`;
-
-      /** Crear Referencia al documento */
-      const urlToSaveFile = `purchases/${environment.dataEvent.keyDb}/${this.orderDoc.orderId}/${fileName}`;
-
-      /** Cargar archivo ene l bucket */
-      const fileRef = await this.uploadFileSrv.uploadFileDocumentIntoRoute(urlToSaveFile, file);
-
-      /** Construir objeto con valores a actualizar */
-      const purchase = {
-        voucher: {
-          reference: reference,
-          name: file.name,
-          type: file.type,
-          size: file.size,
-          path: urlToSaveFile,
-          url: fileRef,
-          timeline: [],
-          uploadAt: uploadAt,
-          canEdit: false,
-        },
-      };
-
-
-
-      const installments = this.orderDoc.installments
-      installments[this.item.index].status = 'pending';
-      installments[this.item.index].paymentMethod = 'bankTransfer';
-      installments[this.item.index].payload = {
-        purchase: purchase,
-        optionSelected: optionSelected
-      };
-      installments[this.item.index].totales = this.amount;
-
-
-      await this.purchaseSrv.updatedPurchaseInstallment(environment.dataEvent.keyDb, this.orderDoc.orderId, installments);
-
-      this.closeModal()
-
-      /** Redireccionar */
-      this.router.navigate([`/pages/purchases/${this.orderDoc.orderId}/details`]);
-      return;
-
-    } catch (err) {
-      console.log('Error on PurchaseDetailsComponent.onLoadVoucher', err);
-      return;
-
-    } finally {
-      this.spinner.hide();
-    }
-  }
 
 
 
