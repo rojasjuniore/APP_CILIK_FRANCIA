@@ -8,6 +8,9 @@
   "globalTotalToPay": "Global total to pay",
   "globalTotalToPayOld": "Global total to pay old",
   "general": {
+    "save": "Save",
+    "preApproved": "Pre-approved",
+    "pendingApproval": "Pending approval",
     "completed": "Completed",
     "paymentProcess": "Payment process",
     "available": "Available",
