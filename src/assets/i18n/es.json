@@ -8,6 +8,7 @@
   "globalTotalToPay": "Total a pagar global",
   "globalTotalToPayOld": "Total a pagar global (Antes de descuento)",
   "general": {
+    "advisor": "Asesor",
     "payedAt": "Fecha de pago",
     "paidForPayment": "Pago realizado",
     "save": "Guardar",

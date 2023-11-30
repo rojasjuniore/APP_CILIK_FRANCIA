@@ -26,13 +26,7 @@ export class CheckoutComponent implements OnInit {
   public cart: any;
 
   public paymentOptions = [
-    {
-      label: 'general.adviser',
-      slug: 'adviser',
-      type: 'navigation',
-      icon: 'bi bi-person-badge',
-      available: true
-    },
+
     {
       label: 'general.installmentsPayment',
       slug: 'installments',
@@ -59,6 +53,13 @@ export class CheckoutComponent implements OnInit {
       slug: 'paypal',
       type: 'navigation',
       icon: 'bi bi-paypal',
+      available: true
+    },
+    {
+      label: 'general.advisor',
+      slug: 'adviser',
+      type: 'navigation',
+      icon: 'bi bi-person-badge',
       available: true
     },
 

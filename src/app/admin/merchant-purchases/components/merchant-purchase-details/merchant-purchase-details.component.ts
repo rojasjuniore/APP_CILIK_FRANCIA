@@ -117,7 +117,7 @@ export class MerchantPurchaseDetailsComponent implements OnInit {
 
     this.purchaseSrv.storePurchase(environment.dataEvent.keyDb, this.orderId, this.orderDoc)
 
-    this.sweetAlert2Srv.showBasicAlert('Success', 'The amount has been updated successfully');
+    return this.sweetAlert2Srv.showBasicAlert('Success', 'The amount has been updated successfully');
 
   }
 
@@ -129,6 +129,7 @@ export class MerchantPurchaseDetailsComponent implements OnInit {
     if (!ask) { return; }
 
     console.log('savePayment', this.orderDoc)
+    return this.sweetAlert2Srv.showBasicAlert('Success', 'The amount has been updated successfully');
   }
 
 

@@ -9,6 +9,7 @@
   "globalTotalToPayOld": "Global total to pay old",
   "completed": "Completed",
   "general": {
+    "advisor": "Advisor",
     "payedAt": "Payed at",
     "paidForPayment": "Paid for payment",
     "save": "Save",
