@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-12 text-center">
+
+        <form class="row g-3">
+            <div class="col-12">
+                <label for="amount">{{'enter amount' | translate | titlecase}}</label>
+                <input [(ngModel)]="amount" type="amount" name="amount" class="form-control" id="amount"
+                    placeholder="{{'amount' | translate}}">
+
+            </div>
+            <div class="col-12">
+                <button (click)="buttonPay()" class="btn btn-primary mb-3">
+                    {{'Agregar Pago' | translate}}
+                </button>
+            </div>
+        </form>
+
+
+    </div>
+    <div class="col-12">
+        <div class="table-responsive">
+            <table class="table table-striped-columns">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">{{'payedAt' | translate}}</th>
+                        <th scope="col">{{'paymentMethod' | translate}}</th>
+                        <th scope="col">{{'status' | translate}}</th>
+                        <th scope="col">{{'totales' | translate}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let x of orderDoc.adviserPaymentList; let i =  index">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{x.payedAt | date}}</td>
+                        <td>{{x.paymentMethod | translate}}</td>
+                        <td>{{x.status | translate}}</td>
+                        <td>{{x.totales | currency}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<ng-container *ngIf="isValidOrder">
+    <app-purchase-adviser-modal [orderDoc]="orderDoc" [amount]="amount" #purchaseAdviserModal
+        (onCloseModal)="onModalAdviserView($event)"></app-purchase-adviser-modal>
+</ng-container>

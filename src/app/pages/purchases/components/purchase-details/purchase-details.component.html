@@ -88,6 +88,9 @@
         </div>
     </div>
 
+    <!-- adviser purchase -->
+    <app-purchase-adviser *ngIf="(order.paymentMethod === 'adviser')" [orderDoc]="orderDoc"></app-purchase-adviser>
+
     <!-- Payment instaments -->
     <app-purchase-installments *ngIf="(order.paymentMethod === 'installments')"
         [orderDoc]="orderDoc"></app-purchase-installments>
@@ -126,7 +129,7 @@
     </div>
 
     <div class="col-12">
-     
+
         <app-purchase-bank-transfer-info-card-item
             [item]="order.bankOptionData"></app-purchase-bank-transfer-info-card-item>
     </div>

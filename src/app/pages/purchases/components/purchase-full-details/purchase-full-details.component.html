@@ -17,6 +17,18 @@
 
 </ng-container>
 
+<ng-container *ngIf="globalTotal.paidForPayment">
+    <h6 class="text-end">
+        <span class="badge rounded-pill bg-danger">
+            <i class="bi bi-info-circle"></i>
+        </span>
+        &nbsp;
+        {{ "general.paidForPayment" | translate }}:
+        <span> USD {{globalTotal?.paidForPayment | currency}}</span>
+    </h6>
+
+</ng-container>
+
 <h5 class="fw-bold fs-3 text-end">
     {{ "general.total" | translate }}: USD {{globalTotal?.globalTotalToPay | currency}}
 </h5>

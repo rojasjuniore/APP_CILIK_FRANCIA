@@ -15,6 +15,7 @@ export class PurchaseFullDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.globalTotal = this.cart.totalResumen
+    console.log('this.cart',  this.globalTotal);
   }
 
 }

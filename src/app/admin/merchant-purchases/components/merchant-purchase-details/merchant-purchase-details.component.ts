@@ -110,6 +110,7 @@ export class MerchantPurchaseDetailsComponent implements OnInit {
     this.orderDoc.status = 'preApproved';
     this.orderDoc.updatedBy = Date.now();
     this.orderDoc.updatedByUid = uid;
+    this.orderDoc.adviserPaymentList = [];
 
 
     console.log('this.orderDoc', this.orderId, this.orderDoc);
