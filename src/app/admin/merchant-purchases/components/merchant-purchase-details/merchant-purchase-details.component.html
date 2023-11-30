@@ -1,1 +1,205 @@
-<p>merchant-purchase-details works!</p>
+<div class="row">
+    <div class="col text-center mb-3">
+        <div class="fs-4 fw-bold">
+            {{"general.purchase" | translate | titlecase}}: {{orderDoc?.totalResumen.globalTotalToPay | currency}}
+        </div>
+        <div class="text-rslt fw-bold fs-5">
+            <i class="bi bi-ticket-perforated"></i>
+            &nbsp;
+            {{orderId}}
+        </div>
+    </div>
+
+    <ng-container *ngIf="(orderDoc); else renderLoaderview" [ngTemplateOutlet]="renderCheckOrderDoc"
+        [ngTemplateOutletContext]="{item: orderDoc}"></ng-container>
+
+    <div class="col-12">
+        <div class="d-flex justify-content-between">
+            <button class="btn btn-three btn-medium-c text-uppercase" type="button"
+                routerLink="/admin/merchant-purchases/dashboard">
+                <i class="bi bi-chevron-left"></i>
+                {{ "general.back" | translate }}
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #renderOrderDoc let-order="order">
+    <div class="col-12 mb-4">
+        <div class="card card-box p-3 mb-3">
+            <div class="row g-2 d-flex align-items-center">
+                <div class="col-12 px-3">
+                    <div class="row mb-1">
+                        <div class="col-12 col-md-6">
+                            <p class="card-text mb-0">
+                                {{"general.createdAt" | translate | titlecase}}:
+                                <small class="text-muted">
+                                    {{order.createdAt | date: 'medium'}}
+                                </small>
+                            </p>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <p class="card-text mb-0 text-md-end">
+                                {{"general.status" | translate}}:
+                                <span class="badge bg-danger">
+                                    {{ ('general.'+ ((order.status === 'completed') ? 'approved' : order.status)) |
+                                    translate | uppercase}}
+                                </span>
+                            </p>
+                        </div>
+
+                        <div class="col-12 col-md-6">
+                            <p class="card-text mb-0">
+                                {{"general.paymentMethod" | translate | titlecase}}:
+                                <small class="text-muted">
+                                    {{order.paymentMethod}}
+                                </small>
+                            </p>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <p class="card-text mb-0 text-md-end">
+                                {{"general.processedAt" | translate | titlecase}}:
+                                <small class="text-muted">
+                                    <ng-container *ngIf="order.status === 'pending'">
+                                        {{"general.inProgress" | translate | titlecase}}
+                                    </ng-container>
+
+                                    <ng-container *ngIf="order.status === 'rejected'">
+                                        {{order.rejectedAt | date: 'medium'}}
+                                    </ng-container>
+
+                                    <ng-container *ngIf="order.status === 'completed'">
+                                        {{order.payedAt | date: 'medium'}}
+                                    </ng-container>
+                                </small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="seprd2"></div>
+
+                <div class="col-12 text-center text-md-end">
+                    <app-purchase-full-details [cart]="order"></app-purchase-full-details>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped-columns">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">{{'title'| translate}}</th>
+                    <th scope="col">{{'total'| translate}}</th>
+                    <th scope="col">{{'option'| translate}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of order.product; let i = index">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{item.title | translate}}
+                        <ng-container *ngIf="item.room">
+                            : <strong>{{item.room.ranges.from}} -  {{item.room.ranges.to}} </strong>
+                        </ng-container>
+                        <ng-container *ngIf="item.categoryType">
+                            : <strong>
+                                {{item.categoryType | translate}} ( {{'PASS'| translate}}: {{item.capacity }})  
+                            </strong>
+                        </ng-container>
+                    </td>
+                    <td>{{item.totales | currency}}</td>
+                    <td>
+                        <button type="button">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2" scope="row"></th>
+                    <th>{{'globalSubtotal' | translate}}</th>
+                    <td>{{orderDoc?.totalResumen.globalSubtotal | currency}}</td>
+                </tr>
+                <tr>
+                    <th colspan="2" scope="row"></th>
+                    <th>{{'globalDiscount' | translate}}</th>
+                    <td>{{orderDoc?.totalResumen.globalTotalToPay | currency}}</td>
+                </tr>
+                <tr>
+                    <th colspan="2" scope="row"></th>
+                    <th>{{'globalDiscountPercentage' | translate}}</th>
+                    <td>{{orderDoc?.totalResumen.globalDiscountPercentage | currency}}</td>
+                </tr>
+
+                <tr>
+                    <th colspan="2" scope="row"></th>
+                    <th>{{'globalDiscountPercentage' | translate}}</th>
+                    <td>{{orderDoc?.totalResumen.globalTotalToPay | currency}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</ng-template>
+
+<ng-template #renderBankTransferSegment let-order="order">
+    <div class="col-12 text-center mb-3">
+        <div class="fs-4 fw-bold">
+            {{'Voucher' | translate | titlecase}}
+        </div>
+    </div>
+
+    <div class="col-12">
+
+        <app-purchase-bank-transfer-info-card-item
+            [item]="order.bankOptionData"></app-purchase-bank-transfer-info-card-item>
+    </div>
+
+    <app-purchase-upload-voucher-form *ngIf="!order.voucher"
+        (onCompleteForm)="onLoadVoucher($event)"></app-purchase-upload-voucher-form>
+
+    <ng-container *ngIf="order.voucher">
+        <ng-container *ngIf="(!showUpdateVoucherForm)" [ngTemplateOutlet]="renderVoucherDetails"
+            [ngTemplateOutletContext]="{order: order}"></ng-container>
+        <app-purchase-upload-voucher-form *ngIf="(showUpdateVoucherForm)"
+            (onCompleteForm)="onUpdateVoucher($event)"></app-purchase-upload-voucher-form>
+    </ng-container>
+</ng-template>
+
+<ng-template #renderVoucherDetails let-order="order">
+    <div class="col-12">
+        <app-voucher-card-item [voucher]="order.voucher" [showUpdateButton]="order.voucher.canEdit"
+            (onClickUpdateVoucher)="onRenderUpdateVoucher($event)"></app-voucher-card-item>
+    </div>
+</ng-template>
+
+<ng-template #renderCheckOrderDoc let-item="item">
+    <ng-container *ngIf="(item.exist); else renderNotFoundOrderDoc" [ngTemplateOutlet]="renderOrderDoc"
+        [ngTemplateOutletContext]="{order: item}"></ng-container>
+</ng-template>
+
+<ng-template #renderNotFoundOrderDoc>
+    <div class="col-12 mb-4">
+        <div class="card-box card-box-b3 p-3 mb-3">
+            <h5 class="text-center">
+                {{"general.orderNotFound" | translate}}
+            </h5>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #renderLoaderview>
+    <div class="col-12 mb-4">
+        <div class="card-box card-box-b3 p-3 mb-3">
+            <div class="d-flex align-items-center">
+                <strong>
+                    {{"general.loading" | translate}}...
+                </strong>
+                <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+            </div>
+        </div>
+    </div>
+</ng-template>

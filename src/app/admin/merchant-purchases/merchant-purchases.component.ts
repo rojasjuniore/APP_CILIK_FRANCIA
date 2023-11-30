@@ -103,7 +103,7 @@ export class MerchantPurchasesComponent implements OnInit {
     // this.router.navigate([url]);
     // this.router.navigate([`/pages/purchases/${this.item._id}/details`]);
 
-    this.router.navigate([`/admin/purchases/${item._id}/details`]);
+    this.router.navigate([`/admin/merchant-purchases/${item._id}/details`]);
 
     console.log('onItemDetails', item);
   }
