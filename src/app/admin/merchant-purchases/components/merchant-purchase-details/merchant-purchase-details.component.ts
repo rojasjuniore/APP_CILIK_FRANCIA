@@ -73,21 +73,21 @@ export class MerchantPurchaseDetailsComponent implements OnInit {
     });
   }
 
+
+  /// Actualizar el monto de un producto
   async onEditAmount(response) {
     const { status, data } = response;
     if (!status) {
       console.error('Error: No status in response');
       return;
     }
-
-    console.log('onEditAmount', data);
     const { index, newTotal, oldTotal, description } = data;
     if (!this.orderDoc?.product?.[index]) {
       console.error('Error: Invalid product index');
       return;
     }
 
-    const uid = await this.authSrv.getUID();
+    const uid = this.authSrv.getLocalUID();
     const productToUpdate = this.orderDoc.product[index];
 
     // Actualizar detalles del producto
@@ -103,14 +103,30 @@ export class MerchantPurchaseDetailsComponent implements OnInit {
     const totalResumen = this.orderDoc.totalResumen;
     totalResumen.globalTotalToPayOld = totalResumen.globalTotalToPay;
     totalResumen.globalTotalToPay += newTotal - oldTotal;
-    this.orderDoc.totales += newTotal - oldTotal;
     totalResumen.paidForPayment = 0;
+
+
+    this.orderDoc.totales += newTotal - oldTotal;
+    this.orderDoc.status = 'preApproved';
+    this.orderDoc.updatedBy = Date.now();
+    this.orderDoc.updatedByUid = uid;
+
+
+    console.log('this.orderDoc', this.orderId, this.orderDoc);
+
+    this.purchaseSrv.storePurchase(environment.dataEvent.keyDb, this.orderId, this.orderDoc)
+
+    this.sweetAlert2Srv.showBasicAlert('Success', 'The amount has been updated successfully');
 
   }
 
 
 
-  savePayment() {
+
+  async savePayment() {
+    const ask = await this.sweetAlert2Srv.askConfirm(`Are you sure to save this payment?`);
+    if (!ask) { return; }
+
     console.log('savePayment', this.orderDoc)
   }
 

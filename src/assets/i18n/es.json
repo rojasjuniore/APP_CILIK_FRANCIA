@@ -6,6 +6,7 @@
   "globalDiscount": "Descuento global",
   "globalDiscountPercentage": "Porcentaje global",
   "globalTotalToPay": "Total a pagar global",
+  "globalTotalToPayOld": "Total a pagar global (Antes de descuento)",
   "general": {
     "completed": "Completado",
     "paymentProcess": "Proceso de pago",

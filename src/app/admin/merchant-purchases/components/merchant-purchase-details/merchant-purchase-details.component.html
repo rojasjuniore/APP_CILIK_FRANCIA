@@ -128,7 +128,7 @@
                         </button>
                     </td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <th colspan="2" scope="row"></th>
                     <th>{{'globalSubtotal' | translate}}</th>
                     <td>{{orderDoc?.totalResumen.globalSubtotal | currency}}</td>
@@ -137,15 +137,15 @@
                     <th colspan="2" scope="row"></th>
                     <th>{{'globalDiscount' | translate}}</th>
                     <td>{{orderDoc?.totalResumen.globalTotalToPay | currency}}</td>
-                </tr>
-                <tr>
-                    <th colspan="2" scope="row"></th>
-                    <th>{{'globalDiscountPercentage' | translate}}</th>
-                    <td>{{orderDoc?.totalResumen.globalDiscountPercentage | currency}}</td>
+                </tr> -->
+                <tr *ngIf="orderDoc?.totalResumen.globalTotalToPayOld ">
+                    <th colspan="3" scope="row"></th>
+                    <th>{{'globalTotalToPayOld' | translate}}</th>
+                    <td>{{orderDoc?.totalResumen.globalTotalToPayOld | currency}}</td>
                 </tr>
 
                 <tr>
-                    <th colspan="2" scope="row"></th>
+                    <th colspan="3" scope="row"></th>
                     <th>{{'globalTotalToPay' | translate}}</th>
                     <td>{{orderDoc?.totalResumen.globalTotalToPay | currency}}</td>
                 </tr>
