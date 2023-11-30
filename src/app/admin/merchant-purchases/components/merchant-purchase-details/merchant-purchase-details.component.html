@@ -103,17 +103,17 @@
                     <th scope="row">{{i+1}}</th>
                     <td>{{item.title | translate}}
                         <ng-container *ngIf="item.room">
-                            : <strong>{{item.room.ranges.from}} -  {{item.room.ranges.to}} </strong>
+                            : <strong>{{item.room.ranges.from}} - {{item.room.ranges.to}} </strong>
                         </ng-container>
                         <ng-container *ngIf="item.categoryType">
                             : <strong>
-                                {{item.categoryType | translate}} ( {{'PASS'| translate}}: {{item.capacity }})  
+                                {{item.categoryType | translate}} ( {{'PASS'| translate}}: {{item.capacity }})
                             </strong>
                         </ng-container>
                     </td>
                     <td>{{item.totales | currency}}</td>
                     <td>
-                        <button type="button">
+                        <button (click)="launchModalEditAmount(item,i)" type="button">
                             <i class="bi bi-pencil"></i>
                         </button>
                     </td>
@@ -145,36 +145,7 @@
     </div>
 </ng-template>
 
-<ng-template #renderBankTransferSegment let-order="order">
-    <div class="col-12 text-center mb-3">
-        <div class="fs-4 fw-bold">
-            {{'Voucher' | translate | titlecase}}
-        </div>
-    </div>
 
-    <div class="col-12">
-
-        <app-purchase-bank-transfer-info-card-item
-            [item]="order.bankOptionData"></app-purchase-bank-transfer-info-card-item>
-    </div>
-
-    <app-purchase-upload-voucher-form *ngIf="!order.voucher"
-        (onCompleteForm)="onLoadVoucher($event)"></app-purchase-upload-voucher-form>
-
-    <ng-container *ngIf="order.voucher">
-        <ng-container *ngIf="(!showUpdateVoucherForm)" [ngTemplateOutlet]="renderVoucherDetails"
-            [ngTemplateOutletContext]="{order: order}"></ng-container>
-        <app-purchase-upload-voucher-form *ngIf="(showUpdateVoucherForm)"
-            (onCompleteForm)="onUpdateVoucher($event)"></app-purchase-upload-voucher-form>
-    </ng-container>
-</ng-template>
-
-<ng-template #renderVoucherDetails let-order="order">
-    <div class="col-12">
-        <app-voucher-card-item [voucher]="order.voucher" [showUpdateButton]="order.voucher.canEdit"
-            (onClickUpdateVoucher)="onRenderUpdateVoucher($event)"></app-voucher-card-item>
-    </div>
-</ng-template>
 
 <ng-template #renderCheckOrderDoc let-item="item">
     <ng-container *ngIf="(item.exist); else renderNotFoundOrderDoc" [ngTemplateOutlet]="renderOrderDoc"
@@ -203,3 +174,8 @@
         </div>
     </div>
 </ng-template>
+
+
+
+<app-merchant-modal-edit-amount #modalAmountEditOwner
+    (onCloseModal)="onEditAmount($event)"></app-merchant-modal-edit-amount>

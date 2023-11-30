@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import moment from 'moment';
@@ -9,6 +9,7 @@ import { UploadFileService } from 'src/app/services/dedicates/upload-file.servic
 import { PurchaseService } from 'src/app/services/purchase.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 import { environment } from 'src/environments/environment';
+import { MerchantModalEditAmountComponent } from '../merchant-modal-edit-amount/merchant-modal-edit-amount.component';
 
 @Component({
   selector: 'app-merchant-purchase-details',
@@ -16,13 +17,13 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./merchant-purchase-details.component.css']
 })
 export class MerchantPurchaseDetailsComponent implements OnInit {
-
+  @ViewChild('modalAmountEditOwner') modalAmountEditOwner!: MerchantModalEditAmountComponent;
   public orderId!: string;
   public orderDoc: any;
-
   public showUpdateVoucherForm = false;
-
   private sub$!: Subscription;
+
+
 
   constructor(
     private router: ActivatedRoute,
@@ -63,113 +64,21 @@ export class MerchantPurchaseDetailsComponent implements OnInit {
   }
 
 
-  async onLoadVoucher(formData: any) {
-    try {
-      const ask = await this.sweetAlert2Srv.askConfirm(
-        this.translate.instant("alert.confirmAction")
-      );
-      if (!ask) { return; }
 
-      await this.spinner.show();
+  launchModalEditAmount(item, index) {
+    console.log(index, item);
+    this.modalAmountEditOwner.showModal({
+      ...item,
+      index: index,
+    });
+  }
 
-      console.log('formData', formData);
-      console.log('order', this.orderDoc);
-
-      const { bankTransferFile: file, reference } = formData;
-
-      const uploadAt = moment().valueOf();
-
-      /** Construir nombre del archivo */
-      const fileName = `${this.orderDoc.orderId}_${file.name}_${uploadAt}`;
-
-      /** Crear Referencia al documento */
-      const urlToSaveFile = `purchases/${environment.dataEvent.keyDb}/${this.orderDoc.orderId}/${fileName}`;
-
-      /** Cargar archivo ene l bucket */
-      const fileRef = await this.uploadFileSrv.uploadFileDocumentIntoRoute(urlToSaveFile, file);
-
-      /** Construir objeto con valores a actualizar */
-      const purchase = {
-        voucher: {
-          reference: reference,
-          name: file.name,
-          type: file.type,
-          size: file.size,
-          path: urlToSaveFile,
-          url: fileRef,
-          timeline: [],
-          uploadAt: uploadAt,
-          canEdit: false,
-        },
-      };
-
-      /** Actualizar orden de compra */
-      await this.purchaseSrv.updatePurchase(environment.dataEvent.keyDb, this.orderDoc.orderId, purchase);
-      return;
-
-    } catch (err) {
-      console.log('Error on PurchaseDetailsComponent.onLoadVoucher', err);
-      return;
-
-    } finally {
-      this.spinner.hide();
-    }
+  onEditAmount(res: any) {
+    console.log('res', res);
+    const { status, data } = res;
   }
 
 
-  async onUpdateVoucher(formData: any) {
-    try {
-      const ask = await this.sweetAlert2Srv.askConfirm(
-        this.translate.instant("alert.confirmAction")
-      );
-      if (!ask) { return; }
-
-      await this.spinner.show();
-
-      console.log('formData', formData);
-      console.log('order', this.orderDoc);
-
-      const { bankTransferFile: file, reference } = formData;
-
-      const uploadAt = moment().valueOf();
-
-      /** Construir nombre del archivo */
-      const fileName = `${this.orderDoc.orderId}_${file.name}_${uploadAt}`;
-
-      /** Crear Referencia al documento */
-      const urlToSaveFile = `purchases/${environment.dataEvent.keyDb}/${this.orderDoc.orderId}/${fileName}`;
-
-      /** Cargar archivo ene l bucket */
-      const fileRef = await this.uploadFileSrv.uploadFileDocumentIntoRoute(urlToSaveFile, file);
-
-      /** Construir objeto con valores a actualizar */
-      const purchase = {
-        "voucher.reference": reference,
-        "voucher.name": file.name,
-        "voucher.type": file.type,
-        "voucher.size": file.size,
-        "voucher.path": urlToSaveFile,
-        "voucher.url": fileRef,
-        "voucher.uploadAt": uploadAt,
-        "voucher.canEdit": false,
-        status: 'pending'
-      };
-
-      /** Actualizar orden de compra */
-      await this.purchaseSrv.updatePurchase(environment.dataEvent.keyDb, this.orderDoc.orderId, purchase);
-
-      this.showUpdateVoucherForm = false;
-      console.log('voucher updated');
-      return;
-
-    } catch (err) {
-      console.log('Error on PurchaseDetailsComponent.onUpdateVoucher', err);
-      return;
-
-    } finally {
-      this.spinner.hide();
-    }
-  }
 
   ngOnDestroy(): void {
     this.sub$.unsubscribe();
