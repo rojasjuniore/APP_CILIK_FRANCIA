@@ -73,9 +73,21 @@ export class MerchantPurchaseDetailsComponent implements OnInit {
     });
   }
 
-  onEditAmount(res: any) {
-    console.log('res', res);
+  async onEditAmount(res: any) {
     const { status, data } = res;
+    if (!status) {
+      return;
+    }
+    console.log('onEditAmount', data);
+    const { index, newTotal, oldTotal, description } = data
+    const uid = await this.authSrv.getUID();
+    this.orderDoc.product[index].totales = newTotal;
+    this.orderDoc.product[index].oldTotal = oldTotal;
+    this.orderDoc.product[index].description = description;
+    this.orderDoc.product[index].updatedBy = Date.now();
+    this.orderDoc.product[index].updatedByUid = uid;
+    this.orderDoc.totalResumen.globalTotalToPay = this.orderDoc.totalResumen.globalTotalToPay - oldTotal
+    this.orderDoc.totalResumen.globalTotalToPay = this.orderDoc.totalResumen.globalTotalToPay + newTotal
   }
 
 

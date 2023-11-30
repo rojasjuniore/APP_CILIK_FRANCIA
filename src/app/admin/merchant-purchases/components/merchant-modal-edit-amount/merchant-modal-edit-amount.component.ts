@@ -96,7 +96,9 @@ export class MerchantModalEditAmountComponent implements OnInit {
 
     this.closeModal({
       status: true, data: {
+        index: this.item.index,
         newTotal: newTotal,
+        oldTotal: this.item.totales,
         description: description,
       }
     });

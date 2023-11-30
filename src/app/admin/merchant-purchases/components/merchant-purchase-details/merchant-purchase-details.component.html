@@ -95,6 +95,7 @@
                     <th scope="col">#</th>
                     <th scope="col">{{'title'| translate}}</th>
                     <th scope="col">{{'total'| translate}}</th>
+                    <th scope="col">{{'description'| translate}}</th>
                     <th scope="col">{{'option'| translate}}</th>
                 </tr>
             </thead>
@@ -111,7 +112,16 @@
                             </strong>
                         </ng-container>
                     </td>
-                    <td>{{item.totales | currency}}</td>
+                    <td>
+                        <ng-container *ngIf="item.oldTotal">
+                            {{ item.oldTotal}} ->
+                        </ng-container> {{item.totales | currency}}
+
+
+                    </td>
+                    <td>
+                        {{item.description || 'N/A'}}
+                    </td>
                     <td>
                         <button (click)="launchModalEditAmount(item,i)" type="button">
                             <i class="bi bi-pencil"></i>
@@ -138,6 +148,31 @@
                     <th colspan="2" scope="row"></th>
                     <th>{{'globalDiscountPercentage' | translate}}</th>
                     <td>{{orderDoc?.totalResumen.globalTotalToPay | currency}}</td>
+                </tr>
+
+                <tr>
+                    <th colspan="5" scope="row">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupSelect01">
+                                {{'paymentMethod'| translate}}
+                            </label>
+                            <select class="form-select" id="inputGroupSelect01">
+                                <option selected>Choose...</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+                    </th>
+                </tr>
+                <tr>
+                    <th colspan="5" scope="row">
+                        <div class="text-center">
+                            <button class="btn btn-primary me-md-2" type="button">
+                                {{'general.save' | translate}}
+                            </button>
+                        </div>
+                    </th>
                 </tr>
 
             </tbody>
