@@ -149,7 +149,7 @@
                     <th>{{'globalTotalToPay' | translate}}</th>
                     <td>{{orderDoc?.totalResumen.globalTotalToPay | currency}}</td>
                 </tr>
-
+                <!-- 
                 <tr>
                     <th colspan="5" scope="row">
                         <div class="input-group mb-3">
@@ -164,11 +164,11 @@
                             </select>
                         </div>
                     </th>
-                </tr>
+                </tr> -->
                 <tr>
                     <th colspan="5" scope="row">
                         <div class="text-center">
-                            <button class="btn btn-primary me-md-2" type="button">
+                            <button (click)="savePayment()" class="btn btn-primary me-md-2" type="button">
                                 {{'general.save' | translate}}
                             </button>
                         </div>

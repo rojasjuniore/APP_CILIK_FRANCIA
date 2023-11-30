@@ -73,21 +73,45 @@ export class MerchantPurchaseDetailsComponent implements OnInit {
     });
   }
 
-  async onEditAmount(res: any) {
-    const { status, data } = res;
+  async onEditAmount(response) {
+    const { status, data } = response;
     if (!status) {
+      console.error('Error: No status in response');
       return;
     }
+
     console.log('onEditAmount', data);
-    const { index, newTotal, oldTotal, description } = data
+    const { index, newTotal, oldTotal, description } = data;
+    if (!this.orderDoc?.product?.[index]) {
+      console.error('Error: Invalid product index');
+      return;
+    }
+
     const uid = await this.authSrv.getUID();
-    this.orderDoc.product[index].totales = newTotal;
-    this.orderDoc.product[index].oldTotal = oldTotal;
-    this.orderDoc.product[index].description = description;
-    this.orderDoc.product[index].updatedBy = Date.now();
-    this.orderDoc.product[index].updatedByUid = uid;
-    this.orderDoc.totalResumen.globalTotalToPay = this.orderDoc.totalResumen.globalTotalToPay - oldTotal
-    this.orderDoc.totalResumen.globalTotalToPay = this.orderDoc.totalResumen.globalTotalToPay + newTotal
+    const productToUpdate = this.orderDoc.product[index];
+
+    // Actualizar detalles del producto
+    Object.assign(productToUpdate, {
+      totales: newTotal,
+      oldTotal: oldTotal,
+      description: description,
+      updatedBy: Date.now(),
+      updatedByUid: uid
+    });
+
+    // Actualizar el resumen total del pedido
+    const totalResumen = this.orderDoc.totalResumen;
+    totalResumen.globalTotalToPayOld = totalResumen.globalTotalToPay;
+    totalResumen.globalTotalToPay += newTotal - oldTotal;
+    this.orderDoc.totales += newTotal - oldTotal;
+    totalResumen.paidForPayment = 0;
+
+  }
+
+
+
+  savePayment() {
+    console.log('savePayment', this.orderDoc)
   }
 
 
