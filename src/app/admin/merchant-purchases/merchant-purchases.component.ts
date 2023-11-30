@@ -34,8 +34,8 @@ export class MerchantPurchasesComponent implements OnInit {
       .pipe(
         debounceTime(500),
         /// only email format with regex
-        map((value: string) => (value.length > 0) ? value.trim().toLocaleLowerCase() : ''),
-        map((value: string) => value.replace(/[^a-zA-Z0-9@.]/g, '')),
+        // map((value: string) => (value.length > 0) ? value.trim().toLocaleLowerCase() : ''),
+        // map((value: string) => value.replace(/[^a-zA-Z0-9@.]/g, '')),
         distinctUntilChanged(),
       )
       .subscribe((value: string) => {
@@ -48,30 +48,30 @@ export class MerchantPurchasesComponent implements OnInit {
 
 
   loadData(query = '') {
-    // // regex only works with strings and numbers
+    // regex only works with strings and numbers
     // const regex = new RegExp(query, 'i');
     // run regex validation
     // const isValid = regex.test(query);
     // console.log('isValid', isValid);
-
     console.log('query', query);
 
     const uid = localStorage.getItem("uid");
 
     if (query.length > 0) {
       console.log('valid query', query);
+
       this.adviser$ = this.purchaseSrv.getDynamic(environment.dataEvent.keyDb, [
         // { field: 'status', condition: '==', value: "pendingApproval" },
         { field: 'paymentMethod', condition: '==', value: "adviser" },
         { field: 'orderId', condition: '==', value: query },
       ], {
-        orderBy: [{ field: 'slug', order: 'asc' }]
+        orderBy: [{ field: 'createdAt', order: 'asc' }]
       });
     } else {
       console.log('no query');
       this.adviser$ = this.purchaseSrv.getDynamic(environment.dataEvent.keyDb,
         [
-          { field: 'status', condition: '==', value: "pendingApproval" },
+          // { field: 'status', condition: '==', value: "pendingApproval" },
           { field: 'paymentMethod', condition: '==', value: "adviser" },
           // { field: 'createdBy', condition: '==', value: uid }
         ],

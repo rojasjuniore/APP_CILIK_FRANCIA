@@ -693,7 +693,7 @@ export class PurchaseService {
    * @returns 
    */
   myMerchantPurchaseList(uid: any, status) {
-    console.log('myMerchantPurchaseList', environment.dataEvent.keyDb, uid, status);
+    // console.log('myMerchantPurchaseList', environment.dataEvent.keyDb, uid, status);
     return this.getDynamic(environment.dataEvent.keyDb, [
       { field: "merchantIdentification", condition: "==", value: uid },
       { field: "status", condition: "==", value: status }
