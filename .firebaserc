@@ -13,6 +13,9 @@
         ],
         "dev-wldc": [
           "dev-wldc"
+        ],
+        "grecia-2024": [
+          "grecia-2024"
         ]
       }
     }
