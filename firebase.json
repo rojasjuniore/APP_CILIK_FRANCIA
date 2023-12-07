@@ -37,7 +37,7 @@
     },
     {
       "public": "dist",
-      "target": "prod-wldc",
+      "target": "grecia-2024",
       "ignore": [
         "firebase.json",
         "**/.*",

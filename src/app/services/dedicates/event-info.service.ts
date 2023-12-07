@@ -22,7 +22,7 @@ export class EventInfoService {
         "assets/img/icon-bed.png",
         "assets/img/icon-ticket.png"
       ],
-      available: true,
+      available: false,
       wantButton: "plan.hotelAndEvent.wantButton",
     },
     {
@@ -38,7 +38,7 @@ export class EventInfoService {
       icons: [
         "assets/img/icon-full-pass.png",
       ],
-      available: true,
+      available: false,
       wantButton: "plan.fullPass.wantButton",
     },
     {
@@ -70,7 +70,7 @@ export class EventInfoService {
       icons: [
         "assets/img/icon-ticket.png"
       ],
-      available: true,
+      available: false,
       wantButton: "plan.weekendPass.wantButton",
     },
     {
