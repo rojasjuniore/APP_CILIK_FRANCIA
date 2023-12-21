@@ -18,60 +18,57 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
-  styleUrls: ['./checkout.component.css']
+  styleUrls: ['./checkout.component.css'],
 })
 export class CheckoutComponent implements OnInit {
-
   public uid!: string;
   public cart: any;
 
   public paymentOptions = [
-
     {
       label: 'general.installmentsPayment',
       slug: 'installments',
       type: 'installments',
       icon: 'bi bi-calendar-check',
-      available: true
+      available: true,
     },
     {
       label: 'general.creditOrDebitCard',
       slug: 'tucompra',
       type: 'navigation',
       icon: 'bi bi-credit-card',
-      available: true
+      available: true,
     },
-    {
-      label: 'general.bankTransfer',
-      slug: 'bankTransfer',
-      type: 'navigation',
-      icon: 'bi bi-bank',
-      available: true
-    },
+    // {
+    //   label: 'general.bankTransfer',
+    //   slug: 'bankTransfer',
+    //   type: 'navigation',
+    //   icon: 'bi bi-bank',
+    //   available: true
+    // },
     {
       label: 'general.paypal',
       slug: 'paypal',
       type: 'navigation',
       icon: 'bi bi-paypal',
-      available: true
+      available: true,
     },
-    {
-      label: 'general.advisor',
-      slug: 'adviser',
-      type: 'navigation',
-      icon: 'bi bi-person-badge',
-      available: true
-    },
-
+    // {
+    //   label: 'general.advisor',
+    //   slug: 'adviser',
+    //   type: 'navigation',
+    //   icon: 'bi bi-person-badge',
+    //   available: true
+    // },
   ];
   public paymentOptionSelected: any;
 
   private sub$!: Subscription;
   public totales: any;
-  public purchaseDetailsWithCoupon: any
+  public purchaseDetailsWithCoupon: any;
   public couponObj: any;
-  public globalTotal: any
-  public installments: any
+  public globalTotal: any;
+  public installments: any;
 
   constructor(
     private couponsSrv: CouponService,
@@ -85,12 +82,8 @@ export class CheckoutComponent implements OnInit {
     private tuCompraSrv: TucompraService,
     private translate: TranslateService,
     private cartTotalSrv: CartTotalService,
-    private installmentSrv: InstallmentService,
-
-  ) { }
-
-
-
+    private installmentSrv: InstallmentService
+  ) {}
 
   async ngOnInit(): Promise<void> {
     this.couponObj = await this.codeStorageSrv.checkCode();
@@ -99,10 +92,14 @@ export class CheckoutComponent implements OnInit {
     this.sub$ = this.authSrv.uid$
       .pipe(
         distinctUntilChanged(),
-        switchMap((uid: string) => this.cartSrv.getCartObservable(environment.dataEvent.keyDb, uid)),
-        distinctUntilChanged((prev, next) => JSON.stringify(prev) === JSON.stringify(next)),
+        switchMap((uid: string) =>
+          this.cartSrv.getCartObservable(environment.dataEvent.keyDb, uid)
+        ),
+        distinctUntilChanged(
+          (prev, next) => JSON.stringify(prev) === JSON.stringify(next)
+        )
       )
-      .subscribe(cart => {
+      .subscribe((cart) => {
         // console.log('cart', cart);
 
         if (!cart) {
@@ -114,24 +111,19 @@ export class CheckoutComponent implements OnInit {
         this.uid = this.cart.uid;
       });
 
-
     this.cartTotalSrv.myCartTotal$.subscribe(async (gTotal: any) => {
-      if (!gTotal) return
+      if (!gTotal) return;
       this.totales = gTotal.globalTotal;
     });
   }
-
-
-
 
   onClearPaymentOptionSelected() {
     this.paymentOptionSelected = null;
   }
 
-
   /**
    * @dev callback de paymentOptionSelected
-   * @param item 
+   * @param item
    */
   onSelectPaymentOption(item: any) {
     console.log('onSelectPaymentOption');
@@ -141,36 +133,40 @@ export class CheckoutComponent implements OnInit {
 
     if (item.type === 'installments') {
       this.paymentOptionSelected = item;
-      const installments = this.installmentSrv.calculateQuotas(moment().format('YYYY-MM-DD'));
+      const installments = this.installmentSrv.calculateQuotas(
+        moment().format('YYYY-MM-DD')
+      );
       console.log('installments', installments);
-      const installmentAmount = (this.totales.globalTotalToPay / installments.length).toFixed(3);
+      const installmentAmount = (
+        this.totales.globalTotalToPay / installments.length
+      ).toFixed(3);
       /// @dev agregar monto a cada cuota
       this.installments = installments.map((item: any) => {
         return {
           ...item,
           amount: installmentAmount,
-        }
+        };
       });
-
 
       console.log('totales', this.totales);
       console.log('installments', this.installments);
     }
-
   }
-
 
   /**
    * @dev callback de paypal
-   * @param event 
-   * @returns 
+   * @param event
+   * @returns
    */
   async onPaypalCallback(event: any) {
     try {
+      if (event.type === 'cancel') {
+        return;
+      }
 
-      if (event.type === 'cancel') { return; }
-
-      if (event.type === 'error') { return; }
+      if (event.type === 'error') {
+        return;
+      }
 
       // console.log('onPaypalCallback', {
       //   paypalResponse: event,
@@ -185,7 +181,9 @@ export class CheckoutComponent implements OnInit {
 
       const purchase = {
         ...this.cart,
-        merchantIdentification: this.couponObj ? this.couponObj.createdBy : null,
+        merchantIdentification: this.couponObj
+          ? this.couponObj.createdBy
+          : null,
         coupons: this.couponObj ? this.couponObj.coupons : [],
         codeCoupon: this.couponObj.code ? this.couponObj.code : null,
         referred_by: this.couponObj.ownerId ? this.couponObj.ownerId : null,
@@ -198,12 +196,16 @@ export class CheckoutComponent implements OnInit {
         // orderId: this.cartSrv.generateId(),
         orderId: this.cart.cartId,
         totalResumen: this.totales,
-        totales: this.totales.globalTotalToPay
+        totales: this.totales.globalTotalToPay,
       };
       console.log('purchase', purchase);
 
       /** Almacenar orden de compra */
-      await this.purchaseSrv.storePurchase(environment.dataEvent.keyDb, purchase.orderId, purchase);
+      await this.purchaseSrv.storePurchase(
+        environment.dataEvent.keyDb,
+        purchase.orderId,
+        purchase
+      );
 
       /** Enviar notificación de compra realizada */
       await this.purchaseSrv.sendPurchaseInformationNotification({
@@ -213,57 +215,59 @@ export class CheckoutComponent implements OnInit {
         name: userDoc.name,
       });
 
-
       if (this.couponObj) {
         /**  Resta un valor a un contador */
-        await this.couponsSrv.decrementUserLimitDoc(environment.dataEvent.keyDb, this.couponObj.code, 'userLimit', 1);
+        await this.couponsSrv.decrementUserLimitDoc(
+          environment.dataEvent.keyDb,
+          this.couponObj.code,
+          'userLimit',
+          1
+        );
 
         /** decrement User Limit for producto */
-        await this.couponsSrv.decrementUserLimitsSequentially(this.cart.product, purchase.codeCoupon)
+        await this.couponsSrv.decrementUserLimitsSequentially(
+          this.cart.product,
+          purchase.codeCoupon
+        );
       }
-
-
-
 
       /** Eliminar carrito de compra */
       await this.cartSrv.deleteCart(environment.dataEvent.keyDb, this.uid);
 
       /// @dev eliminar carrito de compra
-      this.cartTotalSrv.removeItem()
+      this.cartTotalSrv.removeItem();
 
       /** Redireccionar */
       this.router.navigate([`/pages/purchases/${purchase.orderId}/details`]);
 
       this.sweetAlert2Srv.showToast(
-        this.translate.instant("alert.purchaseMadeSatisfactorily"),
+        this.translate.instant('alert.purchaseMadeSatisfactorily'),
         'success'
       );
       return;
-
     } catch (err) {
       console.log('Error on CheckoutComponent.onPaypalCallback()', err);
-      this.sweetAlert2Srv.showError("Ocurrió un error al procesar la compra")
+      this.sweetAlert2Srv.showError('Ocurrió un error al procesar la compra');
       return;
     } finally {
       this.spinner.hide();
     }
   }
 
-
-
   async onAdviserCallback(event: any) {
     console.log('onAdviserCallback', event);
     try {
-
       /** Si no se recibe ninguna opción */
-      if (!event) { return; }
-
+      if (!event) {
+        return;
+      }
 
       const ask = await this.sweetAlert2Srv.askConfirm(
-        this.translate.instant("alert.confirmAction")
+        this.translate.instant('alert.confirmAction')
       );
-      if (!ask) { return; }
-
+      if (!ask) {
+        return;
+      }
 
       await this.spinner.show();
 
@@ -271,10 +275,11 @@ export class CheckoutComponent implements OnInit {
 
       const userDoc = await this.authSrv.getByUIDPromise(this.cart.uid);
 
-
       const purchase = {
         ...this.cart,
-        merchantIdentification: this.couponObj ? this.couponObj.createdBy : null,
+        merchantIdentification: this.couponObj
+          ? this.couponObj.createdBy
+          : null,
         codeCoupon: this.couponObj.code ? this.couponObj.code : null,
         coupons: this.couponObj ? this.couponObj.coupons : [],
         referred_by: this.couponObj.ownerId ? this.couponObj.ownerId : null,
@@ -292,7 +297,11 @@ export class CheckoutComponent implements OnInit {
       console.log('purchase', purchase);
 
       /** Almacenar orden de compra */
-      await this.purchaseSrv.storePurchase(environment.dataEvent.keyDb, purchase.orderId, purchase);
+      await this.purchaseSrv.storePurchase(
+        environment.dataEvent.keyDb,
+        purchase.orderId,
+        purchase
+      );
 
       /** Enviar notificación de compra realizada */
       await this.purchaseSrv.sendPurchaseAdviserNotification({
@@ -303,52 +312,50 @@ export class CheckoutComponent implements OnInit {
         name: userDoc.name,
       });
 
-
-
       /** Eliminar carrito de compra */
       await this.cartSrv.deleteCart(environment.dataEvent.keyDb, this.uid);
 
       if (this.couponObj) {
         /**  Resta un valor a un contador */
-        await this.couponsSrv.decrementUserLimitDoc(environment.dataEvent.keyDb, this.couponObj.code, 'userLimit', 1);
+        await this.couponsSrv.decrementUserLimitDoc(
+          environment.dataEvent.keyDb,
+          this.couponObj.code,
+          'userLimit',
+          1
+        );
 
         /** decrement User Limit for producto */
-        await this.couponsSrv.decrementUserLimitsSequentially(this.cart.product, purchase.codeCoupon)
+        await this.couponsSrv.decrementUserLimitsSequentially(
+          this.cart.product,
+          purchase.codeCoupon
+        );
       }
 
-
       /// @dev eliminar carrito de compra
-      this.cartTotalSrv.removeItem()
-
+      this.cartTotalSrv.removeItem();
 
       this.sweetAlert2Srv.showToast(
-        this.translate.instant("alert.purchaseMadeSatisfactorily"),
+        this.translate.instant('alert.purchaseMadeSatisfactorily'),
         'success'
       );
 
       /** Redireccionar */
       this.router.navigate([`/pages/purchases/${orderId}/details`]);
 
-
-
       return;
-
     } catch (err) {
       console.log('Error on CheckoutComponent.onSelectBankTransferFile()', err);
-      this.sweetAlert2Srv.showError("Ocurrió un error al procesar la compra")
+      this.sweetAlert2Srv.showError('Ocurrió un error al procesar la compra');
       return;
     } finally {
       this.spinner.hide();
     }
   }
 
-
-
-
   /**
    * @dev callback de tucompra
-   * @param formData 
-   * @returns 
+   * @param formData
+   * @returns
    */
   async onTuCompraCallback(formData: any) {
     try {
@@ -359,10 +366,12 @@ export class CheckoutComponent implements OnInit {
       const userDoc = await this.authSrv.getByUIDPromise(this.cart.uid);
       // console.log('userDoc', userDoc);
 
-
       // const campoExtra1 = JSON.parse(formData.campoExtra1);
       /** Actualizar referencia del ID de la orden de compra */
-      const campoExtra1 = { ...formData.campoExtra1, orderId: this.cart.cartId };
+      const campoExtra1 = {
+        ...formData.campoExtra1,
+        orderId: this.cart.cartId,
+      };
       // console.log('campoExtra1', campoExtra1);
 
       /** Actualizar referencia de redirección */
@@ -373,7 +382,9 @@ export class CheckoutComponent implements OnInit {
       const purchase = {
         ...this.cart,
         paymentMethod: 'tucompra',
-        merchantIdentification: this.couponObj ? this.couponObj.createdBy : null,
+        merchantIdentification: this.couponObj
+          ? this.couponObj.createdBy
+          : null,
         coupons: this.couponObj ? this.couponObj.coupons : [],
         codeCoupon: this.couponObj.code ? this.couponObj.code : null,
         referred_by: this.couponObj.ownerId ? this.couponObj.ownerId : null,
@@ -393,7 +404,11 @@ export class CheckoutComponent implements OnInit {
       // console.log('purchase', purchase);
 
       /** Almacenar orden de compra */
-      await this.purchaseSrv.storePurchase(environment.dataEvent.keyDb, purchase.orderId, purchase);
+      await this.purchaseSrv.storePurchase(
+        environment.dataEvent.keyDb,
+        purchase.orderId,
+        purchase
+      );
 
       /** Enviar notificación de compra realizada */
       await this.purchaseSrv.sendPurchaseInformationNotification({
@@ -406,52 +421,56 @@ export class CheckoutComponent implements OnInit {
       /** Eliminar carrito de compra */
       await this.cartSrv.deleteCart(environment.dataEvent.keyDb, this.uid);
 
-
       if (this.couponObj) {
         /**  Resta un valor a un contador */
-        await this.couponsSrv.decrementUserLimitDoc(environment.dataEvent.keyDb, this.couponObj.code, 'userLimit', 1);
-
+        await this.couponsSrv.decrementUserLimitDoc(
+          environment.dataEvent.keyDb,
+          this.couponObj.code,
+          'userLimit',
+          1
+        );
 
         /** decrement User Limit for producto */
-        await this.couponsSrv.decrementUserLimitsSequentially(this.cart.product, purchase.codeCoupon)
-
+        await this.couponsSrv.decrementUserLimitsSequentially(
+          this.cart.product,
+          purchase.codeCoupon
+        );
       }
-
 
       /** Disparar formulario */
       this.tuCompraSrv.launchForm(purchase.metadata);
 
       /// @dev eliminar carrito de compra
-      this.cartTotalSrv.removeItem()
+      this.cartTotalSrv.removeItem();
 
       return;
-
     } catch (err) {
       console.log('Error on CheckoutComponent.onTuCompraCallback()', err);
-      this.sweetAlert2Srv.showError("Ocurrió un error al procesar la compra")
+      this.sweetAlert2Srv.showError('Ocurrió un error al procesar la compra');
       return;
     } finally {
       this.spinner.hide();
     }
   }
 
-
   /**
-  * @dev callback de BankTransfer
-  * @param bankOption 
-  * @returns 
-  */
+   * @dev callback de BankTransfer
+   * @param bankOption
+   * @returns
+   */
   async onSelectBankTransferOption(bankOption: any) {
     try {
-
       /** Si no se recibe ninguna opción */
-      if (!bankOption) { return; }
-
+      if (!bankOption) {
+        return;
+      }
 
       const ask = await this.sweetAlert2Srv.askConfirm(
-        this.translate.instant("alert.confirmAction")
+        this.translate.instant('alert.confirmAction')
       );
-      if (!ask) { return; }
+      if (!ask) {
+        return;
+      }
 
       console.log('onSelectBankTransferOption', bankOption);
 
@@ -464,7 +483,9 @@ export class CheckoutComponent implements OnInit {
 
       const purchase = {
         ...this.cart,
-        merchantIdentification: this.couponObj ? this.couponObj.createdBy : null,
+        merchantIdentification: this.couponObj
+          ? this.couponObj.createdBy
+          : null,
         codeCoupon: this.couponObj.code ? this.couponObj.code : null,
         coupons: this.couponObj ? this.couponObj.coupons : [],
         referred_by: this.couponObj.ownerId ? this.couponObj.ownerId : null,
@@ -484,7 +505,11 @@ export class CheckoutComponent implements OnInit {
       console.log('purchase', purchase);
 
       /** Almacenar orden de compra */
-      await this.purchaseSrv.storePurchase(environment.dataEvent.keyDb, purchase.orderId, purchase);
+      await this.purchaseSrv.storePurchase(
+        environment.dataEvent.keyDb,
+        purchase.orderId,
+        purchase
+      );
 
       /** Enviar notificación de compra realizada */
       await this.purchaseSrv.sendPurchaseInformationNotification({
@@ -500,30 +525,33 @@ export class CheckoutComponent implements OnInit {
         orderId: purchase.orderId,
         uid: this.cart.uid,
         bankOptionData: purchase.bankOptionData,
-        totales: purchase.totales
+        totales: purchase.totales,
       });
-
-
 
       if (this.couponObj) {
         /**  Resta un valor a un contador */
-        await this.couponsSrv.decrementUserLimitDoc(environment.dataEvent.keyDb, this.couponObj.code, 'userLimit', 1);
-
+        await this.couponsSrv.decrementUserLimitDoc(
+          environment.dataEvent.keyDb,
+          this.couponObj.code,
+          'userLimit',
+          1
+        );
 
         /** decrement User Limit for producto */
-        await this.couponsSrv.decrementUserLimitsSequentially(this.cart.product, purchase.codeCoupon)
+        await this.couponsSrv.decrementUserLimitsSequentially(
+          this.cart.product,
+          purchase.codeCoupon
+        );
       }
-
 
       /** Eliminar carrito de compra */
       await this.cartSrv.deleteCart(environment.dataEvent.keyDb, this.uid);
 
       /// @dev eliminar carrito de compra
-      this.cartTotalSrv.removeItem()
-
+      this.cartTotalSrv.removeItem();
 
       this.sweetAlert2Srv.showToast(
-        this.translate.instant("alert.purchaseMadeSatisfactorily"),
+        this.translate.instant('alert.purchaseMadeSatisfactorily'),
         'success'
       );
 
@@ -531,33 +559,33 @@ export class CheckoutComponent implements OnInit {
       this.router.navigate([`/pages/purchases/${orderId}/details`]);
 
       return;
-
     } catch (err) {
       console.log('Error on CheckoutComponent.onSelectBankTransferFile()', err);
-      this.sweetAlert2Srv.showError("Ocurrió un error al procesar la compra")
+      this.sweetAlert2Srv.showError('Ocurrió un error al procesar la compra');
       return;
     } finally {
       this.spinner.hide();
     }
   }
 
-
   /**
-  * @dev callback de Installments
-  * @param installmentsOption 
-  */
+   * @dev callback de Installments
+   * @param installmentsOption
+   */
   async onSelectInstallmentsOption(installmentsOption: any) {
-    console.log("installmentsOption", installmentsOption);
+    console.log('installmentsOption', installmentsOption);
     try {
-
       /** Si no se recibe ninguna opción */
-      if (!installmentsOption) { return; }
-
+      if (!installmentsOption) {
+        return;
+      }
 
       const ask = await this.sweetAlert2Srv.askConfirm(
-        this.translate.instant("alert.confirmAction")
+        this.translate.instant('alert.confirmAction')
       );
-      if (!ask) { return; }
+      if (!ask) {
+        return;
+      }
 
       console.log('onSelectBankTransferOption', installmentsOption);
 
@@ -567,10 +595,11 @@ export class CheckoutComponent implements OnInit {
 
       const userDoc = await this.authSrv.getByUIDPromise(this.cart.uid);
 
-
       const purchase = {
         ...this.cart,
-        merchantIdentification: this.couponObj ? this.couponObj.createdBy : null,
+        merchantIdentification: this.couponObj
+          ? this.couponObj.createdBy
+          : null,
         codeCoupon: this.couponObj.code ? this.couponObj.code : null,
         coupons: this.couponObj ? this.couponObj.coupons : [],
         referred_by: this.couponObj.ownerId ? this.couponObj.ownerId : null,
@@ -588,7 +617,11 @@ export class CheckoutComponent implements OnInit {
       console.log('purchase', purchase);
 
       /** Almacenar orden de compra */
-      await this.purchaseSrv.storePurchase(environment.dataEvent.keyDb, purchase.orderId, purchase);
+      await this.purchaseSrv.storePurchase(
+        environment.dataEvent.keyDb,
+        purchase.orderId,
+        purchase
+      );
 
       /** Enviar notificación de compra realizada */
       await this.purchaseSrv.sendPurchaseInstallmentNotification({
@@ -599,46 +632,45 @@ export class CheckoutComponent implements OnInit {
         name: userDoc.name,
       });
 
-
-
       /** Eliminar carrito de compra */
       await this.cartSrv.deleteCart(environment.dataEvent.keyDb, this.uid);
 
       if (this.couponObj) {
         /**  Resta un valor a un contador */
-        await this.couponsSrv.decrementUserLimitDoc(environment.dataEvent.keyDb, this.couponObj.code, 'userLimit', 1);
+        await this.couponsSrv.decrementUserLimitDoc(
+          environment.dataEvent.keyDb,
+          this.couponObj.code,
+          'userLimit',
+          1
+        );
 
         /** decrement User Limit for producto */
-        await this.couponsSrv.decrementUserLimitsSequentially(this.cart.product, purchase.codeCoupon)
+        await this.couponsSrv.decrementUserLimitsSequentially(
+          this.cart.product,
+          purchase.codeCoupon
+        );
       }
 
-
       /// @dev eliminar carrito de compra
-      this.cartTotalSrv.removeItem()
-
+      this.cartTotalSrv.removeItem();
 
       this.sweetAlert2Srv.showToast(
-        this.translate.instant("alert.purchaseMadeSatisfactorily"),
+        this.translate.instant('alert.purchaseMadeSatisfactorily'),
         'success'
       );
 
       /** Redireccionar */
       this.router.navigate([`/pages/purchases/${orderId}/details`]);
 
-
-
       return;
-
     } catch (err) {
       console.log('Error on CheckoutComponent.onSelectBankTransferFile()', err);
-      this.sweetAlert2Srv.showError("Ocurrió un error al procesar la compra")
+      this.sweetAlert2Srv.showError('Ocurrió un error al procesar la compra');
       return;
     } finally {
       this.spinner.hide();
     }
   }
-
-
 
   ngOnDestroy(): void {
     this.sub$.unsubscribe();
