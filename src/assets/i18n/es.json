@@ -257,7 +257,7 @@
     "noRecognizeActivity": "Si no reconoce esta actividad, no se requiere ninguna acción adicional.",
     "noRequestCode": "Si no solicitó este código, no se requiere ninguna acción adicional.",
     "temporalToken": {
-      "subject": "Código Temporal {{code}} WLDC Cartagena 2024",
+      "subject": "Código Temporal {{code}} WLDC Grecia 2025",
       "body": [
         "¡Hola de nuevo!",
         "El código necesario para continuar con tu operación es el siguiente:",
@@ -265,31 +265,31 @@
       ]
     },
     "signUp": {
-      "subject": "Bienvenido a WLDC Cartagena 2024 {{names}}",
+      "subject": "Bienvenido a WLDC Grecia 2025 {{names}}",
       "greeting": "¡Hola {{names}}!",
       "body": [
-        "¡Bienvenido a la aplicación WLDC Cartagena 2024!",
-        "Estamos muy felices de contar con tu presencia en la edición WLDC 2024.",
-        "En la aplicación podrás realizar la compra de los paquetes para asistir a esta gran experiencia WLDC 2024 en Cartagena Colombia."
+        "¡Bienvenido a la aplicación WLDC Grecia 2025!",
+        "Estamos muy felices de contar con tu presencia en la edición WLDC 2025.",
+        "En la aplicación podrás realizar la compra de los paquetes para asistir a esta gran experiencia WLDC 2025 en Grecia."
       ]
     },
     "purchaseInfo": {
-      "subject": "Orden {{orderId}} de WLDC Cartagena 2024",
+      "subject": "Orden {{orderId}} de WLDC Grecia 2025",
       "button": "¡Clic para conocer los detalles de tu orden!",
       "salutation": "¡Nos vemos pronto!",
       "body": [
-        "¡Bienvenido/a al WLDC 2024!",
-        "Queremos darte la bienvenida oficial al World Latin Dance Cup 2024 ¡Ya estamos cerca de vivir la experiencia de baile latino más importante del mundo!",
+        "¡Bienvenido/a al WLDC 2025!",
+        "Queremos darte la bienvenida oficial al World Latin Dance Cup 2025 ¡Ya estamos cerca de vivir la experiencia de baile latino más importante del mundo!",
         "Para nosotros es un placer que hagas parte de esta gran familia.",
         "Antes que nada, queremos asegurarnos de que tengas toda la información qué necesitas…",
         "Si tienes alguna pregunta no dudes en hacerla. El equipo de soporte está para ayudarte por los siguientes medios.",
         "Escríbenos en:",
-        "PD: Prepárate… El WLDC 2024 será increíble."
+        "PD: Prepárate… El WLDC 2025 será increíble."
       ]
     },
     "bankTransfer": {
-      "subject": "¡Estás a un solo paso del WLDC en Cartagena!",
-      "salutation": "¡Nos vemos en Cartagena!",
+      "subject": "¡Estás a un solo paso del WLDC en Grecia!",
+      "salutation": "¡Nos vemos en Grecia!",
       "body": [
         "Ya casi viviremos juntos el evento de baile latino más grande del mundo. Para separar tu cupo realiza la transferencia correspondiente:",
         "Nombre de Beneficiario",
