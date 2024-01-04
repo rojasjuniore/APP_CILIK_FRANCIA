@@ -95,7 +95,9 @@ export class TucompraFormComponent implements OnInit, OnChanges {
         [
           Validators.required,
           Validators.minLength(6),
-          Validators.pattern(/^[0-9]+$/)
+          // Validators.pattern(/^[0-9]+$/)
+          // only letters and numbers
+          Validators.pattern(/^[a-zA-Z0-9]+$/)
         ]
       ],
       tipoDocumento: ['', [Validators.required]],
