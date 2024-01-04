@@ -42,8 +42,8 @@ export class TucompraFormComponent implements OnInit, OnChanges {
     celularComprador: [
       { type: 'required', message: 'formValidations.required' },
       { type: 'pattern', message: 'formValidations.onlyNumbers' },
-      { type: 'minlength', message: 'formValidations.minlength9' },
-      { type: 'maxlength', message: 'formValidations.maxlength10' },
+      { type: 'minlength', message: 'formValidations.minlength8' },
+      { type: 'maxlength', message: 'formValidations.maxlength15' },
     ],
     direccionComprador: [
       { type: 'required', message: 'formValidations.required' },
@@ -127,8 +127,8 @@ export class TucompraFormComponent implements OnInit, OnChanges {
         [
           Validators.required,
           Validators.pattern(/^[0-9]+$/),
-          Validators.minLength(9),
-          Validators.maxLength(10)
+          Validators.minLength(8),
+          Validators.maxLength(15)
         ]
       ],
       direccionComprador: ['', [Validators.required]],
@@ -166,7 +166,7 @@ export class TucompraFormComponent implements OnInit, OnChanges {
         campoExtra2: [environment.dataEvent.appURL, '/pages/purchases/', orderId, '/details'],
         telefonoComprador: formData.celularComprador,
         paisComprador: 'COLOMBIA',
-        ciudadComprador: 'Cartagena'
+        ciudadComprador: 'Grecia'
       });
       // console.log('data', data);
 

@@ -65,8 +65,8 @@ export class SignUpComponent implements OnInit {
     phone: [
       { type: 'required', message: 'formValidations.required' },
       { type: 'pattern', message: 'formValidations.onlyNumbers' },
-      { type: 'minlength', message: 'formValidations.minlength9' },
-      { type: 'maxlength', message: 'formValidations.maxlength10' }
+      { type: 'minlength', message: 'formValidations.minlength8' },
+      { type: 'maxlength', message: 'formValidations.maxlength15' }
     ],
     email: [
       { type: 'required', message: 'formValidations.required' },
@@ -184,8 +184,8 @@ export class SignUpComponent implements OnInit {
       phone: ['', [
         Validators.required,
         Validators.pattern(/^[0-9]+$/),
-        Validators.minLength(9),
-        Validators.maxLength(10)
+        Validators.minLength(8),
+        Validators.maxLength(15)
       ]],
       email: ['',
         [

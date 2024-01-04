@@ -1,10 +1,18 @@
 <div class="row mb-4">
-    <div class="col-12 mb-4">
-        <p>
-            Para tu comodidad y seguridad al realizar pagos en línea, te ofrecemos la opción de usar PayPal, una
-            plataforma líder mundialmente reconocida.
-        </p>
-    </div>
+  <div class="col-12 mb-4">
+    <p>
+      Para tu comodidad y seguridad al realizar pagos en línea, te ofrecemos la
+      opción de usar PayPal, una plataforma líder mundialmente reconocida.
+    </p>
+  </div>
 </div>
 
-<ngx-paypal [config]="payPalConfig" #paypalWidget></ngx-paypal>
+<div class="row justify-content-center">
+  <div class="d-flex justify-content-center">
+    <ngx-paypal
+      style="width: 77%"
+      [config]="payPalConfig"
+      #paypalWidget
+    ></ngx-paypal>
+  </div>
+</div>

@@ -25,13 +25,13 @@ export class CheckoutComponent implements OnInit {
   public cart: any;
 
   public paymentOptions = [
-    {
-      label: 'general.installmentsPayment',
-      slug: 'installments',
-      type: 'installments',
-      icon: 'bi bi-calendar-check',
-      available: true,
-    },
+    // {
+    //   label: 'general.installmentsPayment',
+    //   slug: 'installments',
+    //   type: 'installments',
+    //   icon: 'bi bi-calendar-check',
+    //   available: true,
+    // },
     {
       label: 'general.creditOrDebitCard',
       slug: 'tucompra',

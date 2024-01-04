@@ -79,8 +79,8 @@ export class AdminCouponsUpdatedComponent implements OnInit {
     },
     {
       value: 5,
-      slug: 'planes-turisticos-cartagena',
-      label: 'Planes Turísticos Cartagena',
+      slug: 'planes-turisticos-grecia',
+      label: 'Planes Turísticos Grecia',
     },
 
   ]
