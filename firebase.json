@@ -2,7 +2,7 @@
   "hosting": [
     {
       "public": "dist",
-      "target": "dev-wldc",
+      "target": "grecia-dev",
       "ignore": [
         "firebase.json",
         "**/.*",
