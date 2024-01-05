@@ -6,6 +6,7 @@ import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 import { environment } from 'src/environments/environment';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { CustomTranslateService } from 'src/app/services/custom-translate.service';
 
 @Component({
   selector: 'app-header-cilik',
@@ -22,7 +23,8 @@ export class HeaderCilikComponent implements OnInit {
     private authSrv: AuthenticationService,
     private authService: AuthenticationService,
     private cartSrv: CartService,
-    private router: Router
+    private router: Router,
+    private translateSrv: CustomTranslateService
   ) { }
 
   ngOnInit(): void {
@@ -44,7 +46,9 @@ export class HeaderCilikComponent implements OnInit {
   }
 
   public async logout() {
-    const ask = await this.sweetAlert2Srv.askConfirm('¿Está seguro que desea cerrar sesión?');
+    
+    let message = await this.translateSrv.translate('general.areYouSureYouWantToLogOut')
+    const ask = await this.sweetAlert2Srv.askConfirm(message);
     if (!ask) { return; }
     this.authSrv.logout();
   }

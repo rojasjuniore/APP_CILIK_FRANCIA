@@ -8,6 +8,11 @@
   "globalTotalToPay": "Global total to pay",
   "globalTotalToPayOld": "Global total to pay old",
   "completed": "Completed",
+  "invitado": "Guest",
+  "pending": "Pending",
+  "approved": "Approved",
+  "rejected": "Rejected",
+  "status": "Status",
   "general": {
     "advisor": "Advisor",
     "payedAt": "Payed at",
@@ -47,7 +52,7 @@
     "phoneNumber": "Phone number",
     "signUp": "Sign Up",
     "successfulRegistration": "Successful registration",
-    "cedula": "Documen",
+    "cedula": "Document",
     "passport": "Passport",
     "identityCard": "Identity card",
     "documentType": "Document type",
@@ -130,7 +135,9 @@
     "subtotal": "Subtotal",
     "discount": "Discount",
     "globalDiscountGlobalPercentage": "Global percentage",
-    "view": "View"
+    "view": "View",
+    "areYouSureYouWantToLogOut": "Are you sure you want to log out?",
+    "blue": "blue"
   },
   "formValidations": {
     "required": "The field is required",
@@ -307,5 +314,12 @@
   },
   "Por favor, haz clic en la opción marcada en": "Please click on the option marked in",
   "azul": "blue",
-  "y elige tu método de pago preferido": "and choose your preferred payment method"
+  "y elige tu método de pago preferido": "and choose your preferred payment method",
+  "checkout": {
+    "text": "To give you flexibility and confidence when making your online transactions, we offer you the option of paying through TuCompra, a leading platform in electronic payment solutions:"
+  },
+  "purchase": {
+    "pleaseClickOnTheOptionCheckedIn": "Please click on the option checked in",
+    "andChooseYourPreferredPaymentMethod": "and choose your preferred payment method"
+  }
 }

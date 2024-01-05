@@ -6,9 +6,9 @@
         <div class="instruction-alert">
             <i class="fa fa-info-circle" aria-hidden="true"></i>
             <!-- Ícono de información (asegúrate de tener FontAwesome si usas este ícono) -->
-            {{'Por favor, haz clic en la opción marcada en' | translate}} <span class="highlight">{{'azul' | translate}}
+            {{'purchase.pleaseClickOnTheOptionCheckedIn' | translate}} <span class="highlight">{{'general.blue' | translate}}
             </span>
-            {{'and choose your preferred payment method' | translate}}.
+            {{'purchase.andChooseYourPreferredPaymentMethod' | translate}}.
         </div>
     </div>
 
@@ -33,7 +33,7 @@
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">Fecha de pago: {{item.date }}</h5>
                         <small>
-                            {{item.status | translate | titlecase}}: {{item.quota}} <ng-container
+                            {{item.status | translate }}: {{item.quota}} <ng-container
                                 *ngIf="item.paymentMethod"> | {{item.paymentMethod}}</ng-container>
                         </small>
                     </div>

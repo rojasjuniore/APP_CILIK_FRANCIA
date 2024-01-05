@@ -7,6 +7,11 @@
   "globalDiscountPercentage": "Porcentaje global",
   "globalTotalToPay": "Total a pagar global",
   "globalTotalToPayOld": "Total a pagar global (Antes de descuento)",
+  "invitado": "Invitado",
+  "pending": "Pendiente",
+  "approved": "Aprobado",
+  "rejected": "Rechazado",
+  "status": "Estado",
   "general": {
     "advisor": "Asesor",
     "payedAt": "Fecha de pago",
@@ -129,7 +134,9 @@
     "subtotal": "Subtotal",
     "discount": "Descuento",
     "globalDiscountGlobalPercentage": "Porcentaje global",
-    "view": "Ver"
+    "view": "Ver",
+    "areYouSureYouWantToLogOut": "¿Está seguro que desea cerrar sesión?",
+    "blue": "azul"
   },
   "formValidations": {
     "required": "El campo es obligatorio",
@@ -303,5 +310,12 @@
         "Escríbenos en:"
       ]
     }
+  },
+  "checkout": {
+    "text": "Para brindarte flexibilidad y confianza al realizar tus transacciones en línea, te ofrecemos la opción de pagar a través de TuCompra, una plataforma líder en soluciones de pagos electrónicos:"
+  },
+  "purchase": {
+    "pleaseClickOnTheOptionCheckedIn": "Por favor, haz clic en la opción marcada en",
+    "andChooseYourPreferredPaymentMethod": "y elija la forma de pago que prefiera"
   }
 }
