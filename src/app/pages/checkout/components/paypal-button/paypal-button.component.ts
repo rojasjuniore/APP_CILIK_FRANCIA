@@ -41,17 +41,17 @@ export class PaypalButtonComponent implements OnInit, OnChanges {
     const _fee = new BN(this.amount).multipliedBy(0.056).toFixed(2)
     const _amount = new BN(this.amount).plus(_fee).toFixed(2)
 
-    // console.log({
-    //   _clientId,
-    //   _currency,
-    //   _fee,
-    //   _amount
-    // });
+    console.log({
+      _clientId,
+      _currency,
+      _fee,
+      _amount
+    });
 
 
     this.payPalConfig = {
       clientId: _clientId,
-      currency: environment.paypal.currency,
+      currency: _currency,
       createOrderOnClient: (data) => <ICreateOrderRequest>{
         intent: 'CAPTURE',
         purchase_units: [{
@@ -74,20 +74,20 @@ export class PaypalButtonComponent implements OnInit, OnChanges {
 
       },
       onClientAuthorization: (data) => {
-        // console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
+        console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
         this.onCallback.next({ type: 'success', data });
       },
       onCancel: (data, actions) => {
-        // console.log('OnCancel', data, actions);
+        console.log('OnCancel', data, actions);
         this.onCallback.next({ type: 'cancel', data });
 
       },
       onError: (err) => {
-        // console.log('OnError', err);
+        console.log('OnError', err);
         this.onCallback.next({ type: 'error', data: err });
       },
       onClick: (data, actions) => {
-        // console.log('onClick', data, actions);
+        console.log('onClick', data, actions);
         // this.resetStatus();
       }
     };
