@@ -367,6 +367,7 @@ export class SignUpComponent implements OnInit {
 
     } catch (err) {
       console.log('Error on SignUpComponent.onSubmit', err);
+      this.sweetAlert2Srv.showError("Error al crear usuario")
       return;
     } finally {
       this.loader = false;
