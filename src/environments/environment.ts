@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  version: '0.0.46',
+  version: '0.0.47',
   dataEvent: {
     keyDb: "iS30s4eNrRfG3dbeUV18",
     appURL: "https://grecia-dev.web.app/",

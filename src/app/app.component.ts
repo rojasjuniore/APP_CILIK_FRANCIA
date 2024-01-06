@@ -29,7 +29,7 @@ export class AppComponent {
     private router: Router,
     private versionSrv: VersionService,
   ) {
-    this.currentLanguage = window.localStorage.getItem('lang') || this.translateSrv.currentLanguage;
+    this.currentLanguage = window.localStorage.getItem('lang') || 'en' || this.translateSrv.currentLanguage;
 
   }
 
