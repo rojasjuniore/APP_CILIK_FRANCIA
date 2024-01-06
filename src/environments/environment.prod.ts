@@ -1,6 +1,6 @@
 export const environment = {
-  production: false,
-  version: '0.0.47',
+  production: true,
+  version: '0.0.49',
   dataEvent: {
     keyDb: "nMdPSXuptQjlcoAg5PJY",
     appURL: "https://grecia.cilik.io",

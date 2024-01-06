@@ -51,7 +51,7 @@ export class CheckoutComponent implements OnInit {
       slug: 'paypal',
       type: 'navigation',
       icon: 'bi bi-paypal',
-      available: true,
+      available: false,
     },
     // {
     //   label: 'general.advisor',
