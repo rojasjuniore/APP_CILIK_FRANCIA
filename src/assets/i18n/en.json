@@ -316,7 +316,8 @@
   "azul": "blue",
   "y elige tu método de pago preferido": "and choose your preferred payment method",
   "checkout": {
-    "text": "To give you flexibility and confidence when making your online transactions, we offer you the option of paying through TuCompra, a leading platform in electronic payment solutions:"
+    "text": "To give you flexibility and confidence when making your online transactions, we offer you the option of paying through TuCompra, a leading platform in electronic payment solutions:",
+    "text-paypal": "For your convenience and security when making online payments, we offer you the option of using PayPal, a world-renowned leading platform."
   },
   "purchase": {
     "pleaseClickOnTheOptionCheckedIn": "Please click on the option checked in",
