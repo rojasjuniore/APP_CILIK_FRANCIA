@@ -79,17 +79,17 @@ export class CustomInputFileComponent implements OnInit {
     const fileLength = files.length;
     const fileValidation = files[0].type;
     
-    if (fileValidation !== "application/pdf") {
-      this.sweetAlert2Srv.showError(
-        this.translate.instant("formValidations.onlyPDF")
-      );
-      this.clearFile();
-      return;
-    }
+    // if (fileValidation !== "application/pdf") {
+    //   this.sweetAlert2Srv.showError(
+    //     this.translate.instant("formValidations.onlyPDF")
+    //   );
+    //   this.clearFile();
+    //   return;
+    // }
 
     this.formFile = files[0];
     console.log(this.formFile);
-    // this.onSelectFile.next(this.formFile);
+    this.onSelectFile.next(this.formFile);
     
     // clear input file
     this.inputFileRef.nativeElement.value = "";

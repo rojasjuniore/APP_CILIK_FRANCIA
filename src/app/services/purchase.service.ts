@@ -2,15 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { arrayRemove, arrayUnion, increment } from 'firebase/firestore';
-import moment from 'moment';
-import { lastValueFrom, Observable } from 'rxjs';
+import { combineLatest, lastValueFrom, map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { handlerArrayResult, handlerObjectResult } from '../helpers/model.helper';
 import { ExcelService } from './excel.service';
 import { QuickNotificationService } from './quick-notification/quick-notification.service';
 import { TranslatePipe } from '@ngx-translate/core';
+import moment from 'moment';
 
-const URL_ROOT: any = environment.API_URL;
 @Injectable({
   providedIn: 'root'
 })
@@ -26,16 +25,97 @@ export class PurchaseService {
     private translatePipe: TranslatePipe,
   ) { }
 
+
   async storePurchase(eventId: string, docId: string, data: any) {
-    // return this.afs.collection(this.purchaseCollection).doc(docId).set(data);
     console.log('storePurchase', eventId, docId, data);
     return await this.afs.collection(this.purchaseCollection).doc(eventId).collection('purchases').doc(docId).set(data);
   }
 
   async updatePurchase(eventId: string, docId: string, data: any) {
-    // return this.afs.collection(this.purchaseCollection).doc(docId).update(data);
     return await this.afs.collection(this.purchaseCollection).doc(eventId).collection('purchases').doc(docId).update(data);
   }
+
+
+
+  async storePurchasePending(eventId: string, docId: string, data: any) {
+    console.log('storePurchase', eventId, docId, data);
+    return await this.afs.collection(this.purchaseCollection).doc(eventId).collection('pending').doc(docId).set(data);
+  }
+
+
+  /// 
+  updatePurchaseStore(eventId: string, docId: string, index: number, claim: any) {
+    // Obtener una referencia al documento
+    const docRef = this.afs.collection(this.purchaseCollection).doc(eventId).collection('purchases').doc(docId);
+
+    // Leer el documento actual
+    return docRef.get().subscribe(async doc => {
+      if (doc.exists) {
+        const currentData = doc.data();
+
+        // Asegúrate de que el array existe y es un array
+        if (currentData && currentData['product'] && Array.isArray(currentData['product'])) {
+          // Actualizar el elemento en la posición especificada
+          const arrayActualizado = [...currentData['product']];
+
+          // Añadir el campo 'claim' con valor 'true' al objeto en la posición especificada
+          arrayActualizado[index] = { ...arrayActualizado[index], _claim: claim };
+
+          // Preparar el objeto de actualización
+          let updateObject = {};
+          updateObject['product'] = arrayActualizado;
+
+          // Actualizar el documento
+          return await docRef.update(updateObject);
+        }
+      }
+    });
+  }
+
+
+  /// 
+  async getPurchasesToPromise(eventId: string, docId: string) {
+    try {
+      const snapshot = await this.afs.collection(this.purchaseCollection).doc(eventId).collection('purchases').doc(docId).get().toPromise();
+      return snapshot;
+
+    } catch (err) {
+      console.log('Error on CartService.getCartToPromise', err);
+      return null;
+    }
+  }
+
+  /// 
+  reclaimedPurchase(data: any) {
+    return lastValueFrom(this.http.post(`${environment.API_URL}/payment_gateways/wldc2025`, data));
+  }
+
+
+  //  @dev Obtener el carrito de compras de un usuario
+  async migrateDataPurchase(eventId: string, docId: string, newUid: string, oldUid: string): Promise<void> {
+
+    console.log('migrateDataPurchase', eventId, docId, newUid, oldUid);
+
+    // Obtener los datos del carrito del usuario anónimo
+    const purchasesSnapshot: any = await this.getPurchasesToPromise(eventId, docId);
+    console.log('purchases', purchasesSnapshot);
+    if (purchasesSnapshot.exists) {
+
+      const purchases = purchasesSnapshot.data();
+      // @dev Actualizar el identificador del carrito
+      purchases.uid = newUid;
+      purchases.oldUid = oldUid;
+      purchases.migrateUid = localStorage.getItem("uid");
+      purchases.updatedAt = moment().format();
+      console.log('purchases', purchases);
+      // Migrar los datos del carrito
+      await this.updatePurchase(environment.dataEvent.keyDb, docId, purchases);
+    }
+
+    return Promise.resolve();
+  }
+
+
 
   getByEventAndId(eventId: string, docId: string) {
     return this.afs.collection(this.purchaseCollection).doc(eventId).collection('purchases').doc(docId).valueChanges();
@@ -724,12 +804,40 @@ export class PurchaseService {
     // ], { orderBy: [{ field: "createdAt", order: "desc" }] });
   }
 
+
+  combineQueries(eventId: string, uid: string) {
+    const completedQuery = this.afs.collection(this.purchaseCollection)
+      .doc(eventId).collection('purchases', ref =>
+        ref.where('status', '==', 'completed')
+          .where('uid', '==', uid)
+          .orderBy('createdAt', 'desc')
+      ).valueChanges(
+        {
+          idField: '_id'
+        }
+      );
+
+    const preApprovedQuery = this.afs
+      .collection(this.purchaseCollection).doc(eventId).collection('purchases', ref =>
+        ref.where('status', '==', 'preApproved')
+          .where('uid', '==', uid)
+          .orderBy('createdAt', 'desc')
+      ).valueChanges(
+        {
+          idField: '_id'
+        }
+      );
+
+    return combineLatest([completedQuery, preApprovedQuery])
+      .pipe(
+        map(([completedResults, preApprovedResults]) => {
+          return [...completedResults, ...preApprovedResults];
+        })
+      );
+  }
+
   getDynamic(eventId: string, where: any[] = [], opts: any = {}): Observable<any[]> {
     const { idField = "_id", orderBy = [] } = opts;
-
-    console.log('getDynamic', this.purchaseCollection);
-    console.log('getDynamic', eventId);
-    console.log('getDynamic', where);
 
     return this.afs.collection(this.purchaseCollection).doc(eventId).collection('purchases', (ref) => {
       let query: any = ref;

@@ -1,0 +1,17 @@
+<ng-container *ngFor="let item of filteredAndSortedProducts">
+  <div [ngClass]="{
+      'bg-primary': item._claim === '0',
+      'bg-success': item._claim === '1',
+      'bg-warning': item._claim === '2',
+      'bg-danger': item._claim === '3'
+    }">
+
+    <ng-container *ngIf="!(item._claim); else templateName">
+      <app-claim-division [division]="item"></app-claim-division>
+    </ng-container>
+    <ng-template #templateName>
+      <app-reclaimed [reclaimed]="item"></app-reclaimed>
+    </ng-template>
+
+  </div>
+</ng-container>

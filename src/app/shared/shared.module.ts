@@ -54,7 +54,7 @@ import { PurchaseInstallmentsComponent } from '../pages/purchases/components/pur
 import { PurchaseWeekendPassCardItemComponent } from '../pages/purchases/components/purchase-weekend-pass-card-item/purchase-weekend-pass-card-item.component';
 import { AdviserCheckoutComponent } from '../pages/checkout/components/adviser-checkout/adviser-checkout.component';
 
-
+import { AudioPlayerComponent } from './audio-player/audio-player.component';
 
 
 
@@ -121,7 +121,10 @@ import { AdviserCheckoutComponent } from '../pages/checkout/components/adviser-c
     PurchaseInstallmentsModalComponent,
     PurchaseInstallmentsVoucherComponent,
 
-    AdviserCheckoutComponent
+    AdviserCheckoutComponent,
+
+    
+    AudioPlayerComponent
 
   ],
 
@@ -182,7 +185,9 @@ import { AdviserCheckoutComponent } from '../pages/checkout/components/adviser-c
     PurchaseInstallmentsModalComponent,
     PurchaseInstallmentsVoucherComponent,
 
-    AdviserCheckoutComponent
+    AdviserCheckoutComponent,
+
+    AudioPlayerComponent
 
 
   ]

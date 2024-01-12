@@ -491,6 +491,24 @@ export class AuthenticationService {
   }
 
   /**
+   * @dev Obtener documento de perfil de un usuario a través de su identificador
+   * @param uid                       Identificador del usuario
+   * @param opts                      Opciones de consulta
+   * @returns 
+   */
+  async getProfileToPromise(uid: string, opts: any = {}){
+    try {
+      // const snapshot = await lastValueFrom(this.afs.collection('profile').doc(uid).get());
+      const snapshot = await this.afs.collection('profile').doc(uid).get().toPromise()
+      return await handlerObjectResult(snapshot, opts);
+      
+    } catch (err) {
+      console.log('Error on AuthenticationService.getProfileToPromise', err);
+      return null;
+    }
+  }
+
+  /**
    * Obtener documento de perfil desde el localStorage
    * @returns 
    */
@@ -619,6 +637,14 @@ export class AuthenticationService {
 
     // const snapshot = await lastValueFrom(this.afs.collection('users').doc(uid).get());
     // return await handlerObjectResult(snapshot, opts);
+  }
+
+  getByIdUIDPromise() {
+    return new Promise((resolve) => {
+      this.uid$.subscribe(uid => {
+        resolve(uid);
+      })
+    });
   }
 
   async getByEmailAddress(email: any, opts = {}): Promise<any | null> {

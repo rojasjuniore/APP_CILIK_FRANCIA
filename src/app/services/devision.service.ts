@@ -1,36 +1,102 @@
-import { Injectable } from "@angular/core";
-import { Observable, map } from "rxjs";
-import moment from "moment";
-import { environment } from "src/environments/environment";
+import { Injectable } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFirestore, Query } from "@angular/fire/compat/firestore";
-import { AngularFireDatabase } from "@angular/fire/compat/database";
-import { handlerObjectResult, handlerArrayResult, handlerObjectResultRDB } from "../helpers/model.helper";
+import moment from 'moment';
+import { Observable, catchError, map, of, switchMap } from 'rxjs';
+import { handlerObjectResult, handlerArrayResult, handlerObjectResultRDB } from '../helpers/model.helper';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SchoolService {
+export class DevisionService {
 
-  public collection = "school-record-wldc";
+  public collection = "divisions_list";
 
   constructor(
+    private http: HttpClient,
     public afs: AngularFirestore,
     public db: AngularFireDatabase,
   ) { }
 
 
-  createId() {
-    return this.afs.createId();
+
+  searchCategory(key_db: string, block: string) {
+    /** Crear observable para cargar divisiones */
+    return this.afs
+      .collection("divisions_list")
+      .doc(key_db)
+      .collection("list", (ref) => ref.where("id_categoria", "==", block).orderBy("sub_categoria"))
+      .valueChanges({ idField: "id" })
+      .pipe(
+        map((res: any[]) =>
+          (res.length == 0)
+            ? []
+            : res.sort((a, b) => {
+              if (a.id_sub_categoria > b.id_sub_categoria) { return 1; }
+              if (a.id_sub_categoria < b.id_sub_categoria) { return -1; }
+              return 0;
+            })
+        ),
+        // tap((res: any) => console.log('getDivision', res)),
+        /** TODO: Deshabilitar cambio temporalmente */
+        switchMap(async (res: any) => {
+          // try {
+
+          //   const documents = await this.documentSrv.getById(this.id, this.uid);
+          //   // console.log('documents', documents);
+          //   const participantLocationType = documents?.participantLocationType || null;
+          //   // console.log('participantLocationType', participantLocationType);
+
+          //   if (participantLocationType === 'local') {
+
+          //     if (block.value === 'jab') {
+          //       return res;
+          //     } else if (block.value === 'jap') {
+          //       return res.filter((item: any) => item.id_sub_categoria == 'ge-1');
+          //     } else {
+          //       return res;
+          //     }
+
+          //   } else {
+          //     return res;
+          //   }
+
+          // } catch (err) {
+          //   console.log('Error on DivisionPurchasePage.searchCategory', err);
+          //   return res;
+          // }
+
+          return res;
+        }),
+        catchError((err) => {
+          console.log("Error al obtener las divisiones", err);
+          return of([])
+        })
+      );
   }
 
-  getSchoolRecord() {
-    const collection = environment.production ? "schoolRecord" : "schoolRecord";
-    return this.db
-      .list(collection, ref => ref.
-        orderByChild('public').equalTo(true)
-      )
-      .snapshotChanges()
-      .pipe(map(changes => changes.map(c => ({ key: c.payload.key, ...c.payload.val() as any }))));
+
+
+
+  async divisionRulesToPromise(data: { division: any, key_db: string, block: string }) {
+    try {
+      const snapshot = await this.http.post(`${environment.urlrootFunctions}/division/rules`, data).toPromise();
+      return snapshot;
+
+    } catch (err) {
+      console.log('Error on ManageUsersService:divisionRulesToPromise', err);
+      throw err;
+    }
+  }
+
+
+
+
+
+  createId() {
+    return this.afs.createId();
   }
 
   /**
@@ -198,6 +264,5 @@ export class SchoolService {
       })
       .valueChanges({ idField });
   }
-
 
 }
