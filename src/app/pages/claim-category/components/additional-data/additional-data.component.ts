@@ -112,16 +112,16 @@ export class AdditionalDataComponent implements OnInit, OnChanges, AfterViewInit
     this.form = this.fb.group({
       block: ['', Validators.required],
       division: ['', Validators.required],
-      choreographyCreator: [''],
+      country: [''],
+      state: [''],
+      city: [''],
+      // choreographyCreator: [''],
+      // nameCoach: [''],
       // nameGroup: ['', Validators.required],
       // school: ['', Validators.required],
-      nameCoach: [''],
       // instagram: [''],
       // facebook: [''],
       // tiktok: [''],
-      country: [''],
-      state: [''],
-      city: ['']
     });
   }
 
