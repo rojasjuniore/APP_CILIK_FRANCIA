@@ -16,7 +16,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./additional-data.component.css']
 })
 export class AdditionalDataComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
-  
+
   /** Identificador de la modal */
   @Input() _id: string = 'modalAdditionalDataFindOwner';
 
@@ -110,18 +110,18 @@ export class AdditionalDataComponent implements OnInit, OnChanges, AfterViewInit
 
   buildForm() {
     this.form = this.fb.group({
-      division: ['', Validators.required],
-      // nameGroup: ['', Validators.required],
-      choreographyCreator: ['', Validators.required],
-      nameCoach: ['', Validators.required],
       block: ['', Validators.required],
-      school: ['', Validators.required],
-      instagram: ['', Validators.required],
-      facebook: ['', Validators.required],
-      tiktok: ['', Validators.required],
-      country: ['', Validators.required],
-      state: ['', Validators.required],
-      city: ['', Validators.required]
+      division: ['', Validators.required],
+      choreographyCreator: [''],
+      // nameGroup: ['', Validators.required],
+      // school: ['', Validators.required],
+      nameCoach: [''],
+      instagram: [''],
+      facebook: [''],
+      tiktok: [''],
+      country: [''],
+      state: [''],
+      city: ['']
     });
   }
 
@@ -167,7 +167,7 @@ export class AdditionalDataComponent implements OnInit, OnChanges, AfterViewInit
         }
 
         /** Al cambiar el bloque - Reiniciar la categoria */
-        this.form.patchValue({division: ''});
+        this.form.patchValue({ division: '' });
 
         /** Cargar listado de categorias */
         this.searchCategory(value);
@@ -196,11 +196,11 @@ export class AdditionalDataComponent implements OnInit, OnChanges, AfterViewInit
 
     /** Crear observable para cargar divisiones */
     this.division$ = this.devisionSrv.searchCategory(environment.dataEvent.keyDb, block)
-    .pipe(
-      /** Filtrar divisiones segun el tipo de categoria que recibe la modal */
-      map((data: any[]) => data.filter((item: any) => item.id_tipo_sub_categoria == categoryParsed)),
-      // tap((res: any) => console.log('searchCategory', res)),
-    )
+      .pipe(
+        /** Filtrar divisiones segun el tipo de categoria que recibe la modal */
+        map((data: any[]) => data.filter((item: any) => item.id_tipo_sub_categoria == categoryParsed)),
+        // tap((res: any) => console.log('searchCategory', res)),
+      )
   }
 
   loadCountryAndCity() {
