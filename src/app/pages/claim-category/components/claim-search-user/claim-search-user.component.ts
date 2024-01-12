@@ -183,10 +183,10 @@ export class ClaimSearchUserComponent implements OnInit, OnChanges, AfterViewIni
       console.log('profile', profile);
 
       // No tiene perfil completo
-      if(!profile) {
-        this.sweetAlert2Srv.showError('The user does not complete the profile');
-        return;
-      }
+      // if(!profile) {
+      //   this.sweetAlert2Srv.showError('The user does not complete the profile');
+      //   return;
+      // }
 
       /**
        * Ejecutar regla de la edad
@@ -197,10 +197,10 @@ export class ClaimSearchUserComponent implements OnInit, OnChanges, AfterViewIni
       const maxAge = this.divisionSetting.edad_max;
 
       // Válidar que la edad se encuentre dentro del rango
-      if (age < minAge || age > maxAge) {
-        this.sweetAlert2Srv.showError(`The user's age does not match the division`);
-        return;
-      }
+      // if (age < minAge || age > maxAge) {
+      //   this.sweetAlert2Srv.showError(`The user's age does not match the division`);
+      //   return;
+      // }
 
       /**
        * Ejecutar regla de genero

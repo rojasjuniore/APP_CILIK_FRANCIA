@@ -116,9 +116,9 @@ export class AdditionalDataComponent implements OnInit, OnChanges, AfterViewInit
       // nameGroup: ['', Validators.required],
       // school: ['', Validators.required],
       nameCoach: [''],
-      instagram: [''],
-      facebook: [''],
-      tiktok: [''],
+      // instagram: [''],
+      // facebook: [''],
+      // tiktok: [''],
       country: [''],
       state: [''],
       city: ['']

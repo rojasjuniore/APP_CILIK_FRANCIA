@@ -48,18 +48,18 @@ export class ClaimDivisionComponent implements OnInit {
     this.form = new FormGroup({
       division: new FormControl('', [Validators.required]),
       users: new FormControl('', [Validators.required]),
-      country: new FormControl('', [Validators.required]),
       city: new FormControl('', [Validators.required]),
       music: new FormControl('', [Validators.required]),
       block: new FormControl('', [Validators.required]),
-      school: new FormControl('', [Validators.required]),
-      state: new FormControl('', [Validators.required]),
-      instagram: new FormControl('', [Validators.required]),
-      facebook: new FormControl('', [Validators.required]),
-      tiktok: new FormControl('', [Validators.required]),
-      choreographyCreator: new FormControl('', [Validators.required]),
-      nameCoach: new FormControl('', [Validators.required]),
-      photo: new FormControl('', [Validators.required]),
+      country: new FormControl('', []),  
+      school: new FormControl('', []),
+      state: new FormControl('', []),
+      instagram: new FormControl('', []),
+      facebook: new FormControl('', []),
+      tiktok: new FormControl('', []),
+      choreographyCreator: new FormControl('', []),
+      nameCoach: new FormControl('', []),
+      photo: new FormControl('', []),
     });
   }
 
@@ -156,12 +156,12 @@ export class ClaimDivisionComponent implements OnInit {
   /**
    * @dev Disparar modal para buscar usuario
    */
-  launchFindUserModal() { 
+  launchFindUserModal() {
     const formData = this.form.value;
     this.modalFindUser.showModal({
       division: this.division,
       divisionSetting: formData.division,
-    }); 
+    });
     // this.modalFindUser.showModal(this.division); 
   }
 
