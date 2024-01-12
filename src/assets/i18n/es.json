@@ -312,7 +312,8 @@
     }
   },
   "checkout": {
-    "text": "Para brindarte flexibilidad y confianza al realizar tus transacciones en línea, te ofrecemos la opción de pagar a través de TuCompra, una plataforma líder en soluciones de pagos electrónicos:"
+    "text": "Para brindarte flexibilidad y confianza al realizar tus transacciones en línea, te ofrecemos la opción de pagar a través de TuCompra, una plataforma líder en soluciones de pagos electrónicos:",
+    "text-paypal": "Para tu comodidad y seguridad al realizar pagos en línea, te ofrecemos la opción de usar PayPal, una plataforma líder mundialmente reconocida."
   },
   "purchase": {
     "pleaseClickOnTheOptionCheckedIn": "Por favor, haz clic en la opción marcada en",
