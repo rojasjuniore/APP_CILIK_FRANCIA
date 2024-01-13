@@ -195,6 +195,7 @@ export class AdditionalDataComponent implements OnInit, OnChanges, AfterViewInit
     // console.log('searchCategory', environment.dataEvent.keyDb, block);
 
     /** Crear observable para cargar divisiones */
+    console.log('searchCategory', environment.dataEvent.keyDb, block, categoryParsed);
     this.division$ = this.devisionSrv.searchCategory(environment.dataEvent.keyDb, block)
       .pipe(
         /** Filtrar divisiones segun el tipo de categoria que recibe la modal */

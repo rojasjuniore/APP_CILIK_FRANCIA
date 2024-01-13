@@ -21,7 +21,9 @@
                     <div class="mb-3">
                       <label for="block" class="form-label">{{ "general.block" | translate | titlecase }}:</label>
                       <ng-select formControlName="block" placeholder="Seleccione un block">
-                        <ng-option *ngFor="let block of (dataBlock$ | async)" [value]="block">{{ block }}</ng-option>
+                        <ng-option *ngFor="let block of (dataBlock$ | async)" [value]="block">
+                          {{ block | uppercase }} - {{ block | translate | titlecase }}
+                        </ng-option>
                       </ng-select>
                       <div *ngIf=" form.get('block')?.touched && form.get('block')?.invalid" class="invalid-feedback">
                         {{ "formValidations.required" | translate | titlecase }}
@@ -34,16 +36,16 @@
                       </label>
                       <ng-select formControlName="division" placeholder="Seleccione un division">
                         <ng-option *ngFor="let division of (division$ | async)" [value]="division">
-                          {{ division.id_sub_categoria | uppercase }}
-                          {{ division.sub_categoria | uppercase }}
+                          {{ division.id_sub_categoria  | uppercase }} - {{ division.sub_categoria |translate | uppercase }}
                         </ng-option>
                       </ng-select>
-                      <div *ngIf="form.get('division')?.touched && form.get('division')?.invalid" class="invalid-feedback">
+                      <div *ngIf="form.get('division')?.touched && form.get('division')?.invalid"
+                        class="invalid-feedback">
                         {{ "formValidations.required" | translate | titlecase }}
                       </div>
                     </div>
 
-                    
+
 
                     <div class="mb-3">
                       <label for="country" class="form-label">
@@ -54,7 +56,8 @@
                           c.name
                           }}</ng-option>
                       </ng-select>
-                      <div *ngIf="form.get('country')?.touched && form.get('country')?.invalid" class="invalid-feedback">
+                      <div *ngIf="form.get('country')?.touched && form.get('country')?.invalid"
+                        class="invalid-feedback">
                         {{ "formValidations.required" | translate | titlecase }}
                       </div>
                     </div>
@@ -128,7 +131,7 @@
                         {{ "formValidations.required" | translate | titlecase }}
                       </div>
                     </div> -->
-<!-- 
+                    <!-- 
                     <div class="mb-3">
                       <label for="nameCoach" class="form-label">
                         {{ "category.trainersName" | translate | titlecase }}:
