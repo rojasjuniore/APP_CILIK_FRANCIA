@@ -96,8 +96,9 @@ export class AdditionalDataComponent implements OnInit, OnChanges, AfterViewInit
   }
 
   async showModal(item: any) {
-    // console.log('showModal', this.mi);
     this.item = item;
+    console.log('item', this.item);
+
     this.mi.show();
   }
 
