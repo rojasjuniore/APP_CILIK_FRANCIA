@@ -87,6 +87,7 @@ export class PurchaseService {
 
   /// 
   reclaimedPurchase(data: any) {
+    console.log('reclaimedPurchase', data);
     return lastValueFrom(this.http.post(`${environment.API_URL}/payment_gateways/wldc2025`, data));
   }
 

@@ -44,7 +44,7 @@ export class ClaimCategoryComponent implements OnInit, OnDestroy {
   }
 
   transformData(data: any) {
-    console.log('transformData', data);
+    // console.log('transformData', data);
     this.filteredAndSortedProducts = data
       .flatMap((x) =>
         x.product
