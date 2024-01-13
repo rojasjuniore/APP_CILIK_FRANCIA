@@ -33,6 +33,15 @@ export class AdminDashboardComponent implements OnInit {
       available: true
     },
     {
+      label: 'Manager  statistics',
+      icon: 'fa fa-money',
+      description: 'Manager statistics',
+      type: 'navigation',
+      url: '/admin/statistics/dashboard',
+      profiles: ['manager-statistics-admin'],
+      available: true
+    },
+    {
       label: 'Manager Purchase Orders',
       icon: 'fa fa-money',
       description: 'Manager Purchase Orders',
@@ -95,7 +104,7 @@ export class AdminDashboardComponent implements OnInit {
       url: '/admin/merchant-admin/dashboard/',
       profiles: ['manager-merchant-admin'],
       available: true
-    },
+    }
 
   ];
 

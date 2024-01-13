@@ -67,6 +67,12 @@ const routes: Routes = [
     loadChildren: () => import("./merchant-purchases/merchant-purchases.module").then((m) => m.MerchantPurchasesModule),
   },
   {
+    path: 'statistics',
+    data: { profiles: ['manager-statistics-admin'] },
+    canActivate: [AuthProfileGuard],
+    loadChildren: () => import("./statistics/statistics.module").then((m) => m.StatisticsModule),
+  },
+  {
     path: '**',
     pathMatch: 'full',
     redirectTo: '/admin/dashboard'
