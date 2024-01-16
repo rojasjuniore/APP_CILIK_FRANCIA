@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable, Subject, Subscription, catchError, debounceTime, distinctUntilChanged, from, map, of, switchMap, tap } from 'rxjs';
 import { BlockService } from 'src/app/services/block.service';
 import { BsModalService } from 'src/app/services/bs-modal.service';
@@ -48,6 +49,7 @@ export class AdditionalDataComponent implements OnInit, OnChanges, AfterViewInit
   private sub$!: Subscription;
 
   constructor(
+    private spinner: NgxSpinnerService,
     private blockSrv: BlockService,
     private devisionSrv: DevisionService,
     private dataSrv: DataService,
@@ -179,9 +181,11 @@ export class AdditionalDataComponent implements OnInit, OnChanges, AfterViewInit
    * @dev Buscar información de las categorias
    * @param block                   Bloque seleccionado
    */
-  searchCategory(block: any) {
+  async searchCategory(block: any) {
     /** No se recibe valor del bloque actual */
     if (!block) { return; }
+
+    await this.spinner.show();
 
     /** Glosario de categorias */
     const glosaryCategories = {
@@ -201,7 +205,10 @@ export class AdditionalDataComponent implements OnInit, OnChanges, AfterViewInit
       .pipe(
         /** Filtrar divisiones segun el tipo de categoria que recibe la modal */
         map((data: any[]) => data.filter((item: any) => item.id_tipo_sub_categoria == categoryParsed)),
-        // tap((res: any) => console.log('searchCategory', res)),
+        tap((res: any) => {
+          console.log('searchCategory', res);
+          this.spinner.hide();
+        }),
       )
   }
 
@@ -257,6 +264,8 @@ export class AdditionalDataComponent implements OnInit, OnChanges, AfterViewInit
     }
 
     this.closeModal({ status: true, data: this.form.value });
+
+    this.form.reset();
   }
 
 }

@@ -9,22 +9,23 @@
 
       <!-- Select Category Button -->
       <div class="col-12 col-md-6 mb-4 pe-md-3">
-          <!-- <span class="fw-bold me-2 fs-5"> -->
-            <!-- {{ "category.additionalData" | translate }}: -->
-            <!-- Categoría:
+        <!-- <span class="fw-bold me-2 fs-5"> -->
+        <!-- {{ "category.additionalData" | translate }}: -->
+        <!-- Categoría:
           </span> -->
-          <button type="button" class="btn btn-one btn-full"  (click)="launchFindAditionalDataModal()">
-             <!-- {{ form.value ? ("X" | translate) : ("general.add" | translate) }} -->
-            <!-- <i class="bi bi-hand-index-thumb"></i>  -->
-            <!-- {{ "general.add" | translate }} -->
-            {{"selectCategory" | translate}}
-          </button>
-        
+        <button type="button" class="btn btn-one btn-full" (click)="launchFindAditionalDataModal()">
+          <!-- {{ form.value ? ("X" | translate) : ("general.add" | translate) }} -->
+          <!-- <i class="bi bi-hand-index-thumb"></i>  -->
+          <!-- {{ "general.add" | translate }} -->
+          {{"selectCategory" | translate}}
+        </button>
+
       </div>
 
       <!-- Find Users Button -->
       <div class="col-12 col-md-6 mb-4 ps-md-3">
-        <button type="button" class="btn btn-one btn-full" (click)="launchFindUserModal()" [disabled]="(!addCompetitoresButton) ? true : null">
+        <button type="button" class="btn btn-one btn-full" (click)="launchFindUserModal()"
+          [disabled]="(!addCompetitoresButton) ? true : null">
           <!-- {{ form.value.users ? ("general.completed" | translate) : ("category.addUser" | translate) }} -->
           {{ "category.addUser" | translate }}
         </button>
@@ -44,18 +45,19 @@
           <span class="fw-bold me-2 fs-5 text-rslt">
             {{ "category.addMusic" | translate }}
           </span>
-          <app-custom-input-file class="claim-category" [accept]="'audio/*'" (onSelectFile)="onSelectMusicFile($event)"></app-custom-input-file>
+          <app-custom-input-file class="claim-category" [accept]="'audio/*'"
+            (onSelectFile)="onSelectMusicFile($event)"></app-custom-input-file>
         </div>
       </div>
 
-      <div class="col-12">
+      <!-- <div class="col-12">
         <div class="">
           <span class="fw-bold me-2 fs-5 text-rslt">
             {{ "category.addphoto" | translate }}
           </span>
           <app-custom-input-file class="claim-category" [accept]="'imagen/*'" (onSelectFile)="onSelectPhotoFile($event)"></app-custom-input-file>
         </div>
-      </div>
+      </div> -->
 
       <div>
         <div class="card">
@@ -173,7 +175,7 @@
                   </tbody>
                 </table>
               </div>
-              
+
             </ng-container>
 
             <div *ngIf="form.value.music" class="d-flex justify-content-center">
@@ -206,10 +208,8 @@
 <!-- <app-claim-search-category #modalFindDivision [ownerType]="'ambassador'"
   (onCloseModal)="onSelectDivision($event)"></app-claim-search-category> -->
 
-<app-claim-search-user 
-  #modalFindUser [_id]="'modalClaimAddUser' + division._index" [ownerType]="'ambassador'" 
-  [itemData]="division" (onCloseModal)="onSelectUser($event)"
-></app-claim-search-user>
+<app-claim-search-user #modalFindUser [_id]="'modalClaimAddUser' + division._index" [ownerType]="'ambassador'"
+  [itemData]="division" (onCloseModal)="onSelectUser($event)"></app-claim-search-user>
 
 <!-- <app-claim-search-country-city #modalFindCountryCity [ownerType]="'ambassador'"
   (onCloseModal)="onSelectCountryCity($event)"></app-claim-search-country-city> -->
@@ -217,7 +217,5 @@
 <!-- <app-claim-search-school #modalFindSchool [ownerType]="'ambassador'"
   (onCloseModal)="onSelectSchool($event)"></app-claim-search-school> -->
 
-<app-additional-data 
-  #modalFindAditionalData [_id]="'modalAdditionalDataFindOwner' + division._index" 
-  [ownerType]="'ambassador'" (onCloseModal)="onSelectAdditionalData($event)"
-></app-additional-data>
+<app-additional-data #modalFindAditionalData [_id]="'modalAdditionalDataFindOwner' + division._index"
+  [ownerType]="'ambassador'" (onCloseModal)="onSelectAdditionalData($event)"></app-additional-data>
