@@ -234,6 +234,7 @@ export class ClaimDivisionComponent implements OnInit {
       return this.sweetAlert2Srv.showSuccess('Datos guardados correctamente');
     } catch (err) {
       console.log('err', err);
+      return this.sweetAlert2Srv.showError("Err save");
     } finally {
       console.log('finally');
       this.spinner.hide();
