@@ -9,6 +9,7 @@ import { StoreItemCardComponent } from './components/store-item-card/store-item-
 import { MyPurchasesComponent } from './components/my-purchases/my-purchases.component';
 import { AnotherOptionComponent } from './components/another-option/another-option.component';
 import { PipesModule } from 'src/app/pipes/pipes.module';
+import { ComponentsmyRegisteredDivisionsComponent } from './components/componentsmy-registered-divisions/componentsmy-registered-divisions.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
     StoreItemCardComponent,
     MyPurchasesComponent,
     AnotherOptionComponent,
+    ComponentsmyRegisteredDivisionsComponent
   ],
   imports: [
     CommonModule,

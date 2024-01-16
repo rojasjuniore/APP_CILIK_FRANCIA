@@ -79,6 +79,19 @@ export class DevisionService {
 
 
 
+  async getMyRegisteredDivisionsToPromise(data) {
+    try {
+      const snapshot = await this.http.post(`${environment.urlrootFunctions}/accreditations/getDivision`, data).toPromise();
+      return snapshot;
+
+    } catch (err) {
+      console.log('Error on ManageUsersService:divisionRulesToPromise', err);
+      throw err;
+    }
+  }
+
+
+
 
   async divisionRulesToPromise(data: { division: any, key_db: string, block: string }) {
     try {

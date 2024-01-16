@@ -50,6 +50,10 @@
             <app-adviser-checkout (onSelectOption)="onAdviserCallback($event)"></app-adviser-checkout>
         </div>
 
+        <div class="col-12" *ngSwitchCase="'finalize-purchase'">
+            <app-finalize-purchase (onSelectOption)="onFinalizePurchaseCallback($event)"></app-finalize-purchase>
+        </div>
+
 
     </ng-container>
 </ng-template>

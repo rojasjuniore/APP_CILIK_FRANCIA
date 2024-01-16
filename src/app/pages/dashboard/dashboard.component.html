@@ -1,54 +1,60 @@
 <div class="row">
-    <div class="col-12 text-center mb-3">
-        <div class="fs-4 fw-bold">
-            {{'dashboard.title' | translate}}
-        </div>
-        <div>
-            {{'dashboard.subTitle' | translate}}
-        </div>
+  <div class="col-12 text-center mb-3">
+    <div class="fs-4 fw-bold">
+      {{ "dashboard.title" | translate }}
     </div>
+    <div>
+      {{ "dashboard.subTitle" | translate }}
+    </div>
+  </div>
 </div>
 
 <div class="row mb-4">
-    <div class="col-12">
-        <ul class="nav nav-tabs nav-tabs-dash" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="store-tab" data-bs-toggle="tab" data-bs-target="#store"
-                    type="button" role="tab" aria-controls="store" aria-selected="true">{{"general.plans" |
-                    translate}}</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="purchases-tab" data-bs-toggle="tab" data-bs-target="#purchases"
-                    type="button" role="tab" aria-controls="purchases" aria-selected="false">{{"general.purchases" |
-                    translate}}</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="claim-category-tab" routerLink="/pages/claim-category" type="button"
-                    role="tab" aria-controls="claim-category" aria-selected="false">
-                    {{ "general.claim-category" | translate }}
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="purchases-tab" data-bs-toggle="tab" data-bs-target="#purchases"
-                    type="button" role="tab" aria-controls="purchases" aria-selected="false">
-                    {{ "general.register" | translate }}
-                </button>
-            </li>
-        </ul>
-    </div>
+  <div class="col-12">
+    <ul class="nav nav-tabs nav-tabs-dash" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="store-tab" data-bs-toggle="tab" data-bs-target="#store" type="button"
+          role="tab" aria-controls="store" aria-selected="true">
+          {{ "general.plans" | translate }}
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="purchases-tab" data-bs-toggle="tab" data-bs-target="#purchases" type="button"
+          role="tab" aria-controls="purchases" aria-selected="false">
+          {{ "general.purchases" | translate }}
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="claim-category-tab" routerLink="/pages/claim-category" type="button" role="tab"
+          aria-controls="claim-category" aria-selected="false">
+          {{ "general.claim-category" | translate }}
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="registered-divisions-tab" data-bs-toggle="tab"
+          data-bs-target="#registered-divisions" type="button" role="tab" aria-controls="purchases"
+          aria-selected="false">
+          {{ "registered categories" | translate | titlecase }}
+        </button>
+      </li>
+    </ul>
+  </div>
 </div>
 
 <div class="row">
-    <div class="col-12">
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="store" role="tabpanel" aria-labelledby="store-tab">
-                <app-store></app-store>
-            </div>
-            <div class="tab-pane fade" id="purchases" role="tabpanel" aria-labelledby="purchases-tab">
-                <app-my-purchases></app-my-purchases>
-            </div>
-        </div>
+  <div class="col-12">
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="store" role="tabpanel" aria-labelledby="store-tab">
+        <app-store></app-store>
+      </div>
+      <div class="tab-pane fade" id="purchases" role="tabpanel" aria-labelledby="purchases-tab">
+        <app-my-purchases></app-my-purchases>
+      </div>
+      <div class="tab-pane fade" id="registered-divisions" role="tabpanel" aria-labelledby="registered-divisions-tab">
+        <app-componentsmy-registered-divisions></app-componentsmy-registered-divisions>
+      </div>
     </div>
+  </div>
 </div>
 
 <!-- <div class="row">

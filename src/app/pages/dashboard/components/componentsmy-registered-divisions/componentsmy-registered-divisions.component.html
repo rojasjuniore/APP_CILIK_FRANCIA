@@ -1,0 +1,161 @@
+<ng-container *ngFor="let item of filteredAndSortedProducts; let i = index">
+    <ng-container *ngIf="!item._claim">
+        <div class="accordion p-1" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading{{i}}">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        [attr.data-bs-target]="'#collapse' + i" aria-expanded="false"
+                        [attr.aria-controls]="'collapse' + i" (click)="item.expanded = !item.expanded">
+                        {{'division' | translate | titlecase}} {{item.categoryType | translate | titlecase}} {{i+1}}
+                    </button>
+                </h2>
+                <div id="collapse{{i}}" class="accordion-collapse collapse" attr.aria-labelledby="heading{{i}}"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <!-- Renderiza el componente solo si la sección está expandida -->
+                        <ng-container *ngIf="item.expanded">
+
+                            <div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <span class="fw-bold text-rslt me-2 fs-4">
+                                            {{ "category.register" | translate | titlecase }}
+                                        </span>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+
+                                            <div class="col-12 col-md-6 col-xl-4">
+                                                <div class="item-info">
+                                                    <span class="fw-bold me-2 fs-5">
+                                                        {{ "category.division" | translate | titlecase }}:
+                                                    </span>
+                                                    <p>
+                                                        {{ item.id| uppercase }}
+                                                        {{ item.id| translate| uppercase }}
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-md-6 col-xl-4">
+                                                <div class="item-info">
+                                                    <span class="fw-bold me-2 fs-5">
+                                                        {{ "general.country" | translate | titlecase }}:
+                                                    </span>
+                                                    <p>
+                                                        {{ item.representedCountry?.name | titlecase }} -
+                                                        {{ item.representedState?.name | titlecase }} -
+                                                        {{ item.representedCity?.name | titlecase }}
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-md-6 col-xl-4">
+                                                <div class="item-info">
+                                                    <span class="fw-bold me-2 fs-5">
+                                                        {{ "general.school" | translate }}:
+                                                    </span>
+                                                    <p>
+                                                        {{ item.schoolThatRepresents?.name | titlecase }}
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-md-6 col-xl-4">
+                                                <div class="item-info">
+                                                    <span class="fw-bold me-2 fs-5">
+                                                        Instagram:
+                                                    </span>
+                                                    <p>
+                                                        {{ item?.instagram }}
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-md-6 col-xl-4">
+                                                <div class="item-info">
+                                                    <span class="fw-bold me-2 fs-5"> Facebook: </span>
+                                                    <p>
+                                                        {{ item?.facebook }}
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-md-6 col-xl-4">
+                                                <div class="item-info">
+                                                    <span class="fw-bold me-2 fs-5">
+                                                        {{ "category.creatorOfTheChoreography" | translate | titlecase
+                                                        }}:
+                                                    </span>
+                                                    <p>
+                                                        {{ item?.choreographyCreator || 'N/A' }}
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-md-6 col-xl-4">
+                                                <div class="item-info">
+                                                    <span class="fw-bold me-2 fs-5">
+                                                        {{ "category.trainersName" | translate | titlecase }}:
+                                                    </span>
+                                                    <p>
+                                                        {{ item?.nameCoach || 'N/A' }}
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-md-6 col-xl-6"></div>
+                                            <div class="col-12 col-md-6 col-xl-6"></div>
+                                        </div>
+
+                                        <ng-container *ngIf="item.participants?.length > 0">
+                                            <div class="fw-bold mt-3 mb-2">{{"general.participants" | translate}}</div>
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">{{ "name" | translate | titlecase }}</th>
+                                                            <th scope="col">{{ "email" | translate | titlecase }}</th>
+                                                            <th scope="col">
+                                                                {{ "document" | translate | titlecase }}
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let user of item.participants; let i = index">
+                                                            <th scope="row">{{ i + 1 }}</th>
+                                                            <td>{{ user.name | titlecase }}</td>
+                                                            <td>{{ user.email }}</td>
+                                                            <td>{{ user.identification }}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </ng-container>
+
+                                        <div *ngIf="item.music" class="d-flex justify-content-center">
+                                            <audio [src]="item.music" controls></audio>
+                                        </div>
+
+                                        <div class="card-box p-2 mt-2" *ngIf="item.users?.length === 0">
+                                            {{ "general.noRegisteredUsers" | translate }}.
+                                        </div>
+                                    </div>
+
+                                    <div class="card-footer text-body-secondary">
+                                        {{ "general.note" | translate }}:
+                                        {{ "category.registerConfirmed" | translate }}
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</ng-container>

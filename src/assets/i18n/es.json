@@ -16,6 +16,8 @@
   "purchaseText": "Compra",
   "inProcess": "en proceso",
   "general": {
+    "finalize": "Finalizar",
+    "registered-categories": "Categorías registradas",
     "WednesdayPass": "Pase Miércoles",
     "thursdayPass": "Pase Jueves",
     "fridayPass": "Pase Viernes",
