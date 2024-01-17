@@ -255,7 +255,8 @@
     "correctlySelectedMusic": "Correctly selected music",
     "correctlySelectedPhoto": "Correctly selected photo",
     "incompleteForm": "Incomplete form",
-    "dataSavedCorrectly": "Data saved correctly"
+    "dataSavedCorrectly": "Data saved correctly",
+    "theUserGenderDoesNotDivision": "The user gender does not match the division"
   },
   "hotelAndEvent": {
     "availableRoomsWillBeShownHere": "Available rooms will be shown here",

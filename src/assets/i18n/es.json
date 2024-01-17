@@ -253,7 +253,8 @@
     "correctlySelectedMusic": "Música correctamente seleccionada",
     "correctlySelectedPhoto": "Foto correctamente seleccionada",
     "incompleteForm": "Formulario incompleto",
-    "dataSavedCorrectly": "Datos guardados correctamente"
+    "dataSavedCorrectly": "Datos guardados correctamente",
+    "theUserGenderDoesNotDivision": "El género del usuario no coincide con la división"
   },
   "hotelAndEvent": {
     "availableRoomsWillBeShownHere": "Aquí se mostrarán las habitaciones disponibles",

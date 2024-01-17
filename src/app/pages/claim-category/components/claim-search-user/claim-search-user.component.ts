@@ -239,10 +239,13 @@ export class ClaimSearchUserComponent
       console.log('genderRule', genderRule);
 
       // Válidar que el genero se encuentre dentro del rango
-      // if(!genderRule.includes(profile.gender)){
-      //   this.sweetAlert2Srv.showError(`The user gender does not match the division`);
-      //   return;
-      // }
+      if (!genderRule.includes(profile.gender)) {
+        let message = await this.translateSrv.translate(
+          'alert.theUserGenderDoesNotDivision'
+        );
+        this.sweetAlert2Srv.showError(message);
+        return;
+      }
 
       // const uid: any = item.uid || item._id
 
