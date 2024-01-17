@@ -70,9 +70,6 @@ export class AdditionalDataComponent implements OnInit, OnChanges, AfterViewInit
     this.buildForm();
     this.loadSchoolRecord();
     this.loadCountryAndCity();
-
-    /** Cargar información de los bloques */
-    this.loadBlock();
   }
 
   ngOnInit(): void { }
@@ -108,6 +105,9 @@ export class AdditionalDataComponent implements OnInit, OnChanges, AfterViewInit
     this.item = item;
     console.log('item', this.item);
 
+    /** Cargar información de los bloques */
+    this.loadBlock();
+
     this.mi.show();
   }
 
@@ -139,6 +139,8 @@ export class AdditionalDataComponent implements OnInit, OnChanges, AfterViewInit
    * @dev Cargar información de los bloques
    */
   loadBlock() {
+
+    // console.log('loadBlock', this.item);
     const categoryParsed = this.GLOSARY_CATEGORIES[this.item.categoryType];
 
     // this.dataBlock$ = from(this.blockSrv.getBlock(environment.dataEvent.keyDb))
@@ -155,7 +157,7 @@ export class AdditionalDataComponent implements OnInit, OnChanges, AfterViewInit
         //     return res;
         //   }
         // }),
-        map((res: any) => res.sort()),
+        map((res: any) => res.records.sort()),
         // tap((res: any) => console.log('getBlock', res)),
         catchError((err) => {
           console.log("Error al obtener los bloques", err);
