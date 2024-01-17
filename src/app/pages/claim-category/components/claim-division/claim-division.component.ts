@@ -16,9 +16,9 @@ import { CustomTranslateService } from 'src/app/services/custom-translate.servic
   styleUrls: ['./claim-division.component.css'],
 })
 export class ClaimDivisionComponent implements OnInit {
-
   @ViewChild('modalFindUser') modalFindUser!: ClaimSearchUserComponent;
-  @ViewChild('modalFindAditionalData') modalFindAditionalData!: AdditionalDataComponent;
+  @ViewChild('modalFindAditionalData')
+  modalFindAditionalData!: AdditionalDataComponent;
 
   @Input() division: any;
 
@@ -51,7 +51,7 @@ export class ClaimDivisionComponent implements OnInit {
       city: new FormControl('', [Validators.required]),
       music: new FormControl('', [Validators.required]),
       block: new FormControl('', [Validators.required]),
-      country: new FormControl('', []),  
+      country: new FormControl('', []),
       school: new FormControl('', []),
       state: new FormControl('', []),
       instagram: new FormControl('', []),
@@ -65,11 +65,13 @@ export class ClaimDivisionComponent implements OnInit {
 
   /**
    * @dev Al seleccionar datos adicionales
-   * @param res 
+   * @param res
    */
   async onSelectAdditionalData(res: any) {
     try {
-      if (!res.status) { return; }
+      if (!res.status) {
+        return;
+      }
 
       console.log('res', res.data);
 
@@ -79,13 +81,14 @@ export class ClaimDivisionComponent implements OnInit {
        */
       this.form.patchValue({ ...res.data, users: [] });
 
-      let message = await this.translateSrv.translate('alert.additionalDataCorrectlySelected');
+      let message = await this.translateSrv.translate(
+        'alert.additionalDataCorrectlySelected'
+      );
       this.sweetAlert2Srv.showSuccess(message);
 
       /** Habilitar botón para añadir usuarios */
       this.addCompetitoresButton = true;
       return;
-
     } catch (err) {
       console.log('err', err);
       return;
@@ -94,15 +97,19 @@ export class ClaimDivisionComponent implements OnInit {
 
   /**
    * @dev Al seleccionar los competidores
-   * @param res 
+   * @param res
    */
-  onSelectUser(res: any) {
+  async onSelectUser(res: any) {
     try {
-      if (!res.status) { return; }
+      if (!res.status) {
+        return;
+      }
       this.form.patchValue({ users: res.data });
-      this.sweetAlert2Srv.showSuccess('Usuario seleccionado correctamente');
+      let message = await this.translateSrv.translate(
+        'alert.userSelectedCorrectly'
+      );
+      this.sweetAlert2Srv.showSuccess(message);
       return;
-
     } catch (err) {
       console.log('err', err);
       return;
@@ -112,7 +119,9 @@ export class ClaimDivisionComponent implements OnInit {
   async onSelectMusicFile(event: any) {
     try {
       console.log('onSelectMusicFile', event);
-      if (!event) { return; }
+      if (!event) {
+        return;
+      }
       const file = event ? event : '';
       this.form.patchValue({ music: file });
       let message = await this.translateSrv.translate(
@@ -120,7 +129,6 @@ export class ClaimDivisionComponent implements OnInit {
       );
       this.sweetAlert2Srv.showSuccess(message);
       return;
-
     } catch (err) {
       console.log('err', err);
       return;
@@ -149,9 +157,11 @@ export class ClaimDivisionComponent implements OnInit {
   }
 
   /**
-   * @dev Disparar modal para capturar datos adicionales 
+   * @dev Disparar modal para capturar datos adicionales
    */
-  launchFindAditionalDataModal() { this.modalFindAditionalData.showModal(this.division); }
+  launchFindAditionalDataModal() {
+    this.modalFindAditionalData.showModal(this.division);
+  }
 
   /**
    * @dev Disparar modal para buscar usuario
@@ -162,7 +172,7 @@ export class ClaimDivisionComponent implements OnInit {
       division: this.division,
       divisionSetting: formData.division,
     });
-    // this.modalFindUser.showModal(this.division); 
+    // this.modalFindUser.showModal(this.division);
   }
 
   async save() {
@@ -170,7 +180,8 @@ export class ClaimDivisionComponent implements OnInit {
       this.spinner.show();
       console.log('this.form', this.form);
       if (this.form.invalid) {
-        return this.sweetAlert2Srv.showError('Formulario inválido');
+        let message = await this.translateSrv.translate('alert.incompleteForm');
+        return this.sweetAlert2Srv.showError(message);
       }
 
       await this.spinner.show();
@@ -231,14 +242,16 @@ export class ClaimDivisionComponent implements OnInit {
       });
 
       /// actualizar el product con el id del purchase
-      return this.sweetAlert2Srv.showSuccess('Datos guardados correctamente');
+      let message = await this.translateSrv.translate(
+        'alert.dataSavedCorrectly'
+      );
+      return this.sweetAlert2Srv.showSuccess(message);
     } catch (err) {
       console.log('err', err);
-      return this.sweetAlert2Srv.showError("Err save");
+      return this.sweetAlert2Srv.showError('Err save');
     } finally {
       console.log('finally');
       this.spinner.hide();
     }
   }
-
 }

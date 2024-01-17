@@ -1,11 +1,29 @@
-import { AfterViewInit, Component, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import moment from 'moment';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Subject, Observable, of, Subscription, debounceTime, map, distinctUntilChanged } from 'rxjs';
+import {
+  Subject,
+  Observable,
+  of,
+  Subscription,
+  debounceTime,
+  map,
+  distinctUntilChanged,
+} from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { BsModalService } from 'src/app/services/bs-modal.service';
+import { CustomTranslateService } from 'src/app/services/custom-translate.service';
 import { SchoolService } from 'src/app/services/school.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 import { UserService } from 'src/app/services/user/user.service';
@@ -13,11 +31,11 @@ import { UserService } from 'src/app/services/user/user.service';
 @Component({
   selector: 'app-claim-search-user',
   templateUrl: './claim-search-user.component.html',
-  styleUrls: ['./claim-search-user.component.css']
+  styleUrls: ['./claim-search-user.component.css'],
 })
-export class ClaimSearchUserComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
-
-
+export class ClaimSearchUserComponent
+  implements OnInit, OnChanges, AfterViewInit, OnDestroy
+{
   /** Identificador de la modal */
   @Input() _id: string = 'modalClaimAddUser';
 
@@ -29,7 +47,6 @@ export class ClaimSearchUserComponent implements OnInit, OnChanges, AfterViewIni
 
   /** Al cerrar modal - Emitir evento */
   @Output() onCloseModal = new Subject<any>();
-
 
   /** Instancia de la modal */
   public mi: any;
@@ -50,7 +67,7 @@ export class ClaimSearchUserComponent implements OnInit, OnChanges, AfterViewIni
       email: 'email',
       name: 'name',
       collection: 'users',
-    }
+    },
   };
 
   public results$: Observable<any[]> = of([]);
@@ -71,22 +88,25 @@ export class ClaimSearchUserComponent implements OnInit, OnChanges, AfterViewIni
     private schoolSrv: SchoolService,
     private sweetAlert2Srv: Sweetalert2Service,
     private authSrv: AuthenticationService,
+    private translateSrv: CustomTranslateService
   ) {
     this.form = this.fb.group({
       filterField: 'email',
-      value: ['']
+      value: [''],
     });
   }
 
   ngOnInit(): void {
-    this.form.get('value')
-      ?.valueChanges
-      .pipe(
+    this.form
+      .get('value')
+      ?.valueChanges.pipe(
         debounceTime(500),
         /// only email format with regex
-        map((value: string) => (value.length > 0) ? value.trim().toLocaleLowerCase() : ''),
+        map((value: string) =>
+          value.length > 0 ? value.trim().toLocaleLowerCase() : ''
+        ),
         map((value: string) => value.replace(/[^a-zA-Z0-9@.]/g, '')),
-        distinctUntilChanged(),
+        distinctUntilChanged()
       )
       .subscribe((value: string) => {
         console.log('value', value);
@@ -95,7 +115,6 @@ export class ClaimSearchUserComponent implements OnInit, OnChanges, AfterViewIni
           this.results$ = of([]);
           return;
         }
-
 
         console.log('this.ownerType', this.ownerType);
 
@@ -106,18 +125,19 @@ export class ClaimSearchUserComponent implements OnInit, OnChanges, AfterViewIni
         const cf = cd[this.form.get('filterField')?.value];
         console.log('collectionField', cf);
 
-
         if (this.ownerType === 'ambassador') {
-          this.results$ = this.userSrv.getDynamic([
-            { field: cf, condition: '>=', value: value },
-            { field: cf, condition: '<=', value: value + '\uf8ff' },
-          ], {
-            idField: '_id',
-            orderBy: [{ field: cf, order: 'asc' }],
-          });
+          this.results$ = this.userSrv.getDynamic(
+            [
+              { field: cf, condition: '>=', value: value },
+              { field: cf, condition: '<=', value: value + '\uf8ff' },
+            ],
+            {
+              idField: '_id',
+              orderBy: [{ field: cf, order: 'asc' }],
+            }
+          );
           return;
         }
-
       });
   }
 
@@ -132,16 +152,18 @@ export class ClaimSearchUserComponent implements OnInit, OnChanges, AfterViewIni
     this.buildModal();
   }
 
-  ngOnDestroy(): void { this.sub$.unsubscribe(); }
+  ngOnDestroy(): void {
+    this.sub$.unsubscribe();
+  }
 
   buildModal() {
     this.mi = this.bsModalSrv.buildModal(this._id);
 
     this.sub$ = this.router.events.subscribe((event) => {
-
       /** Si la modal esta desplegada al cambiar de ruta */
-      if (this.mi._isShown) { this.closeModal(); }
-
+      if (this.mi._isShown) {
+        this.closeModal();
+      }
     });
   }
 
@@ -159,18 +181,19 @@ export class ClaimSearchUserComponent implements OnInit, OnChanges, AfterViewIni
     this.mi.show();
   }
 
-
   /**
    * @dev Al seleccionar usuario de la lista de busqueda
    * @param item                      Documento del usuario
-   * @returns 
+   * @returns
    */
   async onSelectItem(item: any) {
     try {
-
       // Alcanzó la capacidad máxima
       if (this.capacity == this.userList.length) {
-        this.sweetAlert2Srv.showError('The number of users does not match the capacity of the event');
+        let message = await this.translateSrv.translate(
+          'alert.theNumberOfUsersNotCapacity'
+        );
+        this.sweetAlert2Srv.showError(message);
         return;
       }
 
@@ -209,7 +232,7 @@ export class ClaimSearchUserComponent implements OnInit, OnChanges, AfterViewIni
       const genderGlossary = {
         mixto: ['male', 'female'],
         femenino: ['female'],
-        masculino: ['male']
+        masculino: ['male'],
       };
 
       const genderRule: any[] = genderGlossary[this.divisionSetting.gender];
@@ -226,32 +249,33 @@ export class ClaimSearchUserComponent implements OnInit, OnChanges, AfterViewIni
       this.userList.push(item);
 
       this.results$ = of([]);
-
-      this.sweetAlert2Srv.showToast('User added');
-      return ;
-
+      let message = await this.translateSrv.translate('general.userAdded');
+      this.sweetAlert2Srv.showToast(message);
+      return;
     } catch (err) {
       console.log('err', err);
-      this.sweetAlert2Srv.showToast("Error");
+      this.sweetAlert2Srv.showToast('Error');
       return;
-
     } finally {
       this.spinner.hide();
     }
   }
 
   /// Seleccionar un item de la lista
-  saveUser() {
+  async saveUser() {
     try {
       if (this.capacity != this.userList.length) {
-        this.sweetAlert2Srv.showError('The number of users does not match the capacity of the event');
+        let message = await this.translateSrv.translate(
+          'alert.theNumberOfUsersNotCapacity'
+        );
+        this.sweetAlert2Srv.showError(message);
         return;
       }
 
       this.closeModal({ status: true, data: this.userList });
-      this.sweetAlert2Srv.showSuccess('Users added');
+      let message = await this.translateSrv.translate('general.usersAdded');
+      this.sweetAlert2Srv.showSuccess(message);
       return;
-      
     } catch (err) {
       console.log('err', err);
       this.sweetAlert2Srv.showError(err);
@@ -260,19 +284,19 @@ export class ClaimSearchUserComponent implements OnInit, OnChanges, AfterViewIni
   }
 
   /// Seleccionar un item de la lista
-  removeUser(index: any) {
+  async removeUser(index: any) {
     try {
       this.userList.splice(index, 1);
-
-      this.sweetAlert2Srv.showSuccess('User removed');
+      let message = await this.translateSrv.translate('general.userRemove');
+      this.sweetAlert2Srv.showSuccess(message);
     } catch (err) {
       console.log('err', err);
     }
   }
 
   /**
-   * @dev Cerrar modal 
-   * @param params 
+   * @dev Cerrar modal
+   * @param params
    */
   async closeModal(params: any = {}) {
     const { status = false, data = null } = params;
@@ -287,10 +311,9 @@ export class ClaimSearchUserComponent implements OnInit, OnChanges, AfterViewIni
 
   async onSelectPhotoFile(event: any, index: any) {
     console.log('onSelectPhotoFile', event, index);
-    const file = (event) ? event : '';
+    const file = event ? event : '';
     this.userList[index].photo = file;
 
     console.log('file', this.userList[index]);
   }
-
 }

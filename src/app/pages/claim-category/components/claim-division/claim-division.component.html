@@ -3,7 +3,7 @@
     <div class="row g-0 d-flex align-items-center">
       <div class="col-12">
         <h4 class="fw-bold fs-5 text-rslt fw-bold mb-3">
-          {{ 'general.' + division.categoryType | translate | uppercase }}
+          {{ "general." + division.categoryType | translate | uppercase }}
         </h4>
       </div>
 
@@ -13,19 +13,27 @@
         <!-- {{ "category.additionalData" | translate }}: -->
         <!-- Categoría:
           </span> -->
-        <button type="button" class="btn btn-one btn-full" (click)="launchFindAditionalDataModal()">
+        <button
+          type="button"
+          class="btn btn-one btn-full"
+          (click)="launchFindAditionalDataModal()"
+        >
           <!-- {{ form.value ? ("X" | translate) : ("general.add" | translate) }} -->
           <!-- <i class="bi bi-hand-index-thumb"></i>  -->
           <!-- {{ "general.add" | translate }} -->
-          {{"selectCategory" | translate}}
+          {{ "selectCategory" | translate }}
         </button>
-
       </div>
 
       <!-- Find Users Button -->
       <div class="col-12 col-md-6 mb-4 ps-md-3">
-        <button type="button" class="btn btn-one btn-full" (click)="launchFindUserModal()"
-          [disabled]="(!addCompetitoresButton) ? true : null">
+        <button
+          type="button"
+          class="btn btn-one btn-full"
+          (click)="launchFindUserModal()"
+          [disabled]="!addCompetitoresButton ? true : null"
+          [ngClass]="!addCompetitoresButton ? 'btn-disbled' : ''"
+        >
           <!-- {{ form.value.users ? ("general.completed" | translate) : ("category.addUser" | translate) }} -->
           {{ "category.addUser" | translate }}
         </button>
@@ -39,14 +47,16 @@
         </div> -->
       </div>
 
-
       <div class="col-12">
         <div class="">
           <span class="fw-bold me-2 fs-5 text-rslt">
             {{ "category.addMusic" | translate }}
           </span>
-          <app-custom-input-file class="claim-category" [accept]="'audio/*'"
-            (onSelectFile)="onSelectMusicFile($event)"></app-custom-input-file>
+          <app-custom-input-file
+            class="claim-category"
+            [accept]="'audio/*'"
+            (onSelectFile)="onSelectMusicFile($event)"
+          ></app-custom-input-file>
         </div>
       </div>
 
@@ -68,7 +78,6 @@
           </div>
           <div class="card-body">
             <div class="row">
-
               <div class="col-12 col-md-6 col-xl-4">
                 <div class="item-info">
                   <span class="fw-bold me-2 fs-5">
@@ -107,9 +116,7 @@
 
               <div class="col-12 col-md-6 col-xl-4">
                 <div class="item-info">
-                  <span class="fw-bold me-2 fs-5">
-                    Instagram:
-                  </span>
+                  <span class="fw-bold me-2 fs-5"> Instagram: </span>
                   <p>
                     {{ form.value?.instagram }}
                   </p>
@@ -128,7 +135,11 @@
               <div class="col-12 col-md-6 col-xl-4">
                 <div class="item-info">
                   <span class="fw-bold me-2 fs-5">
-                    {{ "category.creatorOfTheChoreography" | translate | titlecase }}:
+                    {{
+                      "category.creatorOfTheChoreography"
+                        | translate
+                        | titlecase
+                    }}:
                   </span>
                   <p>
                     {{ form.value?.choreographyCreator }}
@@ -152,7 +163,9 @@
             </div>
 
             <ng-container *ngIf="form.value.users?.length > 0">
-              <div class="fw-bold mt-3 mb-2">{{"general.participants" | translate}}</div>
+              <div class="fw-bold mt-3 mb-2">
+                {{ "general.participants" | translate }}
+              </div>
               <div class="table-responsive">
                 <table class="table">
                   <thead>
@@ -175,14 +188,16 @@
                   </tbody>
                 </table>
               </div>
-
             </ng-container>
 
             <div *ngIf="form.value.music" class="d-flex justify-content-center">
               <app-audio-player [audio]="form.value.music"></app-audio-player>
             </div>
 
-            <div class="card-box p-2 mt-2" *ngIf="form.value.users?.length === 0">
+            <div
+              class="card-box p-2 mt-2"
+              *ngIf="form.value.users?.length === 0"
+            >
               {{ "general.noRegisteredUsers" | translate }}.
             </div>
           </div>
@@ -208,8 +223,13 @@
 <!-- <app-claim-search-category #modalFindDivision [ownerType]="'ambassador'"
   (onCloseModal)="onSelectDivision($event)"></app-claim-search-category> -->
 
-<app-claim-search-user #modalFindUser [_id]="'modalClaimAddUser' + division._index" [ownerType]="'ambassador'"
-  [itemData]="division" (onCloseModal)="onSelectUser($event)"></app-claim-search-user>
+<app-claim-search-user
+  #modalFindUser
+  [_id]="'modalClaimAddUser' + division._index"
+  [ownerType]="'ambassador'"
+  [itemData]="division"
+  (onCloseModal)="onSelectUser($event)"
+></app-claim-search-user>
 
 <!-- <app-claim-search-country-city #modalFindCountryCity [ownerType]="'ambassador'"
   (onCloseModal)="onSelectCountryCity($event)"></app-claim-search-country-city> -->
@@ -217,5 +237,9 @@
 <!-- <app-claim-search-school #modalFindSchool [ownerType]="'ambassador'"
   (onCloseModal)="onSelectSchool($event)"></app-claim-search-school> -->
 
-<app-additional-data #modalFindAditionalData [_id]="'modalAdditionalDataFindOwner' + division._index"
-  [ownerType]="'ambassador'" (onCloseModal)="onSelectAdditionalData($event)"></app-additional-data>
+<app-additional-data
+  #modalFindAditionalData
+  [_id]="'modalAdditionalDataFindOwner' + division._index"
+  [ownerType]="'ambassador'"
+  (onCloseModal)="onSelectAdditionalData($event)"
+></app-additional-data>

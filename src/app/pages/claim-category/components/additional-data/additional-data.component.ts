@@ -25,6 +25,7 @@ export class AdditionalDataComponent implements OnInit, OnChanges, AfterViewInit
 
   @Output() onCloseModal = new Subject<any>();
 
+
   /** Instancia de la modal */
   public mi: any;
 
@@ -44,6 +45,7 @@ export class AdditionalDataComponent implements OnInit, OnChanges, AfterViewInit
   filteredStates: any;
   filteredCity: any;
   AllCity: any;
+  public submit = false;
   
   /** Glosario de categorias */
   private GLOSARY_CATEGORIES = {
@@ -54,6 +56,15 @@ export class AdditionalDataComponent implements OnInit, OnChanges, AfterViewInit
 
   /** Subscripción de eventos */
   private sub$!: Subscription;
+
+  /**validaciones */
+  public vm = {
+    block: [ { type: 'required', message: 'formValidations.required' },],
+    division: [ { type: 'required', message: 'formValidations.required' },],
+    country: [ { type: 'required', message: 'formValidations.required' },],
+    state: [ { type: 'required', message: 'formValidations.required' },],
+    city: [ { type: 'required', message: 'formValidations.required' },],
+  };
 
   constructor(
     private spinner: NgxSpinnerService,
@@ -122,9 +133,9 @@ export class AdditionalDataComponent implements OnInit, OnChanges, AfterViewInit
     this.form = this.fb.group({
       block: ['', Validators.required],
       division: ['', Validators.required],
-      country: [''],
-      state: [''],
-      city: [''],
+      country: ['', Validators.required],
+      state: ['', Validators.required],
+      city: ['', Validators.required],
       // choreographyCreator: [''],
       // nameCoach: [''],
       // nameGroup: ['', Validators.required],
@@ -134,6 +145,8 @@ export class AdditionalDataComponent implements OnInit, OnChanges, AfterViewInit
       // tiktok: [''],
     });
   }
+
+  get f() { return this.form.controls; }
 
   /**
    * @dev Cargar información de los bloques
@@ -265,9 +278,11 @@ export class AdditionalDataComponent implements OnInit, OnChanges, AfterViewInit
   }
 
   onSubmit() {
+    this.submit = true;
     if (this.form.invalid) {
       console.log('invalid', this.form);
-      return alert('invalid');
+      this.form.markAllAsTouched();
+      return ;
     }
 
     this.closeModal({ status: true, data: this.form.value });
