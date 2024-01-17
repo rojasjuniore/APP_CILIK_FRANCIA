@@ -44,6 +44,13 @@ export class AdditionalDataComponent implements OnInit, OnChanges, AfterViewInit
   filteredStates: any;
   filteredCity: any;
   AllCity: any;
+  
+  /** Glosario de categorias */
+  private GLOSARY_CATEGORIES = {
+    couples: 'pareja',
+    soloist: 'solista',
+    groups: 'grupo'
+  };
 
   /** Subscripción de eventos */
   private sub$!: Subscription;
@@ -132,7 +139,10 @@ export class AdditionalDataComponent implements OnInit, OnChanges, AfterViewInit
    * @dev Cargar información de los bloques
    */
   loadBlock() {
-    this.dataBlock$ = from(this.blockSrv.getBlock(environment.dataEvent.keyDb))
+    const categoryParsed = this.GLOSARY_CATEGORIES[this.item.categoryType];
+
+    // this.dataBlock$ = from(this.blockSrv.getBlock(environment.dataEvent.keyDb))
+    this.dataBlock$ = from(this.blockSrv.getBlockByType(environment.dataEvent.keyDb, categoryParsed))
       .pipe(
         // tap((res: any) => console.log('getBlock', res)),
         /** TODO: Deshabilitar cambio temporalmente */
@@ -187,14 +197,9 @@ export class AdditionalDataComponent implements OnInit, OnChanges, AfterViewInit
 
     await this.spinner.show();
 
-    /** Glosario de categorias */
-    const glosaryCategories = {
-      couples: 'pareja',
-      soloist: 'solista',
-      groups: 'grupo'
-    };
+    
 
-    const categoryParsed = glosaryCategories[this.item.categoryType];
+    const categoryParsed = this.GLOSARY_CATEGORIES[this.item.categoryType];
     // console.log('categoryParsed', categoryParsed);
 
     // console.log('searchCategory', environment.dataEvent.keyDb, block);
