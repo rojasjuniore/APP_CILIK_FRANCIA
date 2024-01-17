@@ -220,10 +220,13 @@ export class ClaimSearchUserComponent
       const maxAge = this.divisionSetting.edad_max;
 
       // Válidar que la edad se encuentre dentro del rango
-      // if (age < minAge || age > maxAge) {
-      //   this.sweetAlert2Srv.showError(`The user's age does not match the division`);
-      //   return;
-      // }
+      if (age < minAge || age > maxAge) {
+        let message = await this.translateSrv.translate(
+          'alert.theUserAgeDoesNotDivision'
+        );
+        this.sweetAlert2Srv.showError(message);
+        return;
+      }
 
       /**
        * Ejecutar regla de genero

@@ -256,7 +256,8 @@
     "correctlySelectedPhoto": "Correctly selected photo",
     "incompleteForm": "Incomplete form",
     "dataSavedCorrectly": "Data saved correctly",
-    "theUserGenderDoesNotDivision": "The user gender does not match the division"
+    "theUserGenderDoesNotDivision": "The user gender does not match the division",
+    "theUserAgeDoesNotDivision": "The user's age does not match the division"
   },
   "hotelAndEvent": {
     "availableRoomsWillBeShownHere": "Available rooms will be shown here",
