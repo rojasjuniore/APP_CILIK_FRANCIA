@@ -29,6 +29,8 @@ export class ClaimDivisionComponent implements OnInit {
   /** Estado de botón para añadir competidores */
   public addCompetitoresButton = false;
 
+  public divisionCategory: any;
+
   constructor(
     private auth: AuthenticationService,
     private uploadFileSrv: UploadFileService,
@@ -42,6 +44,9 @@ export class ClaimDivisionComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('this.division', this.division);
+
+    this.divisionCategory = this.division.categoryType;
+    console.log(this.divisionCategory);
   }
 
   buildForm() {
@@ -119,10 +124,45 @@ export class ClaimDivisionComponent implements OnInit {
   async onSelectMusicFile(event: any) {
     try {
       console.log('onSelectMusicFile', event);
+
       if (!event) {
         return;
       }
-      const file = event ? event : '';
+
+      console.log(this.divisionCategory);
+      if (this.divisionCategory == 'soloist') {
+        console.log(event.duration);
+
+        if (event.duration !== 2) {
+          let message = await this.translateSrv.translate(
+            'alert.theSongMustBe2Long'
+          );
+          return this.sweetAlert2Srv.showError(message);
+        }
+      }
+
+      if (this.divisionCategory == 'groups') {
+        console.log(event.duration);
+
+        if (event.duration !== '2:30') {
+          let message = await this.translateSrv.translate(
+            'alert.theSongMustBe2:30Long'
+          );
+          return this.sweetAlert2Srv.showError(message);
+        }
+      }
+
+      if (this.divisionCategory == 'couples') {
+        console.log(event.duration);
+        let message = await this.translateSrv.translate(
+          'alert.theSongMustBe2:30Long'
+        );
+        if (event.duration !== '2:30') {
+          return this.sweetAlert2Srv.showError(message);
+        }
+      }
+
+      const file = event ? event.audio : '';
       this.form.patchValue({ music: file });
       let message = await this.translateSrv.translate(
         'alert.correctlySelectedMusic'

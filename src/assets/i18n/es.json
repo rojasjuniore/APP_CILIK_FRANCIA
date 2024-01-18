@@ -196,7 +196,8 @@
     "userRemove": "Usuario eliminado",
     "youHaveNoCategories": "No tienes categorías",
     "invitado": "Invitado",
-    "registeredCategories": "Categorías registradas"
+    "registeredCategories": "Categorías registradas",
+    "duration": "Duración"
   },
   "category": {
     "addCountryCity": "Añadir país ciudad",
@@ -260,7 +261,9 @@
     "theUserAgeDoesNotDivision": "La edad del usuario no coincide con la división",
     "youHaveNotSelectedCategory": "No ha seleccionado ninguna categoría",
     "notSelectedUsers": "Usuarios no seleccionados",
-    "notSelectMusic": "No a seleccionado una música"
+    "notSelectMusic": "No a seleccionado una música",
+    "theSongMustBe2:30Long": "La cancion debe durar 2:30 minutos",
+    "theSongMustBe2Long": "La cancion debe durar 2 minutos"
   },
   "hotelAndEvent": {
     "availableRoomsWillBeShownHere": "Aquí se mostrarán las habitaciones disponibles",

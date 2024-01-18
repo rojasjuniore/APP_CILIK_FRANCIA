@@ -198,7 +198,8 @@
     "usersAdded": "Users added",
     "userRemove": "User removed",
     "youHaveNoCategories": "You have no categories",
-    "registeredCategories": "Registered Categories"
+    "registeredCategories": "Registered Categories",
+    "duration": "Duration"
   },
   "category": {
     "addCountryCity": "Add country city",
@@ -262,7 +263,9 @@
     "theUserAgeDoesNotDivision": "The user's age does not match the division",
     "youHaveNotSelectedCategory": "You have not selected a category",
     "notSelectedUsers": "Not selected users",
-    "notSelectMusic": "Not to select a music"
+    "notSelectMusic": "Not to select a music",
+    "theSongMustBe2:30Long": "The song must be 2:30 minutes long",
+    "theSongMustBe2Long": "The song must be 2 minutes long"
   },
   "hotelAndEvent": {
     "availableRoomsWillBeShownHere": "Available rooms will be shown here",

@@ -1,16 +1,23 @@
-import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 
 @Component({
   selector: 'app-audio-player',
   templateUrl: './audio-player.component.html',
-  styleUrls: ['./audio-player.component.css']
+  styleUrls: ['./audio-player.component.css'],
 })
 export class AudioPlayerComponent implements OnChanges {
-
   @ViewChild('audioPlayer', { static: false }) audioPlayer!: ElementRef;
   @Input() audio: any;
 
-  constructor() { }
+  constructor() {}
 
   ngOnChanges(changes: SimpleChanges): void {
     const { audio } = changes;
@@ -20,12 +27,11 @@ export class AudioPlayerComponent implements OnChanges {
     }
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onFileSelected(files): void {
     console.log('files', files);
-    const file: File = files
+    const file: File = files;
     if (file) {
       const fileReader = new FileReader();
       fileReader.onload = (e: any) => {
@@ -34,5 +40,4 @@ export class AudioPlayerComponent implements OnChanges {
       fileReader.readAsDataURL(file);
     }
   }
-
 }

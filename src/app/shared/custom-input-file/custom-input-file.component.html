@@ -1,72 +1,86 @@
-
 <div class="row mb-4">
-    <ng-container *ngIf="(formFile); then renderFileSelected; else renderNoFileSelected"></ng-container>
+  <ng-container
+    *ngIf="formFile; then renderFileSelected; else renderNoFileSelected"
+  ></ng-container>
 </div>
 
-<input #inputFileRef type="file" [multiple]="multiple" [accept]="accept" style="display: none;" (change)="onFileSelected()">
-
+<input
+  #inputFileRef
+  type="file"
+  [multiple]="multiple"
+  [accept]="accept"
+  style="display: none"
+  (change)="onFileSelected()"
+/>
 
 <ng-template #renderFileSelected>
-    <div class="col-12">
-        <div class="card-box card-box-b3 p-3 mb-3">
-            <div class="row g-2 d-flex align-items-center">
-                <div class="col-12 px-3">
+  <div class="col-12">
+    <div class="card-box card-box-b3 p-3 mb-3">
+      <div class="row g-2 d-flex align-items-center">
+        <div class="col-12 px-3">
+          <p class="card-text text-center mb-0">
+            {{ "general.fileName" | translate }}:
+            <small class="text-muted">
+              {{ formFile.audio?.name }}
+            </small>
+          </p>
 
-                    <p class="card-text text-center mb-0">
-                        {{ "general.fileName" | translate }}:
-                        <small class="text-muted">
-                            {{formFile?.name}}
-                        </small>
-                    </p>
+          <p class="card-text text-center mb-0">
+            {{ "general.fileType" | translate }}:
+            <small class="text-muted">
+              {{ formFile.audio?.type }}
+            </small>
+          </p>
 
-                    <p class="card-text text-center mb-0">
-                        {{ "general.fileType" | translate }}:
-                        <small class="text-muted">
-                            {{formFile?.type}}
-                        </small>
-                    </p>
+          <!-- <p class="card-text text-center mb-0">
+            {{ "general.size" | translate }}:
+            <small class="text-muted">
+              {{formFile?.size}}
+              {{ sizeParsed }}
+            </small>
+          </p> -->
 
-                    <p class="card-text text-center mb-0">
-                        {{ "general.size" | translate }}:
-                        <small class="text-muted">
-                            <!-- {{formFile?.size}} -->
-                            {{sizeParsed}}
-                        </small>
-                    </p>
-
-                </div>
-            </div>
+          <p *ngIf="durationAudio" class="card-text text-center mb-0">
+            {{ "general.duration" | translate }}:
+            <small class="text-muted">
+              {{ durationAudio }} {{ "general.minutes" | translate }}
+            </small>
+          </p>
         </div>
+      </div>
     </div>
-    <div class="col-12 col-md-6 mb-2 mb-md-0 text-center">
-        <button type="button" class="btn btn-danger" (click)="clearFile()">
-            <i class="bi bi-folder"></i>
-            &nbsp;
-            {{clearBtnText | translate}}
-        </button>
-    </div>
-    <div class="col-12 col-md-6 mb-2 mb-md-0 text-center">
-        <button type="button" class="btn btn-danger" (click)="onConfirm()">
-            {{confirmBtnText | translate}}
-            &nbsp;
-            <i class="bi bi-cloud-upload"></i>
-        </button>
-    </div>
+  </div>
+  <div class="col-12 col-md-6 mb-2 mb-md-0 text-center">
+    <button type="button" class="btn btn-danger" (click)="clearFile()">
+      <i class="bi bi-folder"></i>
+      &nbsp;
+      {{ clearBtnText | translate }}
+    </button>
+  </div>
+  <div class="col-12 col-md-6 mb-2 mb-md-0 text-center">
+    <button type="button" class="btn btn-danger" (click)="onConfirm()">
+      {{ confirmBtnText | translate }}
+      &nbsp;
+      <i class="bi bi-cloud-upload"></i>
+    </button>
+  </div>
 </ng-template>
 
 <ng-template #renderNoFileSelected>
-    <div class="col-12">
-        <div class="card-box card-box-b3 p-3 mb-3">
-            <h5 class="text-center">
-                {{noSelectFileText  | translate}}
-            </h5>
-        </div>
+  <div class="col-12">
+    <div class="card-box card-box-b3 p-3 mb-3">
+      <h5 class="text-center">
+        {{ noSelectFileText | translate }}
+      </h5>
     </div>
-    <div class="col-12 text-center">
-        <button type="button" class="btn btn-danger" (click)="openFileSelection()">
-            <i class="bi bi-folder"></i>
-            &nbsp;
-            {{uploadBtnText  | translate}}
-        </button>
-    </div>
+  </div>
+  <div class="col-12 text-center">
+    <button type="button" class="btn btn-danger" (click)="openFileSelection()">
+      <i class="bi bi-folder"></i>
+      &nbsp;
+      {{ uploadBtnText | translate }}
+    </button>
+  </div>
 </ng-template>
+
+<audio #audioPlayer></audio>

@@ -13,8 +13,9 @@
             (click)="item.expanded = !item.expanded"
           >
             {{ "division" | translate | titlecase }}
-            {{ item.categoryType | translate | titlecase }}<br />
-            {{ "orden" | translate | titlecase }}: {{ item._id }}
+            {{ "general." + item.categoryType | translate | uppercase }}
+            <br />
+            {{ "general.orden_id" | translate }}: {{ item._id }}
           </button>
         </h2>
         <div
