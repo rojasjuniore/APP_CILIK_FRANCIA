@@ -194,7 +194,9 @@
     "userAdded": "Usuario añadido",
     "usersAdded": "Usuarios añadidos",
     "userRemove": "Usuario eliminado",
-    "youHaveNoCategories": "No tienes categorías"
+    "youHaveNoCategories": "No tienes categorías",
+    "invitado": "Invitado",
+    "registeredCategories": "Categorías registradas"
   },
   "category": {
     "addCountryCity": "Añadir país ciudad",
@@ -252,10 +254,13 @@
     "userSelectedCorrectly": "Usuario seleccionado correctamente",
     "correctlySelectedMusic": "Música correctamente seleccionada",
     "correctlySelectedPhoto": "Foto correctamente seleccionada",
-    "incompleteForm": "Formulario incompleto",
+    "incompleteForm": "El formulario incompleto no ha seleccionado ninguna de las  opciones",
     "dataSavedCorrectly": "Datos guardados correctamente",
     "theUserGenderDoesNotDivision": "El género del usuario no coincide con la división",
-    "theUserAgeDoesNotDivision": "La edad del usuario no coincide con la división"
+    "theUserAgeDoesNotDivision": "La edad del usuario no coincide con la división",
+    "youHaveNotSelectedCategory": "No ha seleccionado ninguna categoría",
+    "notSelectedUsers": "Usuarios no seleccionados",
+    "notSelectMusic": "No a seleccionado una música"
   },
   "hotelAndEvent": {
     "availableRoomsWillBeShownHere": "Aquí se mostrarán las habitaciones disponibles",

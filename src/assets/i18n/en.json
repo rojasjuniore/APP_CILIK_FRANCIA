@@ -36,6 +36,7 @@
   "inProcess": "in process",
   "azul": "blue",
   "selectCategory": "Select category",
+  "invitado": "Guest",
   "general": {
     "capacity": "Capacity",
     "city": "City",
@@ -196,7 +197,8 @@
     "userAdded": "User added",
     "usersAdded": "Users added",
     "userRemove": "User removed",
-    "youHaveNoCategories": "You have no categories"
+    "youHaveNoCategories": "You have no categories",
+    "registeredCategories": "Registered Categories"
   },
   "category": {
     "addCountryCity": "Add country city",
@@ -254,10 +256,13 @@
     "userSelectedCorrectly": "User selected correctly",
     "correctlySelectedMusic": "Correctly selected music",
     "correctlySelectedPhoto": "Correctly selected photo",
-    "incompleteForm": "Incomplete form",
+    "incompleteForm": "Incomplete form has not selected any of the following options",
     "dataSavedCorrectly": "Data saved correctly",
     "theUserGenderDoesNotDivision": "The user gender does not match the division",
-    "theUserAgeDoesNotDivision": "The user's age does not match the division"
+    "theUserAgeDoesNotDivision": "The user's age does not match the division",
+    "youHaveNotSelectedCategory": "You have not selected a category",
+    "notSelectedUsers": "Not selected users",
+    "notSelectMusic": "Not to select a music"
   },
   "hotelAndEvent": {
     "availableRoomsWillBeShownHere": "Available rooms will be shown here",

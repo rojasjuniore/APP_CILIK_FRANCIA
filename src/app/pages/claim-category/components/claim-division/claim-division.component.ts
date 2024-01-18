@@ -180,8 +180,31 @@ export class ClaimDivisionComponent implements OnInit {
       this.spinner.show();
       console.log('this.form', this.form);
       if (this.form.invalid) {
-        let message = await this.translateSrv.translate('alert.incompleteForm');
-        return this.sweetAlert2Srv.showError(message);
+        if (
+          !this.form.value.block &&
+          !this.form.value.music &&
+          !this.form.value.user
+        ) {
+          let message = await this.translateSrv.translate(
+            'alert.incompleteForm'
+          );
+          return this.sweetAlert2Srv.showError(message);
+        } else if (!this.form.value.block) {
+          let message = await this.translateSrv.translate(
+            'alert.youHaveNotSelectedCategory'
+          );
+          return this.sweetAlert2Srv.showError(message);
+        } else if (this.form.controls.users.status === 'INVALID') {
+          let message = await this.translateSrv.translate(
+            'alert.notSelectedUsers'
+          );
+          return this.sweetAlert2Srv.showError(message);
+        } else if (!this.form.value.music) {
+          let message = await this.translateSrv.translate(
+            'alert.notSelectMusic'
+          );
+          return this.sweetAlert2Srv.showError(message);
+        }
       }
 
       await this.spinner.show();

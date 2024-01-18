@@ -8,24 +8,25 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-claim-category',
   templateUrl: './claim-category.component.html',
-  styleUrls: ['./claim-category.component.css']
+  styleUrls: ['./claim-category.component.css'],
 })
 export class ClaimCategoryComponent implements OnInit, OnDestroy {
-
   public uid: any;
 
   public filteredAndSortedProducts: any;
 
-  private sub$!: Subscription
+  private sub$!: Subscription;
 
   constructor(
     private purchaseSrv: PurchaseService,
-    private authSrv: AuthenticationService,
-  ) { }
+    private authSrv: AuthenticationService
+  ) {}
 
   ngOnInit(): void {
     this.sub$ = this.authSrv.uid$.subscribe((uid) => {
-      if (!uid) { return; }
+      if (!uid) {
+        return;
+      }
       this.uid = uid;
       this.combineQueries(uid);
     });
@@ -40,6 +41,7 @@ export class ClaimCategoryComponent implements OnInit, OnDestroy {
       .combineQueries(environment.dataEvent.keyDb, uid)
       .subscribe((x: any) => {
         this.transformData(x);
+        // console.log(x);
       });
   }
 
@@ -53,7 +55,7 @@ export class ClaimCategoryComponent implements OnInit, OnDestroy {
             _id: x._id,
             _index: index,
           }))
-          .filter(p => p.key == "categoryPass")
+          .filter((p) => p.key == 'categoryPass')
       )
       .sort((a, b) => {
         if (a.categoryType < b.categoryType) {
@@ -66,5 +68,4 @@ export class ClaimCategoryComponent implements OnInit, OnDestroy {
       });
     // console.log('filteredProducts', this.filteredAndSortedProducts);
   }
-
 }
