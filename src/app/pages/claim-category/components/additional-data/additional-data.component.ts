@@ -264,7 +264,7 @@ export class AdditionalDataComponent
   loadCountryAndCity() {
     this.countries = this.dataSrv.getCountry();
     this.allStates = this.dataSrv.getState();
-    this.AllCity = this.dataSrv.getCity();
+    // this.AllCity = this.dataSrv.getCity();
 
     this.form.get('country')?.valueChanges.subscribe((selectedCountry) => {
       console.log('selectedCountryId', selectedCountry);
@@ -273,12 +273,12 @@ export class AdditionalDataComponent
       );
     });
 
-    this.form.get('state')?.valueChanges.subscribe((selectedState) => {
-      console.log('state', selectedState);
-      this.filteredCity = this.AllCity.filter(
-        (city) => city.state_id === selectedState.id
-      );
-    });
+    // this.form.get('state')?.valueChanges.subscribe((selectedState) => {
+    //   console.log('state', selectedState);
+    //   this.filteredCity = this.AllCity.filter(
+    //     (city) => city.state_id === selectedState.id
+    //   );
+    // });
   }
 
   loadSchoolRecord() {

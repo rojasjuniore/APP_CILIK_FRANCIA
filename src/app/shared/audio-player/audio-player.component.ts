@@ -32,7 +32,7 @@ export class AudioPlayerComponent implements OnChanges {
   onFileSelected(files): void {
     console.log('files', files);
     const file: File = files;
-    if (file) {
+    if (file.lastModified) {
       const fileReader = new FileReader();
       fileReader.onload = (e: any) => {
         this.audioPlayer.nativeElement.src = e.target.result;

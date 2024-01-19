@@ -56,7 +56,7 @@
     "couponApplied": "Cupón aplicado",
     "couponRemoved": "Cupón eliminado",
     "dataSavedCorrectly": "Datos guardados correctamente",
-    "incompleteForm": "El formulario incompleto no ha seleccionado ninguna de las  opciones",
+    "incompleteForm": "El formulario esta incompleto",
     "itemAddedToCart": "Artículo agregado al carrito",
     "itemRemovedFromCart": "Artículo eliminado del carrito",
     "notSelectMusic": "No a seleccionado una música",
@@ -69,7 +69,9 @@
     "theUserAgeDoesNotDivision": "La edad del usuario no coincide con la división",
     "theUserGenderDoesNotDivision": "El género del usuario no coincide con la división",
     "userSelectedCorrectly": "Usuario seleccionado correctamente",
-    "youHaveNotSelectedCategory": "No ha seleccionado ninguna categoría"
+    "youHaveNotSelectedCategory": "No ha seleccionado ninguna categoría",
+    "finalizePurchase": "¿Está seguro de finalizar la compra?",
+    "musicDurationAlert": "La canción debe durar entre 2 y 4 minutos la canción que estás subiendo dura menos de 2 minutos o más de 4 minutos."
   },
   "azul": "azul",
   "bankTransfer": "Transferencia bancaria",
@@ -89,7 +91,11 @@
   },
   "checkout": {
     "text": "Para brindarte flexibilidad y confianza al realizar tus transacciones en línea, te ofrecemos la opción de pagar a través de TuCompra, una plataforma líder en soluciones de pagos electrónicos:",
-    "text-paypal": "Para tu comodidad y seguridad al realizar pagos en línea, te ofrecemos la opción de usar PayPal, una plataforma líder mundialmente reconocida."
+    "text-paypal": "Para tu comodidad y seguridad al realizar pagos en línea, te ofrecemos la opción de usar PayPal, una plataforma líder mundialmente reconocida.",
+    "textFinalizeOne": "Estamos encantados de verle pronto en nuestro evento. Para asegurar su plaza y te invitamos a que finalices tu compra y realices el pago el mismo día del evento. Es fácil y rápido.",
+    "textFinalizeTwo": "Además, ¡no olvide utilizar la opción <strong>Reclamar categoría</strong>! Esta función exclusiva le permite elegir la categoría en la que desea participar. Seleccionar su categoría de antemano nos ayuda a personalizar su experiencia y garantiza que todo esté preparado para usted.",
+    "textFinalizeThree": "Esperamos con impaciencia su participación y estamos aquí para ayudarle en todo momento.",
+    "textFinalizeFour": "Hasta pronto."
   },
   "completed": "Completado",
   "createdAt": "Creado el",

@@ -53,11 +53,7 @@
           {{ "general.claim-category" | translate }}
         </button>
       </li>
-      <li
-        *ngIf="registeredCategory.length > 0"
-        class="nav-item"
-        role="presentation"
-      >
+      <li *ngIf="registeredCategory" class="nav-item" role="presentation">
         <button
           class="nav-link"
           id="registered-divisions-tab"
