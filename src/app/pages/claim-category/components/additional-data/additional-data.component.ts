@@ -151,7 +151,7 @@ export class AdditionalDataComponent
       division: ['', Validators.required],
       country: ['', Validators.required],
       state: ['', Validators.required],
-      city: ['', Validators.required],
+      city: [''],
       // choreographyCreator: [''],
       // nameCoach: [''],
       // nameGroup: ['', Validators.required],
