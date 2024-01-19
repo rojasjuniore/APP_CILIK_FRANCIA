@@ -76,7 +76,8 @@
                           [value]="division"
                         >
                           {{ division.id_sub_categoria | uppercase }} -
-                          {{ division.sub_categoria | translate | uppercase }}
+                          <!-- {{ division.sub_categoria | translate | uppercase }} -->
+                          {{ 'divisionKeys.' + division.id_sub_categoria | translate | uppercase }}
                         </ng-option>
                       </ng-select>
                       <div class="mt-2">
