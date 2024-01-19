@@ -49,6 +49,8 @@
                         >
                           {{ block | uppercase }} -
                           {{ block | translate | titlecase }}
+                          &nbsp;
+                          {{ 'divisionKeys.' + block | translate | titlecase }}
                         </ng-option>
                       </ng-select>
 
