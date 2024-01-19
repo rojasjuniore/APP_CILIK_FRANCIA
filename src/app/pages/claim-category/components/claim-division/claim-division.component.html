@@ -15,7 +15,7 @@
           </span> -->
         <button
           type="button"
-          class="btn btn-one btn-full"
+          class="btn btn-one btn-large"
           (click)="launchFindAditionalDataModal()"
         >
           <!-- {{ form.value ? ("X" | translate) : ("general.add" | translate) }} -->
@@ -29,7 +29,7 @@
       <div class="col-12 col-md-6 mb-4 ps-md-3">
         <button
           type="button"
-          class="btn btn-one btn-full"
+          class="btn btn-one btn-large"
           (click)="launchFindUserModal()"
           [disabled]="!addCompetitoresButton ? true : null"
           [ngClass]="!addCompetitoresButton ? 'btn-disbled' : ''"
@@ -50,7 +50,7 @@
       <div class="col-12">
         <div *ngIf="this.divisionCategory">
           <span class="fw-bold me-2 fs-5 text-rslt">
-            {{ "category.addMusic" | translate }}
+            {{ "category.addMusic" | translate | uppercase }}
           </span>
           <app-custom-input-file
             class="claim-category"
@@ -72,8 +72,8 @@
       <div>
         <div class="card">
           <div class="card-header">
-            <span class="fw-bold text-rslt me-2 fs-4">
-              {{ "category.register" | translate | titlecase }}
+            <span class="fw-bold text-rslt me-2 fs-5">
+              {{ "category.register" | translate | uppercase }}
             </span>
           </div>
           <div class="card-body">

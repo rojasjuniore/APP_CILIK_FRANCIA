@@ -521,3 +521,18 @@
     color: #ffffff !important;
     transition: all 0.5s;
   }
+
+
+  /* AJUSTES PARA TABS EN MOBILE */
+  @media (max-width: 565px) {
+    .nav-item {
+      margin-bottom: 5px;
+      width: 100%;
+    }
+    .nav-link {
+      border-radius: 20px;
+      width: 100%;
+      padding: 5px;
+    }
+  }
+ 
