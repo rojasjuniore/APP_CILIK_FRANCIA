@@ -56,7 +56,7 @@
     "couponApplied": "Coupon applied",
     "couponRemoved": "Coupon removed",
     "dataSavedCorrectly": "Data saved correctly",
-    "incompleteForm": "Incomplete form has not selected any of the following options",
+    "incompleteForm": "The form is incomplete",
     "itemAddedToCart": "Item added to cart",
     "itemRemovedFromCart": "Item removed from cart",
     "notSelectMusic": "Not to select a music",
@@ -69,7 +69,8 @@
     "theUserAgeDoesNotDivision": "The user's age does not match the division",
     "theUserGenderDoesNotDivision": "The user gender does not match the division",
     "userSelectedCorrectly": "User selected correctly",
-    "youHaveNotSelectedCategory": "You have not selected a category"
+    "youHaveNotSelectedCategory": "You have not selected a category",
+    "musicDurationAlert": "The song should last about 2 to 4 minutes the song you are uploading lasts less than 2 minutes or more than 4 minutes."
   },
   "azul": "blue",
   "bankTransfer": "Bank transfer",
@@ -89,7 +90,11 @@
   },
   "checkout": {
     "text": "To give you flexibility and confidence when making your online transactions, we offer you the option of paying through TuCompra, a leading platform in electronic payment solutions:",
-    "text-paypal": "For your convenience and security when making online payments, we offer you the option of using PayPal, a world-renowned leading platform."
+    "text-paypal": "For your convenience and security when making online payments, we offer you the option of using PayPal, a world-renowned leading platform.",
+    "textFinalizeOne": "We're thrilled to see you soon at our event. To secure your spot and ensure a smooth experience, we invite you to finalize your purchase and make your payment on the day of the event. It's quick and easy!",
+    "textFinalizeTwo": "Also, don't forget to use the <strong>Claim Category</strong> option! This unique feature allows you to choose the category in which you wish to participate. Selecting your category in advance helps us customize your experience and ensures everything is set up just for you.",
+    "textFinalizeThree": "We're eagerly looking forward to your participation and are here to assist you every step of the way!",
+    "textFinalizeFour": "See you soon."
   },
   "completed": "Completed",
   "createdAt": "Created at",

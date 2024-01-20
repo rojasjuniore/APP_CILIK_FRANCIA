@@ -29,7 +29,19 @@ export class ClaimDivisionComponent implements OnInit {
   /** Estado de botón para añadir competidores */
   public addCompetitoresButton = false;
 
+  /** para guardar la categoria */
   public divisionCategory: any;
+
+  /**validaciones */
+  public vm = {
+    division: [{ type: 'required', message: 'formValidations.required' }],
+    users: [{ type: 'required', message: 'formValidations.required' }],
+    city: [{ type: 'required', message: 'formValidations.required' }],
+    music: [{ type: 'required', message: 'formValidations.required' }],
+    block: [{ type: 'required', message: 'formValidations.required' }],
+  };
+
+  public submit = false;
 
   constructor(
     private auth: AuthenticationService,
@@ -66,6 +78,10 @@ export class ClaimDivisionComponent implements OnInit {
       nameCoach: new FormControl('', []),
       photo: new FormControl('', []),
     });
+  }
+
+  get f() {
+    return this.form.controls;
   }
 
   /**
@@ -126,42 +142,24 @@ export class ClaimDivisionComponent implements OnInit {
       console.log('onSelectMusicFile', event);
 
       if (!event) {
+        // limpiar etiqueta audio
+        this.form.patchValue({ music: '' });
         return;
       }
 
-      console.log(this.divisionCategory);
-      if (this.divisionCategory == 'soloist') {
-        console.log(event.duration);
+      // console.log(this.divisionCategory);
+      // console.log(event.duration);
 
-        if (event.duration !== 2) {
-          let message = await this.translateSrv.translate(
-            'alert.theSongMustBe2Long'
-          );
-          return this.sweetAlert2Srv.showError(message);
-        }
+      //validacion de la duracion de la musica
+
+      let messageError = await this.translateSrv.translate(
+        'alert.musicDurationAlert'
+      );
+      if (event.duration < 120) {
+        return this.sweetAlert2Srv.showError(messageError);
+      } else if (event.duration > 240) {
+        return this.sweetAlert2Srv.showError(messageError);
       }
-
-      if (this.divisionCategory == 'groups') {
-        console.log(event.duration);
-
-        if (event.duration !== '2:30') {
-          let message = await this.translateSrv.translate(
-            'alert.theSongMustBe2:30Long'
-          );
-          return this.sweetAlert2Srv.showError(message);
-        }
-      }
-
-      if (this.divisionCategory == 'couples') {
-        console.log(event.duration);
-        let message = await this.translateSrv.translate(
-          'alert.theSongMustBe2:30Long'
-        );
-        if (event.duration !== '2:30') {
-          return this.sweetAlert2Srv.showError(message);
-        }
-      }
-
       const file = event ? event.audio : '';
       this.form.patchValue({ music: file });
       let message = await this.translateSrv.translate(
@@ -217,34 +215,14 @@ export class ClaimDivisionComponent implements OnInit {
 
   async save() {
     try {
+      this.submit = true;
       this.spinner.show();
+
       console.log('this.form', this.form);
       if (this.form.invalid) {
-        if (
-          !this.form.value.block &&
-          !this.form.value.music &&
-          !this.form.value.user
-        ) {
-          let message = await this.translateSrv.translate(
-            'alert.incompleteForm'
-          );
-          return this.sweetAlert2Srv.showError(message);
-        } else if (!this.form.value.block) {
-          let message = await this.translateSrv.translate(
-            'alert.youHaveNotSelectedCategory'
-          );
-          return this.sweetAlert2Srv.showError(message);
-        } else if (this.form.controls.users.status === 'INVALID') {
-          let message = await this.translateSrv.translate(
-            'alert.notSelectedUsers'
-          );
-          return this.sweetAlert2Srv.showError(message);
-        } else if (!this.form.value.music) {
-          let message = await this.translateSrv.translate(
-            'alert.notSelectMusic'
-          );
-          return this.sweetAlert2Srv.showError(message);
-        }
+        this.form.markAllAsTouched();
+        let message = await this.translateSrv.translate('alert.incompleteForm');
+        return this.sweetAlert2Srv.showError(message);
       }
 
       await this.spinner.show();

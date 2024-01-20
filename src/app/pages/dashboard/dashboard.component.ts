@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
   private sub$!: Subscription;
   public uid: any;
   public claimCategory: any[] = [];
-  public registeredCategory: any[] = [];
+  public registeredCategory: any = false;
 
   constructor(
     private authSrv: AuthenticationService,

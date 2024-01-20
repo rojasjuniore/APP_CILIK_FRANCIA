@@ -50,7 +50,7 @@
                           {{ block | uppercase }} -
                           {{ block | translate | titlecase }}
                           &nbsp;
-                          {{ 'divisionKeys.' + block | translate | titlecase }}
+                          {{ "divisionKeys." + block | translate | titlecase }}
                         </ng-option>
                       </ng-select>
 
@@ -77,7 +77,11 @@
                         >
                           {{ division.id_sub_categoria | uppercase }} -
                           <!-- {{ division.sub_categoria | translate | uppercase }} -->
-                          {{ 'divisionKeys.' + division.id_sub_categoria | translate | uppercase }}
+                          {{
+                            "divisionKeys." + division.id_sub_categoria
+                              | translate
+                              | uppercase
+                          }}
                         </ng-option>
                       </ng-select>
                       <div class="mt-2">
@@ -137,14 +141,19 @@
                       <label for="city" class="form-label">
                         {{ "general.city" | translate | titlecase }}:
                       </label>
-                      <ng-select
+                      <!-- <ng-select
                         formControlName="city"
                         placeholder="Seleccione un país"
                       >
                         <ng-option *ngFor="let c of filteredCity" [value]="c">{{
                           c.name
                         }}</ng-option>
-                      </ng-select>
+                      </ng-select> -->
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="city"
+                      />
                       <div class="mt-2">
                         <ng-container
                           *ngIf="submit"

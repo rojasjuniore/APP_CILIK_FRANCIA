@@ -1,21 +1,20 @@
 <div class="row mb-4">
-    <div class="col-12 mb-4">
-        <p>We're thrilled to see you soon at our event. To secure your spot and ensure a smooth experience, we invite
-            you to finalize your purchase and make your payment on the day of the event. It's quick and easy!</p>
-        <p>Also, don't forget to use the <strong>"Claim Category"</strong> option! This unique feature allows you to
-            choose the category in which you wish to participate. Selecting your category in advance helps us customize
-            your experience and ensures everything is set up just for you.</p>
-        <p>We're eagerly looking forward to your participation and are here to assist you every step of the way!</p>
-        <p>See you soon,<br>
-        </p>
-    </div>
+  <div class="col-12 mb-4">
+    <p>
+      {{ "checkout.textFinalizeOne" | translate }}
+    </p>
+    <p [innerHTML]="'checkout.textFinalizeTwo' | translate"></p>
+    <p>
+      {{ "checkout.textFinalizeThree" | translate }}
+    </p>
+    <p>{{ "checkout.textFinalizeFour" | translate }}<br /></p>
+  </div>
 
-    <div class="col-12">
-        <button type="button" class="btn btn-primary" (click)="confirmOption()">
-            <i class="bi bi-check2-square"></i>
-            &nbsp;
-            {{"general.confirm" | translate | titlecase}}
-        </button>
-    </div>
-
+  <div class="col-12 text-center">
+    <button type="button" class="btn btn-primary" (click)="confirmOption()">
+      <i class="bi bi-check2-square"></i>
+      &nbsp;
+      {{ "general.confirm" | translate | titlecase }}
+    </button>
+  </div>
 </div>

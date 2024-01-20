@@ -44,7 +44,7 @@ export class CheckoutComponent implements OnInit {
       slug: 'bankTransfer',
       type: 'navigation',
       icon: 'bi bi-bank',
-      available: false
+      available: false,
     },
     {
       label: 'general.paypal',
@@ -58,15 +58,15 @@ export class CheckoutComponent implements OnInit {
       slug: 'adviser',
       type: 'navigation',
       icon: 'bi bi-person-badge',
-      available: false
+      available: false,
     },
     {
-      label: 'finalize',
+      label: 'general.finalize',
       slug: 'finalize-purchase',
       type: 'navigation',
       icon: 'bi bi-person-badge',
-      available: true
-    }
+      available: true,
+    },
   ];
   public paymentOptionSelected: any;
 
@@ -90,7 +90,7 @@ export class CheckoutComponent implements OnInit {
     private translate: TranslateService,
     private cartTotalSrv: CartTotalService,
     private installmentSrv: InstallmentService
-  ) { }
+  ) {}
 
   async ngOnInit(): Promise<void> {
     this.couponObj = await this.codeStorageSrv.checkCode();
@@ -261,11 +261,7 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
-
-
-
   async onFinalizePurchaseCallback(event: any) {
-
     console.log('onFinalizePurchaseCallback', event);
     try {
       if (event.type === 'cancel') {
@@ -309,7 +305,6 @@ export class CheckoutComponent implements OnInit {
         totales: this.totales.globalTotalToPay,
       };
       console.log('purchase', purchase);
-
 
       /** Almacenar orden de compra */
       await this.purchaseSrv.storePurchase(
@@ -364,7 +359,6 @@ export class CheckoutComponent implements OnInit {
       this.spinner.hide();
     }
   }
-
 
   async onAdviserCallback(event: any) {
     console.log('onAdviserCallback', event);
