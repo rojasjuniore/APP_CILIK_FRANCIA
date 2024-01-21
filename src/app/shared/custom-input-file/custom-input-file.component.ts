@@ -46,7 +46,7 @@ export class CustomInputFileComponent implements OnInit {
   public fileLoaded: boolean = false;
   public formFile!: any;
 
-  public durationAudio: any;
+  public durationAudioView: any;
 
   constructor(
     private sweetAlert2Srv: Sweetalert2Service,
@@ -104,19 +104,18 @@ export class CustomInputFileComponent implements OnInit {
         let seconds = audio.duration;
 
         let duration: any = moment.duration(seconds, 'seconds');
-        console.log(duration.seconds());
+        console.log(Math.round(seconds));
 
         if (duration.seconds() === 0) {
-          this.durationAudio = duration.minutes();
+          this.durationAudioView = duration.minutes();
         } else {
-          this.durationAudio = duration.minutes() + ':' + duration.seconds();
+          this.durationAudioView =
+            duration.minutes() + ':' + duration.seconds();
         }
-
-        console.log(this.durationAudio);
 
         this.formFile = {
           audio: files[0],
-          duration: this.durationAudio,
+          duration: Math.round(seconds),
         };
 
         console.log(this.formFile);

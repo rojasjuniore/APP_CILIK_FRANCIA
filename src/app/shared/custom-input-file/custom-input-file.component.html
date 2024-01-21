@@ -1,4 +1,4 @@
-<div class="row mb-4">
+<div class="row">
   <ng-container
     *ngIf="formFile; then renderFileSelected; else renderNoFileSelected"
   ></ng-container>
@@ -40,10 +40,10 @@
             </small>
           </p> -->
 
-          <p *ngIf="durationAudio" class="card-text text-center mb-0">
+          <p *ngIf="durationAudioView" class="card-text text-center mb-0">
             {{ "general.duration" | translate }}:
             <small class="text-muted">
-              {{ durationAudio }} {{ "general.minutes" | translate }}
+              {{ durationAudioView }} {{ "general.minutes" | translate }}
             </small>
           </p>
         </div>

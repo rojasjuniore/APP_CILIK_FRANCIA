@@ -2,20 +2,22 @@
   <div class="container px-1">
     <div class="row g-0 d-flex align-items-center">
       <div class="col-12">
-        <h4 class="fw-bold fs-5 text-rslt fw-bold mb-3">
+        <h4 class="fw-bold fs-5 text-rslt fw-bold mb-3 text-center">
           {{ "general." + division.categoryType | translate | uppercase }}
         </h4>
       </div>
 
       <!-- Select Category Button -->
-      <div class="col-12 col-md-6 mb-4 pe-md-3">
+      <div
+        class="col-12 col-md-6 mb-4 pe-md-3 d-flex justify-content-center align-items-center flex-column"
+      >
         <!-- <span class="fw-bold me-2 fs-5"> -->
         <!-- {{ "category.additionalData" | translate }}: -->
         <!-- Categoría:
           </span> -->
         <button
           type="button"
-          class="btn btn-one btn-full"
+          class="btn btn-one btn-large"
           (click)="launchFindAditionalDataModal()"
         >
           <!-- {{ form.value ? ("X" | translate) : ("general.add" | translate) }} -->
@@ -23,13 +25,23 @@
           <!-- {{ "general.add" | translate }} -->
           {{ "selectCategory" | translate }}
         </button>
+
+        <div class="mt-2">
+          <ng-container
+            *ngIf="submit"
+            [ngTemplateOutlet]="renderFormVM"
+            [ngTemplateOutletContext]="{ field: 'division' }"
+          ></ng-container>
+        </div>
       </div>
 
       <!-- Find Users Button -->
-      <div class="col-12 col-md-6 mb-4 ps-md-3">
+      <div
+        class="col-12 col-md-6 mb-4 ps-md-3 d-flex justify-content-center align-items-center flex-column"
+      >
         <button
           type="button"
-          class="btn btn-one btn-full"
+          class="btn btn-one btn-large"
           (click)="launchFindUserModal()"
           [disabled]="!addCompetitoresButton ? true : null"
           [ngClass]="!addCompetitoresButton ? 'btn-disbled' : ''"
@@ -37,6 +49,14 @@
           <!-- {{ form.value.users ? ("general.completed" | translate) : ("category.addUser" | translate) }} -->
           {{ "category.addUser" | translate }}
         </button>
+
+        <div class="mt-2 d-flex">
+          <ng-container
+            *ngIf="submit"
+            [ngTemplateOutlet]="renderFormVM"
+            [ngTemplateOutletContext]="{ field: 'users' }"
+          ></ng-container>
+        </div>
         <!-- <div class="d-flex align-items-center justify-content-center flex-column">
           add user:
           <span class="fw-bold me-2 fs-5">
@@ -47,16 +67,23 @@
         </div> -->
       </div>
 
-      <div class="col-12">
-        <div *ngIf="this.divisionCategory">
+      <div class="col-12 mb-4">
+        <div *ngIf="this.divisionCategory" class="text-center">
           <span class="fw-bold me-2 fs-5 text-rslt">
-            {{ "category.addMusic" | translate }}
+            {{ "category.addMusic" | translate | uppercase }}
           </span>
           <app-custom-input-file
             class="claim-category"
             [accept]="'audio/*'"
             (onSelectFile)="onSelectMusicFile($event)"
           ></app-custom-input-file>
+          <div class="mt-2">
+            <ng-container
+              *ngIf="submit"
+              [ngTemplateOutlet]="renderFormVM"
+              [ngTemplateOutletContext]="{ field: 'music' }"
+            ></ng-container>
+          </div>
         </div>
       </div>
 
@@ -72,8 +99,8 @@
       <div>
         <div class="card">
           <div class="card-header">
-            <span class="fw-bold text-rslt me-2 fs-4">
-              {{ "category.register" | translate | titlecase }}
+            <span class="fw-bold text-rslt me-2 fs-5">
+              {{ "category.register" | translate | uppercase }}
             </span>
           </div>
           <div class="card-body">
@@ -219,6 +246,15 @@
     </div>
   </div>
 </div>
+
+<!-- template para validacion -->
+<ng-template #renderFormVM let-field="field">
+  <ng-container *ngFor="let item of vm[field]">
+    <span class="badge bg-danger" *ngIf="f[field].hasError(item.type)">
+      {{ item.message | translate }}
+    </span>
+  </ng-container>
+</ng-template>
 
 <!-- <app-claim-search-category #modalFindDivision [ownerType]="'ambassador'"
   (onCloseModal)="onSelectDivision($event)"></app-claim-search-category> -->

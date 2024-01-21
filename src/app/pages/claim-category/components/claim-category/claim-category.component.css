@@ -1,0 +1,32 @@
+.accordion-button:not(.collapsed) {
+    color: #ffffff !important;
+    background-color: #e7344c !important; 
+    box-shadow: none !important;
+}
+.accordion-button{
+    box-shadow: none !important;
+}
+.accordion-item{
+    border: 0 !important;
+}
+
+.accordion-button{
+    position: relative;
+    border-radius: 20px !important;
+}
+.accordion-button::before{
+    position: absolute;
+    content: '';
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #e7344c;
+}
+.accordion-button:not(.collapsed)::before {
+    opacity: 0;
+}
+.accordion-button:not(.collapsed)::after {
+    filter: invert(1);
+}
+
