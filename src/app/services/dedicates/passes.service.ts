@@ -16,7 +16,7 @@ export class PassesService {
         price: 159,
       },
       {
-        ranges: { from: '2023-12-17', to: '2024-01-20' },
+        ranges: { from: '2023-12-17', to: '2024-02-27' },
         price: 189,
       },
     ],
@@ -30,7 +30,7 @@ export class PassesService {
         price: 119,
       },
       {
-        ranges: { from: '2023-12-17', to: '2024-01-20' },
+        ranges: { from: '2023-12-17', to: '2024-02-27' },
         price: 149,
       },
     ],
@@ -48,7 +48,7 @@ export class PassesService {
         groups: 15,
       },
       {
-        ranges: { from: '2023-12-17', to: '2024-01-20' },
+        ranges: { from: '2023-12-17', to: '2024-02-27' },
         soloist: 40,
         couples: 30,
         groups: 15,
@@ -68,7 +68,7 @@ export class PassesService {
     //     groups: 20
     //   },
     //   {
-    //     ranges: { from: '2023-12-17', to: '2024-01-20' },
+    //     ranges: { from: '2023-12-17', to: '2024-02-27' },
     //     soloist: 75,
     //     couples: 60,
     //     groups: 25
@@ -84,7 +84,7 @@ export class PassesService {
         dayOfWeek: [35, 18, 18, 18, 30, 35, 55],
       },
       {
-        ranges: { from: '2023-12-17', to: '2024-01-20' },
+        ranges: { from: '2023-12-17', to: '2024-02-27' },
         dayOfWeek: [40, 20, 20, 20, 35, 40, 60],
       },
     ],
