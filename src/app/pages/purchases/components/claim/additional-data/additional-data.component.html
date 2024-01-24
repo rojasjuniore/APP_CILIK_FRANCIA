@@ -1,0 +1,305 @@
+<div class="modal fade" [id]="_id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 text-center">
+              <div class="fs-4 fw-bold mb-2 text-uppercase text-rslt">
+                {{ "category.additionalData" | translate }} - {{item?.categoryType| translate | titlecase}}
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="card card-box p-3">
+                <div class="row g-2 d-flex align-items-center">
+                  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="container mt-5">
+
+                    <!-- Block Input -->
+                    <div class="mb-3">
+                      <label for="block" class="form-label">
+                        {{ "general.block" | translate | titlecase }}
+                        <ng-container
+                          *ngIf="formRules && formRules['block'].rules.length > 0; then renderRequired"></ng-container>
+                        :
+                      </label>
+                      <ng-select formControlName="block" placeholder="Seleccione un block">
+                        <ng-option *ngFor="let block of (dataBlock$ | async)" [value]="block">
+                          {{ block | uppercase }} - {{ 'divisionKeys' + '.' +  block | translate | titlecase }}
+                        </ng-option>
+                      </ng-select>
+                      <div *ngIf=" form.get('block')?.touched && form.get('block')?.invalid" class="invalid-feedback">
+                        {{ "formValidations.required" | translate | titlecase }}
+                      </div>
+                    </div>
+
+                    <!-- Category Input -->
+                    <div class="mb-3">
+                      <label for="division" class="form-label">
+                        {{ "category.division" | translate | titlecase }}
+                        <ng-container
+                          *ngIf="formRules && formRules['division'].rules.length > 0; then renderRequired"></ng-container>
+                        :
+                      </label>
+                      <ng-select formControlName="division" placeholder="Seleccione un division">
+                        <ng-option *ngFor="let division of (division$ | async)" [value]="division">
+                          {{ division.id_sub_categoria | uppercase }} -
+                          {{ division.sub_categoria |translate | uppercase }}
+                        </ng-option>
+                      </ng-select>
+                      <div *ngIf="form.get('division')?.touched && form.get('division')?.invalid"
+                        class="invalid-feedback">
+                        {{ "formValidations.required" | translate | titlecase }}
+                      </div>
+                    </div>
+
+                    <!-- Country Input -->
+                    <div class="mb-3">
+                      <label for="country" class="form-label">
+                        {{ "general.country" | translate | titlecase }}
+                        <ng-container
+                          *ngIf="formRules && formRules['country'].rules.length > 0; then renderRequired"></ng-container>
+                        :
+                      </label>
+                      <ng-select formControlName="country" placeholder="Seleccione un país">
+                        <ng-option *ngFor="let c of countries" [value]="c">{{
+                          c.name
+                          }}</ng-option>
+                      </ng-select>
+                      <div *ngIf="form.get('country')?.touched && form.get('country')?.invalid"
+                        class="invalid-feedback">
+                        {{ "formValidations.required" | translate | titlecase }}
+                      </div>
+                    </div>
+
+                    <!-- State Input -->
+                    <div class="mb-3">
+                      <label for="state" class="form-label">
+                        {{ "general.state" | translate | titlecase }}
+                        <ng-container
+                          *ngIf="formRules && formRules['state'].rules.length > 0; then renderRequired"></ng-container>
+                        :
+                      </label>
+                      <ng-select formControlName="state" placeholder="Seleccione un país">
+                        <ng-option *ngFor="let s of filteredStates" [value]="s">{{ s.name }}</ng-option>
+                      </ng-select>
+                      <div *ngIf="form.get('state')?.touched && form.get('state')?.invalid" class="invalid-feedback">
+                        {{ "formValidations.required" | translate | titlecase }}
+                      </div>
+                    </div>
+
+                    <!-- City Input -->
+                    <div class="mb-3">
+                      <label for="city" class="form-label">
+                        {{ "general.city" | translate | titlecase }}
+                        <ng-container
+                          *ngIf="formRules && formRules['city'].rules.length > 0; then renderRequired"></ng-container>
+                        :
+                      </label>
+                      <ng-select formControlName="city" placeholder="Seleccione un país">
+                        <ng-option *ngFor="let c of filteredCity" [value]="c">{{c.name}}</ng-option>
+                      </ng-select>
+                      <div *ngIf="form.get('city')?.touched && form.get('city')?.invalid" class="invalid-feedback">
+                        {{ "formValidations.required" | translate | titlecase }}
+                      </div>
+                    </div>
+
+                    <hr>
+
+                    <!-- School Input -->
+                    <!-- <div class="mb-3">
+                      <label for="school" class="form-label">
+                        {{ "general.school" | translate | titlecase }}:
+                      </label>
+                      <ng-select formControlName="school" placeholder="Seleccione un país">
+                        <ng-option *ngFor="let c of (schoolRecord$| async)"
+                          [value]="c">{{c.name_institution}}</ng-option>
+                      </ng-select>
+                      <div *ngIf="form.get('school')?.touched && form.get('school')?.invalid" class="invalid-feedback">
+                        {{ "formValidations.required" | translate | titlecase }}
+                      </div>
+                    </div> -->
+
+                    <hr />
+
+                    <!-- Group Name Input -->
+                    <div class="mb-3" *ngIf="formRules && !formRules['groupName'].disabled">
+                      <label for="groupName" class="form-label">
+                        {{'general.groupName' | translate | titlecase}}:
+                        <ng-container
+                          *ngIf="formRules && formRules['groupName'].rules.length > 0; then renderRequired"></ng-container>
+                      </label>
+                      <input id="groupName" formControlName="groupName" type="text" class="form-control"
+                        [class.is-invalid]="form.get('groupName')?.touched && form.get('groupName')?.invalid" />
+                      <div *ngIf="form.get('groupName')?.touched && form.get('groupName')?.invalid"
+                        class="invalid-feedback">
+                        {{ "formValidations.required" | translate | titlecase }}
+                      </div>
+                    </div>
+
+                    <!-- Group Director Name Input -->
+                    <div class="mb-3" *ngIf="formRules && !formRules['groupDirector'].disabled">
+                      <label for="groupDirector" class="form-label">
+                        {{'general.groupDirectorName' | translate | titlecase}}:
+                        <ng-container
+                          *ngIf="formRules && formRules['groupDirector'].rules.length > 0; then renderRequired"></ng-container>
+                      </label>
+                      <input id="groupDirector" formControlName="groupDirector" type="text" class="form-control"
+                        [class.is-invalid]="form.get('groupDirector')?.touched && form.get('groupDirector')?.invalid" />
+                      <div *ngIf="form.get('groupDirector')?.touched && form.get('groupDirector')?.invalid"
+                        class="invalid-feedback">
+                        {{ "formValidations.required" | translate | titlecase }}
+                      </div>
+                    </div>
+
+                    <!-- Instagram Input -->
+                    <div class="mb-3">
+                      <label for="instagram" class="form-label">Instagram:</label>
+                      <input id="instagram" formControlName="instagram" type="text" class="form-control"
+                        [class.is-invalid]="form.get('instagram')?.touched &&form.get('instagram')?.invalid" />
+                      <div *ngIf="form.get('instagram')?.touched && form.get('instagram')?.invalid"
+                        class="invalid-feedback">
+                        {{ "formValidations.required" | translate | titlecase }}
+                      </div>
+                    </div>
+
+                    <!-- Facebook Input -->
+                    <div class="mb-3">
+                      <label for="facebook" class="form-label">Facebook:</label>
+                      <input id="facebook" formControlName="facebook" type="text" class="form-control"
+                        [class.is-invalid]="form.get('facebook')?.touched && form.get('facebook')?.invalid" />
+                      <div *ngIf="
+                          form.get('facebook')?.touched && form.get('facebook')?.invalid" class="invalid-feedback">
+                        {{ "formValidations.required" | translate | titlecase }}
+                      </div>
+                    </div>
+
+                    <!-- TikTok Input -->
+                    <div class="mb-3">
+                      <label for="tiktok" class="form-label">TikTok:</label>
+                      <input id="tiktok" formControlName="tiktok" type="text" class="form-control" [class.is-invalid]="
+                          form.get('tiktok')?.touched && form.get('tiktok')?.invalid" />
+                      <div *ngIf="form.get('tiktok')?.touched && form.get('tiktok')?.invalid" class="invalid-feedback">
+                        {{ "formValidations.required" | translate | titlecase }}
+                      </div>
+                    </div>
+
+
+                    <!-- choreographyCreator Input -->
+                    <!-- <div class="input-group mb-3" *ngIf="formRules && !formRules['choreographyCreator'].disabled">
+                      <span class="input-group-text" id="basic-addon1"
+                        (click)="launchFindOwnerModal('', 'choreographyCreator')">
+                        {{'choreographyCreator' | translate}}
+                      </span>
+
+                      <input readonly id="choreographyCreator"
+                        value="{{form.get('choreographyCreator')?.value | profile | async | titlecase}}" type="text"
+                        class="form-control" />
+                    </div> -->
+
+                    <!-- Name Coach Input -->
+                    <!-- <div class="input-group mb-3" *ngIf="formRules && !formRules['nameCoach'].disabled">
+                      <span class="input-group-text" id="basic-addon1" (click)="launchFindOwnerModal('', 'nameCoach')">
+                        {{'nameCoach' | translate}}
+                      </span>
+
+                      <input readonly id="nameCoach"
+                        value="{{form.get('nameCoach')?.value | profile | async | titlecase}}" type="text"
+                        class="form-control" />
+                    </div>
+ -->
+
+                    <!-- <div class="mb-3">
+                      <label for="officialQualifiers" class="form-label">
+                        {{ "officialqualifiers" | translate | titlecase }}
+                        <ng-container
+                          *ngIf="formRules && formRules['officialQualifiers'].rules.length > 0; then renderRequired"></ng-container>
+                        :
+                      </label>
+                      <ng-select formControlName="officialQualifiers" placeholder="Seleccione un officialQualifiers">
+                        <ng-option *ngFor="let item of competitionData.officialQualifiers" [value]="item">
+                          {{ item.name | uppercase }}
+                        </ng-option>
+                      </ng-select>
+                      <div *ngIf=" form.get('officialQualifiers')?.touched && form.get('officialQualifiers')?.invalid"
+                        class="invalid-feedback">
+                        {{ "formValidations.required" | translate | titlecase }}
+                      </div>
+                    </div> -->
+
+                    <!-- <div class="mb-3">
+                      <label for="achievedPosition" class="form-label">
+                        {{ "achievedPosition" | translate | titlecase }}
+                        <ng-container
+                          *ngIf="formRules && formRules['achievedPosition'].rules.length > 0; then renderRequired"></ng-container>
+                        :
+                      </label>
+                      <ng-select formControlName="achievedPosition" placeholder="Seleccione un achievedPosition">
+                        <ng-option *ngFor="let item of competitionData.achievedPosition" [value]="item">
+                          {{ item.name | uppercase }}
+                        </ng-option>
+                      </ng-select>
+                      <div *ngIf=" form.get('achievedPosition')?.touched && form.get('achievedPosition')?.invalid"
+                        class="invalid-feedback">
+                        {{ "formValidations.required" | translate | titlecase }}
+                      </div>
+                    </div> -->
+
+                    <!-- <div class="mb-3">
+                      <label for="firstPlaceWon" class="form-label">
+                        {{ "firstPlaceWon" | translate | titlecase }}
+                        <ng-container
+                          *ngIf="formRules && formRules['firstPlaceWon'].rules.length > 0; then renderRequired"></ng-container>
+                        :
+                      </label>
+                      <ng-select formControlName="firstPlaceWon" placeholder="Seleccione un firstPlaceWon">
+                        <ng-option *ngFor="let item of competitionData.firstPlaceWon" [value]="item">
+                          {{ item.name | uppercase }}
+                        </ng-option>
+                      </ng-select>
+                      <div *ngIf=" form.get('firstPlaceWon')?.touched && form.get('firstPlaceWon')?.invalid"
+                        class="invalid-feedback">
+                        {{ "formValidations.required" | translate | titlecase }}
+                      </div>
+                    </div> -->
+
+
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer d-flex justify-content-end">
+        <button class="btn btn-two btn-medium-c text-uppercase" type="button" (click)="closeModal()">
+          <i class="bi bi-x-circle"></i>
+          &nbsp;
+          {{ "general.cancel" | translate }}
+        </button>
+
+        <button class="btn btn-one btn-medium-c text-uppercase" type="button" (click)="onSubmit()">
+          <i class="bi bi-save"></i>
+          &nbsp;
+          {{ "general.save" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<app-modal-merchant-add-user #modalOnSelectedAddUser [itemData]="''" [ownerType]="'ambassador'"
+  (onCloseModal)="onSelectedAddUser($event)"></app-modal-merchant-add-user>
+
+<app-claim-search-user #modalFindUser [_id]="'modalClaimAddUser'" [ownerType]="'ambassador'"
+  (onCloseModal)="onSelectedAddUser($event)"></app-claim-search-user>
+
+<ng-template #renderRequired>
+  <span class="text-danger">*</span>
+</ng-template>

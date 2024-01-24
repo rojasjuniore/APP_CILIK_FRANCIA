@@ -1,6 +1,6 @@
 <div class="card card-box mt-3 pt-3">
     <div class="card-body">
-        
+
         <div class="d-flex justify-content-between pb-2">
             <div class="d-flex align-items-center text-rslt fw-bold fs-6">
                 <ng-container [ngTemplateOutlet]="renderCapacityIcon"></ng-container>
@@ -29,11 +29,8 @@
                             {{"general.checkInDate" | translate}}:
                         </span>
                         <span class="text-rslt">
-                            <ng-container 
-                                *ngIf="checkIn" 
-                                [ngTemplateOutlet]="renderDateParsed" 
-                                [ngTemplateOutletContext]="{date: checkIn}"
-                            ></ng-container>
+                            <ng-container *ngIf="checkIn" [ngTemplateOutlet]="renderDateParsed"
+                                [ngTemplateOutletContext]="{date: checkIn}"></ng-container>
                         </span>
                     </div>
                     <div class="fw-bold">
@@ -41,11 +38,8 @@
                             {{"general.checkOutDate" | translate}}:
                         </span>
                         <span class="text-rslt">
-                            <ng-container 
-                                *ngIf="checkOut" 
-                                [ngTemplateOutlet]="renderDateParsed" 
-                                [ngTemplateOutletContext]="{date: checkOut}"
-                            ></ng-container>
+                            <ng-container *ngIf="checkOut" [ngTemplateOutlet]="renderDateParsed"
+                                [ngTemplateOutletContext]="{date: checkOut}"></ng-container>
                         </span>
                     </div>
                     <div>
@@ -53,12 +47,12 @@
                     </div>
                     <!-- <div>Cantidad de habitaciones: 1</div> -->
                     <div>
-                        {{"general.amountOfPeople" | translate}}: 
+                        {{"general.amountOfPeople" | translate}}:
                         {{item.capacity}} {{"general." + ((item.capacity == 1) ? 'adult' : 'adults') | translate}}
                     </div>
-                    
+
                     <div class="c-icon my-2">
-                        {{item.nroBeds}} 
+                        {{item.nroBeds}}
 
                         <!-- camas dobles  -->
                         <ng-container *ngFor="let item of item.bedsLabel; last as isLast">
@@ -102,9 +96,9 @@
 
 
         <!-- <p class="card-text"> -->
-            <!-- {{ 'hotel.roomType.'+row.roomCode | translate | uppercase}} -->
-            <!-- {{row.description}} -->
-            <!-- {{item.title}}
+        <!-- {{ 'hotel.roomType.'+row.roomCode | translate | uppercase}} -->
+        <!-- {{row.description}} -->
+        <!-- {{item.title}}
         </p> -->
         <!-- <p class="card-text">
             {{"plansCard.include" | translate | titlecase}}:
@@ -118,11 +112,11 @@
                 {{item.noInclude}}
             </span>
         </p> -->
-        
+
         <div class="d-flex flex-column flex-md-row align-content-md-center justify-content-md-between">
             <div class="d-flex justify-content-center align-items-md-center">
                 <span class="fw-bold fs-4">
-                    {{"general.total" | translate }}: USD {{totales}}
+                    {{"general.total" | translate }}: USD {{totales | number: '1.2-2'}} 
                 </span>
             </div>
 
@@ -140,7 +134,8 @@
 </ng-template>
 
 <ng-template #renderCartBtn>
-    <a href="javascript:void(0)" class="btn btn-one btn-small" [ngClass]="{'disabled': item.dates.length == 0}" (click)="selectRoom()">
+    <a href="javascript:void(0)" class="btn btn-one btn-small" [ngClass]="{'disabled': item.dates.length == 0}"
+        (click)="selectRoom()">
         {{"general.add" | translate }}
         &nbsp;
         <i class="bi bi-cart-plus"></i>
@@ -156,6 +151,6 @@
 </ng-template>
 
 <ng-template #renderCapacityIcon>
-    <i class="bi" [ngClass]="{'bi-person-fill': item.capacity == 1, 'bi-people-fill': item.capacity > 1}"></i> {{item.capacity}}
+    <i class="bi" [ngClass]="{'bi-person-fill': item.capacity == 1, 'bi-people-fill': item.capacity > 1}"></i>
+    {{item.capacity}}
 </ng-template>
-

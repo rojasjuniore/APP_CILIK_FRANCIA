@@ -92,7 +92,6 @@ export class DevisionService {
 
 
 
-
   async divisionRulesToPromise(data: { division: any, key_db: string, block: string }) {
     try {
       const snapshot = await this.http.post(`${environment.urlrootFunctions}/division/rules`, data).toPromise();

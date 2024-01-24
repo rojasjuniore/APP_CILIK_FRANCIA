@@ -10,7 +10,7 @@ export class InputNumberFormComponent implements OnInit {
 
   @Input() label: string = 'Label';
   @Input() placeholder: string = '00';
-  @Input() quantity!: number;
+  @Input() quantity: number = 0;
   @Input() min = 1;
   @Input() max = 0;
 
@@ -27,12 +27,14 @@ export class InputNumberFormComponent implements OnInit {
   handlerQuantity(type: string){
     switch (type) {
       case 'add':
-        this.quantity = this.quantity + 1;  
+        this.quantity = this.quantity + 1;
         this.onUpdateQuantity.next(this.quantity);
+        console.log(this.quantity)
         break;
-    
+
       default:
         this.quantity = this.quantity - 1;
+        console.log(this.quantity)
         this.onUpdateQuantity.next(this.quantity);
         break;
     }

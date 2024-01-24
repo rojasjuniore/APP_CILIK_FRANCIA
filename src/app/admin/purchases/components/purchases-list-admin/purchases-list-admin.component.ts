@@ -51,7 +51,9 @@ export class PurchasesListAdminComponent implements OnInit {
       return;
     }
 
-    console.log('query', this.query);
+
+
+    // console.log('query', this.query);
     /** Actualizar observable de listado de compras */
     this.purchases$ = this.purchaseSrv.getDynamic(environment.dataEvent.keyDb, this.query, this.opts);
     return;

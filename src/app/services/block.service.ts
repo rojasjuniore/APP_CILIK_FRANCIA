@@ -23,11 +23,11 @@ export class BlockService {
   }
 
   /**
-   * @dev Obtener listado de bloques filtrado por tipo de categoria
-   * @param keyDb           Key de la base de datos
-   * @param subCategory     Subcategoria
-   * @returns 
-   */
+ * @dev Obtener listado de bloques filtrado por tipo de categoria
+ * @param keyDb           Key de la base de datos
+ * @param subCategory     Subcategoria
+ * @returns 
+ */
   async getBlockByType(keyDb: string, subCategory: string) {
     try {
       const params = new HttpParams({
@@ -38,13 +38,12 @@ export class BlockService {
       });
 
       const url = `${environment.urlrootFunctions}/v2/division/block-by-type` + '?' + params.toString();
-      const snapshot: any = await lastValueFrom(this.http.get( url ) );
+      const snapshot: any = await lastValueFrom(this.http.get(url));
       return snapshot.results;
-      
+
     } catch (err) {
       console.log('Error on DivisionPurchasePage.ngOnInit', err);
       throw err;
     }
   }
-
 }

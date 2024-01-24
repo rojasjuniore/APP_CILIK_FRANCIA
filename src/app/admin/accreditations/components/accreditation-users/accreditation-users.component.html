@@ -1,0 +1,143 @@
+<div class="row">
+    <div class="col-12">
+
+        <form [formGroup]="form" novalidate>
+
+            <div class="col-12 mb-4">
+                <div class="form-floating">
+                    <select class="form-select" formControlName="filterField"
+                        aria-label="Floating label select example">
+                        <option value="email">
+                            {{ "general.email" | translate | titlecase }}
+                        </option>
+                        <option value="name">
+                            {{ "general.name" | translate | titlecase }}
+                        </option>
+                    </select>
+                    <label for="floatingSelect">
+                        {{ "general.filterBy" | translate | titlecase }}:
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-12 mb-4">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" formControlName="query"
+                        placeholder="Ingresar valor a buscar" />
+                    <label for="floatingInput">
+                        {{ "general.enterValueToSearch" | translate | titlecase }}:
+                    </label>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="col text-center mb-4">
+        <div class="fs-4 fw-bold mb-2">
+            List
+        </div>
+        <div class="seprd2"></div>
+    </div>
+
+
+    <ng-container *ngIf="(users$ | async) as list; else renderLoaderList" [ngTemplateOutlet]="renderCheckList"
+        [ngTemplateOutletContext]="{list: list}"></ng-container>
+
+</div>
+
+<ng-template #renderList let-list="list">
+    <div class="col-12">
+        <ol *ngFor="let item of list" class="list-group list-group-numbered p-1"
+            (click)="launchAccreditedUsersrModal(item)">
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                    <div class="fw-bold">{{item.name | titlecase}}</div>
+                    <div>
+                        {{item.email }}
+
+                    </div>
+                    <div>
+                        {{item.prefijo}} {{item.phone}}
+                    </div>
+                </div>
+                <span class="badge bg-primary rounded-pill">
+                    {{item._language | titlecase}}
+                </span>
+            </li>
+        </ol>
+    </div>
+</ng-template>
+
+
+<ng-template #renderCheckList let-list="list">
+    <ng-container *ngIf="list.length > 0; else renderNoRecords" [ngTemplateOutlet]="renderList"
+        [ngTemplateOutletContext]="{list: list}"></ng-container>
+</ng-template>
+
+
+
+<ng-template #renderNoRecords>
+    <div class="col-12 mb-4">
+        <div class="card-box card-box-b3 p-3 mb-3">
+            <h5 class="text-center">
+                {{'No records found' | translate | titlecase}}
+            </h5>
+        </div>
+    </div>
+</ng-template>
+
+
+<ng-template #renderLoaderList>
+    <div class="col-12" *ngFor="let item of [1,1,1,1]">
+        <div class="card card-box p-3 mb-3">
+            <div class="row g-2 d-flex align-items-center">
+                <div class="col-12 px-3">
+                    <h5 class="card-title fw-bolder text-rslt placeholder-glow">
+                        <span class="placeholder placeholder-lg col-12"></span>
+                    </h5>
+                </div>
+
+                <div class="seprd2"></div>
+
+                <div class="col-12 px-3">
+
+                    <p class="card-text placeholder-glow">
+                        <span class="placeholder col-12"></span>
+                    </p>
+
+                    <p class="card-text placeholder-glow">
+                        <span class="placeholder col-12"></span>
+                    </p>
+
+                    <div class="d-flex justify-content-between">
+                        <div class="fs-4 fw-bolder placeholder-glow">
+                            <span class="placeholder col-12" style="width: 10rem; height: 32px;"></span>
+                        </div>
+                        <div>
+                            <a href="#" tabindex="-1" class="btn-icon btn-icon-two disabled placeholder col-4"
+                                aria-hidden="true"></a>
+                            &nbsp;
+                            <a href="#" tabindex="-1" class="btn-icon btn-icon-two disabled placeholder col-4"
+                                aria-hidden="true"></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+
+<div class="col-12">
+    <div class="d-flex justify-content-between">
+        <button class="btn btn-three btn-medium-c text-uppercase" type="button" routerLink="/admin/dashboard">
+            <i class="bi bi-chevron-left"></i>
+            {{ "general.back" | translate }}
+        </button>
+    </div>
+</div>
+
+
+<app-modal-accreditation-users-product #modalAccreditedProductUsers></app-modal-accreditation-users-product>

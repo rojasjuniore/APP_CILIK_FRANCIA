@@ -1,11 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ClipboardService } from 'ngx-clipboard';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable, debounceTime, map, distinctUntilChanged } from 'rxjs';
 import { PurchaseService } from 'src/app/services/purchase.service';
-import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -15,12 +13,8 @@ import { environment } from 'src/environments/environment';
 })
 export class MerchantPurchasesComponent implements OnInit {
   public adviser$!: Observable<any[]>;
-
   public form: FormGroup = this.fb.group({ query: '' });
-
   constructor(
-    private _clipboardService: ClipboardService,
-    private sweetAlert2Srv: Sweetalert2Service,
     private fb: FormBuilder,
     private router: Router,
     private purchaseSrv: PurchaseService,
@@ -43,8 +37,6 @@ export class MerchantPurchasesComponent implements OnInit {
         this.loadData(value);
       });
   }
-
-
 
 
   loadData(query = '') {
@@ -79,6 +71,7 @@ export class MerchantPurchasesComponent implements OnInit {
     }
   }
 
+
   async launchAddCouponForm() {
     console.log('launchAddCouponForm');
     return this.router.navigate(['/admin/coupons/store']);
@@ -97,12 +90,6 @@ export class MerchantPurchasesComponent implements OnInit {
 
 
   onItemDetails(item: any): void {
-    // const id = item[this.fieldToRedirect];
-    // const url = this.redirectTo.replace('$', id);
-    // // console.log('url', url);
-    // this.router.navigate([url]);
-    // this.router.navigate([`/pages/purchases/${this.item._id}/details`]);
-
     this.router.navigate([`/admin/merchant-purchases/${item._id}/details`]);
 
     console.log('onItemDetails', item);

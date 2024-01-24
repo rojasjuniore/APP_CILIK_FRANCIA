@@ -11,10 +11,9 @@ import { CustomTranslateService } from 'src/app/services/custom-translate.servic
 @Component({
   selector: 'app-header-cilik',
   templateUrl: './header-cilik.component.html',
-  styleUrls: ['./header-cilik.component.css']
+  styleUrls: ['./header-cilik.component.css'],
 })
 export class HeaderCilikComponent implements OnInit {
-
   public profile$!: Observable<any>;
   public cart$!: Observable<any>;
   public isAnonymous$!: Observable<boolean>;
@@ -25,7 +24,7 @@ export class HeaderCilikComponent implements OnInit {
     private cartSrv: CartService,
     private router: Router,
     private translateSrv: CustomTranslateService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.profile$ = this.authSrv.userDoc$;
@@ -33,24 +32,26 @@ export class HeaderCilikComponent implements OnInit {
     /** Váidar si existe carrito */
     this.cart$ = this.authSrv.uid$.pipe(
       // tap(console.log),
-      switchMap((uid: any) => (uid)
-        ? this.cartSrv.getCartObservable(environment.dataEvent.keyDb, uid)
-        : of(null)
+      switchMap((uid: any) =>
+        uid
+          ? this.cartSrv.getCartObservable(environment.dataEvent.keyDb, uid)
+          : of(null)
       ),
       catchError((err) => of(null))
     );
     // this.preSaleOrder$ = this.preSaleSrv.getDocumentLocalStorageObservable();
 
     this.isAnonymous$ = this.authService.isAnonymous$;
-
   }
 
   public async logout() {
-    
-    let message = await this.translateSrv.translate('general.areYouSureYouWantToLogOut')
+    let message = await this.translateSrv.translate(
+      'general.areYouSureYouWantToLogOut'
+    );
     const ask = await this.sweetAlert2Srv.askConfirm(message);
-    if (!ask) { return; }
+    if (!ask) {
+      return;
+    }
     this.authSrv.logout();
   }
-
 }

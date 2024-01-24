@@ -33,12 +33,21 @@ export class AdminDashboardComponent implements OnInit {
       available: true
     },
     {
-      label: 'Manager  statistics',
+      label: 'Statistics Admin',
       icon: 'fa fa-money',
-      description: 'Manager statistics',
+      description: 'Statistics Admin',
       type: 'navigation',
-      url: '/admin/statistics/dashboard',
-      profiles: ['manager-statistics-admin'],
+      url: '/admin/statistics-admin/dashboard/',
+      profiles: ['statistics-admin'],
+      available: true
+    },
+    {
+      label: 'accreditations Admin',
+      icon: 'fa fa-money',
+      description: 'accreditations Admin',
+      type: 'navigation',
+      url: '/admin/accreditations-admin/dashboard/',
+      profiles: ['accreditations-admin'],
       available: true
     },
     {
@@ -104,7 +113,7 @@ export class AdminDashboardComponent implements OnInit {
       url: '/admin/merchant-admin/dashboard/',
       profiles: ['manager-merchant-admin'],
       available: true
-    }
+    },
 
   ];
 

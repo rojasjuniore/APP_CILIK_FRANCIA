@@ -1,40 +1,60 @@
-<ng-container 
-    *ngIf="(timeline.length > 0); else renderNoTimelineRecords"
-    [ngTemplateOutlet]="renderTimelineRecords"
-    [ngTemplateOutletContext]="{list: timeline}"
+<ng-container
+  *ngIf="timeline.length > 0; else renderNoTimelineRecords"
+  [ngTemplateOutlet]="renderTimelineRecords"
+  [ngTemplateOutletContext]="{ list: timeline }"
 ></ng-container>
 
 <ng-template #renderTimelineRecords let-list="list">
-    <div class="col-12 mb-4" *ngFor="let item of list">
-        <div class="card-box card-box-b3 p-3 mb-3">
-            <p class="card-text">
-                Date:
-                <small class="text-muted">
-                    {{item.updatedAt | date: 'medium'}}
-                </small>
-            </p>
-            <p class="card-text" *ngIf="item">
-                Status:
-                <span class="badge bg-danger">
-                    {{item.status}}
-                </span>
-            </p>
-            <p class="card-text" *ngIf="item">
-                Observation:
-                <small class="text-muted">
-                    {{item.observation}}
-                </small>
-            </p>
-        </div>
+  <div class="col-12 mb-4" *ngFor="let item of list">
+    <div class="card-box card-box-b3 p-3 mb-3">
+      <p class="card-text">
+        <!-- "Date:" -->
+        {{ "general.date" | translate | titlecase }}:
+        <small class="text-muted">
+          {{ item.updatedAt | date : "medium" }}
+        </small>
+      </p>
+      <p class="card-text" *ngIf="item">
+        <!-- Status: -->
+        {{ "general.status" | translate | titlecase }}:
+        <ng-container *ngIf="item.status === 'pending'">
+          <!-- in process -->
+          <span class="badge bg-warning">
+            {{ "inProcess" | translate }}
+          </span>
+        </ng-container>
+
+        <ng-container *ngIf="item.status === 'rejected'">
+          <span class="badge bg-danger">
+            {{ "general.rejected" | translate }}
+          </span>
+        </ng-container>
+
+        <ng-container *ngIf="item.status === 'completed'">
+          <span class="badge bg-success">
+            {{ "general.completed" | translate }}
+          </span>
+        </ng-container>
+      </p>
+      <p class="card-text" *ngIf="item">
+        <!-- "Observation:" -->
+        {{ "general.observation" | translate | titlecase }}:
+        <small class="text-muted">
+          {{ item.observation }}
+        </small>
+      </p>
     </div>
+  </div>
 </ng-template>
 
 <ng-template #renderNoTimelineRecords>
-    <div class="col-12 mb-4">
-        <div class="card-box card-box-b3 p-3 mb-3">
-            <h5 class="text-center">
-                No hay registros de seguimiento aún
-            </h5>
-        </div>
+  <div class="col-12 mb-4">
+    <div class="card-box card-box-b3 p-3 mb-3">
+      <h5 class="text-center">
+        <!-- No hay registros de seguimiento aún -->
+
+        {{ "general.noRecordsFound" | translate | titlecase }}
+      </h5>
     </div>
+  </div>
 </ng-template>

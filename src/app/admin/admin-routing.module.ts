@@ -62,15 +62,22 @@ const routes: Routes = [
   },
   {
     path: 'merchant-purchases',
-    data: { profiles: ['merchant-purchases'] },
+    data: { profiles: ['merchant-purchasesn-admin'] },
     canActivate: [AuthProfileGuard],
     loadChildren: () => import("./merchant-purchases/merchant-purchases.module").then((m) => m.MerchantPurchasesModule),
   },
   {
-    path: 'statistics',
-    data: { profiles: ['manager-statistics-admin'] },
+    path: 'statistics-admin',
+    data: { profiles: ['statistics-admin'] },
     canActivate: [AuthProfileGuard],
     loadChildren: () => import("./statistics/statistics.module").then((m) => m.StatisticsModule),
+  },
+  {
+    path: 'accreditations-admin',
+    data: { profiles: ['accreditations-admin'] },
+    canActivate: [AuthProfileGuard],
+    loadChildren: () => import("./accreditations/accreditations.module").then((m) => m.AccreditationsModule),
+
   },
   {
     path: '**',

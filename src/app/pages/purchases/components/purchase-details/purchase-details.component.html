@@ -3,7 +3,7 @@
         <div class="fs-4 fw-bold">
             {{"general.purchase" | translate | titlecase}}
         </div>
-        <div class="text-rslt fw-bold fs-5">
+        <div (click)="copy()" class="text-rslt fw-bold fs-5">
             <i class="bi bi-ticket-perforated"></i>
             &nbsp;
             {{orderId}}
@@ -45,6 +45,7 @@
                                 <span class="badge bg-danger">
                                     {{ ('general.'+ ((order.status === 'completed') ? 'approved' : order.status)) |
                                     translate | uppercase}}
+
                                 </span>
                             </p>
                         </div>
@@ -53,8 +54,7 @@
                             <p class="card-text mb-0">
                                 {{"general.paymentMethod" | translate | titlecase}}:
                                 <small class="text-muted">
-                                    <!-- {{order.paymentMethod}} -->
-                                    {{order.paymentMethod | translate }}:
+                                    {{order.paymentMethod}}
                                 </small>
                             </p>
                         </div>
@@ -90,7 +90,8 @@
     </div>
 
     <!-- adviser purchase -->
-    <app-purchase-adviser *ngIf="(order.paymentMethod === 'adviser')" [orderDoc]="orderDoc"></app-purchase-adviser>
+    <app-purchase-adviser (onCompleteForm)="onLoadAdviser($event)" *ngIf="(order.paymentMethod === 'adviser')"
+        [orderDoc]="orderDoc"></app-purchase-adviser>
 
     <!-- Payment instaments -->
     <app-purchase-installments *ngIf="(order.paymentMethod === 'installments')"
@@ -107,17 +108,325 @@
         </div>
     </div>
 
-    <div class="col-12 mb-4" *ngFor="let item of order.product">
+    <div class="col-12 mb-4" *ngFor="let item of order.product; let i = index">
         <ng-container [ngSwitch]="item.slug">
-            <app-purchase-fullpass-card-item *ngSwitchCase="'full-pass'"
-                [item]="item"></app-purchase-fullpass-card-item>
-            <app-purchase-category-pass-card-item *ngSwitchCase="'category-pass'"
-                [item]="item"></app-purchase-category-pass-card-item>
-            <app-purchase-weekend-pass-card-item *ngSwitchCase="'weekend-pass'"
-                [item]="item"></app-purchase-weekend-pass-card-item>
-            <app-purchase-day-pass-card-item *ngSwitchCase="'day-pass'" [item]="item"></app-purchase-day-pass-card-item>
-            <app-purchase-hotel-event-card-item *ngSwitchCase="'hotel-event'"
-                [item]="item"></app-purchase-hotel-event-card-item>
+
+
+            <ng-container *ngSwitchCase="'full-pass'">
+                <app-purchase-fullpass-card-item [item]="item"></app-purchase-fullpass-card-item>
+
+                <!--order.status === 'completed' || order.status === 'preApproved'-->
+                <div *ngIf="order.status === 'completed' || order.status === 'preApproved'" class="accordion p-1"
+                    id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading{{i}}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                [attr.data-bs-target]="'#collapse' + i" aria-expanded="false"
+                                [attr.aria-controls]="'collapse' + i" (click)="item.expanded = !item.expanded">
+                                <ng-container *ngIf="item._claim;else templateName1">
+                                    {{'Booked' | translate | titlecase}}:
+                                </ng-container>
+                                <ng-template #templateName1>
+                                    {{'booking' | translate | titlecase}}:
+                                </ng-template>
+                            </button>
+                        </h2>
+                        <div id="collapse{{i}}" class="accordion-collapse collapse" attr.aria-labelledby="heading{{i}}"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <!-- Renderiza el componente solo si la sección está expandida -->
+                                <ng-container *ngIf="item.expanded">
+                                    <ng-container *ngIf="!(item._claim); else templateName">
+
+
+                                        <app-claim-full-pass [division]="item" [orderDocId]="orderDoc._id"
+                                            [index]="i"></app-claim-full-pass>
+
+                                    </ng-container>
+                                    <ng-template #templateName>
+
+                                        <app-assigned-full-pass [division]="item" [orderDocId]="orderDoc._id"
+                                            [index]="i"></app-assigned-full-pass>
+
+                                    </ng-template>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="'category-pass'">
+                <app-purchase-category-pass-card-item [item]="item"></app-purchase-category-pass-card-item>
+
+                <div *ngIf="order.status === 'completed' || order.status === 'preApproved'" class="accordion p-1"
+                    id="accordion{{i}}">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading{{i}}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                [attr.data-bs-target]="'#collapse' + i" aria-expanded="false"
+                                [attr.aria-controls]="'collapse' + i" (click)="item.expanded = !item.expanded">
+                                <ng-container *ngIf="item._claim;else templateName2">
+                                    {{'Booked' | translate | titlecase}}:
+                                </ng-container>
+                                <ng-template #templateName2>
+                                    {{'booking' | translate | titlecase}}:
+                                </ng-template>
+
+                                {{'division' | translate | titlecase}}
+                                {{item.categoryType | translate | titlecase}}
+                            </button>
+                        </h2>
+                        <div id="collapse{{i}}" class="accordion-collapse collapse" attr.aria-labelledby="heading{{i}}"
+                            attr.data-bs-parent="#accordion{{i}}">
+                            <div class="accordion-body">
+                                <!-- Renderiza el componente solo si la sección está expandida -->
+                                <ng-container *ngIf="item.expanded">
+                                    <ng-container *ngIf="!(item._claim); else templateName">
+
+                                        <app-claim-division [division]="item" [orderDocId]="orderDoc._id"
+                                            [index]="i"></app-claim-division>
+                                    </ng-container>
+                                    <ng-template #templateName>
+
+                                        <app-category-claims [division]="item" [orderDocId]="orderDoc._id"
+                                            [index]="i"></app-category-claims>
+
+                                    </ng-template>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="'weekend-pass'">
+                <app-purchase-weekend-pass-card-item [item]="item"></app-purchase-weekend-pass-card-item>
+
+
+                <div *ngIf="order.status === 'completed' || order.status === 'preApproved'" class="accordion p-1"
+                    id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading{{i}}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                [attr.data-bs-target]="'#collapse' + i" aria-expanded="false"
+                                [attr.aria-controls]="'collapse' + i" (click)="item.expanded = !item.expanded">
+                                <ng-container *ngIf="item._claim;else templateName3">
+                                    {{'Booked' | translate | titlecase}}:
+                                </ng-container>
+                                <ng-template #templateName3>
+                                    {{'booking' | translate | titlecase}}:
+                                </ng-template>
+                            </button>
+                        </h2>
+                        <div id="collapse{{i}}" class="accordion-collapse collapse" attr.aria-labelledby="heading{{i}}"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <!-- Renderiza el componente solo si la sección está expandida -->
+                                <ng-container *ngIf="item.expanded">
+                                    <ng-container *ngIf="!(item._claim); else templateName">
+                                        <app-claim-weekend-pass [division]="item" [orderDocId]="orderDoc._id"
+                                            [index]="i"></app-claim-weekend-pass>
+                                    </ng-container>
+                                    <ng-template #templateName>
+
+                                        <app-assigned-weekend-pass [division]="item" [orderDocId]="orderDoc._id"
+                                            [index]="i"></app-assigned-weekend-pass>
+
+                                    </ng-template>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </ng-container>
+
+            <ng-container *ngSwitchCase="'day-pass'">
+                <app-purchase-day-pass-card-item [item]="item"></app-purchase-day-pass-card-item>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="'hotel-event'">
+                <app-purchase-hotel-event-card-item [item]="item"></app-purchase-hotel-event-card-item>
+
+
+                <div *ngIf="order.status === 'completed' || order.status === 'preApproved'" class="accordion p-1"
+                    id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading{{i}}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                [attr.data-bs-target]="'#collapse' + i" aria-expanded="false"
+                                [attr.aria-controls]="'collapse' + i" (click)="item.expanded = !item.expanded">
+                                <ng-container *ngIf="item._claim;else templateName4">
+                                    {{'Booked' | translate | titlecase}}:
+                                </ng-container>
+                                <ng-template #templateName4>
+                                    {{'booking' | translate | titlecase}}:
+                                </ng-template>
+                            </button>
+                        </h2>
+                        <div id="collapse{{i}}" class="accordion-collapse collapse" attr.aria-labelledby="heading{{i}}"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <!-- Renderiza el componente solo si la sección está expandida -->
+                                <ng-container *ngIf="item.expanded">
+                                    <ng-container *ngIf="!(item._claim); else templateName">
+
+                                        <app-claim-hotel [division]="item" [orderDocId]="orderDoc._id" [index]="i"
+                                            [type]="'hotel-event'"></app-claim-hotel>
+
+                                    </ng-container>
+                                    <ng-template #templateName>
+
+                                        <app-assigned-hotel [division]="item" [orderDocId]="orderDoc._id" [index]="i"
+                                            [type]="'hotel-event'"></app-assigned-hotel>
+
+
+                                    </ng-template>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </ng-container>
+
+            <ng-container *ngSwitchCase="'hotel-without-event'">
+                <app-purchase-hotel-event-card-item [item]="item"></app-purchase-hotel-event-card-item>
+
+                <div *ngIf="order.status === 'completed' || order.status === 'preApproved'" class="accordion p-1"
+                    id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading{{i}}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                [attr.data-bs-target]="'#collapse' + i" aria-expanded="false"
+                                [attr.aria-controls]="'collapse' + i" (click)="item.expanded = !item.expanded">
+                                <ng-container *ngIf="item._claim;else templateName5">
+                                    {{'Booked' | translate | titlecase}}:
+                                </ng-container>
+                                <ng-template #templateName5>
+                                    {{'booking' | translate | titlecase}}:
+                                </ng-template>
+                            </button>
+                        </h2>
+                        <div id="collapse{{i}}" class="accordion-collapse collapse" attr.aria-labelledby="heading{{i}}"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <!-- Renderiza el componente solo si la sección está expandida -->
+                                <ng-container *ngIf="item.expanded">
+                                    <ng-container *ngIf="!(item._claim); else templateName">
+
+                                        <app-claim-hotel [division]="item" [orderDocId]="orderDoc._id" [index]="i"
+                                            [type]="'hotel-without-event'"></app-claim-hotel>
+
+                                    </ng-container>
+                                    <ng-template #templateName>
+
+                                        <app-assigned-hotel [division]="item" [orderDocId]="orderDoc._id" [index]="i"
+                                            [type]="'hotel-without-event'"></app-assigned-hotel>
+
+                                    </ng-template>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </ng-container>
+
+            <ng-container *ngSwitchCase="'full-pass-per-day'">
+                <app-purchase-full-pass-per-day-card-item [item]="item"></app-purchase-full-pass-per-day-card-item>
+
+
+                <div *ngIf="order.status === 'completed' || order.status === 'preApproved'" class="accordion p-1"
+                    id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading{{i}}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                [attr.data-bs-target]="'#collapse' + i" aria-expanded="false"
+                                [attr.aria-controls]="'collapse' + i" (click)="item.expanded = !item.expanded">
+                                <ng-container *ngIf="item._claim;else templateName6">
+                                    {{'Booked' | translate | titlecase}}:
+                                </ng-container>
+                                <ng-template #templateName6>
+                                    {{'booking' | translate | titlecase}}:
+                                </ng-template>
+                            </button>
+                        </h2>
+                        <div id="collapse{{i}}" class="accordion-collapse collapse" attr.aria-labelledby="heading{{i}}"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <!-- Renderiza el componente solo si la sección está expandida -->
+                                <ng-container *ngIf="item.expanded">
+                                    <ng-container *ngIf="!(item._claim); else templateName">
+
+                                        <app-claim-full-pass-per-day [division]="item" [orderDocId]="orderDoc._id"
+                                            [index]="i" [type]="'hotel-without-event'"></app-claim-full-pass-per-day>
+                                    </ng-container>
+                                    <ng-template #templateName>
+
+                                        <app-assigned-claim-full-pass-per-day [division]="item"
+                                            [orderDocId]="orderDoc._id"
+                                            [index]="i"></app-assigned-claim-full-pass-per-day>
+
+                                    </ng-template>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </ng-container>
+
+            <ng-container *ngSwitchCase="'weekend-fest'">
+                <app-weekend-fest-card-item [item]="item"></app-weekend-fest-card-item>
+
+
+                <div *ngIf="order.status === 'completed' || order.status === 'preApproved'" class="accordion p-1"
+                    id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading{{i}}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                [attr.data-bs-target]="'#collapse' + i" aria-expanded="false"
+                                [attr.aria-controls]="'collapse' + i" (click)="item.expanded = !item.expanded">
+                                <ng-container *ngIf="item._claim;else templateName7">
+                                    {{'Booked' | translate | titlecase}}:
+                                </ng-container>
+                                <ng-template #templateName7>
+                                    {{'booking' | translate | titlecase}}:
+                                </ng-template>
+                            </button>
+                        </h2>
+                        <div id="collapse{{i}}" class="accordion-collapse collapse" attr.aria-labelledby="heading{{i}}"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <!-- Renderiza el componente solo si la sección está expandida -->
+                                <ng-container *ngIf="item.expanded">
+                                    <ng-container *ngIf="!(item._claim); else templateName">
+
+                                        <app-claim-weekend-fest [division]="item" [orderDocId]="orderDoc._id"
+                                            [index]="i"></app-claim-weekend-fest>
+
+                                    </ng-container>
+                                    <ng-template #templateName>
+
+
+                                        <app-assigned-weekend-fest [division]="item" [orderDocId]="orderDoc._id"
+                                            [index]="i"></app-assigned-weekend-fest>
+
+                                    </ng-template>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </ng-container>
+
+
+
         </ng-container>
     </div>
 </ng-template>

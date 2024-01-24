@@ -38,11 +38,11 @@ export class ModalStoreOnlyCategoriesComponent implements OnInit {
       value: 'couples',
       description: 'general.nroCouples'
     },
-    // {
-    //   label: 'general.groups',
-    //   value: 'groups',
-    //   description: 'general.nroGroupMembers'
-    // },
+    {
+      label: 'general.groups',
+      value: 'groups',
+      description: 'general.nroGroupMembers'
+    },
   ];
 
   private sub$!: Subscription;

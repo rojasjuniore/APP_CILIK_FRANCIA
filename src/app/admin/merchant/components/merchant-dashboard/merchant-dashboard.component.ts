@@ -30,7 +30,7 @@ export class MerchantDashboardComponent implements OnInit {
 
   /**
    * @dev withdraw
-   * @returns 
+   * @returns
    */
   withdraw() {
     return this.sweetalert2Srv.showInfo("coming soo");
@@ -39,7 +39,7 @@ export class MerchantDashboardComponent implements OnInit {
 
   /**
    * @dev buildDashboard
-   * @param data 
+   * @param data
    */
   buildDashboard(data) {
     if (!data) return
@@ -56,16 +56,19 @@ export class MerchantDashboardComponent implements OnInit {
 
     /// @dev obtiene los totales por producto
     const mapDataProduct = data.map(item => {
+      console.log(item, 'show item test')
       return item.product
     });
     this.totalForItemList = this.totalForItem(mapDataProduct);
+    console.log(this.totalForItemList, 'totalForItemList test')
+
   }
 
 
   /**
    * @dev obtiene los totales
-   * @param dataArray 
-   * @returns 
+   * @param dataArray
+   * @returns
    */
   getTotal(dataArray: any[]) {
     const totals = dataArray.reduce((acc, data) => {
@@ -76,7 +79,7 @@ export class MerchantDashboardComponent implements OnInit {
     }, {
       globalDiscount: 0,
       globalSubtotal: 0,
-      globalTotalToPay: 0
+      globalTotalToPay: 0,
     });
 
     return totals
@@ -84,8 +87,8 @@ export class MerchantDashboardComponent implements OnInit {
 
   /**
    * @dev agrupa los totales por producto
-   * @param dataArray 
-   * @returns 
+   * @param dataArray
+   * @returns
    */
   totalForItem(dataArray: any[]) {
     const flatArray = dataArray.flat();

@@ -79,8 +79,8 @@ export class CouponsUpdateFormComponent implements OnInit, OnDestroy {
     },
     {
       value: 5,
-      slug: 'planes-turisticos-grecia',
-      label: 'Planes Turísticos Grecia',
+      slug: 'planes-turisticos-cartagena',
+      label: 'Planes Turísticos Cartagena',
     },
 
   ]

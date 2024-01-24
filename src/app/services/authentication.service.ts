@@ -12,7 +12,6 @@ import moment from 'moment';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { CartService } from './cart.service';
-import { pick } from 'underscore';
 
 @Injectable({
   providedIn: 'root'

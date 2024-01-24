@@ -1,0 +1,93 @@
+<div class="modal fade" [id]="_id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="table-responsive" *ngIf="!isLoading">
+                        <div *ngIf="accreditationsList && accreditationsList?.length > 0; else noDataTemplate">
+                            <table class="table table-striped-columns">
+                                <!-- Table Head -->
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">{{'key' | translate | titlecase}}</th>
+                                        <th scope="col">{{'members' | translate | titlecase}}</th>
+
+                                        <th scope="col">{{'choreography creator' | translate | titlecase}}</th>
+                                        <th scope="col">{{'name coach' | translate | titlecase}}</th>
+
+
+                                        <th scope="col">{{'country' | translate | titlecase}}</th>
+                                        <th scope="col">{{'state' | translate | titlecase}}</th>
+                                        <th scope="col">{{'city' | translate | titlecase}}</th>
+                                        <th scope="col">{{'school' | translate | titlecase}}</th>
+
+                                        <th scope="col">{{'music' | translate | titlecase}}</th>
+                                    </tr>
+                                </thead>
+                                <!-- Table Body -->
+                                <tbody>
+                                    <tr *ngFor="let item of accreditationsList; let i = index">
+                                        <th scope="row">{{i+1}}</th>
+                                        <th>{{item.key}}</th>
+                                        <td> {{item.members}} </td>
+
+                                        <td>{{item?.choreographyCreator | profile | async | titlecase}}</td>
+                                        <td>{{item?.nameCoach | profile | async | titlecase}}</td>
+
+                                        <td>{{item?.representedCountry?.name}}</td>
+                                        <td>{{item?.representedState?.name}}</td>
+                                        <td>{{item?.representedCity?.name}}</td>
+                                        <td>{{item?.schoolThatRepresents?.name}}</td>
+                                        <td>
+                                            <audio controls>
+                                                <source [src]="item.music | sanitizeAudio" type="audio/ogg">
+                                                <source [src]="item.music | sanitizeAudio" type="audio/mpeg">
+                                                Your browser does not support the audio tag.
+                                            </audio>
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Loading Indicator -->
+                    <div *ngIf="isLoading">
+                        <p>Loading...</p>
+                    </div>
+
+                    <!-- No Data Template -->
+                    <ng-template #noDataTemplate>
+                        <p>No data available.</p>
+                    </ng-template>
+                </div>
+            </div>
+
+            <div class="modal-footer d-flex justify-content-end">
+                <button class="btn btn-two btn-medium-c text-uppercase" type="button" (click)="closeModal()">
+                    <i class="bi bi-x-circle"></i>
+                    &nbsp;
+                    {{ "general.cancel" | translate }}
+                </button>
+                <!-- 
+                <button class="btn btn-one btn-medium-c text-uppercase" type="button" (click)="onSubmit()">
+                    <i class="bi bi-save"></i>
+                    &nbsp;
+                    {{ "general.save" | translate }}
+                </button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<ng-template #renderRequired>
+    <span class="text-danger">*</span>
+</ng-template>

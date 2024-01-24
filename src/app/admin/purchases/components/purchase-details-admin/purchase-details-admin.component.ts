@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import moment from 'moment';
@@ -8,6 +8,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { UploadFileService } from 'src/app/services/dedicates/upload-file.service';
 import { PurchaseService } from 'src/app/services/purchase.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
+import { ModalUpdateVoucherStatusFormComponent } from 'src/app/shared/modal-update-voucher-status-form/modal-update-voucher-status-form.component';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -19,10 +20,10 @@ export class PurchaseDetailsAdminComponent implements OnInit {
 
   public orderId!: string;
   public orderDoc: any;
-
   public showUpdateVoucherForm = false;
-
   private sub$!: Subscription;
+  @ViewChild('modalUpdateVoucherStatus') modalUpdateVoucherStatus!: ModalUpdateVoucherStatusFormComponent;
+
 
   constructor(
     private router: ActivatedRoute,
@@ -35,7 +36,7 @@ export class PurchaseDetailsAdminComponent implements OnInit {
     private spinner: NgxSpinnerService,
   ) {
     const orderId = this.router.snapshot.paramMap.get('orderId');
-    console.log('app-purchase-details', orderId);
+    // console.log('app-purchase-details', orderId);
     this.orderId = orderId || '';
   }
 
@@ -51,9 +52,16 @@ export class PurchaseDetailsAdminComponent implements OnInit {
       )
       .subscribe(async (order: any) => {
         this.orderDoc = order;
+        console.log('order', order);
         return
       });
   }
+
+
+  openModalUpdateVoucherStatus() {
+    this.modalUpdateVoucherStatus.showModal();
+  }
+
 
   async onLoadVoucher(formData: any) {
     try {
@@ -165,6 +173,48 @@ export class PurchaseDetailsAdminComponent implements OnInit {
     } finally {
       this.spinner.hide();
     }
+  }
+
+
+  async onCloseModalUpdateVoucherStatus(event: any) {
+    const { status, data } = event;
+    console.log('onCloseModalUpdateVoucherStatus', event);
+    if (!status) { return; }
+
+    // console.log('orderDoc', this.orderDoc);
+    // return;
+
+    const ask = await this.sweetAlert2Srv.askConfirm(`¿Estás seguro de actualizar el estado del comprobante a "${data.status}"?`);
+    if (!ask) { return; }
+
+    try {
+
+      await this.spinner.show();
+
+      const uid = await this.authSrv.getUIDPromise();
+
+      /** Actualizar estado de la orden de compra */
+      await this.purchaseSrv.updatePurchase(
+        environment.dataEvent.keyDb,
+        this.orderId,
+        {
+          admin: uid,
+          status: data.status,
+          payedAt: moment().valueOf(),
+          updatedAt: moment().valueOf()
+        }
+      );
+
+      this.sweetAlert2Srv.showSuccess('Comprobante actualizado correctamente');
+      return;
+
+    } catch (err) {
+      console.log('Error on onCloseModalUpdateVoucherStatus', err);
+      return;
+    } finally {
+      this.spinner.hide();
+    }
+
   }
 
   ngOnDestroy(): void {

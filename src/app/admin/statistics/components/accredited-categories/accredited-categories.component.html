@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-12">
+        {{'total division' | translate | titlecase}}: {{total}}
+    </div>
+</div>
+<div class="table-responsive" *ngIf="!isLoading">
+    <div *ngIf="accreditationsList && accreditationsList?.length > 0; else noDataTemplate">
+        <table class="table table-striped-columns">
+            <!-- Table Head -->
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">{{'Division' | translate | titlecase}}</th>
+                    <th scope="col">{{'total' | translate | titlecase}}</th>
+                    <th scope="col">{{'option' | translate | titlecase}}</th>
+                </tr>
+            </thead>
+            <!-- Table Body -->
+            <tbody>
+                <tr *ngFor="let item of accreditationsList; let i = index">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{item.name | uppercase}} {{'divisionKeys' + '.' +  item.name | translate | titlecase}}</td>
+                    <td>{{item.count}}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm"
+                            (click)="launchAccreditedUsersrModal(item.name)">
+                            <i class="fa fa-eye"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Loading Indicator -->
+<div *ngIf="isLoading">
+    <p>Loading...</p>
+</div>
+
+<!-- No Data Template -->
+<ng-template #noDataTemplate>
+    <p>No data available.</p>
+</ng-template>
+
+
+<app-modal-accredited-users #modalAccreditedUsers></app-modal-accredited-users>

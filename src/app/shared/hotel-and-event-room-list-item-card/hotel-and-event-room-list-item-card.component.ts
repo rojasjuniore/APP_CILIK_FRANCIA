@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Subject } from 'rxjs';
-import { HotelService } from 'src/app/services/hotel.service';
+import { HotelService } from 'src/app/services/dedicates/hotel.service';
 
 @Component({
   selector: 'app-hotel-and-event-room-list-item-card',

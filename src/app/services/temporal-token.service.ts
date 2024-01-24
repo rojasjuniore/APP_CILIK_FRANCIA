@@ -12,7 +12,7 @@ import { QuickNotificationService } from './quick-notification/quick-notificatio
 import { TranslatePipe } from '@ngx-translate/core';
 
 
-const URL_ROOT: any = environment.API_URL;
+const URL_ROOT: any = environment.urlrootFunctions;
 
 @Injectable({
   providedIn: 'root'

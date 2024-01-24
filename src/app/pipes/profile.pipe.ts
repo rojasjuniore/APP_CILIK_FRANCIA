@@ -12,7 +12,7 @@ export class ProfilePipe implements PipeTransform {
     private db: AngularFireDatabase) { }
 
   async transform(value): Promise<any> {
-    if (!value) return "No validado";
+    if (!value || value == "N/A") return "";
     let name = await this.getUserNameDB(value);
     if (!name) {
       const profile: any = await this.getProfileAfs(value);

@@ -35,15 +35,17 @@ export class MerchantPaymentListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('changess', this.adviserPaymentList);
+
     this.adviserPaymentList = this.orderDoc.adviserPaymentList
     // console.log('app-installments-timeline-admin', this.adviserPaymentList);
     // console.log('app-installments-timeline-admin', this.installments);
   }
 
   /**
-   * 
-   * @param event 
-   * @returns 
+   *
+   * @param event
+   * @returns
    */
   async onCloseModalUpdateVoucherStatus(event: any) {
     const { status, data } = event;
@@ -81,10 +83,11 @@ export class MerchantPaymentListComponent implements OnInit {
         rejectedAt: null,
         totalResumen: {
           ...this.orderDoc.totalResumen,
-          paidForPayment: Number(this.orderDoc.totalResumen.paidForPayment) + Number(this.indexPayment.totales),
+          paidForPayment: (this.orderDoc.totalResumen.paidForPayment ?? 0) + Number(this.indexPayment.totales),
         }
       },
-    );
+
+      );
 
 
 
@@ -106,9 +109,9 @@ export class MerchantPaymentListComponent implements OnInit {
   }
 
   /**
-   * 
-   * @param item 
-   * @returns 
+   *
+   * @param item
+   * @returns
    */
   validatePayment(item, index) {
     if (item.paymentMethod != 'bankTransfer') {
@@ -126,8 +129,8 @@ export class MerchantPaymentListComponent implements OnInit {
   }
 
   /**
-   * 
-   * @param item 
+   *
+   * @param item
    */
   gotoLink(item: any) {
     const url = item.payload.purchase.voucher.url;

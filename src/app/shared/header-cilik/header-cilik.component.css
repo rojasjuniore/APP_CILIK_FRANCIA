@@ -39,6 +39,9 @@
     bottom: -20px;
     font-size: 0.8rem;
 }
+.btn-logout .icon-header{
+    color: #323232;
+}
 @media (max-width: 575px) {
     .logo{
         margin: 0 auto;

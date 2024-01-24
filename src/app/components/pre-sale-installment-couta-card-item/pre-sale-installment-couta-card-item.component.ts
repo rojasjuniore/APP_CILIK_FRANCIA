@@ -24,7 +24,7 @@ export class PreSaleInstallmentCoutaCardItemComponent implements OnInit {
     const { url } = this.item;
 
     /** Eliminar de la cadena baseURL */
-    const newUrl = url.replace(environment.urlWeb,'');
+    const newUrl = url.replace(environment.dataEvent.appURL,'');
     // console.log(newUrl);
 
     return this.router.navigate([ '/' + newUrl]);

@@ -12,7 +12,7 @@ export class PurchaseBankTransferInfoCardItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-     console.log('item', this.item);
+    //  console.log('item', this.item);
   }
 
 }

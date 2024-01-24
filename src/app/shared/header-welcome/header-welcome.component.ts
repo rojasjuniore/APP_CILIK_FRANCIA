@@ -8,9 +8,10 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-header-welcome',
   templateUrl: './header-welcome.component.html',
-  styleUrls: ['./header-welcome.component.css'],
+  styleUrls: ['./header-welcome.component.css']
 })
 export class HeaderWelcomeComponent implements OnInit, OnDestroy {
+
   @Input() backTo = '/pages/dashboard';
 
   public profile$!: Observable<any>;
@@ -22,14 +23,15 @@ export class HeaderWelcomeComponent implements OnInit, OnDestroy {
   constructor(
     private permissionSrv: PermissionService,
     private authSrv: AuthenticationService,
-    private router: Router
-  ) {}
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
-    this.profile$ = this.authSrv.userDoc$
-      .pipe
+
+
+    this.profile$ = this.authSrv.userDoc$.pipe(
       // tap((data) => console.log('data', data)),
-      ();
+    );
 
     this.sub$ = this.router.events.subscribe((event: any) => {
       const { type } = event;
@@ -38,10 +40,7 @@ export class HeaderWelcomeComponent implements OnInit, OnDestroy {
       if (type === 1) {
         const { url } = event;
 
-        this.showDashboardBtn = ![
-          '/pages/dashboard',
-          '/admin/dashboard',
-        ].includes(url);
+        this.showDashboardBtn = !['/pages/dashboard', '/admin/dashboard'].includes(url);
         // console.log('url', url);
         // console.log('this.showDashboardBtn', this.showDashboardBtn);
         // console.log('event', event);
@@ -50,7 +49,7 @@ export class HeaderWelcomeComponent implements OnInit, OnDestroy {
 
     this.isAnonymous$ = this.authSrv.isAnonymous$;
 
-    this.isAdmin();
+    this.isAdmin()
   }
 
   /**
@@ -58,8 +57,7 @@ export class HeaderWelcomeComponent implements OnInit, OnDestroy {
    */
   isAdmin() {
     const uid: any = localStorage.getItem('uid');
-    this.permissionSrv
-      .getUserEventFullRolesObservable(environment.dataEvent.keyDb, uid)
+    this.permissionSrv.getUserEventFullRolesObservable(environment.dataEvent.keyDb, uid)
       .subscribe((data: any) => {
         if (data && data.superAdmin) {
           this._isAdmin = true;
@@ -71,7 +69,11 @@ export class HeaderWelcomeComponent implements OnInit, OnDestroy {
       });
   }
 
+
+
+
   ngOnDestroy(): void {
     this.sub$.unsubscribe();
   }
+
 }

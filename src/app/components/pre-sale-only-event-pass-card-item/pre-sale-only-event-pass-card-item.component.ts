@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { from, Observable, Subject } from 'rxjs';
-import { HotelService } from 'src/app/services/hotel.service';
+import { HotelService } from 'src/app/services/dedicates/hotel.service';
 
 @Component({
   selector: 'app-pre-sale-only-event-pass-card-item',

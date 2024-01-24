@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
-import { HotelService } from 'src/app/services/hotel.service';
+import { HotelService } from 'src/app/services/dedicates/hotel.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 
 @Component({

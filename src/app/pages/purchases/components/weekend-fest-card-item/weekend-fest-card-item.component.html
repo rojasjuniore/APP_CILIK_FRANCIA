@@ -1,0 +1,47 @@
+<div class="card card-box p-3 mb-3">
+    <div class="row g-2 d-flex align-items-center">
+        <div class="col-12 px-3">
+            <div class="d-flex justify-content-between">
+                <span class="text-rslt fw-bold fs-6">
+                    <i class="bi"
+                        [ngClass]="(item?.categoryType === 'soloist') ? 'bi-person-fill' : 'bi-people-fill'"></i>
+                    {{item?.capacity}}
+                    |
+                    {{item?.title | translate}} - {{ ("general." + item?.categoryType) | translate | uppercase}}
+                </span>
+
+                <div class="c-icon d-flex align-items-center">
+                    <img src="assets/img/icon-pass-category-gray.png" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="seprd2"></div>
+
+        <div class="col-12 px-3">
+
+            <p class="card-text mb-0" *ngIf="item?.include">
+                {{"general.include" | translate}}:
+                <small class="text-muted">
+                    {{item.include | translate}}
+                </small>
+            </p>
+
+            <p class="card-text mb-0" *ngIf="item?.notInclude">
+                {{"general.notInclude" | translate}}:
+                <small class="text-muted">
+                    {{item.notInclude | translate}}
+                </small>
+            </p>
+
+            <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-center align-items-md-center">
+                    <span class="fw-bold fs-4">
+                        {{"general.total" | translate}}: USD {{totales}}
+                    </span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

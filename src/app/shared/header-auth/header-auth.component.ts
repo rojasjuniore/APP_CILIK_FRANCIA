@@ -3,14 +3,14 @@ import { Router, NavigationEnd } from '@angular/router';
 import { Observable, switchMap, of, catchError, filter } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CartService } from 'src/app/services/cart.service';
-import { CustomTranslateService } from 'src/app/services/custom-translate.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 import { environment } from 'src/environments/environment';
+import { CustomTranslateService } from 'src/app/services/custom-translate.service';
 
 @Component({
   selector: 'app-header-auth',
   templateUrl: './header-auth.component.html',
-  styleUrls: ['./header-auth.component.css']
+  styleUrls: ['./header-auth.component.css'],
 })
 export class HeaderAuthComponent implements OnInit {
   public profile$!: Observable<any>;
@@ -25,7 +25,7 @@ export class HeaderAuthComponent implements OnInit {
     private cartSrv: CartService,
     private router: Router,
     private translateSrv: CustomTranslateService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.profile$ = this.authSrv.userDoc$;
@@ -33,9 +33,10 @@ export class HeaderAuthComponent implements OnInit {
     /** Váidar si existe carrito */
     this.cart$ = this.authSrv.uid$.pipe(
       // tap(console.log),
-      switchMap((uid: any) => (uid)
-        ? this.cartSrv.getCartObservable(environment.dataEvent.keyDb, uid)
-        : of(null)
+      switchMap((uid: any) =>
+        uid
+          ? this.cartSrv.getCartObservable(environment.dataEvent.keyDb, uid)
+          : of(null)
       ),
       catchError((err) => of(null))
     );
@@ -43,26 +44,26 @@ export class HeaderAuthComponent implements OnInit {
 
     this.isAnonymous$ = this.authService.isAnonymous$;
 
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe((event: any) => {
-      console.log('event.url', event.url);
-      if (event.url == '/auth/sign-in') {
-        this.isAuth = true;
-      } else {
-        this.isAuth = false;
-      }
-    });
-
-
-
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((event: any) => {
+        console.log('event.url', event.url);
+        if (event.url == '/auth/sign-in') {
+          this.isAuth = true;
+        } else {
+          this.isAuth = false;
+        }
+      });
   }
 
   public async logout() {
-
-    let message = await this.translateSrv.translate('general.areYouSureYouWantToLogOut')
+    let message = await this.translateSrv.translate(
+      'general.areYouSureYouWantToLogOut'
+    );
     const ask = await this.sweetAlert2Srv.askConfirm(message);
-    if (!ask) { return; }
+    if (!ask) {
+      return;
+    }
     this.authSrv.logout();
   }
 }

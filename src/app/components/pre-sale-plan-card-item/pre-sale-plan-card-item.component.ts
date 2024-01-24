@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { Subject } from 'rxjs';
-import { HotelService } from 'src/app/services/hotel.service';
+import { HotelService } from 'src/app/services/dedicates/hotel.service';
 
 @Component({
   selector: 'app-pre-sale-plan-card-item',

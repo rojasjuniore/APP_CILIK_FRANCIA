@@ -6,7 +6,7 @@ import { map, Observable, Subscription, tap } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { BsModalService } from 'src/app/services/bs-modal.service';
 import { GeneratePdfService } from 'src/app/services/generate-pdf.service';
-import { HotelService } from 'src/app/services/hotel.service';
+import { HotelService } from 'src/app/services/dedicates/hotel.service';
 import { PurchaseService } from 'src/app/services/purchase.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 import html2canvas from "html2canvas";

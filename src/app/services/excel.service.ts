@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 
 import * as FileSaver from 'file-saver';
-import moment from 'moment';
 import * as XLSX from 'xlsx';
 
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
@@ -46,7 +45,8 @@ export class ExcelService {
 
     /** Crear hoja de excel con los datos en formato JSON */
     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json);
-    // console.log('worksheet',worksheet);
+
+    console.log('worksheet',worksheet);
 
     /** Construir documento en excel */
     const workbook: XLSX.WorkBook = {
@@ -69,11 +69,11 @@ export class ExcelService {
    * @param fileName
    */
   private saveAsExcelFile(buffer: any, fileName: string): void {
+
+    const _date = new Date().toUTCString();
     const data: Blob = new Blob([buffer], {
       type: EXCEL_TYPE
     });
-
-    const parseFileName = `${fileName}_export_${moment().valueOf()}${EXCEL_EXTENSION}`;
-    FileSaver.saveAs(data, parseFileName);
+    FileSaver.saveAs(data, fileName + '_export_' + _date + EXCEL_EXTENSION);
   }
 }

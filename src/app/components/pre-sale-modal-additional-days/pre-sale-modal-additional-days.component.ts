@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { from, Observable, Subject, Subscription } from 'rxjs';
 import { BsModalService } from 'src/app/services/bs-modal.service';
-import { HotelService } from 'src/app/services/hotel.service';
+import { HotelService } from 'src/app/services/dedicates/hotel.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 
 @Component({

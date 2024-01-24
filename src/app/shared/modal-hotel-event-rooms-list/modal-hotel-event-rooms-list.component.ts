@@ -3,7 +3,7 @@ import { Subject, Subscription } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalService } from 'src/app/services/bs-modal.service';
 import { Router } from '@angular/router';
-import { HotelService } from 'src/app/services/hotel.service';
+import { HotelService } from 'src/app/services/dedicates/hotel.service';
 import { InputGroupNumberFormComponent } from '../input-group-number-form/input-group-number-form.component';
 
 @Component({
@@ -38,6 +38,8 @@ export class ModalHotelEventRoomsListComponent implements OnInit, AfterViewInit 
 
   private sub$!: Subscription;
 
+  private slug = '';
+
   constructor(
     private bsModalSrv: BsModalService,
     private router: Router,
@@ -51,24 +53,74 @@ export class ModalHotelEventRoomsListComponent implements OnInit, AfterViewInit 
   }
 
   ngOnInit(): void {
+    console.log('ModalHotelEventRoomsListComponent.ngOnInit', this.slug);
   }
 
   ngAfterViewInit(): void {
     this.buildModal();
   }
 
-  buildModal(){
+  buildModal() {
     this.mi = this.bsModalSrv.buildModal(this._id);
 
     this.sub$ = this.router.events.subscribe((event) => {
 
       /** Si la modal esta desplegada al cambiar de ruta */
-      if(this.mi._isShown){ this.closeModal(); }
+      if (this.mi._isShown) { this.closeModal(); }
 
     });
   }
 
-  async showModal(item: any){
+
+
+  searchRooms() {
+    // console.log('searchRooms', this.form.value);
+    this.submitted = true;
+    const formData = this.form.value;
+
+    if (!this.form.valid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
+    this.roomList = this.hotelSrv
+      .getRoomsByDate(this.item.currentDate)
+      .filter((item: any) => {
+        console.log('slug', this.item.slug);
+        console.log('item', item);
+        if (this.item.slug === 'hotel-event') {
+          return item.code !== 'HAB5' && item.code !== 'HAB6';
+        } else if (this.item.slug === 'hotel-without-event') {
+          return item.code === 'HAB5' || item.code === 'HAB6';
+        } else {
+          return true; // Enviar todos los otros casos
+        }
+      })
+      .filter((item: any) => item.capacity == formData.capacity)
+      /** Obtener precio de las fechas seleccionadas */
+      .map((item: any) => {
+
+        /** Obtener precio por cada día */
+        const dates = formData.dates.map((date: string) => this.hotelSrv.getRoomPriceByDate(item.subcode, date, this.item.slug));
+
+        /** Setear CERO 0 a la ultima fecha - Reglas del negocio */
+        dates[dates.length - 1].price = 0;
+
+        return {
+          ...item,
+          dates: dates
+        }
+      })
+      /** Calcular total de la habitación */
+      .map((item: any) => ({
+        ...item,
+        totales: item.dates.map((date: any) => date.price || 0).reduce((a: any, b: any) => a + b),
+      }))
+      /** Ordenar de menor a mayor precio */
+      .sort((a: any, b: any) => a.totales - b.totales);
+  }
+
+  async showModal(item: any) {
     console.log('item', item);
     this.item = item;
     this.mi.show();
@@ -76,78 +128,44 @@ export class ModalHotelEventRoomsListComponent implements OnInit, AfterViewInit 
 
   get f() { return this.form.controls; }
 
-  onInputDatesChange(value: string | string[]){
+  onInputDatesChange(value: string | string[]) {
     console.log('onInputDatesChange', value);
-    this.form.patchValue({dates: value});
+    this.form.patchValue({ dates: value });
     this.roomList = [];
   }
 
-  onInputNumberChange(value: number){
+  onInputNumberChange(value: number) {
     // console.log('onInputNumberChange', value);
-    this.form.patchValue({capacity: value});
+    this.form.patchValue({ capacity: value });
   }
 
-  onSelectRoom(item: any){
+  onSelectRoom(item: any) {
     /** Responde a elemento padre */
-    this.closeModal({status: true, data: item});
+    this.closeModal({ status: true, data: item });
   }
 
-  searchRooms(){
-    // console.log('searchRooms', this.form.value);
-    this.submitted = true;
-    const formData = this.form.value;
-
-    if(!this.form.valid){
-      this.form.markAllAsTouched();
-      return;
-    }
-
-    this.roomList = this.hotelSrv.getRoomsByDate(this.item.currentDate)
-    .filter((item: any) => item.capacity == formData.capacity)
-    /** Obtener precio de las fechas seleccionadas */
-    .map((item: any) => {
-
-      /** Obtener precio por cada día */
-      const dates = formData.dates.map((date: string) => this.hotelSrv.getRoomPriceByDate(item.subcode , date));
-
-      /** Setear CERO 0 a la ultima fecha - Reglas del negocio */
-      dates[dates.length - 1].price = 0;
-
-      return {
-        ...item,
-        dates: dates
-      }
-    })
-    /** Calcular total de la habitación */
-    .map((item: any) => ({
-      ...item,
-      totales: item.dates.map((date: any) => date.price || 0).reduce((a: any, b: any) => a + b),
-    }))
-    /** Ordenar de menor a mayor precio */
-    .sort((a: any, b: any) => a.totales - b.totales);
-  }
 
   /**
    * TODO: revisar antes de eliminar
    * @param value 
    */
-  onInputValueChange(value: number){
-    this.form.patchValue({quantity: value});
+  onInputValueChange(value: number) {
+    this.form.patchValue({ quantity: value });
   }
 
   /** TODO: - revisar antes de eliminar */
-  async onSubmit(){
+  async onSubmit() {
     try {
       this.submitted = true;
       const formData = this.form.value;
 
-      if(!this.form.valid){
+      if (!this.form.valid) {
         console.log('Formulario inválido');
         return;
       }
 
       /** Responde a elemento padre */
-      this.closeModal({status: true, data: this.item});
+      this.closeModal({ status: true, data: this.item });
       return;
 
     } catch (err) {
@@ -156,12 +174,12 @@ export class ModalHotelEventRoomsListComponent implements OnInit, AfterViewInit 
     }
   }
 
-  async closeModal(params: ModalOnlyCategoriesEvent = {}){
-    const {status = false, data = null} = params;
+  async closeModal(params: ModalOnlyCategoriesEvent = {}) {
+    const { status = false, data = null } = params;
 
-    this.onCloseModal.next({status, data});
+    this.onCloseModal.next({ status, data });
 
-    this.form.patchValue({dates: '', capacity: 1});
+    this.form.patchValue({ dates: '', capacity: 1 });
     this.submitted = false;
     this.item = null;
     this.mi.hide();

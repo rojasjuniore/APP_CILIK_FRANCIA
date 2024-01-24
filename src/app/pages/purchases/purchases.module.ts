@@ -5,27 +5,42 @@ import { PurchaseDetailsComponent } from './components/purchase-details/purchase
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PurchaseAdviserComponent } from './components/purchase-adviser/purchase-adviser.component';
 import { PurchaseAdviserModalComponent } from './components/purchase-adviser-modal/purchase-adviser-modal.component';
-// import { PurchaseCategoryPassCardItemComponent } from './components/purchase-category-pass-card-item/purchase-category-pass-card-item.component';
-// import { PurchaseDayPassCardItemComponent } from './components/purchase-day-pass-card-item/purchase-day-pass-card-item.component';
-// import { PurchaseFullpassCardItemComponent } from './components/purchase-fullpass-card-item/purchase-fullpass-card-item.component';
-// import { PurchaseWeekendPassCardItemComponent } from './components/purchase-weekend-pass-card-item/purchase-weekend-pass-card-item.component';
-// import { PurchaseHotelEventCardItemComponent } from './components/purchase-hotel-event-card-item/purchase-hotel-event-card-item.component';
-// import { PurchaseFullDetailsComponent } from './components/purchase-full-details/purchase-full-details.component';
-// import { PurchaseInstallmentsComponent } from './components/purchase-installments/purchase-installments.component';
-// import { PurchaseInstallmentsModalComponent } from './components/purchase-installments-modal/purchase-installments-modal.component';
-// import { PurchaseInstallmentsVoucherComponent } from './components/purchase-installments-voucher/purchase-installments-voucher.component';
-
+import { PurchaseFullPassPerDayCardItemComponent } from './components/purchase-full-pass-per-day-card-item/purchase-full-pass-per-day-card-item.component';
+import { WeekendFestCardItemComponent } from './components/weekend-fest-card-item/weekend-fest-card-item.component';
+import { AdditionalDataComponent } from './components/claim/additional-data/additional-data.component';
+import { ClaimDivisionComponent } from './components/claim/claim-division/claim-division.component';
+import { ClaimSearchUserComponent } from './components/claim/claim-search-user/claim-search-user.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { PipesModule } from 'src/app/pipes/pipes.module';
+import { ClaimFullPassComponent } from './components/claim/claim-full-pass/claim-full-pass.component';
+import { ClaimHotelComponent } from './components/claim/claim-hotel/claim-hotel.component';
+import { ClaimFullPassPerDayComponent } from './components/claim/claim-full-pass-per-day/claim-full-pass-per-day.component';
+import { ClaimWeekendPassComponent } from './components/claim/claim-weekend-pass/claim-weekend-pass.component';
+import { ClaimWeekendFestComponent } from './components/claim/claim-weekend-fest/claim-weekend-fest.component';
 
 @NgModule({
   declarations: [
     PurchaseDetailsComponent,
     PurchaseAdviserComponent,
     PurchaseAdviserModalComponent,
+    PurchaseFullPassPerDayCardItemComponent,
+    WeekendFestCardItemComponent,
 
+    ClaimDivisionComponent,
+    AdditionalDataComponent,
+    ClaimSearchUserComponent,
+    ClaimFullPassComponent,
+    ClaimHotelComponent,
+    ClaimFullPassPerDayComponent,
+
+    ClaimWeekendPassComponent,
+    ClaimWeekendFestComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
+    NgSelectModule,
+    PipesModule,
     PurchasesRoutingModule
   ]
 })

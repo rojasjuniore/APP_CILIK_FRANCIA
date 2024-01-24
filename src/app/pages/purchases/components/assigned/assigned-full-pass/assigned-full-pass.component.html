@@ -1,0 +1,51 @@
+<div *ngIf="item">
+    <div class="card">
+        <div class="card-header">
+            <span class="fw-bold text-rslt me-2 fs-4">
+                {{ "fullpass.booking" | translate | titlecase }}
+            </span>
+        </div>
+        <div class="card-body">
+
+            <ng-container *ngIf="item.users?.length > 0">
+                <div class="fw-bold mt-3 mb-2">{{"general.participants" | translate}}</div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">{{ "name" | translate | titlecase }}</th>
+                                <th scope="col">{{ "email" | translate | titlecase }}</th>
+                                <th scope="col">
+                                    {{ "document" | translate | titlecase }}
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of item.users; let i = index">
+                                <th scope="row">{{ i + 1 }}</th>
+                                <td>{{ user.name | titlecase }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.identification }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </ng-container>
+
+            <div *ngIf="item.music" class="d-flex justify-content-center">
+                <audio [src]="item.music" controls></audio>
+            </div>
+
+            <div class="card-box p-2 mt-2" *ngIf="item.users?.length === 0">
+                {{ "general.noRegisteredUsers" | translate }}.
+            </div>
+        </div>
+
+        <div class="card-footer text-body-secondary">
+            {{ "general.note" | translate }}:
+            {{ "category.registerConfirmed" | translate }}
+        </div>
+    </div>
+</div>

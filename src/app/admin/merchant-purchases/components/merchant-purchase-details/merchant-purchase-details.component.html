@@ -13,6 +13,7 @@
     <ng-container *ngIf="(orderDoc); else renderLoaderview" [ngTemplateOutlet]="renderCheckOrderDoc"
         [ngTemplateOutletContext]="{item: orderDoc}"></ng-container>
 
+
     <div class="col-12">
         <div class="d-flex justify-content-between">
             <button class="btn btn-three btn-medium-c text-uppercase" type="button"
@@ -20,17 +21,37 @@
                 <i class="bi bi-chevron-left"></i>
                 {{ "general.back" | translate }}
             </button>
+
+            <!-- [disabled]="!orderDoc || orderDoc.status !== 'pending' " -->
+            <button *ngIf="isAdmin" class="btn btn-one btn-medium-c text-uppercase" type="button"
+                (click)="openModalUpdateVoucherStatus()">
+                Actualizar
+                <i class="bi bi-cloud-arrow-up"></i>
+            </button>
         </div>
     </div>
 </div>
 
 
 <ng-template #renderOrderDoc let-order="order">
+
     <div class="col-12 mb-4">
         <div class="card card-box p-3 mb-3">
             <div class="row g-2 d-flex align-items-center">
                 <div class="col-12 px-3">
                     <div class="row mb-1">
+                        <div class="col-12 px-3" *ngIf="order.uid  | objUser |async as user">
+                            <span class="text-rslt fw-bold fs-5">
+                                &nbsp;
+                                {{user.name | titlecase}}
+                            </span>
+                            <h5 class="card-title fw-bolder text-rslt">
+                                {{user.email}}
+                            </h5>
+                            <h5 class="card-title fw-bolder text-rslt">
+                                {{user.prefijo}} {{user.phone }}
+                            </h5>
+                        </div>
                         <div class="col-12 col-md-6">
                             <p class="card-text mb-0">
                                 {{"general.createdAt" | translate | titlecase}}:
@@ -87,11 +108,17 @@
             </div>
         </div>
     </div>
-
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1" (click)="launchFindOwnerModal()">
+            {{'general.findOwner' | translate}}
+        </span>
+        <input readonly type="text" class="form-control" [(ngModel)]="textNewOwner"
+            placeholder="{{'general.findOwner' | translate}}">
+    </div>
 
     <div class="col-12 text-center mb-3">
         <div class="fs-4 fw-bold">
-            Timeline
+            {{'Timeline' | translate}}
         </div>
     </div>
 
@@ -110,6 +137,8 @@
                     <th scope="col">{{'title'| translate}}</th>
                     <th scope="col">{{'total'| translate}}</th>
                     <th scope="col">{{'description'| translate}}</th>
+                    <th scope="col">{{'users'| translate}}</th>
+
                     <th scope="col">{{'option'| translate}}</th>
                 </tr>
             </thead>
@@ -127,9 +156,11 @@
                         </ng-container>
                     </td>
                     <td>
-                        <ng-container *ngIf="item.oldTotal">
-                            {{ item.oldTotal}} ->
-                        </ng-container> {{item.totales | currency}}
+                        <ng-container *ngIf="item.oldPrice">
+                            {{ item.oldPrice}} ->
+                        </ng-container>
+
+                        {{item.price || item.totales | currency}}
 
 
                     </td>
@@ -137,21 +168,25 @@
                         {{item.description || 'N/A'}}
                     </td>
                     <td>
+                        <ul>
+                            <li *ngFor="let item of item.users">
+                                <ng-container *ngIf="item | objUser |async as user">
+                                    {{user.name | titlecase}} - {{user.email}}
+                                </ng-container>
+                            </li>
+                        </ul>
+                    </td>
+                    <td>
                         <button (click)="launchModalEditAmount(item,i)" type="button">
                             <i class="bi bi-pencil"></i>
                         </button>
+
+                        <button (click)="launchFindUserAddModal(item,i)" type="button">
+                            <i class="bi bi-person-fill"></i>
+                        </button>
                     </td>
                 </tr>
-                <!-- <tr>
-                    <th colspan="2" scope="row"></th>
-                    <th>{{'globalSubtotal' | translate}}</th>
-                    <td>{{orderDoc?.totalResumen.globalSubtotal | currency}}</td>
-                </tr>
-                <tr>
-                    <th colspan="2" scope="row"></th>
-                    <th>{{'globalDiscount' | translate}}</th>
-                    <td>{{orderDoc?.totalResumen.globalTotalToPay | currency}}</td>
-                </tr> -->
+
                 <tr *ngIf="orderDoc?.totalResumen.globalTotalToPayOld ">
                     <th colspan="3" scope="row"></th>
                     <th>{{'globalTotalToPayOld' | translate}}</th>
@@ -163,35 +198,17 @@
                     <th>{{'globalTotalToPay' | translate}}</th>
                     <td>{{orderDoc?.totalResumen.globalTotalToPay | currency}}</td>
                 </tr>
-                <!-- 
-                <tr>
-                    <th colspan="5" scope="row">
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupSelect01">
-                                {{'paymentMethod'| translate}}
-                            </label>
-                            <select class="form-select" id="inputGroupSelect01">
-                                <option selected>Choose...</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                        </div>
-                    </th>
-                </tr> -->
-                <!-- <tr>
-                    <th colspan="5" scope="row">
-                        <div class="text-center">
-                            <button (click)="savePayment()" class="btn btn-primary me-md-2" type="button">
-                                {{'general.save' | translate}}
-                            </button>
-                        </div>
-                    </th>
-                </tr> -->
 
             </tbody>
         </table>
     </div>
+
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <button (click)="senfPurchaseToPreApproved()" class="btn btn-primary" type="button">{{'enviar compra' |
+            translate | titlecase}}</button>
+    </div>
+
+
 </ng-template>
 
 
@@ -228,3 +245,15 @@
 
 <app-merchant-modal-edit-amount #modalAmountEditOwner
     (onCloseModal)="onEditAmount($event)"></app-merchant-modal-edit-amount>
+
+
+<app-modal-coupon-find-owner #modalFindOwner [ownerType]="'ambassador'"
+    (onCloseModal)="onSelectOwner($event)"></app-modal-coupon-find-owner>
+
+
+<app-modal-merchant-add-user #modalOnSelectedAddUser [itemData]="itemData" [ownerType]="'ambassador'"
+    (onCloseModal)="onSelectedAddUser($event)"></app-modal-merchant-add-user>
+
+
+<app-modal-update-voucher-status-form #modalUpdateVoucherStatus
+    (onCloseModal)="onCloseModalUpdateVoucherStatus($event)"></app-modal-update-voucher-status-form>

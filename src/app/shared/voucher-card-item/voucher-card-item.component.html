@@ -1,57 +1,66 @@
 <div class="card-box card-box-b3 p-3 mb-3">
-    <div class="row g-2 d-flex align-items-center">
-        <div class="col-12 px-3">
+  <div class="row g-2 d-flex align-items-center">
+    <div class="col-12 px-3">
+      <p class="card-text text-center mb-0">
+        {{ "general.reference" | translate | titlecase }}:
+        <small class="text-muted">
+          {{ voucher.reference }}
+        </small>
+      </p>
 
-            <p class="card-text text-center mb-0">
-                {{"general.reference" | translate | titlecase}}:
-                <small class="text-muted">
-                    {{voucher.reference}}
-                </small>
-            </p>
+      <p class="card-text text-center mb-0">
+        {{ "general.fileName" | translate | titlecase }}:
+        <small class="text-muted">
+          {{ voucher.name }}
+        </small>
+      </p>
 
-            <p class="card-text text-center mb-0">
-                {{"general.fileName" | translate | titlecase}}:
-                <small class="text-muted">
-                    {{voucher.name}}
-                </small>
-            </p>
+      <p class="card-text text-center mb-0">
+        {{ "general.fileType" | translate }}:
+        <small class="text-muted">
+          {{ voucher.type }}
+        </small>
+      </p>
 
-            <p class="card-text text-center mb-0">
-                {{"general.fileType" | translate}}:
-                <small class="text-muted">
-                    {{voucher.type}}
-                </small>
-            </p>
+      <p class="card-text text-center mb-0">
+        {{ "general.size" | translate }}:
+        <small class="text-muted">
+          {{ sizeParsed }}
+        </small>
+      </p>
 
-            <p class="card-text text-center mb-0">
-                {{"general.size" | translate}}:
-                <small class="text-muted">
-                    {{sizeParsed}}
-                </small>
-            </p>
-
-            <p class="card-text text-center mb-0" *ngIf="observations.length > 0">
-                {{"general.observation" | translate}}<span class="text-danger">*</span>:
-                <small class="text-muted">
-                    {{observations}}
-                </small>
-            </p>
-
-        </div>
-
-        <div class="col-12">
-            <div class="d-grid gap-2 col-6 mx-auto">
-                <button class="btn btn-danger" type="button" (click)="openVoucherFileLink()">
-                    <i class="bi bi-filetype-pdf"></i>
-                    &nbsp;
-                    Voucher
-                </button>
-                <button class="btn btn-danger" type="button" *ngIf="showUpdateButton" (click)="updateVoucher()">
-                    <i class="bi bi-cloud-upload"></i>
-                    &nbsp;
-                    {{"general.update" | translate}}
-                </button>
-            </div>
-        </div>
+      <p class="card-text text-center mb-0" *ngIf="observations.length > 0">
+        {{ "general.observation" | translate }}
+        <span class="text-danger">*</span>:
+        <small class="text-muted">
+          {{ observations }}
+        </small>
+      </p>
     </div>
+
+    <div class="col-12">
+      <div
+        class="d-grid gap-2 col-6 mx-auto justify-content-center align-items-center"
+      >
+        <button
+          class="btn btn-danger"
+          type="button"
+          (click)="openVoucherFileLink()"
+        >
+          <i class="bi bi-filetype-pdf"></i>
+          &nbsp; Voucher
+        </button>
+        <button
+          class="btn btn-danger"
+          type="button"
+          *ngIf="showUpdateButton"
+          (click)="updateVoucher()"
+        >
+          <i class="bi bi-cloud-upload"></i>
+          &nbsp;
+          {{ "general.update" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

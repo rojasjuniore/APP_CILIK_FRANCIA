@@ -1,0 +1,13 @@
+.icon-p{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #e5334c;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.success{
+    background-color: rgba(25,135,84) !important;
+}

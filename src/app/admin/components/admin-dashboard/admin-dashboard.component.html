@@ -11,9 +11,9 @@
     <ng-container *ngFor="let item of list">
         <div class="col" *ngIf="item.available">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body text-center">
                     <h5 class="card-title fw-bold">
-                        {{item.label | titlecase}}
+                        {{item.label | translate | titlecase }}
                     </h5>
                     <p class="card-text">{{item.description}}</p>
                     <button type="button" class="btn btn-sm btn-danger stretched-link px-5"

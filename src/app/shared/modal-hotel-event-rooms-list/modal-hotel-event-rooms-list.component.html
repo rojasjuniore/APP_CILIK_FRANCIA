@@ -1,18 +1,15 @@
-<div class="modal fade" [id]="_id" data-bs-backdrop="static"
-    data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+<div class="modal fade" [id]="_id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen">
         <div class="modal-content">
 
-            <!-- <div class="modal-header">
-                <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
-            </div> -->
+
 
             <div class="modal-body">
                 <div class="container-fluid">
                     <div class="row g-3">
                         <div class="col-12">
 
-                            <div class="card card-box" >
+                            <div class="card card-box">
                                 <div class="card-body">
 
                                     <h5 class="card-title fw-bolder text-rslt">
@@ -25,42 +22,34 @@
                                         {{"hotelAndEvent.chooseTheDatesOfYourStay" | translate}}
                                     </label>
 
-                                    <app-input-range-calendar
-                                        *ngIf="item"
-                                        [autoUpdateInput]="false"
-                                        [minDate]="item?.minDate"
-                                        [maxDate]="item?.maxDate"
-                                        [startDate]="item?.startDate"
-                                        [endDate]="item?.endDate"
+                                    <app-input-range-calendar *ngIf="item" [autoUpdateInput]="false"
+                                        [minDate]="item?.minDate" [maxDate]="item?.maxDate"
+                                        [startDate]="item?.startDate" [endDate]="item?.endDate"
                                         [cancelLabel]="'general.cancel' | translate"
-                                        [applyLabel]="'general.apply' | translate"
-                                        class="selectCalendar"
-                                        cancelButtonClasses="btn btn-three"
-                                        applyButtonClasses="btn btn-one"
-                                        (onUpdateDates)="onInputDatesChange($event)"
-                                    ></app-input-range-calendar>
+                                        [applyLabel]="'general.apply' | translate" class="selectCalendar"
+                                        cancelButtonClasses="btn btn-three" applyButtonClasses="btn btn-one"
+                                        (onUpdateDates)="onInputDatesChange($event)"></app-input-range-calendar>
 
                                     <p class="card-text text-center">
-                                        <ng-container *ngIf="submitted" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'dates'}"></ng-container>
+                                        <ng-container *ngIf="submitted" [ngTemplateOutlet]="renderFormVM"
+                                            [ngTemplateOutletContext]="{field: 'dates'}"></ng-container>
                                     </p>
 
                                     <div class="d-flex align-items-center">
                                         <label class="form-label fw-bolder mt-2">
                                             {{"hotelAndEvent.indicatesTheNumberOfPeopleInTheRoom" | translate}}
                                         </label>
-    
-                                        <app-input-group-number-form
-                                            #inputNumber
-                                            *ngIf="item"
-                                            [max]="3"
-                                            (onUpdateQuantity)="onInputNumberChange($event)"
-                                        ></app-input-group-number-form>
+
+                                        <app-input-group-number-form #inputNumber *ngIf="item" [max]="3"
+                                            (onUpdateQuantity)="onInputNumberChange($event)"></app-input-group-number-form>
                                     </div>
 
-                                    
 
-                                    <div class=" d-flex justify-content-center align-items-center justify-content-lg-around flex-wrap mt-3">
-                                        <button class="btn btn-one btn-medium text-uppercase" type="button" (click)="searchRooms()">
+
+                                    <div
+                                        class=" d-flex justify-content-center align-items-center justify-content-lg-around flex-wrap mt-3">
+                                        <button class="btn btn-one btn-medium text-uppercase" type="button"
+                                            (click)="searchRooms()">
                                             <i class="bi bi-binoculars"></i>
                                             &nbsp;
                                             {{"general.search" | translate | uppercase}}
@@ -68,7 +57,8 @@
                                     </div>
 
                                     <p class="card-text text-center">
-                                        <ng-container *ngIf="submitted" [ngTemplateOutlet]="renderFormVM" [ngTemplateOutletContext]="{field: 'capacity'}"></ng-container>
+                                        <ng-container *ngIf="submitted" [ngTemplateOutlet]="renderFormVM"
+                                            [ngTemplateOutletContext]="{field: 'capacity'}"></ng-container>
                                     </p>
 
                                 </div>
@@ -82,13 +72,15 @@
                             <div class="seprd2"></div>
                         </div>
 
-                        <ng-container *ngIf="(roomList.length > 0); then renderRoomsList; else renderNoRooms"></ng-container>
+                        <ng-container
+                            *ngIf="(roomList.length > 0); then renderRoomsList; else renderNoRooms"></ng-container>
 
                     </div>
                 </div>
             </div>
 
-            <div class="modal-footer d-flex justify-content-center align-items-center justify-content-lg-around flex-wrap">
+            <div
+                class="modal-footer d-flex justify-content-center align-items-center justify-content-lg-around flex-wrap">
                 <button class="btn btn-three btn-medium text-uppercase" type="button" (click)="closeModal()">
                     <i class="bi bi-x-circle"></i>
                     &nbsp;
@@ -106,11 +98,8 @@
 
 <ng-template #renderRoomsList>
     <div class="col-12" *ngFor="let item of roomList; first as isFirst">
-        <app-hotel-and-event-room-list-item-card
-            [item]="item" 
-            [recomendation]="isFirst"
-            (onSelectRoom)="onSelectRoom($event)"
-        ></app-hotel-and-event-room-list-item-card>
+        <app-hotel-and-event-room-list-item-card [item]="item" [recomendation]="isFirst"
+            (onSelectRoom)="onSelectRoom($event)"></app-hotel-and-event-room-list-item-card>
     </div>
 </ng-template>
 

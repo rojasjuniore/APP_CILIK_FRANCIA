@@ -5,7 +5,7 @@ import moment from 'moment';
 import { distinctUntilChanged, from, interval, map, switchMap } from 'rxjs';
 import { CouponsService } from './coupons.service';
 import { DataService } from './data.service';
-import { HotelService } from './hotel.service';
+import { HotelService } from './dedicates/hotel.service';
 import { PurchaseService } from './purchase.service';
 import { Sweetalert2Service } from './sweetalert2.service';
 import { environment } from 'src/environments/environment';

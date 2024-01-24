@@ -11,7 +11,7 @@ export class PurchasesDasdboardComponent implements OnInit {
   public uid!: string;
   public queries = {
     pending: {
-      available: false,
+      available: true,
       query: [
         { field: 'status', condition: '==', value: 'pending' },
         // {field: 'uid', condition: '==', value: null},
@@ -45,6 +45,13 @@ export class PurchasesDasdboardComponent implements OnInit {
       ],
       opts: { orderBy: [{ field: "createdAt", order: "desc" }] }
     },
+    preApproved: {
+      available: false,
+      query: [
+        { field: 'status', condition: '==', value: 'preApproved' },
+      ],
+      opts: { orderBy: [{ field: "createdAt", order: "desc" }] }
+    },
   };
 
   private sub$!: Subscription;
@@ -52,6 +59,20 @@ export class PurchasesDasdboardComponent implements OnInit {
   constructor(
     private authSrv: AuthenticationService,
   ) { }
+
+
+  selectTab(tabName: string): void {
+    // Set all to false initially
+    for (let key in this.queries) {
+      this.queries[key].available = false;
+    }
+
+    // Enable the selected tab
+    if (this.queries.hasOwnProperty(tabName)) {
+      this.queries[tabName].available = true;
+    }
+  }
+
 
   ngOnInit(): void {
 

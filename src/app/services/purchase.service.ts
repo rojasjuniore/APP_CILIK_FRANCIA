@@ -9,6 +9,7 @@ import { ExcelService } from './excel.service';
 import { QuickNotificationService } from './quick-notification/quick-notification.service';
 import { TranslatePipe } from '@ngx-translate/core';
 import moment from 'moment';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 
 @Injectable({
   providedIn: 'root'
@@ -18,12 +19,18 @@ export class PurchaseService {
   public purchaseCollection = 'hotel_event';
 
   constructor(
+    private db: AngularFireDatabase,
     private afs: AngularFirestore,
     private http: HttpClient,
     private excelSrv: ExcelService,
     private quickNotificationSrv: QuickNotificationService,
     private translatePipe: TranslatePipe,
   ) { }
+
+
+  getCategoryClaims(eventId: string, codeDivision: string, divisionId: string) {
+    return this.db.object(`/categoriesenabled/${eventId}/${codeDivision}/categories/${divisionId}`).valueChanges();
+  }
 
 
   async storePurchase(eventId: string, docId: string, data: any) {
@@ -35,21 +42,31 @@ export class PurchaseService {
     return await this.afs.collection(this.purchaseCollection).doc(eventId).collection('purchases').doc(docId).update(data);
   }
 
-
-
+  /// acreditacionm 
   async storePurchasePending(eventId: string, docId: string, data: any) {
     console.log('storePurchase', eventId, docId, data);
     return await this.afs.collection(this.purchaseCollection).doc(eventId).collection('pending').doc(docId).set(data);
   }
 
+  async storePurchaseClaim(eventId: string, docId: string, data: any) {
+    console.log('storePurchase', eventId, docId, data);
+    return await this.afs.collection(this.purchaseCollection).doc(eventId).collection('claim').doc(docId).set(data);
+  }
 
-  /// 
-  updatePurchaseStore(eventId: string, docId: string, index: number, claim: any) {
+
+  async updatePurchaseClaim(eventId: string, docId: string, data: any) {
+    return await this.afs.collection(this.purchaseCollection).doc(eventId).collection('claim')
+  }
+
+
+
+
+  updatePurchaseStore(eventId: string, docId: string, index: number, accreditation: any, claim, accredited): Promise<void> {
     // Obtener una referencia al documento
     const docRef = this.afs.collection(this.purchaseCollection).doc(eventId).collection('purchases').doc(docId);
 
-    // Leer el documento actual
-    return docRef.get().subscribe(async doc => {
+    // Leer el documento actual y retornar una promesa
+    return docRef.get().toPromise().then((doc: any) => {
       if (doc.exists) {
         const currentData = doc.data();
 
@@ -58,19 +75,27 @@ export class PurchaseService {
           // Actualizar el elemento en la posición especificada
           const arrayActualizado = [...currentData['product']];
 
+          if (claim) {
+            arrayActualizado[index] = { ...arrayActualizado[index], _claim: claim, accreditation };
+          } else if (accredited) {
+            arrayActualizado[index] = { ...arrayActualizado[index], _accredited: accredited, accredited: accreditation };
+          }
+
           // Añadir el campo 'claim' con valor 'true' al objeto en la posición especificada
-          arrayActualizado[index] = { ...arrayActualizado[index], _claim: claim };
 
           // Preparar el objeto de actualización
           let updateObject = {};
           updateObject['product'] = arrayActualizado;
 
           // Actualizar el documento
-          return await docRef.update(updateObject);
+          return docRef.update(updateObject);
         }
       }
+      // Manejar el caso donde el documento no existe o no tiene el formato esperado
+      throw new Error("Documento no encontrado o formato inválido");
     });
   }
+
 
 
   /// 
@@ -85,11 +110,6 @@ export class PurchaseService {
     }
   }
 
-  /// 
-  reclaimedPurchase(data: any) {
-    console.log('reclaimedPurchase', data);
-    return lastValueFrom(this.http.post(`${environment.API_URL}/payment_gateways/wldc2025`, data));
-  }
 
 
   //  @dev Obtener el carrito de compras de un usuario
@@ -119,7 +139,11 @@ export class PurchaseService {
 
 
   getByEventAndId(eventId: string, docId: string) {
-    return this.afs.collection(this.purchaseCollection).doc(eventId).collection('purchases').doc(docId).valueChanges();
+    return this.afs.collection(this.purchaseCollection).doc(eventId).collection('purchases').doc(docId).valueChanges(
+      {
+        idField: '_id'
+      }
+    );
   }
 
 
@@ -849,6 +873,45 @@ export class PurchaseService {
     }
     ).valueChanges({ idField });
   }
+
+  claimPurchase(eventId: string, uid: any) {
+    const userList = this.getDynamicClaim(eventId, [
+      { field: 'uidList', condition: 'array-contains', value: uid },
+    ])
+
+
+    const userAdd = this.getDynamicClaim(eventId, [
+      { field: 'uid_add', condition: '==', value: uid },
+    ])
+
+
+    return combineLatest([userList, userAdd])
+      .pipe(
+        map(([completedResults, preApprovedResults]) => {
+          return [...completedResults, ...preApprovedResults];
+        })
+      );
+
+  }
+  /// 
+  reclaimedPurchase(data: any) {
+    return lastValueFrom(this.http.post(`${environment.API_URL}/payment_gateways/wldc2024`, data));
+  }
+
+
+  getDynamicClaim(eventId: string, where: any[] = [], opts: any = {}): Observable<any[]> {
+    const { idField = "_id", orderBy = [] } = opts;
+    // console.log('getDynamicClaim', eventId, where, opts);
+    return this.afs.collection(this.purchaseCollection).doc(eventId).collection('claim', (ref) => {
+      let query: any = ref;
+      for (const row of where) { query = query.where(row.field, row.condition, row.value); }
+
+      for (const order of orderBy) { query = query.orderBy(order.field, order.order); }
+      return query;
+    }
+    ).valueChanges({ idField });
+  }
+
 
 
   async getDynamicPromise(eventId: string, where: any[] = [], opts: any = {}): Promise<any[]> {

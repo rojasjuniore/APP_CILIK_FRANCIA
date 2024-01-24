@@ -4,7 +4,7 @@
             <a class="list-group-item list-group-item-action" [ngClass]="{'active': item.isActiveToPay}"
                 aria-current="true">
                 <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">Fecha de pago: {{item.date }}</h5>
+                    <h5 class="mb-1">{{"payedAt" | translate | titlecase}}: {{item.date }}</h5>
                     <small>
                         {{item.status | translate | titlecase}}: {{item.quota}} <ng-container
                             *ngIf="item.paymentMethod"> |
@@ -12,7 +12,7 @@
                     </small>
                     <button *ngIf="item.paymentMethod =='bankTransfer'" type="button" class="btn btn-warning btn-sm"
                         (click)="validatePayment(item, i)">
-                        {{'validar pago' | titlecase | translate}}
+                        {{'general.validatePayment' | translate}}
                     </button>
                 </div>
 
@@ -26,7 +26,7 @@
 
 
                     <button (click)="gotoLink(item)" type="button" class="btn btn-warning  btn-sm">
-                        ver Vaucher
+                        {{'general.viewVoucher' | translate}}
                     </button>
 
                 </div>

@@ -1,0 +1,11 @@
+<div class="text-center">
+    <div class="col-12 col-md-6 mb-4 ps-md-3">
+        <button type="button" class="btn btn-one btn-full" (click)="launchFindUserModal()">
+            {{ "category.weekend-pass" | translate }} {{'weekend' | translate}}
+        </button>
+    </div>
+
+</div>
+
+<app-claim-search-user #modalFindUser [_id]="'modalClaimAddUser' + division._index" [ownerType]="'ambassador'"
+    [itemData]="division" (onCloseModal)="onSelectUser($event)"></app-claim-search-user>

@@ -4,8 +4,17 @@
     </div>
 </div>
 
-<app-modal-only-input-number #modalOnlyInputNumber (onCloseModal)="onModalInputNumberResponse($event)"></app-modal-only-input-number>
+<app-modal-only-input-number #modalOnlyInputNumber
+    (onCloseModal)="onModalInputNumberResponse($event)"></app-modal-only-input-number>
 
-<app-modal-store-only-categories #modalOnlyCategories (onCloseModal)="onModalCategoriesResponse($event)"></app-modal-store-only-categories>
+<app-modal-store-only-categories #modalOnlyCategories
+    (onCloseModal)="onModalCategoriesResponse($event)"></app-modal-store-only-categories>
 
-<app-modal-store-only-day-pass #modalOnlyDayPass (onCloseModal)="onModalDayPassResponse($event)"></app-modal-store-only-day-pass>
+<app-modal-full-pass-per-day #modalFullPassPerDayComponent
+    (onCloseModal)="onModalFullPassPerDayComponent($event)"></app-modal-full-pass-per-day>
+
+<app-modal-store-only-day-pass #modalOnlyDayPass
+    (onCloseModal)="onModalDayPassResponse($event)"></app-modal-store-only-day-pass>
+
+<app-modal-weeken-fest #modalWeekenFestComponent
+    (onCloseModal)="onModalWeekedPassResponse($event)"></app-modal-weeken-fest>

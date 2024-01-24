@@ -1,44 +1,49 @@
 <div class="card-box card-box-b3 p-3 mb-3">
-    <div class="row g-2 d-flex align-items-center">
-        <div class="col-12 px-3">
-            <p class="card-text text-center mb-0">
-                {{item?.label}}
-            </p>
+  <div class="row g-2 d-flex align-items-center">
+    <div class="col-12 px-3">
+      <p class="card-text text-center mb-0">
+        {{ item?.label }}
+      </p>
 
-            <p class="card-text text-center mb-0">
-                Nombre de Beneficiario:
-                <small class="text-muted">
-                    {{item?.beneficiaryName}}
-                </small>
-            </p>
+      <p class="card-text text-center mb-0">
+        <!-- Nombre de Beneficiario: -->
+        {{ "general.beneficiaryName" | translate }}:
+        <small class="text-muted">
+          {{ item?.beneficiaryName }}
+        </small>
+      </p>
 
-            <p class="card-text text-center mb-0">
-                Nro. Cuenta:
-                <small class="text-muted">
-                    {{item?.accountNumber}}
-                </small>
-            </p>
+      <p class="card-text text-center mb-0">
+        <!-- Nro. Cuenta: -->
+        {{ "general.accountNo" | translate }}:
+        <small class="text-muted">
+          {{ item?.accountNumber }}
+        </small>
+      </p>
 
-            <p *ngIf="item?.iban" class="card-text text-center mb-0">
-                Código IBAN y código BIC o SWIFT:
-                <small class="text-muted">
-                    {{item?.iban}}
-                </small>
-            </p>
+      <p *ngIf="item?.iban" class="card-text text-center mb-0">
+        <!-- Código IBAN y código BIC o SWIFT: -->
 
-            <p class="card-text text-center mb-0">
-                NIT:
-                <small class="text-muted">
-                    {{item?.nit}}
-                </small>
-            </p>
+        {{ "general.IBANandBICorSWIFTcode" | translate }}:
+        <small class="text-muted">
+          {{ item?.iban }}
+        </small>
+      </p>
 
-            <p class="card-text text-center mb-0">
-                Código Swift:
-                <small class="text-muted">
-                    {{item?.swiftCode}}
-                </small>
-            </p>
-        </div>
+      <p class="card-text text-center mb-0">
+        NIT:
+        <small class="text-muted">
+          {{ item?.nit }}
+        </small>
+      </p>
+
+      <p class="card-text text-center mb-0">
+        <!-- Código Swift: -->
+        {{ "general.swiftCode" | translate }}:
+        <small class="text-muted">
+          {{ item?.swiftCode }}
+        </small>
+      </p>
     </div>
+  </div>
 </div>

@@ -14,6 +14,7 @@ export class CouponService {
 
   public collection = 'hotel_event';
   public subCollection = 'coupons';
+  
 
   constructor(
     public afs: AngularFirestore

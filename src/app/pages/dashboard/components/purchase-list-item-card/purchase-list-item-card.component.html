@@ -1,9 +1,7 @@
 <div class="card card-box p-3 mb-3">
     <div class="row g-2 d-flex align-items-center">
         <div class="col-12 px-3">
-            <span class="text-rslt fw-bold fs-5">
-
-
+            <div class="icon-p">
                 <ng-container [ngSwitch]="item.paymentMethod">
 
                     <ng-container *ngSwitchCase="'installments'">
@@ -12,41 +10,44 @@
                     <ng-container *ngSwitchCase="'bankTransfer'">
                         <i class="bi bi-bank"></i>
                     </ng-container>
-
+    
                     <ng-container *ngSwitchCase="'tucompra'">
                         <i class="bi bi-card-heading"></i>
                     </ng-container>
-
+    
                     <ng-container *ngSwitchCase="'paypal'">
                         <i class="bi bi-paypal"></i>
                     </ng-container>
-
+    
                     <ng-container *ngSwitchDefault>
                         <i class="bi bi-cart3"></i>
                     </ng-container>
                 </ng-container>
+            </div>
+           
+            <div class="">
 
-                <div class="col-12 px-3" *ngIf="item.uid  | objUser |async as user">
-                    <span class="text-rslt fw-bold fs-5">
+                <div *ngIf="item.uid  | objUser |async as user">
+                    <div class="fw-bold fs-5">
                         <!-- <i class="bi bi-cart3"></i>
                         &nbsp; -->
                         {{user.name | titlecase}}
-                    </span>
-                    <h5 class="card-title fw-bolder text-rslt">
+                    </div>
+                    <div class="card-title fs-6 fw-bolder">
                         {{user.email}}
-                    </h5>
-                    <h5 class="card-title fw-bolder text-rslt">
+                    </div>
+                    <div class="card-title fs-6 fw-bolder">
                         {{user.prefijo}} {{user.phone }}
-                    </h5>
-                    <h5 class="card-title fw-bolder text-rslt">
+                    </div>
+                    <div class="card-title fs-6 fw-bolder">
                         {{item.createdAt | date: 'medium'}}
-                    </h5>
+                    </div>
                 </div>
 
 
                 <!-- {{item.uid | profile | async | titlecase}} |&nbsp; -->
                 {{item.paymentMethod | translate | titlecase }} | {{item.createdAt | date: 'medium'}} |
-            </span>
+            </div>
             <!-- <h5 class="card-title fw-bolder text-rslt">
                 <span class="placeholder col-12"></span>
             </h5> -->
@@ -67,8 +68,8 @@
                 </div>
                 <div class="col-12 col-md-6">
                     <p class="card-text mb-0 text-md-end">
-                        {{ "general.status" | translate }}:
-                        <span class="badge bg-danger">
+                        <span>{{ "general.status" | translate }}:</span>
+                        <span class="badge bg-danger" [ngClass]="{'success': item.status === 'completed'}">
                             {{ ('general.'+ ((item.status === 'completed') ? 'approved' : item.status)) | translate |
                             uppercase}}
                         </span>
@@ -78,8 +79,8 @@
 
             <div class="d-flex flex-row align-content-center justify-content-between">
                 <div class="d-flex justify-content-center align-items-center">
-                    <span class="fs-4 fw-bolder">{{ "general.total" | translate }}: USD {{item.totales}}</span>
-                </div>
+                    <span class="fs-4 fw-bolder">{{ "general.total" | translate }}: USD <span class="text-rslt">{{item.totales}}</span></span>
+                </div> 
                 <div>
                     <button type="button" class="btn-icon btn-icon-two" (click)="goToDetails()">
                         <i class="bi bi-info-circle"></i>

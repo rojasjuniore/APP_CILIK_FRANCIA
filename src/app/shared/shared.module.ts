@@ -53,8 +53,20 @@ import { PurchaseInstallmentsVoucherComponent } from '../pages/purchases/compone
 import { PurchaseInstallmentsComponent } from '../pages/purchases/components/purchase-installments/purchase-installments.component';
 import { PurchaseWeekendPassCardItemComponent } from '../pages/purchases/components/purchase-weekend-pass-card-item/purchase-weekend-pass-card-item.component';
 import { AdviserCheckoutComponent } from '../pages/checkout/components/adviser-checkout/adviser-checkout.component';
-
+import { ModalCouponFindOwnerComponent } from '../admin/coupons/components/modal-coupon-find-owner/modal-coupon-find-owner.component';
+import { ModalFullPassPerDayComponent } from './modal-full-pass-per-day/modal-full-pass-per-day.component';
+import { ModalWeekenFestComponent } from './modal-weeken-fest/modal-weeken-fest.component';
 import { AudioPlayerComponent } from './audio-player/audio-player.component';
+import { ModalMerchantAddUserComponent } from './modal-merchant-add-user/modal-merchant-add-user.component';
+
+import { AssignedClaimFullPassPerDayComponent } from '../pages/purchases/components/assigned/assigned-claim-full-pass-per-day/assigned-claim-full-pass-per-day.component';
+import { AssignedFullPassComponent } from '../pages/purchases/components/assigned/assigned-full-pass/assigned-full-pass.component';
+import { AssignedHotelComponent } from '../pages/purchases/components/assigned/assigned-hotel/assigned-hotel.component';
+import { AssignedWeekendFestComponent } from '../pages/purchases/components/assigned/assigned-weekend-fest/assigned-weekend-fest.component';
+import { AssignedWeekendPassComponent } from '../pages/purchases/components/assigned/assigned-weekend-pass/assigned-weekend-pass.component';
+import { CategoryClaimsComponent } from '../pages/purchases/components/category-claims/category-claims.component';
+
+
 
 
 
@@ -123,8 +135,20 @@ import { AudioPlayerComponent } from './audio-player/audio-player.component';
 
     AdviserCheckoutComponent,
 
-    
-    AudioPlayerComponent
+    ModalCouponFindOwnerComponent,
+    ModalFullPassPerDayComponent,
+    ModalWeekenFestComponent,
+    AudioPlayerComponent,
+    ModalMerchantAddUserComponent,
+
+
+    AssignedWeekendFestComponent,
+    AssignedFullPassComponent,
+    AssignedHotelComponent,
+    AssignedClaimFullPassPerDayComponent,
+    AssignedWeekendPassComponent,
+    CategoryClaimsComponent,
+
 
   ],
 
@@ -187,7 +211,21 @@ import { AudioPlayerComponent } from './audio-player/audio-player.component';
 
     AdviserCheckoutComponent,
 
-    AudioPlayerComponent
+    ModalCouponFindOwnerComponent,
+    ModalFullPassPerDayComponent,
+    ModalWeekenFestComponent,
+
+    AudioPlayerComponent,
+    ModalMerchantAddUserComponent,
+
+
+    AssignedWeekendFestComponent,
+    AssignedFullPassComponent,
+    AssignedHotelComponent,
+    AssignedClaimFullPassPerDayComponent,
+    AssignedWeekendPassComponent,
+    CategoryClaimsComponent,
+
 
 
   ]

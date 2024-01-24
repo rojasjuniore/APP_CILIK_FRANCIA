@@ -1096,6 +1096,7 @@
     "userDoesNotExist": "El usuario no existe"
   },
   "general": {
+    "myProduct": "Mi producto",
     "IBANandBICorSWIFTcode": "Código IBAN y código BIC o SWIFT",
     "WednesdayPass": "Pase Miércoles",
     "accountNo": "Nro. Cuenta",

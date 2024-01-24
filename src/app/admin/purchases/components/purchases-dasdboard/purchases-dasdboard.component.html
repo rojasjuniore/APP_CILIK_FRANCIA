@@ -10,8 +10,17 @@
         </li>
 
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-paymentProcess-tab" data-bs-toggle="pill" data-bs-target="#pills-paymentProcess"
-                type="button" role="tab" aria-controls="pills-paymentProcess" aria-selected="true">
+            <button class="nav-link" id="pills-preApproved-tab" data-bs-toggle="pill"
+                data-bs-target="#pills-preApproved" type="button" role="tab" aria-controls="pills-preApproved"
+                aria-selected="true">
+                {{ "general.preApproved" | translate | titlecase }}
+            </button>
+        </li>
+
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-paymentProcess-tab" data-bs-toggle="pill"
+                data-bs-target="#pills-paymentProcess" type="button" role="tab" aria-controls="pills-paymentProcess"
+                aria-selected="true">
                 {{ "general.paymentProcess" | translate | titlecase }}
             </button>
         </li>
@@ -35,6 +44,40 @@
 
 <div class="col-12">
     <div class="tab-content" id="pills-tabContent">
+
+        <div class="tab-pane fade show active" id="pills-approved" role="tabpanel" aria-labelledby="pills-approved-tab">
+            <app-purchases-list-admin *ngIf="queries.completed.available" [query]="queries.completed.query"
+                [opts]="queries.completed.opts"></app-purchases-list-admin>
+        </div>
+
+
+        <div class="tab-pane fade" id="pills-pending" role="tabpanel" aria-labelledby="pills-pending-tab">
+            <app-purchases-list-admin *ngIf="queries.pending.available" [query]="queries.pending.query"
+                [opts]="queries.pending.opts"></app-purchases-list-admin>
+        </div>
+
+        <div class="tab-pane fade" id="pills-paymentProcess" role="tabpanel" aria-labelledby="pills-paymentProcess-tab">
+            <app-purchases-list-admin *ngIf="queries.paymentProcess.available" [query]="queries.paymentProcess.query"
+                [opts]="queries.paymentProcess.opts"></app-purchases-list-admin>
+        </div>
+
+
+        <div class="tab-pane fade" id="pills-rejected" role="tabpanel" aria-labelledby="pills-rejected-tab">
+            <app-purchases-list-admin *ngIf="queries.rejected.available" [query]="queries.rejected.query"
+                [opts]="queries.rejected.opts"></app-purchases-list-admin>
+        </div>
+
+        <div class="tab-pane fade" id="pills-preApproved" role="tabpanel" aria-labelledby="pills-preApproved-tab">
+            <app-purchases-list-admin *ngIf="queries.preApproved.available" [query]="queries.preApproved.query"
+                [opts]="queries.preApproved.opts"></app-purchases-list-admin>
+        </div>
+
+    </div>
+</div>
+
+<!-- <div class="col-12">
+    <div class="tab-content" id="pills-tabContent">
+
         <div class="tab-pane fade show active" id="pills-approved" role="tabpanel" aria-labelledby="pills-approved-tab">
             <app-purchases-list-admin [query]="(queries.completed.available) ? queries.completed.query : []"
                 [opts]="(queries.completed.available) ? queries.completed.opts : {}"></app-purchases-list-admin>
@@ -54,7 +97,9 @@
                 [opts]="(queries.rejected.available) ? queries.rejected.opts : {}"></app-purchases-list-admin>
         </div>
     </div>
-</div>
+</div> -->
+
+
 
 
 <div class="col-12">

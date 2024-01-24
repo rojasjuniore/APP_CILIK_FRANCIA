@@ -7,10 +7,6 @@ const routes: Routes = [
     path: 'dashboard',
     component: StatisticsComponent
   },
-  // {
-  //   path: ':orderId/details',
-  //   component: PurchaseDetailsAdminComponent
-  // },
   {
     path: '**',
     pathMatch: 'full',

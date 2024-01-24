@@ -1,43 +1,42 @@
 <div class="col-12 mb-4">
     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="pills-pending-tab" data-bs-toggle="pill" data-bs-target="#pills-pending"
-                type="button" role="tab" aria-controls="pills-pending" aria-selected="true">
-                {{ "general.pending" | translate | titlecase }}
-            </button>
-        </li>
-
-        <!-- <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-pendingApproval-tab" data-bs-toggle="pill"
-                data-bs-target="#pills-pendingApproval" type="button" role="tab" aria-controls="pills-pendingApproval"
-                aria-selected="false">
-                {{ "general.pendingApproval" | translate | titlecase }}
-            </button>
-        </li> -->
-
-        <!-- <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-preApproved-tab" data-bs-toggle="pill"
-                data-bs-target="#pills-preApproved" type="button" role="tab" aria-controls="pills-preApproved"
-                aria-selected="false">
-                {{ "general.preApproved" | translate | titlecase }}
-            </button>
-        </li> -->
-
-        <li class="nav-item" role="presentation">
             <button class="nav-link" id="pills-approved-tab" data-bs-toggle="pill" data-bs-target="#pills-approved"
                 type="button" role="tab" aria-controls="pills-approved" aria-selected="false">
                 {{ "general.approved" | translate | titlecase }}
             </button>
         </li>
-
-        <!-- <li class="nav-item" role="presentation">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-preApproved-tab" data-bs-toggle="pill"
+                data-bs-target="#pills-preApproved" type="button" role="tab" aria-controls="pills-preApproved"
+                aria-selected="false">
+                {{ "general.preApproved" | translate | titlecase }}
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
             <button class="nav-link" id="pills-paymentProcess-tab" data-bs-toggle="pill"
                 data-bs-target="#pills-paymentProcess" type="button" role="tab" aria-controls="pills-paymentProcess"
                 aria-selected="false">
                 {{ "general.paymentProcess" | translate | titlecase }}
             </button>
-        </li> -->
+        </li>
 
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="pills-pending-tab" data-bs-toggle="pill" data-bs-target="#pills-pending"
+                type="button" role="tab" aria-controls="pills-pending" aria-selected="true">
+                {{ "general.pending" | translate | titlecase }}
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-pendingApproval-tab" data-bs-toggle="pill"
+                data-bs-target="#pills-pendingApproval" type="button" role="tab" aria-controls="pills-pendingApproval"
+                aria-selected="false">
+                {{ "general.pendingApproval" | translate | titlecase }}
+            </button>
+        </li>
+
+
+    
         <li class="nav-item" role="presentation">
             <button class="nav-link" id="pills-rejected-tab" data-bs-toggle="pill" data-bs-target="#pills-rejected"
                 type="button" role="tab" aria-controls="pills-rejected" aria-selected="false">
@@ -53,32 +52,29 @@
             <app-purchase-list [query]="(queries.pending.available) ? queries.pending.query : []"
                 [opts]="(queries.pending.available) ? queries.pending.opts : {}"></app-purchase-list>
         </div>
-
-        <!-- <div class="tab-pane fade" id="pills-paymentProcess" role="tabpanel" aria-labelledby="pills-paymentProcess-tab">
+        <div class="tab-pane fade" id="pills-paymentProcess" role="tabpanel" aria-labelledby="pills-paymentProcess-tab">
             <app-purchase-list [query]="(queries.paymentProcess.available) ? queries.paymentProcess.query : []"
                 [opts]="(queries.paymentProcess.available) ? queries.paymentProcess.opts : {}"></app-purchase-list>
-        </div> -->
-
+        </div>
         <div class="tab-pane fade" id="pills-approved" role="tabpanel" aria-labelledby="pills-approved-tab">
             <app-purchase-list [query]="(queries.completed.available) ? queries.completed.query : []"
                 [opts]="(queries.completed.available) ? queries.completed.opts : {}"></app-purchase-list>
         </div>
-
         <div class="tab-pane fade" id="pills-rejected" role="tabpanel" aria-labelledby="pills-rejected-tab">
             <app-purchase-list [query]="(queries.rejected.available) ? queries.rejected.query : []"
                 [opts]="(queries.rejected.available) ? queries.rejected.opts : {}"></app-purchase-list>
         </div>
 
-        <!-- <div class="tab-pane fade" id="pills-pendingApproval" role="tabpanel"
+        <div class="tab-pane fade" id="pills-pendingApproval" role="tabpanel"
             aria-labelledby="pills-pendingApproval-tab">
             <app-purchase-list [query]="(queries.pendingApproval.available) ? queries.pendingApproval.query : []"
                 [opts]="(queries.pendingApproval.available) ? queries.pendingApproval.opts : {}"></app-purchase-list>
-        </div> -->
+        </div>
 
-        <!-- <div class="tab-pane fade" id="pills-preApproved" role="tabpanel" aria-labelledby="pills-preApproved-tab">
+        <div class="tab-pane fade" id="pills-preApproved" role="tabpanel" aria-labelledby="pills-preApproved-tab">
             <app-purchase-list [query]="(queries.preApproved.available) ? queries.preApproved.query : []"
                 [opts]="(queries.preApproved.available) ? queries.preApproved.opts : {}"></app-purchase-list>
-        </div> -->
+        </div>
     </div>
 
 

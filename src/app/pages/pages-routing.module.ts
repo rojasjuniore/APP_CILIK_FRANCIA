@@ -27,11 +27,11 @@ const routes: Routes = [
         canActivate: [AnonGuard],
         loadChildren: () => import("./purchases/purchases.module").then((m) => m.PurchasesModule),
     },
-    {
-        path: "claim-category",
-        canActivate: [AnonGuard],
-        loadChildren: () => import("./claim-category/claim-category.module").then((m) => m.ClaimCategoryModule),
-    },
+    // {
+    //     path: "claim-category",
+    //     canActivate: [AnonGuard],
+    //     loadChildren: () => import("./claim-category/claim-category.module").then((m) => m.ClaimCategoryModule),
+    // },
     {
         path: "",
         pathMatch: "full",

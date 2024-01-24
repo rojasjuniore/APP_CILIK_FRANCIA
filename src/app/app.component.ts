@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CustomTranslateService } from 'src/app/services/custom-translate.service';
 import { DataService } from './services/data.service';
-import { HotelService } from './services/hotel.service';
 
 import { pick, omit } from 'underscore';
 import { NavigationEnd, Router } from '@angular/router';
@@ -9,6 +8,7 @@ import { CommonService } from './services/common.service';
 import { CodeStorageService } from './services/code-storage.service';
 import { VersionService } from './services/version.service';
 import { environment } from 'src/environments/environment';
+import { HotelService } from './services/dedicates/hotel.service';
 
 @Component({
   selector: 'app-root',

@@ -1,9 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import moment from 'moment';
+import { ClipboardService } from 'ngx-clipboard';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Subscription, catchError, map, of, switchMap } from 'rxjs';
+import { Subject, Subscription, catchError, map, of, switchMap } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { UploadFileService } from 'src/app/services/dedicates/upload-file.service';
 import { PurchaseService } from 'src/app/services/purchase.service';
@@ -21,10 +22,10 @@ export class PurchaseDetailsComponent implements OnInit, OnDestroy {
   public orderDoc: any;
 
   public showUpdateVoucherForm = false;
-
   private sub$!: Subscription;
 
   constructor(
+    private _clipboardService: ClipboardService,
     private router: ActivatedRoute,
     private route: Router,
     private authSrv: AuthenticationService,
@@ -39,13 +40,21 @@ export class PurchaseDetailsComponent implements OnInit, OnDestroy {
     this.orderId = orderId || '';
   }
 
-  ngOnInit(): void {
 
+  async ngOnInit(): Promise<void> {
     this.sub$ = this.authSrv.uid$
       .pipe(
         switchMap((uid) => this.purchaseSrv.getByEventAndId(environment.dataEvent.keyDb, this.orderId)),
         map((order) => {
           return (order) ? { exist: true, ...order } : { exist: false };
+        }),
+        map((order: any) => {
+          if(!order.exist){ return order; }
+
+          return {
+            ...order,
+            product: order.product.map((product: any, index: number) => ({...product, _index: index + 1}))
+          }
         }),
         catchError((err) => of({ exist: false }))
       )
@@ -55,10 +64,23 @@ export class PurchaseDetailsComponent implements OnInit, OnDestroy {
           return this.route.navigate([`/pages/dashboard`]);
         }
         this.orderDoc = order;
-        console.log('order', this.orderDoc);
+        const valueTotalResumen = order.totalResumen;
+        if (this.orderDoc.status !== 'completed') {
+          await this.purchaseSrv.updatePurchase(environment.dataEvent.keyDb, this.orderDoc.orderId,
+            {
+              status: (valueTotalResumen?.globalTotalToPay - valueTotalResumen?.paidForPayment == 0 ? 'completed' : 'pendingApproval')
+            },
+          );
+        }
+
+
+        console.log('order test Jorge', this.orderDoc);
         return
       });
   }
+
+
+  
 
 
   onRenderUpdateVoucher(event: any) {
@@ -66,6 +88,12 @@ export class PurchaseDetailsComponent implements OnInit, OnDestroy {
     this.showUpdateVoucherForm = true;
   }
 
+
+
+  async onLoadAdviser(data: any) {
+    console.log('onLoadAdviser', data);
+    this.ngOnInit();
+  }
 
   async onLoadVoucher(formData: any) {
     try {
@@ -177,6 +205,12 @@ export class PurchaseDetailsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.sub$.unsubscribe();
+  }
+
+  copy() {
+    this._clipboardService.copy(this.orderId);
+    this.sweetAlert2Srv.showSuccess('Copied to clipboard');
+    return
   }
 
 }

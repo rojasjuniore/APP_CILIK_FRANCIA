@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFirestore, Query } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
-import { handlerArrayResult } from 'src/app/helpers/model.helper';
+import { handlerArrayResult, handlerObjectResult } from 'src/app/helpers/model.helper';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +18,16 @@ export class UserService {
 
 
 
+
+  async getUser(uid: string) {
+    try {
+      const snapshot = await this.afs.collection(this.collection).doc(uid).get().toPromise();
+      return await handlerObjectResult(snapshot);
+    } catch (err) {
+      console.log('Error on CartService.getCartToPromise', err);
+      return null;
+    }
+  }
 
   async getName(value): Promise<any> {
     if (!value) return "No validado";
@@ -84,6 +94,9 @@ export class UserService {
       endAt = null,
       orderBy = [],
     } = opts;
+
+    console.log({ where });
+    console.log({ orderBy });
 
     return this.afs.collection(this.collection,
       (ref) => {
