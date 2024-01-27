@@ -48,10 +48,18 @@ export class ClaimWeekendFestComponent implements OnInit {
 
       const accreditationID = `${this.orderDocId}-${this.index}`;
       const uid = await this.auth.getByIdUIDPromise();
-      const uidList = res.data.map(({ uid }) => uid)
+      console.log('uid', uid);
+      const uidList = res.data.map(({ uid }) => uid);
+      let uidIdList;
+      // Check if uidList is undefined or every element in uidList is undefined
+      if (!uidList || uidList.every(uid => uid === undefined)) {
+        uidIdList = res.data.map(({ _id }) => _id);
+      } else {
+        uidIdList = uidList;
+      }
 
       const accreditationObj = {
-        uidList: uidList,
+        uidList: uidIdList,
         ordeID: this.orderDocId,
         index: this.index,
         accreditationID,

@@ -51,15 +51,23 @@ export class ClaimFullPassPerDayComponent implements OnInit {
       console.log('accreditationID', accreditationID);
       console.log('res.data', res.data);
 
+
+
       const uid = await this.auth.getByIdUIDPromise();
       console.log('uid', uid);
-
-      const uidList = res.data.map(({ uid }) => uid)
+      const uidList = res.data.map(({ uid }) => uid);
+      let uidIdList;
+      // Check if uidList is undefined or every element in uidList is undefined
+      if (!uidList || uidList.every(uid => uid === undefined)) {
+        uidIdList = res.data.map(({ _id }) => _id);
+      } else {
+        uidIdList = uidList;
+      }
 
 
       const accreditationObj = {
         accreditationID,
-        uidList: uidList,
+        uidList: uidIdList,
         ordeID: this.orderDocId,
         index: this.index,
         uid_add: uid,

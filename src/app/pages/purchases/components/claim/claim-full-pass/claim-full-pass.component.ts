@@ -1,3 +1,4 @@
+import { filter } from 'rxjs';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ClaimSearchUserComponent } from '../claim-search-user/claim-search-user.component';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -53,11 +54,20 @@ export class ClaimFullPassComponent implements OnInit {
       const uid = await this.auth.getByIdUIDPromise();
       console.log('uid', uid);
 
-      const uidList = res.data.map(({ uid }) => uid)
+      const uidList = res.data.map(({ uid }) => uid);
+      let uidIdList;
+      // Check if uidList is undefined or every element in uidList is undefined
+      if (!uidList || uidList.every(uid => uid === undefined)) {
+        uidIdList = res.data.map(({ _id }) => _id);
+      } else {
+        uidIdList = uidList;
+      }
 
+      console.log('uidIdList', uidIdList);
+      /// mera9112@gmail.com
 
       const accreditationObj = {
-        uidList: uidList,
+        uidList: uidIdList,
         ordeID: this.orderDocId,
         index: this.index,
         accreditationID,
@@ -66,6 +76,7 @@ export class ClaimFullPassComponent implements OnInit {
         key: this.division.key,
       }
 
+      console.log(accreditationObj)
 
 
       await this.purchaseSrv.updatePurchaseStore(

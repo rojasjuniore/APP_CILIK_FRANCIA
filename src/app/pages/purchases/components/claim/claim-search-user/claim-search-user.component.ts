@@ -194,9 +194,9 @@ export class ClaimSearchUserComponent implements OnInit, OnChanges, AfterViewIni
        * Ejecutar regla de la edad
        */
 
-      const age = moment().diff(profile.birthdate, 'years');
-      const minAge = this.divisionSetting.edad_min;
-      const maxAge = this.divisionSetting.edad_max;
+      // const age = moment().diff(profile.birthdate || 0, 'years');
+      // const minAge = this.divisionSetting.edad_min;
+      // const maxAge = this.divisionSetting.edad_max;
 
       // Válidar que la edad se encuentre dentro del rango
       // if (age < minAge || age > maxAge) {
