@@ -1,0 +1,7 @@
+th{
+    color: #e5334c !important;
+}
+
+.table-striped-columns>:not(caption)>tr>:nth-child(2n) {
+    --bs-table-bg-type: #fafafa;
+}

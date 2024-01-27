@@ -1,7 +1,10 @@
 import { Component, Input, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Subject, Observable, of, Subscription } from 'rxjs';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { BlockService } from 'src/app/services/block.service';
 import { BsModalService } from 'src/app/services/bs-modal.service';
 import { DataService } from 'src/app/services/data.service';
@@ -58,6 +61,9 @@ export class ModalAccreditedUsersComponent implements OnInit {
   isLoading = true;
 
   constructor(
+    private auth: AuthenticationService,
+    private db: AngularFireDatabase,
+    private spinner: NgxSpinnerService,
     private recordsSrv: RecordsService,
     private sweetAlert2Srv: Sweetalert2Service,
     private blockSrv: BlockService,
@@ -150,6 +156,49 @@ export class ModalAccreditedUsersComponent implements OnInit {
 
 
     this.mi.hide();
+  }
+
+
+  async remove(item) {
+    try {
+      console.log("remove2,", item);
+
+      const ask: any = await this.sweetAlert2Srv.askConfirm(`¿Está seguro de eliminar este registro? ${item.members}`);
+      if (!ask) return
+
+      await this.spinner.show();
+
+
+
+      const uid = await this.auth.getByIdUIDPromise();
+      console.log('uid', uid);
+
+
+      /// save backup
+      const urlRemove = `/categoriesenabled-backup/${environment.dataEvent.keyDb}/${item.code}/categories/${item.key}`
+      console.log(urlRemove);
+      await this.db.object(urlRemove).set({
+        ...item,
+        uid_admin: uid,
+        created: Date.now(),
+      });
+
+      // remove 
+      const url = `/categoriesenabled/${environment.dataEvent.keyDb}/${item.code}/categories/${item.key}`
+      console.log(url);
+      await this.db.object(url).remove();
+
+
+
+
+
+      return this.sweetAlert2Srv.showSuccess(`Registro eliminado correctamente`);
+    } catch (err) {
+      console.log(err);
+      return this.sweetAlert2Srv.showError(err);
+    } finally {
+      await this.spinner.hide();
+    }
   }
 
 

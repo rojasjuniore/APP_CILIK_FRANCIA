@@ -26,6 +26,8 @@
                                         <th scope="col">{{'school' | translate | titlecase}}</th>
 
                                         <th scope="col">{{'music' | translate | titlecase}}</th>
+
+                                        <th scope="col">{{'option' | translate | titlecase}}</th>
                                     </tr>
                                 </thead>
                                 <!-- Table Body -->
@@ -48,6 +50,11 @@
                                                 <source [src]="item.music | sanitizeAudio" type="audio/mpeg">
                                                 Your browser does not support the audio tag.
                                             </audio>
+                                        </td>
+                                        <td>
+                                            <button (click)="remove(item)" type="button" class="btn">
+                                                remove
+                                            </button>
                                         </td>
 
                                     </tr>
