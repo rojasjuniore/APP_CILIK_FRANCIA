@@ -19,6 +19,7 @@ export class MyProductComponent implements OnInit {
 
 
   public product$!: Observable<any[]>;
+  public allproduct$!: Observable<any[]>;
   option: any;
 
 
@@ -44,14 +45,16 @@ export class MyProductComponent implements OnInit {
   loadData(type = 1) {
     this.option = type;
     const uid = this.authSrv.getLocalUID()
-    this.product$ = of([]);
-    if (type == 1) {
-      console.log('product', uid);
-      this.product$ = this.purchaseSrv.getDynamic(environment.dataEvent.keyDb, [{ field: 'uidList', condition: 'array-contains', value: this.authSrv.getLocalUID() },])
-    } else {
-      console.log('all product', uid);
-      this.product$ = this.purchaseSrv.claimPurchase(environment.dataEvent.keyDb, uid)
-    }
+    // this.product$ = of([]);
+    // if (type == 1) {
+    //   console.log('product', uid);
+    // } else {
+    //   console.log('all product', uid);
+    // }
+    this.allproduct$ = this.purchaseSrv.claimPurchase(environment.dataEvent.keyDb, uid)
+
+    this.product$ = this.purchaseSrv.getDynamicClaim(environment.dataEvent.keyDb, [{ field: 'uidList', condition: 'array-contains', value: uid }])
+
   }
 
 }
