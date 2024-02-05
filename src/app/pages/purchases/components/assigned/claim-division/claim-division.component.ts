@@ -469,6 +469,7 @@ export class ClaimDivisionComponent implements OnInit {
   }
 
   async save() {
+    console.log('save');
     try {
       this.spinner.show();
       console.log('this.form', this.form);
@@ -480,16 +481,16 @@ export class ClaimDivisionComponent implements OnInit {
 
       const formData = this.form.value;
       const accreditationID = `${this.orderDocId}-${this.index}`;
-
-      console.log('ordenId', accreditationID);
-
-      console.log('formData', formData);
       const url = `division/${accreditationID}/purchase`;
 
+
+      /// @dev Subir música
       const fileRefmusic = await this.uploadFileSrv.uploadFileDocumentIntoRoute(
         `${url}/music/${this.orderDocId}-${Date.now()}.mp3`,
         formData.music
       );
+
+      /// @dev Subir foto 
       const fileRefphoto = await this.uploadFileSrv.uploadFileDocumentIntoRoute(
         `${url}/imagen/${this.orderDocId}-${Date.now()}.png`,
         formData.photo
@@ -502,23 +503,23 @@ export class ClaimDivisionComponent implements OnInit {
       console.log('division', this.division);
 
       const uid = await this.auth.getByIdUIDPromise();
-      console.log('uid', uid);
+      // console.log('uid', uid);
 
       const profile = await this.auth.getProfile(uid);
-      console.log('profile', profile);
+      // console.log('profile', profile);
 
-      const objData = {
-        ...formData,
-        ...this.division,
-        uid: uid,
-        profile: profile,
-      };
+      // console.log('objData', objData);
+      /// const uidList = formData.users.map(({ uid }) => uid)
 
+      // Realiza una copia profunda de formData
+      const formDataCopy = JSON.parse(JSON.stringify(formData));
 
-      console.log('objData', objData);
+      // Ahora puedes trabajar con formDataCopy sin afectar a formData original
+      const uidList = Array.isArray(formDataCopy.users) ? formDataCopy.users.map(user => user.uid) : [];
+      if (uidList.length === 0) {
+        return this.sweetAlert2Srv.showError('No se ha seleccionado ningun usuario');
+      }
 
-
-      const uidList = formData.users.map(({ uid }) => uid)
 
       const accreditationObj = {
         uidList: uidList,
@@ -529,18 +530,38 @@ export class ClaimDivisionComponent implements OnInit {
         key: this.division.key,
         division: formData.division.id_sub_categoria,
         accreditationID: accreditationID,
-
       }
+
+
+
+      /**
+       * @TODO; NO TOCAR
+       * PROBLEMA DE LA DIVISIÓN
+       */
+      const objData = {
+        uid: uid,
+        profile: profile,
+        ...this.division,
+        ...formData,
+        participants: formData.users
+      };
+
+      console.log('objData', objData);
       console.log('accreditationObj', accreditationObj);
 
 
-      /// @add purchase
-      await this.purchaseSrv.storePurchasePending(
-        environment.dataEvent.keyDb,
-        accreditationID,
-        objData
-      );
 
+      /// @update purchase
+      await this.purchaseSrv.getServer()
+      await this.purchaseSrv.storePurchasePending(environment.dataEvent.keyDb, accreditationID, objData);
+      await this.purchaseSrv.storePurchaseClaim(environment.dataEvent.keyDb, accreditationID, accreditationObj)
+      await this.purchaseSrv.reclaimedPurchase({
+        docId: accreditationID,
+        eventId: environment.dataEvent.keyDb,
+      });
+
+
+      /// @update purchase
       await this.purchaseSrv.updatePurchaseStore(
         environment.dataEvent.keyDb,
         this.orderDocId,
@@ -550,20 +571,11 @@ export class ClaimDivisionComponent implements OnInit {
         false
       );
 
-      await this.purchaseSrv.reclaimedPurchase({
-        docId: accreditationID,
-        eventId: environment.dataEvent.keyDb,
-      });
-
-
-      await this.purchaseSrv.storePurchaseClaim(environment.dataEvent.keyDb, accreditationID, accreditationObj)
-
-
-
       /// actualizar el product con el id del purchase
       return this.sweetAlert2Srv.showSuccess('Datos guardados correctamente');
     } catch (err) {
       console.log('err', err);
+      return this.sweetAlert2Srv.showError(JSON.stringify(err));
     } finally {
       console.log('finally');
       this.spinner.hide();

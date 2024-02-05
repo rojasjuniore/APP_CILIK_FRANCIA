@@ -32,6 +32,12 @@ export class PurchaseService {
     return this.db.object(`/categoriesenabled/${eventId}/${codeDivision}/categories/${divisionId}`).valueChanges();
   }
 
+  getServer() {
+    return lastValueFrom(this.http.get(`${environment.API_URL}/memory-usage`));
+  }
+
+
+
 
   async storePurchase(eventId: string, docId: string, data: any) {
     console.log('storePurchase', eventId, docId, data);
