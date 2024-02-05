@@ -8,7 +8,7 @@ export class CustomizationfileService {
   constructor() { }
 
   getVersion() {
-    return environment.version
+    return "0.0.48"
   }
 
   getPROVISIONAKEY() {
