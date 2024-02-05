@@ -7,8 +7,8 @@ import { PurchaseAdviserComponent } from './components/purchase-adviser/purchase
 import { PurchaseAdviserModalComponent } from './components/purchase-adviser-modal/purchase-adviser-modal.component';
 import { PurchaseFullPassPerDayCardItemComponent } from './components/purchase-full-pass-per-day-card-item/purchase-full-pass-per-day-card-item.component';
 import { WeekendFestCardItemComponent } from './components/weekend-fest-card-item/weekend-fest-card-item.component';
-import { AdditionalDataComponent } from './components/claim/additional-data/additional-data.component';
-import { ClaimDivisionComponent } from './components/claim/claim-division/claim-division.component';
+import { AdditionalDataComponent } from './components/assigned/additional-data/additional-data.component';
+import { ClaimDivisionComponent } from './components/assigned/claim-division/claim-division.component';
 import { ClaimSearchUserComponent } from './components/claim/claim-search-user/claim-search-user.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { PipesModule } from 'src/app/pipes/pipes.module';

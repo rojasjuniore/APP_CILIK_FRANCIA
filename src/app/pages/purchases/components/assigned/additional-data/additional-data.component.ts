@@ -9,7 +9,7 @@ import { DevisionService } from 'src/app/services/devision.service';
 import { SchoolService } from 'src/app/services/school.service';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 import { environment } from 'src/environments/environment';
-import { ClaimSearchUserComponent } from '../claim-search-user/claim-search-user.component';
+import { ClaimSearchUserComponent } from '../../claim/claim-search-user/claim-search-user.component';
 
 @Component({
   selector: 'app-additional-data',

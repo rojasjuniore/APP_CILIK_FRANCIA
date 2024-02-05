@@ -64,7 +64,7 @@ import { AssignedFullPassComponent } from '../pages/purchases/components/assigne
 import { AssignedHotelComponent } from '../pages/purchases/components/assigned/assigned-hotel/assigned-hotel.component';
 import { AssignedWeekendFestComponent } from '../pages/purchases/components/assigned/assigned-weekend-fest/assigned-weekend-fest.component';
 import { AssignedWeekendPassComponent } from '../pages/purchases/components/assigned/assigned-weekend-pass/assigned-weekend-pass.component';
-import { CategoryClaimsComponent } from '../pages/purchases/components/category-claims/category-claims.component';
+import { CategoryClaimsComponent } from '../pages/purchases/components/claim/category-claims/category-claims.component';
 
 
 

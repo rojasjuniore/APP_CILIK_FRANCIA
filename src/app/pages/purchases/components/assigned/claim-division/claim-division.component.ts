@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { ClaimSearchUserComponent } from '../claim-search-user/claim-search-user.component';
+import { ClaimSearchUserComponent } from '../../claim/claim-search-user/claim-search-user.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Sweetalert2Service } from 'src/app/services/sweetalert2.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -371,15 +371,39 @@ export class ClaimDivisionComponent implements OnInit {
    * @param res 
    */
   onSelectUser(res: any) {
+    console.log('onSelectUser', res);
     try {
-      if (!res.status) { return; }
-      this.form.patchValue({ users: res.data });
+      if (!res.status) {
+        return this.sweetAlert2Srv.showError('Usuario no seleccionado correctamente 001');
+      }
+
+      const userAttributes = res.data
+        .map(({ identification, email, name, uid }) => {
+          if (
+            identification === undefined ||
+            email === undefined ||
+            name === undefined ||
+            uid === undefined
+          ) {
+            return this.sweetAlert2Srv.showError('Usuario no seleccionado correctamente 002');
+          }
+
+          return {
+            identification: identification,
+            email: email,
+            name: name,
+            uid: uid,
+          };
+        });
+
+      console.warn('userAttributes', userAttributes);
+
+      this.form.patchValue({ users: userAttributes });
       this.sweetAlert2Srv.showSuccess('Usuario seleccionado correctamente');
       return;
-
     } catch (err) {
       console.log('err', err);
-      return;
+      return this.sweetAlert2Srv.showError('Usuario no seleccionado correctamente');
     }
   }
 

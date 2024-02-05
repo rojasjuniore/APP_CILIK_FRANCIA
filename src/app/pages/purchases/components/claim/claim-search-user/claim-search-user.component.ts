@@ -180,6 +180,12 @@ export class ClaimSearchUserComponent implements OnInit, OnChanges, AfterViewIni
 
       console.log('item', item);
 
+
+      /**
+       * TODO: no eliminar esta linea. hay profile que no tiene uid y hay que sacarlo del _id
+       */
+      item.uid = item._id || item.uid;
+
       /** Obtener documento de perfil de usuario  */
       const profile = await this.authSrv.getProfileToPromise(item.uid);
       console.log('profile', profile);
