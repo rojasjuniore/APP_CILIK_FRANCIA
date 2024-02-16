@@ -163,6 +163,7 @@ export class ModalAccreditedUsersComponent implements OnInit {
     try {
       console.log("remove2,", item);
 
+
       const ask: any = await this.sweetAlert2Srv.askConfirm(`¿Está seguro de eliminar este registro? ${item.members}`);
       if (!ask) return
 
