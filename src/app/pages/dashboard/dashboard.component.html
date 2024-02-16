@@ -29,8 +29,13 @@
         <button class="nav-link" id="my-product-tab" data-bs-toggle="tab" data-bs-target="#my-product" type="button"
           role="tab" aria-controls="purchases" aria-selected="false">
           {{"general.myProduct" | translate}}
-          <!-- {{"general.myProduct" | translate}} -->
-          
+        </button>
+      </li>
+
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="pay-for-my-product-tab" data-bs-toggle="tab" data-bs-target="#pay-for-my-product"
+          type="button" role="tab" aria-controls="purchases" aria-selected="false">
+          {{"general.pay" | translate}}
         </button>
       </li>
     </ul>
@@ -48,6 +53,10 @@
       </div>
       <div class="tab-pane fade" id="my-product" role="tabpanel" aria-labelledby="my-product-tab">
         <app-my-product></app-my-product>
+      </div>
+
+      <div class="tab-pane fade" id="pay-for-my-product" role="tabpanel" aria-labelledby="pay-for-my-product-tab">
+        <app-pay-for-my-product></app-pay-for-my-product>
       </div>
     </div>
   </div>

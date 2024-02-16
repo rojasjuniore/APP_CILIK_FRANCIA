@@ -8,7 +8,7 @@ export class CustomizationfileService {
   constructor() { }
 
   getVersion() {
-    return "0.0.48"
+    return "0.0.49"
   }
 
   getPROVISIONAKEY() {
@@ -20,7 +20,7 @@ export class CustomizationfileService {
   }
 
   getKeyDb() {
-    return window.localStorage.getItem("keyDB");
+    return window.localStorage.getItem("keyDB") || environment.dataEvent.keyDb;
   }
 
   setKeyDb(key: string) {

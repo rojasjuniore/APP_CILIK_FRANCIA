@@ -1,0 +1,38 @@
+<ol class="list-group list-group-numbered">
+    <li *ngFor="let item of listDivision" (click)="toPay(item)"
+        class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+            <div class="fw-bold"> {{item.code | translate | titlecase}}</div>
+            {{item.code | uppercase}}
+
+            <p class="mb-1" *ngFor="let p of item.participants">
+                {{p.name | titlecase}}
+            </p>
+        </div>
+
+
+        <div [ngSwitch]="item.participants.length">
+            <div *ngSwitchCase="1">
+                <span class="badge bg-primary rounded-pill">
+                    {{'pay' | translate | uppercase}}: {{40 | currency: 'USD': true}}
+                </span>
+            </div>
+            <div *ngSwitchCase="2">
+                <span class="badge bg-primary rounded-pill">
+                    {{'pay' | translate | uppercase}}: {{60 | currency: 'USD': true}}
+                </span>
+            </div>
+            <div *ngSwitchDefault>
+                <span class="badge bg-primary rounded-pill">
+                    {{'pay' | translate | uppercase}}: {{(item.participants.length * 15) | currency: 'USD': true}}
+                </span>
+            </div>
+        </div>
+
+
+    </li>
+</ol>
+
+
+<app-purchase-installments-modal *ngIf="divisionObj" [item]="divisionObj" [orderDoc]="divisionObj"
+    #modalInstallmentsView (onCloseModal)="onModalInstallmentsView($event)"></app-purchase-installments-modal>

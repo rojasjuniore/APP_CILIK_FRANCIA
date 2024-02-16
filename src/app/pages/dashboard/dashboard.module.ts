@@ -13,6 +13,7 @@ import { MyProductComponent } from './components/my-product/my-product.component
 import { MyProductCardComponent } from './components/my-product-card/my-product-card.component';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
+import { PayForMyProductComponent } from './components/pay-for-my-product/pay-for-my-product.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
     ComponentsmyRegisteredDivisionsComponent,
     MyProductComponent,
     MyProductCardComponent,
+    PayForMyProductComponent,
   ],
   imports: [
     CommonModule,

@@ -51,6 +51,155 @@ export class PurchaseInstallmentsModalComponent implements OnInit {
 
 
 
+
+
+  /**
+   * @dev callback de tucompra
+   * @param $formData 
+   * @returns 
+   */
+  // async onTuCompraCallback(formData: any) {
+  //   console.log('onTuCompraCallback', formData);
+  //   try {
+  //     // console.log('onTuCompraCallback', formData);
+
+  //     await this.spinner.show();
+
+  //     const userDoc = await this.authSrv.getByUIDPromise(this.orderDoc.uid);
+
+
+
+  //     // const campoExtra1 = JSON.parse(formData.campoExtra1);
+  //     /** Actualizar referencia del ID de la orden de compra */
+  //     const campoExtra1 = { ...formData.campoExtra1, orderId: this.orderDoc.orderId, cuota: this.item.index };
+  //     // console.log('campoExtra1', campoExtra1);
+
+  //     /** Actualizar referencia de redirección */
+  //     const campoExtra2 = formData.campoExtra2;
+  //     campoExtra2[2] = this.orderDoc.orderId;
+  //     // console.log('campoExtra2', campoExtra2);
+
+  //     const purchase = {
+  //       metadata: {
+  //         ...formData,
+  //         campoExtra1: JSON.stringify(campoExtra1),
+  //         campoExtra2: campoExtra2.join(''),
+  //       }
+  //     };
+  //     console.log('purchase', purchase);
+
+
+
+  //     /** Disparar formulario */
+  //     this.tuCompraSrv.launchForm(purchase.metadata);
+
+
+  //     return;
+
+  //   } catch (err) {
+  //     console.log('Error on CheckoutComponent.onTuCompraCallback()', err);
+  //     return;
+  //   } finally {
+  //     this.spinner.hide();
+  //   }
+  // }
+
+
+  /**
+   * 
+   * @param event 
+   */
+  // async onVoucherCallback(event) {
+  //   console.log('onVoucherCallback', event);
+  //   try {
+  //     const ask = await this.sweetAlert2Srv.askConfirm(
+  //       this.translate.instant("alert.confirmAction")
+  //     );
+  //     if (!ask) { return; }
+
+  //     await this.spinner.show();
+
+
+  //     const { formData, optionSelected } = event;
+
+  //     console.log('formData', formData);
+  //     console.log('order', this.orderDoc);
+
+  //     const { bankTransferFile: file, reference } = formData;
+
+  //     const uploadAt = moment().valueOf();
+
+  //     /** Construir nombre del archivo */
+  //     const fileName = `${this.orderDoc.orderId}_${file.name}_${uploadAt}`;
+
+  //     /** Crear Referencia al documento */
+  //     const urlToSaveFile = `purchases/${environment.dataEvent.keyDb}/${this.orderDoc.orderId}/${fileName}`;
+
+  //     /** Cargar archivo ene l bucket */
+  //     const fileRef = await this.uploadFileSrv.uploadFileDocumentIntoRoute(urlToSaveFile, file);
+
+  //     /** Construir objeto con valores a actualizar */
+  //     const purchase = {
+  //       voucher: {
+  //         reference: reference,
+  //         name: file.name,
+  //         type: file.type,
+  //         size: file.size,
+  //         path: urlToSaveFile,
+  //         url: fileRef,
+  //         timeline: [],
+  //         uploadAt: uploadAt,
+  //         canEdit: false,
+  //       },
+  //     };
+
+
+
+  //     const installments = this.orderDoc.installments
+  //     installments[this.item.index].status = 'pending';
+  //     installments[this.item.index].paymentMethod = 'bankTransfer';
+  //     installments[this.item.index].payload = {
+  //       purchase: purchase,
+  //       optionSelected: optionSelected
+  //     };
+  //     installments[this.item.index].totales = this.amount;
+
+
+  //     await this.purchaseSrv.updatedPurchaseInstallment(environment.dataEvent.keyDb, this.orderDoc.orderId, installments);
+
+  //     this.closeModal()
+
+  //     /** Redireccionar */
+  //     this.router.navigate([`/pages/purchases/${this.orderDoc.orderId}/details`]);
+  //     return;
+
+  //   } catch (err) {
+  //     console.log('Error on PurchaseDetailsComponent.onLoadVoucher', err);
+  //     return;
+
+  //   } finally {
+  //     this.spinner.hide();
+  //   }
+  // }
+
+
+
+
+
+
+  async showModal(item: any) {
+    this.item = item;
+    console.log('showModal', item.price);
+    this.amount = item.price;
+    this.mi.show({ id: 1, class: 'modal-lg' });
+  }
+
+
+  async closeModal() {
+    this.mi.hide();
+  }
+
+
   /**
    * @dev paypal callback
    * @param event 
@@ -65,49 +214,17 @@ export class PurchaseInstallmentsModalComponent implements OnInit {
 
       console.log('onPaypalCallback', {
         paypalResponse: event,
-
       });
 
       await this.spinner.show();
 
-      const installments = this.orderDoc.installments
-      installments[this.item.index].status = 'completed';
-      installments[this.item.index].paymentMethod = 'paypal';
-      installments[this.item.index].payload = event.data;
-      installments[this.item.index].payedAt = moment().valueOf();
-      installments[this.item.index].totales = this.amount;
+      console.log('order', this.item);
 
+      const { division, price } = this.item
 
-      console.log('installments', installments);
+      await this.purchaseSrv.setCategoryPay(environment.dataEvent.keyDb, division.code, division.key);
 
-      const user = await this.authSrv.getByUIDPromise(this.orderDoc.uid);
-      console.log('userDoc', user);
-
-      // /** Almacenar orden de compra */
-      await this.purchaseSrv.updatedPurchaseInstallment(environment.dataEvent.keyDb, this.orderDoc.orderId, installments);
-
-      // /** Enviar notificación de compra realizada */
-      await this.purchaseSrv.sendPurchaseInstallmentCuotaNotification({
-        email: user.email,
-        orderId: this.orderDoc.orderId,
-        uid: this.orderDoc.uid,
-        name: user.name,
-        status: "paymentProcess",
-        updatedAt: moment().valueOf(),
-        index: Number(this.item.index) + 1,
-        installments: installments,
-      });
-
-      /** Actualizar estado de la orden de compra */
-      await this.purchaseSrv.updatePurchase(environment.dataEvent.keyDb, this.orderDoc.orderId,
-        {
-          status: "paymentProcess",
-          updatedAt: moment().valueOf(),
-          rejectedAt: null
-        },
-      );
-
-      this.sweetAlert2Srv.showToast(
+      this.sweetAlert2Srv.showBasicAlert(
         this.translate.instant("alert.purchaseMadeSatisfactorily"),
         'success'
       );
@@ -125,151 +242,6 @@ export class PurchaseInstallmentsModalComponent implements OnInit {
     } finally {
       this.spinner.hide();
     }
-  }
-
-
-  /**
-   * @dev callback de tucompra
-   * @param $formData 
-   * @returns 
-   */
-  async onTuCompraCallback(formData: any) {
-    console.log('onTuCompraCallback', formData);
-    try {
-      // console.log('onTuCompraCallback', formData);
-
-      await this.spinner.show();
-
-      const userDoc = await this.authSrv.getByUIDPromise(this.orderDoc.uid);
-
-
-
-      // const campoExtra1 = JSON.parse(formData.campoExtra1);
-      /** Actualizar referencia del ID de la orden de compra */
-      const campoExtra1 = { ...formData.campoExtra1, orderId: this.orderDoc.orderId, cuota: this.item.index };
-      // console.log('campoExtra1', campoExtra1);
-
-      /** Actualizar referencia de redirección */
-      const campoExtra2 = formData.campoExtra2;
-      campoExtra2[2] = this.orderDoc.orderId;
-      // console.log('campoExtra2', campoExtra2);
-
-      const purchase = {
-        metadata: {
-          ...formData,
-          campoExtra1: JSON.stringify(campoExtra1),
-          campoExtra2: campoExtra2.join(''),
-        }
-      };
-      console.log('purchase', purchase);
-
-
-
-      /** Disparar formulario */
-      this.tuCompraSrv.launchForm(purchase.metadata);
-
-
-      return;
-
-    } catch (err) {
-      console.log('Error on CheckoutComponent.onTuCompraCallback()', err);
-      return;
-    } finally {
-      this.spinner.hide();
-    }
-  }
-
-
-  /**
-   * 
-   * @param event 
-   */
-  async onVoucherCallback(event) {
-    console.log('onVoucherCallback', event);
-    try {
-      const ask = await this.sweetAlert2Srv.askConfirm(
-        this.translate.instant("alert.confirmAction")
-      );
-      if (!ask) { return; }
-
-      await this.spinner.show();
-
-
-      const { formData, optionSelected } = event;
-
-      console.log('formData', formData);
-      console.log('order', this.orderDoc);
-
-      const { bankTransferFile: file, reference } = formData;
-
-      const uploadAt = moment().valueOf();
-
-      /** Construir nombre del archivo */
-      const fileName = `${this.orderDoc.orderId}_${file.name}_${uploadAt}`;
-
-      /** Crear Referencia al documento */
-      const urlToSaveFile = `purchases/${environment.dataEvent.keyDb}/${this.orderDoc.orderId}/${fileName}`;
-
-      /** Cargar archivo ene l bucket */
-      const fileRef = await this.uploadFileSrv.uploadFileDocumentIntoRoute(urlToSaveFile, file);
-
-      /** Construir objeto con valores a actualizar */
-      const purchase = {
-        voucher: {
-          reference: reference,
-          name: file.name,
-          type: file.type,
-          size: file.size,
-          path: urlToSaveFile,
-          url: fileRef,
-          timeline: [],
-          uploadAt: uploadAt,
-          canEdit: false,
-        },
-      };
-
-
-
-      const installments = this.orderDoc.installments
-      installments[this.item.index].status = 'pending';
-      installments[this.item.index].paymentMethod = 'bankTransfer';
-      installments[this.item.index].payload = {
-        purchase: purchase,
-        optionSelected: optionSelected
-      };
-      installments[this.item.index].totales = this.amount;
-
-
-      await this.purchaseSrv.updatedPurchaseInstallment(environment.dataEvent.keyDb, this.orderDoc.orderId, installments);
-
-      this.closeModal()
-
-      /** Redireccionar */
-      this.router.navigate([`/pages/purchases/${this.orderDoc.orderId}/details`]);
-      return;
-
-    } catch (err) {
-      console.log('Error on PurchaseDetailsComponent.onLoadVoucher', err);
-      return;
-
-    } finally {
-      this.spinner.hide();
-    }
-  }
-
-
-
-
-
-
-  async showModal(item: any) {
-    this.item = item;
-    this.mi.show({ id: 1, class: 'modal-lg' });
-  }
-
-
-  async closeModal() {
-    this.mi.hide();
   }
 
 

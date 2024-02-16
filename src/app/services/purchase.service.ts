@@ -32,6 +32,19 @@ export class PurchaseService {
     return this.db.object(`/categoriesenabled/${eventId}/${codeDivision}/categories/${divisionId}`).valueChanges();
   }
 
+
+  /**
+   * 
+   * @param eventId 
+   * @param codeDivision 
+   * @param divisionId 
+   * @returns 
+   */
+  setCategoryPay(eventId: string, codeDivision: string, divisionId: string) {
+    if (!eventId || !codeDivision || !divisionId) return;
+    return this.db.object(`/categoriesenabled/${eventId}/${codeDivision}/categories/${divisionId}/isPay`).set(true);
+  }
+
   getServer() {
     return lastValueFrom(this.http.get(`${environment.API_URL}/memory-usage`));
   }
