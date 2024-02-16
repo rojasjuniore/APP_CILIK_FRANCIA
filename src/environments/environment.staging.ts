@@ -18,7 +18,7 @@ export const environment = {
   },
   // DEV
   seedKey: 'nftixProject-dev-inTECH',
-  API_URL: 'https://cilik-presale.uc.r.appspot.com/',
+  API_URL: 'https://wldc-app.uc.r.appspot.com',
   urlrootFunctions: "https://wldc-app.uc.r.appspot.com",
   // urlrootFunctions: "https://2-dot-wldc-app.uc.r.appspot.com",
   urlWeb: 'https://dev-wldc.web.app/',
