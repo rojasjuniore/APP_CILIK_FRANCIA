@@ -48,7 +48,7 @@ export class PassesService {
         groups: 15,
       },
       {
-        ranges: { from: '2023-12-17', to: '2024-02-27' },
+        ranges: { from: '2024-12-17', to: '2025-02-27' },
         soloist: 40,
         couples: 30,
         groups: 15,
