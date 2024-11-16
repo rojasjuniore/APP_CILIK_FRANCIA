@@ -8,47 +8,19 @@ export class PassesService {
   public passPrice = {
     'full-pass': [
       {
-        ranges: { from: '2023-08-01', to: '2023-11-16' },
-        price: 139,
-      },
-      {
-        ranges: { from: '2023-11-17', to: '2023-12-16' },
-        price: 159,
-      },
-      {
-        ranges: { from: '2023-12-17', to: '2024-02-27' },
-        price: 189,
+        ranges: { from: '2024-08-01', to: '2025-12-31' },
+        price: 1000,
       },
     ],
     'weekend-pass': [
       {
         ranges: { from: '2023-08-01', to: '2023-11-16' },
-        price: 89,
-      },
-      {
-        ranges: { from: '2023-11-17', to: '2023-12-16' },
-        price: 119,
-      },
-      {
-        ranges: { from: '2023-12-17', to: '2024-02-27' },
-        price: 149,
+        price: 10000,
       },
     ],
     'category-pass': [
       {
-        ranges: { from: '2023-08-01', to: '2023-11-16' },
-        soloist: 40,
-        couples: 30,
-        groups: 15,
-      },
-      {
-        ranges: { from: '2023-11-17', to: '2023-12-16' },
-        soloist: 40,
-        couples: 30,
-        groups: 15,
-      },
-      {
-        ranges: { from: '2024-12-17', to: '2025-02-27' },
+        ranges: { from: '2024-08-01', to: '2025-12-31' },
         soloist: 40,
         couples: 30,
         groups: 15,
