@@ -16,16 +16,16 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class SecurePasswordComponent implements OnInit {
 
   public valid = false;
-  public validRepeatPassword=false;
+  public validRepeatPassword = false;
   public validPassword = false;
-  public validPasswordEquals=false;
+  public validPasswordEquals = false;
   public datad = {
-    email:"",
-    password:"",
-    repeatPassword:"",
+    email: "",
+    password: "",
+    repeatPassword: "",
   };
-  public validUser=false;
-  public checkEmailStatus=0;
+  public validUser = false;
+  public checkEmailStatus = 0;
 
 
   public uid!: string;
@@ -37,13 +37,13 @@ export class SecurePasswordComponent implements OnInit {
       { type: 'invalidEmail', message: 'formValidations.email' }
     ],
     password: [
-      {type: 'required', message: 'formValidations.required'},
-      {type: 'minlength', message: 'formValidations.minlength6'},
-      {type: 'maxlength', message: 'formValidations.maxlength12'}
+      { type: 'required', message: 'formValidations.required' },
+      { type: 'minlength', message: 'formValidations.minlength6' },
+      { type: 'maxlength', message: 'formValidations.maxlength12' }
     ],
     confirmPassword: [
-      {type: 'required', message: 'formValidations.required'},
-      {type: 'mustMatch', message: 'formValidations.passwordsNotMatch'}
+      { type: 'required', message: 'formValidations.required' },
+      { type: 'mustMatch', message: 'formValidations.passwordsNotMatch' }
     ],
   };
   public submit = false;
@@ -64,11 +64,11 @@ export class SecurePasswordComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  buildForm(){
+  buildForm() {
     this.form = this.fb.group({
-      email: ['', 
+      email: ['',
         [
-          Validators.required, 
+          Validators.required,
           Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
         ]
       ],
@@ -80,18 +80,18 @@ export class SecurePasswordComponent implements OnInit {
         ]
       ],
       confirmPassword: ['', Validators.required],
-    }, {validator: MustMatch('password', 'confirmPassword')})
+    }, { validator: MustMatch('password', 'confirmPassword') })
   }
 
   get f() { return this.form.controls; }
 
-  async onSubmit(){
+  async onSubmit() {
     this.submit = true;
 
     try {
       this.loader = true;
 
-      if(this.form.invalid){
+      if (this.form.invalid) {
         this.form.markAllAsTouched();
         return;
       }
@@ -114,94 +114,94 @@ export class SecurePasswordComponent implements OnInit {
     } catch (err) {
       console.log('Error on SecurePasswordComponent.onSubmit: ', err);
       return;
-    }finally{
+    } finally {
       this.loader = false;
     }
   }
 
-  async sendCode(e: Event){
+  async sendCode(e: Event) {
     const target = e.target as HTMLInputElement;
     target.disabled = true;
     try {
       this.submit = true;
 
-      if(this.f.email.errors){ return; }
+      if (this.f.email.errors) { return; }
 
       const find = await this.authSrv.getByEmailAddress(this.f.email.value);
-      if(!find){
-        this.f.email.setErrors({invalidEmail: true});
+      if (!find) {
+        this.f.email.setErrors({ invalidEmail: true });
         return;
       }
       // console.log('find', find);
       this.uid = find._id;
 
       const code = await this.temporalTokenSrv.runByEmail(this.f.email.value);
-      if(!code){ return; }
+      if (!code) { return; }
 
       this.f.email.disable();
       this.formStatus = 2;
       this.submit = false;
       return;
-      
+
     } catch (err) {
       console.log('Error on SecurePasswordComponent.prueba: ', err);
       return;
-    }finally{
+    } finally {
       target.disabled = false;
     }
   }
 
   saverange(newValue) {
     //console.log(newValue)
-    var validEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+    var validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 
     // Using test we can check if the text match the pattern
-    if( validEmail.test(newValue) ){
-      this.valid=false;
+    if (validEmail.test(newValue)) {
+      this.valid = false;
       this.checkEmailStatus = 1;
-    }else{
-      this.valid=true;
+    } else {
+      this.valid = true;
       this.checkEmailStatus = 0;
 
     }
     console.log(this.checkEmailStatus)
-  } 
+  }
 
 
 
 
   async openPopup() {
 
-    if(this.datad.password==''){
-      this.validPassword=true;
-    }else if(this.datad.repeatPassword==''){
-      this.validRepeatPassword=true;
-    }else if(this.datad.password !== this.datad.repeatPassword){
-      this.validPasswordEquals=true;
-    }else{
+    if (this.datad.password == '') {
+      this.validPassword = true;
+    } else if (this.datad.repeatPassword == '') {
+      this.validRepeatPassword = true;
+    } else if (this.datad.password !== this.datad.repeatPassword) {
+      this.validPasswordEquals = true;
+    } else {
       this.router.navigate(['sign-in']);
     }
-    
+
   }
 
   modelChangeFn(newValue: string) {
-    this.validUser=false;
-    var validEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+    this.validUser = false;
+    var validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 
     // Using test we can check if the text match the pattern
-    if( validEmail.test(newValue) ){
-      this.valid=false;
+    if (validEmail.test(newValue)) {
+      this.valid = false;
 
-    }else{
-      this.valid=true;
+    } else {
+      this.valid = true;
 
     }
   }
 
   modelChangePassword(newValue: string) {
-    this.validUser=false;
-    this.validPassword=false;
-    this.validRepeatPassword=false;
-    this.validPasswordEquals=false;
+    this.validUser = false;
+    this.validPassword = false;
+    this.validRepeatPassword = false;
+    this.validPasswordEquals = false;
   }
 }

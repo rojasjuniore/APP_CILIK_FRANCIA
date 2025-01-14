@@ -18,7 +18,7 @@ export const environment = {
   },
   // DEV
   seedKey: 'nftixProject-dev-inTECH',
-  API_URL: 'https://api-cilik.intechchain.com',
+  API_URL: 'https://api-cilik-presale.intechchain.com/',
   urlrootFunctions: "https://api-cilik.intechchain.com",
   // urlrootFunctions: "https://2-dot-wldc-app.uc.r.appspot.com",
   urlWeb: 'https://dev-wldc.web.app/',

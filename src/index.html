@@ -4,39 +4,50 @@
 <head>
   <meta charset="utf-8">
   <meta name="google" content="notranslate">
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <base href="/">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- <link rel="icon" type="image/x-icon" href="/assets/img/cilik/favicon.png">
-  -->
-  <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/cilik/favicon-192x192.png">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-
+  <meta name="description" content="Grecia World Latin Dance Cup | CILIK">
+  <meta name="author" content="CILIK Team">
   <title>Grecia World Latin Dance Cup | CILIK</title>
-  <!--Bitrix-->
+  <base href="/">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/cilik/favicon-192x192.png">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+˝
+  <!-- Bitrix Integration -->
   <script>
     (function (w, d, u) {
-      var s = d.createElement('script'); s.async = true; s.src = u + '?' + (Date.now() / 60000 | 0);
-      var h = d.getElementsByTagName('script')[0]; h.parentNode.insertBefore(s, h);
+      var s = d.createElement('script');
+      s.async = true;
+      s.src = u + '?' + (Date.now() / 60000 | 0);
+      var h = d.getElementsByTagName('script')[0];
+      h.parentNode.insertBefore(s, h);
     })(window, document, 'https://cdn.bitrix24.es/b26298011/crm/site_button/loader_4_fmw18w.js');
   </script>
-  <!--Bitrix-->
 
-  <!-- Google tag (gtag.js) -->
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128135728-1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'UA-128135728-1');
   </script>
 </head>
 
 <body>
+  <!-- Root Angular Component -->
   <app-root></app-root>
 
-
+  <!-- Scripts -->
+  <noscript>
+    <p style="text-align: center; color: red;">
+      JavaScript is required to run this application. Please enable it in your browser settings.
+    </p>
+  </noscript>
 </body>
 
 </html>
