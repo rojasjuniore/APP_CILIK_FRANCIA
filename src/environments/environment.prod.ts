@@ -18,6 +18,10 @@ export const environment = {
     currency: 'USD',
     clientId: "AWNtZh591VSoWmuGlTUz_LjHwbRXPBoJ-pSkT7LnoFF_GVKQTSkQ9NtppzY4P1FdULUbM23gSpLuScK8",
   },
+  // paypal: {
+  //   currency: 'USD',
+  //   clientId: "ASay2oTezuJ4AhyNrm4UGcJbRE6O82APiOcx5J-l9aBT_r4TzeN0bi4acCuwmfXHWlMIfT79xu2HvdzC",
+  // },
   localStorage: {
     SECRET_KEY: "wldc2024",
   },

@@ -35,6 +35,7 @@ export class AppComponent {
 
   ngOnInit(): void {
 
+    console.log("environment", environment.dataEvent.keyDb)
     console.log("API_URL", environment.API_URL)
     console.log("urlrootFunctions", environment.urlrootFunctions)
 
