@@ -914,7 +914,7 @@ export class PurchaseService {
   }
   /// 
   reclaimedPurchase(data: any) {
-    return lastValueFrom(this.http.post(`${environment.API_URL}/payment_gateways/wldc2024`, data));
+    return lastValueFrom(this.http.post(`${environment.urlrootFunctions}/payment_gateways/wldc2024`, data));
   }
 
 
@@ -954,7 +954,7 @@ export class PurchaseService {
 
   async getAllPurchaseExcel() {
     try {
-      const url = `${environment.API_URL}admin/all-purchase-report`;
+      const url = `${environment.API_URL}/admin/all-purchase-report`;
       const snapshot: any = await lastValueFrom(this.http.get(url));
       const { results } = snapshot;
       console.log('results', results);

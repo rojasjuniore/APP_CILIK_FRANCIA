@@ -18,7 +18,7 @@ export const environment = {
   },
   // DEV
   seedKey: 'nftixProject-dev-inTECH',
-  API_URL: 'http://localhost:4300/',
+  API_URL: 'http://localhost:4300',
   urlrootFunctions: "http://localhost:4300",
   // urlrootFunctions: "https://2-dot-wldc-app.uc.r.appspot.com",
   urlWeb: 'https://grecia-dev.web.app/',

@@ -549,10 +549,8 @@ export class ClaimDivisionComponent implements OnInit {
       console.log('objData', objData);
       console.log('accreditationObj', accreditationObj);
 
-
-
       /// @update purchase
-      await this.purchaseSrv.getServer()
+      // await this.purchaseSrv.getServer()
       await this.purchaseSrv.storePurchasePending(environment.dataEvent.keyDb, accreditationID, objData);
       await this.purchaseSrv.storePurchaseClaim(environment.dataEvent.keyDb, accreditationID, accreditationObj)
       await this.purchaseSrv.reclaimedPurchase({

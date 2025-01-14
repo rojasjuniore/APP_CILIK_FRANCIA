@@ -11,7 +11,7 @@ export const environment = {
   },
   // PROD
   seedKey: 'nftixProject-dev-inTECH',
-  API_URL: 'https://api-cilik-presale.intechchain.com/',
+  API_URL: 'https://api-cilik-presale.intechchain.com',
   urlrootFunctions: "https://api-cilik.intechchain.com",
   urlWeb: 'https://grecia.cilik.io/',
   paypal: {

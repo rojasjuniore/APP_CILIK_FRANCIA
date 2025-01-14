@@ -25,7 +25,7 @@ export class EmailNotificationService {
   async sendWelcomeNotification(names: string, email: string){
     try {
       const result = await lastValueFrom( 
-        this.http.post(`${URL_ROOT}email-notification/welcome-notification`, {names, email})
+        this.http.post(`${URL_ROOT}/email-notification/welcome-notification`, {names, email})
       );
 
       return result;

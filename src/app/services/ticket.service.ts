@@ -7,7 +7,6 @@ import { environment } from "src/environments/environment";
 import { generateHashSHA256 } from '../helpers/hashGeneratorSHA256';
 import { handlerArrayResult } from '../helpers/model.helper';
 
-const URL_ROOT = environment.API_URL
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +39,7 @@ export class TicketService {
   /**
    * Cargar funcionalidades de observables
    */
-  buildObservables(){
+  buildObservables() {
 
     /** Obtener información del ticket del localStorage */
     this.checkTicketData$ = interval(1000).pipe(
@@ -67,7 +66,7 @@ export class TicketService {
    * @param amount 
    * @returns 
    */
-  amountToRender(amount){
+  amountToRender(amount) {
     const toParse = parseFloat(`${amount}`).toFixed(2);
     const toArray = toParse.split('.');
 
@@ -88,7 +87,7 @@ export class TicketService {
    * @param params.txHashField
    * @returns 
    */
-  async storeTicketDataOnLocalStorage(params: any = {}){
+  async storeTicketDataOnLocalStorage(params: any = {}) {
     const {
       data = {},
       chain = [],
@@ -113,7 +112,7 @@ export class TicketService {
    * @param params.txHashField
    * @returns 
    */
-  async updateTicketDataOnLocalStorage(params: any = {}){
+  async updateTicketDataOnLocalStorage(params: any = {}) {
     const {
       data = {},
       chain = [],
@@ -139,7 +138,7 @@ export class TicketService {
    * Obtener información de ticket seleccionado
    * @returns 
    */
-  getTicketData(){
+  getTicketData() {
     const ticketDataString = window.localStorage.getItem('ticketData');
     return (ticketDataString) ? JSON.parse(ticketDataString) : null;
   }
@@ -149,7 +148,7 @@ export class TicketService {
    * Obtener txHash del ticket
    * @returns 
    */
-  getTxHash(){
+  getTxHash() {
     return window.localStorage.getItem('txHash') || null;;
   }
 
@@ -158,13 +157,13 @@ export class TicketService {
    * Obtener documento de pre orden de venta
    * @returns 
    */
-  getPreOrderData(){
+  getPreOrderData() {
     const ticketDataString = window.localStorage.getItem('preOrder');
     return (ticketDataString) ? JSON.parse(ticketDataString) : null;
   }
 
 
-  removeTicketData(){
+  removeTicketData() {
     window.localStorage.removeItem('ticketData');
     window.localStorage.removeItem('txHash');
   }
@@ -175,14 +174,14 @@ export class TicketService {
    * @param chain 
    * @returns 
    */
-  async generateHash(chain: any[]){
+  async generateHash(chain: any[]) {
     return await generateHashSHA256(chain);
   }
 
   // @dev - get all tickets
   listTicket(): Promise<any[]> {
     return new Promise((resolve, reject) => {
-      this._http.get(`${URL_ROOT}/ticket/list`)
+      this._http.get(`${environment.API_URL}/ticket/list`)
         .subscribe((data: any) => {
           if (data.error) {
             return;
@@ -201,8 +200,8 @@ export class TicketService {
   getTicket(type: string): Promise<any> {
     return new Promise((resolve, reject) => {
       try {
-        this._http.get<any>(`${URL_ROOT}/ticket/${type}`)
-          .pipe( pluck('results') )
+        this._http.get<any>(`${environment.API_URL}/ticket/${type}`)
+          .pipe(pluck('results'))
           .subscribe((res: any) => {
             resolve(res);
           })
@@ -217,11 +216,11 @@ export class TicketService {
    * Obtener listado de eventos disponibles
    * @returns 
    */
-  getEventsList(){
+  getEventsList() {
     return this.afs.collection(
       'events',
       (ref) => ref.orderBy('order', 'asc')
-    ).valueChanges({idField: 'id'});
+    ).valueChanges({ idField: 'id' });
   }
 
 
@@ -232,9 +231,9 @@ export class TicketService {
    * @param opts 
    * @returns 
    */
-  async getDynamicPromise(collection: string, where: any[] = [], opts: any = {}): Promise<any[]>{
+  async getDynamicPromise(collection: string, where: any[] = [], opts: any = {}): Promise<any[]> {
     const {
-      idField = "_id", 
+      idField = "_id",
       orderBy = [],
       startAt = null,
       endAt = null,
@@ -249,16 +248,16 @@ export class TicketService {
 
         for (const order of orderBy) { query = query.orderBy(order.field, order.order); }
 
-        if(startAt){ query = query.startAt(startAt); }
+        if (startAt) { query = query.startAt(startAt); }
 
-        if(endAt){ query = query.endAt(endAt); }
+        if (endAt) { query = query.endAt(endAt); }
 
-        if(limit){ query = query.limit(limit); }
+        if (limit) { query = query.limit(limit); }
 
         return query;
       }
     ).get().toPromise();
-    
+
     return await handlerArrayResult(snapshot, { idField });
   }
 }

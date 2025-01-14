@@ -572,7 +572,7 @@ export class AuthenticationService {
    */
   async updateUserPassword(uid: string, password: any) {
     try {
-      const url = `${environment.API_URL}admin/reset-user-password`;
+      const url = `${environment.API_URL}/admin/reset-user-password`;
 
       const result = await lastValueFrom(this._http.post(url, { uid, password }));
       console.log('result', result);

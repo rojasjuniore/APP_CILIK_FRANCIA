@@ -35,8 +35,8 @@ export class AppComponent {
 
   ngOnInit(): void {
 
-    console.log(environment.API_URL)
-    console.log(environment.urlrootFunctions)
+    console.log("API_URL", environment.API_URL)
+    console.log("urlrootFunctions", environment.urlrootFunctions)
 
     // Suponiendo que guardas la versión en tu archivo de entorno
     this.versionSrv.checkForUpdates(environment.version);
