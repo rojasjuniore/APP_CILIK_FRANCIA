@@ -5,9 +5,9 @@ export const environment = {
   dataEvent: {
     keyDb: "VcSbg3vDaO9SRWP9r5R0",
     appURL: "https://grecia.cilik.io",
-    name: "WORLD LATIN DANCE CUP Cartagena 2024",
+    name: "Grecia world latin dance cup 2025",
     termsAndConditions: "",
-    subject: "WORLD LATIN DANCE CUP Cartagena 2024",
+    subject: "Grecia world latin dance cup 2025",
     description: "",
   },
   // PROD
