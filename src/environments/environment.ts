@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  name: "dev",
   version: '0.0.47',
   dataEvent: {
     keyDb: "iS30s4eNrRfG3dbeUV18",

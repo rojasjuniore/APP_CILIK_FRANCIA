@@ -38,6 +38,7 @@ export class AppComponent {
     console.log("environment", environment.dataEvent.keyDb)
     console.log("API_URL", environment.API_URL)
     console.log("urlrootFunctions", environment.urlrootFunctions)
+    console.log("name", environment.name)
 
     // Suponiendo que guardas la versión en tu archivo de entorno
     this.versionSrv.checkForUpdates(environment.version);

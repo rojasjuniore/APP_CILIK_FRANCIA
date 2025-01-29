@@ -51,7 +51,7 @@ export class CheckoutComponent implements OnInit {
       slug: 'paypal',
       type: 'navigation',
       icon: 'bi bi-paypal',
-      available: false,
+      available: true,
     },
     {
       label: 'general.advisor',
@@ -65,7 +65,7 @@ export class CheckoutComponent implements OnInit {
       slug: 'finalize-purchase',
       type: 'navigation',
       icon: 'bi bi-person-badge',
-      available: true,
+      available: false,
     },
   ];
   public paymentOptionSelected: any;

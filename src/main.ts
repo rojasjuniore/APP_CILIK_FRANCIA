@@ -10,11 +10,11 @@ if (environment.production) {
 
   // HACK: Don't log to console in production environment.
   // TODO: This can be done in better way using logger service and logger factory.
-  if (window) {
-    window.console.log = window.console.warn = window.console.info = function () {
-      // Don't log anything.
-    };
-  }
+  // if (window) {
+  //   window.console.log = window.console.warn = window.console.info = function () {
+  //     // Don't log anything.
+  //   };
+  // }
 }
 
 platformBrowserDynamic().bootstrapModule(AppModule)
