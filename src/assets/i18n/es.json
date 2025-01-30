@@ -1024,7 +1024,7 @@
     "wss3826": "solista mujer twerk semi-pro",
     "wss3827": "solista hombre twerk semi-pro improvisación",
     "wss3828": "solista mujer twerk semi-pro improvisación",
-    "zga ": "equipos zouk amateur",
+    "zga": "equipos zouk amateur",
     "zga5050": "equipo zouk amateur",
     "zga5051": "equipo zouk damas amateur",
     "zgp": "equipos zouk profesionales",
@@ -1426,7 +1426,6 @@
     "successfulRegistrationMessage": "Ya puedes continuar con el proceso de compra.",
     "termsAndConditionsLink": "https://firebasestorage.googleapis.com/v0/b/wldc-app.appspot.com/o/2024%2Fwldc-cartagena-2024%2Fes_001%20POLI%CC%81TICA%20DE%20TRATAMIENTO%20DE%20DATOS.pdf?alt=media&token=b60b687f-faaf-49e3-8469-78c7d3455a2e"
   },
-  "status": "Estado",
   "temporalToken": {
     "alertMessage": "Antes de continuar es necesario el código de <strong>({{tokenLong}})</strong> dígitos enviado a la dirección <strong>{{email}}</strong>, por favor ingréselo a continuación:",
     "alertTitle": "Código de verificación",
@@ -1614,7 +1613,6 @@
   "canceled the recording": "canceló la grabación",
   "canceled-paypal": "cancelado",
   "cast": "Elenco ",
-  "category": "Categoría",
   "cb": "COUPLES BEGINNER",
   "cb-5101": "Couple Bachata Pro Dominican style",
   "cb-5102": "Couple Bachata Pro Sensual style",
