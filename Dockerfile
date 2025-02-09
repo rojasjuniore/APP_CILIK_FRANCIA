@@ -28,6 +28,6 @@ COPY --from=build /app/dist /usr/share/nginx/html
 # Exponer el puerto 8080
 EXPOSE 8080
 
-# Comando para ejecutar Nginx
+# Comando para ejecutar Nginx con el archivo de configuración personalizado
 CMD ["nginx", "-g", "daemon off;"]
 
