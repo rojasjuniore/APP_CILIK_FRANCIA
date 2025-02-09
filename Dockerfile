@@ -13,8 +13,11 @@ RUN npm install --legacy-peer-deps
 # Copia el resto del código fuente
 COPY . .
 
+# Instala Angular CLI globalmente
+RUN npm install -g @angular/cli@14.2.2
+
 # Construye la aplicación en modo producción
-RUN npm run build
+RUN ng build --configuration production --verbose
 
 # Etapa 2: Servidor Nginx para servir la aplicación
 FROM nginx:alpine
@@ -28,6 +31,6 @@ COPY --from=build /app/dist /usr/share/nginx/html
 # Exponer el puerto 8080
 EXPOSE 8080
 
-# Comando para ejecutar Nginx con el archivo de configuración personalizado
+# Comando para ejecutar Nginx
 CMD ["nginx", "-g", "daemon off;"]
 
