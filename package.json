@@ -9,7 +9,7 @@
     "start": "ng serve",
     "start:prod": "ng serve --configuration production",
     "start:staging": "ng serve --configuration staging",
-    "build": "npm install -g @angular/cli@latest && npm install && ng build --configuration development",
+    "build": "npm install -g @angular/cli@latest && npm install && ng build --configuration production",
     "deploy:prod": "ng build --configuration production && firebase deploy --project=wldc-app --only hosting:grecia-2024",
     "deploy:staging": "ng build --configuration staging && firebase deploy --project=wldc-app --only hosting:grecia-dev",
     "deploy:dev": "ng build --configuration development && firebase deploy --project=wldc-app --only hosting:grecia-dev",
