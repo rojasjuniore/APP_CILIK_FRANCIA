@@ -35,7 +35,8 @@
 
       <ng-container *ngIf="isAnonymous$ | async as isAnonymous">
         <ng-container *ngIf="isAnonymous">
-          <a class="text-rslt fs-6" [routerLink]="['/auth/sign-in']" routerLinkActive="router-link-active">{{'general.logIn' | translate}} </a>
+          <a class="text-rslt fs-6" [routerLink]="['/auth/sign-in']"
+            routerLinkActive="router-link-active">{{'general.logIn' | translate}} </a>
         </ng-container>
       </ng-container>
 

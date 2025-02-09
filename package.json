@@ -1,5 +1,5 @@
 {
-  "name": "cilik-version-14",
+  "name": "grecia-2025",
   "version": "0.0.0",
   "engines": {
     "node": "14.21.3"
@@ -14,7 +14,9 @@
     "deploy:staging": "ng build --configuration staging && firebase deploy --project=wldc-app --only hosting:grecia-dev",
     "deploy:dev": "ng build --configuration development && firebase deploy --project=wldc-app --only hosting:grecia-dev",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "docker:build": "docker build -t grecia-2025 .",
+    "docker:run": "docker run -p 4500:4500 grecia-2025"
   },
   "private": true,
   "dependencies": {
