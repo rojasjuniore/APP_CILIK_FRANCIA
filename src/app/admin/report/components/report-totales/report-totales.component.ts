@@ -26,6 +26,14 @@ export class ReportTotalesComponent implements OnChanges {
     const { list, namefile } = changes;
     if (list && list.currentValue) {
       this.list = list.currentValue;
+      console.log('ngOnChanges', this.list);
+      // const data = this.list.map(item => {
+      //   console.log('item', item.paymentMethod);
+      //   console.log('item', item.payload.id);
+      //   console.log('item', item.payload.intent);
+      //   console.log('item', item.payload.status);
+      //   return item
+      // })
       this.namefile = namefile.currentValue;
 
       this.buildDashboard(this.list);
@@ -112,6 +120,7 @@ export class ReportTotalesComponent implements OnChanges {
   // }
 
   async downloadExcel() {
+    console.log('downloadExcel', this.list);
 
     const fetchData = async (item: any) => {
       try {
@@ -123,16 +132,18 @@ export class ReportTotalesComponent implements OnChanges {
         ]);
 
         const date = new Date(item.createdAt);
-        const products = item.product && item.product.length
+        const products = item.product?.length
           ? item.product.map(x => x.slug || 'slug_not_found').join(',')
           : 'no_products';
 
-        console.log('fetchData', products);
+
 
         return {
           orderId: item.orderId,
+          createdAt: date,
+          createdAtString: date.toUTCString(),
+          hasIntent: item.payload?.intent ? true : false,
           uid: item.uid,
-          createdAt: date.toUTCString(),
           name,
           products,
           email: profile?.email,
@@ -140,6 +151,12 @@ export class ReportTotalesComponent implements OnChanges {
           identification: profile?.identification,
           _language: profile?._language,
           paymentMethod: item.paymentMethod,
+          PaypalId: item.payload?.id || 'no_id',
+          PaypalIntent: item.payload?.intent || 'no_intent',
+          PaypalPayerEmail: item.payload?.intent === 'CAPTURE' ? item.payload.payer.email_address : 'Review',
+          PaypalPayerId: item.payload?.purchase_units?.[0]?.payments?.captures?.[0]?.id || 'no_payer_id',
+          PaypalStatus: item.payload?.status || 'no_status',
+          PaypalDate: item.payload?.create_time || 'no_date',
           total: item.totalResumen?.globalTotalToPay,
           codeCoupon: item.codeCoupon || 'no aplica',
           referredBy,
@@ -147,17 +164,32 @@ export class ReportTotalesComponent implements OnChanges {
         };
       } catch (error) {
         console.error(`Error fetching data for item ${item.uid}`, error);
-        return null; // O podrías retornar un objeto de error específico
+        return null;
       }
     };
 
     const dataPromises = this.list.map(fetchData);
     const resolvedData = await Promise.all(dataPromises);
-    console.log('resolvedData', resolvedData);
-    const finalData = resolvedData.filter(item => item !== null);
-    console.log('finalData', finalData);
 
-    this.excelSrv.exportAsExcelFile(finalData, `${this.namefile}-reporte`);
+    // Filtrar items nulos y ordenar
+    const finalData = resolvedData
+      .filter(item => item !== null)
+      .sort((a: any, b: any) => {
+        // Primero ordenar por intent (los que tienen intent van primero)
+        if (a.hasIntent !== b.hasIntent) {
+          return b.hasIntent ? 1 : -1;
+        }
+        // Luego ordenar por fecha (del más viejo al más nuevo)
+        return a.createdAt.getTime() - b.createdAt.getTime();
+      })
+      .map((item: any) => {
+        // Eliminar campos auxiliares antes de exportar
+        const { createdAt, hasIntent, ...exportItem } = item;
+        return exportItem;
+      });
+
+    console.log('finalData ordenada:', finalData);
+   this.excelSrv.exportAsExcelFile(finalData, `${this.namefile}-reporte`);
   }
 
 
