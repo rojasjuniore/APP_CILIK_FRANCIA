@@ -26,12 +26,13 @@
                                         <th scope="col">{{'school' | translate | titlecase}}</th>
 
                                         <th scope="col">{{'music' | translate | titlecase}}</th>
+                                        <th scope="col">{{'isPay' | translate | titlecase}}</th>
 
                                         <th scope="col">{{'option' | translate | titlecase}}</th>
                                     </tr>
                                 </thead>
                                 <!-- Table Body -->
-                                <tbody> isPay
+                                <tbody>
                                     <tr [ngClass]="{'table-primary': item?.isPay}"
                                         *ngFor="let item of accreditationsList; let i = index">
                                         <th scope="row">{{i+1}}</th>
@@ -51,6 +52,9 @@
                                                 <source [src]="item.music | sanitizeAudio" type="audio/mpeg">
                                                 Your browser does not support the audio tag.
                                             </audio>
+                                        </td>
+                                        <td>
+                                            {{item.isPay ? 'Yes' : 'No'}}
                                         </td>
                                         <td>
                                             <button (click)="remove(item)" type="button" class="btn">

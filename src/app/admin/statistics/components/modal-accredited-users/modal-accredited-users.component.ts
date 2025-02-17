@@ -59,6 +59,7 @@ export class ModalAccreditedUsersComponent implements OnInit {
 
   accreditationsList: any;
   isLoading = true;
+  code: string = '';
 
   constructor(
     private auth: AuthenticationService,
@@ -113,7 +114,7 @@ export class ModalAccreditedUsersComponent implements OnInit {
     console.log('showModal', params);
 
 
-
+    this.code = code;
     this.getAccreditationsRecord(code);
     // Mostrar modal
     this.mi.show();
@@ -121,28 +122,35 @@ export class ModalAccreditedUsersComponent implements OnInit {
 
 
   async getAccreditationsRecord(code: string) {
-    this.isLoading = true; // Set loading state to true when the function starts
+    if (!code) {
+      console.error('Código no válido proporcionado');
+      return;
+    }
+
+    this.isLoading = true;
 
     try {
+      this.accreditationsList = [];
+      const result = await this.recordsSrv.getAccreditationsRecord(environment.dataEvent.keyDb, code);
 
-      this.accreditationsList = []
-      const result: any = await this.recordsSrv.getAccreditationsRecord(environment.dataEvent.keyDb, code);
-      console.log(result);
-
-      // Assuming result.result.conteos is an array and needs to be sorted
-      if (result && result.record && Array.isArray(result.record)) {
-        this.accreditationsList = result.record.sort((a, b) => b.count - a.count);
-      } else {
-        // Handle the case where result.result.conteos is not an array or undefined
-        console.error('Invalid or empty data received');
-        this.accreditationsList = []; // or set it to some default value
+      if (!result?.record) {
+        throw new Error('No se recibieron datos válidos del servidor');
       }
-    } catch (error) {
-      console.error('Error fetching accreditations count:', error);
-      // Handle the error appropriately
-      // Optionally, set accreditationsList to a default value or keep it unchanged
+
+      this.accreditationsList = result.record
+        .sort((a: any, b: any) => {
+          // Primero ordenar por isPay
+          const payComparison = a.isPay - b.isPay;
+          // Si isPay es igual, ordenar por count
+          return payComparison === 0 ? b.count - a.count : payComparison;
+        });
+
+    } catch (error: any) {
+      console.error('Error al obtener acreditaciones:', error.message);
+      this.sweetAlert2Srv.showError('Error al cargar las acreditaciones');
+      this.accreditationsList = [];
     } finally {
-      this.isLoading = false; // Ensure isLoading is set to false when the function ends
+      this.isLoading = false;
     }
   }
 
@@ -192,7 +200,7 @@ export class ModalAccreditedUsersComponent implements OnInit {
 
 
 
-
+      await this.getAccreditationsRecord(this.code);
       return this.sweetAlert2Srv.showSuccess(`Registro eliminado correctamente`);
     } catch (err) {
       console.log(err);

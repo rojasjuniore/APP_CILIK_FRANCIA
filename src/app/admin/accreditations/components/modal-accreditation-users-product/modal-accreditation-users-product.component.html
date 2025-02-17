@@ -36,6 +36,9 @@
 
 <ng-template #renderList let-list="list">
     <div class="col-12" *ngFor="let item of list; let i= index">
+        <!-- <pre>
+            {{item | json}}
+        </pre> -->
 
         <div class="accordion p-1" id="accordionExample">
             <div class="accordion-item">
@@ -44,24 +47,22 @@
                         [attr.data-bs-target]="'#collapse' + i" aria-expanded="false"
                         [attr.aria-controls]="'collapse' + i" (click)="item.expanded = !item.expanded">
 
-
                         <h3>
-                            {{item.key | translate | titlecase}}
-                            <ng-container *ngIf="(item.ordeID | statusOrdeID | async);else templateName">
-                                <span class="badge bg-success">APROBADO</span>
-                            </ng-container>
-                            <ng-template #templateName>
-                                <span class="badge bg-danger">NO APROBADO</span>
-                            </ng-template>
 
-                            <ng-container *ngIf="(item.ordeID | accredited:item.index | async);else templateName3">
-                                <span class="badge bg-success"> {{'acreditado' |translate | titlecase}}
+                            {{item._id | translate | titlecase}} - {{item.division | translate | titlecase}}
+
+                            <ng-container *ngIf="item.ordeID | statusOrdeID | async as status">
+                                <span class="badge" [ngClass]="status ? 'bg-success' : 'bg-danger'">
+                                    {{ status ? ('aprobado' | translate | uppercase) : ('noAprobado' | translate |
+                                    uppercase) }}
                                 </span>
                             </ng-container>
-                            <ng-template #templateName3>
-                                <span class="badge bg-danger"> {{'acreditar' |translate | titlecase}}
+
+                            <ng-container *ngIf="item.ordeID | accredited:item.index | async as acreditado">
+                                <span class="badge" [ngClass]="acreditado ? 'bg-success' : 'bg-danger'">
+                                    {{ (acreditado ? 'acreditado' : 'acreditar') | translate | titlecase }}
                                 </span>
-                            </ng-template>
+                            </ng-container>
                         </h3>
 
                     </button>
@@ -111,19 +112,26 @@
                         </ng-container>
 
 
-                        <div *ngIf="(item.ordeID | statusOrdeID | async)" class="d-grid gap-2 p-1 text-center">
-                            <ng-container *ngIf="(item.ordeID | accredited:item.index | async);else templateName2">
-                                <button class="btn btn-success" type="button">
-                                    {{'acreditado' |translate | titlecase}}
-                                </button>
+                        <div *ngIf="(item.ordeID | statusOrdeID | async) as status" class="d-grid gap-2 p-1 text-center">
+                            <ng-container *ngIf="(item.ordeID | accredited:item.index | async) as isAccredited">
+                                <div class="btn-group" role="group">
+                                    <button class="btn btn-success" type="button" disabled>
+                                        {{'acreditado' | translate | titlecase}}
+                                    </button>
+                                    <!-- <button  class="btn btn-danger" type="button">
+                                        {{'desacreditar' | translate | titlecase}}
+                                    </button> -->
+                                </div>
+                                <ng-template #notAccredited>
+                                    <button (click)="accreditation(item)" class="btn btn-primary" type="button">
+                                        {{'acreditar' | translate | titlecase}}
+                                    </button>
+                                </ng-template>
                             </ng-container>
-                            <ng-template #templateName2>
-                                <button (click)="accreditation(item)" class="btn btn-primary" type="button">
-                                    {{'acreditar' |translate | titlecase}}
-                                </button>
-                            </ng-template>
-
                         </div>
+
+                  
+
                     </div>
                 </div>
             </div>

@@ -15,7 +15,10 @@ export class StatusOrdeIDPipe implements PipeTransform {
 
       if (purchasesSnapshot.exists) {
         const purchases = purchasesSnapshot.data();
-        return purchases.status === 'completed';
+        console.log('statusOrdeID', purchases);
+        const status = purchases.payload.type === 'success';
+        console.log('statusOrdeID', status);
+        return status;
       } else {
         console.warn('No purchase found for orderID:', orderID);
       }

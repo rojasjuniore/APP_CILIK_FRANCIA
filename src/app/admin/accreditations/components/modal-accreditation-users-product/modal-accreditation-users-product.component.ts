@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Subject, Observable, of, Subscription } from 'rxjs';
+import { Subject, Observable, of, Subscription, map } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { BlockService } from 'src/app/services/block.service';
 import { BsModalService } from 'src/app/services/bs-modal.service';
@@ -129,7 +129,14 @@ export class ModalAccreditationUsersProductComponent implements OnInit {
 
 
   async getAccreditationsRecord(uid: string) {
-    this.product$ = this.purchaseSrv.claimPurchase(environment.dataEvent.keyDb, uid)
+    this.product$ = this.purchaseSrv.claimPurchase(environment.dataEvent.keyDb, uid).pipe(
+      map((items: any[]) => {
+        // Crear un Map usando item._id como clave para eliminar duplicados
+        const uniqueMap = new Map(items.map(item => [item._id, item]));
+        // Convertir el Map de vuelta a array
+        return Array.from(uniqueMap.values());
+      })
+    );
   }
 
   async closeModal(params: any = {}) {
