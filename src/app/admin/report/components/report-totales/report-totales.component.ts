@@ -4,6 +4,9 @@ import { ProfilePipe } from 'src/app/pipes/profile.pipe';
 import { ExcelService } from 'src/app/services/excel.service';
 import { PurchaseService } from 'src/app/services/purchase.service';
 import { UserService } from 'src/app/services/user/user.service';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { environment } from 'src/environments/environment';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-report-totales',
@@ -17,6 +20,7 @@ export class ReportTotalesComponent implements OnChanges {
   totalForItemList: any;
 
   constructor(
+    private db: AngularFireDatabase,
     private userSrv: UserService,
     private excelSrv: ExcelService,
     private purchaseSrv: PurchaseService) { }
@@ -38,6 +42,8 @@ export class ReportTotalesComponent implements OnChanges {
 
       this.buildDashboard(this.list);
     }
+
+    this.getCategory();
   }
 
 
@@ -47,7 +53,6 @@ export class ReportTotalesComponent implements OnChanges {
    * @param data 
    */
   buildDashboard(data) {
-    console.log('buildDashboard', data);
     if (!data) return
 
     /// @dev obtiene los totales
@@ -71,56 +76,7 @@ export class ReportTotalesComponent implements OnChanges {
   }
 
 
-  // async downloadExcel() {
-
-  //   console.log('downloadExcel', this.list);
-
-  //   const dataPromises = this.list.map(item =>
-  //     Promise.all([
-  //       this.userSrv.getName(item.uid),
-  //       this.userSrv.getName(item.merchantIdentification),
-  //       this.userSrv.getName(item.referred_by),
-  //       this.userSrv.getProfileAfs(item.uid) as any,
-  //     ]).then(([name, merchantIdentification, referred_by, profile]) => {
-
-  //       const date = new Date(item.createdAt);
-  //       return {
-  //         uid: item.uid,
-  //         createdAt: date.toUTCString(),
-  //         name,
-  //         products: item.product.map(x => {
-  //           return x.slug
-  //         }).join(','),
-
-  //         email: profile.email,
-  //         phone: `${profile.prefijo}${profile.phone}`,
-  //         identification: profile.identification,
-  //         _language: profile._language,
-  //         paymentMethod: item.paymentMethod,
-  //         total: item.totalResumen.globalTotalToPay,
-  //         codeCoupon: item.codeCoupon || 'no aplica',
-  //         referred_by,
-  //         merchantIdentification,
-  //       };
-  //     }).catch(error => {
-  //       // Manejo de errores aquí - decide cómo quieres manejar los errores.
-  //       console.error('Error fetching data', error);
-  //       return null; // O podrías retornar un objeto de error específico
-  //     })
-  //   );
-
-  //   // Espera a que todas las promesas se resuelvan
-  //   const resolvedData = await Promise.all(dataPromises);
-
-  //   const final = resolvedData.filter(item => item !== null);
-
-  //   console.log('resolvedData', final);
-
-  //   //  this.excelSrv.exportAsExcelFile(final, `${this.namefile}-reporte`);
-  // }
-
   async downloadExcel() {
-    console.log('downloadExcel', this.list);
 
     const fetchData = async (item: any) => {
       try {
@@ -189,7 +145,27 @@ export class ReportTotalesComponent implements OnChanges {
       });
 
     console.log('finalData ordenada:', finalData);
-   this.excelSrv.exportAsExcelFile(finalData, `${this.namefile}-reporte`);
+    this.excelSrv.exportAsExcelFile(finalData, `${this.namefile}-reporte`);
+  }
+
+
+  async getCategory() {
+    const url = `/categoriesenabled/${environment.dataEvent.keyDb}/`;
+    this.db.object(url).valueChanges().subscribe((category: any) => {
+      console.log('category', category);
+
+      const list = Object.keys(category).flatMap((code: any) => {
+        return Object.keys(category[code].categories).map((division: any) => {
+          return {
+            code: code,
+            keyDivision: division,
+            ...category[code].categories[division]
+          };
+        });
+      });
+
+      console.log('list', list);
+    });
   }
 
 
