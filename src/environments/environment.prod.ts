@@ -4,17 +4,17 @@ export const environment = {
   version: '0.0.49',
   dataEvent: {
     keyDb: "VcSbg3vDaO9SRWP9r5R0",
-    appURL: "https://grecia.cilik.io",
-    name: "Grecia world latin dance cup 2025",
+    appURL: "https://France.cilik.io",
+    name: "France world latin dance cup 2025",
     termsAndConditions: "",
-    subject: "Grecia world latin dance cup 2025",
+    subject: "France world latin dance cup 2025",
     description: "",
   },
   // PROD
   seedKey: 'nftixProject-dev-inTECH',
   API_URL: 'https://api-cilik-presale.intechchain.com',
   urlrootFunctions: "https://api-cilik.intechchain.com",
-  urlWeb: 'https://grecia.cilik.io/',
+  urlWeb: 'https://France.cilik.io/',
   paypal: {
     currency: 'USD',
     clientId: "AWNtZh591VSoWmuGlTUz_LjHwbRXPBoJ-pSkT7LnoFF_GVKQTSkQ9NtppzY4P1FdULUbM23gSpLuScK8",

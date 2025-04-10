@@ -1289,8 +1289,8 @@
         "Si tienes alguna pregunta no dudes en hacerla, el equipo de soporte está para ayudarte.",
         "Escríbenos en:"
       ],
-      "salutation": "¡Nos vemos en Grecia!",
-      "subject": "¡Estás a un solo paso del Grecia WLDC 2025!"
+      "salutation": "¡Nos vemos en France!",
+      "subject": "¡Estás a un solo paso del France WLDC 2025!"
     },
     "greetings": "¡Saludos!",
     "hello": "¡Hola!",
@@ -1308,15 +1308,15 @@
       ],
       "button": "¡Clic para conocer los detalles de tu orden!",
       "salutation": "¡Nos vemos pronto!",
-      "subject": "Orden {{orderId}} de Grecia WLDC 2025"
+      "subject": "Orden {{orderId}} de France WLDC 2025"
     },
     "signUp": {
       "body": [
-        "¡Bienvenido a la aplicación Grecia WLDC 2025!",
-        "Estamos muy felices de contar con tu presencia en la edición WLDC 2024.",
+        "¡Bienvenido a la aplicación France WLDC 2025!",
+        "Estamos muy felices de contar con tu presencia en la edición WLDC 2024."
       ],
       "greeting": "¡Hola {{names}}!",
-      "subject": "Bienvenido a Grecia WLDC 2025 {{names}}"
+      "subject": "Bienvenido a France WLDC 2025 {{names}}"
     },
     "temporalToken": {
       "body": [
@@ -1324,7 +1324,7 @@
         "El código necesario para continuar con tu operación es el siguiente:",
         "Este código a caducará en {{time}} {{unit}} o al cancelar la transacción"
       ],
-      "subject": "Código Temporal {{code}} Grecia WLDC 2025"
+      "subject": "Código Temporal {{code}} France WLDC 2025"
     }
   },
   "ordenId": "Orden ID",
@@ -1441,7 +1441,7 @@
         "Escríbenos en:"
       ],
       "salutation": "¡Nos vemos en Cartagena!",
-      "subject": "¡Estás a un solo paso del Grecia WLDC 20125!"
+      "subject": "¡Estás a un solo paso del France WLDC 20125!"
     },
     "expiredToken": "Código expirado",
     "invalidToken": "Código no válido",
@@ -1457,16 +1457,16 @@
       ],
       "button": "¡Clic para conocer los detalles de tu orden!",
       "salutation": "¡Nos vemos pronto!",
-      "subject": "Orden {{orderId}} de Grecia WLDC 2025"
+      "subject": "Orden {{orderId}} de France WLDC 2025"
     },
     "signUp": {
       "body": [
-        "¡Bienvenido a la aplicación Grecia WLDC 2025!",
+        "¡Bienvenido a la aplicación France WLDC 2025!",
         "Estamos muy felices de contar con tu presencia en la edición WLDC 2024.",
         "En la aplicación podrás realizar la compra de los paquetes para asistir a esta gran experiencia WLDC 2024 en Cartagena Colombia."
       ],
       "greeting": "¡Hola {{names}}!",
-      "subject": "Bienvenido a Grecia WLDC 2025 {{names}}"
+      "subject": "Bienvenido a France WLDC 2025 {{names}}"
     },
     "validations": {
       "emptyToken": "El código no puede estar vacío",

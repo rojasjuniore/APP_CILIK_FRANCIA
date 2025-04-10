@@ -166,7 +166,7 @@ export class TucompraFormComponent implements OnInit, OnChanges {
         campoExtra2: [environment.dataEvent.appURL, '/pages/purchases/', orderId, '/details'],
         telefonoComprador: formData.celularComprador,
         paisComprador: 'COLOMBIA',
-        ciudadComprador: 'Grecia'
+        ciudadComprador: 'France'
       });
       // console.log('data', data);
 

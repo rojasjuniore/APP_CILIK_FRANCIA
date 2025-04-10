@@ -31,7 +31,7 @@ export class PreSaleOnlyEventPassTucompraComponent implements OnInit {
       usuario: environment.tuCompra.Idsistema,
       factura: Date.now(),
       valor: purchaseTotales(this.preSaleDocument).total || 0,
-      descripcionFactura: "Compra de boletas para el evento - WLDC Grecia 2024",
+      descripcionFactura: "Compra de boletas para el evento - WLDC France 2025",
       campoExtra1: this.preSaleDocument.orderId
     });
 

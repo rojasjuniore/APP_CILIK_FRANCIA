@@ -1297,13 +1297,13 @@
     "noRequestCode": "If you did not request this code, no further action is required.",
     "purchaseInfo": {
       "body": [
-        "Welcome to Grecia WLDC 2025!",
+        "Welcome to France WLDC 2025!",
         "We want to extend our official welcome to the World Latin Dance Cup 2025. We're getting closer to experiencing the most important Latin Dance event in the world!",
         "It's a pleasure for us to have you as part of this great family.",
         "First and foremost, we want to ensure you have all the information you need...",
         "If you have any questions, please don't hesitate to ask. Our support team is here to assist you through our social medias.",
         "Reach out to us at:",
-        "P.S. Get ready... Grecia WLDC 2025 is going to be amazing."
+        "P.S. Get ready... France WLDC 2025 is going to be amazing."
       ],
       "button": "Click to see the details of your order!",
       "salutation": "See you soon!",
@@ -1312,8 +1312,8 @@
     "signUp": {
       "body": [
         "Welcome to the WLDC Cartagena 2025 application!",
-        "We are very happy to have your presence at the Grecia WLDC 2025 edition.",
-        "In the application you can purchase the packages to attend this great Grecia WLDC 2025 experience in Cartagena Colombia."
+        "We are very happy to have your presence at the France WLDC 2025 edition.",
+        "In the application you can purchase the packages to attend this great France WLDC 2025 experience in Cartagena Colombia."
       ],
       "greeting": "Hi {{names}}!",
       "subject": "Welcome to WLDC Cartagena 2025 {{names}}"
@@ -1448,13 +1448,13 @@
     "invalidToken": "Invalid code",
     "purchaseInfo": {
       "body": [
-        "Welcome to Grecia WLDC 2025!",
+        "Welcome to France WLDC 2025!",
         "We want to officially welcome you to the World Latin Dance Cup 2025 We are already close to live the most important Latin dance experience in the world!",
         "It is a pleasure for us to have you as part of this great family.",
         "First of all, we want to make sure you have all the information you need...",
         "If you have any questions please do not hesitate to ask. The support team is here to help you by the following means.",
         "Write to us at:",
-        "PS: Get ready... Grecia WLDC 2025 is going to be amazing."
+        "PS: Get ready... France WLDC 2025 is going to be amazing."
       ],
       "button": "Click here to know the details of your order!",
       "salutation": "See you soon!",
@@ -1463,8 +1463,8 @@
     "signUp": {
       "body": [
         "Welcome to the WLDC Cartagena 2025 application!",
-        "We are very happy to count on your presence at the Grecia WLDC 2025 edition.",
-        "In the application you will be able to purchase packages to attend this great Grecia WLDC 2025 experience in Cartagena Colombia."
+        "We are very happy to count on your presence at the France WLDC 2025 edition.",
+        "In the application you will be able to purchase packages to attend this great France WLDC 2025 experience in Cartagena Colombia."
       ],
       "greeting": "Hi {{names}}!",
       "subject": "Welcome to WLDC Cartagena 2025 {{names}}"
@@ -1807,9 +1807,9 @@
   "deposit-alias": "deposit alias",
   "descalificado": "disqualified",
   "description": "Description",
-  "description-latin-dance-ar": "argentina latin dance cup is the official qualifying round for the world latin dance cup, world latin dance cup 2024, and brings together the best dancers in each category of the salsa, bachata, tango and urban genres in the country. the best dancers in this competition win the right to represent our country at the Grecia WLDC 2025 world championship in cartagena colombia from february 5 to 11.",
-  "description-latin-dance-la": "los angeles latin dance cup is the official qualifier for the world latin dance cup 2024. it brings together the best dancers in each category of the country's salsa, bachata, tango, and urban dance genres. the best dancers in this competition win the right to represent our country in the world Grecia WLDC 2025 in cartagena colombia from february 5 to 11. here you can find all the information related to the qualifying competitions that will take place in los angeles.",
-  "description-latin-dance-mx": "mexico latin dance cup is the official qualifying round for the world latin dance cup, world latin dance cup 2024, and brings together the best dancers in each category of the salsa, bachata, tango and urban genres in the country. the best dancers in this competition win the right to represent our country at the Grecia WLDC 2025 world championship in cartagena colombia from february 5 to 11.",
+  "description-latin-dance-ar": "argentina latin dance cup is the official qualifying round for the world latin dance cup, world latin dance cup 2024, and brings together the best dancers in each category of the salsa, bachata, tango and urban genres in the country. the best dancers in this competition win the right to represent our country at the France WLDC 2025 world championship in cartagena colombia from february 5 to 11.",
+  "description-latin-dance-la": "los angeles latin dance cup is the official qualifier for the world latin dance cup 2024. it brings together the best dancers in each category of the country's salsa, bachata, tango, and urban dance genres. the best dancers in this competition win the right to represent our country in the world France WLDC 2025 in cartagena colombia from february 5 to 11. here you can find all the information related to the qualifying competitions that will take place in los angeles.",
+  "description-latin-dance-mx": "mexico latin dance cup is the official qualifying round for the world latin dance cup, world latin dance cup 2024, and brings together the best dancers in each category of the salsa, bachata, tango and urban genres in the country. the best dancers in this competition win the right to represent our country at the France WLDC 2025 world championship in cartagena colombia from february 5 to 11.",
   "description-placeholder": "Enter more information here...",
   "details-of-purchase": "details of purchase",
   "df-1": "female duo amateur freestyle",

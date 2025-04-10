@@ -244,7 +244,7 @@ export class TucompraService {
       usuario: environment.tuCompra.Idsistema,
       factura: params.factura || Date.now(), 
       valor: params.valor || 0,
-      descripcionFactura: params.descripcionFactura || "Compra de boletas para el evento - WLDC Grecia 2025",
+      descripcionFactura: params.descripcionFactura || "Compra de boletas para el evento - WLDC France 2025",
       documentoComprador: params.documentoComprador || null,
       tipoDocumento: params.tipoDocumento  || null,
       nombreComprador: params.nombreComprador  || null,
