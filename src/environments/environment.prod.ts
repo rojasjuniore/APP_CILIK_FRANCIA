@@ -3,8 +3,8 @@ export const environment = {
   name: "prod",
   version: '0.0.49',
   dataEvent: {
-    keyDb: "VcSbg3vDaO9SRWP9r5R0",
-    appURL: "https://France.cilik.io",
+    keyDb: "ZYVuxaOAAroUJRhBxblb",
+    appURL: "https://france.cilik.io",
     name: "France world latin dance cup 2025",
     termsAndConditions: "",
     subject: "France world latin dance cup 2025",
